@@ -19,13 +19,11 @@ int main(int argc, char *argv[]){
   AjPStr    inseq      = NULL;
   char*     position;
   AjPStr    direction  = NULL;
-  AjPStr    mode  = NULL;
   char*     jobid;
 
   seq        = ajAcdGetSeq("sequence");
   direction  = ajAcdGetString("direction");
   position   = ajCharNewS(ajAcdGetString("position"));
-  mode = ajAcdGetString("mode");
 
   params.direction  = ajCharNewS(direction);
     

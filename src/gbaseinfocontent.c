@@ -21,7 +21,6 @@ int main(int argc, char *argv[]){
   ajint     downstream = 0;
   ajint     PatLen     = 0;
   AjPStr    position   = NULL;
-  AjPStr    mode       = NULL;
   char*     _result; 
   char*     jobid;
 
@@ -30,7 +29,6 @@ int main(int argc, char *argv[]){
   downstream = ajAcdGetInt("downstream");
   PatLen     = ajAcdGetInt("patlen");
   position   = ajAcdGetString("position");
-  mode = ajAcdGetString("mode");
   
   params.upstream   = upstream;
   params.downstream = downstream;

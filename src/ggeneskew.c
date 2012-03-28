@@ -25,7 +25,6 @@ int main(int argc, char *argv[]){
   AjBool    gc3;
   AjPStr    output     = NULL;
   AjPStr    base;
-  AjPStr    mode       = NULL; 
 	AjPStr    filename   = NULL;
   char*     _result; 
   char*     jobid;
@@ -37,7 +36,6 @@ int main(int argc, char *argv[]){
   gc3        = ajAcdGetBoolean("gctri");
   output     = ajAcdGetString("output");
   base       = ajAcdGetString("base");
-  mode = ajAcdGetString("mode");
   
   params.window       = window;
   params.slide        = slide;

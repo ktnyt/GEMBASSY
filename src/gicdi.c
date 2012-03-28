@@ -20,7 +20,6 @@ int main(int argc, char *argv[]){
   AjBool    translate = 0;
   AjPStr    id        = NULL;
   AjPStr    delkey   = NULL;
-  AjPStr    mode  = NULL;
   char*     _result; 
   char*     jobid;
   
@@ -28,7 +27,6 @@ int main(int argc, char *argv[]){
   translate  = ajAcdGetBoolean("translate");
   id         = ajAcdGetString("id");
   delkey     = ajAcdGetString("delkey");
-  mode = ajAcdGetString("mode");
   
   if(translate){
     params.translate   = 1;

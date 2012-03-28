@@ -21,14 +21,12 @@ int main(int argc, char *argv[]){
   AjBool    translate = 0;
   AjPStr    wabsent   = NULL;
   AjPStr    command   = NULL;
-  AjPStr    mode      = NULL;
   AjPStr    filename  = NULL;
   char*     jobid;
   
   seq       = ajAcdGetSeq("sequence");
   translate = ajAcdGetBoolean("translate");
   wabsent   = ajAcdGetString("wabsent");
-  mode      = ajAcdGetString("mode");
   
   if(translate){
     params.translate    = 1;

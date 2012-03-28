@@ -23,7 +23,6 @@ int main(int argc, char *argv[]){
   AjBool    purine     = 0;
   AjBool    keto       = 0;
   AjPStr    output     = NULL;
-  AjPStr    mode  = NULL;
   AjPStr    filename   = NULL;
   char*     jobid;
   char*     _result;
@@ -34,7 +33,6 @@ int main(int argc, char *argv[]){
   purine     = ajAcdGetBoolean("purine");
   keto       = ajAcdGetBoolean("keto");
   output     = ajAcdGetString("output");
-  mode = ajAcdGetString("mode");
 
   params.window       = window;
   if(at){

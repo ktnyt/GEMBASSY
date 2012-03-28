@@ -16,15 +16,11 @@ int main(int argc, char *argv[]){
   
   AjPSeq    seq   = NULL;
   AjPStr    inseq = NULL;
-  AjPStr    mode  = NULL;
   int i;
   char*     _result;
   
   
   soap_init(&soap);
-  
-  mode = ajAcdGetString("mode");
-  
   
   inseq = NULL;
   if(ajStrMatchC(mode,"id")||ajStrMatchC(mode,"ID")){

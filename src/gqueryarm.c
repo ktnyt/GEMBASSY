@@ -17,12 +17,10 @@ int main(int argc, char *argv[]){
   AjPSeq    seq;
   AjPStr    inseq      = NULL;
   ajint     position;
-  AjPStr    mode  = NULL;
   char*     jobid;
 
   seq        = ajAcdGetSeq("sequence");
   position   = ajAcdGetInt("position");
-  mode = ajAcdGetString("mode");
 
   soap_init(&soap);
   

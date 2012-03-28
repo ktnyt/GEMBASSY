@@ -21,7 +21,6 @@ int main(int argc, char *argv[]){
   ajint     width  = 0;
   ajint     window = 0;
   AjPStr    output = NULL;
-  AjPStr    mode  = NULL;
 	AjPStr    filename   = NULL;
   char*     jobid;
   char*     _result;
@@ -30,7 +29,6 @@ int main(int argc, char *argv[]){
   window     = ajAcdGetInt("window");
   width      = ajAcdGetInt("width");
   output     = ajAcdGetString("output");
-  mode = ajAcdGetString("mode");
   
   params.window = window;
   params.width  = width;

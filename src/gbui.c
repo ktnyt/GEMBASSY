@@ -22,7 +22,6 @@ int main(int argc, char *argv[]){
   AjPStr    position  = NULL;
   AjPStr    id        = NULL;
   AjPStr    delkey    = NULL;
-  AjPStr    mode  = NULL;
   AjPStr    filename  = NULL;
   char*     jobid;
   
@@ -31,7 +30,6 @@ int main(int argc, char *argv[]){
   position   = ajAcdGetString("position");
   id         = ajAcdGetString("id");
   delkey     = ajAcdGetString("delkey");
-  mode       = ajAcdGetString("mode");
   
   if(translate){
     params.translate   = 1;

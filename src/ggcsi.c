@@ -24,7 +24,6 @@ int main(int argc, char *argv[]){
   AjBool    keto       = 0;
   AjBool    p;
   AjPStr    outstring  = NULL;
-  AjPStr    mode  = NULL;
   char*     jobid;
   
   seq        = ajAcdGetSeq("sequence");
@@ -34,7 +33,6 @@ int main(int argc, char *argv[]){
   purine     = ajAcdGetBoolean("purine");
   keto       = ajAcdGetBoolean("keto");
   p          = ajAcdGetBoolean("p");
-  mode = ajAcdGetString("mode");
 
   params.window       = window;
   params.version      = version;
@@ -62,11 +60,10 @@ int main(int argc, char *argv[]){
   soap_init(&soap);
   
   inseq = NULL;
-    seq=ajAcdGetSeq("sequence");
-    ajStrAppendC(&inseq,">");
-    ajStrAppendS(&inseq,ajSeqGetNameS(seq));
-    ajStrAppendC(&inseq,"\n");
-    ajStrAppendS(&inseq,ajSeqGetSeqS(seq));
+  ajStrAppendC(&inseq,">");
+  ajStrAppendS(&inseq,ajSeqGetNameS(seq));
+  ajStrAppendC(&inseq,"\n");
+  ajStrAppendS(&inseq,ajSeqGetSeqS(seq));
   
   char* in0;
   in0 = ajCharNewS(inseq);
