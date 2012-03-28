@@ -1,0 +1,41 @@
+application: gbaseinfocontent [
+  documentation: "Calculates and graphs the sequence conservation using information content"
+  groups: "Nucleic:Composition"
+  embassy: "GEMBASSY"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+  sequence: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+  ]
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+	string: position [
+		information: "either 'start' (around start codon) or 'end' (around stop codon) to create the PWM"
+		default: "start"
+	]
+	integer: upstream [
+		information: "Length upstream of specified position to create PWM"
+		default: "30"
+	]
+	integer: downstream [
+		information: "Length downstream of specified position to create PWM"
+		default: "30"
+	]
+	integer: patlen [
+		information: "Length of oligomer to count"
+		default: "3"
+	]
+	string: mode [
+		information: "Input 'ID' for sequence ID 'seq' for whole sequence and actual ID for specified ID"
+		default: "ID"
+	]
+endsection: advanced

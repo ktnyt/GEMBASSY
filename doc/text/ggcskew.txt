@@ -1,0 +1,149 @@
+                                   ggcskew
+Function
+
+   Calculate the GC skew of the given genome
+
+Description
+
+   This program calculates and graphs the GC skew.
+
+   This program downloads the result file to the working directory.
+   The downloaded file is named "ggcskew.png" or "ggcskew.csv"
+   according to the -output option.
+
+   G-language SOAP service is provided by the
+   Institute for Advanced Biosciences, Keio University.
+   The original web service is located at the following URL:
+
+   http://www.g-language.org/wiki/soap
+
+   WSDL(RPC/Encoded) file is located at:
+
+   http://soap.g-language.org/g-language.wsdl
+
+   Documentation on G-language Genome Analysis Environment methods are
+   provided at the Document Center
+
+   http://ws.g-language.org/gdoc/
+
+Usage
+
+   Here is a sample session with ggcskew
+
+% ggcskew 
+Calculates the GC skew of the input sequence
+Input nucleotide sequence: refseqn:NC_000908
+Retrieving file from:
+http://soap.g-language.org/WS/result.cgi?jobid=13314880319482
+to ./ggcskew.png
+Retrieval successful
+
+Command line argumants
+
+   Standard (Mandatory) qualifiers:
+  [-sequence]          sequence   Nucleotide sequence filename and optional
+                                  format, or reference (input USA)
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -window             integer    [10000] Window size to observe (Any integer
+                                  value)
+   -slide              integer    [10000] Window slide size (Any integer
+                                  value)
+   -cumulative         boolean    [0] Include to calculate cumulative skew
+   -at                 boolean    [0] Include for observing AT skew instead of
+                                  GC skew
+   -purine             boolean    [0] Include for observing purine (AG/TC)
+                                  skew
+   -keto               boolean    Include for observing keto (TG/AC) skew
+                                  default: "0
+   -output             string     [g] Input 'g' for graph output, 'f' for CSV
+                                  file output (Any string)
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+Input file format
+
+   ggcskew reads a single nucleotide sequence.
+
+Ouptput file format
+
+   The output from ggcskew is to PNG data or raw CSV format.
+
+Data files
+
+   None.
+
+Notes
+
+   None.
+
+Refrences
+
+   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
+      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
+      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
+
+   Arakawa, K. and Tomita, M. (2006) G-language System as a Platfor for
+      large-scale analysis of high-throughput omics data, J. Pest Sci.,
+      31, 7.                     
+
+   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
+      Analysis Environment with REST and SOAP Wev Service Interfaces,
+      Nucleic Acids Res., 38, W700-W705.
+
+Warnings
+
+   None.
+
+Diagnostic Error Messages
+
+   None.
+
+Exit status
+
+   It always exits with a status of 0.
+
+Known bugs
+
+   None.
+
+See also
+
+   gfindoriter  - Predict the replication origin and terminus in bacterial
+                  genomes
+   ggcsi        - GC Skew Index: an index for strand-specific mutational bias
+   ggcwin       - Calculate the GC content along the given genome
+   ggeneskew    - Calculate the gene strand bias of the given genome
+   ggenomicskew - Calculate the GC skew in different regions of the given
+                  genome
+   gqueryarm    - Get the replication arm name (left or right) from the given
+                  position
+   gquerystrand - Get the strand name (leading or lagging) from the given
+                  position
+   greporiter   - Get the positions of replication origin and terminus
+
+Author(s)
+
+   Hidetoshi Itaya (celery@g-language.org)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
+
+   Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+
+History
+
+   2012 - Written by Hidetoshi Itaya
+
+Target users
+
+   This program is intended to be used by everyone and everything, from
+   naive users to embedded scrips.
+
+Comments
+
+   None.
+

@@ -1,0 +1,147 @@
+
+/* GEMBASSY ver 0.0.1 ********************************************************
+
+   All rights reserved. Copyright (C) 2012 by ITAYA Hidetoshi.
+
+   This EMBASSY package is free software for non-commercial and
+   education use only (limited due to wsdl2h); you can redistribute it
+   and/or modify it under the terms of the GNU General Public License as
+   published by the Free Software Foundation, either version 2 of the
+   License, or any later version expect commercial use.
+
+   See also GNU General Public License Version 2, included in this
+   package as COPYING.
+
+*****************************************************************************/
+
+
+
+/* About *********************************************************************
+
+   This is an EMBASSY package for the utilization of G-language SOAP service.
+
+   All of the tools included in this package are wrapper programs to
+   utilize G-language SOAP services, which are web APIs to access the methods
+   of G-language Genome Analysis Environment (GAE); a powerful workbench for
+   genome analysis. The web services use SOAP 1.1.
+
+   Detailed documentation on G-language GAE methods are availabe at
+   http://www.g-language.org/wiki/soap
+
+*****************************************************************************/
+
+
+
+/* Installation **************************************************************
+
+REQUIREMENT
+   EMBOSS (> 6.4.0) - This EMBASSY package requires EMBOSS version 6.4.0 or
+   above.
+
+INSTALLATION
+Root users
+   In the following examples we assume the downloaded EMBOSS archive filename
+   is EMBOSS-latest.tar.gz
+
+   1. Download and compile EMBOSS source code
+      % wget ftp://emboss.open-bio.org/pub/EMBOSS/EMBOSS-latest.tar.gz
+      (or "curl -O ftp://emboss.open-bio.org/pub/EMBOSS/EMBOSS-latest.tar.gz")
+      % tar zxf EMBOSS-latest.tar.gz
+      % cd EMBOSS-6.4.0
+      % ./configure
+      % make
+      % sudo make install
+
+   2. Make "embassy" directory in the EMBOSS-6.4.0/ directory if it does not
+      exist and go into the directory.
+      % mkdir embassy
+      % cd embassy
+
+   3. Download and compile the GEMBASSY source code
+      % wget http://web.sfc.keio.ac.jp/~t11080hi/GEMBASSY-0.0.1.tar.gz
+      (or "curl -O http://web.sfc.keio.ac.jp/~t11080hi/GEMBASSY-0.0.1.tar.gz")
+      % tar zxf GEMBASSY-0.0.1.tar.gz
+      % cd GEMBASSY-0.0.1
+      ( EMBOSS-6.4.0/embassy/GEMBASSY-0.0.1 )
+      % ./configure (use the same options as in step 1.)
+      % make
+      % sudo make install
+
+Non-root users
+   On steps 1. and 3. do
+   % ./configure --prefix=/PATH/TO/DIR/
+   % make
+   % make install
+   Then rewrite the "emboss_acdroot" and "emboss_data" value in ~/.embossrc
+   file.
+
+*****************************************************************************/
+
+
+
+/* QuickStart ****************************************************************
+
+DATABASE DEFINITION
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
+
+INFORMATION OF GEMBASSY TOOLS
+   List of all tools
+      For a list of all tools included in GEMBASSY use
+      % wossname -showembassy GEMBASSY
+
+   Documentation
+      Detailed documentation are available to be viewed with the "tfm"
+      utility included in EMBOSS.
+      Here is an example for "gaminoinfo"
+      % tfm gaminoinfo
+
+USAGE EXAMPLE
+   Sample files used in the following examples are included in this package.
+      ( GEMBASSY-0.0.1/data/* )
+
+   1. ggcskew (GC skew)
+      % ggcskew nucleotideSample.fna
+      Calculates the GC skew of the input sequence
+      Retrieving file from:
+      http://soap.g-language.org/WS/result.cgi?jobid=13314880319482
+      to ./ggcskew.png
+      Retrieval successful
+
+      File "ggcskew.png" will be created at working directory.
+
+   2. ggcsi (GC Skew Index)
+      % ggcsi 
+      GC Skew Index: an index for strand-specefic mutational bias
+      Input nucleotide sequence: nucleotideSample.fna
+      GCSI            SA              Dist
+      0.029426        19.060829       163.543442
+
+   3. greporiter (Replication Origin & Terminus)
+      % greporiter 
+      Get the positions of replication origin and terminus
+      Input nucleotide sequence: refseqn:NC_000913
+      origin  terminus
+      3776    65296
+
+*****************************************************************************/
+
+
+
+/* Content *******************************************************************
+
+gSOAP Toolkit
+   This EMBASSY package is dependant on gSOAP Toolkit for SOAP transfer,
+   included in the gsoap/ directory. It is used automatically during
+   compilation.
+
+*****************************************************************************/
+
+
+
+/* Contact *******************************************************************
+
+Hidetoshi Itaya (celery@g-language.org)
+   Institute for Advanced Biosciences, Keio University.
+
+*****************************************************************************/

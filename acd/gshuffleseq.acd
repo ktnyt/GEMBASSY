@@ -1,0 +1,32 @@
+application: gshuffleseq [
+  documentation: "Create randomized sequence with conserved k-mer composition"
+  groups: "Nucleic:Mutation"
+  embassy: "GEMBASSY"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+  sequence: sequence [
+    parameter: "Y"
+  ]
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+  integer: k [
+    information: "k-mer to preserve composition"
+    default: "1"
+  ]
+endsection: advanced
+
+section: output [
+  information: "Output section"
+  type: "page"
+]
+  seqout: outseq [
+  ]
+endsection: output

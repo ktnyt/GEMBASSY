@@ -1,0 +1,50 @@
+application: ggenomicskew [
+  documentation: "Calculates the GC skew in different regions of the given genome"
+  groups: "Nucleic:GCskew"
+  embassy: "GEMBASSY"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+
+  sequence: sequence [
+    parameter: "Y"
+    type: "DNA"
+  ]
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+  integer: divide [
+    information: "Window to divide into"
+    default: "250"
+  ]
+  boolean: at [
+    information: "Input 1 when observing AT skew instead of GC skew"
+    default: "0"
+  ]
+  string: output [
+    information: "Input 'g' for graph output, 'f' for CSV file output"
+    default: "g"
+  ]
+  string: mode [
+    information: "Input 'ID' for sequence ID 'seq' for whole sequence and actual
+ ID for specified ID"
+    default: "ID"
+  ]
+endsection: advanced
+
+section: output [
+	information: "Output section"
+	type: "page"
+]
+	string: filename [
+		parameter: "Y"
+		information: "Output filename"
+		default: "ggenomicskew.png(csv)"
+	]
+endsection: output

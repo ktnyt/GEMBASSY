@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope
+ xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+ xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+ xmlns:ns1="http://soap.g-language.org/GLANG">
+ <SOAP-ENV:Body SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+  <ns1:dist_in_cc>
+   <sequence></sequence>
+   <position1>0</position1>
+   <position2>0</position2>
+   <params>
+    <window>0</window>
+    <purine>0</purine>
+    <output></output>
+    <keto>0</keto>
+   </params>
+  </ns1:dist_in_cc>
+ </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

@@ -1,0 +1,38 @@
+application: gicdi [
+  documentation: "Calculates the intrinsic codon deviation index (ICDI)"
+  groups: "Nucleic:Codon usage"
+  embassy: "GEMBASSY"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+  sequence: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+  ]
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+	boolean: translate [
+		information: "Include when translating using standard codon table"
+		default: "0"
+	]
+	string: id [
+		information: "ID of a group of genes or a single gene"
+		default: "ALL"
+	]
+	string: delkey [
+		information: "Regular expression to delete key"
+		default: "[^ACDEFGHIKLMNPQRSTVWYacgtU]"
+	]
+  string: mode [
+    information: "Input 'ID' for sequence ID 'seq' for whole sequence and actual
+ ID for specified ID"
+    default: "ID"
+  ]
+endsection: advanced
