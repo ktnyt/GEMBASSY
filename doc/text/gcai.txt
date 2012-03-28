@@ -30,12 +30,9 @@ Usage
 
    Here is a sample session with gcai
 
-% gcai
+% gcai nucleotideSample.fna 
 Calculate codon adaptation index for each gene
-Input nucleotide sequence: refseqn:NC_000908
-Retrieving file from:
-http://soap.g-language.org/WS/result.cgi?jobid=13314874307684
-to gcai.csv
+Output filename [gcai.csv]: 
 Retrieval successful
 
 Command line argumants
