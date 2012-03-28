@@ -1,0 +1,21 @@
+application: gaminoinfo [
+  documentation: "Prints out basic amino acid sequence statistics"
+  groups: "Protein:Composition"
+  embassy: "GEMBASSY"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+  sequence: sequence [
+		parameter: "Y"
+    type: "Protein"
+  ]
+  string: mode [
+    information: "Input 'ID' for sequence ID 'seq' for whole sequence and actual
+ ID for specified ID"
+    default: "seq"
+  ]
+endsection: input
+

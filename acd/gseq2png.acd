@@ -1,0 +1,49 @@
+application: gseq2png [
+  documentation: "Converts a sequence to PNG image"
+  groups: "Display"
+  embassy: "GEMBASSY"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+  sequence: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+  ]
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+  integer: width [
+    information: "Width of the image"
+    default: "640"
+  ]
+  integer: window [
+    information: "Window size of a sequence to represent each pixel"
+    default: "20"
+  ]
+  string: output [
+    information: "Input 'g' for graph output"
+    default: "g"
+  ]
+  string: mode [
+    information: "Input 'ID' for sequence ID 'seq' for whole sequence and actual
+ ID for specified ID"
+    default: "seq"
+  ]
+endsection: advanced
+
+section: output [
+	information: "Output section"
+	type: "page"
+]
+	string: filename [
+		parameter: "Y"
+		information: "Output filename"
+		default: "gseq2png.png"
+	]
+endsection: output

@@ -1,0 +1,24 @@
+application: gqueryarm [
+  documentation: "Get the replication arm name (left or right) from the given position"
+  groups: "Nucleic:GCskew"
+  embassy: "GEMBASSY"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+  sequence: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+  ]
+  integer: position [
+    parameter: "Y"
+    information: "Position to query"
+  ]
+  string: mode [
+    information: "Input 'ID' for sequence ID 'seq' for whole sequence and actual
+ ID for specified ID"
+    default: "ID"
+  ]
+endsection: input

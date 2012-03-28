@@ -1,0 +1,45 @@
+application: gcai [
+  documentation: "Calculate codon adaptation index for each gene"
+  groups: "Nucleic:Codon usage"
+  embassy: "GEMBASSY"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+  sequence: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+  ]
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+	boolean: translate [
+		information: "Include when translating using standard codon table"
+		default: "0"
+	]
+	string: wabsent [
+		information: "W value of codons absent from a reference set '-' when excludes such codons from the calculation"
+		default: "-"
+	]
+  string: mode [
+    information: "Input 'ID' for sequence ID 'seq' for whole sequence and actual
+ ID for specified ID"
+    default: "ID"
+  ]
+endsection: advanced
+
+section: output [
+	information: "Output section"
+	type: "page"
+]
+	string: filename [
+		parameter: "Y"
+		information: "Output filename"
+		default: "gcai.csv"
+	]
+endsection: output

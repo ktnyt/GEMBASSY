@@ -1,0 +1,74 @@
+application: ggcskew [
+  documentation: "Calculates the GC skew of the input sequence"
+  groups: "Nucleic:GCskew"
+  embassy: "GEMBASSY"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+
+  sequence: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+  ]
+
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+
+  integer: window [
+    information: "Window size to observe"
+    default: "10000"
+  ]
+
+  integer: slide [
+    information: "Window slide size"
+    default: "10000"
+  ]
+
+  boolean: cumulative [
+    information: "Include to calculate cumulative skew"
+    default: "0"
+  ]
+
+  boolean: at [
+    information: "Include for observing AT skew instead of GC skew"
+    default: "0"
+  ]
+
+  boolean: purine [
+    information: "Include for observing purine (AG/TC) skew"
+    default: "0"
+  ]
+
+  boolean: keto [
+    information: "Include for observing keto (TG/AC) skew"
+		default: "0"
+  ]
+
+  string: output [
+    information: "Input 'g' for graph output, 'f' for CSV file output"
+    default: "g"
+  ]
+  string: mode [
+    information: "Input 'ID' for sequence ID 'seq' for whole sequence and actual
+ ID for specified ID"
+    default: "ID"
+  ]
+endsection: advanced
+
+section: output [
+	information: "Output section"
+	type: "page"
+]
+	string: filename [
+		parameter: "Y"
+		information: "Output filename"
+		default: "ggcskew.png(csv)"
+	]
+endsection: output

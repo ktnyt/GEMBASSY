@@ -1,0 +1,61 @@
+application: ggeneskew [
+  documentation: "Calculate the gene strand bias of the given genome"
+  groups: "Nucleic:GCskew"
+  embassy: "GEMBASSY"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+  sequence: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+  ]
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+  integer: window [
+    information: "Window size to observe"
+    default: "10000"
+  ]
+  integer: slide [
+    information: "Window slide size"
+    default: "10000"
+  ]
+  boolean: cumulative [
+    information: "Input 1 to calculate cumulative skew"
+    default: "0"
+  ]
+  string: base [
+    information: "Input 'gc', 'at', 'purine', or keto' for observing GC/AT/Purine/Keto skews"
+    default: "none"
+  ]
+  boolean: gctri [
+    information: "Include to use only the third codon positions"
+    default: "0"
+  ]
+  string: output [
+    information: "Input 'g' for graph output, 'f' for raw CSV output"
+    default: "g"
+  ]
+  string: mode [
+    information: "Input 'ID' for sequence ID 'seq' for whole sequence and actual
+ ID for specified ID"
+    default: "ID"
+  ]
+endsection: advanced
+
+section: output [
+	information: "Output section"
+	type: "page"
+]
+	string: filename [
+		parameter: "Y"
+		information: "Output filename"
+		default: "ggeneskew.png(csv)"
+	]
+endsection: output

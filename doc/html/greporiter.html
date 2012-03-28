@@ -1,0 +1,302 @@
+<!--START OF HEADER - DON'T ALTER -->
+
+<HTML>
+<HEAD>
+  <TITLE> EMBOSS: greporiter </TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" text="#000000">
+
+
+
+<table align=center border=0 cellspacing=0 cellpadding=0>
+<tr><td valign=top>
+<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emb
+oss_icon.jpg" alt="" width=150 height=48></a>
+</td>
+<td align=left valign=middle>
+<b><font size="+6">
+greporiter
+</font></b>
+</td></tr>
+</table>
+<br>&nbsp;
+<p>
+
+
+<!--END OF HEADER-->
+
+
+
+
+
+
+<H2> Function </H2>
+Get the positions of replication origin and terminus
+<!--
+DON'T WRITE ANYTHING HERE.
+IT IS DONE FOR YOU.
+-->
+
+
+
+
+<H2>Description</H2>
+<p>
+   This method returns the positions of replication origin and terminus
+   in bacterial genomes by several means.<br /> 
+</p>
+
+<p>
+   1. Use of databases<br />
+     By default, rep_ori_ter() tries to retrieve the position of replication
+     origin in DoriC (Gao and Zhang, 2007) database, and the position of replication
+     terminus from the supplemental data provided in (Kono <i>et al</i>., 2011).
+</p>
+
+<p>
+     If the position of origin cannot be found in the database, but "rep_origin" 
+     feature is available, center position within this feature is used for origin. 
+</p>
+
+<p>
+   2. Oriloc<br />
+     Using -oriloc 1 option, you can predict the replication origin and 
+     terminus using the popular Oriloc program developed by Lobry et al. 
+     available as part of the SeqinR package (Frank and Lobry, 2000).
+</p>
+
+<p>
+   3. Setting custom origin and terminus<br />
+     Use -ori=>$position1, -ter=>$position2 to set your own positions.
+</p>
+
+<p>
+   4. Use GC skew shift-point<br />
+      If the positions of origin or terminus cannot be found in the databases,
+      rep_ori_ter() automatically calls find_ori_ter() method to predict the 
+      positions using GC skew shift-points at one-base-pair resolution.
+</p>
+
+<p>
+G-language SOAP service is provided by the Institute for Advanced Biosciences, Keio University.<br />
+The original web service is located at the following URL:<br />
+http://www.g-language.org/wiki/soap
+</p>
+
+<p>
+WSDL(RPC/Encoded) file is located at:<br />
+http://soap.g-language.org/g-language.wsdl
+</p>
+
+<H2>Usage</H2>
+
+<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
+
+   Here is a sample session with greporiter
+
+% greporiter 
+Get the positions of replication origin and terminus
+Input nucleotide sequence: input.fna
+origin  terminus
+3776    65296
+
+
+</pre></td></tr></table>
+
+
+
+<h2>Command line argumants</h2>
+
+<table border cellspacing=0 cellpadding=3 bgcolor="#ccccff">
+<tr bgcolor="#FFFFCC">
+<th align="left">Qualifier</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+<th align="left">Allowed values</th>
+<th align="left">Default</th>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<th align="left" colspan=5>Standard (Mandatory) qualifiers</th>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>[-sequence]<br>(Parameter 1)</td>
+<td>sequence</td>
+<td>Nucleotide sequence filename and optional format, or reference (input USA)</td>
+<td>Readable sequence</td>
+<td><b>Required</b></td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<th align="left" colspan=5>Additional (Optional) qualifiers</th>
+</tr>
+
+<tr>
+<td colspan=5>(none)</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<th align="left" colspan=5>Advanced (Unprompted) qualifiers</th>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-oriloc</td>
+<td>boolean</td>
+<td>Set to 1 to use Oriloc for prediction</td>
+<td>Boolean value Yes/No</td>
+<td>No</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-gcskew</td>
+<td>boolean</td>
+<td>Set to 1 to use GC skew shift-point for prediction</td>
+<td>Boolean value Yes/No</td>
+<td>No</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-difthreshold</td>
+<td>integer</td>
+<td>Distance between the GC skew shift point and predicted dif site expressed as the precentage of genome size, used as a threshold to retrieve dif sequence from the database</td>
+<td>Any integer value</td>
+<td>0</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-dbonly</td>
+<td>boolean</td>
+<td>Set to 1 to only use values available in databases and to suppress prediction</td>
+<td>Boolean value Yes/No</td>
+<td>No</td>
+</tr>
+
+</table>
+
+<h2>Input file format</h2>
+
+<p>
+greporiter reads a genome sequence as input.
+</p>
+
+<h2>Ouptput file format</h2>
+
+<p>
+The output from greporiter is to standard output.
+</p>
+
+<h2>Data files</h2>
+
+<p>
+None.
+</p>
+
+<h2>Notes</h2>
+
+<p>
+None.
+</p>
+
+<h2>Refrences</h2>
+
+<pre>
+   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
+      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
+      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
+
+   Arakawa, K. and Tomita, M. (2006) G-language System as a Platfor for
+      large-scale analysis of high-throughput omics data, J. Pest Sci.,
+      31, 7.                     
+
+   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
+      Analysis Environment with REST and SOAP Wev Service Interfaces,
+      Nucleic Acids Res., 38, W700-W705.
+</pre>
+
+<h2>Warnings</h2>
+
+<p>
+None.
+</p>
+
+<h2>Diagnostic Error Messages</h2>
+
+<p>
+None.
+</p>
+
+<h2>Exit status</h2>
+
+<p>
+It always exits with a status of 0.
+</p>
+
+<h2>Known bugs</h2>
+
+<p>
+None.
+</p>
+
+<h2>See also</h2>
+
+<table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th>
+<th>Description</th></tr>
+<tr>
+<td><a href="gfindoriter.html">gfindoriter</a></td>
+<td>Predict the replication origin and terminus in bacterial genomes</td>
+</tr>
+<tr>
+<td><a href="ggcsi.html">ggcsi</a></td>
+<td>GC Skew Index: an index for strand-specific mutational bias</td>
+</tr>
+<tr>
+<td><a href="ggcskew.html">ggcskew</a></td>
+<td>Calculate the GC skew of the given genome</td>
+</tr>
+<tr>
+<td><a href="ggcwin.html">ggcwin</a></td>
+<td>Calculate the GC content along the given genome</td>
+</tr>
+<tr>
+<td><a href="ggeneskew.html">ggeneskew</a></td>
+<td>Calculate the gene strand bias of the given genome</td>
+</tr>
+<tr>
+<td><a href="ggenomicskew.html">ggenomicskew</a></td>
+<td>Calculate the GC skew in different regions of the given genome</td>
+</tr>
+<tr>
+<td><a href="gqueryarm.html">gqueryarm</a></td>
+<td>Get the replication arm name (left or right) from the given position</td>
+</tr>
+<tr>
+<td><a href="gquerystrand.html">gquerystrand</a></td>
+<td>Get the strand name (leading or lagging) from the given position</td>
+</tr>
+
+</table>
+
+<h2>Author(s)</h2>
+
+<pre>
+   Hidetoshi Itaya (celery@g-language.org)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
+
+   Kazuharu Arakawa(gaou@g-language.org) 
+</pre>
+
+<h2>History</h2>
+
+   2012 - Written by Hidetoshi Itaya
+
+<h2>Target users</h2>
+
+   This program is intended to be used by everyone and everything, from
+   naive users to embedded scrips.
+
+<h2>Comments</h2>
+
+   None.
+
