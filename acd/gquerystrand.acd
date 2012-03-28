@@ -27,9 +27,4 @@ section: advanced [
     information: "Strand of the querying position either 'direct' or 'complement'"
     default: "direct"
   ]
-  string: mode [
-    information: "Input 'ID' for sequence ID 'seq' for whole sequence and actual
- ID for specified ID"
-    default: "ID"
-  ]
 endsection: advanced

@@ -12,9 +12,4 @@ section: input [
     parameter: "Y"
     type: "nucleotide"
   ]
-  string: mode [
-    information: "Input 'ID' for sequence ID 'seq' for whole sequence and actual
- ID for specified ID"
-    default: "seq"
-  ]
 endsection: input

@@ -34,9 +34,4 @@ section: advanced [
     information: "Lowpass filter strength in percent. Typically 95 or 99 works best"
     default: ""
   ]
-  string: mode [
-    information: "Input 'ID' for sequence ID 'seq' for whole sequence and actual
- ID for specified ID"
-    default: "ID"
-  ]
 endsection: advanced

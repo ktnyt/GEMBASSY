@@ -55,11 +55,6 @@ section: advanced [
     information: "Input 'g' for graph output, 'f' for CSV file output"
     default: "g"
   ]
-  string: mode [
-    information: "Input 'ID' for sequence ID 'seq' for whole sequence and actual
- ID for specified ID"
-    default: "ID"
-  ]
 endsection: advanced
 
 section: output [

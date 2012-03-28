@@ -34,8 +34,3 @@ section: advanced [
 		information: "Length of oligomer to count"
 		default: "3"
 	]
-	string: mode [
-		information: "Input 'ID' for sequence ID 'seq' for whole sequence and actual ID for specified ID"
-		default: "ID"
-	]
-endsection: advanced

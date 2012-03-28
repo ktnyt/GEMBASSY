@@ -34,11 +34,6 @@ section: advanced [
 		information: "Regular expression to delete key"
 		default: "[^ACDEFGHIKLMNPQRSTVWYacgtU]"
 	]
-  string: mode [
-    information: "Input 'ID' for sequence ID 'seq' for whole sequence and actual
- ID for specified ID"
-    default: "ID"
-  ]
 endsection: advanced
 
 section: output [

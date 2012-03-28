@@ -41,9 +41,4 @@ section: output [
 		information: "Output filename"
 		default: "gphx.csv"
 	]
-  string: mode [
-    information: "Input 'ID' for sequence ID 'seq' for whole sequence and actual
- ID for specified ID"
-    default: "ID"
-  ]
 endsection: output

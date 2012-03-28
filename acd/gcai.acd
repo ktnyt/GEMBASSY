@@ -26,11 +26,6 @@ section: advanced [
 		information: "W value of codons absent from a reference set '-' when excludes such codons from the calculation"
 		default: "-"
 	]
-  string: mode [
-    information: "Input 'ID' for sequence ID 'seq' for whole sequence and actual
- ID for specified ID"
-    default: "ID"
-  ]
 endsection: advanced
 
 section: output [
