@@ -35,6 +35,7 @@ Usage
 % gseq2png nucleotideSample.fna 
 Converts a sequence to PNG image
 Output filename [gseq2png.png]:
+
 Command line argumants
 
    Standard (Mandatory) qualifiers:
