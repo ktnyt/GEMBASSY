@@ -23,15 +23,13 @@ int main(int argc, char *argv[]){
   soap_init(&soap);
   
   inseq = NULL;
-  if(ajStrMatchC(mode,"id")||ajStrMatchC(mode,"ID")){
-    seq=ajAcdGetSeq("sequence");
-    ajStrAppendS(&inseq,ajSeqGetNameS(seq));
-  }else if(ajStrMatchC(mode,"seq")||ajStrMatchC(mode,"SEQ")){
-    seq=ajAcdGetSeq("sequence");
-    ajStrAppendS(&inseq,ajSeqGetSeqS(seq));
-  }else{
-    ajStrAppendS(&inseq,mode);
-  }
+
+  seq=ajAcdGetSeq("sequence");
+  ajStrAppendC(&inseq,">");
+  ajStrAppendS(&inseq,ajSeqGetNameS(seq));
+  ajStrAppendC(&inseq,"\n");
+  ajStrAppendS(&inseq,ajSeqGetSeqS(seq));
+
   
   char* in0;
   in0 = ajCharNewS(inseq);
