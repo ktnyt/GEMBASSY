@@ -8,10 +8,10 @@
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
-#include "../include/getfile.h":
+#include "../include/getfile.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("gbui",argc,argv,"GEMBASSY","0.0.1");
+  embInitPV("gbui",argc,argv,"GEMBASSY","1.0.0");
   
   struct soap soap;
   struct ns1__buiInputParams params;
@@ -22,6 +22,7 @@ int main(int argc, char *argv[]){
   AjPStr    position  = NULL;
   AjPStr    id        = NULL;
   AjPStr    delkey    = NULL;
+  AjPStr    mode  = NULL;
   AjPStr    filename  = NULL;
   char*     jobid;
   
@@ -30,6 +31,7 @@ int main(int argc, char *argv[]){
   position   = ajAcdGetString("position");
   id         = ajAcdGetString("id");
   delkey     = ajAcdGetString("delkey");
+  mode       = ajAcdGetString("mode");
   
   if(translate){
     params.translate   = 1;

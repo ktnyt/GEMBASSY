@@ -35,9 +35,12 @@ Usage
 
    Here is a sample session with ggeneskew
 
-% ggeneskew nucleotideSample.fna 
+% ggeneskew 
 Calculate the gene strand bias of the given genome
-Output filename [ggeneskew.png(csv)]: 
+Input nucleotide sequence: refseqn:NC_000908
+Retrieving file from:
+http://soap.g-language.org/WS/result.cgi?jobid=13314891118551
+to ./ggeneskew.png
 Retrieval successful
 
 Command line argumants

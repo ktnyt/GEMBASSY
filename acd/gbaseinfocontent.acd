@@ -34,3 +34,4 @@ section: advanced [
 		information: "Length of oligomer to count"
 		default: "3"
 	]
+endsection: advanced

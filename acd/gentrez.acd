@@ -1,0 +1,19 @@
+application: gentrez [
+  documentation: "Search NCBI Entrez in G-language Shell"
+  groups: "Protein:Composition"
+  embassy: "GEMBASSY"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+  string: db [
+    parameter: "Y"
+    information: "NCBI database to search"
+    default: "pubmed"
+  ]
+  string: query [
+    parameter: "Y"
+  ]
+endsection: input

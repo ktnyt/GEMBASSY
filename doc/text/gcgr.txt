@@ -51,9 +51,12 @@ Usage
 
    Here is a sample session with gcgr
 
-% gcgr nucleotideSample.fna 
+% gcgr 
 Create a Chaos Game Representation of a given sequence
-Output filename [gcgr.png]: 
+Input nucleotide sequence: refseqn:NC_000908
+Retrieving file from:
+http://soap.g-language.org/WS/result.cgi?jobid=13314877234264
+to ./gcgr.csv
 Retrieval successful
 
 Command line argumants

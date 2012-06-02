@@ -39,9 +39,12 @@ Usage
 
    Here is a sample session with gbui
 
-% gbui nucleotideSample.fna 
+% gbui 
 Calculates base usage indices for protein-coding sequences
-Output filename [gbui.csv]: 
+Input nucleotide sequence: refseqn:NC_000908
+Retrieving file from:
+http://soap.g-language.org/WS/result.cgi?jobid=13314871632339
+to ./gbui.csv
 Retrieval successful
 
 Command line argumants

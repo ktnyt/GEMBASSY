@@ -10,7 +10,7 @@
 #include "../gsoap/stdsoap2.c"
 
 int main(int argc, char *argv[]){
-  embInit("greporiter",argc,argv);
+  embInitPV("greporiter",argc,argv,"GEMBASSY","1.0.0");
 
   struct soap soap;
   struct ns1__rep_USCOREori_USCOREterInputParams params;
@@ -21,6 +21,7 @@ int main(int argc, char *argv[]){
   AjBool    gcskew       = 0;
 	AjBool    dbonly       = 0;
   ajint     difthreshold = 0;
+  AjPStr    mode  = NULL;
   char*     _result; 
   char*     jobid;
 
@@ -29,6 +30,7 @@ int main(int argc, char *argv[]){
   oriloc       = ajAcdGetBoolean("oriloc");
   gcskew       = ajAcdGetBoolean("gcskew");
   dbonly       = ajAcdGetBoolean("dbonly");
+  mode = ajAcdGetString("mode");
 
   params.dif_threshold   = difthreshold;
   if(oriloc){

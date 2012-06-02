@@ -40,48 +40,58 @@ AM_CFLAGS =  $(AIX_CFLAGS) $(WARN_CFLAGS) $(DEVWARN_CFLAGS)
 ## make will compile and link the program
 ## make install will copy the program to the install directory
 
-bin_PROGRAMS = gaminoinfo\
+bin_PROGRAMS = gaaui\
+               gaminoinfo\
                gbaseinfocontent\
                gbui\
                gcai\
                gcbi\
                gcgr\
-               gdnawalk\
+               gdeltaenc\
+               gentrez\
                gfindoriter\
                ggcsi\
                ggcskew\
                ggcwin\
                ggeneskew\
+               ggenomemap\
                ggenomicskew\
                gicdi\
+               gp2\
                gphx\
                gqueryarm\
                gquerystrand\
                greporiter\
                gseq2png\
                gseqinfo\
-               gshuffleseq
+               gshuffleseq\
+               gwvalue
 
+gaaui_SOURCES            = gaaui.c
 gaminoinfo_SOURCES       = gaminoinfo.c
 gbaseinfocontent_SOURCES = gbaseinfocontent.c
 gbui_SOURCES             = gbui.c
 gcai_SOURCES             = gcai.c
 gcbi_SOURCES             = gcbi.c
 gcgr_SOURCES             = gcgr.c
-gdnawalk_SOURCES         = gdnawalk.c
+gdeltaenc_SOURCES        = gdeltaenc.c
+gentrez_SOURCES          = gentrez.c
 gfindoriter_SOURCES      = gfindoriter.c
 ggcsi_SOURCES            = ggcsi.c
 ggcwin_SOURCES           = ggcwin.c
 ggeneskew_SOURCES        = ggeneskew.c
+ggenomemap_SOURCES       = ggenomemap.c
 ggenomicskew_SOURCES     = ggenomicskew.c
 gicdi_SOURCES            = gicdi.c
 gphx_SOURCES             = gphx.c
+gp2_SOURCES              = gp2.c
 gqueryarm_SOURCES        = gqueryarm.c
 gquerystrand_SOURCES     = gquerystrand.c
 greporiter_SOURCES       = greporiter.c
 gseqinfo_SOURCES         = gseqinfo.c
 gseq2png_SOURCES         = gseq2png.c
 gshuffleseq_SOURCES      = gshuffleseq.c
+gwvalue_SOURCES          = gwvalue.c
 
 if LOCALLINK
 LDADD = ../../../nucleus/libnucleus.la ../../../ajax/acd/libacd.la \

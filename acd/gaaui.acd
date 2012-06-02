@@ -1,0 +1,35 @@
+application: gaaui [
+  documentation: "Calculates various indece of amino acid usage"
+  groups: ""
+  embassy: "GEMBASSY"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+  sequence: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+  ]
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+  string: id [
+    information: "ID of a group"
+    default: "All"
+  ]
+endsection: advanced
+
+section: output [
+  information: "Output section"
+  type: "page"
+]
+  string: filename [
+    parameter: "Y"
+    default: "gaaui.csv"
+  ]
+endsection: output

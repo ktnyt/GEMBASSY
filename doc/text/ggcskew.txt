@@ -30,9 +30,12 @@ Usage
 
    Here is a sample session with ggcskew
 
-% ggcskew nucleotideSample.fna 
+% ggcskew 
 Calculates the GC skew of the input sequence
-Output filename [ggcskew.png(csv)]: 
+Input nucleotide sequence: refseqn:NC_000908
+Retrieving file from:
+http://soap.g-language.org/WS/result.cgi?jobid=13314880319482
+to ./ggcskew.png
 Retrieval successful
 
 Command line argumants

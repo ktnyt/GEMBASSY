@@ -10,7 +10,7 @@
 #include "../gsoap/stdsoap2.c"
 
 int main(int argc, char *argv[]){
-  embInit("gfindoriter",argc,argv);
+  embInitPV("gfindoriter",argc,argv,"GEMBASSY","1.0.0");
 
   struct soap soap;
   struct ns1__find_USCOREori_USCOREterInputParams params;
@@ -21,6 +21,7 @@ int main(int argc, char *argv[]){
   AjBool    purine     = 0;
   AjBool    keto       = 0;
   ajint     filter     = 0;
+  AjPStr    mode  = NULL;
   char*     _result; 
   char*     jobid;
 
@@ -29,6 +30,7 @@ int main(int argc, char *argv[]){
   filter = ajAcdGetInt("filt");
   purine = ajAcdGetBoolean("purine");
   keto   = ajAcdGetBoolean("keto");
+  mode = ajAcdGetString("mode");
 
   params.window   = window;
   params.filter   = filter;

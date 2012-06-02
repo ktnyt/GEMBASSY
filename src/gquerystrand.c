@@ -10,7 +10,7 @@
 #include "../gsoap/stdsoap2.c"
 
 int main(int argc, char *argv[]){
-  embInit("gquerystrand",argc,argv);
+  embInitPV("gquerystrand",argc,argv,"GEMBASSY","1.0.0");
 
   struct soap soap;
   struct ns1__query_USCOREstrandInputParams params;
@@ -19,11 +19,13 @@ int main(int argc, char *argv[]){
   AjPStr    inseq      = NULL;
   char*     position;
   AjPStr    direction  = NULL;
+  AjPStr    mode  = NULL;
   char*     jobid;
 
   seq        = ajAcdGetSeq("sequence");
   direction  = ajAcdGetString("direction");
   position   = ajCharNewS(ajAcdGetString("position"));
+  mode = ajAcdGetString("mode");
 
   params.direction  = ajCharNewS(direction);
     

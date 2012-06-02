@@ -1,0 +1,25 @@
+application: gp2 [
+  documentation: "Calculate the P2 index of each gene"
+  groups: ""
+  embassy: "GEMBASSY"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+  sequence: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+  ]
+endsection: input
+
+section: output [
+  information: "Output section"
+  type: "page"
+]
+  string: filename [
+    parameter: "Y"
+    default: "gp2.csv"
+  ]
+endsection: output

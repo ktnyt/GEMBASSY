@@ -31,9 +31,12 @@ Usage
 
    Here is a sample session with ggenomicskew
 
-% ggenomicskew nucleotideSample.fna 
+% ggenomicskew 
 Calculates the GC skew in different regions of the given genome
-Output filename [ggenomicskew.png(csv)]:
+Input nucleotide sequence: refseqn:NC_000908
+Retrieving file from:
+http://soap.g-language.org/WS/result.cgi?jobid=13314898483392
+to ./ggenomicskew.png
 Retrieval successful
 
 Command line argumants

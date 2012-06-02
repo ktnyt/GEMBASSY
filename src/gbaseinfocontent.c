@@ -10,7 +10,7 @@
 #include "../gsoap/stdsoap2.c"
 
 int main(int argc, char *argv[]){
-  embInitPV("gbaseinfocontent",argc,argv,"GEMBASSY","0.0.1");
+  embInitPV("gbaseinfocontent",argc,argv,"GEMBASSY","1.0.0");
 
   struct soap soap;
   struct ns1__base_USCOREinformation_USCOREcontentInputParams params;
@@ -21,6 +21,7 @@ int main(int argc, char *argv[]){
   ajint     downstream = 0;
   ajint     PatLen     = 0;
   AjPStr    position   = NULL;
+  AjPStr    mode       = NULL;
   char*     _result; 
   char*     jobid;
 
@@ -29,6 +30,7 @@ int main(int argc, char *argv[]){
   downstream = ajAcdGetInt("downstream");
   PatLen     = ajAcdGetInt("patlen");
   position   = ajAcdGetString("position");
+  mode = ajAcdGetString("mode");
   
   params.upstream   = upstream;
   params.downstream = downstream;

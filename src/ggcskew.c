@@ -11,7 +11,7 @@
 #include "../include/getfile.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("ggcskew",argc,argv,"GEMBASSY","0.0.1");
+  embInitPV("ggcskew",argc,argv,"GEMBASSY","1.0.0");
 
   struct soap soap;
   struct ns1__gcskewInputParams params;
@@ -25,6 +25,7 @@ int main(int argc, char *argv[]){
   AjBool    purine     = 0;
   AjBool    keto       = 0;
   AjPStr    output     = NULL;
+  AjPStr    mode       = NULL;
   AjPStr    filename   = NULL;
   char*     _result; 
   char*     jobid;
@@ -37,6 +38,7 @@ int main(int argc, char *argv[]){
   purine     = ajAcdGetBoolean("purine");
   keto       = ajAcdGetBoolean("keto");
   output     = ajAcdGetString("output");
+  mode       = ajAcdGetString("mode");
 
   params.window       = window;
   params.slide        = slide;

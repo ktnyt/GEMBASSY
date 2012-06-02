@@ -11,7 +11,7 @@
 #include "../include/getfile.h"
 
 int main(int argc, char *argv[]){
-  embInit("ggenomicskew",argc,argv);
+  embInitPV("ggenomicskew",argc,argv,"GEMBASSY","1.0.0");
 
   struct soap soap;
   struct ns1__genomicskewInputParams params;
@@ -21,6 +21,7 @@ int main(int argc, char *argv[]){
   ajint     divide     = 0;
   AjBool    at         = 0;
   AjPStr    output     = NULL;
+  AjPStr    mode  = NULL;
 	AjPStr    filename   = NULL;
   char*     jobid;
 	char*     _result;
@@ -29,6 +30,7 @@ int main(int argc, char *argv[]){
   divide     = ajAcdGetInt("divide");
   at         = ajAcdGetBoolean("at");
   output     = ajAcdGetString("output");
+  mode = ajAcdGetString("mode");
 
   params.divide       = divide;
   if(at){

@@ -10,17 +10,19 @@
 #include "../gsoap/stdsoap2.c"
 
 int main(int argc, char *argv[]){
-  embInit("gqueryarm",argc,argv);
+  embInitPV("gqueryarm",argc,argv,"GEMBASSY","1.0.0");
 
   struct soap soap;
 
   AjPSeq    seq;
   AjPStr    inseq      = NULL;
   ajint     position;
+  AjPStr    mode  = NULL;
   char*     jobid;
 
   seq        = ajAcdGetSeq("sequence");
   position   = ajAcdGetInt("position");
+  mode = ajAcdGetString("mode");
 
   soap_init(&soap);
   

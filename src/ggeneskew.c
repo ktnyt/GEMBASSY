@@ -11,7 +11,7 @@
 #include "../include/getfile.h"
 
 int main(int argc, char *argv[]){
-  embInit("ggeneskew",argc,argv);
+  embInitPV("ggeneskew",argc,argv,"GEMBASSY","1.0.0");
 
   struct soap soap;
   struct ns1__geneskewInputParams params;
@@ -25,6 +25,7 @@ int main(int argc, char *argv[]){
   AjBool    gc3;
   AjPStr    output     = NULL;
   AjPStr    base;
+  AjPStr    mode       = NULL; 
 	AjPStr    filename   = NULL;
   char*     _result; 
   char*     jobid;
@@ -36,6 +37,7 @@ int main(int argc, char *argv[]){
   gc3        = ajAcdGetBoolean("gctri");
   output     = ajAcdGetString("output");
   base       = ajAcdGetString("base");
+  mode = ajAcdGetString("mode");
   
   params.window       = window;
   params.slide        = slide;

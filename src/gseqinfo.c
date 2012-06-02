@@ -10,16 +10,18 @@
 #include "../gsoap/stdsoap2.c"
 
 int main(int argc, char *argv[]){
-  embInitPV("gseqinfo",argc,argv,"GEMBASSY","0.0.1");
+  embInitPV("gseqinfo",argc,argv,"GEMBASSY","1.0.0");
   
   struct soap soap;
   
   AjPSeq    seq   = NULL;
   AjPStr    inseq = NULL;
+  AjPStr    mode  = NULL;
   int i;
   char*     jobid;
 
   seq = ajAcdGetSeq("sequence");
+  mode = ajAcdGetString("mode");
   
     
   soap_init(&soap);

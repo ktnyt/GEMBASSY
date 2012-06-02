@@ -1,0 +1,42 @@
+application: ggenomemap [
+  documentation: "Draws the map of the genome"
+  groups: ""
+  EMBASSY: "GEMBASSY"
+]
+section: input [
+  information: "Input section"
+  type: "page"
+]
+  sequence: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+  ]
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+  integer: window [
+    information: "Number of nucleotides represented by one pixel"
+    default: "50"
+  ]
+  boolean: name [
+    information: "Print gene name"
+    default: "1"
+  ]
+  float: amp [
+    information: "Height of the nucleotide content graph"
+    default: "1.5"
+  ]
+endsection: advanced
+
+section: output [
+  information: "Output section"
+  type: "page"
+]
+	string: filename [
+    parameter: "Y"
+    default: "ggenomemap.png"
+  ]
+endsection: output

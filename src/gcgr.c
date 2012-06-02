@@ -11,7 +11,7 @@
 #include "../include/getfile.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("gcgr",argc,argv,"GEMBASSY","0.0.1");
+  embInitPV("gcgr",argc,argv,"GEMBASSY","1.0.0");
 
   struct soap soap;
   struct ns1__cgrInputParams params;
@@ -20,12 +20,14 @@ int main(int argc, char *argv[]){
   AjPStr    inseq    = NULL;
   ajint     width    = 0;
   ajint     level    = 0;
+  AjPStr    mode  = NULL;
   AjPStr    filename;
   char*     jobid;
 
   seq=ajAcdGetSeq("sequence");
   width = ajAcdGetInt("width");
   level = ajAcdGetInt("level");
+  mode = ajAcdGetString("mode");
 
   params.width = width;
   params.level = level;

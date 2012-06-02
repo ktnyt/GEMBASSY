@@ -32,9 +32,12 @@ Usage
 
    Here is a sample session with gseq2png
 
-% gseq2png nucleotideSample.fna 
-Converts a sequence to PNG image
-Output filename [gseq2png.png]:
+% gseq2png 
+Input nucleotide sequence: refseqn:NC_000908
+Retrieving file from:
+http://soap.g-language.org/WS/result.cgi?jobid=13314902971572
+to ./gseq2png.png
+Retrieval successful
 
 Command line argumants
 

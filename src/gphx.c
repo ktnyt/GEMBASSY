@@ -11,7 +11,7 @@
 #include "../include/getfile.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("gphx",argc,argv,"GEMBASSY","0.0.1");
+  embInitPV("gphx",argc,argv,"GEMBASSY","1.0.0");
 
   struct soap soap;
   struct ns1__phxInputParams params;
@@ -21,6 +21,7 @@ int main(int argc, char *argv[]){
   AjBool    translate = 0;
   AjPStr    usage     = NULL;
   AjPStr    delkey    = NULL;
+  AjPStr    mode  = NULL;
   AjPStr    filename   = NULL;
   char*     _result; 
   char*     jobid;
@@ -30,6 +31,7 @@ int main(int argc, char *argv[]){
   translate  = ajAcdGetBoolean("translate");
   usage      = ajAcdGetString("usage");
   delkey     = ajAcdGetString("delkey");
+  mode = ajAcdGetString("mode");
   
   if(translate){
     params.translate   = 1;
