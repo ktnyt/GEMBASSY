@@ -1,6 +1,6 @@
 application: ggeneskew [
   documentation: "Calculate the gene strand bias of the given genome"
-  groups: "Nucleic:GCskew"
+  groups: "Nucleic:Composition"
   embassy: "GEMBASSY"
 ]
 

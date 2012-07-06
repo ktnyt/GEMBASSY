@@ -1,0 +1,19 @@
+application: gquery_arm [
+  documentation: "Get the replication arm name (left or right) from the given position"
+  groups: "Nucleic:Composition"
+  embassy: "GEMBASSY"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+  sequence: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+  ]
+  integer: position [
+    parameter: "Y"
+    information: "Position to query"
+  ]
+endsection: input

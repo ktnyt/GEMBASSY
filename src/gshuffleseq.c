@@ -29,7 +29,6 @@ int main(int argc, char *argv[]){
   AjPStr    inseq      = NULL;
 	AjPStr    filename   = NULL;
   ajint     k          = 0;
-  AjPStr    mode  = NULL;
   char*     jobid;
   
   seq    = ajAcdGetSeq("sequence");

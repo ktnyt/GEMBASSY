@@ -1,6 +1,6 @@
 application: ggcwin [
   documentation: "Calculates the GC content along the given genome"
-  groups: "Nucleic:GCskew"
+  groups: "Nucleic:Composition"
   embassy: "GEMBASSY"
 ]
 

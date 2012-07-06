@@ -1,6 +1,6 @@
 application: ggenomicskew [
   documentation: "Calculates the GC skew in different regions of the given genome"
-  groups: "Nucleic:GCskew"
+  groups: "Nucleic:Composition"
   embassy: "GEMBASSY"
 ]
 

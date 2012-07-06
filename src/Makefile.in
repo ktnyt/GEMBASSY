@@ -32,15 +32,15 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-bin_PROGRAMS = gaaui$(EXEEXT) gaminoinfo$(EXEEXT) \
-	gbaseinfocontent$(EXEEXT) gbui$(EXEEXT) gcai$(EXEEXT) \
-	gcbi$(EXEEXT) gcgr$(EXEEXT) gdeltaenc$(EXEEXT) \
-	gentrez$(EXEEXT) gfindoriter$(EXEEXT) ggcsi$(EXEEXT) \
+bin_PROGRAMS = gaaui$(EXEEXT) gamino_info$(EXEEXT) \
+	gbase_information_content$(EXEEXT) gbui$(EXEEXT) gcai$(EXEEXT) \
+	gcbi$(EXEEXT) gcgr$(EXEEXT) gdelta_enc$(EXEEXT) \
+	gentrez$(EXEEXT) gfind_ori_ter$(EXEEXT) ggcsi$(EXEEXT) \
 	ggcskew$(EXEEXT) ggcwin$(EXEEXT) ggeneskew$(EXEEXT) \
-	ggenomemap$(EXEEXT) ggenomicskew$(EXEEXT) gicdi$(EXEEXT) \
-	gp2$(EXEEXT) gphx$(EXEEXT) gqueryarm$(EXEEXT) \
-	gquerystrand$(EXEEXT) greporiter$(EXEEXT) gseq2png$(EXEEXT) \
-	gseqinfo$(EXEEXT) gshuffleseq$(EXEEXT) gwvalue$(EXEEXT)
+	ggenomicskew$(EXEEXT) gicdi$(EXEEXT) gP2$(EXEEXT) \
+	gphx$(EXEEXT) gquery_arm$(EXEEXT) gquery_strand$(EXEEXT) \
+	grep_ori_ter$(EXEEXT) gseq2png$(EXEEXT) gseqinfo$(EXEEXT) \
+	gshuffleseq$(EXEEXT) gw_value$(EXEEXT)
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(srcdir)/config.h.in
@@ -54,10 +54,25 @@ CONFIG_CLEAN_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
+am_gP2_OBJECTS = gP2.$(OBJEXT)
+gP2_OBJECTS = $(am_gP2_OBJECTS)
+gP2_LDADD = $(LDADD)
+am__DEPENDENCIES_1 =
+@LOCALLINK_FALSE@gP2_DEPENDENCIES = $(am__DEPENDENCIES_1)
+@LOCALLINK_TRUE@gP2_DEPENDENCIES = ../../../nucleus/libnucleus.la \
+@LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
+@LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
+@LOCALLINK_TRUE@	../../../ajax/ensembl/libensembl.la \
+@LOCALLINK_TRUE@	../../../ajax/graphics/libajaxg.la \
+@LOCALLINK_TRUE@	../../../ajax/core/libajax.la \
+@LOCALLINK_TRUE@	../../../ajax/zlib/libezlib.la \
+@LOCALLINK_TRUE@	../../../ajax/expat/libeexpat.la \
+@LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
+@LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gaaui_OBJECTS = gaaui.$(OBJEXT)
 gaaui_OBJECTS = $(am_gaaui_OBJECTS)
 gaaui_LDADD = $(LDADD)
-am__DEPENDENCIES_1 =
 @LOCALLINK_FALSE@gaaui_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gaaui_DEPENDENCIES = ../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -70,11 +85,11 @@ am__DEPENDENCIES_1 =
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
-am_gaminoinfo_OBJECTS = gaminoinfo.$(OBJEXT)
-gaminoinfo_OBJECTS = $(am_gaminoinfo_OBJECTS)
-gaminoinfo_LDADD = $(LDADD)
-@LOCALLINK_FALSE@gaminoinfo_DEPENDENCIES = $(am__DEPENDENCIES_1)
-@LOCALLINK_TRUE@gaminoinfo_DEPENDENCIES =  \
+am_gamino_info_OBJECTS = gamino_info.$(OBJEXT)
+gamino_info_OBJECTS = $(am_gamino_info_OBJECTS)
+gamino_info_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gamino_info_DEPENDENCIES = $(am__DEPENDENCIES_1)
+@LOCALLINK_TRUE@gamino_info_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
@@ -86,12 +101,14 @@ gaminoinfo_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
-am_gbaseinfocontent_OBJECTS = gbaseinfocontent.$(OBJEXT)
-gbaseinfocontent_OBJECTS = $(am_gbaseinfocontent_OBJECTS)
-gbaseinfocontent_LDADD = $(LDADD)
-@LOCALLINK_FALSE@gbaseinfocontent_DEPENDENCIES =  \
+am_gbase_information_content_OBJECTS =  \
+	gbase_information_content.$(OBJEXT)
+gbase_information_content_OBJECTS =  \
+	$(am_gbase_information_content_OBJECTS)
+gbase_information_content_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gbase_information_content_DEPENDENCIES =  \
 @LOCALLINK_FALSE@	$(am__DEPENDENCIES_1)
-@LOCALLINK_TRUE@gbaseinfocontent_DEPENDENCIES =  \
+@LOCALLINK_TRUE@gbase_information_content_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
@@ -163,11 +180,11 @@ gcgr_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
-am_gdeltaenc_OBJECTS = gdeltaenc.$(OBJEXT)
-gdeltaenc_OBJECTS = $(am_gdeltaenc_OBJECTS)
-gdeltaenc_LDADD = $(LDADD)
-@LOCALLINK_FALSE@gdeltaenc_DEPENDENCIES = $(am__DEPENDENCIES_1)
-@LOCALLINK_TRUE@gdeltaenc_DEPENDENCIES =  \
+am_gdelta_enc_OBJECTS = gdelta_enc.$(OBJEXT)
+gdelta_enc_OBJECTS = $(am_gdelta_enc_OBJECTS)
+gdelta_enc_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gdelta_enc_DEPENDENCIES = $(am__DEPENDENCIES_1)
+@LOCALLINK_TRUE@gdelta_enc_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
@@ -194,11 +211,11 @@ gentrez_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
-am_gfindoriter_OBJECTS = gfindoriter.$(OBJEXT)
-gfindoriter_OBJECTS = $(am_gfindoriter_OBJECTS)
-gfindoriter_LDADD = $(LDADD)
-@LOCALLINK_FALSE@gfindoriter_DEPENDENCIES = $(am__DEPENDENCIES_1)
-@LOCALLINK_TRUE@gfindoriter_DEPENDENCIES =  \
+am_gfind_ori_ter_OBJECTS = gfind_ori_ter.$(OBJEXT)
+gfind_ori_ter_OBJECTS = $(am_gfind_ori_ter_OBJECTS)
+gfind_ori_ter_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gfind_ori_ter_DEPENDENCIES = $(am__DEPENDENCIES_1)
+@LOCALLINK_TRUE@gfind_ori_ter_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
@@ -271,22 +288,6 @@ ggeneskew_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
-am_ggenomemap_OBJECTS = ggenomemap.$(OBJEXT)
-ggenomemap_OBJECTS = $(am_ggenomemap_OBJECTS)
-ggenomemap_LDADD = $(LDADD)
-@LOCALLINK_FALSE@ggenomemap_DEPENDENCIES = $(am__DEPENDENCIES_1)
-@LOCALLINK_TRUE@ggenomemap_DEPENDENCIES =  \
-@LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
-@LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
-@LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
-@LOCALLINK_TRUE@	../../../ajax/ensembl/libensembl.la \
-@LOCALLINK_TRUE@	../../../ajax/graphics/libajaxg.la \
-@LOCALLINK_TRUE@	../../../ajax/core/libajax.la \
-@LOCALLINK_TRUE@	../../../ajax/zlib/libezlib.la \
-@LOCALLINK_TRUE@	../../../ajax/expat/libeexpat.la \
-@LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
-@LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
-@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_ggenomicskew_OBJECTS = ggenomicskew.$(OBJEXT)
 ggenomicskew_OBJECTS = $(am_ggenomicskew_OBJECTS)
 ggenomicskew_LDADD = $(LDADD)
@@ -318,21 +319,6 @@ gicdi_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
-am_gp2_OBJECTS = gp2.$(OBJEXT)
-gp2_OBJECTS = $(am_gp2_OBJECTS)
-gp2_LDADD = $(LDADD)
-@LOCALLINK_FALSE@gp2_DEPENDENCIES = $(am__DEPENDENCIES_1)
-@LOCALLINK_TRUE@gp2_DEPENDENCIES = ../../../nucleus/libnucleus.la \
-@LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
-@LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
-@LOCALLINK_TRUE@	../../../ajax/ensembl/libensembl.la \
-@LOCALLINK_TRUE@	../../../ajax/graphics/libajaxg.la \
-@LOCALLINK_TRUE@	../../../ajax/core/libajax.la \
-@LOCALLINK_TRUE@	../../../ajax/zlib/libezlib.la \
-@LOCALLINK_TRUE@	../../../ajax/expat/libeexpat.la \
-@LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
-@LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
-@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gphx_OBJECTS = gphx.$(OBJEXT)
 gphx_OBJECTS = $(am_gphx_OBJECTS)
 gphx_LDADD = $(LDADD)
@@ -348,11 +334,11 @@ gphx_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
-am_gqueryarm_OBJECTS = gqueryarm.$(OBJEXT)
-gqueryarm_OBJECTS = $(am_gqueryarm_OBJECTS)
-gqueryarm_LDADD = $(LDADD)
-@LOCALLINK_FALSE@gqueryarm_DEPENDENCIES = $(am__DEPENDENCIES_1)
-@LOCALLINK_TRUE@gqueryarm_DEPENDENCIES =  \
+am_gquery_arm_OBJECTS = gquery_arm.$(OBJEXT)
+gquery_arm_OBJECTS = $(am_gquery_arm_OBJECTS)
+gquery_arm_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gquery_arm_DEPENDENCIES = $(am__DEPENDENCIES_1)
+@LOCALLINK_TRUE@gquery_arm_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
@@ -364,11 +350,11 @@ gqueryarm_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
-am_gquerystrand_OBJECTS = gquerystrand.$(OBJEXT)
-gquerystrand_OBJECTS = $(am_gquerystrand_OBJECTS)
-gquerystrand_LDADD = $(LDADD)
-@LOCALLINK_FALSE@gquerystrand_DEPENDENCIES = $(am__DEPENDENCIES_1)
-@LOCALLINK_TRUE@gquerystrand_DEPENDENCIES =  \
+am_gquery_strand_OBJECTS = gquery_strand.$(OBJEXT)
+gquery_strand_OBJECTS = $(am_gquery_strand_OBJECTS)
+gquery_strand_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gquery_strand_DEPENDENCIES = $(am__DEPENDENCIES_1)
+@LOCALLINK_TRUE@gquery_strand_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
@@ -380,11 +366,11 @@ gquerystrand_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
-am_greporiter_OBJECTS = greporiter.$(OBJEXT)
-greporiter_OBJECTS = $(am_greporiter_OBJECTS)
-greporiter_LDADD = $(LDADD)
-@LOCALLINK_FALSE@greporiter_DEPENDENCIES = $(am__DEPENDENCIES_1)
-@LOCALLINK_TRUE@greporiter_DEPENDENCIES =  \
+am_grep_ori_ter_OBJECTS = grep_ori_ter.$(OBJEXT)
+grep_ori_ter_OBJECTS = $(am_grep_ori_ter_OBJECTS)
+grep_ori_ter_LDADD = $(LDADD)
+@LOCALLINK_FALSE@grep_ori_ter_DEPENDENCIES = $(am__DEPENDENCIES_1)
+@LOCALLINK_TRUE@grep_ori_ter_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
@@ -444,11 +430,12 @@ gshuffleseq_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
-am_gwvalue_OBJECTS = gwvalue.$(OBJEXT)
-gwvalue_OBJECTS = $(am_gwvalue_OBJECTS)
-gwvalue_LDADD = $(LDADD)
-@LOCALLINK_FALSE@gwvalue_DEPENDENCIES = $(am__DEPENDENCIES_1)
-@LOCALLINK_TRUE@gwvalue_DEPENDENCIES = ../../../nucleus/libnucleus.la \
+am_gw_value_OBJECTS = gw_value.$(OBJEXT)
+gw_value_OBJECTS = $(am_gw_value_OBJECTS)
+gw_value_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gw_value_DEPENDENCIES = $(am__DEPENDENCIES_1)
+@LOCALLINK_TRUE@gw_value_DEPENDENCIES =  \
+@LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
 @LOCALLINK_TRUE@	../../../ajax/ensembl/libensembl.la \
@@ -471,26 +458,26 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(gaaui_SOURCES) $(gaminoinfo_SOURCES) \
-	$(gbaseinfocontent_SOURCES) $(gbui_SOURCES) $(gcai_SOURCES) \
-	$(gcbi_SOURCES) $(gcgr_SOURCES) $(gdeltaenc_SOURCES) \
-	$(gentrez_SOURCES) $(gfindoriter_SOURCES) $(ggcsi_SOURCES) \
-	ggcskew.c $(ggcwin_SOURCES) $(ggeneskew_SOURCES) \
-	$(ggenomemap_SOURCES) $(ggenomicskew_SOURCES) $(gicdi_SOURCES) \
-	$(gp2_SOURCES) $(gphx_SOURCES) $(gqueryarm_SOURCES) \
-	$(gquerystrand_SOURCES) $(greporiter_SOURCES) \
+SOURCES = $(gP2_SOURCES) $(gaaui_SOURCES) $(gamino_info_SOURCES) \
+	$(gbase_information_content_SOURCES) $(gbui_SOURCES) \
+	$(gcai_SOURCES) $(gcbi_SOURCES) $(gcgr_SOURCES) \
+	$(gdelta_enc_SOURCES) $(gentrez_SOURCES) \
+	$(gfind_ori_ter_SOURCES) $(ggcsi_SOURCES) ggcskew.c \
+	$(ggcwin_SOURCES) $(ggeneskew_SOURCES) $(ggenomicskew_SOURCES) \
+	$(gicdi_SOURCES) $(gphx_SOURCES) $(gquery_arm_SOURCES) \
+	$(gquery_strand_SOURCES) $(grep_ori_ter_SOURCES) \
 	$(gseq2png_SOURCES) $(gseqinfo_SOURCES) $(gshuffleseq_SOURCES) \
-	$(gwvalue_SOURCES)
-DIST_SOURCES = $(gaaui_SOURCES) $(gaminoinfo_SOURCES) \
-	$(gbaseinfocontent_SOURCES) $(gbui_SOURCES) $(gcai_SOURCES) \
-	$(gcbi_SOURCES) $(gcgr_SOURCES) $(gdeltaenc_SOURCES) \
-	$(gentrez_SOURCES) $(gfindoriter_SOURCES) $(ggcsi_SOURCES) \
-	ggcskew.c $(ggcwin_SOURCES) $(ggeneskew_SOURCES) \
-	$(ggenomemap_SOURCES) $(ggenomicskew_SOURCES) $(gicdi_SOURCES) \
-	$(gp2_SOURCES) $(gphx_SOURCES) $(gqueryarm_SOURCES) \
-	$(gquerystrand_SOURCES) $(greporiter_SOURCES) \
+	$(gw_value_SOURCES)
+DIST_SOURCES = $(gP2_SOURCES) $(gaaui_SOURCES) $(gamino_info_SOURCES) \
+	$(gbase_information_content_SOURCES) $(gbui_SOURCES) \
+	$(gcai_SOURCES) $(gcbi_SOURCES) $(gcgr_SOURCES) \
+	$(gdelta_enc_SOURCES) $(gentrez_SOURCES) \
+	$(gfind_ori_ter_SOURCES) $(ggcsi_SOURCES) ggcskew.c \
+	$(ggcwin_SOURCES) $(ggeneskew_SOURCES) $(ggenomicskew_SOURCES) \
+	$(gicdi_SOURCES) $(gphx_SOURCES) $(gquery_arm_SOURCES) \
+	$(gquery_strand_SOURCES) $(grep_ori_ter_SOURCES) \
 	$(gseq2png_SOURCES) $(gseqinfo_SOURCES) $(gshuffleseq_SOURCES) \
-	$(gwvalue_SOURCES)
+	$(gw_value_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -643,30 +630,29 @@ top_srcdir = @top_srcdir@
 
 AM_CFLAGS = $(AIX_CFLAGS) $(WARN_CFLAGS) $(DEVWARN_CFLAGS)
 gaaui_SOURCES = gaaui.c
-gaminoinfo_SOURCES = gaminoinfo.c
-gbaseinfocontent_SOURCES = gbaseinfocontent.c
+gamino_info_SOURCES = gamino_info.c
+gbase_information_content_SOURCES = gbase_information_content.c
 gbui_SOURCES = gbui.c
 gcai_SOURCES = gcai.c
 gcbi_SOURCES = gcbi.c
 gcgr_SOURCES = gcgr.c
-gdeltaenc_SOURCES = gdeltaenc.c
+gdelta_enc_SOURCES = gdelta_enc.c
 gentrez_SOURCES = gentrez.c
-gfindoriter_SOURCES = gfindoriter.c
+gfind_ori_ter_SOURCES = gfind_ori_ter.c
 ggcsi_SOURCES = ggcsi.c
 ggcwin_SOURCES = ggcwin.c
 ggeneskew_SOURCES = ggeneskew.c
-ggenomemap_SOURCES = ggenomemap.c
 ggenomicskew_SOURCES = ggenomicskew.c
 gicdi_SOURCES = gicdi.c
 gphx_SOURCES = gphx.c
-gp2_SOURCES = gp2.c
-gqueryarm_SOURCES = gqueryarm.c
-gquerystrand_SOURCES = gquerystrand.c
-greporiter_SOURCES = greporiter.c
+gP2_SOURCES = gP2.c
+gquery_arm_SOURCES = gquery_arm.c
+gquery_strand_SOURCES = gquery_strand.c
+grep_ori_ter_SOURCES = grep_ori_ter.c
 gseqinfo_SOURCES = gseqinfo.c
 gseq2png_SOURCES = gseq2png.c
 gshuffleseq_SOURCES = gshuffleseq.c
-gwvalue_SOURCES = gwvalue.c
+gw_value_SOURCES = gw_value.c
 @LOCALLINK_FALSE@LDADD = -L${embprefix}/lib -lnucleus -lacd -lajaxdb -lensembl -lajaxg \
 @LOCALLINK_FALSE@        -lajax -leexpat -lepcre -lezlib -leplplot -lcurl $(XLIB)
 
@@ -759,15 +745,18 @@ clean-binPROGRAMS:
 	  echo " rm -f $$p $$f"; \
 	  rm -f $$p $$f ; \
 	done
+gP2$(EXEEXT): $(gP2_OBJECTS) $(gP2_DEPENDENCIES) 
+	@rm -f gP2$(EXEEXT)
+	$(LINK) $(gP2_OBJECTS) $(gP2_LDADD) $(LIBS)
 gaaui$(EXEEXT): $(gaaui_OBJECTS) $(gaaui_DEPENDENCIES) 
 	@rm -f gaaui$(EXEEXT)
 	$(LINK) $(gaaui_OBJECTS) $(gaaui_LDADD) $(LIBS)
-gaminoinfo$(EXEEXT): $(gaminoinfo_OBJECTS) $(gaminoinfo_DEPENDENCIES) 
-	@rm -f gaminoinfo$(EXEEXT)
-	$(LINK) $(gaminoinfo_OBJECTS) $(gaminoinfo_LDADD) $(LIBS)
-gbaseinfocontent$(EXEEXT): $(gbaseinfocontent_OBJECTS) $(gbaseinfocontent_DEPENDENCIES) 
-	@rm -f gbaseinfocontent$(EXEEXT)
-	$(LINK) $(gbaseinfocontent_OBJECTS) $(gbaseinfocontent_LDADD) $(LIBS)
+gamino_info$(EXEEXT): $(gamino_info_OBJECTS) $(gamino_info_DEPENDENCIES) 
+	@rm -f gamino_info$(EXEEXT)
+	$(LINK) $(gamino_info_OBJECTS) $(gamino_info_LDADD) $(LIBS)
+gbase_information_content$(EXEEXT): $(gbase_information_content_OBJECTS) $(gbase_information_content_DEPENDENCIES) 
+	@rm -f gbase_information_content$(EXEEXT)
+	$(LINK) $(gbase_information_content_OBJECTS) $(gbase_information_content_LDADD) $(LIBS)
 gbui$(EXEEXT): $(gbui_OBJECTS) $(gbui_DEPENDENCIES) 
 	@rm -f gbui$(EXEEXT)
 	$(LINK) $(gbui_OBJECTS) $(gbui_LDADD) $(LIBS)
@@ -780,15 +769,15 @@ gcbi$(EXEEXT): $(gcbi_OBJECTS) $(gcbi_DEPENDENCIES)
 gcgr$(EXEEXT): $(gcgr_OBJECTS) $(gcgr_DEPENDENCIES) 
 	@rm -f gcgr$(EXEEXT)
 	$(LINK) $(gcgr_OBJECTS) $(gcgr_LDADD) $(LIBS)
-gdeltaenc$(EXEEXT): $(gdeltaenc_OBJECTS) $(gdeltaenc_DEPENDENCIES) 
-	@rm -f gdeltaenc$(EXEEXT)
-	$(LINK) $(gdeltaenc_OBJECTS) $(gdeltaenc_LDADD) $(LIBS)
+gdelta_enc$(EXEEXT): $(gdelta_enc_OBJECTS) $(gdelta_enc_DEPENDENCIES) 
+	@rm -f gdelta_enc$(EXEEXT)
+	$(LINK) $(gdelta_enc_OBJECTS) $(gdelta_enc_LDADD) $(LIBS)
 gentrez$(EXEEXT): $(gentrez_OBJECTS) $(gentrez_DEPENDENCIES) 
 	@rm -f gentrez$(EXEEXT)
 	$(LINK) $(gentrez_OBJECTS) $(gentrez_LDADD) $(LIBS)
-gfindoriter$(EXEEXT): $(gfindoriter_OBJECTS) $(gfindoriter_DEPENDENCIES) 
-	@rm -f gfindoriter$(EXEEXT)
-	$(LINK) $(gfindoriter_OBJECTS) $(gfindoriter_LDADD) $(LIBS)
+gfind_ori_ter$(EXEEXT): $(gfind_ori_ter_OBJECTS) $(gfind_ori_ter_DEPENDENCIES) 
+	@rm -f gfind_ori_ter$(EXEEXT)
+	$(LINK) $(gfind_ori_ter_OBJECTS) $(gfind_ori_ter_LDADD) $(LIBS)
 ggcsi$(EXEEXT): $(ggcsi_OBJECTS) $(ggcsi_DEPENDENCIES) 
 	@rm -f ggcsi$(EXEEXT)
 	$(LINK) $(ggcsi_OBJECTS) $(ggcsi_LDADD) $(LIBS)
@@ -801,30 +790,24 @@ ggcwin$(EXEEXT): $(ggcwin_OBJECTS) $(ggcwin_DEPENDENCIES)
 ggeneskew$(EXEEXT): $(ggeneskew_OBJECTS) $(ggeneskew_DEPENDENCIES) 
 	@rm -f ggeneskew$(EXEEXT)
 	$(LINK) $(ggeneskew_OBJECTS) $(ggeneskew_LDADD) $(LIBS)
-ggenomemap$(EXEEXT): $(ggenomemap_OBJECTS) $(ggenomemap_DEPENDENCIES) 
-	@rm -f ggenomemap$(EXEEXT)
-	$(LINK) $(ggenomemap_OBJECTS) $(ggenomemap_LDADD) $(LIBS)
 ggenomicskew$(EXEEXT): $(ggenomicskew_OBJECTS) $(ggenomicskew_DEPENDENCIES) 
 	@rm -f ggenomicskew$(EXEEXT)
 	$(LINK) $(ggenomicskew_OBJECTS) $(ggenomicskew_LDADD) $(LIBS)
 gicdi$(EXEEXT): $(gicdi_OBJECTS) $(gicdi_DEPENDENCIES) 
 	@rm -f gicdi$(EXEEXT)
 	$(LINK) $(gicdi_OBJECTS) $(gicdi_LDADD) $(LIBS)
-gp2$(EXEEXT): $(gp2_OBJECTS) $(gp2_DEPENDENCIES) 
-	@rm -f gp2$(EXEEXT)
-	$(LINK) $(gp2_OBJECTS) $(gp2_LDADD) $(LIBS)
 gphx$(EXEEXT): $(gphx_OBJECTS) $(gphx_DEPENDENCIES) 
 	@rm -f gphx$(EXEEXT)
 	$(LINK) $(gphx_OBJECTS) $(gphx_LDADD) $(LIBS)
-gqueryarm$(EXEEXT): $(gqueryarm_OBJECTS) $(gqueryarm_DEPENDENCIES) 
-	@rm -f gqueryarm$(EXEEXT)
-	$(LINK) $(gqueryarm_OBJECTS) $(gqueryarm_LDADD) $(LIBS)
-gquerystrand$(EXEEXT): $(gquerystrand_OBJECTS) $(gquerystrand_DEPENDENCIES) 
-	@rm -f gquerystrand$(EXEEXT)
-	$(LINK) $(gquerystrand_OBJECTS) $(gquerystrand_LDADD) $(LIBS)
-greporiter$(EXEEXT): $(greporiter_OBJECTS) $(greporiter_DEPENDENCIES) 
-	@rm -f greporiter$(EXEEXT)
-	$(LINK) $(greporiter_OBJECTS) $(greporiter_LDADD) $(LIBS)
+gquery_arm$(EXEEXT): $(gquery_arm_OBJECTS) $(gquery_arm_DEPENDENCIES) 
+	@rm -f gquery_arm$(EXEEXT)
+	$(LINK) $(gquery_arm_OBJECTS) $(gquery_arm_LDADD) $(LIBS)
+gquery_strand$(EXEEXT): $(gquery_strand_OBJECTS) $(gquery_strand_DEPENDENCIES) 
+	@rm -f gquery_strand$(EXEEXT)
+	$(LINK) $(gquery_strand_OBJECTS) $(gquery_strand_LDADD) $(LIBS)
+grep_ori_ter$(EXEEXT): $(grep_ori_ter_OBJECTS) $(grep_ori_ter_DEPENDENCIES) 
+	@rm -f grep_ori_ter$(EXEEXT)
+	$(LINK) $(grep_ori_ter_OBJECTS) $(grep_ori_ter_LDADD) $(LIBS)
 gseq2png$(EXEEXT): $(gseq2png_OBJECTS) $(gseq2png_DEPENDENCIES) 
 	@rm -f gseq2png$(EXEEXT)
 	$(LINK) $(gseq2png_OBJECTS) $(gseq2png_LDADD) $(LIBS)
@@ -834,9 +817,9 @@ gseqinfo$(EXEEXT): $(gseqinfo_OBJECTS) $(gseqinfo_DEPENDENCIES)
 gshuffleseq$(EXEEXT): $(gshuffleseq_OBJECTS) $(gshuffleseq_DEPENDENCIES) 
 	@rm -f gshuffleseq$(EXEEXT)
 	$(LINK) $(gshuffleseq_OBJECTS) $(gshuffleseq_LDADD) $(LIBS)
-gwvalue$(EXEEXT): $(gwvalue_OBJECTS) $(gwvalue_DEPENDENCIES) 
-	@rm -f gwvalue$(EXEEXT)
-	$(LINK) $(gwvalue_OBJECTS) $(gwvalue_LDADD) $(LIBS)
+gw_value$(EXEEXT): $(gw_value_OBJECTS) $(gw_value_DEPENDENCIES) 
+	@rm -f gw_value$(EXEEXT)
+	$(LINK) $(gw_value_OBJECTS) $(gw_value_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -844,32 +827,31 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gP2.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gaaui.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gaminoinfo.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gbaseinfocontent.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gamino_info.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gbase_information_content.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gbui.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gcai.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gcbi.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gcgr.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gdeltaenc.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gdelta_enc.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gentrez.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfindoriter.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfind_ori_ter.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ggcsi.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ggcskew.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ggcwin.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ggeneskew.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ggenomemap.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ggenomicskew.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gicdi.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gp2.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gphx.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gqueryarm.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gquerystrand.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/greporiter.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gquery_arm.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gquery_strand.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/grep_ori_ter.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gseq2png.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gseqinfo.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gshuffleseq.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gwvalue.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gw_value.Po@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

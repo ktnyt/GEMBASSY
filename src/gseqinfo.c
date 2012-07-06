@@ -16,13 +16,10 @@ int main(int argc, char *argv[]){
   
   AjPSeq    seq   = NULL;
   AjPStr    inseq = NULL;
-  AjPStr    mode  = NULL;
   int i;
   char*     jobid;
 
   seq = ajAcdGetSeq("sequence");
-  mode = ajAcdGetString("mode");
-  
     
   soap_init(&soap);
   

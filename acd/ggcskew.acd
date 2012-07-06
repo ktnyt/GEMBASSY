@@ -1,6 +1,6 @@
 application: ggcskew [
   documentation: "Calculates the GC skew of the input sequence"
-  groups: "Nucleic:GCskew"
+  groups: "Nucleic:Composition"
   embassy: "GEMBASSY"
 ]
 

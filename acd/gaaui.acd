@@ -1,6 +1,6 @@
 application: gaaui [
   documentation: "Calculates various indece of amino acid usage"
-  groups: ""
+  groups: "Protein:Properties"
   embassy: "GEMBASSY"
 ]
 

@@ -1,0 +1,42 @@
+application: grep_ori_ter [
+  documentation: "Get the positions of replication origin and terminus"
+  groups: "Nucleic:Composition"
+  embassy: "GEMBASSY"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+  sequence: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+  ]
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+	boolean: oriloc [
+		information: "Set to 1 to use Oriloc for prediction"
+		default: "0"
+	]
+	boolean: gcskew [
+		information: "Set to 1 to use GC skew shift-point for prediction"
+		default: "0"
+	]
+	integer: difthreshold [
+		information: "Distance between the GC skew shift point and predicted dif site expressed as the precentage of genome size, used as a threshold to retrieve dif sequence from the database"
+		default: "0"
+	]
+	boolean: dbonly [
+		information: "Set to 1 to only use values available in databases and to suppress prediction"
+		default: "0"
+	]
+  string: mode [
+    information: "Input 'ID' for sequence ID 'seq' for whole sequence and actual
+ ID for specified ID"
+    default: "ID"
+  ]
+endsection: advanced

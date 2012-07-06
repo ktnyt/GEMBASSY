@@ -20,14 +20,12 @@ int main(int argc, char *argv[]){
   AjPStr    inseq    = NULL;
   ajint     width    = 0;
   ajint     level    = 0;
-  AjPStr    mode  = NULL;
   AjPStr    filename;
   char*     jobid;
 
   seq=ajAcdGetSeq("sequence");
   width = ajAcdGetInt("width");
   level = ajAcdGetInt("level");
-  mode = ajAcdGetString("mode");
 
   params.width = width;
   params.level = level;

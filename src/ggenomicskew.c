@@ -21,7 +21,6 @@ int main(int argc, char *argv[]){
   ajint     divide     = 0;
   AjBool    at         = 0;
   AjPStr    output     = NULL;
-  AjPStr    mode  = NULL;
 	AjPStr    filename   = NULL;
   char*     jobid;
 	char*     _result;
@@ -30,7 +29,6 @@ int main(int argc, char *argv[]){
   divide     = ajAcdGetInt("divide");
   at         = ajAcdGetBoolean("at");
   output     = ajAcdGetString("output");
-  mode = ajAcdGetString("mode");
 
   params.divide       = divide;
   if(at){

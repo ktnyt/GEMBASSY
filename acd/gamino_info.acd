@@ -1,0 +1,16 @@
+application: gamino_info [
+  documentation: "Prints out basic amino acid sequence statistics"
+  groups: "Protein:Composition"
+  embassy: "GEMBASSY"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+  sequence: sequence [
+		parameter: "Y"
+    type: "Protein"
+  ]
+endsection: input
+

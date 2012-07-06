@@ -4,15 +4,15 @@
  xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
- xmlns:ns1="http://soap.g-language.org/GLANG">
+ xmlns:ns1="http://10.6.10.21/GLANG">
  <SOAP-ENV:Body SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
   <ns1:codon_mva>
    <sequence></sequence>
    <params>
-    <parameter>0</parameter>
+    <parameter></parameter>
     <naxis>0</naxis>
     <translate>0</translate>
-    <data>0</data>
+    <data></data>
     <method></method>
     <output></output>
     <del_key></del_key>

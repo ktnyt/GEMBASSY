@@ -21,7 +21,6 @@ int main(int argc, char *argv[]){
   AjBool    translate = 0;
   AjPStr    usage     = NULL;
   AjPStr    delkey    = NULL;
-  AjPStr    mode  = NULL;
   AjPStr    filename   = NULL;
   char*     _result; 
   char*     jobid;
@@ -31,7 +30,6 @@ int main(int argc, char *argv[]){
   translate  = ajAcdGetBoolean("translate");
   usage      = ajAcdGetString("usage");
   delkey     = ajAcdGetString("delkey");
-  mode = ajAcdGetString("mode");
   
   if(translate){
     params.translate   = 1;
