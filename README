@@ -1,5 +1,5 @@
 
-/* GEMBASSY ver 0.0.1 ********************************************************
+/* GEMBASSY ver 1.0.0 ********************************************************
 
    All rights reserved. Copyright (C) 2012 by ITAYA Hidetoshi.
 
@@ -58,11 +58,11 @@ Root users
       % cd embassy
 
    3. Download and compile the GEMBASSY source code
-      % wget http://web.sfc.keio.ac.jp/~t11080hi/GEMBASSY-0.0.1.tar.gz
-      (or "curl -O http://web.sfc.keio.ac.jp/~t11080hi/GEMBASSY-0.0.1.tar.gz")
-      % tar zxf GEMBASSY-0.0.1.tar.gz
-      % cd GEMBASSY-0.0.1
-      ( EMBOSS-6.4.0/embassy/GEMBASSY-0.0.1 )
+      % wget http://web.sfc.keio.ac.jp/~t11080hi/GEMBASSY-1.0.0.tar.gz
+      (or "curl -O http://web.sfc.keio.ac.jp/~t11080hi/GEMBASSY-1.0.0.tar.gz")
+      % tar zxf GEMBASSY-1.0.0.tar.gz
+      % cd GEMBASSY-1.0.0
+      ( EMBOSS-6.4.0/embassy/GEMBASSY-1.0.0 )
       % ./configure (use the same options as in step 1.)
       % make
       % sudo make install
@@ -98,7 +98,7 @@ INFORMATION OF GEMBASSY TOOLS
 
 USAGE EXAMPLE
    Sample files used in the following examples are included in this package.
-      ( GEMBASSY-0.0.1/data/* )
+      ( GEMBASSY-1.0.0/data/* )
 
    1. ggcskew (GC skew)
       % ggcskew nucleotideSample.fna
