@@ -117,7 +117,7 @@ USAGE EXAMPLE
       GCSI            SA              Dist
       0.029426        19.060829       163.543442
 
-   3. greporiter (Replication Origin & Terminus)
+   3. grep_ori_ter (Replication Origin & Terminus)
       % greporiter 
       Get the positions of replication origin and terminus
       Input nucleotide sequence: refseqn:NC_000913
