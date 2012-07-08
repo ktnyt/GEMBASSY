@@ -48,10 +48,7 @@ int main(int argc, char *argv[]){
   soap_init(&soap);
   
   inseq = NULL;
-  ajStrAppendC(&inseq,">");
   ajStrAppendS(&inseq,ajSeqGetNameS(seq));
-  ajStrAppendC(&inseq,"\n");
-  ajStrAppendS(&inseq,ajSeqGetSeqS(seq));
   
   char* in0;
   in0 = ajCharNewS(inseq);
