@@ -11,7 +11,7 @@
 #include "../include/getfile.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("gdeltaenc",argc,argv,"GEMBASSY","1.0.0");
+  embInitPV("gdelta_enc",argc,argv,"GEMBASSY","1.0.0");
   
   struct soap soap;
   
