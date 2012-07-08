@@ -10,7 +10,7 @@
 #include "../gsoap/stdsoap2.c"
 
 int main(int argc, char *argv[]){
-  embInitPV("gfindoriter",argc,argv,"GEMBASSY","1.0.0");
+  embInitPV("gfind_ori_ter",argc,argv,"GEMBASSY","1.0.0");
 
   struct soap soap;
   struct ns1__find_USCOREori_USCOREterInputParams params;

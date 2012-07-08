@@ -10,7 +10,7 @@
 #include "../gsoap/stdsoap2.c"
 
 int main(int argc, char *argv[]){
-  embInitPV("gaminoinfo",argc,argv,"GEMBASSY","1.0.0");
+  embInitPV("gamino_info",argc,argv,"GEMBASSY","1.0.0");
   
   struct soap soap;
   
