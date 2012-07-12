@@ -93,8 +93,8 @@ INFORMATION OF GEMBASSY TOOLS
    Documentation
       Detailed documentation are available to be viewed with the "tfm"
       utility included in EMBOSS.
-      Here is an example for "gaminoinfo"
-      % tfm gaminoinfo
+      Here is an example for "gamino_info"
+      % tfm gamino_info
 
 USAGE EXAMPLE
    Sample files used in the following examples are included in this package.
