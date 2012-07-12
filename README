@@ -103,9 +103,6 @@ USAGE EXAMPLE
    1. ggcskew (GC skew)
       % ggcskew nucleotideSample.fna
       Calculates the GC skew of the input sequence
-      Retrieving file from:
-      http://soap.g-language.org/WS/result.cgi?jobid=13314880319482
-      to ./ggcskew.png
       Retrieval successful
 
       File "ggcskew.png" will be created at working directory.
