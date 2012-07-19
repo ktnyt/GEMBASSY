@@ -4,7 +4,7 @@
  xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
- xmlns:ns1="http://10.6.10.21/GLANG">
+ xmlns:ns1="http://soap.g-language.org/GLANG">
  <SOAP-ENV:Body SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
   <ns1:delta_gcskew>
    <sequence></sequence>
