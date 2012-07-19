@@ -17,7 +17,7 @@ compiling, linking, and/or using OpenSSL is allowed.
 extern "C" {
 #endif
 
-SOAP_SOURCE_STAMP("@(#) soapServer.c ver 2.8.6 2012-06-25 01:47:03 GMT")
+SOAP_SOURCE_STAMP("@(#) soapServer.c ver 2.8.6 2012-07-19 01:48:59 GMT")
 
 
 SOAP_FMAC5 int SOAP_FMAC6 soap_serve(struct soap *soap)
@@ -221,14 +221,10 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_serve_request(struct soap *soap)
 		return soap_serve_ns1__dinuc(soap);
 	if (!soap_match_tag(soap, soap->tag, "ns1:cgr"))
 		return soap_serve_ns1__cgr(soap);
-	if (!soap_match_tag(soap, soap->tag, "ns1:grapher"))
-		return soap_serve_ns1__grapher(soap);
 	if (!soap_match_tag(soap, soap->tag, "ns1:help"))
 		return soap_serve_ns1__help(soap);
 	if (!soap_match_tag(soap, soap->tag, "ns1:hydropathy"))
 		return soap_serve_ns1__hydropathy(soap);
-	if (!soap_match_tag(soap, soap->tag, "ns1:pubmed"))
-		return soap_serve_ns1__pubmed(soap);
 	return soap->error = SOAP_NO_METHOD;
 }
 #endif
@@ -3773,47 +3769,6 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns1__cgr(struct soap *soap)
 	return soap_closesock(soap);
 }
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns1__grapher(struct soap *soap)
-{	struct ns1__grapher soap_tmp_ns1__grapher;
-	struct ns1__grapherResponse _param_9;
-	soap_default_ns1__grapherResponse(soap, &_param_9);
-	soap_default_ns1__grapher(soap, &soap_tmp_ns1__grapher);
-	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
-	if (!soap_get_ns1__grapher(soap, &soap_tmp_ns1__grapher, "ns1:grapher", NULL))
-		return soap->error;
-	if (soap_body_end_in(soap)
-	 || soap_envelope_end_in(soap)
-	 || soap_end_recv(soap))
-		return soap->error;
-	soap->error = ns1__grapher(soap, soap_tmp_ns1__grapher._array0, soap_tmp_ns1__grapher._array1, &_param_9);
-	if (soap->error)
-		return soap->error;
-	soap_serializeheader(soap);
-	soap_serialize_ns1__grapherResponse(soap, &_param_9);
-	if (soap_begin_count(soap))
-		return soap->error;
-	if (soap->mode & SOAP_IO_LENGTH)
-	{	if (soap_envelope_begin_out(soap)
-		 || soap_putheader(soap)
-		 || soap_body_begin_out(soap)
-		 || soap_put_ns1__grapherResponse(soap, &_param_9, "ns1:grapherResponse", NULL)
-		 || soap_body_end_out(soap)
-		 || soap_envelope_end_out(soap))
-			 return soap->error;
-	};
-	if (soap_end_count(soap)
-	 || soap_response(soap, SOAP_OK)
-	 || soap_envelope_begin_out(soap)
-	 || soap_putheader(soap)
-	 || soap_body_begin_out(soap)
-	 || soap_put_ns1__grapherResponse(soap, &_param_9, "ns1:grapherResponse", NULL)
-	 || soap_body_end_out(soap)
-	 || soap_envelope_end_out(soap)
-	 || soap_end_send(soap))
-		return soap->error;
-	return soap_closesock(soap);
-}
-
 SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns1__help(struct soap *soap)
 {	struct ns1__help soap_tmp_ns1__help;
 	struct ns1__helpResponse soap_tmp_ns1__helpResponse;
@@ -3895,47 +3850,6 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns1__hydropathy(struct soap *soap)
 	 || soap_putheader(soap)
 	 || soap_body_begin_out(soap)
 	 || soap_put_ns1__hydropathyResponse(soap, &soap_tmp_ns1__hydropathyResponse, "ns1:hydropathyResponse", NULL)
-	 || soap_body_end_out(soap)
-	 || soap_envelope_end_out(soap)
-	 || soap_end_send(soap))
-		return soap->error;
-	return soap_closesock(soap);
-}
-
-SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns1__pubmed(struct soap *soap)
-{	struct ns1__pubmed soap_tmp_ns1__pubmed;
-	struct ns1__pubmedResponse _param_10;
-	soap_default_ns1__pubmedResponse(soap, &_param_10);
-	soap_default_ns1__pubmed(soap, &soap_tmp_ns1__pubmed);
-	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
-	if (!soap_get_ns1__pubmed(soap, &soap_tmp_ns1__pubmed, "ns1:pubmed", NULL))
-		return soap->error;
-	if (soap_body_end_in(soap)
-	 || soap_envelope_end_in(soap)
-	 || soap_end_recv(soap))
-		return soap->error;
-	soap->error = ns1__pubmed(soap, &_param_10);
-	if (soap->error)
-		return soap->error;
-	soap_serializeheader(soap);
-	soap_serialize_ns1__pubmedResponse(soap, &_param_10);
-	if (soap_begin_count(soap))
-		return soap->error;
-	if (soap->mode & SOAP_IO_LENGTH)
-	{	if (soap_envelope_begin_out(soap)
-		 || soap_putheader(soap)
-		 || soap_body_begin_out(soap)
-		 || soap_put_ns1__pubmedResponse(soap, &_param_10, "ns1:pubmedResponse", NULL)
-		 || soap_body_end_out(soap)
-		 || soap_envelope_end_out(soap))
-			 return soap->error;
-	};
-	if (soap_end_count(soap)
-	 || soap_response(soap, SOAP_OK)
-	 || soap_envelope_begin_out(soap)
-	 || soap_putheader(soap)
-	 || soap_body_begin_out(soap)
-	 || soap_put_ns1__pubmedResponse(soap, &_param_10, "ns1:pubmedResponse", NULL)
 	 || soap_body_end_out(soap)
 	 || soap_envelope_end_out(soap)
 	 || soap_end_send(soap))

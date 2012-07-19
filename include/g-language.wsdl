@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions
    name="GLANG"
-   targetNamespace="http://10.6.10.21/GLANG"
-   xmlns:tns="http://10.6.10.21/GLANG"
+   targetNamespace="http://soap.g-language.org/GLANG"
+   xmlns:tns="http://soap.g-language.org/GLANG"
    xmlns="http://schemas.xmlsoap.org/wsdl/"
    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
@@ -11,7 +11,7 @@
 
   <types>
     <schema xmlns="http://www.w3.org/2001/XMLSchema"
-      targetNamespace="http://10.6.10.21/GLANG"
+      targetNamespace="http://soap.g-language.org/GLANG"
       xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
       xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
 
@@ -1588,998 +1588,998 @@
   <binding name="GLANGSoapBinding" type="tns:GLANG">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
     <operation name="codon_mva">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#codon_mva" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#codon_mva" />
       <input name="codon_mvaRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="codon_mvaResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="P2">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#P2" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#P2" />
       <input name="P2Request">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="P2Response">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="w_value">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#w_value" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#w_value" />
       <input name="w_valueRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="w_valueResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="splitprintseq">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#splitprintseq" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#splitprintseq" />
       <input name="splitprintseqRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="splitprintseqResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="median">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#median" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#median" />
       <input name="medianRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="medianResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="find_ori_ter">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#find_ori_ter" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#find_ori_ter" />
       <input name="find_ori_terRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="find_ori_terResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="plasmid_map">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#plasmid_map" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#plasmid_map" />
       <input name="plasmid_mapRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="plasmid_mapResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="sum">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#sum" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#sum" />
       <input name="sumRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="sumResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="nucleotide_periodicity">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#nucleotide_periodicity" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#nucleotide_periodicity" />
       <input name="nucleotide_periodicityRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="nucleotide_periodicityResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="variance">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#variance" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#variance" />
       <input name="varianceRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="varianceResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="amino_info">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#amino_info" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#amino_info" />
       <input name="amino_infoRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="amino_infoResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="circular_map">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#circular_map" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#circular_map" />
       <input name="circular_mapRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="circular_mapResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="togoWS">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#togoWS" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#togoWS" />
       <input name="togoWSRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="togoWSResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="translate">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#translate" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#translate" />
       <input name="translateRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="translateResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="phx">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#phx" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#phx" />
       <input name="phxRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="phxResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="icdi">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#icdi" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#icdi" />
       <input name="icdiRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="icdiResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="enc">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#enc" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#enc" />
       <input name="encRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="encResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="fop">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#fop" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#fop" />
       <input name="fopRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="fopResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="bui">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#bui" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#bui" />
       <input name="buiRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="buiResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="dist_in_cc">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#dist_in_cc" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#dist_in_cc" />
       <input name="dist_in_ccRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="dist_in_ccResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="find_dnaAbox">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#find_dnaAbox" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#find_dnaAbox" />
       <input name="find_dnaAboxRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="find_dnaAboxResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="ttest">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#ttest" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#ttest" />
       <input name="ttestRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="ttestResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="seq2png">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#seq2png" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#seq2png" />
       <input name="seq2pngRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="seq2pngResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="amino_counter">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#amino_counter" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#amino_counter" />
       <input name="amino_counterRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="amino_counterResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="aaui">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#aaui" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#aaui" />
       <input name="aauiRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="aauiResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="codon_compiler">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#codon_compiler" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#codon_compiler" />
       <input name="codon_compilerRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="codon_compilerResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="over_lapping_finder">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#over_lapping_finder" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#over_lapping_finder" />
       <input name="over_lapping_finderRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="over_lapping_finderResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="Ew">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#Ew" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#Ew" />
       <input name="EwRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="EwResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="base_relative_entropy">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#base_relative_entropy" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#base_relative_entropy" />
       <input name="base_relative_entropyRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="base_relative_entropyResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="view_cds">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#view_cds" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#view_cds" />
       <input name="view_cdsRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="view_cdsResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="query_strand">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#query_strand" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#query_strand" />
       <input name="query_strandRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="query_strandResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="genomicskew">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#genomicskew" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#genomicskew" />
       <input name="genomicskewRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="genomicskewResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="filter_cds_by_atg">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#filter_cds_by_atg" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#filter_cds_by_atg" />
       <input name="filter_cds_by_atgRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="filter_cds_by_atgResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="gcsi">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#gcsi" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#gcsi" />
       <input name="gcsiRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="gcsiResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="cai">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#cai" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#cai" />
       <input name="caiRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="caiResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="maxdex">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#maxdex" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#maxdex" />
       <input name="maxdexRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="maxdexResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="max">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#max" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#max" />
       <input name="maxRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="maxResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="query_arm">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#query_arm" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#query_arm" />
       <input name="query_armRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="query_armResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="mindex">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#mindex" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#mindex" />
       <input name="mindexRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="mindexResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="peptide_mass">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#peptide_mass" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#peptide_mass" />
       <input name="peptide_massRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="peptide_massResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="consensus_z">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#consensus_z" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#consensus_z" />
       <input name="consensus_zRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="consensus_zResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="genome_map">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#genome_map" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#genome_map" />
       <input name="genome_mapRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="genome_mapResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="longest_ORF">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#longest_ORF" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#longest_ORF" />
       <input name="longest_ORFRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="longest_ORFResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="rep_ori_ter">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#rep_ori_ter" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#rep_ori_ter" />
       <input name="rep_ori_terRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="rep_ori_terResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="calc_pI">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#calc_pI" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#calc_pI" />
       <input name="calc_pIRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="calc_pIResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="DoubleHelix">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#DoubleHelix" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#DoubleHelix" />
       <input name="DoubleHelixRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="DoubleHelixResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="base_entropy">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#base_entropy" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#base_entropy" />
       <input name="base_entropyRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="base_entropyResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="to_fasta">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#to_fasta" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#to_fasta" />
       <input name="to_fastaRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="to_fastaResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="find_dif">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#find_dif" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#find_dif" />
       <input name="find_difRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="find_difResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="cbi">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#cbi" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#cbi" />
       <input name="cbiRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="cbiResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="genes_from_ori">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#genes_from_ori" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#genes_from_ori" />
       <input name="genes_from_oriRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="genes_from_oriResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="geneskew">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#geneskew" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#geneskew" />
       <input name="geneskewRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="geneskewResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="standard_deviation">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#standard_deviation" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#standard_deviation" />
       <input name="standard_deviationRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="standard_deviationResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="cor">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#cor" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#cor" />
       <input name="corRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="corResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="cumulative">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#cumulative" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#cumulative" />
       <input name="cumulativeRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="cumulativeResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="delta_enc">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#delta_enc" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#delta_enc" />
       <input name="delta_encRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="delta_encResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="delta_gcskew">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#delta_gcskew" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#delta_gcskew" />
       <input name="delta_gcskewRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="delta_gcskewResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="molecular_weight">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#molecular_weight" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#molecular_weight" />
       <input name="molecular_weightRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="molecular_weightResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="gcskew">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#gcskew" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#gcskew" />
       <input name="gcskewRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="gcskewResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="genome_map3">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#genome_map3" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#genome_map3" />
       <input name="genome_map3Request">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="genome_map3Response">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="seqinfo">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#seqinfo" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#seqinfo" />
       <input name="seqinfoRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="seqinfoResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="signature">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#signature" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#signature" />
       <input name="signatureRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="signatureResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="base_information_content">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#base_information_content" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#base_information_content" />
       <input name="base_information_contentRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="base_information_contentResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="dnawalk">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#dnawalk" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#dnawalk" />
       <input name="dnawalkRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="dnawalkResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="find_ter">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#find_ter" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#find_ter" />
       <input name="find_terRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="find_terResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="shuffleseq">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#shuffleseq" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#shuffleseq" />
       <input name="shuffleseqRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="shuffleseqResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="oligomer_search">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#oligomer_search" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#oligomer_search" />
       <input name="oligomer_searchRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="oligomer_searchResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="find_pattern">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#find_pattern" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#find_pattern" />
       <input name="find_patternRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="find_patternResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="gcwin">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#gcwin" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#gcwin" />
       <input name="gcwinRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="gcwinResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="oligomer_counter">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#oligomer_counter" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#oligomer_counter" />
       <input name="oligomer_counterRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="oligomer_counterResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="codon_usage">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#codon_usage" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#codon_usage" />
       <input name="codon_usageRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="codon_usageResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="min">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#min" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#min" />
       <input name="minRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="minResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="find_iteron">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#find_iteron" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#find_iteron" />
       <input name="find_iteronRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="find_iteronResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="complement">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#complement" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#complement" />
       <input name="complementRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="complementResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="mean">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#mean" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#mean" />
       <input name="meanRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="meanResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="codon_counter">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#codon_counter" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#codon_counter" />
       <input name="codon_counterRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="codon_counterResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="entrez">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#entrez" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#entrez" />
       <input name="entrezRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="entrezResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="palindrome">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#palindrome" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#palindrome" />
       <input name="palindromeRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="palindromeResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="least_squares_fit">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#least_squares_fit" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#least_squares_fit" />
       <input name="least_squares_fitRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="least_squares_fitResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="dinuc">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#dinuc" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#dinuc" />
       <input name="dinucRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="dinucResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="cgr">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#cgr" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#cgr" />
       <input name="cgrRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="cgrResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="help">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#help" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#help" />
       <input name="helpRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="helpResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
     <operation name="hydropathy">
-      <soap:operation soapAction="http://10.6.10.21/GLANG#hydropathy" />
+      <soap:operation soapAction="http://soap.g-language.org/GLANG#hydropathy" />
       <input name="hydropathyRequest">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="hydropathyResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://10.6.10.21/GLANG" />
+                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>
     </operation>
 
@@ -2587,7 +2587,7 @@
 
   <service name="GLANGSoapService">
     <port name="GLANG" binding="tns:GLANGSoapBinding">
-      <soap:address location="http://10.6.10.21/WS/g-language.cgi" />
+      <soap:address location="http://soap.g-language.org/WS/g-language.cgi" />
     </port>
   </service>
 
