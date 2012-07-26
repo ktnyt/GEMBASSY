@@ -19,7 +19,7 @@ char *_upper(char *s){
 }
 
 int main(int argc, char *argv[]){
-  embInitPV("gshuffleseq",argc,argv,"GEMBASSY","1.0.0");
+  embInitPV("gshuffleseq",argc,argv,"GEMBASSY","0.0.1");
   
   struct soap soap;
   struct ns1__shuffleseqInputParams params;

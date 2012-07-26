@@ -11,7 +11,7 @@
 #include "../include/getfile.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("ggcwin",argc,argv,"GEMBASSY","1.0.0");
+  embInitPV("ggcwin",argc,argv,"GEMBASSY","0.0.1");
 
   struct soap soap;
   struct ns1__gcwinInputParams params;

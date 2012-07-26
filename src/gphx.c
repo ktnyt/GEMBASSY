@@ -11,7 +11,7 @@
 #include "../include/getfile.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("gphx",argc,argv,"GEMBASSY","1.0.0");
+  embInitPV("gphx",argc,argv,"GEMBASSY","0.0.1");
 
   struct soap soap;
   struct ns1__phxInputParams params;
