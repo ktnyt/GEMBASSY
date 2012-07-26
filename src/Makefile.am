@@ -56,7 +56,7 @@ bin_PROGRAMS = gaaui\
                ggeneskew\
                ggenomicskew\
                gicdi\
-               gP2\
+               gp2\
                gphx\
                gquery_arm\
                gquery_strand\
@@ -82,7 +82,7 @@ ggeneskew_SOURCES     = ggeneskew.c
 ggenomicskew_SOURCES  = ggenomicskew.c
 gicdi_SOURCES         = gicdi.c
 gphx_SOURCES          = gphx.c
-gP2_SOURCES           = gP2.c
+gp2_SOURCES           = gp2.c
 gquery_arm_SOURCES    = gquery_arm.c
 gquery_strand_SOURCES = gquery_strand.c
 grep_ori_ter_SOURCES  = grep_ori_ter.c
