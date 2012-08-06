@@ -1,0 +1,25 @@
+application: gleading_strand [
+  documentation: "Get the sequences of leading strands"
+  groups: "Edit"
+  embassy: "GEMBASSY"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+  sequence: sequence [
+  parameter: "Y"
+  type: "nucleotide"
+]
+endsection: input
+
+section: output 
+[
+  information: "Output section"
+  type: "page"
+]
+  seqout: outseq [
+  type: "nucleotide"
+]
+endsection: output
