@@ -42,11 +42,14 @@ AM_CFLAGS =  $(AIX_CFLAGS) $(WARN_CFLAGS) $(DEVWARN_CFLAGS)
 
 bin_PROGRAMS = gaaui\
                gamino_info\
+               gbase_entropy\
+               gbase_relative_entropy\
                gbase_information_content\
                gbui\
                gcai\
                gcbi\
                gcgr\
+               gcircular_map\
                gdelta_enc\
                gentrez\
                gfind_ori_ter\
@@ -56,7 +59,6 @@ bin_PROGRAMS = gaaui\
                ggeneskew\
                ggenomicskew\
                gicdi\
-               gleading_strand\
                gp2\
                gphx\
                gquery_arm\
@@ -69,10 +71,13 @@ bin_PROGRAMS = gaaui\
 
 gaaui_SOURCES           = gaaui.c
 gamino_info_SOURCES     = gamino_info.c
+gbase_entropy_SOURCES   = gbase_entropy.c
 gbase_information_content_SOURCES = gbase_information_content.c
+gbase_relative_entropy_SOURCES    = gbase_relative_entropy.c
 gbui_SOURCES            = gbui.c
 gcai_SOURCES            = gcai.c
 gcbi_SOURCES            = gcbi.c
+gcircular_map_SOURCES   = gcircular_map.c
 gcgr_SOURCES            = gcgr.c
 gdelta_enc_SOURCES      = gdelta_enc.c
 gentrez_SOURCES         = gentrez.c
@@ -82,7 +87,6 @@ ggcwin_SOURCES          = ggcwin.c
 ggeneskew_SOURCES       = ggeneskew.c
 ggenomicskew_SOURCES    = ggenomicskew.c
 gicdi_SOURCES           = gicdi.c
-gleading_strand_SOURCES = gleading_strand.c
 gphx_SOURCES            = gphx.c
 gp2_SOURCES             = gp2.c
 gquery_arm_SOURCES      = gquery_arm.c
