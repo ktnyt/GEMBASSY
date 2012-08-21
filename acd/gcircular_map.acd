@@ -1,0 +1,22 @@
+application: gcircular_map [
+  documentation: "Draws circular map of the genome "
+  groups: ""
+  embassy: "GEMBASSY"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+  sequence: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+  ]
+endsection: input
+
+section: output 
+[
+  information: "Output section"
+  type: "page"
+]
+endsection: output
