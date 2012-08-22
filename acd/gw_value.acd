@@ -1,4 +1,4 @@
-application: g_wvalue [
+application: gw_value [
   documentation: "Calculate the 'relative adaptiveness of each codon' (W)"
   groups: "Nucleic:Codon Usage"
   embassy: "GEMBASSY"
@@ -8,7 +8,7 @@ section: input [
   information: "Input section"
   type: "page"
 ]
-  sequence: sequence [
+  seqall: sequence [
     parameter: "Y"
     type: "nucleotide"
   ]
@@ -32,8 +32,4 @@ section: output [
   information: "Output section"
   type: "page"
 ]
-  string: filename [
-    parameter: "Y"
-    default: "gwvalue.csv"
-  ]
 endsection: output

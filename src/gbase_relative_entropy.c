@@ -8,7 +8,6 @@
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
-#include "../include/getfile.h"
 
 int main(int argc, char *argv[]){
   embInitPV("gbase_relative_entropy",argc,argv,"GEMBASSY","1.0.0");
@@ -16,16 +15,16 @@ int main(int argc, char *argv[]){
   struct soap soap;
   struct ns1__base_USCORErelative_USCOREentropyInputParams params;
 
-  AjPSeq sequence;
-  AjPSeq seq;
-  AjPStr inseq      = NULL;
-  AjPStr position   = NULL;
-  ajint  PatLen     = 0;
-  ajint  upstream   = 0;
-  ajint  downstream = 0;
-  char*  jobid; 
+  AjPSeqall seqall;
+  AjPSeq    seq;
+  AjPStr    inseq      = NULL;
+  AjPStr    position   = NULL;
+  ajint     PatLen     = 0;
+  ajint     upstream   = 0;
+  ajint     downstream = 0;
+  char*     jobid; 
 
-  seq        = ajAcdGetSeq("sequence");
+  seqall     = ajAcdGetSeqall("sequence");
   position   = ajAcdGetString("position");
   PatLen     = ajAcdGetInt("patlen");
   upstream   = ajAcdGetInt("upstream");
@@ -37,23 +36,24 @@ int main(int argc, char *argv[]){
   params.downstream = downstream;
   params.output     = "g";
   
-  soap_init(&soap);
-  
-  //ajFeattableNewSeq(seq);
+  while(ajSeqallNext(seqall,&seq)){
+    soap_init(&soap);
 
-  ajStrAppendS(&inseq,ajSeqGetNameS(seq));
+    inseq = NULL;
+    ajStrAppendS(&inseq,ajSeqGetNameS(seq));
+    
+    char* in0;
+    in0 = ajCharNewS(inseq);
+    if(soap_call_ns1__base_USCORErelative_USCOREentropy(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
+      puts(jobid);
+    }else{
+      soap_print_fault(&soap,stderr);
+    }
   
-  char* in0;
-  in0 = ajCharNewS(inseq);
-  if(soap_call_ns1__base_USCORErelative_USCOREentropy(&soap,NULL,NULL,"ecoli",&params,&jobid)==SOAP_OK){
-    puts(jobid);
-  }else{
-    soap_print_fault(&soap,stderr);
+    soap_destroy(&soap);
+    soap_end(&soap);
+    soap_done(&soap);
   }
-      
-  soap_destroy(&soap);
-  soap_end(&soap);
-  soap_done(&soap);
 
   embExit();
   return 0;

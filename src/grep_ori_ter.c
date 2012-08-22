@@ -15,16 +15,17 @@ int main(int argc, char *argv[]){
   struct soap soap;
   struct ns1__rep_USCOREori_USCOREterInputParams params;
 
+  AjPSeqall seqall;
   AjPSeq    seq;
   AjPStr    inseq        = NULL;
   AjBool    oriloc       = 0;
   AjBool    gcskew       = 0;
-	AjBool    dbonly       = 0;
+  AjBool    dbonly       = 0;
   ajint     difthreshold = 0;
   char*     _result; 
   char*     jobid;
 
-  seq          = ajAcdGetSeq("sequence");
+  seqall       = ajAcdGetSeqall("sequence");
   difthreshold = ajAcdGetInt("difthreshold");
   oriloc       = ajAcdGetBoolean("oriloc");
   gcskew       = ajAcdGetBoolean("gcskew");
@@ -47,32 +48,34 @@ int main(int argc, char *argv[]){
     params.dbonly = 0;
   }
     
-  soap_init(&soap);
-  
-  inseq = NULL;
+  while(ajSeqallNext(seqall,&seq)){
+    soap_init(&soap);
+    
+    inseq = NULL;
     ajStrAppendS(&inseq,ajSeqGetNameS(seq));
-  
-  char* in0;
-  in0 = ajCharNewS(inseq);
-  if(soap_call_ns1__rep_USCOREori_USCOREter(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
-    char* dlm = "<>";
-    char* tp  = jobid;
-    printf("origin\tterminus\n");
-    tp = strtok(tp,dlm);
-    tp = strtok(NULL,dlm);
-    printf("%s\t",tp);
-    tp = strtok(NULL,dlm);
-    tp = strtok(NULL,dlm);
-    tp = strtok(NULL,dlm);
-    printf("%s\n",tp);
-  }else{
-    soap_print_fault(&soap,stderr);
-  }
-  
-  soap_destroy(&soap);
-  soap_end(&soap);
-  soap_done(&soap);
-  
+    
+    char* in0;
+    in0 = ajCharNewS(inseq);
+    if(soap_call_ns1__rep_USCOREori_USCOREter(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
+      char* dlm = "<>";
+      char* tp  = jobid;
+      printf("origin\tterminus\n");
+      tp = strtok(tp,dlm);
+      tp = strtok(NULL,dlm);
+      printf("%s\t",tp);
+      tp = strtok(NULL,dlm);
+      tp = strtok(NULL,dlm);
+      tp = strtok(NULL,dlm);
+      printf("%s\n",tp);
+    }else{
+      soap_print_fault(&soap,stderr);
+    }
+    
+    soap_destroy(&soap);
+    soap_end(&soap);
+    soap_done(&soap);
+  }  
+
   embExit();
   return 0;
 }

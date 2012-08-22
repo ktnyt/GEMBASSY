@@ -8,8 +8,8 @@ section: input [
   information: "Input section"
   type: "page"
 ]
-  sequence: sequence [
-		parameter: "Y"
+  seqall: sequence [
+    parameter: "Y"
     type: "Protein"
   ]
 endsection: input

@@ -16,7 +16,7 @@ int main(int argc, char *argv[]){
   struct soap soap;
   struct ns1__geneskewInputParams params;
 
-  AjPSeq sequence;
+  AjPSeqall seqall;
   AjPSeq    seq;
   AjPStr    inseq      = NULL;
   ajint     window     = 0;
@@ -25,11 +25,11 @@ int main(int argc, char *argv[]){
   AjBool    gc3;
   AjPStr    output     = NULL;
   AjPStr    base;
-	AjPStr    filename   = NULL;
+  AjPStr    filename   = NULL;
   char*     _result; 
   char*     jobid;
 
-  seq        = ajAcdGetSeq("sequence");
+  seqall     = ajAcdGetSeqall("sequence");
   window     = ajAcdGetInt("window");
   slide      = ajAcdGetInt("slide");
   cumulative = ajAcdGetBoolean("cumulative");
@@ -52,38 +52,34 @@ int main(int argc, char *argv[]){
   params.base         = ajCharNewS(base);
   params.output       = ajCharNewS(output);
 
-  
-  soap_init(&soap);
-  
-  inseq = NULL;
-  ajStrAppendS(&inseq,ajSeqGetNameS(seq));
-  
-  char* in0;
-  in0 = ajCharNewS(inseq);
-  if(soap_call_ns1__geneskew(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
-    if(strcmp(params.output,"g") == 0){
-      filename = ajAcdGetString("filename");
-      if(ajStrMatchC(filename,"ggeneskew.png(csv)")){
-        ajStrAssignC(&filename,"ggeneskew.png");
+  while(ajSeqallNext(seqall,&seq)){
+    soap_init(&soap);
+
+    inseq = NULL;
+    ajStrAppendS(&inseq,ajSeqGetNameS(seq));
+    
+    char* in0;
+    in0 = ajCharNewS(inseq);
+    if(soap_call_ns1__geneskew(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
+      ajStrAssignS(&filename,ajSeqGetNameS(seq));
+      if(strcmp(params.output,"g") == 0){
+	ajStrAppendC(&filename,".png");
+      }else{
+	ajStrAppendC(&filename,".csv");
+      }
+      if(get_file(jobid,ajCharNewS(filename))==0){
+	printf("Retrieval successful\n");
+      }else{
+	printf("Retrieval unsuccessful\n");
       }
     }else{
-      filename = ajAcdGetString("filename");
-      if(ajStrMatchC(filename,"ggeneskew.png(csv)")){
-        ajStrAssignC(&filename,"ggeneskew.csv");
-      }
+      soap_print_fault(&soap,stderr);
     }
-    if(get_file(jobid,ajCharNewS(filename))==0){
-      printf("Retrieval successful\n");
-    }else{
-      printf("Retrieval unsuccessful\n");
-    }
-  }else{
-    soap_print_fault(&soap,stderr);
+    
+    soap_destroy(&soap);
+    soap_end(&soap);
+    soap_done(&soap);
   }
-      
-  soap_destroy(&soap);
-  soap_end(&soap);
-  soap_done(&soap);
 
   embExit();
   return 0;

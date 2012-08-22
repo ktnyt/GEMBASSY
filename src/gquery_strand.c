@@ -15,35 +15,37 @@ int main(int argc, char *argv[]){
   struct soap soap;
   struct ns1__query_USCOREstrandInputParams params;
 
+  AjPSeqall seqall;
   AjPSeq    seq;
   AjPStr    inseq      = NULL;
   char*     position;
   AjPStr    direction  = NULL;
   char*     jobid;
 
-  seq        = ajAcdGetSeq("sequence");
-  direction  = ajAcdGetString("direction");
-  position   = ajCharNewS(ajAcdGetString("position"));
+  seqall    = ajAcdGetSeqall("sequence");
+  direction = ajAcdGetString("direction");
+  position  = ajCharNewS(ajAcdGetString("position"));
 
   params.direction  = ajCharNewS(direction);
     
-  soap_init(&soap);
-  
-  inseq = NULL;
-    seq=ajAcdGetSeq("sequence");
+  while(ajSeqallNext(seqall,&seq)){
+    soap_init(&soap);
+
+    inseq = NULL;
     ajStrAppendS(&inseq,ajSeqGetNameS(seq));
+    
+    char* in0;
+    in0 = ajCharNewS(inseq);
+    if(soap_call_ns1__query_USCOREstrand(&soap,NULL,NULL,in0,position,&params,&jobid)==SOAP_OK){
+      puts(jobid);
+    }else{
+      soap_print_fault(&soap,stderr);
+    }
   
-  char* in0;
-  in0 = ajCharNewS(inseq);
-  if(soap_call_ns1__query_USCOREstrand(&soap,NULL,NULL,in0,position,&params,&jobid)==SOAP_OK){
-    printf("%s\n",jobid);
-  }else{
-    soap_print_fault(&soap,stderr);
+    soap_destroy(&soap);
+    soap_end(&soap);
+    soap_done(&soap);
   }
-      
-  soap_destroy(&soap);
-  soap_end(&soap);
-  soap_done(&soap);
 
   embExit();
   return 0;

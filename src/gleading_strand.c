@@ -11,7 +11,6 @@
 
 char *_upper(char *s){
   char *p;
-  
   for(p=s; *p; p++){
     *p = toupper(*p);
   }
@@ -26,7 +25,7 @@ int main(int argc, char *argv[]){
   AjPSeqout seqout;
   AjPSeq    seq;
   AjPStr    inseq      = NULL;
-	AjPStr    filename   = NULL;
+  AjPStr    filename   = NULL;
   char*     jobid;
   
   seq    = ajAcdGetSeq("sequence");
@@ -42,8 +41,8 @@ int main(int argc, char *argv[]){
   char* in0;
   in0 = ajCharNewS(inseq);
   if(soap_call_ns1__leading_USCOREstrand(&soap,NULL,NULL,in0,&jobid)==SOAP_OK){
-		printf("Writing sequence out to %s\n",ajCharNewS(filename));
-		ajCharFmtUpper(jobid);
+    printf("Writing sequence out to %s\n",ajCharNewS(filename));
+    ajCharFmtUpper(jobid);
     ajSeqAssignSeqC(seq, jobid);
     ajSeqoutWriteSeq(seqout, seq);
     ajSeqoutClose(seqout);

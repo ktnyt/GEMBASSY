@@ -43,8 +43,8 @@ AM_CFLAGS =  $(AIX_CFLAGS) $(WARN_CFLAGS) $(DEVWARN_CFLAGS)
 bin_PROGRAMS = gaaui\
                gamino_info\
                gbase_entropy\
-               gbase_relative_entropy\
                gbase_information_content\
+               gbase_relative_entropy\
                gbui\
                gcai\
                gcbi\
@@ -77,8 +77,8 @@ gbase_relative_entropy_SOURCES    = gbase_relative_entropy.c
 gbui_SOURCES            = gbui.c
 gcai_SOURCES            = gcai.c
 gcbi_SOURCES            = gcbi.c
-gcircular_map_SOURCES   = gcircular_map.c
 gcgr_SOURCES            = gcgr.c
+gcircular_map_SOURCES   = gcircular_map.c
 gdelta_enc_SOURCES      = gdelta_enc.c
 gentrez_SOURCES         = gentrez.c
 gfind_ori_ter_SOURCES   = gfind_ori_ter.c

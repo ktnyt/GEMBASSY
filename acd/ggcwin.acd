@@ -9,7 +9,7 @@ section: input [
   type: "page"
 ]
 
-  sequence: sequence [
+  seqall: sequence [
     parameter: "Y"
     type: "nucleotide"
   ]
@@ -50,9 +50,4 @@ section: output [
 	information: "Output section"
 	type: "page"
 ]
-	string: filename [
-		parameter: "Y"
-		information: "Output filename"
-		default: "ggcwin.png(csv)"
-	]
 endsection: output

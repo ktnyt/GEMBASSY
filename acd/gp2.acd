@@ -8,7 +8,7 @@ section: input [
   information: "Input section"
   type: "page"
 ]
-  sequence: sequence [
+  seqall: sequence [
     parameter: "Y"
     type: "nucleotide"
   ]
@@ -18,8 +18,4 @@ section: output [
   information: "Output section"
   type: "page"
 ]
-  string: filename [
-    parameter: "Y"
-    default: "gp2.csv"
-  ]
 endsection: output

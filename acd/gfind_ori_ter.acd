@@ -1,4 +1,4 @@
-application: gfind_oriter [
+application: gfind_ori_ter [
   documentation: "Predict the replication origin and terminus in bacterial genomes"
   groups: "Nucleic:Composition"
   embassy: "GEMBASSY"
@@ -8,7 +8,7 @@ section: input [
   information: "Input section"
   type: "page"
 ]
-  sequence: sequence [
+  seqall: sequence [
     parameter: "Y"
     type: "nucleotide"
   ]

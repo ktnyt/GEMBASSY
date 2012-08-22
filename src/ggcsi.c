@@ -14,7 +14,8 @@ int main(int argc, char *argv[]){
 
   struct soap soap;
   struct ns1__gcsiInputParams params;
-  
+
+  AjPSeqall seqall;
   AjPSeq    seq;
   AjPStr    inseq      = NULL;
   ajint     window     = 0;
@@ -26,7 +27,7 @@ int main(int argc, char *argv[]){
   AjPStr    outstring  = NULL;
   char*     jobid;
   
-  seq        = ajAcdGetSeq("sequence");
+  seqall     = ajAcdGetSeqall("sequence");
   window     = ajAcdGetInt("window");
   version    = ajAcdGetInt("v");
   at         = ajAcdGetBoolean("at");
@@ -56,23 +57,23 @@ int main(int argc, char *argv[]){
   }else{
     params.p          = 0;
   }
+
+  while(ajSeqallNext(seqall,&seq)){    
+    soap_init(&soap);
     
-  soap_init(&soap);
-  
-  inseq = NULL;
-    seq=ajAcdGetSeq("sequence");
+    inseq = NULL;
     ajStrAppendS(&inseq,ajSeqGetNameS(seq));
-  
-  char* in0;
-  in0 = ajCharNewS(inseq);
-  if(soap_call_ns1__gcsi(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
-    float gcsi,sa,dist;
-    int i;
-    char* tp  = jobid;
-    char* dlm = "<>";
-    tp = strtok(tp,dlm);
-    tp = strtok(NULL,dlm);
-    gcsi = atof(tp);
+    
+    char* in0;
+    in0 = ajCharNewS(inseq);
+    if(soap_call_ns1__gcsi(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
+      float gcsi,sa,dist;
+      int i;
+      char* tp  = jobid;
+      char* dlm = "<>";
+      tp = strtok(tp,dlm);
+      tp = strtok(NULL,dlm);
+      gcsi = atof(tp);
     for(i=0;i<3;i++){
       tp = strtok(NULL,dlm);
     }
@@ -82,13 +83,14 @@ int main(int argc, char *argv[]){
     }
     dist = atof(tp);
     printf("GCSI\t\tSA\t\tDist\n%f\t%f\t%f\n",gcsi,sa,dist);
-  }else{
-    soap_print_fault(&soap,stderr);
+    }else{
+      soap_print_fault(&soap,stderr);
+    }
+    
+    soap_destroy(&soap);
+    soap_end(&soap);
+    soap_done(&soap);
   }
-  
-  soap_destroy(&soap);
-  soap_end(&soap);
-  soap_done(&soap);
 
   embExit();
   return 0;

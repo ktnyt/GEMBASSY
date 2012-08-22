@@ -8,8 +8,7 @@ section: input [
   information: "Input section"
   type: "page"
 ]
-
-  sequence: sequence [
+  seqall: sequence [
     parameter: "Y"
     type: "DNA"
   ]
@@ -37,9 +36,4 @@ section: output [
 	information: "Output section"
 	type: "page"
 ]
-	string: filename [
-		parameter: "Y"
-		information: "Output filename"
-		default: "ggenomicskew.png(csv)"
-	]
 endsection: output
