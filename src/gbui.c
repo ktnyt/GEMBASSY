@@ -24,6 +24,7 @@ int main(int argc, char *argv[]){
   AjPStr    id        = NULL;
   AjPStr    delkey    = NULL;
   AjPStr    filename  = NULL;
+  AjPStr    line      = NULL;
   AjPFile   infile    = NULL;
   AjPStrTok token     = NULL;
   char*     jobid;
