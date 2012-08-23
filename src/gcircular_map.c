@@ -23,6 +23,8 @@ int main(int argc, char *argv[]){
   char*     jobid;
   
   seqall = ajAcdGetSeqall("sequence");
+
+  params.gmap = 0;
   
   while(ajSeqallNext(seqall,&seq)){
     soap_init(&soap);

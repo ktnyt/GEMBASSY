@@ -9,8 +9,9 @@ section: input [
   type: "page"
 ]
   seqall: sequence [
-  parameter: "Y"
-  type: "nucleotide"
+    parameter: "Y"
+    type: "nucleotide"
+    features: "Y"
 ]
 endsection: input
 

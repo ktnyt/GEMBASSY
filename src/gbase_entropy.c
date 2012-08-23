@@ -22,6 +22,7 @@ int main(int argc, char *argv[]){
   ajint     PatLen     = 0;
   ajint     upstream   = 0;
   ajint     downstream = 0;
+  AjPStr    filename   = NULL;
   char*     jobid; 
 
   seqall     = ajAcdGetSeqall("sequence");
@@ -39,8 +40,20 @@ int main(int argc, char *argv[]){
   while(ajSeqallNext(seqall,&seq)){
     soap_init(&soap);
 
-    inseq = NULL;
-    ajStrAppendS(&inseq,ajSeqGetNameS(seq));
+    inseq    = NULL;
+    filename = NULL;
+
+    if(ajSeqGetFeat(seq)){
+      ajStrAssignS(&filename,ajSeqallGetFilename(seqall));
+      FILE *fp;
+      char buf[256];
+      fp = fopen(ajCharNewS(filename),"r");
+      while(fgets(buf,256,fp) != NULL){
+        ajStrAppendC(&inseq,buf);
+      }
+    }else{
+      ajStrAppendS(&inseq,ajSeqGetAccS(seq));
+    }
     
     char* in0;
     in0 = ajCharNewS(inseq);

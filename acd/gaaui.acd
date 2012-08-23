@@ -10,6 +10,7 @@ section: input [
 ]
   seqall: sequence [
     parameter: "Y"
+    features: "Y"
     type: "nucleotide"
   ]
 endsection: input

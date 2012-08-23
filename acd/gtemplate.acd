@@ -1,6 +1,6 @@
-application: gcgr [
-  documentation: "Create a Chaos Game Representation of a given sequence"
-  groups: "Display"
+application:  [
+  documentation: ""
+  groups: ""
   embassy: "GEMBASSY"
 ]
 
@@ -8,25 +8,33 @@ section: input [
   information: "Input section"
   type: "page"
 ]
+
   seqall: sequence [
     parameter: "Y"
     type: "nucleotide"
-    features: "Y"
   ]
+
 endsection: input
 
 section: advanced [
   information: "Advanced section"
   type: "page"
 ]
-	integer: width [
-		information: "Width of image"
-		default: "1024"
-	]
-	integer: level [
-		information: "Zoom level for Google Maps representation"
-		default: "5"
-	]
+
+  integer:  [
+    information: ""
+    default: ""
+  ]
+
+  boolean:  [
+    information: ""
+    default: ""
+  ]
+
+  string:  [
+    information: ""
+    default: ""
+  ]
 endsection: advanced
 
 section: output [

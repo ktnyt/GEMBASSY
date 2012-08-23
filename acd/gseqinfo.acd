@@ -11,6 +11,7 @@ section: input [
   seqall: sequence [
     parameter: "Y"
     type: "nucleotide"
+    features: "Y"
   ]
   string: mode [
     information: "Input 'ID' for sequence ID 'seq' for whole sequence and actual

@@ -1,0 +1,51 @@
+application: gdinuc [
+  documentation: "Calculates dinucleotide usage "
+  groups: "Nucleic:Codon Usage"
+  embassy: "GEMBASSY"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+
+  seqall: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+    features: "Y"
+  ]
+
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+
+  boolean: translate [
+    information: "'1' when translates using standard codon table"
+    default: "0"
+  ]
+
+  string: position [
+    information: "codon position or reading frame;\n'' when assessing all codon positions\n'12' when assessing the reading frame 1-2\n'23' when assessing the reading frame 2-3\n'31' when assessing the reading frame 3-1"
+    default: ""
+  ]
+
+  string: id [
+    information: "ID of a group of genes or a single gene"
+    default: "All"
+  ]
+
+  string: delkey [
+    information: "regular expression to delete key (i.e. amino acids and nucleotides)"
+    default: "[^ACDEFGHIKLMNPQRSTVWYacgtU]"
+  ]
+
+endsection: advanced
+
+section: output [
+	information: "Output section"
+	type: "page"
+]
+endsection: output
