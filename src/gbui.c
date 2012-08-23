@@ -56,7 +56,7 @@ int main(int argc, char *argv[]){
 	ajStrAppendC(&inseq,"\n");
       }
       token = ajStrTokenNewC(inseq,"//");
-      while(ajStrTokenNextFind(&token,inseq)){
+      while(ajStrTokenNextFind(&token,&inseq)){
 	ajFmtPrint("%S\n",inseq);
       }
     }else{
