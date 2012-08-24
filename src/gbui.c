@@ -24,8 +24,10 @@ int main(int argc, char *argv[]){
   AjPStr    id        = NULL;
   AjPStr    delkey    = NULL;
   AjPStr    filename  = NULL;
-  AjPStr    line      = NULL;
   AjPFile   infile    = NULL;
+  AjPStr    line      = NULL;
+  int       i         = 0;
+  int       j         = 0;
   char*     jobid;
   
   seqall     = ajAcdGetSeqall("sequence");

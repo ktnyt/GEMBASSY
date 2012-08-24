@@ -20,6 +20,10 @@ int main(int argc, char *argv[]){
   AjPStr    inseq      = NULL;
   char*     position;
   AjPStr    direction  = NULL;
+  AjPFile   infile    = NULL;
+  AjPStr    line      = NULL;
+  int       i         = 0;
+  int       j         = 0;
   char*     jobid;
 
   seqall    = ajAcdGetSeqall("sequence");

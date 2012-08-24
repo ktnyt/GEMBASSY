@@ -23,7 +23,10 @@ int main(int argc, char *argv[]){
   AjPStr    usage     = NULL;
   AjPStr    delkey    = NULL;
   AjPStr    filename   = NULL;
-  char*     _result; 
+  AjPFile   infile    = NULL;
+  AjPStr    line      = NULL;
+  int       i         = 0;
+  int       j         = 0;
   char*     jobid;
   int       i=0;
   

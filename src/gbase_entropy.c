@@ -23,6 +23,10 @@ int main(int argc, char *argv[]){
   ajint     upstream   = 0;
   ajint     downstream = 0;
   AjPStr    filename   = NULL;
+  AjPFile   infile    = NULL;
+  AjPStr    line      = NULL;
+  int       i         = 0;
+  int       j         = 0;
   char*     jobid; 
 
   seqall     = ajAcdGetSeqall("sequence");

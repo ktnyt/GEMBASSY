@@ -21,7 +21,10 @@ int main(int argc, char *argv[]){
   AjBool    translate = 0;
   AjPStr    id        = NULL;
   AjPStr    delkey   = NULL;
-  char*     _result; 
+  AjPFile   infile    = NULL;
+  AjPStr    line      = NULL;
+  int       i         = 0;
+  int       j         = 0;
   char*     jobid;
   
   seqall    = ajAcdGetSeqall("sequence");

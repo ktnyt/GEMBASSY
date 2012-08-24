@@ -25,6 +25,10 @@ int main(int argc, char *argv[]){
   AjBool    keto       = 0;
   AjBool    p;
   AjPStr    outstring  = NULL;
+  AjPFile   infile    = NULL;
+  AjPStr    line      = NULL;
+  int       i         = 0;
+  int       j         = 0;
   char*     jobid;
   
   seqall     = ajAcdGetSeqall("sequence");
@@ -84,21 +88,21 @@ int main(int argc, char *argv[]){
     in0 = ajCharNewS(inseq);
     if(soap_call_ns1__gcsi(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
       float gcsi,sa,dist;
-      int i;
+      int n;
       char* tp  = jobid;
       char* dlm = "<>";
       tp = strtok(tp,dlm);
       tp = strtok(NULL,dlm);
       gcsi = atof(tp);
-    for(i=0;i<3;i++){
-      tp = strtok(NULL,dlm);
-    }
-    sa = atof(tp);
-    for(i=0;i<3;i++){
-      tp = strtok(NULL,dlm);
-    }
-    dist = atof(tp);
-    printf("GCSI\t\tSA\t\tDist\n%f\t%f\t%f\n",gcsi,sa,dist);
+      for(n=0;n<3;n++){
+	tp = strtok(NULL,dlm);
+      }
+      sa = atof(tp);
+      for(i=0;i<3;i++){
+	tp = strtok(NULL,dlm);
+      }
+      dist = atof(tp);
+      printf("GCSI\t\tSA\t\tDist\n%f\t%f\t%f\n",gcsi,sa,dist);
     }else{
       soap_print_fault(&soap,stderr);
     }

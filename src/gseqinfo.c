@@ -15,8 +15,8 @@ int main(int argc, char *argv[]){
   struct soap soap;
 
   AjPSeqall seqall;
-  AjPSeq    seq   = NULL;
-  AjPStr    inseq = NULL;
+  AjPSeq    seq    = NULL;
+  AjPStr    inseq  = NULL;
   int i;
   char*     jobid;
 
@@ -38,10 +38,10 @@ int main(int argc, char *argv[]){
       char* tp;
       int   list[4];
       tp = strtok(jobid,dlm);
-      i=1;
+      n=1;
       while(tp != NULL){
 	tp = strtok(NULL,dlm);
-	if(i%3==1){list[(i-1)/3]=atoi(tp);}
+	if(n%3==1){list[(n-1)/3]=atoi(tp);}
 	i++;
       }
       printf("A\tT\tG\tC\t\n%d\t%d\t%d\t%d\t\n",list[0],list[1],list[2],list[3]);

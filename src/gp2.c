@@ -20,6 +20,10 @@ int main(int argc, char *argv[]){
   AjPSeq    seq;
   AjPStr    inseq     = NULL;
   AjPStr    filename  = NULL;
+  AjPFile   infile    = NULL;
+  AjPStr    line      = NULL;
+  int       i         = 0;
+  int       j         = 0;
   char*     jobid;
   
   seqall = ajAcdGetSeqall("sequence");
@@ -29,7 +33,6 @@ int main(int argc, char *argv[]){
   while(ajSeqallNext(seqall,&seq)){
     soap_init(&soap);
 
-    inseq = NULL;
     inseq = NULL;
     if(ajSeqGetFeat(seq)){
       i++;

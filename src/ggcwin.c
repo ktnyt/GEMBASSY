@@ -25,6 +25,10 @@ int main(int argc, char *argv[]){
   AjBool    keto       = 0;
   AjPStr    output     = NULL;
   AjPStr    filename   = NULL;
+  AjPFile   infile    = NULL;
+  AjPStr    line      = NULL;
+  int       i         = 0;
+  int       j         = 0;
   char*     jobid;
   char*     _result;
 
