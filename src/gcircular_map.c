@@ -51,7 +51,7 @@ int main(int argc, char *argv[]){
     in0 = ajCharNewS(inseq);
     if(soap_call_ns1__circular_USCOREmap(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
       ajStrAssignS(&filename,ajSeqGetNameS(seq));
-      ajStrAppendC(&filename,".csv");
+      ajStrAppendC(&filename,".svg");
       if(get_file(jobid,ajCharNewS(filename))==0){
 	printf("Retrieval successful\n");
       }else{
