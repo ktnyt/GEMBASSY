@@ -26,7 +26,6 @@ int main(int argc, char *argv[]){
   AjPStr    filename  = NULL;
   AjPStr    line      = NULL;
   AjPFile   infile    = NULL;
-  AjPStrTok token     = NULL;
   char*     jobid;
   
   seqall     = ajAcdGetSeqall("sequence");
@@ -49,19 +48,22 @@ int main(int argc, char *argv[]){
 
     inseq = NULL;
     if(ajSeqGetFeat(seq)){
+      i++;
       ajStrAssignS(&filename,ajSeqallGetFilename(seqall));
-      infile = ajFileNewInNameS(filename);
+      if(infile == NULL)
+        infile = ajFileNewInNameS(filename);
       while (ajReadline(infile, &line)) {
-	ajStrAppendS(&inseq,line);
-	ajStrAppendC(&inseq,"\n");
-      }
-      token = ajStrTokenNewC(inseq,"//");
-      while(ajStrTokenNextFind(&token,&inseq)){
-	ajFmtPrint("%S\n",inseq);
+        ajStrAppendS(&inseq,line);
+        if(ajStrMatchC(line,"//\n")){
+          j++;
+          if(i == j)
+            break;
+        }
       }
     }else{
       ajStrAppendS(&inseq,ajSeqGetAccS(seq));
     }
+
     char* in0;
     in0 = ajCharNewS(inseq);
     if(soap_call_ns1__bui(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){

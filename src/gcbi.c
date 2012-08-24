@@ -20,8 +20,10 @@ int main(int argc, char *argv[]){
   AjPStr    inseq     = NULL;
   AjBool    translate = 0;
   AjPStr    id        = NULL;
-  AjPStr    delkey   = NULL;
-  AjPStr    filename   = NULL;
+  AjPStr    delkey    = NULL;
+  AjPStr    filename  = NULL;
+  AjPFile   infile    = NULL;
+  AjPStr    line      = NULL;
   char*     jobid;
   
   seqall     = ajAcdGetSeqall("sequence");
@@ -42,19 +44,21 @@ int main(int argc, char *argv[]){
 
     inseq = NULL;
     if(ajSeqGetFeat(seq)){
+      i++;
       ajStrAssignS(&filename,ajSeqallGetFilename(seqall));
-      FILE *fp;
-      char buf[256];
-      fp = fopen(ajCharNewS(filename),"r");
-      while(fgets(buf,256,fp) != NULL){
-        ajStrAppendC(&inseq,buf);
+      if(infile == NULL)
+        infile = ajFileNewInNameS(filename);
+      while (ajReadline(infile, &line)) {
+        ajStrAppendS(&inseq,line);
+        if(ajStrMatchC(line,"//\n")){
+          j++;
+          if(i == j)
+            break;
+        }
       }
-      ajStrAppendS(&inseq,ajSeqGetSeqS(seq));
     }else{
       ajStrAppendS(&inseq,ajSeqGetAccS(seq));
     }
-    puts(inseq);
-    return 0;
     
     char* in0;
     in0 = ajCharNewS(inseq);

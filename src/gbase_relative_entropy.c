@@ -42,12 +42,17 @@ int main(int argc, char *argv[]){
 
     inseq = NULL;
     if(ajSeqGetFeat(seq)){
+      i++;
       ajStrAssignS(&filename,ajSeqallGetFilename(seqall));
-      FILE *fp;
-      char buf[256];
-      fp = fopen(ajCharNewS(filename),"r");
-      while(fgets(buf,256,fp) != NULL){
-        ajStrAppendC(&inseq,buf);
+      if(infile == NULL)
+        infile = ajFileNewInNameS(filename);
+      while (ajReadline(infile, &line)) {
+        ajStrAppendS(&inseq,line);
+        if(ajStrMatchC(line,"//\n")){
+          j++;
+          if(i == j)
+            break;
+        }
       }
     }else{
       ajStrAppendS(&inseq,ajSeqGetAccS(seq));

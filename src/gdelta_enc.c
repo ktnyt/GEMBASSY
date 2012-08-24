@@ -27,7 +27,22 @@ int main(int argc, char *argv[]){
     soap_init(&soap);
 
     inseq = NULL;
-    ajStrAppendS(&inseq,ajSeqGetNameS(seq));
+    if(ajSeqGetFeat(seq)){
+      i++;
+      ajStrAssignS(&filename,ajSeqallGetFilename(seqall));
+      if(infile == NULL)
+        infile = ajFileNewInNameS(filename);
+      while (ajReadline(infile, &line)) {
+        ajStrAppendS(&inseq,line);
+        if(ajStrMatchC(line,"//\n")){
+          j++;
+          if(i == j)
+            break;
+        }
+      }
+    }else{
+      ajStrAppendS(&inseq,ajSeqGetAccS(seq));
+    }
     
     char* in0;
     in0 = ajCharNewS(inseq);
