@@ -17,7 +17,7 @@ int main(int argc, char *argv[]){
   AjPSeqall seqall;
   AjPSeq    seq    = NULL;
   AjPStr    inseq  = NULL;
-  int i;
+  int n;
   char*     jobid;
 
   seqall = ajAcdGetSeqall("sequence");
@@ -42,7 +42,7 @@ int main(int argc, char *argv[]){
       while(tp != NULL){
 	tp = strtok(NULL,dlm);
 	if(n%3==1){list[(n-1)/3]=atoi(tp);}
-	i++;
+	n++;
       }
       printf("A\tT\tG\tC\t\n%d\t%d\t%d\t%d\t\n",list[0],list[1],list[2],list[3]);
     }else{

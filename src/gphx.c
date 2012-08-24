@@ -28,7 +28,6 @@ int main(int argc, char *argv[]){
   int       i         = 0;
   int       j         = 0;
   char*     jobid;
-  int       i=0;
   
   seqall     = ajAcdGetSeqall("sequence");
   translate  = ajAcdGetBoolean("translate");

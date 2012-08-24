@@ -20,7 +20,8 @@ int main(int argc, char *argv[]){
   AjPStr    inseq     = NULL;
   AjBool    translate = 0;
   AjPStr    id        = NULL;
-  AjPStr    delkey   = NULL;
+  AjPStr    delkey    = NULL;
+  AjPStr    filename  = NULL;
   AjPFile   infile    = NULL;
   AjPStr    line      = NULL;
   int       i         = 0;

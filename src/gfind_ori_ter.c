@@ -17,15 +17,16 @@ int main(int argc, char *argv[]){
 
   AjPSeqall seqall;
   AjPSeq    seq;
-  AjPStr    inseq      = NULL;
-  ajint     window     = 0;
-  AjBool    purine     = 0;
-  AjBool    keto       = 0;
-  ajint     filter     = 0;
-  AjPFile   infile    = NULL;
-  AjPStr    line      = NULL;
-  int       i         = 0;
-  int       j         = 0;
+  AjPStr    inseq    = NULL;
+  ajint     window   = 0;
+  AjBool    purine   = 0;
+  AjBool    keto     = 0;
+  ajint     filter   = 0;
+  AjPStr    filename = NULL;
+  AjPFile   infile   = NULL;
+  AjPStr    line     = NULL;
+  int       i        = 0;
+  int       j        = 0;
   char*     jobid;
 
   seqall = ajAcdGetSeqall("sequence");

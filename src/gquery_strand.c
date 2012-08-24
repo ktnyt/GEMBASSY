@@ -17,9 +17,10 @@ int main(int argc, char *argv[]){
 
   AjPSeqall seqall;
   AjPSeq    seq;
-  AjPStr    inseq      = NULL;
-  char*     position;
-  AjPStr    direction  = NULL;
+  AjPStr    inseq     = NULL;
+  char*     position  = NULL;
+  AjPStr    direction = NULL;
+  AjPStr    filename  = NULL;
   AjPFile   infile    = NULL;
   AjPStr    line      = NULL;
   int       i         = 0;

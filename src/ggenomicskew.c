@@ -27,7 +27,7 @@ int main(int argc, char *argv[]){
   AjPStr    line      = NULL;
   int       i         = 0;
   int       j         = 0;
-  char*     _result;
+  char*     jobid;
 
   seqall = ajAcdGetSeqall("sequence");
   divide = ajAcdGetInt("divide");

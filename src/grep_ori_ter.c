@@ -22,10 +22,11 @@ int main(int argc, char *argv[]){
   AjBool    gcskew       = 0;
   AjBool    dbonly       = 0;
   ajint     difthreshold = 0;
-  AjPFile   infile    = NULL;
-  AjPStr    line      = NULL;
-  int       i         = 0;
-  int       j         = 0;
+  AjPStr    filename     = NULL;
+  AjPFile   infile       = NULL;
+  AjPStr    line         = NULL;
+  int       i            = 0;
+  int       j            = 0;
   char*     jobid;
 
   seqall       = ajAcdGetSeqall("sequence");

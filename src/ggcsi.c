@@ -23,12 +23,13 @@ int main(int argc, char *argv[]){
   AjBool    at         = 0;
   AjBool    purine     = 0;
   AjBool    keto       = 0;
-  AjBool    p;
+  AjBool    p          = 0;
   AjPStr    outstring  = NULL;
-  AjPFile   infile    = NULL;
-  AjPStr    line      = NULL;
-  int       i         = 0;
-  int       j         = 0;
+  AjPStr    filename   = NULL;
+  AjPFile   infile     = NULL;
+  AjPStr    line       = NULL;
+  int       i          = 0;
+  int       j          = 0;
   char*     jobid;
   
   seqall     = ajAcdGetSeqall("sequence");
