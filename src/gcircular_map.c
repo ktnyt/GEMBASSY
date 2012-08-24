@@ -33,6 +33,9 @@ int main(int argc, char *argv[]){
   while(ajSeqallNext(seqall,&seq)){
     soap_init(&soap);
 
+    soap.send_timeout = 0; 
+    soap.recv_timeout = 0;
+
     inseq = NULL;
     if(ajSeqGetFeat(seq)){
       i++;
