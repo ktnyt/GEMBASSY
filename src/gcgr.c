@@ -62,6 +62,11 @@ int main(int argc, char *argv[]){
     soap_done(&soap);
   }
 
+  ajSeqallDel(seqall);
+  ajSeqDel(seq);
+  ajStrDel(inseq);
+  ajStrDel(filename);
+
   embExit();
   return 0;
 }

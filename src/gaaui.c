@@ -23,7 +23,7 @@ int main(int argc, char *argv[]){
   AjBool        accid     = 0;
   AjPStr        filename  = NULL;
   char*         jobid;
-  
+
   seqall = ajAcdGetSeqall("sequence");
   id     = ajAcdGetString("id");
   accid  = ajAcdGetBoolean("accid");
@@ -59,7 +59,12 @@ int main(int argc, char *argv[]){
     soap_end(&soap);
     soap_done(&soap);
   }
-  
+
+  ajSeqallDel(seqall);
+  ajSeqDel(seq);
+  ajStrDel(inseq);
+  ajStrDel(filename);
+    
   embExit();
   return 0;
 }

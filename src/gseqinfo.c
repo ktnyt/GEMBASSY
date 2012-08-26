@@ -60,6 +60,10 @@ int main(int argc, char *argv[]){
     soap_end(&soap);
     soap_done(&soap);
   }
+
+  ajSeqallDel(seqall);
+  ajSeqDel(seq);
+  ajStrDel(inseq);
   
   embExit();
   return 0;
