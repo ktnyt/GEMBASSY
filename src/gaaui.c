@@ -22,8 +22,6 @@ int main(int argc, char *argv[]){
   AjPStr        id        = NULL;
   AjBool        accid     = 0;
   AjPStr        filename  = NULL;
-  ajint         i         = 0;
-  ajint         j         = 0;
   char*         jobid;
   
   seqall = ajAcdGetSeqall("sequence");

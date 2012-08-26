@@ -18,30 +18,26 @@ int main(int argc, char *argv[]){
 
   AjPSeqall seqall;
   AjPSeq    seq;
-  AjPStr    inseq      = NULL;
-  ajint     window     = 0;
-  ajint     version    = 0;
-  AjBool    at         = 0;
-  AjBool    purine     = 0;
-  AjBool    keto       = 0;
-  AjBool    p          = 0;
-  AjPStr    outstring  = NULL;
-  AjBool    accid    = 0;
-  AjPStr    filename   = NULL;
-  AjPFile   infile     = NULL;
-  AjPStr    line       = NULL;
-  int       i          = 0;
-  int       j          = 0;
+  AjPStr    inseq     = NULL;
+  ajint     window    = 0;
+  ajint     version   = 0;
+  AjBool    at        = 0;
+  AjBool    purine    = 0;
+  AjBool    keto      = 0;
+  AjBool    p         = 0;
+  AjPStr    outstring = NULL;
+  AjBool    accid     = 0;
+  AjPStr    filename  = NULL;
   char*     jobid;
   
-  seqall     = ajAcdGetSeqall("sequence");
-  window     = ajAcdGetInt("window");
-  version    = ajAcdGetInt("v");
-  at         = ajAcdGetBoolean("at");
-  purine     = ajAcdGetBoolean("purine");
-  keto       = ajAcdGetBoolean("keto");
-  p          = ajAcdGetBoolean("p");
-  accid      = ajAcdGetBoolean("accid");
+  seqall  = ajAcdGetSeqall("sequence");
+  window  = ajAcdGetInt("window");
+  version = ajAcdGetInt("v");
+  at      = ajAcdGetBoolean("at");
+  purine  = ajAcdGetBoolean("purine");
+  keto    = ajAcdGetBoolean("keto");
+  p       = ajAcdGetBoolean("p");
+  accid   = ajAcdGetBoolean("accid");
 
   params.window       = window;
   params.version      = version;
@@ -78,6 +74,7 @@ int main(int argc, char *argv[]){
     
     char* in0;
     in0 = ajCharNewS(inseq);
+    fprintf(stderr,"%s:\nCSI\t\tSA\t\tDist\n",ajSeqGetAccS(seq));
     if(soap_call_ns1__gcsi(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
       float gcsi,sa,dist;
       int n;
@@ -94,7 +91,7 @@ int main(int argc, char *argv[]){
 	tp = strtok(NULL,dlm);
       }
       dist = atof(tp);
-      printf("GCSI\t\tSA\t\tDist\n%f\t%f\t%f\n",gcsi,sa,dist);
+      printf("%f\t%f\t%f\n",gcsi,sa,dist);
     }else{
       soap_print_fault(&soap,stderr);
     }

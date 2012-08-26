@@ -39,6 +39,7 @@ int main(int argc, char *argv[]){
     
     char* in0;
     in0 = ajCharNewS(inseq);
+    fprintf(stderr,"%s:\nA\tT\tG\tC\t\n",ajSeqGetAccS(seq));
     if(soap_call_ns1__seqinfo(&soap,NULL,NULL,in0,&jobid)==SOAP_OK){
       char* dlm = "<>";
       char* tp;
@@ -50,7 +51,7 @@ int main(int argc, char *argv[]){
 	if(n%3==1){list[(n-1)/3]=atoi(tp);}
 	n++;
       }
-      printf("A\tT\tG\tC\t\n%d\t%d\t%d\t%d\t\n",list[0],list[1],list[2],list[3]);
+      printf("%d\t%d\t%d\t%d\t\n",list[0],list[1],list[2],list[3]);
     }else{
       soap_print_fault(&soap,stderr);
     }

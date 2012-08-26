@@ -18,12 +18,12 @@ int main(int argc, char *argv[]){
 
   AjPSeqall seqall;
   AjPSeq    seq;
-  AjPStr    inseq  = NULL;
-  ajint     width  = 0;
-  ajint     window = 0;
-  AjPStr    output = NULL;
+  AjPStr    inseq    = NULL;
+  ajint     width    = 0;
+  ajint     window   = 0;
+  AjPStr    output   = NULL;
   AjBool    accid    = 0;
-  AjPStr    filename   = NULL;
+  AjPStr    filename = NULL;
   char*     jobid;
   char*     _result;
   

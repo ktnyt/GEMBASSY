@@ -21,12 +21,8 @@ int main(int argc, char *argv[]){
   AjPStr    inseq     = NULL;
   AjPStr    include   = NULL;
   AjPStr    exclude   = NULL;
-  AjBool    accid    = 0;
+  AjBool    accid     = 0;
   AjPStr    filename  = NULL;
-  AjPFile   infile    = NULL;
-  AjPStr    line      = NULL;
-  int       i         = 0;
-  int       j         = 0;
   char*     jobid;
   
   seqall  = ajAcdGetSeqall("sequence");

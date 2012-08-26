@@ -25,10 +25,6 @@ int main(int argc, char *argv[]){
   ajint     difthreshold = 0;
   AjBool    accid        = 0;
   AjPStr    filename     = NULL;
-  AjPFile   infile       = NULL;
-  AjPStr    line         = NULL;
-  int       i            = 0;
-  int       j            = 0;
   char*     jobid;
 
   seqall       = ajAcdGetSeqall("sequence");
@@ -67,10 +63,10 @@ int main(int argc, char *argv[]){
     
     char* in0;
     in0 = ajCharNewS(inseq);
+    fprintf(stderr,"%s:\norigin\tterminus\n",ajSeqGetAccS(seq));
     if(soap_call_ns1__rep_USCOREori_USCOREter(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
       char* dlm = "<>";
       char* tp  = jobid;
-      printf("origin\tterminus\n");
       tp = strtok(tp,dlm);
       tp = strtok(NULL,dlm);
       printf("%s\t",tp);

@@ -23,10 +23,6 @@ int main(int argc, char *argv[]){
   AjPStr    direction = NULL;
   AjBool    accid     = 0;
   AjPStr    filename  = NULL;
-  AjPFile   infile    = NULL;
-  AjPStr    line      = NULL;
-  int       i         = 0;
-  int       j         = 0;
   char*     jobid;
 
   seqall    = ajAcdGetSeqall("sequence");
@@ -48,6 +44,7 @@ int main(int argc, char *argv[]){
     
     char* in0;
     in0 = ajCharNewS(inseq);
+    fprintf(stderr,"%s:\n",ajSeqGetAccS(seq));
     if(soap_call_ns1__query_USCOREstrand(&soap,NULL,NULL,in0,position,&params,&jobid)==SOAP_OK){
       puts(jobid);
     }else{
