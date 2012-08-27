@@ -82,7 +82,7 @@ AjPStr getGenbank(AjPSeq seq){
   ajSysFileUnlinkS(filename);
 
   while(ajReadline(seqfile,&seqline)){
-    if(!ajStrCmpC(seqline,"ORIGIN\n")){
+    if(ajStrCmpC(seqline,"ORIGIN\n") == 0){
       while(ajReadline(featfile,&featline)){
 	ajStrAppendS(&inseq,featline);
       }
