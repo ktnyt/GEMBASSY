@@ -49,10 +49,10 @@ int main(int argc, char *argv[]){
     
     char* in0;
     in0 = ajCharNewS(inseq);
+    fprintf(stderr,"%s\n",ajSeqGetAccS(seq));
     if(soap_call_ns1__genome_USCOREmap3(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
       ajStrAssignS(&filename,ajSeqGetNameS(seq));
       ajStrAppendC(&filename,".png");
-      fprintf(stderr,"Retrieving file:%s\n",ajCharNewS(filename));
       if(get_file(jobid,ajCharNewS(filename))==0){
         fprintf(stderr,"Retrieval successful\n");
       }else{

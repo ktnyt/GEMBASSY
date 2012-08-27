@@ -66,6 +66,7 @@ int main(int argc, char *argv[]){
     
     char* in0;
     in0 = ajCharNewS(inseq);
+    fprintf(stderr,"%s\n",ajSeqGetAccS(seq));
     if(soap_call_ns1__geneskew(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
       ajStrAssignS(&filename,ajSeqGetNameS(seq));
       if(strcmp(params.output,"g") == 0){
@@ -73,7 +74,6 @@ int main(int argc, char *argv[]){
       }else{
 	ajStrAppendC(&filename,".csv");
       }
-      fprintf(stderr,"Retrieving file:%s\n",ajCharNewS(filename));
       if(get_file(jobid,ajCharNewS(filename))==0){
         fprintf(stderr,"Retrieval successful\n");
       }else{

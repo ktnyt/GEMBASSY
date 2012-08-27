@@ -32,21 +32,24 @@ int main(int argc, char *argv[]){
   params.output = "f";
 
   while(ajSeqallNext(seqall,&seq)){  
+
+    soap_init(&soap);
+
+    inseq = NULL;
+
     if(ajSeqGetFeat(seq) && !accid){
       inseq = getGenbank(seq);
     }else{
       ajStrAppendS(&inseq,ajSeqGetAccS(seq));
     }
 
-    soap_init(&soap);
-
     char* in0;
     in0 = ajCharNewS(inseq);
+    fprintf(stderr,"%s\n",ajSeqGetAccS(seq));
     if(soap_call_ns1__aaui(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
       ajStrAssignS(&filename,ajSeqGetAccS(seq));
       ajStrAppendC(&filename,".csv");
-      fprintf(stderr,"Retrieving file:%s\n",ajCharNewS(filename));
-      if(get_file(jobid,ajCharNewS(filename))==0){
+      if(get_file(jobid,ajCharNewS(filename)) == 0){
 	fprintf(stderr,"Retrieval successful\n");
       }else{
 	fprintf(stderr,"Retrieval unsuccessful\n");

@@ -39,7 +39,7 @@ int main(int argc, char *argv[]){
     
     char* in0;
     in0 = ajCharNewS(inseq);
-    fprintf(stderr,"%s:\n",ajSeqGetAccS(seq));
+    fprintf(stderr,"%s\n",ajSeqGetAccS(seq));
     if(soap_call_ns1__query_USCOREarm(&soap,NULL,NULL,in0,position,&jobid)==SOAP_OK){
       puts(jobid);
     }else{

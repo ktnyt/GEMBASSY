@@ -44,6 +44,7 @@ int main(int argc, char *argv[]){
   params.del_USCOREkey = ajCharNewS(delkey);
   
   while(ajSeqallNext(seqall,&seq)){
+
     soap_init(&soap);
 
     inseq = NULL;
@@ -55,10 +56,10 @@ int main(int argc, char *argv[]){
 
     char* in0;
     in0 = ajCharNewS(inseq);
+    fprintf(stderr,"%s\n",ajSeqGetAccS(seq));
     if(soap_call_ns1__bui(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
       ajStrAssignS(&filename,ajSeqGetNameS(seq));
       ajStrAppendC(&filename,".csv");
-      fprintf(stderr,"Retrieving file:%s\n",ajCharNewS(filename));
       if(get_file(jobid,ajCharNewS(filename))==0){
         fprintf(stderr,"Retrieval successful\n");
       }else{
