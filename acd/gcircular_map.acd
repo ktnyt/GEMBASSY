@@ -1,6 +1,6 @@
 application: gcircular_map [
   documentation: "Draws circular map of the genome "
-  groups: ""
+  groups: "Display
   embassy: "GEMBASSY"
 ]
 
@@ -14,6 +14,16 @@ section: input [
     features: "Y"
   ]
 endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "0"
+  ]
+endsection: advanced
 
 section: output 
 [

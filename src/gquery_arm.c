@@ -8,6 +8,7 @@
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
+#include "../include/gembassy.h"
 
 int main(int argc, char *argv[]){
   embInitPV("gquery_arm",argc,argv,"GEMBASSY","1.0.0");
@@ -18,6 +19,7 @@ int main(int argc, char *argv[]){
   AjPSeq    seq;
   AjPStr    inseq    = NULL;
   ajint     position = 0;
+  AjBool    accid    = 0;
   AjPStr    filename = NULL;
   AjPFile   infile   = NULL;
   AjPStr    line     = NULL;
@@ -27,24 +29,14 @@ int main(int argc, char *argv[]){
 
   seqall   = ajAcdGetSeqall("sequence");
   position = ajAcdGetInt("position");
+  accid    = ajAcdGetBoolean("accid");
 
   while(ajSeqallNext(seqall,&seq)){
     soap_init(&soap);
 
     inseq = NULL;
-    if(ajSeqGetFeat(seq)){
-      i++;
-      ajStrAssignS(&filename,ajSeqallGetFilename(seqall));
-      if(infile == NULL)
-        infile = ajFileNewInNameS(filename);
-      while (ajReadline(infile, &line)) {
-        ajStrAppendS(&inseq,line);
-        if(ajStrMatchC(line,"//\n")){
-          j++;
-          if(i == j)
-            break;
-        }
-      }
+    if(ajSeqGetFeat(seq) && !accid){
+      inseq = getGenbank(seq);
     }else{
       ajStrAppendS(&inseq,ajSeqGetAccS(seq));
     }

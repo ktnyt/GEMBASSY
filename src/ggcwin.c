@@ -8,7 +8,7 @@
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
-#include "../include/getfile.h"
+#include "../include/gembassy.h"
 
 int main(int argc, char *argv[]){
   embInitPV("ggcwin",argc,argv,"GEMBASSY","1.0.0");
@@ -24,6 +24,7 @@ int main(int argc, char *argv[]){
   AjBool    purine     = 0;
   AjBool    keto       = 0;
   AjPStr    output     = NULL;
+  AjBool    accid    = 0;
   AjPStr    filename   = NULL;
   AjPFile   infile    = NULL;
   AjPStr    line      = NULL;
@@ -38,6 +39,7 @@ int main(int argc, char *argv[]){
   purine     = ajAcdGetBoolean("purine");
   keto       = ajAcdGetBoolean("keto");
   output     = ajAcdGetString("output");
+  accid      = ajAcdGetBoolean("accid");
 
   params.window       = window;
   if(at){
@@ -61,20 +63,8 @@ int main(int argc, char *argv[]){
     soap_init(&soap);
 
     inseq = NULL;
-    inseq = NULL;
-    if(ajSeqGetFeat(seq)){
-      i++;
-      ajStrAssignS(&filename,ajSeqallGetFilename(seqall));
-      if(infile == NULL)
-        infile = ajFileNewInNameS(filename);
-      while (ajReadline(infile, &line)) {
-        ajStrAppendS(&inseq,line);
-        if(ajStrMatchC(line,"//\n")){
-          j++;
-          if(i == j)
-            break;
-        }
-      }
+    if(ajSeqGetFeat(seq) && !accid){
+      inseq = getGenbank(seq);
     }else{
       ajStrAppendS(&inseq,ajSeqGetAccS(seq));
     }
@@ -88,10 +78,11 @@ int main(int argc, char *argv[]){
       }else{
 	ajStrAppendC(&filename,".csv");
       }
+      fprintf(stderr,"Retrieving file:%s\n",ajCharNewS(filename));
       if(get_file(jobid,ajCharNewS(filename))==0){
-	printf("Retrieval successful\n");
+        fprintf(stderr,"Retrieval successful\n");
       }else{
-	printf("Retrieval unsuccessful\n");
+        fprintf(stderr,"Retrieval unsuccessful\n");
       }
     }else{
       soap_print_fault(&soap,stderr);

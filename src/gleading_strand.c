@@ -25,11 +25,13 @@ int main(int argc, char *argv[]){
   AjPSeqout seqout;
   AjPSeq    seq;
   AjPStr    inseq      = NULL;
+  AjBool    accid      = 0;
   AjPStr    filename   = NULL;
   char*     jobid;
   
   seq    = ajAcdGetSeq("sequence");
   seqout = ajAcdGetSeqout("outseq");
+  accid  = ajAcdGetBoolean("accid");
   
   soap_init(&soap);
   

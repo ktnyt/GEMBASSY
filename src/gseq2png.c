@@ -8,7 +8,7 @@
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
-#include "../include/getfile.h"
+#include "../include/gembassy.h"
 
 int main(int argc, char *argv[]){
   embInitPV("gseq2png",argc,argv,"GEMBASSY","1.0.0");
@@ -22,6 +22,7 @@ int main(int argc, char *argv[]){
   ajint     width  = 0;
   ajint     window = 0;
   AjPStr    output = NULL;
+  AjBool    accid    = 0;
   AjPStr    filename   = NULL;
   char*     jobid;
   char*     _result;
@@ -30,6 +31,7 @@ int main(int argc, char *argv[]){
   window     = ajAcdGetInt("window");
   width      = ajAcdGetInt("width");
   output     = ajAcdGetString("output");
+  accid      = ajAcdGetBoolean("accid");
   
   params.window = window;
   params.width  = width;
@@ -39,20 +41,25 @@ int main(int argc, char *argv[]){
     soap_init(&soap);
 
     inseq = NULL;
-    ajStrAppendC(&inseq,">");
-    ajStrAppendS(&inseq,ajSeqGetNameS(seq));
-    ajStrAppendC(&inseq,"\n");
-    ajStrAppendS(&inseq,ajSeqGetSeqS(seq));
+    if(!accid){
+      ajStrAppendC(&inseq,">");
+      ajStrAppendS(&inseq,ajSeqGetNameS(seq));
+      ajStrAppendC(&inseq,"\n");
+      ajStrAppendS(&inseq,ajSeqGetSeqS(seq));
+    }else{
+      ajStrAppendS(&inseq,ajSeqGetAccS(seq));
+    }
     
     char* in0;
     in0 = ajCharNewS(inseq);
     if(soap_call_ns1__seq2png(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
       ajStrAssignS(&filename,ajSeqGetNameS(seq));
       ajStrAppendC(&filename,".png");
+      fprintf(stderr,"Retrieving file:%s\n",ajCharNewS(filename));
       if(get_file(jobid,ajCharNewS(filename))==0){
-	printf("Retrieval successful\n");
+        fprintf(stderr,"Retrieval successful\n");
       }else{
-	printf("Retrieval unsuccessful\n");
+        fprintf(stderr,"Retrieval unsuccessful\n");
       }
     }else{
       soap_print_fault(&soap,stderr);

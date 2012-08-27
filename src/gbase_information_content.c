@@ -8,6 +8,7 @@
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
+#include "../include/gembassy.h"
 
 int main(int argc, char *argv[]){
   embInitPV("gbase_information_content",argc,argv,"GEMBASSY","1.0.0");
@@ -18,46 +19,39 @@ int main(int argc, char *argv[]){
   AjPSeqall seqall;
   AjPSeq    seq;
   AjPStr    inseq      = NULL;
+  AjPStr    position   = NULL;
+  ajint     PatLen     = 0;
   ajint     upstream   = 0;
   ajint     downstream = 0;
-  ajint     PatLen     = 0;
-  AjPStr    position   = NULL;
+  AjPStr    output     = NULL;
+  AjBool    accid    = 0;
   AjPStr    filename   = NULL;
-  AjPFile   infile    = NULL;
-  AjPStr    line      = NULL;
-  int       i         = 0;
-  int       j         = 0;
-  char*     jobid;
+  AjPFile   infile     = NULL;
+  AjPStr    line       = NULL;
+  int       i          = 0;
+  int       j          = 0;
+  char*     jobid; 
 
   seqall     = ajAcdGetSeqall("sequence");
+  position   = ajAcdGetString("position");
+  PatLen     = ajAcdGetInt("patlen");
   upstream   = ajAcdGetInt("upstream");
   downstream = ajAcdGetInt("downstream");
-  PatLen     = ajAcdGetInt("patlen");
-  position   = ajAcdGetString("position");
+  output     = ajAcdGetString("output");
+  accid      = ajAcdGetBoolean("accid");
   
+  params.position   = ajCharNewS(position);
+  params.PatLength  = PatLen;
   params.upstream   = upstream;
   params.downstream = downstream;
-  params.PatLength  = PatLen;
-  params.position   = ajCharNewS(position);
-  params.output     = "g";
+  params.output     = ajCharNewS(output);
   
   while(ajSeqallNext(seqall,&seq)){
     soap_init(&soap);
 
     inseq = NULL;
-    if(ajSeqGetFeat(seq)){
-      i++;
-      ajStrAssignS(&filename,ajSeqallGetFilename(seqall));
-      if(infile == NULL)
-        infile = ajFileNewInNameS(filename);
-      while (ajReadline(infile, &line)) {
-        ajStrAppendS(&inseq,line);
-        if(ajStrMatchC(line,"//\n")){
-          j++;
-          if(i == j)
-            break;
-        }
-      }
+    if(ajSeqGetFeat(seq) && !accid){
+      inseq = getGenbank(seq);
     }else{
       ajStrAppendS(&inseq,ajSeqGetAccS(seq));
     }
@@ -65,7 +59,18 @@ int main(int argc, char *argv[]){
     char* in0;
     in0 = ajCharNewS(inseq);
     if(soap_call_ns1__base_USCOREinformation_USCOREcontent(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
-      puts(jobid);
+      ajStrAssignS(&filename,ajSeqGetNameS(seq));
+      if(strcmp(params.output,"g") == 0){
+	ajStrAppendC(&filename,".png");
+      }else{
+	ajStrAppendC(&filename,".csv");
+      }
+      fprintf(stderr,"Retrieving file:%s\n",ajCharNewS(filename));
+      if(get_file(jobid,ajCharNewS(filename))==0){
+        fprintf(stderr,"Retrieval successful\n");
+      }else{
+        fprintf(stderr,"Retrieval unsuccessful\n");
+      }
     }else{
       soap_print_fault(&soap,stderr);
     }
@@ -74,7 +79,7 @@ int main(int argc, char *argv[]){
     soap_end(&soap);
     soap_done(&soap);
   }
-  
+
   embExit();
   return 0;
 }

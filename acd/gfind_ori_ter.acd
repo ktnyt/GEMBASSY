@@ -35,4 +35,8 @@ section: advanced [
     information: "Lowpass filter strength in percent. Typically 95 or 99 works best"
     default: ""
   ]
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "0"
+  ]
 endsection: advanced

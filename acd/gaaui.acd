@@ -23,6 +23,10 @@ section: advanced [
     information: "ID of a group"
     default: "All"
   ]
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "0"
+  ]
 endsection: advanced
 
 section: output [

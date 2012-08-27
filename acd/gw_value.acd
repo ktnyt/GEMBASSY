@@ -27,6 +27,10 @@ section: advanced [
     information: "Regular expression to exclude genes from a reference set"
     default: "[Mm]itochondrial"
   ]
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "0"
+  ]
 endsection: advanced
 
 section: output [

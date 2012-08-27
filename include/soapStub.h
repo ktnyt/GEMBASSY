@@ -543,7 +543,7 @@ struct ns1__codon_USCOREcompilerInputParams
 	char *id;	/* required element of type xsd:string */
 	int startcodon;	/* required element of type xsd:int */
 	int stopcodon;	/* required element of type xsd:int */
-	int data;	/* required element of type xsd:int */
+	char *data;	/* required element of type xsd:string */
 	char *output;	/* required element of type xsd:string */
 	char *del_USCOREkey;	/* required element of type xsd:string */
 };
@@ -688,8 +688,10 @@ struct ns1__caiInputParams
 /* ns1:dinucInputParams */
 struct ns1__dinucInputParams
 {
+	int translate;	/* required element of type xsd:int */
 	char *position;	/* required element of type xsd:string */
 	char *id;	/* required element of type xsd:string */
+	char *del_USCOREkey;	/* required element of type xsd:string */
 	char *output;	/* required element of type xsd:string */
 };
 #endif

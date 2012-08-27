@@ -8,10 +8,10 @@
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
-#include "../include/getfile.h"
+#include "../include/gembassy.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("gdelta_gckew",argc,argv,"GEMBASSY","1.0.0");
+  embInitPV("gdelta_gcskew",argc,argv,"GEMBASSY","1.0.0");
 
   struct soap soap;
   struct ns1__delta_USCOREgcskewInputParams params;
@@ -22,12 +22,19 @@ int main(int argc, char *argv[]){
   AjBool    at         = 0;
   AjBool    purine     = 0;
   AjBool    keto       = 0;
+  AjBool    accid    = 0;
+  AjPStr    filename   = NULL;
+  AjPFile   infile     = NULL;
+  AjPStr    line       = NULL;
+  int       i          = 0;
+  int       j          = 0;
   char*     jobid;
 
   seqall     = ajAcdGetSeqall("sequence");
   at         = ajAcdGetBoolean("at");
   purine     = ajAcdGetBoolean("purine");
   keto       = ajAcdGetBoolean("keto");
+  accid      = ajAcdGetBoolean("accid");
 
   if(at){
     params.at         = 1;
@@ -49,10 +56,11 @@ int main(int argc, char *argv[]){
     soap_init(&soap);
 
     inseq = NULL;
-    ajStrAppendC(&inseq,">");
-    ajStrAppendS(&inseq,ajSeqGetNameS(seq));
-    ajStrAppendC(&inseq,"\n");
-    ajStrAppendS(&inseq,ajSeqGetSeqS(seq));
+    if(ajSeqGetFeat(seq) && !accid){
+      inseq = getGenbank(seq);
+    }else{
+      ajStrAppendS(&inseq,ajSeqGetAccS(seq));
+    }
     
     char* in0;
     in0 = ajCharNewS(inseq);

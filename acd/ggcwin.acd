@@ -45,6 +45,11 @@ section: advanced [
     information: "Input 'g' for graph output, 'f' for CSV file output"
     default: "g"
   ]
+
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "0"
+  ]
 endsection: advanced
 
 section: output [

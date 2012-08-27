@@ -15,6 +15,16 @@ section: input [
 ]
 endsection: input
 
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "0"
+  ]
+endsection: advanced
+
 section: output 
 [
   information: "Output section"

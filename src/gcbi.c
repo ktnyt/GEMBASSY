@@ -8,6 +8,7 @@
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
+#include "../include/gembassy.h"
 
 int main(int argc, char *argv[]){
   embInitPV("gcbi",argc,argv,"GEMBASSY","1.0.0");
@@ -21,6 +22,7 @@ int main(int argc, char *argv[]){
   AjBool    translate = 0;
   AjPStr    id        = NULL;
   AjPStr    delkey    = NULL;
+  AjBool    accid    = 0;
   AjPStr    filename  = NULL;
   AjPFile   infile    = NULL;
   AjPStr    line      = NULL;
@@ -32,6 +34,7 @@ int main(int argc, char *argv[]){
   translate  = ajAcdGetBoolean("translate");
   id         = ajAcdGetString("id");
   delkey     = ajAcdGetString("delkey");
+  accid      = ajAcdGetBoolean("accid");
   
   if(translate){
     params.translate   = 1;
@@ -45,19 +48,8 @@ int main(int argc, char *argv[]){
     soap_init(&soap);
 
     inseq = NULL;
-    if(ajSeqGetFeat(seq)){
-      i++;
-      ajStrAssignS(&filename,ajSeqallGetFilename(seqall));
-      if(infile == NULL)
-        infile = ajFileNewInNameS(filename);
-      while (ajReadline(infile, &line)) {
-        ajStrAppendS(&inseq,line);
-        if(ajStrMatchC(line,"//\n")){
-          j++;
-          if(i == j)
-            break;
-        }
-      }
+    if(ajSeqGetFeat(seq) && !accid){
+      inseq = getGenbank(seq);
     }else{
       ajStrAppendS(&inseq,ajSeqGetAccS(seq));
     }

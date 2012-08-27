@@ -19,14 +19,18 @@ section: advanced [
   information: "Advanced section"
   type: "page"
 ]
-	integer: width [
-		information: "Width of image"
-		default: "1024"
-	]
-	integer: level [
-		information: "Zoom level for Google Maps representation"
-		default: "5"
-	]
+  integer: width [
+    information: "Width of image"
+    default: "1024"
+  ]
+  integer: level [
+    information: "Zoom level for Google Maps representation"
+    default: "5"
+  ]
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "0"
+  ]
 endsection: advanced
 
 section: output [

@@ -32,7 +32,7 @@ section: advanced [
     default: "0"
   ]
 
-  boolean:  [
+  boolean: keto [
     information: "'1' when observing keto (TG/AC) skew"
     default: "0"
   ]
@@ -40,6 +40,11 @@ section: advanced [
   string: method [
     information: "Choose the nucleotides to use 'degenerate', 'gc3', or 'all'"
     default: "degenerate"
+  ]
+
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "0"
   ]
 
 endsection: advanced

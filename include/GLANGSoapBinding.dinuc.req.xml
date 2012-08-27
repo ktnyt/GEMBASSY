@@ -9,8 +9,10 @@
   <ns1:dinuc>
    <sequence></sequence>
    <params>
+    <translate>0</translate>
     <position></position>
     <id></id>
+    <del_key></del_key>
     <output></output>
    </params>
   </ns1:dinuc>

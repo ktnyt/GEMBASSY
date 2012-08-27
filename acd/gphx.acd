@@ -19,18 +19,22 @@ section: advanced [
   information: "Advanced section"
   type: "page"
 ]
-	boolean: translate [
-		information: "Include when translating using standard codon table"
-		default: "0"
-	]
-	string: usage [
-		information: "Pointer HASH of vectors of amino acid and codon usage of a set of highly expressed genes"
-		default: ""
-	]
-	string: delkey [
-		information: "Regular expression to delete key"
-		default: "[^ACDEFGHIKLMNPQRSTVWYacgtU]"
-	]
+  boolean: translate [
+    information: "Include when translating using standard codon table"
+    default: "0"
+  ]
+  string: usage [
+    information: "Pointer HASH of vectors of amino acid and codon usage of a set of highly expressed genes"
+    default: ""
+  ]
+  string: delkey [
+    information: "Regular expression to delete key"
+    default: "[^ACDEFGHIKLMNPQRSTVWYacgtU]"
+  ]
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "0"
+  ]
 endsection: advanced
 
 section: output [

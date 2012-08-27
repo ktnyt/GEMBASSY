@@ -8,7 +8,7 @@
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
-#include "../include/getfile.h"
+#include "../include/gembassy.h"
 
 int main(int argc, char *argv[]){
   embInitPV("gcgr",argc,argv,"GEMBASSY","1.0.0");
@@ -21,12 +21,14 @@ int main(int argc, char *argv[]){
   AjPStr    inseq    = NULL;
   ajint     width    = 0;
   ajint     level    = 0;
+  AjBool    accid    = 0;
   AjPStr    filename;
   char*     jobid;
 
   seqall = ajAcdGetSeqall("sequence");
   width  = ajAcdGetInt("width");
   level  = ajAcdGetInt("level");
+  accid  = ajAcdGetBoolean("accid");
 
   params.width = width;
   params.level = level;
@@ -45,10 +47,11 @@ int main(int argc, char *argv[]){
     if(soap_call_ns1__cgr(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
       ajStrAssignS(&filename,ajSeqGetNameS(seq));
       ajStrAppendC(&filename,".png");
+      fprintf(stderr,"Retrieving file:%s\n",ajCharNewS(filename));
       if(get_file(jobid,ajCharNewS(filename))==0){
-	printf("Retrieval successful\n");
+        fprintf(stderr,"Retrieval successful\n");
       }else{
-	printf("Retrieval unsuccessful\n");
+        fprintf(stderr,"Retrieval unsuccessful\n");
       }
     }else{
       soap_print_fault(&soap,stderr);

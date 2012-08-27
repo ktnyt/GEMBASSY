@@ -28,4 +28,8 @@ section: advanced [
     information: "Strand of the querying position either 'direct' or 'complement'"
     default: "direct"
   ]
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "0"
+  ]
 endsection: advanced

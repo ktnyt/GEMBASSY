@@ -11,18 +11,17 @@
 #include "../include/gembassy.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("gcai",argc,argv,"GEMBASSY","1.0.0");
-
+  embInitPV("ggenome_map3",argc,argv,"GEMBASSY","1.0.0");
+  
   struct soap soap;
-  struct ns1__caiInputParams params;
+  struct ns1__genome_USCOREmap3InputParams params;
 
   AjPSeqall seqall;
   AjPSeq    seq;
   AjPStr    inseq     = NULL;
-  AjBool    translate = 0;
-  AjPStr    wabsent   = NULL;
-  AjPStr    command   = NULL;
-  AjBool    accid    = 0;
+  ajint     width     = 0;
+  ajint     height    = 0;
+  AjBool    accid     = 0;
   AjPStr    filename  = NULL;
   AjPFile   infile    = NULL;
   AjPStr    line      = NULL;
@@ -30,22 +29,20 @@ int main(int argc, char *argv[]){
   int       j         = 0;
   char*     jobid;
   
-  seqall    = ajAcdGetSeqall("sequence");
-  translate = ajAcdGetBoolean("translate");
-  wabsent   = ajAcdGetString("wabsent");
-  accid      = ajAcdGetBoolean("accid");
-  
-  if(translate){
-    params.translate    = 1;
-  }else{
-    params.translate    = 0;
-  }
-  params.w_USCOREabsent   = ajCharNewS(wabsent);
-  params.w_USCOREfilename = "w_value.csv";
-  params.w_USCOREoutput   = "stdout";
+  seqall = ajAcdGetSeqall("sequence");
+  width  = ajAcdGetInt("width");
+  height = ajAcdGetInt("height");
+  accid  = ajAcdGetBoolean("accid");
 
-  while(ajSeqallNext(seqall,&seq)){  
+  params.width  = width;
+  params.height = height;
+  params.gmap   = 0;
+  
+  while(ajSeqallNext(seqall,&seq)){
     soap_init(&soap);
+
+    soap.send_timeout = 0; 
+    soap.recv_timeout = 0;
 
     inseq = NULL;
     if(ajSeqGetFeat(seq) && !accid){
@@ -56,9 +53,9 @@ int main(int argc, char *argv[]){
     
     char* in0;
     in0 = ajCharNewS(inseq);
-    if(soap_call_ns1__cai(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
+    if(soap_call_ns1__genome_USCOREmap3(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
       ajStrAssignS(&filename,ajSeqGetNameS(seq));
-      ajStrAppendC(&filename,".csv");
+      ajStrAppendC(&filename,".png");
       fprintf(stderr,"Retrieving file:%s\n",ajCharNewS(filename));
       if(get_file(jobid,ajCharNewS(filename))==0){
         fprintf(stderr,"Retrieval successful\n");
@@ -68,7 +65,7 @@ int main(int argc, char *argv[]){
     }else{
       soap_print_fault(&soap,stderr);
     }
-    
+  
     soap_destroy(&soap);
     soap_end(&soap);
     soap_done(&soap);

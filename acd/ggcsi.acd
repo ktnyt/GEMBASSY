@@ -43,6 +43,10 @@ section: advanced [
     information: "Calculate p-value when GCSI version 2 is selected"
     default: "0"
   ]
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "0"
+  ]
 endsection: advanced
 
 section: output [

@@ -19,7 +19,7 @@ compiling, linking, and/or using OpenSSL is allowed.
 extern "C" {
 #endif
 
-SOAP_SOURCE_STAMP("@(#) soapC.c ver 2.8.6 2012-06-25 01:47:04 GMT")
+SOAP_SOURCE_STAMP("@(#) soapC.c ver 2.8.6 2012-08-26 07:22:09 GMT")
 
 
 #ifndef WITH_NOGLOBAL
@@ -17778,8 +17778,10 @@ SOAP_FMAC3 struct ns1__cgrInputParams * SOAP_FMAC4 soap_get_ns1__cgrInputParams(
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__dinucInputParams(struct soap *soap, struct ns1__dinucInputParams *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
+	soap_default_int(soap, &a->translate);
 	soap_default_string(soap, &a->position);
 	soap_default_string(soap, &a->id);
+	soap_default_string(soap, &a->del_USCOREkey);
 	soap_default_string(soap, &a->output);
 }
 
@@ -17788,6 +17790,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__dinucInputParams(struct soap *soa
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	soap_serialize_string(soap, &a->position);
 	soap_serialize_string(soap, &a->id);
+	soap_serialize_string(soap, &a->del_USCOREkey);
 	soap_serialize_string(soap, &a->output);
 }
 
@@ -17795,6 +17798,8 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__dinucInputParams(struct soap *soap, cons
 {
 	(void)soap; (void)tag; (void)id; (void)type;
 	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_ns1__dinucInputParams), type))
+		return soap->error;
+	if (soap_out_int(soap, "translate", -1, &a->translate, ""))
 		return soap->error;
 	if (a->position)
 	{	if (soap_out_string(soap, "position", -1, &a->position, ""))
@@ -17808,6 +17813,12 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__dinucInputParams(struct soap *soap, cons
 	}
 	else if (soap_element_nil(soap, "id"))
 		return soap->error;
+	if (a->del_USCOREkey)
+	{	if (soap_out_string(soap, "del_key", -1, &a->del_USCOREkey, ""))
+			return soap->error;
+	}
+	else if (soap_element_nil(soap, "del_key"))
+		return soap->error;
 	if (a->output)
 	{	if (soap_out_string(soap, "output", -1, &a->output, ""))
 			return soap->error;
@@ -17819,8 +17830,10 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__dinucInputParams(struct soap *soap, cons
 
 SOAP_FMAC3 struct ns1__dinucInputParams * SOAP_FMAC4 soap_in_ns1__dinucInputParams(struct soap *soap, const char *tag, struct ns1__dinucInputParams *a, const char *type)
 {
+	size_t soap_flag_translate = 1;
 	size_t soap_flag_position = 1;
 	size_t soap_flag_id = 1;
+	size_t soap_flag_del_USCOREkey = 1;
 	size_t soap_flag_output = 1;
 	if (soap_element_begin_in(soap, tag, 0, type))
 		return NULL;
@@ -17832,6 +17845,11 @@ SOAP_FMAC3 struct ns1__dinucInputParams * SOAP_FMAC4 soap_in_ns1__dinucInputPara
 	{
 		for (;;)
 		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag_translate && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_int(soap, "translate", &a->translate, "xsd:int"))
+				{	soap_flag_translate--;
+					continue;
+				}
 			if (soap_flag_position && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
 				if (soap_in_string(soap, "position", &a->position, "xsd:string"))
 				{	soap_flag_position--;
@@ -17840,6 +17858,11 @@ SOAP_FMAC3 struct ns1__dinucInputParams * SOAP_FMAC4 soap_in_ns1__dinucInputPara
 			if (soap_flag_id && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
 				if (soap_in_string(soap, "id", &a->id, "xsd:string"))
 				{	soap_flag_id--;
+					continue;
+				}
+			if (soap_flag_del_USCOREkey && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in_string(soap, "del_key", &a->del_USCOREkey, "xsd:string"))
+				{	soap_flag_del_USCOREkey--;
 					continue;
 				}
 			if (soap_flag_output && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
@@ -17862,7 +17885,7 @@ SOAP_FMAC3 struct ns1__dinucInputParams * SOAP_FMAC4 soap_in_ns1__dinucInputPara
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
-	if ((soap->mode & SOAP_XML_STRICT) && (soap_flag_position > 0 || soap_flag_id > 0 || soap_flag_output > 0))
+	if ((soap->mode & SOAP_XML_STRICT) && (soap_flag_translate > 0 || soap_flag_position > 0 || soap_flag_id > 0 || soap_flag_del_USCOREkey > 0 || soap_flag_output > 0))
 	{	soap->error = SOAP_OCCURS;
 		return NULL;
 	}
@@ -19140,7 +19163,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__codon_USCOREcompilerInputParams(str
 	soap_default_string(soap, &a->id);
 	soap_default_int(soap, &a->startcodon);
 	soap_default_int(soap, &a->stopcodon);
-	soap_default_int(soap, &a->data);
+	soap_default_string(soap, &a->data);
 	soap_default_string(soap, &a->output);
 	soap_default_string(soap, &a->del_USCOREkey);
 }
@@ -19149,6 +19172,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__codon_USCOREcompilerInputParams(s
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	soap_serialize_string(soap, &a->id);
+	soap_serialize_string(soap, &a->data);
 	soap_serialize_string(soap, &a->output);
 	soap_serialize_string(soap, &a->del_USCOREkey);
 }
@@ -19170,7 +19194,11 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__codon_USCOREcompilerInputParams(struct s
 		return soap->error;
 	if (soap_out_int(soap, "stopcodon", -1, &a->stopcodon, ""))
 		return soap->error;
-	if (soap_out_int(soap, "data", -1, &a->data, ""))
+	if (a->data)
+	{	if (soap_out_string(soap, "data", -1, &a->data, ""))
+			return soap->error;
+	}
+	else if (soap_element_nil(soap, "data"))
 		return soap->error;
 	if (a->output)
 	{	if (soap_out_string(soap, "output", -1, &a->output, ""))
@@ -19226,8 +19254,8 @@ SOAP_FMAC3 struct ns1__codon_USCOREcompilerInputParams * SOAP_FMAC4 soap_in_ns1_
 				{	soap_flag_stopcodon--;
 					continue;
 				}
-			if (soap_flag_data && soap->error == SOAP_TAG_MISMATCH)
-				if (soap_in_int(soap, "data", &a->data, "xsd:int"))
+			if (soap_flag_data && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in_string(soap, "data", &a->data, "xsd:string"))
 				{	soap_flag_data--;
 					continue;
 				}

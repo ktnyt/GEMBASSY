@@ -35,9 +35,8 @@ section: advanced [
 		information: "Set to 1 to only use values available in databases and to suppress prediction"
 		default: "0"
 	]
-  string: mode [
-    information: "Input 'ID' for sequence ID 'seq' for whole sequence and actual
- ID for specified ID"
-    default: "ID"
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "0"
   ]
 endsection: advanced

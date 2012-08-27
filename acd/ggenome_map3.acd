@@ -1,6 +1,6 @@
-application: gcai [
-  documentation: "Calculate codon adaptation index for each gene"
-  groups: "Nucleic:Codon usage"
+application: ggenome_map3 [
+  documentation: "Draws the map of the genome (version 3)"
+  groups: "Display"
   embassy: "GEMBASSY"
 ]
 
@@ -8,25 +8,29 @@ section: input [
   information: "Input section"
   type: "page"
 ]
+
   seqall: sequence [
     parameter: "Y"
     type: "nucleotide"
-    features: "Y"
   ]
+
 endsection: input
 
 section: advanced [
   information: "Advanced section"
   type: "page"
 ]
-  boolean: translate [
-    information: "Include when translating using standard codon table"
-    default: "0"
+
+  integer: width [
+    information: "Image width"
+    default: "8192"
   ]
-  string: wabsent [
-    information: "W value of codons absent from a reference set '-' when excludes such codons from the calculation"
-    default: "-"
+
+  integer: height [
+    information: "Image height"
+    default: "8192"
   ]
+
   boolean: accid [
     information: "Include to use sequence accession ID as query"
     default: "0"

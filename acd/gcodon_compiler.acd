@@ -49,6 +49,10 @@ section: advanced [
 'C3' or 'R3': Relative synonymous codon usage ('RSCU') 
 'C4' or 'R4': Relative adaptiveness; i.e., ratio to maximum of minor codon ('W')"
   ]
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "0"
+  ]
  endsection: advanced
 
 section: output [

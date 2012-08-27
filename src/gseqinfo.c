@@ -17,19 +17,25 @@ int main(int argc, char *argv[]){
   AjPSeqall seqall;
   AjPSeq    seq    = NULL;
   AjPStr    inseq  = NULL;
+  AjBool    accid  = 0;
   int n;
   char*     jobid;
 
   seqall = ajAcdGetSeqall("sequence");
+  accid  = ajAcdGetBoolean("accid");
 
   while(ajSeqallNext(seqall,&seq)){
     soap_init(&soap);
     
     inseq = NULL;
-    ajStrAppendC(&inseq,">");
-    ajStrAppendS(&inseq,ajSeqGetNameS(seq));
-    ajStrAppendC(&inseq,"\n");
-    ajStrAppendS(&inseq,ajSeqGetSeqS(seq));
+    if(!accid){
+      ajStrAppendC(&inseq,">");
+      ajStrAppendS(&inseq,ajSeqGetNameS(seq));
+      ajStrAppendC(&inseq,"\n");
+      ajStrAppendS(&inseq,ajSeqGetSeqS(seq));
+    }else{
+      ajStrAppendS(&inseq,ajSeqGetAccS(seq));
+    }
     
     char* in0;
     in0 = ajCharNewS(inseq);
