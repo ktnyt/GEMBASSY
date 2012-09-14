@@ -11,28 +11,34 @@
 #include "../include/gembassy.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("gw_value",argc,argv,"GEMBASSY","1.0.0");
+  embInitPV("genc",argc,argv,"GEMBASSY","1.0.0");
   
   struct soap soap;
-  struct ns1__w_USCOREvalueInputParams params;
+  struct ns1__encInputParams params;
 
   AjPSeqall seqall;
   AjPSeq    seq;
   AjPStr    inseq     = NULL;
-  AjPStr    include   = NULL;
-  AjPStr    exclude   = NULL;
-  AjBool    accid     = 0;
+  AjBool    translate = 0;
+  AjPStr    id        = NULL;
+  AjPStr    delkey    = NULL;
+  AjBool    accid    = 0;
   AjPStr    filename  = NULL;
   char*     jobid;
   
-  seqall  = ajAcdGetSeqall("sequence");
-  include = ajAcdGetString("include");
-  exclude = ajAcdGetString("exclude");
-  accid   = ajAcdGetBoolean("accid");
+  seqall     = ajAcdGetSeqall("sequence");
+  translate  = ajAcdGetBoolean("translate");
+  id         = ajAcdGetString("id");
+  delkey     = ajAcdGetString("delkey");
+  accid      = ajAcdGetBoolean("accid");
   
-  params.include = ajCharNewS(include);
-  params.exclude = ajCharNewS(exclude);
-  params.output = "f";
+  if(translate){
+    params.translate   = 1;
+  }else{
+    params.translate   = 0;
+  }
+  params.id            = ajCharNewS(id);
+  params.del_USCOREkey = ajCharNewS(delkey);
   
   while(ajSeqallNext(seqall,&seq)){
     soap_init(&soap);
@@ -47,15 +53,9 @@ int main(int argc, char *argv[]){
     char* in0;
     in0 = ajCharNewS(inseq);
     fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
-    if(soap_call_ns1__w_USCOREvalue(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
-      ajStrAssignS(&filename,ajSeqGetNameS(seq));
-      ajStrAppendC(&filename,".csv");
+    if(soap_call_ns1__enc(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
+      puts(jobid);
     }else{
-      if(get_file(jobid,ajCharNewS(filename))==0){
-        fprintf(stderr,"Retrieval successful\n");
-      }else{
-        fprintf(stderr,"Retrieval unsuccessful\n");
-      }
       soap_print_fault(&soap,stderr);
     }
   

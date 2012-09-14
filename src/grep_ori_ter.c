@@ -63,7 +63,7 @@ int main(int argc, char *argv[]){
     
     char* in0;
     in0 = ajCharNewS(inseq);
-    fprintf(stderr,"%s\norigin\tterminus\n",ajSeqGetAccS(seq));
+    fprintf(stderr,"%s\norigin\tterminus\n",ajCharNewS(ajSeqGetAccS(seq)));
     if(soap_call_ns1__rep_USCOREori_USCOREter(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
       char* dlm = "<>";
       char* tp  = jobid;
@@ -83,10 +83,10 @@ int main(int argc, char *argv[]){
     soap_done(&soap);
   }  
 
-  ajSeqallDel(seqall);
-  ajSeqDel(seq);
-  ajStrDel(inseq);
-  ajStrDel(filename);
+  ajSeqallDel(&seqall);
+  ajSeqDel(&seq);
+  ajStrDel(&inseq);
+  ajStrDel(&filename);
 
   embExit();
   return 0;

@@ -29,6 +29,7 @@ int main(int argc, char *argv[]){
   AjBool    accid     = 0;
   AjPStr    filename  = NULL;
   char*     jobid;
+  int       i;
   
   seqall  = ajAcdGetSeqall("sequence");
   window  = ajAcdGetInt("window");
@@ -74,7 +75,7 @@ int main(int argc, char *argv[]){
     
     char* in0;
     in0 = ajCharNewS(inseq);
-    fprintf(stderr,"%s:\nCSI\t\tSA\t\tDist\n",ajSeqGetAccS(seq));
+    fprintf(stderr,"%s:\nGCSI\t\tSA\t\tDist\n",ajCharNewS(ajSeqGetAccS(seq)));
     if(soap_call_ns1__gcsi(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
       float gcsi,sa,dist;
       int n;
@@ -101,10 +102,10 @@ int main(int argc, char *argv[]){
     soap_done(&soap);
   }
 
-  ajSeqallDel(seqall);
-  ajSeqDel(seq);
-  ajStrDel(inseq);
-  ajStrDel(filename);
+  ajSeqallDel(&seqall);
+  ajSeqDel(&seq);
+  ajStrDel(&inseq);
+  ajStrDel(&filename);
 
   embExit();
   return 0;

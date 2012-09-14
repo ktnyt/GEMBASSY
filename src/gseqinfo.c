@@ -39,7 +39,7 @@ int main(int argc, char *argv[]){
     
     char* in0;
     in0 = ajCharNewS(inseq);
-    fprintf(stderr,"%s\nA\tT\tG\tC\t\n",ajSeqGetAccS(seq));
+    fprintf(stderr,"%s\nA\tT\tG\tC\t\n",ajCharNewS(ajSeqGetAccS(seq)));
     if(soap_call_ns1__seqinfo(&soap,NULL,NULL,in0,&jobid)==SOAP_OK){
       char* dlm = "<>";
       char* tp;
@@ -61,9 +61,9 @@ int main(int argc, char *argv[]){
     soap_done(&soap);
   }
 
-  ajSeqallDel(seqall);
-  ajSeqDel(seq);
-  ajStrDel(inseq);
+  ajSeqallDel(&seqall);
+  ajSeqDel(&seq);
+  ajStrDel(&inseq);
   
   embExit();
   return 0;

@@ -1,0 +1,44 @@
+application: gdist_in_cc [
+  documentation: "Calculates the distance between two loci in circular chromosomes"
+  groups: ""
+  embassy: "GEMBASSY"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+
+  seqall: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+  ]
+
+  integer: position1 [
+    parameter: "Y"
+  ]
+
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+
+  integer: position2 [
+    default: "-1"
+    information: "If the second position is not given, position of replication origin is used"
+  ]
+
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: ""
+  ]
+
+endsection: advanced
+
+section: output [
+	information: "Output section"
+	type: "page"
+]
+endsection: output

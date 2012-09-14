@@ -55,7 +55,7 @@ int main(int argc, char *argv[]){
  
     char* in0;
     in0 = ajCharNewS(inseq);
-    fprintf(stderr,"%s\n",ajSeqGetAccS(seq));
+    fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
     if(soap_call_ns1__dinuc(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
       ajStrAssignS(&filename,ajSeqGetAccS(seq));
       ajStrAppendC(&filename,".csv");
@@ -73,10 +73,10 @@ int main(int argc, char *argv[]){
     soap_done(&soap);
   }
 
-  ajSeqallDel(seqall);
-  ajSeqDel(seq);
-  ajStrDel(inseq);
-  ajStrDel(filename);
+  ajSeqallDel(&seqall);
+  ajSeqDel(&seq);
+  ajStrDel(&inseq);
+  ajStrDel(&filename);
   
   embExit();
   return 0;
