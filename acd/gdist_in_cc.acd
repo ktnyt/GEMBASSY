@@ -1,6 +1,6 @@
 application: gdist_in_cc [
   documentation: "Calculates the distance between two loci in circular chromosomes"
-  groups: ""
+  groups: "Nucleic:Composition"
   embassy: "GEMBASSY"
 ]
 
@@ -12,6 +12,7 @@ section: input [
   seqall: sequence [
     parameter: "Y"
     type: "nucleotide"
+    features: "Y"
   ]
 
   integer: position1 [

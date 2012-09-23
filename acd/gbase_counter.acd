@@ -1,5 +1,5 @@
-application: gbase_entropy [
-  documentation: "Calculates and graphs the sequence conservation using Shanon uncertainty (entropy)"
+application: gbase_counter [
+  documentation: "Creates a position weight matrix of oligomers around start codon"
   groups: "Nucleic:Composition"
   embassy: "GEMBASSY"
 ]
@@ -35,10 +35,6 @@ section: advanced [
   integer: downstream [
     information: "Length downstream of specified position to create PWM"
     default: "30"
-  ]
-  string: output [
-    information: "Input 'g' for graph output, 'f' for CSV file output"
-    default: "g"
   ]
   boolean: accid [
     information: "Include to use sequence accession ID as query"

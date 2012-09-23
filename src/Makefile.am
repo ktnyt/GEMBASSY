@@ -42,23 +42,33 @@ AM_CFLAGS =  $(AIX_CFLAGS) $(WARN_CFLAGS) $(DEVWARN_CFLAGS)
 
 bin_PROGRAMS = gaaui\
                gamino_info\
+               gb1\
+               gb2\
+               gbase_counter\
                gbase_entropy\
                gbase_information_content\
                gbase_relative_entropy\
+               gbase_z_value\
                gbui\
                gcai\
                gcbi\
                gcgr\
                gcircular_map\
                gdelta_enc\
+               gdelta_gcskew\
+               gdist_in_cc\
+               genc\
                gentrez\
+               gew\
                gfind_ori_ter\
+               gfop\
                ggcsi\
                ggcskew\
                ggcwin\
                ggeneskew\
                ggenomicskew\
                gicdi\
+               gkmer_table\
                gp2\
                gphx\
                gquery_arm\
@@ -71,22 +81,32 @@ bin_PROGRAMS = gaaui\
 
 gaaui_SOURCES           = gaaui.c
 gamino_info_SOURCES     = gamino_info.c
+gb1_SOURCES             = gb1.c
+gb2_SOURCES             = gb2.c
+gbase_counter_SOURCES   = gbase_counter.c
 gbase_entropy_SOURCES   = gbase_entropy.c
 gbase_information_content_SOURCES = gbase_information_content.c
 gbase_relative_entropy_SOURCES    = gbase_relative_entropy.c
+gbase_z_value_SOURCES   = gbase_z_value.c
 gbui_SOURCES            = gbui.c
 gcai_SOURCES            = gcai.c
 gcbi_SOURCES            = gcbi.c
 gcgr_SOURCES            = gcgr.c
 gcircular_map_SOURCES   = gcircular_map.c
 gdelta_enc_SOURCES      = gdelta_enc.c
+gdelta_gcskew_SOURCES   = gdelta_gcskew.c
+gdist_in_cc_SOURCES     = gdist_in_cc.c
+genc_SOURCES            = genc.c
 gentrez_SOURCES         = gentrez.c
+gew_SOURCES             = gew.c
 gfind_ori_ter_SOURCES   = gfind_ori_ter.c
+gfop_SOURCES            = gfop.c
 ggcsi_SOURCES           = ggcsi.c
 ggcwin_SOURCES          = ggcwin.c
 ggeneskew_SOURCES       = ggeneskew.c
 ggenomicskew_SOURCES    = ggenomicskew.c
 gicdi_SOURCES           = gicdi.c
+gkmer_table_SOURCES     = gkmer_table.c
 gphx_SOURCES            = gphx.c
 gp2_SOURCES             = gp2.c
 gquery_arm_SOURCES      = gquery_arm.c

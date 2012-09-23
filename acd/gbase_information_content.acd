@@ -13,6 +13,7 @@ section: input [
     type: "nucleotide"
     features: "Y"
   ]
+
 endsection: input
 
 section: advanced [

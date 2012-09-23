@@ -1,6 +1,6 @@
-application: gleading_strand [
-  documentation: "Get the sequences of leading strands"
-  groups: "Edit"
+application: gkmer_table [
+  documentation: "Create an image showing all k-mer abundance within a sequence"
+  groups: "Nucleic:Composition"
   embassy: "GEMBASSY"
 ]
 
@@ -13,8 +13,7 @@ section: input [
     parameter: "Y"
     type: "nucleotide"
     features: "Y"
-
-]
+  ]
 
 endsection: input
 
@@ -23,19 +22,20 @@ section: advanced [
   type: "page"
 ]
 
+  integer: k [
+    information: "Length of oligomer"
+    default: "6"
+  ]
+
   boolean: accid [
     information: "Include to use sequence accession ID as query"
-    default: "0"
+    default: ""
   ]
 
 endsection: advanced
 
-section: output 
-[
-  information: "Output section"
-  type: "page"
-]
-  seqout: outseq [
-  type: "nucleotide"
+section: output [
+	information: "Output section"
+	type: "page"
 ]
 endsection: output

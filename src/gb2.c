@@ -17,13 +17,13 @@ int main(int argc, char *argv[]){
 
   AjPSeqall seqall;
   AjPSeq    seq;
-  AjPStr    inseq     = NULL;
+  AjPStr    inseq    = NULL;
   AjBool    accid    = 0;
-  AjPStr    filename  = NULL;
+  AjPStr    filename = NULL;
   char*     jobid;
   
-  seqall     = ajAcdGetSeqall("sequence");
-  accid      = ajAcdGetBoolean("accid");
+  seqall = ajAcdGetSeqall("sequence");
+  accid  = ajAcdGetBoolean("accid");
   
   while(ajSeqallNext(seqall,&seq)){
     soap_init(&soap);

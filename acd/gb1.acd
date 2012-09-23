@@ -12,6 +12,7 @@ section: input [
   seqall: sequence [
     parameter: "Y"
     type: "nucleotide"
+    features: "Y"
   ]
 
 endsection: input
@@ -22,7 +23,7 @@ section: advanced [
 ]
 
   string: method [
-    information: "Choos method of 'lobry' or 'rocha'"
+    information: "Choose method of 'lobry' or 'rocha'"
     default: "rocha"
   ]
 

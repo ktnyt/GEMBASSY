@@ -1,5 +1,5 @@
-application: gbase_entropy [
-  documentation: "Calculates and graphs the sequence conservation using Shanon uncertainty (entropy)"
+application: gbase_z_value [
+  documentation: "Extracts conserved oligomers per position using Z-score"
   groups: "Nucleic:Composition"
   embassy: "GEMBASSY"
 ]
@@ -20,6 +20,10 @@ section: advanced [
   information: "Advanced section"
   type: "page"
 ]
+  integer: limit [
+    information: "Rank threshold for showing the conserved oligomer"
+    default: "5"
+  ]
   string: position [
     information: "Either 'start' (around start codon) or 'end' (around stop codon) to create the PWM"
     default: "start"
@@ -35,10 +39,6 @@ section: advanced [
   integer: downstream [
     information: "Length downstream of specified position to create PWM"
     default: "30"
-  ]
-  string: output [
-    information: "Input 'g' for graph output, 'f' for CSV file output"
-    default: "g"
   ]
   boolean: accid [
     information: "Include to use sequence accession ID as query"

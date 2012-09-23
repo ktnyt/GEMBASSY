@@ -11,26 +11,27 @@
 #include "../include/gembassy.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("gb1",argc,argv,"GEMBASSY","1.0.0");
-  
+  embInitPV("gkmer_table",argc,argv,"GEMBASSY","1.0.0");
+
   struct soap soap;
-  struct ns1__B1InputParams params;
+  struct ns1__kmer_USCOREtableInputParams params;
 
   AjPSeqall seqall;
   AjPSeq    seq;
-  AjPStr    inseq    = NULL;
-  AjPStr    method   = NULL;
-  AjBool    accid    = 0;
-  AjPStr    filename = NULL;
+  AjPStr    inseq     = NULL;
+  ajint     k         = 0;
+  AjBool    accid     = 0;
+  AjPStr    filename  = NULL;
   char*     jobid;
-  
+
   seqall = ajAcdGetSeqall("sequence");
-  method = ajAcdGetString("method");
+  k      = ajAcdGetInt("k");
   accid  = ajAcdGetBoolean("accid");
   
-  params.method = ajCharNewS(method);
-  
-  while(ajSeqallNext(seqall,&seq)){
+  params.k = k;
+
+  while(ajSeqallNext(seqall,&seq)){  
+
     soap_init(&soap);
 
     inseq = NULL;
@@ -39,16 +40,22 @@ int main(int argc, char *argv[]){
     }else{
       ajStrAppendS(&inseq,ajSeqGetAccS(seq));
     }
-    
+
     char* in0;
     in0 = ajCharNewS(inseq);
     fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
-    if(soap_call_ns1__B1(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
-      puts(jobid);
+    if(soap_call_ns1__kmer_USCOREtable(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
+      ajStrAssignS(&filename,ajSeqGetAccS(seq));
+      ajStrAppendC(&filename,".png");
+      if(get_file(jobid,ajCharNewS(filename)) == 0){
+	fprintf(stderr,"Retrieval successful\n");
+      }else{
+	fprintf(stderr,"Retrieval unsuccessful\n");
+      }
     }else{
       soap_print_fault(&soap,stderr);
     }
-  
+    
     soap_destroy(&soap);
     soap_end(&soap);
     soap_done(&soap);
@@ -58,7 +65,7 @@ int main(int argc, char *argv[]){
   ajSeqDel(&seq);
   ajStrDel(&inseq);
   ajStrDel(&filename);
-  
+    
   embExit();
   return 0;
 }

@@ -13,40 +13,49 @@ section: input [
     type: "nucleotide"
     features: "Y"
   ]
+
 endsection: input
 
 section: advanced [
   information: "Advanced section"
   type: "page"
 ]
+
   integer: v [
     information: "Version of GCSI. Generalized GCSI is selected by default"
     default: "2"
   ]
+
   integer: window [
     information: "Number of windows. Must be a power of 2"
     default: "4096"
   ]
+
   boolean: purine [
     information: "Use purine skew for calculation"
     default: "0"
   ]
+
   boolean: keto [
     information: "Use keto skew for calculation"
     default: "0"
   ]
+
   boolean: at [
     information: "Use AT skew for calculation"
     default: "0"
   ]
+
   boolean: p [
     information: "Calculate p-value when GCSI version 2 is selected"
     default: "0"
   ]
+
   boolean: accid [
     information: "Include to use sequence accession ID as query"
     default: "0"
   ]
+
 endsection: advanced
 
 section: output [

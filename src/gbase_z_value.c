@@ -11,36 +11,38 @@
 #include "../include/gembassy.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("gcai",argc,argv,"GEMBASSY","1.0.0");
+  embInitPV("gbase_z_value",argc,argv,"GEMBASSY","1.0.0");
 
   struct soap soap;
-  struct ns1__caiInputParams params;
+  struct ns1__base_USCOREz_USCOREvalueInputParams params;
 
   AjPSeqall seqall;
   AjPSeq    seq;
-  AjPStr    inseq     = NULL;
-  AjBool    translate = 0;
-  AjPStr    wabsent   = NULL;
-  AjPStr    command   = NULL;
-  AjBool    accid    = 0;
-  AjPStr    filename  = NULL;
-  char*     jobid;
-  
-  seqall    = ajAcdGetSeqall("sequence");
-  translate = ajAcdGetBoolean("translate");
-  wabsent   = ajAcdGetString("wabsent");
-  accid     = ajAcdGetBoolean("accid");
-  
-  if(translate){
-    params.translate    = 1;
-  }else{
-    params.translate    = 0;
-  }
-  params.w_USCOREabsent   = ajCharNewS(wabsent);
-  params.w_USCOREfilename = "w_value.csv";
-  params.w_USCOREoutput   = "stdout";
+  AjPStr    inseq      = NULL;
+  AjPStr    position   = NULL;
+  ajint     limit     = 0;
+  ajint     PatLen     = 0;
+  ajint     upstream   = 0;
+  ajint     downstream = 0;
+  AjBool    accid      = 0;
+  AjPStr    filename   = NULL;
+  char*     jobid; 
 
-  while(ajSeqallNext(seqall,&seq)){  
+  seqall     = ajAcdGetSeqall("sequence");
+  position   = ajAcdGetString("position");
+  limit      = ajAcdGetInt("limit");
+  PatLen     = ajAcdGetInt("patlen");
+  upstream   = ajAcdGetInt("upstream");
+  downstream = ajAcdGetInt("downstream");
+  accid      = ajAcdGetBoolean("accid");
+  
+  params.position   = ajCharNewS(position);
+  params.limit      = limit;
+  params.PatLen     = PatLen;
+  params.upstream   = upstream;
+  params.downstream = downstream;
+  
+  while(ajSeqallNext(seqall,&seq)){
 
     soap_init(&soap);
 
@@ -54,7 +56,7 @@ int main(int argc, char *argv[]){
     char* in0;
     in0 = ajCharNewS(inseq);
     fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
-    if(soap_call_ns1__cai(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
+    if(soap_call_ns1__base_USCOREz_USCOREvalue(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
       ajStrAssignS(&filename,ajSeqGetNameS(seq));
       ajStrAppendC(&filename,".csv");
       if(get_file(jobid,ajCharNewS(filename))==0){
@@ -65,7 +67,7 @@ int main(int argc, char *argv[]){
     }else{
       soap_print_fault(&soap,stderr);
     }
-    
+  
     soap_destroy(&soap);
     soap_end(&soap);
     soap_done(&soap);
@@ -75,7 +77,7 @@ int main(int argc, char *argv[]){
   ajSeqDel(&seq);
   ajStrDel(&inseq);
   ajStrDel(&filename);
-  
+
   embExit();
   return 0;
 }

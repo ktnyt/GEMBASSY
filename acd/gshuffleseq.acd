@@ -8,19 +8,23 @@ section: input [
   information: "Input section"
   type: "page"
 ]
+
   seqall: sequence [
     parameter: "Y"
   ]
+
 endsection: input
 
 section: advanced [
   information: "Advanced section"
   type: "page"
 ]
+
   integer: k [
     information: "k-mer to preserve composition"
     default: "1"
   ]
+
 endsection: advanced
 
 section: output [

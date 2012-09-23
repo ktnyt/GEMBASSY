@@ -12,6 +12,7 @@ section: input [
   seqall: sequence [
     parameter: "Y"
     type: "nucleotide"
+    features: "Y"
   ]
 
 endsection: input
@@ -35,6 +36,7 @@ section: advanced [
     information: "Include to use sequence accession ID as query"
     default: "0"
   ]
+
 endsection: advanced
 
 section: output [
