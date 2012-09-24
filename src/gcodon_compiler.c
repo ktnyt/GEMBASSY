@@ -25,7 +25,7 @@ int main(int argc, char *argv[]){
   AjBool    stopcodon  = 0;
   AjPStr    delkey     = NULL;
   AjPStr    data       = NULL;
-  AjBool    accid    = 0;
+  AjBool    accid      = 0;
   AjPStr    filename   = NULL;
   char*     jobid;
   

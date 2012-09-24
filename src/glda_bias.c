@@ -11,20 +11,28 @@
 #include "../include/gembassy.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("gleading_strand",argc,argv,"GEMBASSY","1.0.0");
+  embInitPV("glda_bias",argc,argv,"GEMBASSY","1.0.0");
 
   struct soap soap;
+  struct ns1__lda_USCOREbiasInputParams params;
 
   AjPSeqall     seqall;
   AjPSeq        seq;
-  AjPStr        inseq     = NULL;
-  AjBool        accid     = 0;
-  AjPStr        filename  = NULL;
+  AjPStr        inseq        = NULL;
+  ajint         coefficients = 0;
+  AjPStr        variable     = NULL;
+  AjBool        accid        = 0;
+  AjPStr        filename     = NULL;
   char*         jobid;
 
-  seqall = ajAcdGetSeqall("sequence");
-  accid  = ajAcdGetBoolean("accid");
+  seqall       = ajAcdGetSeqall("sequence");
+  coefficients = ajAcdGetInt("coefficients");
+  variable     = ajAcdGetString("variable");
+  accid        = ajAcdGetBoolean("accid");
   
+  params.coefficients = coefficients;
+  params.variable     = ajCharNewS(variable);
+
   while(ajSeqallNext(seqall,&seq)){  
     soap_init(&soap);
 
@@ -39,7 +47,7 @@ int main(int argc, char *argv[]){
     char* in0;
     in0 = ajCharNewS(inseq);
     fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
-    if(soap_call_ns1__leading_USCOREstrand(&soap,NULL,NULL,in0,&jobid)==SOAP_OK){
+    if(soap_call_ns1__lda_USCOREbias(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
       puts(jobid);
     }else{
       soap_print_fault(&soap,stderr);

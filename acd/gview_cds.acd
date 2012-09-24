@@ -1,0 +1,51 @@
+application: gview_cds [
+  documentation: "Displays a graph of nucleotide contents around start and stop codons"
+  groups: "Nucleic:Composition"
+  embassy: "GEMBASSY"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+
+  seqall: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+    features: "Y"
+  ]
+
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+
+  integer: length [
+    information: "Length in bases to show around start/stop codons"
+    default: "100"
+  ]
+
+  integer: gap [
+    information: "Gap shown in graph in between start/stop codon neighbors"
+    default: "3"
+  ]
+
+  string: output [
+    information: "Input 'g' for graph output, 'f' for CSV file output"
+    default: "g"
+  ]
+
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: ""
+  ]
+
+endsection: advanced
+
+section: output [
+	information: "Output section"
+	type: "page"
+]
+endsection: output

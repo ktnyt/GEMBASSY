@@ -69,6 +69,10 @@ bin_PROGRAMS = gaaui\
                ggenomicskew\
                gicdi\
                gkmer_table\
+               glda_bias\
+               gleading_strand\
+               gnucleotide_periodicity\
+               goligomer_counter\
                gp2\
                gphx\
                gquery_arm\
@@ -77,6 +81,7 @@ bin_PROGRAMS = gaaui\
                gseq2png\
                gseqinfo\
                gshuffleseq\
+               gview_cds\
                gw_value
 
 gaaui_SOURCES           = gaaui.c
@@ -107,6 +112,10 @@ ggeneskew_SOURCES       = ggeneskew.c
 ggenomicskew_SOURCES    = ggenomicskew.c
 gicdi_SOURCES           = gicdi.c
 gkmer_table_SOURCES     = gkmer_table.c
+glda_bias_SOURCES       = glda_bias.c
+gleading_strand_SOURCES = gleading_strand.c
+gnucleotide_periodicity_SOURCES = gnucleotide_periodicity.c
+goligomer_counter_SOURCES       = goligomer_counter.c
 gphx_SOURCES            = gphx.c
 gp2_SOURCES             = gp2.c
 gquery_arm_SOURCES      = gquery_arm.c
@@ -115,6 +124,7 @@ grep_ori_ter_SOURCES    = grep_ori_ter.c
 gseqinfo_SOURCES        = gseqinfo.c
 gseq2png_SOURCES        = gseq2png.c
 gshuffleseq_SOURCES     = gshuffleseq.c
+gview_cds_SOURCES       = gview_cds.c
 gw_value_SOURCES        = gw_value.c
 
 if LOCALLINK

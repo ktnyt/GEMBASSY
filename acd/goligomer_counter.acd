@@ -1,0 +1,45 @@
+application: goligomer_counter [
+  documentation: "Counts the number of given oligomers in a sequence"
+  groups: "Nucleic:Composition"
+  embassy: "GEMBASSY"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+
+  seqall: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+    features: "Y"
+  ]
+
+  string: oligomer [
+    parameter: "Y"
+  ]
+
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+
+  integer: window [
+    information: "Int window size"
+    default: ""
+  ]
+
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: ""
+  ]
+
+endsection: advanced
+
+section: output [
+	information: "Output section"
+	type: "page"
+]
+endsection: output
