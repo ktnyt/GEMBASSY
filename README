@@ -101,8 +101,9 @@ USAGE EXAMPLE
       ( GEMBASSY-1.0.0/data/* )
 
    1. ggcskew (GC skew)
-      % ggcskew nucleotideSample.fna
+      % ggcskew ecoli.gbk
       Calculates the GC skew of the input sequence
+      NC_000913
       Retrieval successful
 
       File "ggcskew.png" will be created at working directory.
@@ -110,7 +111,8 @@ USAGE EXAMPLE
    2. ggcsi (GC Skew Index)
       % ggcsi 
       GC Skew Index: an index for strand-specefic mutational bias
-      Input nucleotide sequence: nucleotideSample.fna
+      Input nucleotide sequence: ecoli.gbk
+      NC_000913
       GCSI            SA              Dist
       0.029426        19.060829       163.543442
 
@@ -118,8 +120,9 @@ USAGE EXAMPLE
       % greporiter 
       Get the positions of replication origin and terminus
       Input nucleotide sequence: refseqn:NC_000913
+      NC_000913
       origin  terminus
-      3776    65296
+      3924034 1550412
 
 *****************************************************************************/
 
