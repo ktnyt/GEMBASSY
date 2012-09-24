@@ -74,10 +74,12 @@ bin_PROGRAMS = gaaui\
                gnucleotide_periodicity\
                goligomer_counter\
                gp2\
+               gpalindrome\
                gphx\
                gquery_arm\
                gquery_strand\
                grep_ori_ter\
+               gscs\
                gseq2png\
                gseqinfo\
                gshuffleseq\
@@ -116,11 +118,13 @@ glda_bias_SOURCES       = glda_bias.c
 gleading_strand_SOURCES = gleading_strand.c
 gnucleotide_periodicity_SOURCES = gnucleotide_periodicity.c
 goligomer_counter_SOURCES       = goligomer_counter.c
-gphx_SOURCES            = gphx.c
 gp2_SOURCES             = gp2.c
+gpalindrome_SOURCES     = gpalindrome.c
+gphx_SOURCES            = gphx.c
 gquery_arm_SOURCES      = gquery_arm.c
 gquery_strand_SOURCES   = gquery_strand.c
 grep_ori_ter_SOURCES    = grep_ori_ter.c
+gscs_SOURCES            = gscs.c
 gseqinfo_SOURCES        = gseqinfo.c
 gseq2png_SOURCES        = gseq2png.c
 gshuffleseq_SOURCES     = gshuffleseq.c
