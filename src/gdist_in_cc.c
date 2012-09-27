@@ -25,8 +25,8 @@ int main(int argc, char *argv[]){
   char*     jobid;
 
   seqall    = ajAcdGetSeqall("sequence");
-  position1 = ajAcdGetInt("position1");
-  position2 = ajAcdGetInt("position2");
+  position1 = ajAcdGetInt("position");
+  position2 = ajAcdGetInt("secondposition");
   accid     = ajAcdGetBoolean("accid");
 
   while(ajSeqallNext(seqall,&seq)){

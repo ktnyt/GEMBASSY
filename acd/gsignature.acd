@@ -1,6 +1,6 @@
-application: gdist_in_cc [
-  documentation: "Calculates the distance between two loci in circular chromosomes"
-  groups: "Nucleic:Composition"
+application: gsignature [
+  documentation: "Calculate oligonucleotide usage (genomic signature)"
+  groups: ""
   embassy: "GEMBASSY"
 ]
 
@@ -15,10 +15,6 @@ section: input [
     features: "Y"
   ]
 
-  integer: position [
-    parameter: "Y"
-  ]
-
 endsection: input
 
 section: advanced [
@@ -26,8 +22,19 @@ section: advanced [
   type: "page"
 ]
 
-  integer: secondposition [
-    information: "If the second position is not given, position of replication origin is used"
+  integer: wordlength [
+    information: "Word length"
+    default: "2"
+  ]
+
+  boolean: bothstrand [
+    information: "Use direct (0) or both (1) strand"
+    default: "1"
+  ]
+
+  boolean: oe [
+    information: "Use observed (0) or O/E (1) value"
+    default: "1"
   ]
 
   boolean: accid [

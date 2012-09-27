@@ -83,6 +83,7 @@ bin_PROGRAMS = gaaui\
                gseq2png\
                gseqinfo\
                gshuffleseq\
+               gsignature\
                gview_cds\
                gw_value
 
@@ -128,6 +129,7 @@ gscs_SOURCES            = gscs.c
 gseqinfo_SOURCES        = gseqinfo.c
 gseq2png_SOURCES        = gseq2png.c
 gshuffleseq_SOURCES     = gshuffleseq.c
+gsignature_SOURCES      = gsignature.c
 gview_cds_SOURCES       = gview_cds.c
 gw_value_SOURCES        = gw_value.c
 
