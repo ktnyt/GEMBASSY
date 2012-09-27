@@ -17,7 +17,7 @@ compiling, linking, and/or using OpenSSL is allowed.
 extern "C" {
 #endif
 
-SOAP_SOURCE_STAMP("@(#) soapServer.c ver 2.8.6 2012-08-26 07:22:09 GMT")
+SOAP_SOURCE_STAMP("@(#) soapServer.c ver 2.8.6 2012-09-25 07:44:17 GMT")
 
 
 SOAP_FMAC5 int SOAP_FMAC6 soap_serve(struct soap *soap)
@@ -221,14 +221,28 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_serve_request(struct soap *soap)
 		return soap_serve_ns1__dinuc(soap);
 	if (!soap_match_tag(soap, soap->tag, "ns1:cgr"))
 		return soap_serve_ns1__cgr(soap);
-	if (!soap_match_tag(soap, soap->tag, "ns1:grapher"))
-		return soap_serve_ns1__grapher(soap);
+	if (!soap_match_tag(soap, soap->tag, "ns1:B1"))
+		return soap_serve_ns1__B1(soap);
+	if (!soap_match_tag(soap, soap->tag, "ns1:B2"))
+		return soap_serve_ns1__B2(soap);
+	if (!soap_match_tag(soap, soap->tag, "ns1:base_counter"))
+		return soap_serve_ns1__base_USCOREcounter(soap);
+	if (!soap_match_tag(soap, soap->tag, "ns1:base_z_value"))
+		return soap_serve_ns1__base_USCOREz_USCOREvalue(soap);
+	if (!soap_match_tag(soap, soap->tag, "ns1:kmer_table"))
+		return soap_serve_ns1__kmer_USCOREtable(soap);
+	if (!soap_match_tag(soap, soap->tag, "ns1:lda_bias"))
+		return soap_serve_ns1__lda_USCOREbias(soap);
+	if (!soap_match_tag(soap, soap->tag, "ns1:signature"))
+		return soap_serve_ns1__signature_(soap);
+	if (!soap_match_tag(soap, soap->tag, "ns1:scs"))
+		return soap_serve_ns1__scs(soap);
+	if (!soap_match_tag(soap, soap->tag, "ns1:leading_strand"))
+		return soap_serve_ns1__leading_USCOREstrand(soap);
 	if (!soap_match_tag(soap, soap->tag, "ns1:help"))
 		return soap_serve_ns1__help(soap);
 	if (!soap_match_tag(soap, soap->tag, "ns1:hydropathy"))
 		return soap_serve_ns1__hydropathy(soap);
-	if (!soap_match_tag(soap, soap->tag, "ns1:pubmed"))
-		return soap_serve_ns1__pubmed(soap);
 	return soap->error = SOAP_NO_METHOD;
 }
 #endif
@@ -1084,7 +1098,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns1__dist_USCOREin_USCOREcc(struct soap *so
 	 || soap_envelope_end_in(soap)
 	 || soap_end_recv(soap))
 		return soap->error;
-	soap->error = ns1__dist_USCOREin_USCOREcc(soap, soap_tmp_ns1__dist_USCOREin_USCOREcc._sequence, soap_tmp_ns1__dist_USCOREin_USCOREcc._position1, soap_tmp_ns1__dist_USCOREin_USCOREcc._position2, soap_tmp_ns1__dist_USCOREin_USCOREcc._params, soap_tmp_ns1__dist_USCOREin_USCOREccResponse._result);
+	soap->error = ns1__dist_USCOREin_USCOREcc(soap, soap_tmp_ns1__dist_USCOREin_USCOREcc._sequence, soap_tmp_ns1__dist_USCOREin_USCOREcc._position1, soap_tmp_ns1__dist_USCOREin_USCOREcc._position2, soap_tmp_ns1__dist_USCOREin_USCOREccResponse._result);
 	if (soap->error)
 		return soap->error;
 	soap_serializeheader(soap);
@@ -2436,7 +2450,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns1__genes_USCOREfrom_USCOREori(struct soap
 	 || soap_envelope_end_in(soap)
 	 || soap_end_recv(soap))
 		return soap->error;
-	soap->error = ns1__genes_USCOREfrom_USCOREori(soap, soap_tmp_ns1__genes_USCOREfrom_USCOREori._sequence, soap_tmp_ns1__genes_USCOREfrom_USCOREori._direction, soap_tmp_ns1__genes_USCOREfrom_USCOREori._params, &_param_4);
+	soap->error = ns1__genes_USCOREfrom_USCOREori(soap, soap_tmp_ns1__genes_USCOREfrom_USCOREori._sequence, soap_tmp_ns1__genes_USCOREfrom_USCOREori._direction, &_param_4);
 	if (soap->error)
 		return soap->error;
 	soap_serializeheader(soap);
@@ -3773,30 +3787,33 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns1__cgr(struct soap *soap)
 	return soap_closesock(soap);
 }
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns1__grapher(struct soap *soap)
-{	struct ns1__grapher soap_tmp_ns1__grapher;
-	struct ns1__grapherResponse _param_9;
-	soap_default_ns1__grapherResponse(soap, &_param_9);
-	soap_default_ns1__grapher(soap, &soap_tmp_ns1__grapher);
+SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns1__B1(struct soap *soap)
+{	struct ns1__B1 soap_tmp_ns1__B1;
+	struct ns1__B1Response soap_tmp_ns1__B1Response;
+	char * soap_tmp_string;
+	soap_default_ns1__B1Response(soap, &soap_tmp_ns1__B1Response);
+	soap_tmp_string = NULL;
+	soap_tmp_ns1__B1Response._result = &soap_tmp_string;
+	soap_default_ns1__B1(soap, &soap_tmp_ns1__B1);
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
-	if (!soap_get_ns1__grapher(soap, &soap_tmp_ns1__grapher, "ns1:grapher", NULL))
+	if (!soap_get_ns1__B1(soap, &soap_tmp_ns1__B1, "ns1:B1", NULL))
 		return soap->error;
 	if (soap_body_end_in(soap)
 	 || soap_envelope_end_in(soap)
 	 || soap_end_recv(soap))
 		return soap->error;
-	soap->error = ns1__grapher(soap, soap_tmp_ns1__grapher._array0, soap_tmp_ns1__grapher._array1, &_param_9);
+	soap->error = ns1__B1(soap, soap_tmp_ns1__B1._sequence, soap_tmp_ns1__B1._params, soap_tmp_ns1__B1Response._result);
 	if (soap->error)
 		return soap->error;
 	soap_serializeheader(soap);
-	soap_serialize_ns1__grapherResponse(soap, &_param_9);
+	soap_serialize_ns1__B1Response(soap, &soap_tmp_ns1__B1Response);
 	if (soap_begin_count(soap))
 		return soap->error;
 	if (soap->mode & SOAP_IO_LENGTH)
 	{	if (soap_envelope_begin_out(soap)
 		 || soap_putheader(soap)
 		 || soap_body_begin_out(soap)
-		 || soap_put_ns1__grapherResponse(soap, &_param_9, "ns1:grapherResponse", NULL)
+		 || soap_put_ns1__B1Response(soap, &soap_tmp_ns1__B1Response, "ns1:B1Response", NULL)
 		 || soap_body_end_out(soap)
 		 || soap_envelope_end_out(soap))
 			 return soap->error;
@@ -3806,7 +3823,356 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns1__grapher(struct soap *soap)
 	 || soap_envelope_begin_out(soap)
 	 || soap_putheader(soap)
 	 || soap_body_begin_out(soap)
-	 || soap_put_ns1__grapherResponse(soap, &_param_9, "ns1:grapherResponse", NULL)
+	 || soap_put_ns1__B1Response(soap, &soap_tmp_ns1__B1Response, "ns1:B1Response", NULL)
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap->error;
+	return soap_closesock(soap);
+}
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns1__B2(struct soap *soap)
+{	struct ns1__B2 soap_tmp_ns1__B2;
+	struct ns1__B2Response soap_tmp_ns1__B2Response;
+	char * soap_tmp_string;
+	soap_default_ns1__B2Response(soap, &soap_tmp_ns1__B2Response);
+	soap_tmp_string = NULL;
+	soap_tmp_ns1__B2Response._result = &soap_tmp_string;
+	soap_default_ns1__B2(soap, &soap_tmp_ns1__B2);
+	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
+	if (!soap_get_ns1__B2(soap, &soap_tmp_ns1__B2, "ns1:B2", NULL))
+		return soap->error;
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap->error;
+	soap->error = ns1__B2(soap, soap_tmp_ns1__B2._sequence, soap_tmp_ns1__B2Response._result);
+	if (soap->error)
+		return soap->error;
+	soap_serializeheader(soap);
+	soap_serialize_ns1__B2Response(soap, &soap_tmp_ns1__B2Response);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if (soap->mode & SOAP_IO_LENGTH)
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put_ns1__B2Response(soap, &soap_tmp_ns1__B2Response, "ns1:B2Response", NULL)
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	};
+	if (soap_end_count(soap)
+	 || soap_response(soap, SOAP_OK)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put_ns1__B2Response(soap, &soap_tmp_ns1__B2Response, "ns1:B2Response", NULL)
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap->error;
+	return soap_closesock(soap);
+}
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns1__base_USCOREcounter(struct soap *soap)
+{	struct ns1__base_USCOREcounter soap_tmp_ns1__base_USCOREcounter;
+	struct ns1__base_USCOREcounterResponse soap_tmp_ns1__base_USCOREcounterResponse;
+	char * soap_tmp_string;
+	soap_default_ns1__base_USCOREcounterResponse(soap, &soap_tmp_ns1__base_USCOREcounterResponse);
+	soap_tmp_string = NULL;
+	soap_tmp_ns1__base_USCOREcounterResponse._result = &soap_tmp_string;
+	soap_default_ns1__base_USCOREcounter(soap, &soap_tmp_ns1__base_USCOREcounter);
+	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
+	if (!soap_get_ns1__base_USCOREcounter(soap, &soap_tmp_ns1__base_USCOREcounter, "ns1:base_counter", NULL))
+		return soap->error;
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap->error;
+	soap->error = ns1__base_USCOREcounter(soap, soap_tmp_ns1__base_USCOREcounter._sequence, soap_tmp_ns1__base_USCOREcounter._params, soap_tmp_ns1__base_USCOREcounterResponse._result);
+	if (soap->error)
+		return soap->error;
+	soap_serializeheader(soap);
+	soap_serialize_ns1__base_USCOREcounterResponse(soap, &soap_tmp_ns1__base_USCOREcounterResponse);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if (soap->mode & SOAP_IO_LENGTH)
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put_ns1__base_USCOREcounterResponse(soap, &soap_tmp_ns1__base_USCOREcounterResponse, "ns1:base_counterResponse", NULL)
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	};
+	if (soap_end_count(soap)
+	 || soap_response(soap, SOAP_OK)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put_ns1__base_USCOREcounterResponse(soap, &soap_tmp_ns1__base_USCOREcounterResponse, "ns1:base_counterResponse", NULL)
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap->error;
+	return soap_closesock(soap);
+}
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns1__base_USCOREz_USCOREvalue(struct soap *soap)
+{	struct ns1__base_USCOREz_USCOREvalue soap_tmp_ns1__base_USCOREz_USCOREvalue;
+	struct ns1__base_USCOREz_USCOREvalueResponse soap_tmp_ns1__base_USCOREz_USCOREvalueResponse;
+	char * soap_tmp_string;
+	soap_default_ns1__base_USCOREz_USCOREvalueResponse(soap, &soap_tmp_ns1__base_USCOREz_USCOREvalueResponse);
+	soap_tmp_string = NULL;
+	soap_tmp_ns1__base_USCOREz_USCOREvalueResponse._result = &soap_tmp_string;
+	soap_default_ns1__base_USCOREz_USCOREvalue(soap, &soap_tmp_ns1__base_USCOREz_USCOREvalue);
+	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
+	if (!soap_get_ns1__base_USCOREz_USCOREvalue(soap, &soap_tmp_ns1__base_USCOREz_USCOREvalue, "ns1:base_z_value", NULL))
+		return soap->error;
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap->error;
+	soap->error = ns1__base_USCOREz_USCOREvalue(soap, soap_tmp_ns1__base_USCOREz_USCOREvalue._sequence, soap_tmp_ns1__base_USCOREz_USCOREvalue._params, soap_tmp_ns1__base_USCOREz_USCOREvalueResponse._result);
+	if (soap->error)
+		return soap->error;
+	soap_serializeheader(soap);
+	soap_serialize_ns1__base_USCOREz_USCOREvalueResponse(soap, &soap_tmp_ns1__base_USCOREz_USCOREvalueResponse);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if (soap->mode & SOAP_IO_LENGTH)
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put_ns1__base_USCOREz_USCOREvalueResponse(soap, &soap_tmp_ns1__base_USCOREz_USCOREvalueResponse, "ns1:base_z_valueResponse", NULL)
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	};
+	if (soap_end_count(soap)
+	 || soap_response(soap, SOAP_OK)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put_ns1__base_USCOREz_USCOREvalueResponse(soap, &soap_tmp_ns1__base_USCOREz_USCOREvalueResponse, "ns1:base_z_valueResponse", NULL)
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap->error;
+	return soap_closesock(soap);
+}
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns1__kmer_USCOREtable(struct soap *soap)
+{	struct ns1__kmer_USCOREtable soap_tmp_ns1__kmer_USCOREtable;
+	struct ns1__kmer_USCOREtableResponse soap_tmp_ns1__kmer_USCOREtableResponse;
+	char * soap_tmp_string;
+	soap_default_ns1__kmer_USCOREtableResponse(soap, &soap_tmp_ns1__kmer_USCOREtableResponse);
+	soap_tmp_string = NULL;
+	soap_tmp_ns1__kmer_USCOREtableResponse._result = &soap_tmp_string;
+	soap_default_ns1__kmer_USCOREtable(soap, &soap_tmp_ns1__kmer_USCOREtable);
+	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
+	if (!soap_get_ns1__kmer_USCOREtable(soap, &soap_tmp_ns1__kmer_USCOREtable, "ns1:kmer_table", NULL))
+		return soap->error;
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap->error;
+	soap->error = ns1__kmer_USCOREtable(soap, soap_tmp_ns1__kmer_USCOREtable._sequence, soap_tmp_ns1__kmer_USCOREtable._params, soap_tmp_ns1__kmer_USCOREtableResponse._result);
+	if (soap->error)
+		return soap->error;
+	soap_serializeheader(soap);
+	soap_serialize_ns1__kmer_USCOREtableResponse(soap, &soap_tmp_ns1__kmer_USCOREtableResponse);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if (soap->mode & SOAP_IO_LENGTH)
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put_ns1__kmer_USCOREtableResponse(soap, &soap_tmp_ns1__kmer_USCOREtableResponse, "ns1:kmer_tableResponse", NULL)
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	};
+	if (soap_end_count(soap)
+	 || soap_response(soap, SOAP_OK)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put_ns1__kmer_USCOREtableResponse(soap, &soap_tmp_ns1__kmer_USCOREtableResponse, "ns1:kmer_tableResponse", NULL)
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap->error;
+	return soap_closesock(soap);
+}
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns1__lda_USCOREbias(struct soap *soap)
+{	struct ns1__lda_USCOREbias soap_tmp_ns1__lda_USCOREbias;
+	struct ns1__lda_USCOREbiasResponse soap_tmp_ns1__lda_USCOREbiasResponse;
+	char * soap_tmp_string;
+	soap_default_ns1__lda_USCOREbiasResponse(soap, &soap_tmp_ns1__lda_USCOREbiasResponse);
+	soap_tmp_string = NULL;
+	soap_tmp_ns1__lda_USCOREbiasResponse._result = &soap_tmp_string;
+	soap_default_ns1__lda_USCOREbias(soap, &soap_tmp_ns1__lda_USCOREbias);
+	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
+	if (!soap_get_ns1__lda_USCOREbias(soap, &soap_tmp_ns1__lda_USCOREbias, "ns1:lda_bias", NULL))
+		return soap->error;
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap->error;
+	soap->error = ns1__lda_USCOREbias(soap, soap_tmp_ns1__lda_USCOREbias._sequence, soap_tmp_ns1__lda_USCOREbias._params, soap_tmp_ns1__lda_USCOREbiasResponse._result);
+	if (soap->error)
+		return soap->error;
+	soap_serializeheader(soap);
+	soap_serialize_ns1__lda_USCOREbiasResponse(soap, &soap_tmp_ns1__lda_USCOREbiasResponse);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if (soap->mode & SOAP_IO_LENGTH)
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put_ns1__lda_USCOREbiasResponse(soap, &soap_tmp_ns1__lda_USCOREbiasResponse, "ns1:lda_biasResponse", NULL)
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	};
+	if (soap_end_count(soap)
+	 || soap_response(soap, SOAP_OK)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put_ns1__lda_USCOREbiasResponse(soap, &soap_tmp_ns1__lda_USCOREbiasResponse, "ns1:lda_biasResponse", NULL)
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap->error;
+	return soap_closesock(soap);
+}
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns1__signature_(struct soap *soap)
+{	struct ns1__signature_ soap_tmp_ns1__signature_;
+	struct ns1__signature_Response soap_tmp_ns1__signature_Response;
+	char * soap_tmp_string;
+	soap_default_ns1__signature_Response(soap, &soap_tmp_ns1__signature_Response);
+	soap_tmp_string = NULL;
+	soap_tmp_ns1__signature_Response._result = &soap_tmp_string;
+	soap_default_ns1__signature_(soap, &soap_tmp_ns1__signature_);
+	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
+	if (!soap_get_ns1__signature_(soap, &soap_tmp_ns1__signature_, "ns1:signature", NULL))
+		return soap->error;
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap->error;
+	soap->error = ns1__signature_(soap, soap_tmp_ns1__signature_._sequence, soap_tmp_ns1__signature_._params, soap_tmp_ns1__signature_Response._result);
+	if (soap->error)
+		return soap->error;
+	soap_serializeheader(soap);
+	soap_serialize_ns1__signature_Response(soap, &soap_tmp_ns1__signature_Response);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if (soap->mode & SOAP_IO_LENGTH)
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put_ns1__signature_Response(soap, &soap_tmp_ns1__signature_Response, "ns1:signature-Response", NULL)
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	};
+	if (soap_end_count(soap)
+	 || soap_response(soap, SOAP_OK)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put_ns1__signature_Response(soap, &soap_tmp_ns1__signature_Response, "ns1:signature-Response", NULL)
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap->error;
+	return soap_closesock(soap);
+}
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns1__scs(struct soap *soap)
+{	struct ns1__scs soap_tmp_ns1__scs;
+	struct ns1__scsResponse soap_tmp_ns1__scsResponse;
+	char * soap_tmp_string;
+	soap_default_ns1__scsResponse(soap, &soap_tmp_ns1__scsResponse);
+	soap_tmp_string = NULL;
+	soap_tmp_ns1__scsResponse._result = &soap_tmp_string;
+	soap_default_ns1__scs(soap, &soap_tmp_ns1__scs);
+	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
+	if (!soap_get_ns1__scs(soap, &soap_tmp_ns1__scs, "ns1:scs", NULL))
+		return soap->error;
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap->error;
+	soap->error = ns1__scs(soap, soap_tmp_ns1__scs._sequence, soap_tmp_ns1__scs._params, soap_tmp_ns1__scsResponse._result);
+	if (soap->error)
+		return soap->error;
+	soap_serializeheader(soap);
+	soap_serialize_ns1__scsResponse(soap, &soap_tmp_ns1__scsResponse);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if (soap->mode & SOAP_IO_LENGTH)
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put_ns1__scsResponse(soap, &soap_tmp_ns1__scsResponse, "ns1:scsResponse", NULL)
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	};
+	if (soap_end_count(soap)
+	 || soap_response(soap, SOAP_OK)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put_ns1__scsResponse(soap, &soap_tmp_ns1__scsResponse, "ns1:scsResponse", NULL)
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap->error;
+	return soap_closesock(soap);
+}
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns1__leading_USCOREstrand(struct soap *soap)
+{	struct ns1__leading_USCOREstrand soap_tmp_ns1__leading_USCOREstrand;
+	struct ns1__leading_USCOREstrandResponse _param_9;
+	soap_default_ns1__leading_USCOREstrandResponse(soap, &_param_9);
+	soap_default_ns1__leading_USCOREstrand(soap, &soap_tmp_ns1__leading_USCOREstrand);
+	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
+	if (!soap_get_ns1__leading_USCOREstrand(soap, &soap_tmp_ns1__leading_USCOREstrand, "ns1:leading_strand", NULL))
+		return soap->error;
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap->error;
+	soap->error = ns1__leading_USCOREstrand(soap, soap_tmp_ns1__leading_USCOREstrand._sequence, &_param_9);
+	if (soap->error)
+		return soap->error;
+	soap_serializeheader(soap);
+	soap_serialize_ns1__leading_USCOREstrandResponse(soap, &_param_9);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if (soap->mode & SOAP_IO_LENGTH)
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put_ns1__leading_USCOREstrandResponse(soap, &_param_9, "ns1:leading_strandResponse", NULL)
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	};
+	if (soap_end_count(soap)
+	 || soap_response(soap, SOAP_OK)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put_ns1__leading_USCOREstrandResponse(soap, &_param_9, "ns1:leading_strandResponse", NULL)
 	 || soap_body_end_out(soap)
 	 || soap_envelope_end_out(soap)
 	 || soap_end_send(soap))
@@ -3895,47 +4261,6 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns1__hydropathy(struct soap *soap)
 	 || soap_putheader(soap)
 	 || soap_body_begin_out(soap)
 	 || soap_put_ns1__hydropathyResponse(soap, &soap_tmp_ns1__hydropathyResponse, "ns1:hydropathyResponse", NULL)
-	 || soap_body_end_out(soap)
-	 || soap_envelope_end_out(soap)
-	 || soap_end_send(soap))
-		return soap->error;
-	return soap_closesock(soap);
-}
-
-SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns1__pubmed(struct soap *soap)
-{	struct ns1__pubmed soap_tmp_ns1__pubmed;
-	struct ns1__pubmedResponse _param_10;
-	soap_default_ns1__pubmedResponse(soap, &_param_10);
-	soap_default_ns1__pubmed(soap, &soap_tmp_ns1__pubmed);
-	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
-	if (!soap_get_ns1__pubmed(soap, &soap_tmp_ns1__pubmed, "ns1:pubmed", NULL))
-		return soap->error;
-	if (soap_body_end_in(soap)
-	 || soap_envelope_end_in(soap)
-	 || soap_end_recv(soap))
-		return soap->error;
-	soap->error = ns1__pubmed(soap, &_param_10);
-	if (soap->error)
-		return soap->error;
-	soap_serializeheader(soap);
-	soap_serialize_ns1__pubmedResponse(soap, &_param_10);
-	if (soap_begin_count(soap))
-		return soap->error;
-	if (soap->mode & SOAP_IO_LENGTH)
-	{	if (soap_envelope_begin_out(soap)
-		 || soap_putheader(soap)
-		 || soap_body_begin_out(soap)
-		 || soap_put_ns1__pubmedResponse(soap, &_param_10, "ns1:pubmedResponse", NULL)
-		 || soap_body_end_out(soap)
-		 || soap_envelope_end_out(soap))
-			 return soap->error;
-	};
-	if (soap_end_count(soap)
-	 || soap_response(soap, SOAP_OK)
-	 || soap_envelope_begin_out(soap)
-	 || soap_putheader(soap)
-	 || soap_body_begin_out(soap)
-	 || soap_put_ns1__pubmedResponse(soap, &_param_10, "ns1:pubmedResponse", NULL)
 	 || soap_body_end_out(soap)
 	 || soap_envelope_end_out(soap)
 	 || soap_end_send(soap))
