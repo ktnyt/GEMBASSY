@@ -90,12 +90,12 @@ AjPStr getGenbank(AjPSeq seq){
     ajStrAppendS(&inseq,seqline);
   }
 
-  ajStrDel(seqline);
-  ajStrDel(featline);
-  ajStrDel(filename);
-  ajFileClose(seqfile);
-  ajFileClose(featfile);
-  ajFeattableDel(feat);
+  ajStrDel(&seqline);
+  ajStrDel(&featline);
+  ajStrDel(&filename);
+  ajFileClose(&seqfile);
+  ajFileClose(&featfile);
+  ajFeattableDel(&feat);
 
   return inseq;
 }
