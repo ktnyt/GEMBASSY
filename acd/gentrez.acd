@@ -8,12 +8,16 @@ section: input [
   information: "Input section"
   type: "page"
 ]
-  string: query [
-    parameter: "Y"
-  ]
+
   string: db [
     parameter: "Y"
     information: "NCBI database to search"
     default: "pubmed"
   ]
+
+  string: query [
+    parameter: "Y"
+    information: "Query to search"
+  ]
+
 endsection: input

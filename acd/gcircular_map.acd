@@ -1,6 +1,6 @@
 application: gcircular_map [
   documentation: "Draws circular map of the genome "
-  groups: "Display
+  groups: "Display"
   embassy: "GEMBASSY"
 ]
 

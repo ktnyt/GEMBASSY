@@ -1,6 +1,6 @@
-application:  [
-  documentation: ""
-  groups: ""
+application: gs_value [
+  documentation: "Calculate the strength of selected codon usage bias (S)"
+  groups: "Nucleic:Codon Usage"
   embassy: "GEMBASSY"
 ]
 
@@ -12,6 +12,7 @@ section: input [
   seqall: sequence [
     parameter: "Y"
     type: "nucleotide"
+    features: "Y"
   ]
 
 endsection: input
@@ -21,20 +22,16 @@ section: advanced [
   type: "page"
 ]
 
-  integer:  [
-    information: ""
+  integer: sharp [
+    information: "Set to 1 to use the 40 genes used by Sharp instead of ribosomal proteins"
+    default: "0"
+  ]
+
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
     default: ""
   ]
 
-  boolean:  [
-    information: ""
-    default: ""
-  ]
-
-  string:  [
-    information: ""
-    default: ""
-  ]
 endsection: advanced
 
 section: output [

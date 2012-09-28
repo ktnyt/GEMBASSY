@@ -1,0 +1,45 @@
+application: goligomer_search [
+  documentation: "Searches oligomers in given sequence"
+  groups: "Nucleic:Composition"
+  embassy: "GEMBASSY"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+
+  seqall: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+    features: "Y"
+  ]
+
+  string: oligomer [
+    parameter: "Y"
+  ]
+
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+
+  string: return [
+    information: "'position"' to return list of positions where oligomers are found, 'oligo' to return list of oligomers found ordered by positions, 'both' to return a hash with positions as keys and oligomers as values, 'distribution' to return four values (see above) about the distribution of given oligomer"
+    default: "position"
+  ]
+
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: ""
+  ]
+
+endsection: advanced
+
+section: output [
+	information: "Output section"
+	type: "page"
+]
+endsection: output
