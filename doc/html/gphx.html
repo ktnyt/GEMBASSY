@@ -10,8 +10,7 @@
 
 <table align=center border=0 cellspacing=0 cellpadding=0>
 <tr><td valign=top>
-<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emb
-oss_icon.jpg" alt="" width=150 height=48></a>
+<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emboss_icon.jpg" alt="" width=150 height=48></a>
 </td>
 <td align=left valign=middle>
 <b><font size="+6">
@@ -31,7 +30,7 @@ gphx
 
 
 <H2> Function </H2>
-Identify predicted highly expressed (PHX) genes
+Identify predicted highly expressed gene
 <!--
 DON'T WRITE ANYTHING HERE.
 IT IS DONE FOR YOU.
@@ -42,12 +41,24 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This program calculates codon usage differences between gene classes for
-   identifying predicted highly expressed (PHX) genes.
+   This program calculates codon usage differences between gene classes for identifying 
+   predicted highly expressed (PHX) genes. The "expression measure" of a gene, E_g, 
+   will be accessible at $gb->{"FEATURE$i"}->{E_g}.
+
+  Usage:
+   NULL = &phx(G instance);
+
+  Options:
+   -output   output option (default: 'stdout')
+   'stdout' for standard output,
+   'f' for file output in directory "data"
+   -filename   output filename (default: 'phx.csv')
+   -usage   pointer HASH of vectors of amino acid and codon 
 </p>
 
 <p>
 G-language SOAP service is provided by the Institute for Advanced Biosciences, Keio University.<br />
+
 The original web service is located at the following URL:<br />
 http://www.g-language.org/wiki/soap
 </p>
@@ -63,12 +74,8 @@ http://soap.g-language.org/g-language.wsdl
 
    Here is a sample session with gphx
 
-% gphx 
-Identify predicted highly expressed gene
-Input nucleotide sequence: refseqn:NC_000908
-Retrieving file from:
-http://soap.g-language.org/WS/result.cgi?jobid=13314900014072
-to ./gphx.csv
+% gphx NC_000913.gbk
+NC_000913
 Retrieval successful
 
 
@@ -93,9 +100,9 @@ Retrieval successful
 
 <tr bgcolor="#FFFFCC">
 <td>[-sequence]<br>(Parameter 1)</td>
-<td>sequence</td>
-<td>Nucleotide sequence filename and optional format, or reference (input USA)</td>
-<td>Readable sequence</td>
+<td>seqall</td>
+<td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
+<td>Readable sequence(s)</td>
 <td><b>Required</b></td>
 </tr>
 
@@ -135,18 +142,27 @@ Retrieval successful
 <td>[^ACDEFGHIKLMNPQRSTVWYacgtU]</td>
 </tr>
 
+<tr bgcolor="#FFFFCC">
+<td>-accid</td>
+<td>boolean</td>
+<td>Include to use sequence accession ID as query</td>
+<td>Boolean value Yes/No</td>
+<td>No</td>
+</tr>
+
 </table>
+
 
 <h2>Input file format</h2>
 
 <p>
-gphx reads inputtype.
+gphx reads nucleotide sequences.
 </p>
 
 <h2>Ouptput file format</h2>
 
 <p>
-The output from gphx is to outputtype.
+The output from gphx is to raw CSV format.
 </p>
 
 <h2>Data files</h2>
@@ -164,25 +180,21 @@ None.
 <h2>Refrences</h2>
 
 <pre>
+   Karlin and Mrazek (2000) J.Bacteriol. 182(18):5238-5250.
+   Henry I, Sharp PM. 2007 Mol Biol Evol. 24(1):10-2.
+
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
       for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
 
    Arakawa, K. and Tomita, M. (2006) G-language System as a Platfor for
       large-scale analysis of high-throughput omics data, J. Pest Sci.,
-      31, 7.                     
+      31, 7.
 
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Wev Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
 </pre>
-
-<h2>Warnings</h2>
-
-<p>
-None.
-</p>
-
 <h2>Diagnostic Error Messages</h2>
 
 <p>
@@ -203,27 +215,6 @@ None.
 
 <h2>See also</h2>
 
-<table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th>
-<th>Description</th></tr>
-<tr>
-<td><a href="gbui.html">gbui</a></td>
-<td>Calculates base usage indices for protein-coding sequences</td>
-</tr>
-<tr>
-<td><a href="gcai.html">gcai</a></td>
-<td>Calculate codon adaptation index (CAI) for each gene</td>
-</tr>
-<tr>
-<td><a href="gcbi.html">gcbi</a></td>
-<td>Calculates the codon bias index (CBI)</td>
-</tr>
-<tr>
-<td><a href="gicdi.html">gicdi</a></td>
-<td>Calculates the intrinsic codon deviation index (ICDI)</td>
-</tr>
-
-</table>
-
 <h2>Author(s)</h2>
 
 <pre>
@@ -231,7 +222,7 @@ None.
    Institute for Advanced Biosciences, Keio University
    252-8520 Japan
 
-   Haruo Suzuki (haruo@g-language.org)
+   Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
 </pre>
 
 <h2>History</h2>
@@ -245,5 +236,5 @@ None.
 
 <h2>Comments</h2>
 
-   None.
+    None.
 

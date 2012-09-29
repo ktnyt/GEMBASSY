@@ -15,9 +15,8 @@ Description
    k=3 preserves all triplet, doublet, and single nucleotide composition. 
    Algorithm for k-mer preserved shuffling is non-trivial, which is solved
    by graph theoretical approach with Eulerian random walks in the graph of 
-   k-1-mers. See references (Jiang et al., 2008; Kandel et al., 1996;
-   Propp and Wilson, 1998) for details of this algorithm. 
-
+   k-1-mers. See references 3-5 for details of this algorithm. 
+   
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -37,16 +36,15 @@ Usage
 
    Here is a sample session with gshuffleseq
 
-% gshuffleseq 
+% gshuffleseq NC_000913.gbk
 Create randomized sequence with conserved k-mer composition
-Input nucleotide sequence: nucleotideSample.fna
-Writing sequence out to FM180568.1.fasta
+NC_000913
 
-Command line argumants
+Command line arguments
 
-   Standard (Mandatory) qualifiers:
-  [-sequence]          sequence   Nucleotide sequence filename and optional
-                                  format, or reference (input USA)
+Standard (Mandatory) qualifiers:
+  [-sequence]          seqall     Sequence(s) filename and optional format, or
+                                  reference (input USA)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -60,13 +58,14 @@ Command line argumants
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
 
+
 Input file format
 
-   gshuffleseq reads any sequence data.
+   gshuffleseq reads nucleotide sequences
 
-Ouptput file format
+Output file format
 
-   The output from gshuffleseq is to fasta format.
+   The output from gshuffleseq is to standard output.
 
 Data files
 
@@ -76,18 +75,18 @@ Notes
 
    None.
 
-Refrences
+References
 
-   Fisher R.A. and Yates F. (1938) "Example 12", Statistical Tables, London
-
-   Durstenfeld R. (1964) "Algorithm 235: Random permutation", CACM 7(7):420
-
-   Kandel D., Matias Y., Unver R., and Winker P. (1996) "Shuffling biological
-      sequences", Discrete Applied Mathematics 71(1-3):171-185
-
-   Propp J.G. and Wilson D.B. (1998) "How to get a perfectly random sample
-      from a generic Markov chain and generate a random spanning tree of a
-      directed graph", Journal of Algorithms 27(2):170-217
+    1. Fisher R.A. and Yates F. (1938) "Example 12", Statistical Tables, London
+    2. Durstenfeld R. (1964) "Algorithm 235: Random permutation", CACM 7(7):420
+    3. Jiang M., Anderson J., Gillespie J., and Mayne M. (2008) "uShuffle: 
+       a useful tool for shuffling biological sequences while preserving the k-let
+       counts", BMC Bioinformatics 9:192
+    4. Kandel D., Matias Y., Unver R., and Winker P. (1996) "Shuffling biological 
+       sequences", Discrete Applied Mathematics 71(1-3):171-185  
+    5. Propp J.G. and Wilson D.B. (1998) "How to get a perfectly random sample 
+       from a generic Markov chain and generate a random spanning tree of a 
+       directed graph", Journal of Algorithms 27(2):170-217
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -96,10 +95,6 @@ Refrences
    Arakawa, K. and Tomita, M. (2006) G-language System as a Platfor for
       large-scale analysis of high-throughput omics data, J. Pest Sci.,
       31, 7.
-
-   Jiang M., Anderson J., Gillespie J., and Mayne M. (2008) "uShuffle: 
-      a useful tool for shuffling biological sequences while preserving the
-      k-let counts", BMC Bioinformatics 9:192
 
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Wev Service Interfaces,
@@ -123,13 +118,15 @@ Known bugs
 
 See also
 
+
+
 Author(s)
 
    Hidetoshi Itaya (celery@g-language.org)
    Institute for Advanced Biosciences, Keio University
    252-8520 Japan
 
-   Kazuharu Arakawa (gaou@g-language.org)
+   Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
 
 History
 
@@ -138,7 +135,7 @@ History
 Target users
 
    This program is intended to be used by everyone and everything, from
-   naive users to embedded scrips.
+   naive users to embedded scripts.
 
 Comments
 

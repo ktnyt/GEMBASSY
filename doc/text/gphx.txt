@@ -1,16 +1,23 @@
                                     gphx
 Function
 
-   Identify predicted highly expressed (PHX) genes
+   Identify predicted highly expressed gene
 
 Description
 
-   This program calculates codon usage differences between gene classes for
-   identifying predicted highly expressed (PHX) genes.
+   This program calculates codon usage differences between gene classes for identifying 
+   predicted highly expressed (PHX) genes. The "expression measure" of a gene, E_g, 
+   will be accessible at $gb->{"FEATURE$i"}->{E_g}.
 
-   This program downloads the result file to the working directory.
-   The downloaded file is named "gphx.csv".
+  Usage:
+   NULL = &phx(G instance);
 
+  Options:
+   -output   output option (default: 'stdout')
+   'stdout' for standard output,
+   'f' for file output in directory "data"
+   -filename   output filename (default: 'phx.csv')
+   -usage   pointer HASH of vectors of amino acid and codon 
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -30,18 +37,15 @@ Usage
 
    Here is a sample session with gphx
 
-% gphx 
+% gphx NC_000913.gbk
 Identify predicted highly expressed gene
-Input nucleotide sequence: refseqn:NC_000908
-Retrieving file from:
-http://soap.g-language.org/WS/result.cgi?jobid=13314900014072
-to ./gphx.csv
+NC_000913
 Retrieval successful
 
-Command line argumants
+Command line arguments
 
-   Standard (Mandatory) qualifiers:
-  [-sequence]          sequence   Nucleotide sequence filename and optional
+Standard (Mandatory) qualifiers:
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
 
    Additional (Optional) qualifiers: (none)
@@ -53,14 +57,22 @@ Command line argumants
                                   genes (Any string)
    -delkey             string     [[^ACDEFGHIKLMNPQRSTVWYacgtU]] Regular
                                   expression to delete key (Any string)
+   -accid              boolean    [0] Include to use sequence accession ID as
+                                  query
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
 
 Input file format
 
-   gphx reads a genome sequence as input.
+   gphx reads nucleotide sequences
 
-Ouptput file format
+Output file format
 
-   The output from gphx is to CSV format.
+   The output from gphx is to raw CSV format.
 
 Data files
 
@@ -70,7 +82,10 @@ Notes
 
    None.
 
-Refrences
+References
+
+   Karlin and Mrazek (2000) J.Bacteriol. 182(18):5238-5250.
+   Henry I, Sharp PM. 2007 Mol Biol Evol. 24(1):10-2.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -78,7 +93,7 @@ Refrences
 
    Arakawa, K. and Tomita, M. (2006) G-language System as a Platfor for
       large-scale analysis of high-throughput omics data, J. Pest Sci.,
-      31, 7.                     
+      31, 7.
 
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Wev Service Interfaces,
@@ -102,10 +117,7 @@ Known bugs
 
 See also
 
-   gbui  - Calculates base usage indices for protein-coding sequences
-   gcai  - Calculate codon adaptation index (CAI) for each gene
-   gcbi  - Calculates the codon bias index (CBI)
-   gicdi - Calculates the intrinsic codon deviation index (ICDI)
+
 
 Author(s)
 
@@ -113,7 +125,7 @@ Author(s)
    Institute for Advanced Biosciences, Keio University
    252-8520 Japan
 
-   Haruo Suzuki (haruo@g-language.org)
+   Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
 
 History
 
@@ -122,7 +134,7 @@ History
 Target users
 
    This program is intended to be used by everyone and everything, from
-   naive users to embedded scrips.
+   naive users to embedded scripts.
 
 Comments
 

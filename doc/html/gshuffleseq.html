@@ -10,8 +10,7 @@
 
 <table align=center border=0 cellspacing=0 cellpadding=0>
 <tr><td valign=top>
-<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emb
-oss_icon.jpg" alt="" width=150 height=48></a>
+<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emboss_icon.jpg" alt="" width=150 height=48></a>
 </td>
 <td align=left valign=middle>
 <b><font size="+6">
@@ -44,23 +43,21 @@ IT IS DONE FOR YOU.
 <p>
    Shuffle and randomize the given sequence, conserving the nucleotide/peptide
    k-mer content of the original sequence. 
-</p>
 
-<p>
    For k=1, i.e. shuffling sequencing preserving single nucleotide composition, 
    Fisher-Yates Algorithm is employed. 
-</p>
 
-<p>
    For k>1, shuffling preserves all k-mers (all k where k=1~k). For example,
    k=3 preserves all triplet, doublet, and single nucleotide composition. 
    Algorithm for k-mer preserved shuffling is non-trivial, which is solved
    by graph theoretical approach with Eulerian random walks in the graph of 
-   k-1-mers. See (Jiang et al., 2008; Kandel et al., 1996; Propp and Wilson, 1998)  for details of this algorithm. 
+   k-1-mers. See references 3-5 for details of this algorithm. 
+   
 </p>
 
 <p>
 G-language SOAP service is provided by the Institute for Advanced Biosciences, Keio University.<br />
+
 The original web service is located at the following URL:<br />
 http://www.g-language.org/wiki/soap
 </p>
@@ -76,10 +73,8 @@ http://soap.g-language.org/g-language.wsdl
 
    Here is a sample session with gshuffleseq
 
-% gshuffleseq 
-Create randomized sequence with conserved k-mer composition
-Input nucleotide sequence: nucleotideSample.fna
-Writing sequence out to FM180568.1.fasta
+% gshuffleseq NC_000913.gbk
+NC_000913
 
 
 </pre></td></tr></table>
@@ -103,9 +98,9 @@ Writing sequence out to FM180568.1.fasta
 
 <tr bgcolor="#FFFFCC">
 <td>[-sequence]<br>(Parameter 1)</td>
-<td>sequence</td>
-<td>Nucleotide sequence filename and optional format, or reference (input USA)</td>
-<td>Readable sequence</td>
+<td>seqall</td>
+<td>Sequence(s) filename and optional format, or reference (input USA)</td>
+<td>Readable sequence(s)</td>
 <td><b>Required</b></td>
 </tr>
 
@@ -139,16 +134,17 @@ Writing sequence out to FM180568.1.fasta
 
 </table>
 
+
 <h2>Input file format</h2>
 
 <p>
-gshuffleseq reads any sequence data.
+gshuffleseq reads nucleotide sequences.
 </p>
 
 <h2>Ouptput file format</h2>
 
 <p>
-The output from gshuffleseq is to fasta format.
+The output from gshuffleseq is to standard output.
 </p>
 
 <h2>Data files</h2>
@@ -165,34 +161,17 @@ None.
 
 <h2>Refrences</h2>
 
-   Fisher R.A. and Yates F. (1938) "Example 12", Statistical Tables, London
-
-   Durstenfeld R. (1964) "Algorithm 235: Random permutation", CACM 7(7):420
-
-   Kandel D., Matias Y., Unver R., and Winker P. (1996) "Shuffling biological
-      sequences", Discrete Applied Mathematics 71(1-3):171-185
-
-   Propp J.G. and Wilson D.B. (1998) "How to get a perfectly random sample
-      from a generic Markov chain and generate a random spanning tree of a
-      directed graph", Journal of Algorithms 27(2):170-217
-
-   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
-      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
-      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
-
-   Arakawa, K. and Tomita, M. (2006) G-language System as a Platfor for
-      large-scale analysis of high-throughput omics data, J. Pest Sci.,
-      31, 7.
-
-   Jiang M., Anderson J., Gillespie J., and Mayne M. (2008) "uShuffle: 
-      a useful tool for shuffling biological sequences while preserving the
-
-   Kandel D., Matias Y., Unver R., and Winker P. (1996) "Shuffling biological
-      sequences", Discrete Applied Mathematics 71(1-3):171-185
-
-   Propp J.G. and Wilson D.B. (1998) "How to get a perfectly random sample
-      from a generic Markov chain and generate a random spanning tree of a
-      directed graph", Journal of Algorithms 27(2):170-217
+<pre>
+    1. Fisher R.A. and Yates F. (1938) "Example 12", Statistical Tables, London
+    2. Durstenfeld R. (1964) "Algorithm 235: Random permutation", CACM 7(7):420
+    3. Jiang M., Anderson J., Gillespie J., and Mayne M. (2008) "uShuffle: 
+       a useful tool for shuffling biological sequences while preserving the k-let
+       counts", BMC Bioinformatics 9:192
+    4. Kandel D., Matias Y., Unver R., and Winker P. (1996) "Shuffling biological 
+       sequences", Discrete Applied Mathematics 71(1-3):171-185  
+    5. Propp J.G. and Wilson D.B. (1998) "How to get a perfectly random sample 
+       from a generic Markov chain and generate a random spanning tree of a 
+       directed graph", Journal of Algorithms 27(2):170-217
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -201,21 +180,11 @@ None.
    Arakawa, K. and Tomita, M. (2006) G-language System as a Platfor for
       large-scale analysis of high-throughput omics data, J. Pest Sci.,
       31, 7.
-
-   Jiang M., Anderson J., Gillespie J., and Mayne M. (2008) "uShuffle: 
-      a useful tool for shuffling biological sequences while preserving the
-      k-let counts", BMC Bioinformatics 9:192
 
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Wev Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
-
-<h2>Warnings</h2>
-
-<p>
-None.
-</p>
-
+</pre>
 <h2>Diagnostic Error Messages</h2>
 
 <p>
@@ -243,7 +212,7 @@ None.
    Institute for Advanced Biosciences, Keio University
    252-8520 Japan
 
-   Kazuharu Arakawa(gaou@g-language.org) 
+   Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
 </pre>
 
 <h2>History</h2>
@@ -257,5 +226,5 @@ None.
 
 <h2>Comments</h2>
 
-   None.
+    None.
 

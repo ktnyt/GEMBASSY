@@ -10,8 +10,7 @@
 
 <table align=center border=0 cellspacing=0 cellpadding=0>
 <tr><td valign=top>
-<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emb
-oss_icon.jpg" alt="" width=150 height=48></a>
+<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emboss_icon.jpg" alt="" width=150 height=48></a>
 </td>
 <td align=left valign=middle>
 <b><font size="+6">
@@ -31,7 +30,7 @@ ggcsi
 
 
 <H2> Function </H2>
-GC Skew Index: an index for strand-specific mutational bias
+GC Skew Index: an index for strand-specefic mutational bias
 <!--
 DON'T WRITE ANYTHING HERE.
 IT IS DONE FOR YOU.
@@ -46,32 +45,29 @@ IT IS DONE FOR YOU.
    bacterial genome. GCSI quantifies the degree of GC Skew. In other words,
    this index represents the degree of strand-specific mutational bias in 
    bacterial genomes, caused by replicational selection. 
-</p>
 
-<p>
-   GCSI is calculated by the following formula:<br />
-   GCSI = sqrt((SA/6000) * (dist/600))<br />
+   GCSI is calculated by the following formula:
+   GCSI = sqrt((SA/6000) * (dist/600))
    where SA is the spectral amplitude of Fourier power spectrum at 1Hz,
    and dist is the normalized Euclidean distance between the vertices of 
    cumulative GC skew.
-</p>
 
-<p>
    GCSI ranges from 0 (no observable skew) to 1 (strong skew), and Archaeal genomes
    that have multiple replication origins and therefore have no observable skew
    mostly have GCSI below 0.05. Escherichia coli genome has values around 0.10.
-</p>
 
-<p>
    Version 1 of GCSI required fixed number of windows (4096), but the new GCSI
    version 2 (also known as generalized GCSI: gGCSI) is invariant of the number
    of windows. GCSI version 1 is calculated as an arithmetic mean (as opposed to 
    the geometric mean of gGCSI) of SR (spectral ratio, the signal-to-noise ratio
-   of 1Hz power spectrum) and dist.
+   of 1Hz power spectrum) and dist. 
+
+  
 </p>
 
 <p>
 G-language SOAP service is provided by the Institute for Advanced Biosciences, Keio University.<br />
+
 The original web service is located at the following URL:<br />
 http://www.g-language.org/wiki/soap
 </p>
@@ -87,11 +83,10 @@ http://soap.g-language.org/g-language.wsdl
 
    Here is a sample session with ggcsi
 
-% ggcsi 
-GC Skew Index: an index for strand-specefic mutational bias
-Input nucleotide sequence: input.fna
-GCSI            SA              Dist
-0.029426        19.060829       163.543442
+% ggcsi NC_000913.gbk
+NC_000913:
+GCSI		SA		Dist
+0.096662	487.218567	69.037727
 
 
 </pre></td></tr></table>
@@ -115,9 +110,9 @@ GCSI            SA              Dist
 
 <tr bgcolor="#FFFFCC">
 <td>[-sequence]<br>(Parameter 1)</td>
-<td>sequence</td>
-<td>Nucleotide sequence filename and optional format, or reference (input USA)</td>
-<td>Readable sequence</td>
+<td>seqall</td>
+<td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
+<td>Readable sequence(s)</td>
 <td><b>Required</b></td>
 </tr>
 
@@ -181,12 +176,29 @@ GCSI            SA              Dist
 <td>No</td>
 </tr>
 
+<tr bgcolor="#FFFFCC">
+<td>-accid</td>
+<td>boolean</td>
+<td>Include to use sequence accession ID as query</td>
+<td>Boolean value Yes/No</td>
+<td>No</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-outstring</td>
+<td>string</td>
+<td>(no help text) string value</td>
+<td>Any string</td>
+<td>&nbsp;</td>
+</tr>
+
 </table>
+
 
 <h2>Input file format</h2>
 
 <p>
-ggcsi reads a genome sequence as input.
+ggcsi reads nucleotide sequences.
 </p>
 
 <h2>Ouptput file format</h2>
@@ -210,25 +222,21 @@ None.
 <h2>Refrences</h2>
 
 <pre>
+    1. Arakawa K, Tomita M (2007) "The GC skew index: a measure of genomic compositional 
+       asymmetry and the degree of replicational selection", Evolutionary Bioinformatics, 3:145-154.
+
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
       for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
 
    Arakawa, K. and Tomita, M. (2006) G-language System as a Platfor for
       large-scale analysis of high-throughput omics data, J. Pest Sci.,
-      31, 7.                     
+      31, 7.
 
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Wev Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
 </pre>
-
-<h2>Warnings</h2>
-
-<p>
-None.
-</p>
-
 <h2>Diagnostic Error Messages</h2>
 
 <p>
@@ -248,43 +256,6 @@ None.
 </p>
 
 <h2>See also</h2>
-
-<table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th>
-<th>Description</th></tr>
-<tr>
-<td><a href="gfindoriter.html">gfindoriter</a></td>
-<td>Predict the replication origin and terminus in bacterial genomes</td>
-</tr>
-<tr>
-<td><a href="ggcskew.html">ggcskew</a></td>
-<td>Calculate the GC skew of the given genome</td>
-</tr>
-<tr>
-<td><a href="ggcwin.html">ggcwin</a></td>
-<td>Calculate the GC content along the given genome</td>
-</tr>
-<tr>
-<td><a href="ggeneskew.html">ggeneskew</a></td>
-<td>Calculate the gene strand bias of the given genome</td>
-</tr>
-<tr>
-<td><a href="ggenomicskew.html">ggenomicskew</a></td>
-<td>Calculate the GC skew in different regions of the given genome</td>
-</tr>
-<tr>
-<td><a href="gqueryarm.html">gqueryarm</a></td>
-<td>Get the replication arm name (left or right) from the given position</td>
-</tr>
-<tr>
-<td><a href="gquerystrand.html">gquerystrand</a></td>
-<td>Get the strand name (leading or lagging) from the given position</td>
-</tr>
-<tr>
-<td><a href="greporiter.html">greporiter</a></td>
-<td>Get the positions of replication origin and terminus</td>
-</tr>
-
-</table>
 
 <h2>Author(s)</h2>
 
@@ -307,5 +278,5 @@ None.
 
 <h2>Comments</h2>
 
-   None.
+    None.
 

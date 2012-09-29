@@ -1,0 +1,226 @@
+<!--START OF HEADER - DON'T ALTER -->
+
+<HTML>
+<HEAD>
+  <TITLE> EMBOSS: gaaui </TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" text="#000000">
+
+
+
+<table align=center border=0 cellspacing=0 cellpadding=0>
+<tr><td valign=top>
+<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emboss_icon.jpg" alt="" width=150 height=48></a>
+</td>
+<td align=left valign=middle>
+<b><font size="+6">
+gaaui
+</font></b>
+</td></tr>
+</table>
+<br>&nbsp;
+<p>
+
+
+<!--END OF HEADER-->
+
+
+
+
+
+
+<H2> Function </H2>
+Calculates various indece of amino acid usage
+<!--
+DON'T WRITE ANYTHING HERE.
+IT IS DONE FOR YOU.
+-->
+
+
+
+
+<H2>Description</H2>
+<p>
+   This program calculates amino acid usage indices for proteins
+   (excluding formylmethionine), and inputs in the G instance.
+   Informations stored in the G instance are:
+   $gb->{$id}->{ndaa}: number of different amino acids
+   $gb->{$id}->{Haau}: entropy of amino acid usage
+   $gb->{$id}->{mmw}: mean molecular weight
+   $gb->{$id}->{gravy}: mean hydropathic indices of each amino acid
+   $gb->{$id}->{aroma}: relative frequency of aromatic amino acids
+   $gb->{$id}->{acidic}: relative frequency of acidic amino acids
+   $gb->{$id}->{basic}: relative frequency of basic amino acids
+   $gb->{$id}->{neutral}: relative frequency of neutral amino acids
+   $gb->{$id}->{polar}: relative frequency of polar amino acids
+   $gb->{header_aaui}
+
+  
+</p>
+
+<p>
+G-language SOAP service is provided by the Institute for Advanced Biosciences, Keio University.<br />
+
+The original web service is located at the following URL:<br />
+http://www.g-language.org/wiki/soap
+</p>
+
+<p>
+WSDL(RPC/Encoded) file is located at:<br />
+http://soap.g-language.org/g-language.wsdl
+</p>
+
+<H2>Usage</H2>
+
+<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
+
+   Here is a sample session with gaaui
+
+% gaaui NC_000913.gbk
+NC_000913
+Retrieval successful
+
+
+</pre></td></tr></table>
+
+
+
+<h2>Command line argumants</h2>
+
+<table border cellspacing=0 cellpadding=3 bgcolor="#ccccff">
+<tr bgcolor="#FFFFCC">
+<th align="left">Qualifier</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+<th align="left">Allowed values</th>
+<th align="left">Default</th>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<th align="left" colspan=5>Standard (Mandatory) qualifiers</th>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>[-sequence]<br>(Parameter 1)</td>
+<td>seqall</td>
+<td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
+<td>Readable sequence(s)</td>
+<td><b>Required</b></td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<th align="left" colspan=5>Additional (Optional) qualifiers</th>
+</tr>
+
+<tr>
+<td colspan=5>(none)</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<th align="left" colspan=5>Advanced (Unprompted) qualifiers</th>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-id</td>
+<td>string</td>
+<td>ID of a group</td>
+<td>Any string</td>
+<td>All</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-accid</td>
+<td>boolean</td>
+<td>Include to use sequence accession ID as query</td>
+<td>Boolean value Yes/No</td>
+<td>No</td>
+</tr>
+
+</table>
+
+
+<h2>Input file format</h2>
+
+<p>
+gaaui reads nucleotide sequences.
+</p>
+
+<h2>Ouptput file format</h2>
+
+<p>
+The output from gaaui is to raw CSV format.
+</p>
+
+<h2>Data files</h2>
+
+<p>
+None.
+</p>
+
+<h2>Notes</h2>
+
+<p>
+None.
+</p>
+
+<h2>Refrences</h2>
+
+<pre>
+   Lobry and Gautier (1994) Nucleic Acids Res. 22:3174-3180.
+   Zavala A et al. (2002) J Mol Evol. 54(5):563-8.
+
+   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
+      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
+      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
+
+   Arakawa, K. and Tomita, M. (2006) G-language System as a Platfor for
+      large-scale analysis of high-throughput omics data, J. Pest Sci.,
+      31, 7.
+
+   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
+      Analysis Environment with REST and SOAP Wev Service Interfaces,
+      Nucleic Acids Res., 38, W700-W705.
+</pre>
+<h2>Diagnostic Error Messages</h2>
+
+<p>
+None.
+</p>
+
+<h2>Exit status</h2>
+
+<p>
+It always exits with a status of 0.
+</p>
+
+<h2>Known bugs</h2>
+
+<p>
+None.
+</p>
+
+<h2>See also</h2>
+
+<h2>Author(s)</h2>
+
+<pre>
+   Hidetoshi Itaya (celery@g-language.org)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
+
+   Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+</pre>
+
+<h2>History</h2>
+
+   2012 - Written by Hidetoshi Itaya
+
+<h2>Target users</h2>
+
+   This program is intended to be used by everyone and everything, from
+   naive users to embedded scrips.
+
+<h2>Comments</h2>
+
+    None.
+
