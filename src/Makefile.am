@@ -54,8 +54,10 @@ bin_PROGRAMS = gaaui\
                gcbi\
                gcgr\
                gcircular_map\
+               gcodon_compiler\
                gdelta_enc\
                gdelta_gcskew\
+               gdinuc\
                gdist_in_cc\
                genc\
                gentrez\
@@ -73,12 +75,14 @@ bin_PROGRAMS = gaaui\
                gleading_strand\
                gnucleotide_periodicity\
                goligomer_counter\
+               goligomer_search\
                gp2\
                gpalindrome\
                gphx\
                gquery_arm\
                gquery_strand\
                grep_ori_ter\
+               gs_value\
                gscs\
                gseq2png\
                gseqinfo\
@@ -101,9 +105,11 @@ gcai_SOURCES            = gcai.c
 gcbi_SOURCES            = gcbi.c
 gcgr_SOURCES            = gcgr.c
 gcircular_map_SOURCES   = gcircular_map.c
+gcodon_compiler_SOURCES = gcodon_compiler.c
 gdelta_enc_SOURCES      = gdelta_enc.c
 gdelta_gcskew_SOURCES   = gdelta_gcskew.c
 gdist_in_cc_SOURCES     = gdist_in_cc.c
+gdinuc_SOURCES          = gdinuc.c
 genc_SOURCES            = genc.c
 gentrez_SOURCES         = gentrez.c
 gew_SOURCES             = gew.c
@@ -119,12 +125,14 @@ glda_bias_SOURCES       = glda_bias.c
 gleading_strand_SOURCES = gleading_strand.c
 gnucleotide_periodicity_SOURCES = gnucleotide_periodicity.c
 goligomer_counter_SOURCES       = goligomer_counter.c
+goligomer_search_SOURCES        = goligomer_search.c
 gp2_SOURCES             = gp2.c
 gpalindrome_SOURCES     = gpalindrome.c
 gphx_SOURCES            = gphx.c
 gquery_arm_SOURCES      = gquery_arm.c
 gquery_strand_SOURCES   = gquery_strand.c
 grep_ori_ter_SOURCES    = grep_ori_ter.c
+gs_value_SOURCES        = gs_value.c
 gscs_SOURCES            = gscs.c
 gseqinfo_SOURCES        = gseqinfo.c
 gseq2png_SOURCES        = gseq2png.c
