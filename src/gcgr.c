@@ -34,9 +34,11 @@ int main(int argc, char *argv[]){
   params.level = level;
     
   while(ajSeqallNext(seqall,&seq)){
+
     soap_init(&soap);
 
     inseq = NULL;
+
     ajStrAppendC(&inseq,">");
     ajStrAppendS(&inseq,ajSeqGetNameS(seq));
     ajStrAppendC(&inseq,"\n");

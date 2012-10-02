@@ -45,7 +45,12 @@ int main(int argc, char *argv[]){
 
     char* in0;
     in0 = ajCharNewS(inseq);
+
     fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
+
+    if(!ajSeqGetFeat(seq) &&!accid)
+      fprintf(stderr,"Sequence does not have features\nProceeding with sequence accession ID\n");
+
     if(soap_call_ns1__aaui(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
       ajStrAssignS(&filename,ajSeqGetAccS(seq));
       ajStrAppendC(&filename,".csv");

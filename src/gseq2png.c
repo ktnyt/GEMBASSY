@@ -38,21 +38,25 @@ int main(int argc, char *argv[]){
   params.output = ajCharNewS(output);
 
   while(ajSeqallNext(seqall,&seq)){
+
     soap_init(&soap);
 
     inseq = NULL;
-    if(!accid){
-      ajStrAppendC(&inseq,">");
-      ajStrAppendS(&inseq,ajSeqGetNameS(seq));
-      ajStrAppendC(&inseq,"\n");
-      ajStrAppendS(&inseq,ajSeqGetSeqS(seq));
+
+    if(ajSeqGetFeat(seq) && !accid){
+      inseq = getGenbank(seq);
     }else{
       ajStrAppendS(&inseq,ajSeqGetAccS(seq));
     }
     
     char* in0;
     in0 = ajCharNewS(inseq);
+
     fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
+
+    if(!ajSeqGetFeat(seq) && !accid)
+      fprintf(stderr,"Sequence does not have features\nProceeding with sequence accession ID\n");
+
     if(soap_call_ns1__seq2png(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
       ajStrAssignS(&filename,ajSeqGetNameS(seq));
       ajStrAppendC(&filename,".png");

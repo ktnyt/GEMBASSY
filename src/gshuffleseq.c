@@ -38,9 +38,11 @@ int main(int argc, char *argv[]){
   params.k = k;
 
   while(ajSeqallNext(seqall,&seq)){
+
     soap_init(&soap);
     
     inseq = NULL;
+
     ajStrAppendS(&inseq,ajSeqGetSeqS(seq));
     ajStrAppendS(&filename,ajSeqGetNameS(seq));
     

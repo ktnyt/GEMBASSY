@@ -25,21 +25,25 @@ int main(int argc, char *argv[]){
   accid  = ajAcdGetBoolean("accid");
 
   while(ajSeqallNext(seqall,&seq)){
+
     soap_init(&soap);
     
     inseq = NULL;
-    if(!accid){
-      ajStrAppendC(&inseq,">");
-      ajStrAppendS(&inseq,ajSeqGetNameS(seq));
-      ajStrAppendC(&inseq,"\n");
-      ajStrAppendS(&inseq,ajSeqGetSeqS(seq));
+
+    if(ajSeqGetFeat(seq) && !accid){
+      inseq = getGenbank(seq);
     }else{
       ajStrAppendS(&inseq,ajSeqGetAccS(seq));
     }
     
     char* in0;
     in0 = ajCharNewS(inseq);
+
     fprintf(stderr,"%s\nA\tT\tG\tC\t\n",ajCharNewS(ajSeqGetAccS(seq)));
+
+    if(!ajSeqGetFeat(seq) && !accid)
+      fprintf(stderr,"Sequence does not have features\nProceeding with sequence accession ID\n");
+
     if(soap_call_ns1__seqinfo(&soap,NULL,NULL,in0,&jobid)==SOAP_OK){
       char* dlm = "<>";
       char* tp;

@@ -27,6 +27,7 @@ int main(int argc, char *argv[]){
     soap_init(&soap);
 
     inseq = NULL;
+
     ajStrAppendC(&inseq,">");
     ajStrAppendS(&inseq,ajSeqGetNameS(seq));
     ajStrAppendC(&inseq,"\n");
@@ -34,7 +35,9 @@ int main(int argc, char *argv[]){
     
     char* in0;
     in0 = ajCharNewS(inseq);
+
     fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
+
     if(soap_call_ns1__amino_USCOREinfo(&soap,NULL,NULL,in0,&jobid)==SOAP_OK){
       puts(jobid);
     }else{

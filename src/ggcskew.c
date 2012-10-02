@@ -66,17 +66,15 @@ int main(int argc, char *argv[]){
   params.output       = ajCharNewS(output);
   
   while(ajSeqallNext(seqall,&seq)){
+
     soap_init(&soap);
 
     inseq = NULL;
-    if(!accid){
-      ajStrAppendC(&inseq,">");
-      ajStrAppendS(&inseq,ajSeqGetNameS(seq));
-      ajStrAppendC(&inseq,"\n");
-      ajStrAppendS(&inseq,ajSeqGetSeqS(seq));
-    }else{
-      ajStrAppendS(&inseq,ajSeqGetAccS(seq));
-    }
+
+    ajStrAppendC(&inseq,">");
+    ajStrAppendS(&inseq,ajSeqGetNameS(seq));
+    ajStrAppendC(&inseq,"\n");
+    ajStrAppendS(&inseq,ajSeqGetSeqS(seq));
     
     char* in0;
     in0 = ajCharNewS(inseq);

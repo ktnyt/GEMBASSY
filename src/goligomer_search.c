@@ -33,7 +33,11 @@ int main(int argc, char *argv[]){
   params.return_ = ajCharNewS(return_);
 
   while(ajSeqallNext(seqall,&seq)){  
+
     soap_init(&soap);
+
+    soap.send_timeout = 0;
+    soap.recv_timeout = 0;
 
     inseq = NULL;
 
@@ -47,7 +51,12 @@ int main(int argc, char *argv[]){
     char* in1;
     in0 = ajCharNewS(inseq);
     in1 = ajCharNewS(oligomer);
+
     fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
+
+    if(!ajSeqGetFeat(seq) && !accid)
+      fprintf(stderr,"Sequence does not have features\nProceeding with sequence accession ID\n");
+
     if(soap_call_ns1__oligomer_USCOREsearch(&soap,NULL,NULL,in0,in1,&params,&jobid)==SOAP_OK){
       puts(jobid);
     }else{

@@ -39,9 +39,11 @@ int main(int argc, char *argv[]){
   params.output        = "f";
   
   while(ajSeqallNext(seqall,&seq)){
+
     soap_init(&soap);
 
     inseq = NULL;
+
     if(ajSeqGetFeat(seq) && !accid){
       inseq = getGenbank(seq);
     }else{
@@ -50,7 +52,12 @@ int main(int argc, char *argv[]){
     
     char* in0;
     in0 = ajCharNewS(inseq);
+
     fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
+
+    if(!ajSeqGetFeat(seq) && !accid)
+      fprintf(stderr,"Sequence does not have features\nProceeding with sequence accession ID\n");
+
     if(soap_call_ns1__Ew(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
       ajStrAssignS(&filename,ajSeqGetNameS(seq));
       ajStrAppendC(&filename,".csv");
