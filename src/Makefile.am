@@ -40,56 +40,100 @@ AM_CFLAGS =  $(AIX_CFLAGS) $(WARN_CFLAGS) $(DEVWARN_CFLAGS)
 ## make will compile and link the program
 ## make install will copy the program to the install directory
 
-bin_PROGRAMS = gaaui\
-               gamino_info\
+bin_PROGRAMS = gamino_info\
+               gb1\
+               gb2\
+               gbase_counter\
+               gbase_entropy\
                gbase_information_content\
-               gbui\
+               gbase_relative_entropy\
+               gbase_z_value\
                gcai\
                gcbi\
                gcgr\
-               gdelta_enc\
+               gcircular_map\
+               gcodon_compiler\
+               gdelta_gcskew\
+               gdinuc\
+               gdist_in_cc\
+               gdnawalk\
+               genc\
                gentrez\
+               gew\
                gfind_ori_ter\
+               gfop\
                ggcsi\
                ggcskew\
                ggcwin\
                ggeneskew\
                ggenomicskew\
+               ggenome_map3\
                gicdi\
-               gP2\
+               gkmer_table\
+               glda_bias\
+               gleading_strand\
+               gnucleotide_periodicity\
+               gp2\
+               gpalindrome\
                gphx\
                gquery_arm\
                gquery_strand\
                grep_ori_ter\
+               gs_value\
+               gscs\
                gseq2png\
                gseqinfo\
                gshuffleseq\
+               gsignature\
+               gview_cds\
                gw_value
 
-gaaui_SOURCES         = gaaui.c
-gamino_info_SOURCES   = gamino_info.c
+gamino_info_SOURCES     = gamino_info.c
+gb1_SOURCES             = gb1.c
+gb2_SOURCES             = gb2.c
+gbase_counter_SOURCES   = gbase_counter.c
+gbase_entropy_SOURCES   = gbase_entropy.c
 gbase_information_content_SOURCES = gbase_information_content.c
-gbui_SOURCES          = gbui.c
-gcai_SOURCES          = gcai.c
-gcbi_SOURCES          = gcbi.c
-gcgr_SOURCES          = gcgr.c
-gdelta_enc_SOURCES    = gdelta_enc.c
-gentrez_SOURCES       = gentrez.c
-gfind_ori_ter_SOURCES = gfind_ori_ter.c
-ggcsi_SOURCES         = ggcsi.c
-ggcwin_SOURCES        = ggcwin.c
-ggeneskew_SOURCES     = ggeneskew.c
-ggenomicskew_SOURCES  = ggenomicskew.c
-gicdi_SOURCES         = gicdi.c
-gphx_SOURCES          = gphx.c
-gP2_SOURCES           = gP2.c
-gquery_arm_SOURCES    = gquery_arm.c
-gquery_strand_SOURCES = gquery_strand.c
-grep_ori_ter_SOURCES  = grep_ori_ter.c
-gseqinfo_SOURCES      = gseqinfo.c
-gseq2png_SOURCES      = gseq2png.c
-gshuffleseq_SOURCES   = gshuffleseq.c
-gw_value_SOURCES      = gw_value.c
+gbase_relative_entropy_SOURCES    = gbase_relative_entropy.c
+gbase_z_value_SOURCES   = gbase_z_value.c
+gcai_SOURCES            = gcai.c
+gcbi_SOURCES            = gcbi.c
+gcgr_SOURCES            = gcgr.c
+gcircular_map_SOURCES   = gcircular_map.c
+gcodon_compiler_SOURCES = gcodon_compiler.c
+gdelta_gcskew_SOURCES   = gdelta_gcskew.c
+gdist_in_cc_SOURCES     = gdist_in_cc.c
+gdinuc_SOURCES          = gdinuc.c
+gdnawalk_SOURCES        = gdnawalk.c
+genc_SOURCES            = genc.c
+gentrez_SOURCES         = gentrez.c
+gew_SOURCES             = gew.c
+gfind_ori_ter_SOURCES   = gfind_ori_ter.c
+gfop_SOURCES            = gfop.c
+ggcsi_SOURCES           = ggcsi.c
+ggcwin_SOURCES          = ggcwin.c
+ggeneskew_SOURCES       = ggeneskew.c
+ggenomicskew_SOURCES    = ggenomicskew.c
+ggenome_map3_SOURCES    = ggenome_map3.c
+gicdi_SOURCES           = gicdi.c
+gkmer_table_SOURCES     = gkmer_table.c
+glda_bias_SOURCES       = glda_bias.c
+gleading_strand_SOURCES = gleading_strand.c
+gnucleotide_periodicity_SOURCES = gnucleotide_periodicity.c
+gp2_SOURCES             = gp2.c
+gpalindrome_SOURCES     = gpalindrome.c
+gphx_SOURCES            = gphx.c
+gquery_arm_SOURCES      = gquery_arm.c
+gquery_strand_SOURCES   = gquery_strand.c
+grep_ori_ter_SOURCES    = grep_ori_ter.c
+gs_value_SOURCES        = gs_value.c
+gscs_SOURCES            = gscs.c
+gseqinfo_SOURCES        = gseqinfo.c
+gseq2png_SOURCES        = gseq2png.c
+gshuffleseq_SOURCES     = gshuffleseq.c
+gsignature_SOURCES      = gsignature.c
+gview_cds_SOURCES       = gview_cds.c
+gw_value_SOURCES        = gw_value.c
 
 if LOCALLINK
 LDADD = ../../../nucleus/libnucleus.la ../../../ajax/acd/libacd.la \

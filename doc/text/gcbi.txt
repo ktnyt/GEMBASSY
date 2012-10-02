@@ -1,4 +1,4 @@
-                                     gcbi
+                                    gcbi
 Function
 
    Calculates the codon bias index (CBI)
@@ -7,6 +7,7 @@ Description
 
    This program calculates the codon bias index (CBI).
 
+  
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -26,15 +27,15 @@ Usage
 
    Here is a sample session with gcbi
 
-% gcbi 
+% gcbi NC_000913.gbk
 Calculates the codon bias index (CBI)
-Input nucleotide sequence: nucleotideSample.fna
-0.2878
+NC_000913
+0.3017
 
-Command line argumants
+Command line arguments
 
-   Standard (Mandatory) qualifiers:
-  [-sequence]          sequence   Nucleotide sequence filename and optional
+Standard (Mandatory) qualifiers:
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
 
    Additional (Optional) qualifiers: (none)
@@ -45,12 +46,20 @@ Command line argumants
                                   gene (Any string)
    -delkey             string     [[^ACDEFGHIKLMNPQRSTVWYacgtU]] Regular
                                   expression to delete key (Any string)
+   -accid              boolean    [0] Include to use sequence accession ID as
+                                  query
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
 
 Input file format
 
-   gcbi reads genome sequence as input.
+   gcbi reads nucleotide sequences
 
-Ouptput file format
+Output file format
 
    The output from gcbi is to standard output.
 
@@ -62,7 +71,9 @@ Notes
 
    None.
 
-Refrences
+References
+
+   Morton BR (1993) J.Mol.Evol. 37:273-280.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -70,7 +81,7 @@ Refrences
 
    Arakawa, K. and Tomita, M. (2006) G-language System as a Platfor for
       large-scale analysis of high-throughput omics data, J. Pest Sci.,
-      31, 7.                     
+      31, 7.
 
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Wev Service Interfaces,
@@ -94,10 +105,7 @@ Known bugs
 
 See also
 
-   gbui  - Calculates base usage indices for protein-coding sequences
-   gcai  - Calculate codon adaptation index (CAI) for each gene
-   gicdi - Calculates the intrinsic codon deviation index (ICDI)
-   gphx  - Identify predicted highly expressed (PHX) genes
+
 
 Author(s)
 
@@ -105,8 +113,7 @@ Author(s)
    Institute for Advanced Biosciences, Keio University
    252-8520 Japan
 
-   Haruo Suzuki (haruo@g-language.org)
-
+   Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
 
 History
 
@@ -115,7 +122,7 @@ History
 Target users
 
    This program is intended to be used by everyone and everything, from
-   naive users to embedded scrips.
+   naive users to embedded scripts.
 
 Comments
 

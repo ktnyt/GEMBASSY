@@ -1,6 +1,6 @@
 application: gp2 [
   documentation: "Calculate the P2 index of each gene"
-  groups: ""
+  groups: "Nucleic:Codon usage"
   embassy: "GEMBASSY"
 ]
 
@@ -8,18 +8,29 @@ section: input [
   information: "Input section"
   type: "page"
 ]
-  sequence: sequence [
+
+  seqall: sequence [
     parameter: "Y"
     type: "nucleotide"
+    features: "Y"
   ]
+
 endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "0"
+  ]
+
+endsection: advanced
 
 section: output [
   information: "Output section"
   type: "page"
 ]
-  string: filename [
-    parameter: "Y"
-    default: "gp2.csv"
-  ]
 endsection: output

@@ -11,8 +11,8 @@
    <params>
     <wordlength>0</wordlength>
     <output></output>
-    <start>0</start>
-    <end>0</end>
+    <oe>0</oe>
+    <bothstrand>0</bothstrand>
    </params>
   </ns1:signature>
  </SOAP-ENV:Body>

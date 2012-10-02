@@ -8,9 +8,10 @@ section: input [
   information: "Input section"
   type: "page"
 ]
-  sequence: sequence [
+  seqall: sequence [
     parameter: "Y"
     type: "nucleotide"
+    features: "Y"
   ]
 endsection: input
 
@@ -18,27 +19,26 @@ section: advanced [
   information: "Advanced section"
   type: "page"
 ]
-	boolean: translate [
-		information: "Include when translating using standard codon table"
-		default: "0"
-	]
-	string: usage [
-		information: "Pointer HASH of vectors of amino acid and codon usage of a set of highly expressed genes"
-		default: ""
-	]
-	string: delkey [
-		information: "Regular expression to delete key"
-		default: "[^ACDEFGHIKLMNPQRSTVWYacgtU]"
-	]
+  boolean: translate [
+    information: "Include when translating using standard codon table"
+    default: "0"
+  ]
+  string: usage [
+    information: "Pointer HASH of vectors of amino acid and codon usage of a set of highly expressed genes"
+    default: ""
+  ]
+  string: delkey [
+    information: "Regular expression to delete key"
+    default: "[^ACDEFGHIKLMNPQRSTVWYacgtU]"
+  ]
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "0"
+  ]
 endsection: advanced
 
 section: output [
 	information: "Output section"
 	type: "page"
 ]
-	string: filename [
-		parameter: "Y"
-		information: "Output filename"
-		default: "gphx.csv"
-	]
 endsection: output

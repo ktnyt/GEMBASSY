@@ -8,12 +8,28 @@ section: input [
   information: "Input section"
   type: "page"
 ]
-  sequence: sequence [
+
+  seqall: sequence [
     parameter: "Y"
     type: "nucleotide"
+    features: "Y"
   ]
+
   integer: position [
     parameter: "Y"
     information: "Position to query"
   ]
+
 endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "0"
+  ]
+
+endsection: advanced

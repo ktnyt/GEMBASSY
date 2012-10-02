@@ -1,6 +1,6 @@
 application: gcodon_compiler [
   documentation: "Calculate various kinds of amino acid and codon usage data"
-  groups: "Nucleic:Codon Usage"
+  groups: "Nucleic:Codon usage"
   embassy: "GEMBASSY"
 ]
 
@@ -8,57 +8,56 @@ section: input [
   information: "Input section"
   type: "page"
 ]
-  sequence: sequence [
+  seqall: sequence [
     parameter: "Y"
     type: "nucleotide"
+    features: "Y"
   ]
+
 endsection: input
 
 section: advanced [
   information: "Advanced section"
   type: "page"
 ]
-	integer: translate [
-		information: "1 when translates using standard codon table"
-		default: "0"
-	]
-	integer: startcodon [
-		information: "1 when includes start codon"
-		default: "0"
-	]
-	integer: stopcodon [
-		information: "1 when includes stop codon"
-		default: "0"
-	]
-	string: delkey [
-		information: "Regular expression to delete key"
-		default: "[^ACDEFGHIKLMNPQRSTVQYacgtU]"
-	]
   string: id [
     information: "ID of a group"
     default: "All"
   ]
-	string: data [
-		information:"
-Kinds of codon usage data
+  boolean: translate [
+    information: "'1' when translates using standard codon table"
+    default: "0"
+  ]
+  boolean: startcodon [
+    information: "'1' when includes start codon"
+    default: "0"
+  ]
+  boolean: stopcodon [
+    information: "'1' when includes stop codon"
+    default: "0"
+  ]
+  string: delkey [
+    information: "Regular expression to delete key (i.e. amino acids and nucleotides)"
+    default: "[^ACDEFGHIKLMNPQRSTVWYacgtU]"
+  ]
+  string: data [
+    information: "kinds of codon usage data
 'A0': Absolute amino acid frequency ('AA')
 'A1': Relative amino acid frequency ('RAAU')
 'C0' or 'R0': Absolute codon frequency ('AF')
 'C1' or 'R1': Relative codon frequency in a complete sequence
 'C2' or 'R2': Relative codon frequency in each amino acid ('RF')
 'C3' or 'R3': Relative synonymous codon usage ('RSCU') 
-'C4' or 'R4': Relative adaptiveness; i.e., ratio to maximum of minor codon ('W')
-'C5' or 'R5': Maximum (1) or minor (0) codon"
-		default: "R0"
-	]
-endsection: advanced
+'C4' or 'R4': Relative adaptiveness; i.e., ratio to maximum of minor codon ('W')"
+  ]
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "0"
+  ]
+ endsection: advanced
 
 section: output [
   information: "Output section"
   type: "page"
 ]
-  string: filename [
-    parameter: "Y"
-    default: "gaaui.csv"
-  ]
 endsection: output

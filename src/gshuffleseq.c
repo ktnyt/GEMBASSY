@@ -11,7 +11,6 @@
 
 char *_upper(char *s){
   char *p;
-  
   for(p=s; *p; p++){
     *p = toupper(*p);
   }
@@ -24,42 +23,51 @@ int main(int argc, char *argv[]){
   struct soap soap;
   struct ns1__shuffleseqInputParams params;
   
+  AjPSeqall seqall;
   AjPSeqout seqout;
   AjPSeq    seq;
   AjPStr    inseq      = NULL;
-	AjPStr    filename   = NULL;
+  AjPStr    filename   = NULL;
   ajint     k          = 0;
   char*     jobid;
   
-  seq    = ajAcdGetSeq("sequence");
+  seqall = ajAcdGetSeqall("sequence");
   k      = ajAcdGetInt("k");
   seqout = ajAcdGetSeqout("outseq");
   
   params.k = k;
-  
-  soap_init(&soap);
-  
-  inseq = NULL;
-  seq=ajAcdGetSeq("sequence");
-  ajStrAppendS(&inseq,ajSeqGetSeqS(seq));
-  ajStrAppendS(&filename,ajSeqGetNameS(seq));
-  
-  char* in0;
-  in0 = ajCharNewS(inseq);
-  if(soap_call_ns1__shuffleseq(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
-		printf("Writing sequence out to %s\n",ajCharNewS(filename));
-		ajCharFmtUpper(jobid);
-    ajSeqAssignSeqC(seq, jobid);
-    ajSeqoutWriteSeq(seqout, seq);
-    ajSeqoutClose(seqout);
-  }else{
-    soap_print_fault(&soap,stderr);
+
+  while(ajSeqallNext(seqall,&seq)){
+
+    soap_init(&soap);
+    
+    inseq = NULL;
+
+    ajStrAppendS(&inseq,ajSeqGetSeqS(seq));
+    ajStrAppendS(&filename,ajSeqGetNameS(seq));
+    
+    char* in0;
+    in0 = ajCharNewS(inseq);
+    fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
+    if(soap_call_ns1__shuffleseq(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
+      ajCharFmtUpper(jobid);
+      ajSeqAssignSeqC(seq, jobid);
+      ajSeqoutWriteSeq(seqout, seq);
+      ajSeqoutClose(seqout);
+    }else{
+      soap_print_fault(&soap,stderr);
+    }
+    
+    soap_destroy(&soap);
+    soap_end(&soap);
+    soap_done(&soap);
   }
-  
-  soap_destroy(&soap);
-  soap_end(&soap);
-  soap_done(&soap);
-  
+
+  ajSeqallDel(&seqall);
+  ajSeqDel(&seq);
+  ajStrDel(&inseq);
+  ajStrDel(&filename);
+
   embExit();
   return 0;
 }

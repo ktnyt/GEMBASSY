@@ -8,49 +8,59 @@ section: input [
   information: "Input section"
   type: "page"
 ]
-  sequence: sequence [
+
+  seqall: sequence [
     parameter: "Y"
     type: "nucleotide"
+    features: "Y"
   ]
+
 endsection: input
 
 section: advanced [
   information: "Advanced section"
   type: "page"
 ]
+
   integer: window [
     information: "Window size to observe"
     default: "10000"
   ]
+
   integer: slide [
     information: "Window slide size"
     default: "10000"
   ]
+
   boolean: cumulative [
     information: "Input 1 to calculate cumulative skew"
     default: "0"
   ]
+
   string: base [
     information: "Input 'gc', 'at', 'purine', or keto' for observing GC/AT/Purine/Keto skews"
     default: "none"
   ]
+
   boolean: gctri [
     information: "Include to use only the third codon positions"
     default: "0"
   ]
+
   string: output [
     information: "Input 'g' for graph output, 'f' for raw CSV output"
     default: "g"
   ]
+
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "0"
+  ]
+
 endsection: advanced
 
 section: output [
 	information: "Output section"
 	type: "page"
 ]
-	string: filename [
-		parameter: "Y"
-		information: "Output filename"
-		default: "ggeneskew.png(csv)"
-	]
 endsection: output

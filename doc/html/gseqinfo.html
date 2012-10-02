@@ -10,8 +10,7 @@
 
 <table align=center border=0 cellspacing=0 cellpadding=0>
 <tr><td valign=top>
-<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emb
-oss_icon.jpg" alt="" width=150 height=48></a>
+<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emboss_icon.jpg" alt="" width=150 height=48></a>
 </td>
 <td align=left valign=middle>
 <b><font size="+6">
@@ -45,10 +44,13 @@ IT IS DONE FOR YOU.
    This method prints out basic compositional statistics of the 
    given nucleotide sequence, in a format similar to the one printed
    right after calling load(). Returns the number of A, T, G, and C bases.
+
+ 
 </p>
 
 <p>
 G-language SOAP service is provided by the Institute for Advanced Biosciences, Keio University.<br />
+
 The original web service is located at the following URL:<br />
 http://www.g-language.org/wiki/soap
 </p>
@@ -64,12 +66,10 @@ http://soap.g-language.org/g-language.wsdl
 
    Here is a sample session with gseqinfo
 
-% gseqinfo 
-Prints out basic nucleotide sequence statistics
-Input nucleotide sequence(s): input.fna
->FM180568.1
-A       T       G       C       
-16083   16222   17196   16052
+% gseqinfo NC_000913.gbk
+NC_000913
+A	T	G	C	
+1142228	1140970	1176923	1179555	
 
 
 </pre></td></tr></table>
@@ -92,7 +92,7 @@ A       T       G       C
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>[-seqall]<br>(Parameter 1)</td>
+<td>[-sequence]<br>(Parameter 1)</td>
 <td>seqall</td>
 <td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
 <td>Readable sequence(s)</td>
@@ -111,11 +111,16 @@ A       T       G       C
 <th align="left" colspan=5>Advanced (Unprompted) qualifiers</th>
 </tr>
 
-<tr>
-<td colspan=5>(none)</td>
+<tr bgcolor="#FFFFCC">
+<td>-accid</td>
+<td>boolean</td>
+<td>Include to use sequence accession ID as query</td>
+<td>Boolean value Yes/No</td>
+<td>No</td>
 </tr>
 
 </table>
+
 
 <h2>Input file format</h2>
 
@@ -144,25 +149,19 @@ None.
 <h2>Refrences</h2>
 
 <pre>
+
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
       for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
 
    Arakawa, K. and Tomita, M. (2006) G-language System as a Platfor for
       large-scale analysis of high-throughput omics data, J. Pest Sci.,
-      31, 7.                     
+      31, 7.
 
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Wev Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
 </pre>
-
-<h2>Warnings</h2>
-
-<p>
-None.
-</p>
-
 <h2>Diagnostic Error Messages</h2>
 
 <p>
@@ -190,7 +189,7 @@ None.
    Institute for Advanced Biosciences, Keio University
    252-8520 Japan
 
-   Kazuharu Arakawa(gaou@g-language.org) 
+   Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
 </pre>
 
 <h2>History</h2>
@@ -204,5 +203,5 @@ None.
 
 <h2>Comments</h2>
 
-   None.
+    None.
 

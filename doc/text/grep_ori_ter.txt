@@ -1,4 +1,8 @@
+<<<<<<< HEAD
                                  greporiter
+=======
+                                grep_ori_ter
+>>>>>>> 1.0.0-beta
 Function
 
    Get the positions of replication origin and terminus
@@ -9,6 +13,7 @@ Description
    in bacterial genomes by several means. 
 
    1. Use of databases
+<<<<<<< HEAD
      By default, rep_ori_ter() tries to retrieve the position of replication
      origin in DoriC (Gao and Zhang, 2007) database, and the position of
      replication terminus from the supplemental data provided in
@@ -28,6 +33,40 @@ Description
       rep_ori_ter() automatically calls find_ori_ter() method to predict the 
       positions using GC skew shift-points at one-base-pair resolution.
 
+=======
+   By default, rep_ori_ter() tries to retrieve the position of replication
+   origin in DoriC (Reference 1) database, and the position of replication
+   terminus from the supplemental data provided in Reference 2.
+
+   If the position of origin cannot be found in the database, but "rep_origin" 
+   feature is available, center position within this feature is used for origin. 
+
+   2. Oriloc
+   Using -oriloc=>1 option, you can predict the replication origin and 
+   terminus using the popular Oriloc program developed by Lobry et al. 
+   available as part of the SeqinR package (Reference 3).
+
+   Installation of SeqinR package is required to use this feature.
+   Type: install.packages('seqinr', dep=T)
+   in R statistics package to install SeqinR.
+
+   3. Setting custom origin and terminus
+   Use -ori=>$position1, -ter=>$position2 to set your own positions.
+
+   4. Use GC skew shift-point
+   If the positions of origin or terminus cannot be found in the databases,
+   rep_ori_ter() automatically calls find_ori_ter() method to predict the 
+   positions using GC skew shift-points at one-base-pair resolution.
+
+   After calling this function, positions of origin and terminus are stored 
+   as follows:
+   $genome->{FEATURE0}->{origin}
+   $genome->{FEATURE0}->{terminus}
+
+   You can always use -clear=>1 option to disable the use of above cache.
+
+ 
+>>>>>>> 1.0.0-beta
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -45,6 +84,7 @@ Description
 
 Usage
 
+<<<<<<< HEAD
    Here is a sample session with greporiter
 
 % greporiter 
@@ -57,6 +97,20 @@ Command line argumants
 
    Standard (Mandatory) qualifiers:
   [-sequence]          sequence   Nucleotide sequence filename and optional
+=======
+   Here is a sample session with grep_ori_ter
+
+% grep_ori_ter NC_000913.gbk
+Get the positions of replication origin and terminus
+NC_000913
+origin	terminus
+3923881	1550412
+
+Command line arguments
+
+Standard (Mandatory) qualifiers:
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
+>>>>>>> 1.0.0-beta
                                   format, or reference (input USA)
 
    Additional (Optional) qualifiers: (none)
@@ -71,6 +125,7 @@ Command line argumants
                                   database (Any integer value)
    -dbonly             boolean    [0] Set to 1 to only use values available in
                                   databases and to suppress prediction
+<<<<<<< HEAD
 
 Input file format
 
@@ -79,6 +134,24 @@ Input file format
 Ouptput file format
 
    The output from greporiter is to standard output.
+=======
+   -accid              boolean    [0] Include to use sequence accession ID as
+                                  query
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+
+Input file format
+
+   grep_ori_ter reads nucleotide sequences
+
+Output file format
+
+   The output from grep_ori_ter is to standard output.
+>>>>>>> 1.0.0-beta
 
 Data files
 
@@ -88,7 +161,18 @@ Notes
 
    None.
 
+<<<<<<< HEAD
 Refrences
+=======
+References
+
+   1. Gao F and Zhang CT (2007) "DoriC: a database of oriC regions in bacterial
+      genomes", Bioinformatics, 23(14):1866-1867
+   2. Kono N et al. (2011) "Comprehensive prediction of chromosome dimer resolution 
+      sites in bacterial genomes", BMC Genomics, 12(1):19
+   3. Frank AC and Lobry JR (2000) "Oriloc: prediction of replication boundaries 
+      in unannotated bacterial chromosomes", Bioinformatics, 16(6):560-561
+>>>>>>> 1.0.0-beta
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -96,7 +180,11 @@ Refrences
 
    Arakawa, K. and Tomita, M. (2006) G-language System as a Platfor for
       large-scale analysis of high-throughput omics data, J. Pest Sci.,
+<<<<<<< HEAD
       31, 7.                     
+=======
+      31, 7.
+>>>>>>> 1.0.0-beta
 
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Wev Service Interfaces,
@@ -120,6 +208,7 @@ Known bugs
 
 See also
 
+<<<<<<< HEAD
    gfindoriter  - Predict the replication origin and terminus in bacterial
                   genomes
    ggcsi        - GC Skew Index: an index for strand-specific mutational bias
@@ -132,6 +221,9 @@ See also
                   position
    gquerystrand - Get the strand name (leading or lagging) from the give
                    position
+=======
+
+>>>>>>> 1.0.0-beta
 
 Author(s)
 
@@ -139,7 +231,11 @@ Author(s)
    Institute for Advanced Biosciences, Keio University
    252-8520 Japan
 
+<<<<<<< HEAD
    Kazuharu Arakawa(gaou@g-language.org)
+=======
+   Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+>>>>>>> 1.0.0-beta
 
 History
 
@@ -148,7 +244,11 @@ History
 Target users
 
    This program is intended to be used by everyone and everything, from
+<<<<<<< HEAD
    naive users to embedded scrips.
+=======
+   naive users to embedded scripts.
+>>>>>>> 1.0.0-beta
 
 Comments
 

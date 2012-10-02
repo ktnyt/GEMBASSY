@@ -8,9 +8,18 @@ section: input [
   information: "Input section"
   type: "page"
 ]
-  sequence: sequence [
-		parameter: "Y"
+  seqall: sequence [
+    parameter: "Y"
     type: "Protein"
   ]
 endsection: input
 
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "0"
+  ]
+endsection: advanced

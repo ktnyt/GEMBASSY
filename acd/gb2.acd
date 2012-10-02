@@ -1,0 +1,36 @@
+application: gb2 [
+  documentation: "Calculate strand bias of bacterial genome using B2 index"
+  groups: "Nucleic:Composition"
+  embassy: "GEMBASSY"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+
+  seqall: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+    features: "Y"
+  ]
+
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "0"
+  ]
+
+endsection: advanced
+
+section: output [
+	information: "Output section"
+	type: "page"
+]
+endsection: output

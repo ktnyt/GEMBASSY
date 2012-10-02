@@ -8,33 +8,34 @@ section: input [
   information: "Input section"
   type: "page"
 ]
-  sequence: sequence [
+  seqall: sequence [
     parameter: "Y"
     type: "nucleotide"
+    features: "Y"
   ]
+
 endsection: input
 
 section: advanced [
   information: "Advanced section"
   type: "page"
 ]
-	integer: width [
-		information: "Width of image"
-		default: "1024"
-	]
-	integer: level [
-		information: "Zoom level for Google Maps representation"
-		default: "5"
-	]
+  integer: width [
+    information: "Width of image"
+    default: "1024"
+  ]
+  integer: level [
+    information: "Zoom level for Google Maps representation"
+    default: "5"
+  ]
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "0"
+  ]
 endsection: advanced
 
 section: output [
 	information: "Output section"
 	type: "page"
 ]
-	string: filename [
-		parameter: "Y"
-		information: "Output filename"
-		default: "gcgr.png"
-	]
 endsection: output

@@ -8,25 +8,29 @@
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
+#include "../include/gembassy.h"
 
 int main(int argc, char *argv[]){
   embInitPV("gcbi",argc,argv,"GEMBASSY","0.0.1");
   
   struct soap soap;
   struct ns1__cbiInputParams params;
-  
+
+  AjPSeqall seqall;
   AjPSeq    seq;
   AjPStr    inseq     = NULL;
   AjBool    translate = 0;
   AjPStr    id        = NULL;
-  AjPStr    delkey   = NULL;
-  char*     _result; 
+  AjPStr    delkey    = NULL;
+  AjBool    accid    = 0;
+  AjPStr    filename  = NULL;
   char*     jobid;
   
-  seq        = ajAcdGetSeq("sequence");
+  seqall     = ajAcdGetSeqall("sequence");
   translate  = ajAcdGetBoolean("translate");
   id         = ajAcdGetString("id");
   delkey     = ajAcdGetString("delkey");
+  accid      = ajAcdGetBoolean("accid");
   
   if(translate){
     params.translate   = 1;
@@ -36,24 +40,41 @@ int main(int argc, char *argv[]){
   params.id            = ajCharNewS(id);
   params.del_USCOREkey = ajCharNewS(delkey);
   
+  while(ajSeqallNext(seqall,&seq)){
+
+    soap_init(&soap);
+
+    inseq = NULL;
+
+    if(ajSeqGetFeat(seq) && !accid){
+      inseq = getGenbank(seq);
+    }else{
+      ajStrAppendS(&inseq,ajSeqGetAccS(seq));
+    }
     
-  soap_init(&soap);
+    char* in0;
+    in0 = ajCharNewS(inseq);
+
+    fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
+
+    if(!ajSeqGetFeat(seq) && !accid)
+      fprintf(stderr,"Sequence does not have features\nProceeding with sequence accession ID\n");
+
+    if(soap_call_ns1__cbi(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
+      puts(jobid);
+    }else{
+      soap_print_fault(&soap,stderr);
+    }
   
-  inseq = NULL;
-  ajStrAppendS(&inseq,ajSeqGetNameS(seq));
-  
-  char* in0;
-  in0 = ajCharNewS(inseq);
-  if(soap_call_ns1__cbi(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
-    printf("%s\n",jobid);
-  }else{
-    soap_print_fault(&soap,stderr);
+    soap_destroy(&soap);
+    soap_end(&soap);
+    soap_done(&soap);
   }
-  
-  soap_destroy(&soap);
-  soap_end(&soap);
-  soap_done(&soap);
-  
+
+  ajSeqallDel(&seqall);
+  ajSeqDel(&seq);
+  ajStrDel(&inseq);
+  ajStrDel(&filename);
   
   embExit();
   return 0;

@@ -9,37 +9,43 @@ section: input [
   type: "page"
 ]
 
-  sequence: sequence [
+  seqall: sequence [
     parameter: "Y"
-    type: "DNA"
+    type: "nucleotide"
+    features: "Y"
   ]
+
 endsection: input
 
 section: advanced [
   information: "Advanced section"
   type: "page"
 ]
+
   integer: divide [
     information: "Window to divide into"
     default: "250"
   ]
+
   boolean: at [
     information: "Input 1 when observing AT skew instead of GC skew"
     default: "0"
   ]
+
   string: output [
     information: "Input 'g' for graph output, 'f' for CSV file output"
     default: "g"
   ]
+
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "0"
+  ]
+
 endsection: advanced
 
 section: output [
 	information: "Output section"
 	type: "page"
 ]
-	string: filename [
-		parameter: "Y"
-		information: "Output filename"
-		default: "ggenomicskew.png(csv)"
-	]
 endsection: output

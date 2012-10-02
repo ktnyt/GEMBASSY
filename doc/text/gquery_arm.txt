@@ -1,4 +1,8 @@
+<<<<<<< HEAD
                                  gqueryarm
+=======
+                                 gquery_arm
+>>>>>>> 1.0.0-beta
 Function
 
    Get the replication arm name (left or right) from the given position
@@ -8,6 +12,10 @@ Description
    Given a position, returns whether the specified position is in the 
    left or right arm of the circular chromosome.
 
+<<<<<<< HEAD
+=======
+  
+>>>>>>> 1.0.0-beta
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -25,6 +33,7 @@ Description
 
 Usage
 
+<<<<<<< HEAD
    Here is a sample session with gqueryarm
 
 % gqueryarm 
@@ -37,10 +46,24 @@ Command line argumants
 
    Standard (Mandatory) qualifiers:
   [-sequence]          sequence   Nucleotide sequence filename and optional
+=======
+   Here is a sample session with gquery_arm
+
+% gquery_arm NC_000913.gbk
+Get the replication arm name (left or right) from the given position
+NC_000913
+right
+
+Command line arguments
+
+Standard (Mandatory) qualifiers:
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
+>>>>>>> 1.0.0-beta
                                   format, or reference (input USA)
   [-position]          integer    [0] Position to query (Any integer value)
 
    Additional (Optional) qualifiers: (none)
+<<<<<<< HEAD
    Advanced (Unprompted) qualifiers: (none)
 
 Input file format
@@ -50,6 +73,25 @@ Input file format
 Ouptput file format
 
    The output from gqueryarm is to standard output.
+=======
+   Advanced (Unprompted) qualifiers:
+   -accid              boolean    [0] Include to use sequence accession ID as
+                                  query
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+
+Input file format
+
+   gquery_arm reads nucleotide sequences
+
+Output file format
+
+   The output from gquery_arm is to standard output.
+>>>>>>> 1.0.0-beta
 
 Data files
 
@@ -59,7 +101,11 @@ Notes
 
    None.
 
+<<<<<<< HEAD
 Refrences
+=======
+References
+>>>>>>> 1.0.0-beta
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -67,7 +113,11 @@ Refrences
 
    Arakawa, K. and Tomita, M. (2006) G-language System as a Platfor for
       large-scale analysis of high-throughput omics data, J. Pest Sci.,
+<<<<<<< HEAD
       31, 7.                     
+=======
+      31, 7.
+>>>>>>> 1.0.0-beta
 
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Wev Service Interfaces,
@@ -91,6 +141,7 @@ Known bugs
 
 See also
 
+<<<<<<< HEAD
    gfindoriter  - Predict the replication origin and terminus in bacterial
                   genomes
    ggcsi        - GC Skew Index: an index for strand-specific mutational bias
@@ -102,6 +153,9 @@ See also
    gquerystrand - Get the strand name (leading or lagging) from the given
                   position
    greporiter   - Get the positions of replication origin and terminus
+=======
+
+>>>>>>> 1.0.0-beta
 
 Author(s)
 
@@ -118,7 +172,11 @@ History
 Target users
 
    This program is intended to be used by everyone and everything, from
+<<<<<<< HEAD
    naive users to embedded scrips.
+=======
+   naive users to embedded scripts.
+>>>>>>> 1.0.0-beta
 
 Comments
 

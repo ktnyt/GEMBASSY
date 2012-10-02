@@ -1,4 +1,4 @@
-application: g_wvalue [
+application: gw_value [
   documentation: "Calculate the 'relative adaptiveness of each codon' (W)"
   groups: "Nucleic:Codon Usage"
   embassy: "GEMBASSY"
@@ -8,32 +8,39 @@ section: input [
   information: "Input section"
   type: "page"
 ]
-  sequence: sequence [
+
+  seqall: sequence [
     parameter: "Y"
     type: "nucleotide"
+    features: "Y"
   ]
+
 endsection: input
 
 section: advanced [
   information: "Advanced section"
   type: "page"
 ]
+
   string: include [
     information: "Regular expression to include genes in a reference set a reference set in several studies are in-built 1: Nakamura and Tabata, 2: Sharp and Li, 3: Sakai et al."
     default: "ribosomal.*protein"
   ]
+
   string: exclude [
     information: "Regular expression to exclude genes from a reference set"
     default: "[Mm]itochondrial"
   ]
+
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "0"
+  ]
+
 endsection: advanced
 
 section: output [
   information: "Output section"
   type: "page"
 ]
-  string: filename [
-    parameter: "Y"
-    default: "gwvalue.csv"
-  ]
 endsection: output

@@ -8,7 +8,7 @@
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
-#include "../include/getfile.h"
+#include "../include/gembassy.h"
 
 int main(int argc, char *argv[]){
   embInitPV("gcai",argc,argv,"GEMBASSY","0.0.1");
@@ -16,17 +16,20 @@ int main(int argc, char *argv[]){
   struct soap soap;
   struct ns1__caiInputParams params;
 
+  AjPSeqall seqall;
   AjPSeq    seq;
   AjPStr    inseq     = NULL;
   AjBool    translate = 0;
   AjPStr    wabsent   = NULL;
   AjPStr    command   = NULL;
+  AjBool    accid    = 0;
   AjPStr    filename  = NULL;
   char*     jobid;
   
-  seq       = ajAcdGetSeq("sequence");
+  seqall    = ajAcdGetSeqall("sequence");
   translate = ajAcdGetBoolean("translate");
   wabsent   = ajAcdGetString("wabsent");
+  accid     = ajAcdGetBoolean("accid");
   
   if(translate){
     params.translate    = 1;
@@ -36,29 +39,48 @@ int main(int argc, char *argv[]){
   params.w_USCOREabsent   = ajCharNewS(wabsent);
   params.w_USCOREfilename = "w_value.csv";
   params.w_USCOREoutput   = "stdout";
-  
-  
-  soap_init(&soap);
-  
-  ajStrAppendS(&inseq,ajSeqGetNameS(seq));
-  
-  char* in0;
-  in0 = ajCharNewS(inseq);
-  if(soap_call_ns1__cai(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
-    filename = ajAcdGetString("filename");
-    if(get_file(jobid,ajCharNewS(filename))==0){
-      printf("Retrieval successful\n");
+
+  while(ajSeqallNext(seqall,&seq)){  
+
+    soap_init(&soap);
+
+    inseq = NULL;
+
+    if(ajSeqGetFeat(seq) && !accid){
+      inseq = getGenbank(seq);
     }else{
-      printf("Retrieval unsuccessful\n");
+      ajStrAppendS(&inseq,ajSeqGetAccS(seq));
     }
-  }else{
-    soap_print_fault(&soap,stderr);
+    
+    char* in0;
+    in0 = ajCharNewS(inseq);
+
+    fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
+
+    if(!ajSeqGetFeat(seq) && !accid)
+      fprintf(stderr,"Sequence does not have features\nProceeding with sequence accession ID\n");
+
+    if(soap_call_ns1__cai(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
+      ajStrAssignS(&filename,ajSeqGetNameS(seq));
+      ajStrAppendC(&filename,".csv");
+      if(get_file(jobid,ajCharNewS(filename))==0){
+        fprintf(stderr,"Retrieval successful\n");
+      }else{
+        fprintf(stderr,"Retrieval unsuccessful\n");
+      }
+    }else{
+      soap_print_fault(&soap,stderr);
+    }
+    
+    soap_destroy(&soap);
+    soap_end(&soap);
+    soap_done(&soap);
   }
-  
-  soap_destroy(&soap);
-  soap_end(&soap);
-  soap_done(&soap);
-  
+
+  ajSeqallDel(&seqall);
+  ajSeqDel(&seq);
+  ajStrDel(&inseq);
+  ajStrDel(&filename);
   
   embExit();
   return 0;

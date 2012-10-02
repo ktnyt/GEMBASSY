@@ -1,0 +1,51 @@
+application: gsignature [
+  documentation: "Calculate oligonucleotide usage (genomic signature)"
+  groups: ""
+  embassy: "GEMBASSY"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+
+  seqall: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+    features: "Y"
+  ]
+
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+
+  integer: wordlength [
+    information: "Word length"
+    default: "2"
+  ]
+
+  boolean: bothstrand [
+    information: "Use direct (0) or both (1) strand"
+    default: "1"
+  ]
+
+  boolean: oe [
+    information: "Use observed (0) or O/E (1) value"
+    default: "1"
+  ]
+
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: ""
+  ]
+
+endsection: advanced
+
+section: output [
+	information: "Output section"
+	type: "page"
+]
+endsection: output

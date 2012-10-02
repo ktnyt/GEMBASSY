@@ -11,9 +11,15 @@
    <params>
     <translate>0</translate>
     <id></id>
+<<<<<<< HEAD
     <data>0</data>
+=======
+    <data></data>
+>>>>>>> 1.0.0-beta
     <output></output>
     <del_key></del_key>
+    <startcodon>0</startcodon>
+    <stopcodon>0</stopcodon>
    </params>
   </ns1:codon_compiler>
  </SOAP-ENV:Body>

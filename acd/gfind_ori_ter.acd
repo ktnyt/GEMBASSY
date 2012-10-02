@@ -1,4 +1,4 @@
-application: gfind_oriter [
+application: gfind_ori_ter [
   documentation: "Predict the replication origin and terminus in bacterial genomes"
   groups: "Nucleic:Composition"
   embassy: "GEMBASSY"
@@ -8,30 +8,43 @@ section: input [
   information: "Input section"
   type: "page"
 ]
-  sequence: sequence [
+
+  seqall: sequence [
     parameter: "Y"
     type: "nucleotide"
+    features: "Y"
   ]
+
 endsection: input
 
 section: advanced [
   information: "Advanced section"
   type: "page"
 ]
+
   integer: window [
     information: "Number of windows to use for Fat Fourier Transform. Only active when -filter option is specified. Value must be the power of two"
     default: "4096"
   ]
+
   boolean: purine [
     information: "Use purine skew for calculation"
     default: "0"
   ]
+
   boolean: keto [
     information: "Use keto skew for calculation"
     default: "0"
   ]
+
   integer: filt [
     information: "Lowpass filter strength in percent. Typically 95 or 99 works best"
     default: ""
   ]
+
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "0"
+  ]
+
 endsection: advanced
