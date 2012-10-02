@@ -40,8 +40,7 @@ AM_CFLAGS =  $(AIX_CFLAGS) $(WARN_CFLAGS) $(DEVWARN_CFLAGS)
 ## make will compile and link the program
 ## make install will copy the program to the install directory
 
-bin_PROGRAMS = gaaui\
-               gamino_info\
+bin_PROGRAMS = gamino_info\
                gb1\
                gb2\
                gbase_counter\
@@ -49,16 +48,15 @@ bin_PROGRAMS = gaaui\
                gbase_information_content\
                gbase_relative_entropy\
                gbase_z_value\
-               gbui\
                gcai\
                gcbi\
                gcgr\
                gcircular_map\
                gcodon_compiler\
-               gdelta_enc\
                gdelta_gcskew\
                gdinuc\
                gdist_in_cc\
+               gdnawalk\
                genc\
                gentrez\
                gew\
@@ -69,13 +67,12 @@ bin_PROGRAMS = gaaui\
                ggcwin\
                ggeneskew\
                ggenomicskew\
+               ggenome_map3\
                gicdi\
                gkmer_table\
                glda_bias\
                gleading_strand\
                gnucleotide_periodicity\
-               goligomer_counter\
-               goligomer_search\
                gp2\
                gpalindrome\
                gphx\
@@ -91,7 +88,6 @@ bin_PROGRAMS = gaaui\
                gview_cds\
                gw_value
 
-gaaui_SOURCES           = gaaui.c
 gamino_info_SOURCES     = gamino_info.c
 gb1_SOURCES             = gb1.c
 gb2_SOURCES             = gb2.c
@@ -100,16 +96,15 @@ gbase_entropy_SOURCES   = gbase_entropy.c
 gbase_information_content_SOURCES = gbase_information_content.c
 gbase_relative_entropy_SOURCES    = gbase_relative_entropy.c
 gbase_z_value_SOURCES   = gbase_z_value.c
-gbui_SOURCES            = gbui.c
 gcai_SOURCES            = gcai.c
 gcbi_SOURCES            = gcbi.c
 gcgr_SOURCES            = gcgr.c
 gcircular_map_SOURCES   = gcircular_map.c
 gcodon_compiler_SOURCES = gcodon_compiler.c
-gdelta_enc_SOURCES      = gdelta_enc.c
 gdelta_gcskew_SOURCES   = gdelta_gcskew.c
 gdist_in_cc_SOURCES     = gdist_in_cc.c
 gdinuc_SOURCES          = gdinuc.c
+gdnawalk_SOURCES        = gdnawalk.c
 genc_SOURCES            = genc.c
 gentrez_SOURCES         = gentrez.c
 gew_SOURCES             = gew.c
@@ -119,13 +114,12 @@ ggcsi_SOURCES           = ggcsi.c
 ggcwin_SOURCES          = ggcwin.c
 ggeneskew_SOURCES       = ggeneskew.c
 ggenomicskew_SOURCES    = ggenomicskew.c
+ggenome_map3_SOURCES    = ggenome_map3.c
 gicdi_SOURCES           = gicdi.c
 gkmer_table_SOURCES     = gkmer_table.c
 glda_bias_SOURCES       = glda_bias.c
 gleading_strand_SOURCES = gleading_strand.c
 gnucleotide_periodicity_SOURCES = gnucleotide_periodicity.c
-goligomer_counter_SOURCES       = goligomer_counter.c
-goligomer_search_SOURCES        = goligomer_search.c
 gp2_SOURCES             = gp2.c
 gpalindrome_SOURCES     = gpalindrome.c
 gphx_SOURCES            = gphx.c
