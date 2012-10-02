@@ -43,8 +43,11 @@ int main(int argc, char *argv[]){
 
     inseq = NULL;
 
-    if(ajSeqGetFeat(seq) && !accid){
-      inseq = getGenbank(seq);
+    if(!accid){
+      ajStrAppendC(&inseq,">");
+      ajStrAppendS(&inseq,ajSeqGetNameS(seq));
+      ajStrAppendC(&inseq,"\n");
+      ajStrAppendS(&inseq,ajSeqGetSeqS(seq));
     }else{
       ajStrAppendS(&inseq,ajSeqGetAccS(seq));
     }
