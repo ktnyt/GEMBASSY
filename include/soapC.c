@@ -19,7 +19,7 @@ compiling, linking, and/or using OpenSSL is allowed.
 extern "C" {
 #endif
 
-SOAP_SOURCE_STAMP("@(#) soapC.c ver 2.8.6 2012-09-25 07:44:17 GMT")
+SOAP_SOURCE_STAMP("@(#) soapC.c ver 2.8.6 2012-09-30 07:16:34 GMT")
 
 
 #ifndef WITH_NOGLOBAL
@@ -204,6 +204,10 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		return soap_in_ns1__help(soap, NULL, NULL, "ns1:help");
 	case SOAP_TYPE_ns1__helpResponse:
 		return soap_in_ns1__helpResponse(soap, NULL, NULL, "ns1:helpResponse");
+	case SOAP_TYPE_ns1__S_USCOREvalue:
+		return soap_in_ns1__S_USCOREvalue(soap, NULL, NULL, "ns1:S_value");
+	case SOAP_TYPE_ns1__S_USCOREvalueResponse:
+		return soap_in_ns1__S_USCOREvalueResponse(soap, NULL, NULL, "ns1:S_valueResponse");
 	case SOAP_TYPE_ns1__leading_USCOREstrand:
 		return soap_in_ns1__leading_USCOREstrand(soap, NULL, NULL, "ns1:leading_strand");
 	case SOAP_TYPE_ns1__leading_USCOREstrandResponse:
@@ -568,6 +572,8 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		return soap_in_arrayOut(soap, NULL, NULL, "xsd:string");
 	case SOAP_TYPE_arrayIn:
 		return soap_in_arrayIn(soap, NULL, NULL, "xsd:string");
+	case SOAP_TYPE_ns1__S_USCOREvalueInputParams:
+		return soap_in_ns1__S_USCOREvalueInputParams(soap, NULL, NULL, "ns1:S_valueInputParams");
 	case SOAP_TYPE_ns1__scsInputParams:
 		return soap_in_ns1__scsInputParams(soap, NULL, NULL, "ns1:scsInputParams");
 	case SOAP_TYPE_ns1__lda_USCOREbiasInputParams:
@@ -666,6 +672,8 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		return soap_in_ns1__corInputParams(soap, NULL, NULL, "ns1:corInputParams");
 	case SOAP_TYPE_ns1__geneskewInputParams:
 		return soap_in_ns1__geneskewInputParams(soap, NULL, NULL, "ns1:geneskewInputParams");
+	case SOAP_TYPE_ns1__genes_USCOREfrom_USCOREoriInputParams:
+		return soap_in_ns1__genes_USCOREfrom_USCOREoriInputParams(soap, NULL, NULL, "ns1:genes_from_oriInputParams");
 	case SOAP_TYPE_ns1__cbiInputParams:
 		return soap_in_ns1__cbiInputParams(soap, NULL, NULL, "ns1:cbiInputParams");
 	case SOAP_TYPE_ns1__find_USCOREdifInputParams:
@@ -698,8 +706,8 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		return soap_in_ns1__Definition(soap, NULL, NULL, "ns1:Definition");
 	case SOAP_TYPE_PointerTofloat:
 		return soap_in_PointerTofloat(soap, NULL, NULL, "xsd:float");
-	case SOAP_TYPE_PointerTons1__leading_USCOREstrandResponse:
-		return soap_in_PointerTons1__leading_USCOREstrandResponse(soap, NULL, NULL, "ns1:leading_strandResponse");
+	case SOAP_TYPE_PointerTons1__S_USCOREvalueInputParams:
+		return soap_in_PointerTons1__S_USCOREvalueInputParams(soap, NULL, NULL, "ns1:S_valueInputParams");
 	case SOAP_TYPE_PointerTons1__scsInputParams:
 		return soap_in_PointerTons1__scsInputParams(soap, NULL, NULL, "ns1:scsInputParams");
 	case SOAP_TYPE_PointerTons1__lda_USCOREbiasInputParams:
@@ -764,6 +772,8 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		return soap_in_PointerTons1__geneskewInputParams(soap, NULL, NULL, "ns1:geneskewInputParams");
 	case SOAP_TYPE_PointerTons1__genes_USCOREfrom_USCOREoriResponse:
 		return soap_in_PointerTons1__genes_USCOREfrom_USCOREoriResponse(soap, NULL, NULL, "ns1:genes_from_oriResponse");
+	case SOAP_TYPE_PointerTons1__genes_USCOREfrom_USCOREoriInputParams:
+		return soap_in_PointerTons1__genes_USCOREfrom_USCOREoriInputParams(soap, NULL, NULL, "ns1:genes_from_oriInputParams");
 	case SOAP_TYPE_PointerTons1__cbiInputParams:
 		return soap_in_PointerTons1__cbiInputParams(soap, NULL, NULL, "ns1:cbiInputParams");
 	case SOAP_TYPE_PointerTons1__find_USCOREdifResponse:
@@ -893,6 +903,14 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		if (!soap_match_tag(soap, t, "ns1:helpResponse"))
 		{	*type = SOAP_TYPE_ns1__helpResponse;
 			return soap_in_ns1__helpResponse(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "ns1:S_value"))
+		{	*type = SOAP_TYPE_ns1__S_USCOREvalue;
+			return soap_in_ns1__S_USCOREvalue(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "ns1:S_valueResponse"))
+		{	*type = SOAP_TYPE_ns1__S_USCOREvalueResponse;
+			return soap_in_ns1__S_USCOREvalueResponse(soap, NULL, NULL, NULL);
 		}
 		if (!soap_match_tag(soap, t, "ns1:leading_strand"))
 		{	*type = SOAP_TYPE_ns1__leading_USCOREstrand;
@@ -1622,6 +1640,10 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		{	*type = SOAP_TYPE_arrayIn;
 			return soap_in_arrayIn(soap, NULL, NULL, NULL);
 		}
+		if (!soap_match_tag(soap, t, "ns1:S_valueInputParams"))
+		{	*type = SOAP_TYPE_ns1__S_USCOREvalueInputParams;
+			return soap_in_ns1__S_USCOREvalueInputParams(soap, NULL, NULL, NULL);
+		}
 		if (!soap_match_tag(soap, t, "ns1:scsInputParams"))
 		{	*type = SOAP_TYPE_ns1__scsInputParams;
 			return soap_in_ns1__scsInputParams(soap, NULL, NULL, NULL);
@@ -1818,6 +1840,10 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		{	*type = SOAP_TYPE_ns1__geneskewInputParams;
 			return soap_in_ns1__geneskewInputParams(soap, NULL, NULL, NULL);
 		}
+		if (!soap_match_tag(soap, t, "ns1:genes_from_oriInputParams"))
+		{	*type = SOAP_TYPE_ns1__genes_USCOREfrom_USCOREoriInputParams;
+			return soap_in_ns1__genes_USCOREfrom_USCOREoriInputParams(soap, NULL, NULL, NULL);
+		}
 		if (!soap_match_tag(soap, t, "ns1:cbiInputParams"))
 		{	*type = SOAP_TYPE_ns1__cbiInputParams;
 			return soap_in_ns1__cbiInputParams(soap, NULL, NULL, NULL);
@@ -1964,6 +1990,10 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_putelement(struct soap *soap, const void *ptr, co
 		return soap_out_ns1__help(soap, tag, id, (const struct ns1__help *)ptr, "ns1:help");
 	case SOAP_TYPE_ns1__helpResponse:
 		return soap_out_ns1__helpResponse(soap, tag, id, (const struct ns1__helpResponse *)ptr, "ns1:helpResponse");
+	case SOAP_TYPE_ns1__S_USCOREvalue:
+		return soap_out_ns1__S_USCOREvalue(soap, tag, id, (const struct ns1__S_USCOREvalue *)ptr, "ns1:S_value");
+	case SOAP_TYPE_ns1__S_USCOREvalueResponse:
+		return soap_out_ns1__S_USCOREvalueResponse(soap, tag, id, (const struct ns1__S_USCOREvalueResponse *)ptr, "ns1:S_valueResponse");
 	case SOAP_TYPE_ns1__leading_USCOREstrand:
 		return soap_out_ns1__leading_USCOREstrand(soap, tag, id, (const struct ns1__leading_USCOREstrand *)ptr, "ns1:leading_strand");
 	case SOAP_TYPE_ns1__leading_USCOREstrandResponse:
@@ -2328,6 +2358,8 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_putelement(struct soap *soap, const void *ptr, co
 		return soap_out_arrayOut(soap, tag, id, (const struct arrayOut *)ptr, "xsd:string");
 	case SOAP_TYPE_arrayIn:
 		return soap_out_arrayIn(soap, tag, id, (const struct arrayIn *)ptr, "xsd:string");
+	case SOAP_TYPE_ns1__S_USCOREvalueInputParams:
+		return soap_out_ns1__S_USCOREvalueInputParams(soap, tag, id, (const struct ns1__S_USCOREvalueInputParams *)ptr, "ns1:S_valueInputParams");
 	case SOAP_TYPE_ns1__scsInputParams:
 		return soap_out_ns1__scsInputParams(soap, tag, id, (const struct ns1__scsInputParams *)ptr, "ns1:scsInputParams");
 	case SOAP_TYPE_ns1__lda_USCOREbiasInputParams:
@@ -2426,6 +2458,8 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_putelement(struct soap *soap, const void *ptr, co
 		return soap_out_ns1__corInputParams(soap, tag, id, (const struct ns1__corInputParams *)ptr, "ns1:corInputParams");
 	case SOAP_TYPE_ns1__geneskewInputParams:
 		return soap_out_ns1__geneskewInputParams(soap, tag, id, (const struct ns1__geneskewInputParams *)ptr, "ns1:geneskewInputParams");
+	case SOAP_TYPE_ns1__genes_USCOREfrom_USCOREoriInputParams:
+		return soap_out_ns1__genes_USCOREfrom_USCOREoriInputParams(soap, tag, id, (const struct ns1__genes_USCOREfrom_USCOREoriInputParams *)ptr, "ns1:genes_from_oriInputParams");
 	case SOAP_TYPE_ns1__cbiInputParams:
 		return soap_out_ns1__cbiInputParams(soap, tag, id, (const struct ns1__cbiInputParams *)ptr, "ns1:cbiInputParams");
 	case SOAP_TYPE_ns1__find_USCOREdifInputParams:
@@ -2458,8 +2492,8 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_putelement(struct soap *soap, const void *ptr, co
 		return soap_out_ns1__Definition(soap, tag, id, (const struct ns1__Definition *)ptr, "ns1:Definition");
 	case SOAP_TYPE_PointerTofloat:
 		return soap_out_PointerTofloat(soap, tag, id, (float *const*)ptr, "xsd:float");
-	case SOAP_TYPE_PointerTons1__leading_USCOREstrandResponse:
-		return soap_out_PointerTons1__leading_USCOREstrandResponse(soap, tag, id, (struct ns1__leading_USCOREstrandResponse *const*)ptr, "ns1:leading_strandResponse");
+	case SOAP_TYPE_PointerTons1__S_USCOREvalueInputParams:
+		return soap_out_PointerTons1__S_USCOREvalueInputParams(soap, tag, id, (struct ns1__S_USCOREvalueInputParams *const*)ptr, "ns1:S_valueInputParams");
 	case SOAP_TYPE_PointerTons1__scsInputParams:
 		return soap_out_PointerTons1__scsInputParams(soap, tag, id, (struct ns1__scsInputParams *const*)ptr, "ns1:scsInputParams");
 	case SOAP_TYPE_PointerTons1__lda_USCOREbiasInputParams:
@@ -2524,6 +2558,8 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_putelement(struct soap *soap, const void *ptr, co
 		return soap_out_PointerTons1__geneskewInputParams(soap, tag, id, (struct ns1__geneskewInputParams *const*)ptr, "ns1:geneskewInputParams");
 	case SOAP_TYPE_PointerTons1__genes_USCOREfrom_USCOREoriResponse:
 		return soap_out_PointerTons1__genes_USCOREfrom_USCOREoriResponse(soap, tag, id, (struct ns1__genes_USCOREfrom_USCOREoriResponse *const*)ptr, "ns1:genes_from_oriResponse");
+	case SOAP_TYPE_PointerTons1__genes_USCOREfrom_USCOREoriInputParams:
+		return soap_out_PointerTons1__genes_USCOREfrom_USCOREoriInputParams(soap, tag, id, (struct ns1__genes_USCOREfrom_USCOREoriInputParams *const*)ptr, "ns1:genes_from_oriInputParams");
 	case SOAP_TYPE_PointerTons1__cbiInputParams:
 		return soap_out_PointerTons1__cbiInputParams(soap, tag, id, (struct ns1__cbiInputParams *const*)ptr, "ns1:cbiInputParams");
 	case SOAP_TYPE_PointerTons1__find_USCOREdifResponse:
@@ -2634,6 +2670,12 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_markelement(struct soap *soap, const void *ptr, 
 		break;
 	case SOAP_TYPE_ns1__helpResponse:
 		soap_serialize_ns1__helpResponse(soap, (const struct ns1__helpResponse *)ptr);
+		break;
+	case SOAP_TYPE_ns1__S_USCOREvalue:
+		soap_serialize_ns1__S_USCOREvalue(soap, (const struct ns1__S_USCOREvalue *)ptr);
+		break;
+	case SOAP_TYPE_ns1__S_USCOREvalueResponse:
+		soap_serialize_ns1__S_USCOREvalueResponse(soap, (const struct ns1__S_USCOREvalueResponse *)ptr);
 		break;
 	case SOAP_TYPE_ns1__leading_USCOREstrand:
 		soap_serialize_ns1__leading_USCOREstrand(soap, (const struct ns1__leading_USCOREstrand *)ptr);
@@ -3181,6 +3223,9 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_markelement(struct soap *soap, const void *ptr, 
 	case SOAP_TYPE_arrayIn:
 		soap_serialize_arrayIn(soap, (const struct arrayIn *)ptr);
 		break;
+	case SOAP_TYPE_ns1__S_USCOREvalueInputParams:
+		soap_serialize_ns1__S_USCOREvalueInputParams(soap, (const struct ns1__S_USCOREvalueInputParams *)ptr);
+		break;
 	case SOAP_TYPE_ns1__scsInputParams:
 		soap_serialize_ns1__scsInputParams(soap, (const struct ns1__scsInputParams *)ptr);
 		break;
@@ -3328,6 +3373,9 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_markelement(struct soap *soap, const void *ptr, 
 	case SOAP_TYPE_ns1__geneskewInputParams:
 		soap_serialize_ns1__geneskewInputParams(soap, (const struct ns1__geneskewInputParams *)ptr);
 		break;
+	case SOAP_TYPE_ns1__genes_USCOREfrom_USCOREoriInputParams:
+		soap_serialize_ns1__genes_USCOREfrom_USCOREoriInputParams(soap, (const struct ns1__genes_USCOREfrom_USCOREoriInputParams *)ptr);
+		break;
 	case SOAP_TYPE_ns1__cbiInputParams:
 		soap_serialize_ns1__cbiInputParams(soap, (const struct ns1__cbiInputParams *)ptr);
 		break;
@@ -3376,8 +3424,8 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_markelement(struct soap *soap, const void *ptr, 
 	case SOAP_TYPE_PointerTofloat:
 		soap_serialize_PointerTofloat(soap, (float *const*)ptr);
 		break;
-	case SOAP_TYPE_PointerTons1__leading_USCOREstrandResponse:
-		soap_serialize_PointerTons1__leading_USCOREstrandResponse(soap, (struct ns1__leading_USCOREstrandResponse *const*)ptr);
+	case SOAP_TYPE_PointerTons1__S_USCOREvalueInputParams:
+		soap_serialize_PointerTons1__S_USCOREvalueInputParams(soap, (struct ns1__S_USCOREvalueInputParams *const*)ptr);
 		break;
 	case SOAP_TYPE_PointerTons1__scsInputParams:
 		soap_serialize_PointerTons1__scsInputParams(soap, (struct ns1__scsInputParams *const*)ptr);
@@ -3474,6 +3522,9 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_markelement(struct soap *soap, const void *ptr, 
 		break;
 	case SOAP_TYPE_PointerTons1__genes_USCOREfrom_USCOREoriResponse:
 		soap_serialize_PointerTons1__genes_USCOREfrom_USCOREoriResponse(soap, (struct ns1__genes_USCOREfrom_USCOREoriResponse *const*)ptr);
+		break;
+	case SOAP_TYPE_PointerTons1__genes_USCOREfrom_USCOREoriInputParams:
+		soap_serialize_PointerTons1__genes_USCOREfrom_USCOREoriInputParams(soap, (struct ns1__genes_USCOREfrom_USCOREoriInputParams *const*)ptr);
 		break;
 	case SOAP_TYPE_PointerTons1__cbiInputParams:
 		soap_serialize_PointerTons1__cbiInputParams(soap, (struct ns1__cbiInputParams *const*)ptr);
@@ -4538,6 +4589,164 @@ SOAP_FMAC3 struct ns1__helpResponse * SOAP_FMAC4 soap_get_ns1__helpResponse(stru
 	return p;
 }
 
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__S_USCOREvalue(struct soap *soap, struct ns1__S_USCOREvalue *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	soap_default_string(soap, &a->_sequence);
+	a->_params = NULL;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__S_USCOREvalue(struct soap *soap, const struct ns1__S_USCOREvalue *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	soap_serialize_string(soap, &a->_sequence);
+	soap_serialize_PointerTons1__S_USCOREvalueInputParams(soap, &a->_params);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__S_USCOREvalue(struct soap *soap, const char *tag, int id, const struct ns1__S_USCOREvalue *a, const char *type)
+{
+	(void)soap; (void)tag; (void)id; (void)type;
+	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_ns1__S_USCOREvalue), type))
+		return soap->error;
+	if (soap_out_string(soap, "sequence", -1, &a->_sequence, ""))
+		return soap->error;
+	if (soap_out_PointerTons1__S_USCOREvalueInputParams(soap, "params", -1, &a->_params, ""))
+		return soap->error;
+	return soap_element_end_out(soap, tag);
+}
+
+SOAP_FMAC3 struct ns1__S_USCOREvalue * SOAP_FMAC4 soap_in_ns1__S_USCOREvalue(struct soap *soap, const char *tag, struct ns1__S_USCOREvalue *a, const char *type)
+{
+	size_t soap_flag__sequence = 1;
+	size_t soap_flag__params = 1;
+	if (soap_element_begin_in(soap, tag, 0, type))
+		return NULL;
+	a = (struct ns1__S_USCOREvalue *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_ns1__S_USCOREvalue, sizeof(struct ns1__S_USCOREvalue), 0, NULL, NULL, NULL);
+	if (!a)
+		return NULL;
+	soap_default_ns1__S_USCOREvalue(soap, a);
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag__sequence && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in_string(soap, NULL, &a->_sequence, "xsd:string"))
+				{	soap_flag__sequence--;
+					continue;
+				}
+			if (soap_flag__params && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_PointerTons1__S_USCOREvalueInputParams(soap, NULL, &a->_params, "ns1:S_valueInputParams"))
+				{	soap_flag__params--;
+					continue;
+				}
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (struct ns1__S_USCOREvalue *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE_ns1__S_USCOREvalue, 0, sizeof(struct ns1__S_USCOREvalue), 0, NULL);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__S_USCOREvalue(struct soap *soap, const struct ns1__S_USCOREvalue *a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_ns1__S_USCOREvalue);
+	if (soap_out_ns1__S_USCOREvalue(soap, tag?tag:"ns1:S_value", id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 struct ns1__S_USCOREvalue * SOAP_FMAC4 soap_get_ns1__S_USCOREvalue(struct soap *soap, struct ns1__S_USCOREvalue *p, const char *tag, const char *type)
+{
+	if ((p = soap_in_ns1__S_USCOREvalue(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__S_USCOREvalueResponse(struct soap *soap, struct ns1__S_USCOREvalueResponse *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	a->_result = NULL;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__S_USCOREvalueResponse(struct soap *soap, const struct ns1__S_USCOREvalueResponse *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	soap_serialize_PointerTostring(soap, &a->_result);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__S_USCOREvalueResponse(struct soap *soap, const char *tag, int id, const struct ns1__S_USCOREvalueResponse *a, const char *type)
+{
+	(void)soap; (void)tag; (void)id; (void)type;
+	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_ns1__S_USCOREvalueResponse), type))
+		return soap->error;
+	if (soap_out_PointerTostring(soap, "result", -1, &a->_result, ""))
+		return soap->error;
+	return soap_element_end_out(soap, tag);
+}
+
+SOAP_FMAC3 struct ns1__S_USCOREvalueResponse * SOAP_FMAC4 soap_in_ns1__S_USCOREvalueResponse(struct soap *soap, const char *tag, struct ns1__S_USCOREvalueResponse *a, const char *type)
+{
+	size_t soap_flag__result = 1;
+	if (soap_element_begin_in(soap, tag, 0, type))
+		return NULL;
+	a = (struct ns1__S_USCOREvalueResponse *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_ns1__S_USCOREvalueResponse, sizeof(struct ns1__S_USCOREvalueResponse), 0, NULL, NULL, NULL);
+	if (!a)
+		return NULL;
+	soap_default_ns1__S_USCOREvalueResponse(soap, a);
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag__result && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_PointerTostring(soap, NULL, &a->_result, "xsd:string"))
+				{	soap_flag__result--;
+					continue;
+				}
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (struct ns1__S_USCOREvalueResponse *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE_ns1__S_USCOREvalueResponse, 0, sizeof(struct ns1__S_USCOREvalueResponse), 0, NULL);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__S_USCOREvalueResponse(struct soap *soap, const struct ns1__S_USCOREvalueResponse *a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_ns1__S_USCOREvalueResponse);
+	if (soap_out_ns1__S_USCOREvalueResponse(soap, tag?tag:"ns1:S_valueResponse", id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 struct ns1__S_USCOREvalueResponse * SOAP_FMAC4 soap_get_ns1__S_USCOREvalueResponse(struct soap *soap, struct ns1__S_USCOREvalueResponse *p, const char *tag, const char *type)
+{
+	if ((p = soap_in_ns1__S_USCOREvalueResponse(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__leading_USCOREstrand(struct soap *soap, struct ns1__leading_USCOREstrand *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
@@ -4621,7 +4830,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__leading_USCOREstrandResponse(struct
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__leading_USCOREstrandResponse(struct soap *soap, const struct ns1__leading_USCOREstrandResponse *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
-	soap_serialize_PointerToarrayOut(soap, &a->_result);
+	soap_serialize_PointerTostring(soap, &a->_result);
 }
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__leading_USCOREstrandResponse(struct soap *soap, const char *tag, int id, const struct ns1__leading_USCOREstrandResponse *a, const char *type)
@@ -4629,7 +4838,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__leading_USCOREstrandResponse(struct soap
 	(void)soap; (void)tag; (void)id; (void)type;
 	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_ns1__leading_USCOREstrandResponse), type))
 		return soap->error;
-	if (soap_out_PointerToarrayOut(soap, "result", -1, &a->_result, ""))
+	if (soap_out_PointerTostring(soap, "result", -1, &a->_result, ""))
 		return soap->error;
 	return soap_element_end_out(soap, tag);
 }
@@ -4648,7 +4857,7 @@ SOAP_FMAC3 struct ns1__leading_USCOREstrandResponse * SOAP_FMAC4 soap_in_ns1__le
 		for (;;)
 		{	soap->error = SOAP_TAG_MISMATCH;
 			if (soap_flag__result && soap->error == SOAP_TAG_MISMATCH)
-				if (soap_in_PointerToarrayOut(soap, NULL, &a->_result, "xsd:string"))
+				if (soap_in_PointerTostring(soap, NULL, &a->_result, "xsd:string"))
 				{	soap_flag__result--;
 					continue;
 				}
@@ -10645,6 +10854,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__genes_USCOREfrom_USCOREori(struct s
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	soap_default_string(soap, &a->_sequence);
 	soap_default_string(soap, &a->_direction);
+	a->_params = NULL;
 }
 
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__genes_USCOREfrom_USCOREori(struct soap *soap, const struct ns1__genes_USCOREfrom_USCOREori *a)
@@ -10652,6 +10862,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__genes_USCOREfrom_USCOREori(struct
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	soap_serialize_string(soap, &a->_sequence);
 	soap_serialize_string(soap, &a->_direction);
+	soap_serialize_PointerTons1__genes_USCOREfrom_USCOREoriInputParams(soap, &a->_params);
 }
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__genes_USCOREfrom_USCOREori(struct soap *soap, const char *tag, int id, const struct ns1__genes_USCOREfrom_USCOREori *a, const char *type)
@@ -10663,6 +10874,8 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__genes_USCOREfrom_USCOREori(struct soap *
 		return soap->error;
 	if (soap_out_string(soap, "direction", -1, &a->_direction, ""))
 		return soap->error;
+	if (soap_out_PointerTons1__genes_USCOREfrom_USCOREoriInputParams(soap, "params", -1, &a->_params, ""))
+		return soap->error;
 	return soap_element_end_out(soap, tag);
 }
 
@@ -10670,6 +10883,7 @@ SOAP_FMAC3 struct ns1__genes_USCOREfrom_USCOREori * SOAP_FMAC4 soap_in_ns1__gene
 {
 	size_t soap_flag__sequence = 1;
 	size_t soap_flag__direction = 1;
+	size_t soap_flag__params = 1;
 	if (soap_element_begin_in(soap, tag, 0, type))
 		return NULL;
 	a = (struct ns1__genes_USCOREfrom_USCOREori *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_ns1__genes_USCOREfrom_USCOREori, sizeof(struct ns1__genes_USCOREfrom_USCOREori), 0, NULL, NULL, NULL);
@@ -10688,6 +10902,11 @@ SOAP_FMAC3 struct ns1__genes_USCOREfrom_USCOREori * SOAP_FMAC4 soap_in_ns1__gene
 			if (soap_flag__direction && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
 				if (soap_in_string(soap, NULL, &a->_direction, "xsd:string"))
 				{	soap_flag__direction--;
+					continue;
+				}
+			if (soap_flag__params && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_PointerTons1__genes_USCOREfrom_USCOREoriInputParams(soap, NULL, &a->_params, "ns1:genes_from_oriInputParams"))
+				{	soap_flag__params--;
 					continue;
 				}
 			if (soap->error == SOAP_TAG_MISMATCH)
@@ -18851,6 +19070,83 @@ SOAP_FMAC3 struct arrayIn * SOAP_FMAC4 soap_get_arrayIn(struct soap *soap, struc
 	return p;
 }
 
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__S_USCOREvalueInputParams(struct soap *soap, struct ns1__S_USCOREvalueInputParams *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	soap_default_int(soap, &a->sharp);
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__S_USCOREvalueInputParams(struct soap *soap, const struct ns1__S_USCOREvalueInputParams *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__S_USCOREvalueInputParams(struct soap *soap, const char *tag, int id, const struct ns1__S_USCOREvalueInputParams *a, const char *type)
+{
+	(void)soap; (void)tag; (void)id; (void)type;
+	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_ns1__S_USCOREvalueInputParams), type))
+		return soap->error;
+	if (soap_out_int(soap, "sharp", -1, &a->sharp, ""))
+		return soap->error;
+	return soap_element_end_out(soap, tag);
+}
+
+SOAP_FMAC3 struct ns1__S_USCOREvalueInputParams * SOAP_FMAC4 soap_in_ns1__S_USCOREvalueInputParams(struct soap *soap, const char *tag, struct ns1__S_USCOREvalueInputParams *a, const char *type)
+{
+	size_t soap_flag_sharp = 1;
+	if (soap_element_begin_in(soap, tag, 0, type))
+		return NULL;
+	a = (struct ns1__S_USCOREvalueInputParams *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_ns1__S_USCOREvalueInputParams, sizeof(struct ns1__S_USCOREvalueInputParams), 0, NULL, NULL, NULL);
+	if (!a)
+		return NULL;
+	soap_default_ns1__S_USCOREvalueInputParams(soap, a);
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag_sharp && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_int(soap, "sharp", &a->sharp, "xsd:int"))
+				{	soap_flag_sharp--;
+					continue;
+				}
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (struct ns1__S_USCOREvalueInputParams *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE_ns1__S_USCOREvalueInputParams, 0, sizeof(struct ns1__S_USCOREvalueInputParams), 0, NULL);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	if ((soap->mode & SOAP_XML_STRICT) && (soap_flag_sharp > 0))
+	{	soap->error = SOAP_OCCURS;
+		return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__S_USCOREvalueInputParams(struct soap *soap, const struct ns1__S_USCOREvalueInputParams *a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_ns1__S_USCOREvalueInputParams);
+	if (soap_out_ns1__S_USCOREvalueInputParams(soap, tag?tag:"ns1:S_valueInputParams", id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 struct ns1__S_USCOREvalueInputParams * SOAP_FMAC4 soap_get_ns1__S_USCOREvalueInputParams(struct soap *soap, struct ns1__S_USCOREvalueInputParams *p, const char *tag, const char *type)
+{
+	if ((p = soap_in_ns1__S_USCOREvalueInputParams(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__scsInputParams(struct soap *soap, struct ns1__scsInputParams *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
@@ -19538,6 +19834,8 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__dinucInputParams(struct soap *soap,
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	soap_default_string(soap, &a->position);
 	soap_default_string(soap, &a->id);
+	soap_default_string(soap, &a->del_USCOREkey);
+	soap_default_int(soap, &a->translate);
 	soap_default_string(soap, &a->output);
 }
 
@@ -19546,6 +19844,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__dinucInputParams(struct soap *soa
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	soap_serialize_string(soap, &a->position);
 	soap_serialize_string(soap, &a->id);
+	soap_serialize_string(soap, &a->del_USCOREkey);
 	soap_serialize_string(soap, &a->output);
 }
 
@@ -19566,6 +19865,14 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__dinucInputParams(struct soap *soap, cons
 	}
 	else if (soap_element_nil(soap, "id"))
 		return soap->error;
+	if (a->del_USCOREkey)
+	{	if (soap_out_string(soap, "del_key", -1, &a->del_USCOREkey, ""))
+			return soap->error;
+	}
+	else if (soap_element_nil(soap, "del_key"))
+		return soap->error;
+	if (soap_out_int(soap, "translate", -1, &a->translate, ""))
+		return soap->error;
 	if (a->output)
 	{	if (soap_out_string(soap, "output", -1, &a->output, ""))
 			return soap->error;
@@ -19579,6 +19886,8 @@ SOAP_FMAC3 struct ns1__dinucInputParams * SOAP_FMAC4 soap_in_ns1__dinucInputPara
 {
 	size_t soap_flag_position = 1;
 	size_t soap_flag_id = 1;
+	size_t soap_flag_del_USCOREkey = 1;
+	size_t soap_flag_translate = 1;
 	size_t soap_flag_output = 1;
 	if (soap_element_begin_in(soap, tag, 0, type))
 		return NULL;
@@ -19598,6 +19907,16 @@ SOAP_FMAC3 struct ns1__dinucInputParams * SOAP_FMAC4 soap_in_ns1__dinucInputPara
 			if (soap_flag_id && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
 				if (soap_in_string(soap, "id", &a->id, "xsd:string"))
 				{	soap_flag_id--;
+					continue;
+				}
+			if (soap_flag_del_USCOREkey && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in_string(soap, "del_key", &a->del_USCOREkey, "xsd:string"))
+				{	soap_flag_del_USCOREkey--;
+					continue;
+				}
+			if (soap_flag_translate && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_int(soap, "translate", &a->translate, "xsd:int"))
+				{	soap_flag_translate--;
 					continue;
 				}
 			if (soap_flag_output && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
@@ -19620,7 +19939,7 @@ SOAP_FMAC3 struct ns1__dinucInputParams * SOAP_FMAC4 soap_in_ns1__dinucInputPara
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
-	if ((soap->mode & SOAP_XML_STRICT) && (soap_flag_position > 0 || soap_flag_id > 0 || soap_flag_output > 0))
+	if ((soap->mode & SOAP_XML_STRICT) && (soap_flag_position > 0 || soap_flag_id > 0 || soap_flag_del_USCOREkey > 0 || soap_flag_translate > 0 || soap_flag_output > 0))
 	{	soap->error = SOAP_OCCURS;
 		return NULL;
 	}
@@ -20896,15 +21215,18 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__codon_USCOREcompilerInputParams(str
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	soap_default_int(soap, &a->translate);
 	soap_default_string(soap, &a->id);
-	soap_default_int(soap, &a->data);
+	soap_default_string(soap, &a->data);
 	soap_default_string(soap, &a->output);
 	soap_default_string(soap, &a->del_USCOREkey);
+	soap_default_int(soap, &a->startcodon);
+	soap_default_int(soap, &a->stopcodon);
 }
 
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__codon_USCOREcompilerInputParams(struct soap *soap, const struct ns1__codon_USCOREcompilerInputParams *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	soap_serialize_string(soap, &a->id);
+	soap_serialize_string(soap, &a->data);
 	soap_serialize_string(soap, &a->output);
 	soap_serialize_string(soap, &a->del_USCOREkey);
 }
@@ -20922,7 +21244,11 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__codon_USCOREcompilerInputParams(struct s
 	}
 	else if (soap_element_nil(soap, "id"))
 		return soap->error;
-	if (soap_out_int(soap, "data", -1, &a->data, ""))
+	if (a->data)
+	{	if (soap_out_string(soap, "data", -1, &a->data, ""))
+			return soap->error;
+	}
+	else if (soap_element_nil(soap, "data"))
 		return soap->error;
 	if (a->output)
 	{	if (soap_out_string(soap, "output", -1, &a->output, ""))
@@ -20936,6 +21262,10 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__codon_USCOREcompilerInputParams(struct s
 	}
 	else if (soap_element_nil(soap, "del_key"))
 		return soap->error;
+	if (soap_out_int(soap, "startcodon", -1, &a->startcodon, ""))
+		return soap->error;
+	if (soap_out_int(soap, "stopcodon", -1, &a->stopcodon, ""))
+		return soap->error;
 	return soap_element_end_out(soap, tag);
 }
 
@@ -20946,6 +21276,8 @@ SOAP_FMAC3 struct ns1__codon_USCOREcompilerInputParams * SOAP_FMAC4 soap_in_ns1_
 	size_t soap_flag_data = 1;
 	size_t soap_flag_output = 1;
 	size_t soap_flag_del_USCOREkey = 1;
+	size_t soap_flag_startcodon = 1;
+	size_t soap_flag_stopcodon = 1;
 	if (soap_element_begin_in(soap, tag, 0, type))
 		return NULL;
 	a = (struct ns1__codon_USCOREcompilerInputParams *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_ns1__codon_USCOREcompilerInputParams, sizeof(struct ns1__codon_USCOREcompilerInputParams), 0, NULL, NULL, NULL);
@@ -20966,8 +21298,8 @@ SOAP_FMAC3 struct ns1__codon_USCOREcompilerInputParams * SOAP_FMAC4 soap_in_ns1_
 				{	soap_flag_id--;
 					continue;
 				}
-			if (soap_flag_data && soap->error == SOAP_TAG_MISMATCH)
-				if (soap_in_int(soap, "data", &a->data, "xsd:int"))
+			if (soap_flag_data && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in_string(soap, "data", &a->data, "xsd:string"))
 				{	soap_flag_data--;
 					continue;
 				}
@@ -20979,6 +21311,16 @@ SOAP_FMAC3 struct ns1__codon_USCOREcompilerInputParams * SOAP_FMAC4 soap_in_ns1_
 			if (soap_flag_del_USCOREkey && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
 				if (soap_in_string(soap, "del_key", &a->del_USCOREkey, "xsd:string"))
 				{	soap_flag_del_USCOREkey--;
+					continue;
+				}
+			if (soap_flag_startcodon && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_int(soap, "startcodon", &a->startcodon, "xsd:int"))
+				{	soap_flag_startcodon--;
+					continue;
+				}
+			if (soap_flag_stopcodon && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_int(soap, "stopcodon", &a->stopcodon, "xsd:int"))
+				{	soap_flag_stopcodon--;
 					continue;
 				}
 			if (soap->error == SOAP_TAG_MISMATCH)
@@ -20996,7 +21338,7 @@ SOAP_FMAC3 struct ns1__codon_USCOREcompilerInputParams * SOAP_FMAC4 soap_in_ns1_
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
-	if ((soap->mode & SOAP_XML_STRICT) && (soap_flag_translate > 0 || soap_flag_id > 0 || soap_flag_data > 0 || soap_flag_output > 0 || soap_flag_del_USCOREkey > 0))
+	if ((soap->mode & SOAP_XML_STRICT) && (soap_flag_translate > 0 || soap_flag_id > 0 || soap_flag_data > 0 || soap_flag_output > 0 || soap_flag_del_USCOREkey > 0 || soap_flag_startcodon > 0 || soap_flag_stopcodon > 0))
 	{	soap->error = SOAP_OCCURS;
 		return NULL;
 	}
@@ -22975,8 +23317,8 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__signatureInputParams(struct soap *s
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	soap_default_int(soap, &a->wordlength);
 	soap_default_string(soap, &a->output);
-	soap_default_int(soap, &a->bothstrand);
 	soap_default_int(soap, &a->oe);
+	soap_default_int(soap, &a->bothstrand);
 }
 
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__signatureInputParams(struct soap *soap, const struct ns1__signatureInputParams *a)
@@ -22998,9 +23340,9 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__signatureInputParams(struct soap *soap, 
 	}
 	else if (soap_element_nil(soap, "output"))
 		return soap->error;
-	if (soap_out_int(soap, "bothstrand", -1, &a->bothstrand, ""))
-		return soap->error;
 	if (soap_out_int(soap, "oe", -1, &a->oe, ""))
+		return soap->error;
+	if (soap_out_int(soap, "bothstrand", -1, &a->bothstrand, ""))
 		return soap->error;
 	return soap_element_end_out(soap, tag);
 }
@@ -23009,8 +23351,8 @@ SOAP_FMAC3 struct ns1__signatureInputParams * SOAP_FMAC4 soap_in_ns1__signatureI
 {
 	size_t soap_flag_wordlength = 1;
 	size_t soap_flag_output = 1;
-	size_t soap_flag_bothstrand = 1;
 	size_t soap_flag_oe = 1;
+	size_t soap_flag_bothstrand = 1;
 	if (soap_element_begin_in(soap, tag, 0, type))
 		return NULL;
 	a = (struct ns1__signatureInputParams *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_ns1__signatureInputParams, sizeof(struct ns1__signatureInputParams), 0, NULL, NULL, NULL);
@@ -23031,14 +23373,14 @@ SOAP_FMAC3 struct ns1__signatureInputParams * SOAP_FMAC4 soap_in_ns1__signatureI
 				{	soap_flag_output--;
 					continue;
 				}
-			if (soap_flag_bothstrand && soap->error == SOAP_TAG_MISMATCH)
-				if (soap_in_int(soap, "bothstrand", &a->bothstrand, "xsd:int"))
-				{	soap_flag_bothstrand--;
-					continue;
-				}
 			if (soap_flag_oe && soap->error == SOAP_TAG_MISMATCH)
 				if (soap_in_int(soap, "oe", &a->oe, "xsd:int"))
 				{	soap_flag_oe--;
+					continue;
+				}
+			if (soap_flag_bothstrand && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_int(soap, "bothstrand", &a->bothstrand, "xsd:int"))
+				{	soap_flag_bothstrand--;
 					continue;
 				}
 			if (soap->error == SOAP_TAG_MISMATCH)
@@ -23056,7 +23398,7 @@ SOAP_FMAC3 struct ns1__signatureInputParams * SOAP_FMAC4 soap_in_ns1__signatureI
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
-	if ((soap->mode & SOAP_XML_STRICT) && (soap_flag_wordlength > 0 || soap_flag_output > 0 || soap_flag_bothstrand > 0 || soap_flag_oe > 0))
+	if ((soap->mode & SOAP_XML_STRICT) && (soap_flag_wordlength > 0 || soap_flag_output > 0 || soap_flag_oe > 0 || soap_flag_bothstrand > 0))
 	{	soap->error = SOAP_OCCURS;
 		return NULL;
 	}
@@ -23824,6 +24166,115 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__geneskewInputParams(struct soap *soap, c
 SOAP_FMAC3 struct ns1__geneskewInputParams * SOAP_FMAC4 soap_get_ns1__geneskewInputParams(struct soap *soap, struct ns1__geneskewInputParams *p, const char *tag, const char *type)
 {
 	if ((p = soap_in_ns1__geneskewInputParams(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__genes_USCOREfrom_USCOREoriInputParams(struct soap *soap, struct ns1__genes_USCOREfrom_USCOREoriInputParams *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	soap_default_int(soap, &a->window);
+	soap_default_int(soap, &a->purine);
+	soap_default_string(soap, &a->output);
+	soap_default_int(soap, &a->keto);
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__genes_USCOREfrom_USCOREoriInputParams(struct soap *soap, const struct ns1__genes_USCOREfrom_USCOREoriInputParams *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	soap_serialize_string(soap, &a->output);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__genes_USCOREfrom_USCOREoriInputParams(struct soap *soap, const char *tag, int id, const struct ns1__genes_USCOREfrom_USCOREoriInputParams *a, const char *type)
+{
+	(void)soap; (void)tag; (void)id; (void)type;
+	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_ns1__genes_USCOREfrom_USCOREoriInputParams), type))
+		return soap->error;
+	if (soap_out_int(soap, "window", -1, &a->window, ""))
+		return soap->error;
+	if (soap_out_int(soap, "purine", -1, &a->purine, ""))
+		return soap->error;
+	if (a->output)
+	{	if (soap_out_string(soap, "output", -1, &a->output, ""))
+			return soap->error;
+	}
+	else if (soap_element_nil(soap, "output"))
+		return soap->error;
+	if (soap_out_int(soap, "keto", -1, &a->keto, ""))
+		return soap->error;
+	return soap_element_end_out(soap, tag);
+}
+
+SOAP_FMAC3 struct ns1__genes_USCOREfrom_USCOREoriInputParams * SOAP_FMAC4 soap_in_ns1__genes_USCOREfrom_USCOREoriInputParams(struct soap *soap, const char *tag, struct ns1__genes_USCOREfrom_USCOREoriInputParams *a, const char *type)
+{
+	size_t soap_flag_window = 1;
+	size_t soap_flag_purine = 1;
+	size_t soap_flag_output = 1;
+	size_t soap_flag_keto = 1;
+	if (soap_element_begin_in(soap, tag, 0, type))
+		return NULL;
+	a = (struct ns1__genes_USCOREfrom_USCOREoriInputParams *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_ns1__genes_USCOREfrom_USCOREoriInputParams, sizeof(struct ns1__genes_USCOREfrom_USCOREoriInputParams), 0, NULL, NULL, NULL);
+	if (!a)
+		return NULL;
+	soap_default_ns1__genes_USCOREfrom_USCOREoriInputParams(soap, a);
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag_window && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_int(soap, "window", &a->window, "xsd:int"))
+				{	soap_flag_window--;
+					continue;
+				}
+			if (soap_flag_purine && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_int(soap, "purine", &a->purine, "xsd:int"))
+				{	soap_flag_purine--;
+					continue;
+				}
+			if (soap_flag_output && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in_string(soap, "output", &a->output, "xsd:string"))
+				{	soap_flag_output--;
+					continue;
+				}
+			if (soap_flag_keto && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_int(soap, "keto", &a->keto, "xsd:int"))
+				{	soap_flag_keto--;
+					continue;
+				}
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (struct ns1__genes_USCOREfrom_USCOREoriInputParams *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE_ns1__genes_USCOREfrom_USCOREoriInputParams, 0, sizeof(struct ns1__genes_USCOREfrom_USCOREoriInputParams), 0, NULL);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	if ((soap->mode & SOAP_XML_STRICT) && (soap_flag_window > 0 || soap_flag_purine > 0 || soap_flag_output > 0 || soap_flag_keto > 0))
+	{	soap->error = SOAP_OCCURS;
+		return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__genes_USCOREfrom_USCOREoriInputParams(struct soap *soap, const struct ns1__genes_USCOREfrom_USCOREoriInputParams *a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_ns1__genes_USCOREfrom_USCOREoriInputParams);
+	if (soap_out_ns1__genes_USCOREfrom_USCOREoriInputParams(soap, tag?tag:"ns1:genes_from_oriInputParams", id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 struct ns1__genes_USCOREfrom_USCOREoriInputParams * SOAP_FMAC4 soap_get_ns1__genes_USCOREfrom_USCOREoriInputParams(struct soap *soap, struct ns1__genes_USCOREfrom_USCOREoriInputParams *p, const char *tag, const char *type)
+{
+	if ((p = soap_in_ns1__genes_USCOREfrom_USCOREoriInputParams(soap, tag, p, type)))
 		if (soap_getindependent(soap))
 			return NULL;
 	return p;
@@ -25583,52 +26034,52 @@ SOAP_FMAC3 float ** SOAP_FMAC4 soap_get_PointerTofloat(struct soap *soap, float 
 	return p;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons1__leading_USCOREstrandResponse(struct soap *soap, struct ns1__leading_USCOREstrandResponse *const*a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons1__S_USCOREvalueInputParams(struct soap *soap, struct ns1__S_USCOREvalueInputParams *const*a)
 {
-	if (!soap_reference(soap, *a, SOAP_TYPE_ns1__leading_USCOREstrandResponse))
-		soap_serialize_ns1__leading_USCOREstrandResponse(soap, *a);
+	if (!soap_reference(soap, *a, SOAP_TYPE_ns1__S_USCOREvalueInputParams))
+		soap_serialize_ns1__S_USCOREvalueInputParams(soap, *a);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons1__leading_USCOREstrandResponse(struct soap *soap, const char *tag, int id, struct ns1__leading_USCOREstrandResponse *const*a, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons1__S_USCOREvalueInputParams(struct soap *soap, const char *tag, int id, struct ns1__S_USCOREvalueInputParams *const*a, const char *type)
 {
-	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE_ns1__leading_USCOREstrandResponse);
+	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE_ns1__S_USCOREvalueInputParams);
 	if (id < 0)
 		return soap->error;
-	return soap_out_ns1__leading_USCOREstrandResponse(soap, tag, id, *a, type);
+	return soap_out_ns1__S_USCOREvalueInputParams(soap, tag, id, *a, type);
 }
 
-SOAP_FMAC3 struct ns1__leading_USCOREstrandResponse ** SOAP_FMAC4 soap_in_PointerTons1__leading_USCOREstrandResponse(struct soap *soap, const char *tag, struct ns1__leading_USCOREstrandResponse **a, const char *type)
+SOAP_FMAC3 struct ns1__S_USCOREvalueInputParams ** SOAP_FMAC4 soap_in_PointerTons1__S_USCOREvalueInputParams(struct soap *soap, const char *tag, struct ns1__S_USCOREvalueInputParams **a, const char *type)
 {
 	if (soap_element_begin_in(soap, tag, 1, NULL))
 		return NULL;
 	if (!a)
-		if (!(a = (struct ns1__leading_USCOREstrandResponse **)soap_malloc(soap, sizeof(struct ns1__leading_USCOREstrandResponse *))))
+		if (!(a = (struct ns1__S_USCOREvalueInputParams **)soap_malloc(soap, sizeof(struct ns1__S_USCOREvalueInputParams *))))
 			return NULL;
 	*a = NULL;
 	if (!soap->null && *soap->href != '#')
 	{	soap_revert(soap);
-		if (!(*a = soap_in_ns1__leading_USCOREstrandResponse(soap, tag, *a, type)))
+		if (!(*a = soap_in_ns1__S_USCOREvalueInputParams(soap, tag, *a, type)))
 			return NULL;
 	}
 	else
-	{	a = (struct ns1__leading_USCOREstrandResponse **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE_ns1__leading_USCOREstrandResponse, sizeof(struct ns1__leading_USCOREstrandResponse), 0);
+	{	a = (struct ns1__S_USCOREvalueInputParams **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE_ns1__S_USCOREvalueInputParams, sizeof(struct ns1__S_USCOREvalueInputParams), 0);
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
 	return a;
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons1__leading_USCOREstrandResponse(struct soap *soap, struct ns1__leading_USCOREstrandResponse *const*a, const char *tag, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons1__S_USCOREvalueInputParams(struct soap *soap, struct ns1__S_USCOREvalueInputParams *const*a, const char *tag, const char *type)
 {
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerTons1__leading_USCOREstrandResponse);
-	if (soap_out_PointerTons1__leading_USCOREstrandResponse(soap, tag?tag:"ns1:leading_strandResponse", id, a, type))
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerTons1__S_USCOREvalueInputParams);
+	if (soap_out_PointerTons1__S_USCOREvalueInputParams(soap, tag?tag:"ns1:S_valueInputParams", id, a, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-SOAP_FMAC3 struct ns1__leading_USCOREstrandResponse ** SOAP_FMAC4 soap_get_PointerTons1__leading_USCOREstrandResponse(struct soap *soap, struct ns1__leading_USCOREstrandResponse **p, const char *tag, const char *type)
+SOAP_FMAC3 struct ns1__S_USCOREvalueInputParams ** SOAP_FMAC4 soap_get_PointerTons1__S_USCOREvalueInputParams(struct soap *soap, struct ns1__S_USCOREvalueInputParams **p, const char *tag, const char *type)
 {
-	if ((p = soap_in_PointerTons1__leading_USCOREstrandResponse(soap, tag, p, type)))
+	if ((p = soap_in_PointerTons1__S_USCOREvalueInputParams(soap, tag, p, type)))
 		if (soap_getindependent(soap))
 			return NULL;
 	return p;
@@ -27261,6 +27712,57 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons1__genes_USCOREfrom_USCOREoriRespo
 SOAP_FMAC3 struct ns1__genes_USCOREfrom_USCOREoriResponse ** SOAP_FMAC4 soap_get_PointerTons1__genes_USCOREfrom_USCOREoriResponse(struct soap *soap, struct ns1__genes_USCOREfrom_USCOREoriResponse **p, const char *tag, const char *type)
 {
 	if ((p = soap_in_PointerTons1__genes_USCOREfrom_USCOREoriResponse(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons1__genes_USCOREfrom_USCOREoriInputParams(struct soap *soap, struct ns1__genes_USCOREfrom_USCOREoriInputParams *const*a)
+{
+	if (!soap_reference(soap, *a, SOAP_TYPE_ns1__genes_USCOREfrom_USCOREoriInputParams))
+		soap_serialize_ns1__genes_USCOREfrom_USCOREoriInputParams(soap, *a);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons1__genes_USCOREfrom_USCOREoriInputParams(struct soap *soap, const char *tag, int id, struct ns1__genes_USCOREfrom_USCOREoriInputParams *const*a, const char *type)
+{
+	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE_ns1__genes_USCOREfrom_USCOREoriInputParams);
+	if (id < 0)
+		return soap->error;
+	return soap_out_ns1__genes_USCOREfrom_USCOREoriInputParams(soap, tag, id, *a, type);
+}
+
+SOAP_FMAC3 struct ns1__genes_USCOREfrom_USCOREoriInputParams ** SOAP_FMAC4 soap_in_PointerTons1__genes_USCOREfrom_USCOREoriInputParams(struct soap *soap, const char *tag, struct ns1__genes_USCOREfrom_USCOREoriInputParams **a, const char *type)
+{
+	if (soap_element_begin_in(soap, tag, 1, NULL))
+		return NULL;
+	if (!a)
+		if (!(a = (struct ns1__genes_USCOREfrom_USCOREoriInputParams **)soap_malloc(soap, sizeof(struct ns1__genes_USCOREfrom_USCOREoriInputParams *))))
+			return NULL;
+	*a = NULL;
+	if (!soap->null && *soap->href != '#')
+	{	soap_revert(soap);
+		if (!(*a = soap_in_ns1__genes_USCOREfrom_USCOREoriInputParams(soap, tag, *a, type)))
+			return NULL;
+	}
+	else
+	{	a = (struct ns1__genes_USCOREfrom_USCOREoriInputParams **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE_ns1__genes_USCOREfrom_USCOREoriInputParams, sizeof(struct ns1__genes_USCOREfrom_USCOREoriInputParams), 0);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons1__genes_USCOREfrom_USCOREoriInputParams(struct soap *soap, struct ns1__genes_USCOREfrom_USCOREoriInputParams *const*a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerTons1__genes_USCOREfrom_USCOREoriInputParams);
+	if (soap_out_PointerTons1__genes_USCOREfrom_USCOREoriInputParams(soap, tag?tag:"ns1:genes_from_oriInputParams", id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 struct ns1__genes_USCOREfrom_USCOREoriInputParams ** SOAP_FMAC4 soap_get_PointerTons1__genes_USCOREfrom_USCOREoriInputParams(struct soap *soap, struct ns1__genes_USCOREfrom_USCOREoriInputParams **p, const char *tag, const char *type)
+{
+	if ((p = soap_in_PointerTons1__genes_USCOREfrom_USCOREoriInputParams(soap, tag, p, type)))
 		if (soap_getindependent(soap))
 			return NULL;
 	return p;
