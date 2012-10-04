@@ -17,6 +17,7 @@ section: input [
 
   string: oligomer [
     parameter: "Y"
+    information: "Oligomer to count"
   ]
 
 endsection: input

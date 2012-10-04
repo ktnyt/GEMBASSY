@@ -6,17 +6,11 @@
  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
  xmlns:ns1="http://soap.g-language.org/GLANG">
  <SOAP-ENV:Body SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
-  <ns1:codon_compiler>
+  <ns1:S_value>
    <sequence></sequence>
    <params>
-    <translate>0</translate>
-    <id></id>
-    <data></data>
-    <output></output>
-    <del_key></del_key>
-    <startcodon>0</startcodon>
-    <stopcodon>0</stopcodon>
+    <sharp>0</sharp>
    </params>
-  </ns1:codon_compiler>
+  </ns1:S_value>
  </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>

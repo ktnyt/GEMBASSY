@@ -11,6 +11,8 @@
    <params>
     <position></position>
     <id></id>
+    <translate>0</translate>
+    <del_key></del_key>
     <output></output>
    </params>
   </ns1:dinuc>

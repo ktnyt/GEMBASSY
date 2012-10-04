@@ -14,7 +14,7 @@ int main(int argc, char *argv[]){
   embInitPV("gleading_strand",argc,argv,"GEMBASSY","1.0.0");
 
   struct soap soap;
-
+  
   AjPSeqall     seqall;
   AjPSeq        seq;
   AjPStr        inseq     = NULL;
