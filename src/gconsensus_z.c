@@ -8,14 +8,7 @@
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
-
-char *_upper(char *s){
-  char *p;
-  for(p=s; *p; p++){
-    *p = toupper(*p);
-  }
-  return(s);
-}
+#include "../include/gembassy.h"
 
 int main(int argc, char *argv[]){
   embInitPV("gconsensus_z",argc,argv,"GEMBASSY","1.0.0");
@@ -24,10 +17,7 @@ int main(int argc, char *argv[]){
   struct ns1__consensus_USCOREzInputParams params;
   struct arrayIn array_seq;
 
-  array_seq.__size = 0;
-  
   AjPSeqall seqall;
-  AjPSeqout seqout;
   AjPSeq    seq;
   AjPStr    inseq    = NULL;
   AjPStr    filename = NULL;
@@ -38,30 +28,33 @@ int main(int argc, char *argv[]){
   seqall = ajAcdGetSeqall("sequence");
   high   = ajAcdGetInt("high");
   low    = ajAcdGetFloat("low");
-  seqout = ajAcdGetSeqout("outseq");
   
   params.high = high;
   params.low  = low;
 
-  char* tmp[ajSeqallGetCount(seqall)];
+  char** tmp  = (char**)malloc(sizeof(char));
+  int    size = 0;
 
   while(ajSeqallNext(seqall,&seq)){
-    char* in0 = NULL;
-    in0 = ajCharNewS(ajSeqGetSeqS(seq));
-    tmp[array_seq.__size] = ajCharNewS(ajSeqGetSeqS(seq));
-    array_seq.__size ++;
+    if(size == 0) ajStrAssignS(&filename,ajSeqGetAccS(seq));
+    tmp = (char**)realloc(tmp,sizeof(char)*(size+1));
+    tmp[size] = ajCharNewS(ajSeqGetSeqS(seq));
+    size++;
   }
 
-  array_seq.__ptr = tmp;
+  array_seq.__size = size;
+  array_seq.__ptr  = tmp;
 
   soap_init(&soap);
 
   if(soap_call_ns1__consensus_USCOREz(&soap,NULL,NULL,&array_seq,&params,&jobid)==SOAP_OK){
-    puts(jobid);
-    /*ajCharFmtUpper(jobid);
-    ajSeqAssignSeqC(seq, jobid);
-    ajSeqoutWriteSeq(seqout, seq);
-    ajSeqoutClose(seqout);*/
+
+    ajStrAppendC(&filename,".png");
+    if(get_file(jobid,ajCharNewS(filename))==0){
+      fprintf(stderr,"Retrieval successful\n");
+    }else{
+      fprintf(stderr,"Retrieval unsuccessful\n");
+    }
   }else{
     soap_print_fault(&soap,stderr);
   }
@@ -69,6 +62,7 @@ int main(int argc, char *argv[]){
   soap_destroy(&soap);
   soap_end(&soap);
   soap_done(&soap);
+  free(tmp);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
