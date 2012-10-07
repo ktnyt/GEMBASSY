@@ -44,8 +44,7 @@ int main(int argc, char *argv[]){
     inseq = NULL;
 
     ajStrAppendS(&inseq,ajSeqGetSeqS(seq));
-    ajStrAppendS(&filename,ajSeqGetNameS(seq));
-    
+
     char* in0;
     in0 = ajCharNewS(inseq);
     fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
@@ -53,7 +52,6 @@ int main(int argc, char *argv[]){
       ajCharFmtUpper(jobid);
       ajSeqAssignSeqC(seq, jobid);
       ajSeqoutWriteSeq(seqout, seq);
-      ajSeqoutClose(seqout);
     }else{
       soap_print_fault(&soap,stderr);
     }
@@ -63,6 +61,8 @@ int main(int argc, char *argv[]){
     soap_done(&soap);
   }
 
+  ajSeqoutClose(seqout);
+  ajSeqoutDel(&seqout);
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
   ajStrDel(&inseq);
