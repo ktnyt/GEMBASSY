@@ -21,7 +21,7 @@ section: advanced [
 ]
   string: id [
     information: "ID of a group"
-    default: "All"
+    default: ""
   ]
   boolean: accid [
     information: "Include to use sequence accession ID as query"
