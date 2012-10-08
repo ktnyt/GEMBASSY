@@ -37,7 +37,7 @@ int main(int argc, char *argv[]){
     inseq = NULL;
 
     if(ajSeqGetFeat(seq) && !accid){
-      inseq = getGenbank(seq);
+      inseq = getGenbank(seq,ajSeqGetFeat(seq));
     }else{
       ajStrAppendS(&inseq,ajSeqGetAccS(seq));
     }

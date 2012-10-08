@@ -17,7 +17,7 @@ compiling, linking, and/or using OpenSSL is allowed.
 extern "C" {
 #endif
 
-SOAP_SOURCE_STAMP("@(#) soapClient.c ver 2.8.6 2012-10-04 05:29:51 GMT")
+SOAP_SOURCE_STAMP("@(#) soapClient.c ver 2.8.6 2012-10-08 08:43:23 GMT")
 
 
 SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__codon_USCOREmva(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, struct ns1__codon_USCOREmvaInputParams *_params, char **_result)
@@ -4942,63 +4942,6 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__lda_USCOREbias(struct soap *soap, const
 	return soap_closesock(soap);
 }
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__signature_(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, struct ns1__signatureInputParams *_params, char **_result)
-{	struct ns1__signature_ soap_tmp_ns1__signature_;
-	struct ns1__signature_Response *soap_tmp_ns1__signature_Response;
-	if (!soap_endpoint)
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
-	if (!soap_action)
-		soap_action = "http://soap.g-language.org/GLANG#signature";
-	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
-	soap_tmp_ns1__signature_._sequence = _sequence;
-	soap_tmp_ns1__signature_._params = _params;
-	soap_begin(soap);
-	soap_serializeheader(soap);
-	soap_serialize_ns1__signature_(soap, &soap_tmp_ns1__signature_);
-	if (soap_begin_count(soap))
-		return soap->error;
-	if (soap->mode & SOAP_IO_LENGTH)
-	{	if (soap_envelope_begin_out(soap)
-		 || soap_putheader(soap)
-		 || soap_body_begin_out(soap)
-		 || soap_put_ns1__signature_(soap, &soap_tmp_ns1__signature_, "ns1:signature", NULL)
-		 || soap_body_end_out(soap)
-		 || soap_envelope_end_out(soap))
-			 return soap->error;
-	}
-	if (soap_end_count(soap))
-		return soap->error;
-	if (soap_connect(soap, soap_endpoint, soap_action)
-	 || soap_envelope_begin_out(soap)
-	 || soap_putheader(soap)
-	 || soap_body_begin_out(soap)
-	 || soap_put_ns1__signature_(soap, &soap_tmp_ns1__signature_, "ns1:signature", NULL)
-	 || soap_body_end_out(soap)
-	 || soap_envelope_end_out(soap)
-	 || soap_end_send(soap))
-		return soap_closesock(soap);
-	if (!_result)
-		return soap_closesock(soap);
-	*_result = NULL;
-	if (soap_begin_recv(soap)
-	 || soap_envelope_begin_in(soap)
-	 || soap_recv_header(soap)
-	 || soap_body_begin_in(soap))
-		return soap_closesock(soap);
-	if (soap_recv_fault(soap, 1))
-		return soap->error;
-	soap_tmp_ns1__signature_Response = soap_get_ns1__signature_Response(soap, NULL, "", "");
-	if (soap->error)
-		return soap_recv_fault(soap, 0);
-	if (soap_body_end_in(soap)
-	 || soap_envelope_end_in(soap)
-	 || soap_end_recv(soap))
-		return soap_closesock(soap);
-	if (_result && soap_tmp_ns1__signature_Response->_result)
-		*_result = *soap_tmp_ns1__signature_Response->_result;
-	return soap_closesock(soap);
-}
-
 SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__scs(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, struct ns1__scsInputParams *_params, char **_result)
 {	struct ns1__scs soap_tmp_ns1__scs;
 	struct ns1__scsResponse *soap_tmp_ns1__scsResponse;
@@ -5056,9 +4999,8 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__scs(struct soap *soap, const char *soap
 	return soap_closesock(soap);
 }
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__leading_USCOREstrand(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, char **_jobid)
+SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__leading_USCOREstrand(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, struct ns1__leading_USCOREstrandResponse *_param_9)
 {	struct ns1__leading_USCOREstrand soap_tmp_ns1__leading_USCOREstrand;
-	struct ns1__leading_USCOREstrandResponse *soap_tmp_ns1__leading_USCOREstrandResponse;
 	if (!soap_endpoint)
 		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
 	if (!soap_action)
@@ -5090,9 +5032,9 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__leading_USCOREstrand(struct soap *soap,
 	 || soap_envelope_end_out(soap)
 	 || soap_end_send(soap))
 		return soap_closesock(soap);
-	if (!_jobid)
+	if (!_param_9)
 		return soap_closesock(soap);
-	*_jobid = NULL;
+	soap_default_ns1__leading_USCOREstrandResponse(soap, _param_9);
 	if (soap_begin_recv(soap)
 	 || soap_envelope_begin_in(soap)
 	 || soap_recv_header(soap)
@@ -5100,15 +5042,13 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__leading_USCOREstrand(struct soap *soap,
 		return soap_closesock(soap);
 	if (soap_recv_fault(soap, 1))
 		return soap->error;
-	soap_tmp_ns1__leading_USCOREstrandResponse = soap_get_ns1__leading_USCOREstrandResponse(soap, NULL, "", "");
+	soap_get_ns1__leading_USCOREstrandResponse(soap, _param_9, "", "");
 	if (soap->error)
 		return soap_recv_fault(soap, 0);
 	if (soap_body_end_in(soap)
 	 || soap_envelope_end_in(soap)
 	 || soap_end_recv(soap))
 		return soap_closesock(soap);
-	if (_jobid && soap_tmp_ns1__leading_USCOREstrandResponse->_jobid)
-		*_jobid = *soap_tmp_ns1__leading_USCOREstrandResponse->_jobid;
 	return soap_closesock(soap);
 }
 

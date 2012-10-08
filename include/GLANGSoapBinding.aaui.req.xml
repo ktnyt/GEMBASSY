@@ -10,7 +10,7 @@
    <sequence></sequence>
    <params>
     <id></id>
-    <output></output>
+    <tag></tag>
    </params>
   </ns1:aaui>
  </SOAP-ENV:Body>

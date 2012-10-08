@@ -41,7 +41,7 @@ AjPStr getUniqueFileName(void) {
   return filename;
 }
 
-AjPStr getGenbank(AjPSeq seq){
+AjPStr getGenbank(AjPSeq seq, const AjPFeattable feat){
   AjPSeqout     seqout   = NULL;
   AjPFeattabOut featout  = NULL;
   AjPStr        seqline  = NULL;
@@ -50,7 +50,6 @@ AjPStr getGenbank(AjPSeq seq){
   AjPFile       featfile = NULL;
   AjPStr        inseq    = NULL;
   AjPStr        filename = NULL;
-  AjPFeattable  feat     = NULL;
 
   filename = getUniqueFileName();
   feat = ajSeqGetFeatCopy(seq);
@@ -95,7 +94,6 @@ AjPStr getGenbank(AjPSeq seq){
   ajStrDel(&filename);
   ajFileClose(&seqfile);
   ajFileClose(&featfile);
-  ajFeattableDel(&feat);
 
   return inseq;
 }

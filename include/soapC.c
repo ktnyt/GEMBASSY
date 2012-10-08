@@ -19,7 +19,7 @@ compiling, linking, and/or using OpenSSL is allowed.
 extern "C" {
 #endif
 
-SOAP_SOURCE_STAMP("@(#) soapC.c ver 2.8.6 2012-10-04 05:29:51 GMT")
+SOAP_SOURCE_STAMP("@(#) soapC.c ver 2.8.6 2012-10-08 08:43:23 GMT")
 
 
 #ifndef WITH_NOGLOBAL
@@ -216,10 +216,6 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		return soap_in_ns1__scs(soap, NULL, NULL, "ns1:scs");
 	case SOAP_TYPE_ns1__scsResponse:
 		return soap_in_ns1__scsResponse(soap, NULL, NULL, "ns1:scsResponse");
-	case SOAP_TYPE_ns1__signature_:
-		return soap_in_ns1__signature_(soap, NULL, NULL, "ns1:signature");
-	case SOAP_TYPE_ns1__signature_Response:
-		return soap_in_ns1__signature_Response(soap, NULL, NULL, "ns1:signature-Response");
 	case SOAP_TYPE_ns1__lda_USCOREbias:
 		return soap_in_ns1__lda_USCOREbias(soap, NULL, NULL, "ns1:lda_bias");
 	case SOAP_TYPE_ns1__lda_USCOREbiasResponse:
@@ -576,6 +572,8 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		return soap_in_ns1__S_USCOREvalueInputParams(soap, NULL, NULL, "ns1:S_valueInputParams");
 	case SOAP_TYPE_ns1__scsInputParams:
 		return soap_in_ns1__scsInputParams(soap, NULL, NULL, "ns1:scsInputParams");
+	case SOAP_TYPE_ns1__signatureInputParams:
+		return soap_in_ns1__signatureInputParams(soap, NULL, NULL, "ns1:signatureInputParams");
 	case SOAP_TYPE_ns1__lda_USCOREbiasInputParams:
 		return soap_in_ns1__lda_USCOREbiasInputParams(soap, NULL, NULL, "ns1:lda_biasInputParams");
 	case SOAP_TYPE_ns1__kmer_USCOREtableInputParams:
@@ -656,8 +654,6 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		return soap_in_ns1__base_USCOREinformation_USCOREcontentInputParams(soap, NULL, NULL, "ns1:base_information_contentInputParams");
 	case SOAP_TYPE_ns1__togoWSInputParams:
 		return soap_in_ns1__togoWSInputParams(soap, NULL, NULL, "ns1:togoWSInputParams");
-	case SOAP_TYPE_ns1__signatureInputParams:
-		return soap_in_ns1__signatureInputParams(soap, NULL, NULL, "ns1:signatureInputParams");
 	case SOAP_TYPE_ns1__genome_USCOREmap3InputParams:
 		return soap_in_ns1__genome_USCOREmap3InputParams(soap, NULL, NULL, "ns1:genome_map3InputParams");
 	case SOAP_TYPE_ns1__gcskewInputParams:
@@ -708,6 +704,8 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		return soap_in_PointerTofloat(soap, NULL, NULL, "xsd:float");
 	case SOAP_TYPE_PointerTons1__S_USCOREvalueInputParams:
 		return soap_in_PointerTons1__S_USCOREvalueInputParams(soap, NULL, NULL, "ns1:S_valueInputParams");
+	case SOAP_TYPE_PointerTons1__leading_USCOREstrandResponse:
+		return soap_in_PointerTons1__leading_USCOREstrandResponse(soap, NULL, NULL, "ns1:leading_strandResponse");
 	case SOAP_TYPE_PointerTons1__scsInputParams:
 		return soap_in_PointerTons1__scsInputParams(soap, NULL, NULL, "ns1:scsInputParams");
 	case SOAP_TYPE_PointerTons1__lda_USCOREbiasInputParams:
@@ -927,14 +925,6 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		if (!soap_match_tag(soap, t, "ns1:scsResponse"))
 		{	*type = SOAP_TYPE_ns1__scsResponse;
 			return soap_in_ns1__scsResponse(soap, NULL, NULL, NULL);
-		}
-		if (!soap_match_tag(soap, t, "ns1:signature"))
-		{	*type = SOAP_TYPE_ns1__signature_;
-			return soap_in_ns1__signature_(soap, NULL, NULL, NULL);
-		}
-		if (!soap_match_tag(soap, t, "ns1:signature-Response"))
-		{	*type = SOAP_TYPE_ns1__signature_Response;
-			return soap_in_ns1__signature_Response(soap, NULL, NULL, NULL);
 		}
 		if (!soap_match_tag(soap, t, "ns1:lda_bias"))
 		{	*type = SOAP_TYPE_ns1__lda_USCOREbias;
@@ -1648,6 +1638,10 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		{	*type = SOAP_TYPE_ns1__scsInputParams;
 			return soap_in_ns1__scsInputParams(soap, NULL, NULL, NULL);
 		}
+		if (!soap_match_tag(soap, t, "ns1:signatureInputParams"))
+		{	*type = SOAP_TYPE_ns1__signatureInputParams;
+			return soap_in_ns1__signatureInputParams(soap, NULL, NULL, NULL);
+		}
 		if (!soap_match_tag(soap, t, "ns1:lda_biasInputParams"))
 		{	*type = SOAP_TYPE_ns1__lda_USCOREbiasInputParams;
 			return soap_in_ns1__lda_USCOREbiasInputParams(soap, NULL, NULL, NULL);
@@ -1807,10 +1801,6 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		if (!soap_match_tag(soap, t, "ns1:togoWSInputParams"))
 		{	*type = SOAP_TYPE_ns1__togoWSInputParams;
 			return soap_in_ns1__togoWSInputParams(soap, NULL, NULL, NULL);
-		}
-		if (!soap_match_tag(soap, t, "ns1:signatureInputParams"))
-		{	*type = SOAP_TYPE_ns1__signatureInputParams;
-			return soap_in_ns1__signatureInputParams(soap, NULL, NULL, NULL);
 		}
 		if (!soap_match_tag(soap, t, "ns1:genome_map3InputParams"))
 		{	*type = SOAP_TYPE_ns1__genome_USCOREmap3InputParams;
@@ -2002,10 +1992,6 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_putelement(struct soap *soap, const void *ptr, co
 		return soap_out_ns1__scs(soap, tag, id, (const struct ns1__scs *)ptr, "ns1:scs");
 	case SOAP_TYPE_ns1__scsResponse:
 		return soap_out_ns1__scsResponse(soap, tag, id, (const struct ns1__scsResponse *)ptr, "ns1:scsResponse");
-	case SOAP_TYPE_ns1__signature_:
-		return soap_out_ns1__signature_(soap, tag, id, (const struct ns1__signature_ *)ptr, "ns1:signature");
-	case SOAP_TYPE_ns1__signature_Response:
-		return soap_out_ns1__signature_Response(soap, tag, id, (const struct ns1__signature_Response *)ptr, "ns1:signature-Response");
 	case SOAP_TYPE_ns1__lda_USCOREbias:
 		return soap_out_ns1__lda_USCOREbias(soap, tag, id, (const struct ns1__lda_USCOREbias *)ptr, "ns1:lda_bias");
 	case SOAP_TYPE_ns1__lda_USCOREbiasResponse:
@@ -2362,6 +2348,8 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_putelement(struct soap *soap, const void *ptr, co
 		return soap_out_ns1__S_USCOREvalueInputParams(soap, tag, id, (const struct ns1__S_USCOREvalueInputParams *)ptr, "ns1:S_valueInputParams");
 	case SOAP_TYPE_ns1__scsInputParams:
 		return soap_out_ns1__scsInputParams(soap, tag, id, (const struct ns1__scsInputParams *)ptr, "ns1:scsInputParams");
+	case SOAP_TYPE_ns1__signatureInputParams:
+		return soap_out_ns1__signatureInputParams(soap, tag, id, (const struct ns1__signatureInputParams *)ptr, "ns1:signatureInputParams");
 	case SOAP_TYPE_ns1__lda_USCOREbiasInputParams:
 		return soap_out_ns1__lda_USCOREbiasInputParams(soap, tag, id, (const struct ns1__lda_USCOREbiasInputParams *)ptr, "ns1:lda_biasInputParams");
 	case SOAP_TYPE_ns1__kmer_USCOREtableInputParams:
@@ -2442,8 +2430,6 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_putelement(struct soap *soap, const void *ptr, co
 		return soap_out_ns1__base_USCOREinformation_USCOREcontentInputParams(soap, tag, id, (const struct ns1__base_USCOREinformation_USCOREcontentInputParams *)ptr, "ns1:base_information_contentInputParams");
 	case SOAP_TYPE_ns1__togoWSInputParams:
 		return soap_out_ns1__togoWSInputParams(soap, tag, id, (const struct ns1__togoWSInputParams *)ptr, "ns1:togoWSInputParams");
-	case SOAP_TYPE_ns1__signatureInputParams:
-		return soap_out_ns1__signatureInputParams(soap, tag, id, (const struct ns1__signatureInputParams *)ptr, "ns1:signatureInputParams");
 	case SOAP_TYPE_ns1__genome_USCOREmap3InputParams:
 		return soap_out_ns1__genome_USCOREmap3InputParams(soap, tag, id, (const struct ns1__genome_USCOREmap3InputParams *)ptr, "ns1:genome_map3InputParams");
 	case SOAP_TYPE_ns1__gcskewInputParams:
@@ -2494,6 +2480,8 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_putelement(struct soap *soap, const void *ptr, co
 		return soap_out_PointerTofloat(soap, tag, id, (float *const*)ptr, "xsd:float");
 	case SOAP_TYPE_PointerTons1__S_USCOREvalueInputParams:
 		return soap_out_PointerTons1__S_USCOREvalueInputParams(soap, tag, id, (struct ns1__S_USCOREvalueInputParams *const*)ptr, "ns1:S_valueInputParams");
+	case SOAP_TYPE_PointerTons1__leading_USCOREstrandResponse:
+		return soap_out_PointerTons1__leading_USCOREstrandResponse(soap, tag, id, (struct ns1__leading_USCOREstrandResponse *const*)ptr, "ns1:leading_strandResponse");
 	case SOAP_TYPE_PointerTons1__scsInputParams:
 		return soap_out_PointerTons1__scsInputParams(soap, tag, id, (struct ns1__scsInputParams *const*)ptr, "ns1:scsInputParams");
 	case SOAP_TYPE_PointerTons1__lda_USCOREbiasInputParams:
@@ -2688,12 +2676,6 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_markelement(struct soap *soap, const void *ptr, 
 		break;
 	case SOAP_TYPE_ns1__scsResponse:
 		soap_serialize_ns1__scsResponse(soap, (const struct ns1__scsResponse *)ptr);
-		break;
-	case SOAP_TYPE_ns1__signature_:
-		soap_serialize_ns1__signature_(soap, (const struct ns1__signature_ *)ptr);
-		break;
-	case SOAP_TYPE_ns1__signature_Response:
-		soap_serialize_ns1__signature_Response(soap, (const struct ns1__signature_Response *)ptr);
 		break;
 	case SOAP_TYPE_ns1__lda_USCOREbias:
 		soap_serialize_ns1__lda_USCOREbias(soap, (const struct ns1__lda_USCOREbias *)ptr);
@@ -3229,6 +3211,9 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_markelement(struct soap *soap, const void *ptr, 
 	case SOAP_TYPE_ns1__scsInputParams:
 		soap_serialize_ns1__scsInputParams(soap, (const struct ns1__scsInputParams *)ptr);
 		break;
+	case SOAP_TYPE_ns1__signatureInputParams:
+		soap_serialize_ns1__signatureInputParams(soap, (const struct ns1__signatureInputParams *)ptr);
+		break;
 	case SOAP_TYPE_ns1__lda_USCOREbiasInputParams:
 		soap_serialize_ns1__lda_USCOREbiasInputParams(soap, (const struct ns1__lda_USCOREbiasInputParams *)ptr);
 		break;
@@ -3349,9 +3334,6 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_markelement(struct soap *soap, const void *ptr, 
 	case SOAP_TYPE_ns1__togoWSInputParams:
 		soap_serialize_ns1__togoWSInputParams(soap, (const struct ns1__togoWSInputParams *)ptr);
 		break;
-	case SOAP_TYPE_ns1__signatureInputParams:
-		soap_serialize_ns1__signatureInputParams(soap, (const struct ns1__signatureInputParams *)ptr);
-		break;
 	case SOAP_TYPE_ns1__genome_USCOREmap3InputParams:
 		soap_serialize_ns1__genome_USCOREmap3InputParams(soap, (const struct ns1__genome_USCOREmap3InputParams *)ptr);
 		break;
@@ -3426,6 +3408,9 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_markelement(struct soap *soap, const void *ptr, 
 		break;
 	case SOAP_TYPE_PointerTons1__S_USCOREvalueInputParams:
 		soap_serialize_PointerTons1__S_USCOREvalueInputParams(soap, (struct ns1__S_USCOREvalueInputParams *const*)ptr);
+		break;
+	case SOAP_TYPE_PointerTons1__leading_USCOREstrandResponse:
+		soap_serialize_PointerTons1__leading_USCOREstrandResponse(soap, (struct ns1__leading_USCOREstrandResponse *const*)ptr);
 		break;
 	case SOAP_TYPE_PointerTons1__scsInputParams:
 		soap_serialize_PointerTons1__scsInputParams(soap, (struct ns1__scsInputParams *const*)ptr);
@@ -4824,13 +4809,13 @@ SOAP_FMAC3 struct ns1__leading_USCOREstrand * SOAP_FMAC4 soap_get_ns1__leading_U
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__leading_USCOREstrandResponse(struct soap *soap, struct ns1__leading_USCOREstrandResponse *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
-	a->_jobid = NULL;
+	a->_result = NULL;
 }
 
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__leading_USCOREstrandResponse(struct soap *soap, const struct ns1__leading_USCOREstrandResponse *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
-	soap_serialize_PointerTostring(soap, &a->_jobid);
+	soap_serialize_PointerToarrayOut(soap, &a->_result);
 }
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__leading_USCOREstrandResponse(struct soap *soap, const char *tag, int id, const struct ns1__leading_USCOREstrandResponse *a, const char *type)
@@ -4838,14 +4823,14 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__leading_USCOREstrandResponse(struct soap
 	(void)soap; (void)tag; (void)id; (void)type;
 	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_ns1__leading_USCOREstrandResponse), type))
 		return soap->error;
-	if (soap_out_PointerTostring(soap, "jobid", -1, &a->_jobid, ""))
+	if (soap_out_PointerToarrayOut(soap, "result", -1, &a->_result, ""))
 		return soap->error;
 	return soap_element_end_out(soap, tag);
 }
 
 SOAP_FMAC3 struct ns1__leading_USCOREstrandResponse * SOAP_FMAC4 soap_in_ns1__leading_USCOREstrandResponse(struct soap *soap, const char *tag, struct ns1__leading_USCOREstrandResponse *a, const char *type)
 {
-	size_t soap_flag__jobid = 1;
+	size_t soap_flag__result = 1;
 	if (soap_element_begin_in(soap, tag, 0, type))
 		return NULL;
 	a = (struct ns1__leading_USCOREstrandResponse *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_ns1__leading_USCOREstrandResponse, sizeof(struct ns1__leading_USCOREstrandResponse), 0, NULL, NULL, NULL);
@@ -4856,9 +4841,9 @@ SOAP_FMAC3 struct ns1__leading_USCOREstrandResponse * SOAP_FMAC4 soap_in_ns1__le
 	{
 		for (;;)
 		{	soap->error = SOAP_TAG_MISMATCH;
-			if (soap_flag__jobid && soap->error == SOAP_TAG_MISMATCH)
-				if (soap_in_PointerTostring(soap, NULL, &a->_jobid, "xsd:string"))
-				{	soap_flag__jobid--;
+			if (soap_flag__result && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_PointerToarrayOut(soap, NULL, &a->_result, "xsd:string"))
+				{	soap_flag__result--;
 					continue;
 				}
 			if (soap->error == SOAP_TAG_MISMATCH)
@@ -5048,164 +5033,6 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__scsResponse(struct soap *soap, const str
 SOAP_FMAC3 struct ns1__scsResponse * SOAP_FMAC4 soap_get_ns1__scsResponse(struct soap *soap, struct ns1__scsResponse *p, const char *tag, const char *type)
 {
 	if ((p = soap_in_ns1__scsResponse(soap, tag, p, type)))
-		if (soap_getindependent(soap))
-			return NULL;
-	return p;
-}
-
-SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__signature_(struct soap *soap, struct ns1__signature_ *a)
-{
-	(void)soap; (void)a; /* appease -Wall -Werror */
-	soap_default_string(soap, &a->_sequence);
-	a->_params = NULL;
-}
-
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__signature_(struct soap *soap, const struct ns1__signature_ *a)
-{
-	(void)soap; (void)a; /* appease -Wall -Werror */
-	soap_serialize_string(soap, &a->_sequence);
-	soap_serialize_PointerTons1__signatureInputParams(soap, &a->_params);
-}
-
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__signature_(struct soap *soap, const char *tag, int id, const struct ns1__signature_ *a, const char *type)
-{
-	(void)soap; (void)tag; (void)id; (void)type;
-	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_ns1__signature_), type))
-		return soap->error;
-	if (soap_out_string(soap, "sequence", -1, &a->_sequence, ""))
-		return soap->error;
-	if (soap_out_PointerTons1__signatureInputParams(soap, "params", -1, &a->_params, ""))
-		return soap->error;
-	return soap_element_end_out(soap, tag);
-}
-
-SOAP_FMAC3 struct ns1__signature_ * SOAP_FMAC4 soap_in_ns1__signature_(struct soap *soap, const char *tag, struct ns1__signature_ *a, const char *type)
-{
-	size_t soap_flag__sequence = 1;
-	size_t soap_flag__params = 1;
-	if (soap_element_begin_in(soap, tag, 0, type))
-		return NULL;
-	a = (struct ns1__signature_ *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_ns1__signature_, sizeof(struct ns1__signature_), 0, NULL, NULL, NULL);
-	if (!a)
-		return NULL;
-	soap_default_ns1__signature_(soap, a);
-	if (soap->body && !*soap->href)
-	{
-		for (;;)
-		{	soap->error = SOAP_TAG_MISMATCH;
-			if (soap_flag__sequence && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
-				if (soap_in_string(soap, NULL, &a->_sequence, "xsd:string"))
-				{	soap_flag__sequence--;
-					continue;
-				}
-			if (soap_flag__params && soap->error == SOAP_TAG_MISMATCH)
-				if (soap_in_PointerTons1__signatureInputParams(soap, NULL, &a->_params, "ns1:signatureInputParams"))
-				{	soap_flag__params--;
-					continue;
-				}
-			if (soap->error == SOAP_TAG_MISMATCH)
-				soap->error = soap_ignore_element(soap);
-			if (soap->error == SOAP_NO_TAG)
-				break;
-			if (soap->error)
-				return NULL;
-		}
-		if (soap_element_end_in(soap, tag))
-			return NULL;
-	}
-	else
-	{	a = (struct ns1__signature_ *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE_ns1__signature_, 0, sizeof(struct ns1__signature_), 0, NULL);
-		if (soap->body && soap_element_end_in(soap, tag))
-			return NULL;
-	}
-	return a;
-}
-
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__signature_(struct soap *soap, const struct ns1__signature_ *a, const char *tag, const char *type)
-{
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_ns1__signature_);
-	if (soap_out_ns1__signature_(soap, tag?tag:"ns1:signature", id, a, type))
-		return soap->error;
-	return soap_putindependent(soap);
-}
-
-SOAP_FMAC3 struct ns1__signature_ * SOAP_FMAC4 soap_get_ns1__signature_(struct soap *soap, struct ns1__signature_ *p, const char *tag, const char *type)
-{
-	if ((p = soap_in_ns1__signature_(soap, tag, p, type)))
-		if (soap_getindependent(soap))
-			return NULL;
-	return p;
-}
-
-SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__signature_Response(struct soap *soap, struct ns1__signature_Response *a)
-{
-	(void)soap; (void)a; /* appease -Wall -Werror */
-	a->_result = NULL;
-}
-
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__signature_Response(struct soap *soap, const struct ns1__signature_Response *a)
-{
-	(void)soap; (void)a; /* appease -Wall -Werror */
-	soap_serialize_PointerTostring(soap, &a->_result);
-}
-
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__signature_Response(struct soap *soap, const char *tag, int id, const struct ns1__signature_Response *a, const char *type)
-{
-	(void)soap; (void)tag; (void)id; (void)type;
-	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_ns1__signature_Response), type))
-		return soap->error;
-	if (soap_out_PointerTostring(soap, "result", -1, &a->_result, ""))
-		return soap->error;
-	return soap_element_end_out(soap, tag);
-}
-
-SOAP_FMAC3 struct ns1__signature_Response * SOAP_FMAC4 soap_in_ns1__signature_Response(struct soap *soap, const char *tag, struct ns1__signature_Response *a, const char *type)
-{
-	size_t soap_flag__result = 1;
-	if (soap_element_begin_in(soap, tag, 0, type))
-		return NULL;
-	a = (struct ns1__signature_Response *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_ns1__signature_Response, sizeof(struct ns1__signature_Response), 0, NULL, NULL, NULL);
-	if (!a)
-		return NULL;
-	soap_default_ns1__signature_Response(soap, a);
-	if (soap->body && !*soap->href)
-	{
-		for (;;)
-		{	soap->error = SOAP_TAG_MISMATCH;
-			if (soap_flag__result && soap->error == SOAP_TAG_MISMATCH)
-				if (soap_in_PointerTostring(soap, NULL, &a->_result, "xsd:string"))
-				{	soap_flag__result--;
-					continue;
-				}
-			if (soap->error == SOAP_TAG_MISMATCH)
-				soap->error = soap_ignore_element(soap);
-			if (soap->error == SOAP_NO_TAG)
-				break;
-			if (soap->error)
-				return NULL;
-		}
-		if (soap_element_end_in(soap, tag))
-			return NULL;
-	}
-	else
-	{	a = (struct ns1__signature_Response *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE_ns1__signature_Response, 0, sizeof(struct ns1__signature_Response), 0, NULL);
-		if (soap->body && soap_element_end_in(soap, tag))
-			return NULL;
-	}
-	return a;
-}
-
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__signature_Response(struct soap *soap, const struct ns1__signature_Response *a, const char *tag, const char *type)
-{
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_ns1__signature_Response);
-	if (soap_out_ns1__signature_Response(soap, tag?tag:"ns1:signature-Response", id, a, type))
-		return soap->error;
-	return soap_putindependent(soap);
-}
-
-SOAP_FMAC3 struct ns1__signature_Response * SOAP_FMAC4 soap_get_ns1__signature_Response(struct soap *soap, struct ns1__signature_Response *p, const char *tag, const char *type)
-{
-	if ((p = soap_in_ns1__signature_Response(soap, tag, p, type)))
 		if (soap_getindependent(soap))
 			return NULL;
 	return p;
@@ -19266,6 +19093,152 @@ SOAP_FMAC3 struct ns1__scsInputParams * SOAP_FMAC4 soap_get_ns1__scsInputParams(
 	return p;
 }
 
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__signatureInputParams(struct soap *soap, struct ns1__signatureInputParams *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	soap_default_int(soap, &a->wordlength);
+	soap_default_int(soap, &a->bothstrand);
+	soap_default_int(soap, &a->oe);
+	soap_default_string(soap, &a->seq);
+	soap_default_string(soap, &a->memo);
+	soap_default_int(soap, &a->header);
+	soap_default_string(soap, &a->output);
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__signatureInputParams(struct soap *soap, const struct ns1__signatureInputParams *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	soap_serialize_string(soap, &a->seq);
+	soap_serialize_string(soap, &a->memo);
+	soap_serialize_string(soap, &a->output);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__signatureInputParams(struct soap *soap, const char *tag, int id, const struct ns1__signatureInputParams *a, const char *type)
+{
+	(void)soap; (void)tag; (void)id; (void)type;
+	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_ns1__signatureInputParams), type))
+		return soap->error;
+	if (soap_out_int(soap, "wordlength", -1, &a->wordlength, ""))
+		return soap->error;
+	if (soap_out_int(soap, "bothstrand", -1, &a->bothstrand, ""))
+		return soap->error;
+	if (soap_out_int(soap, "oe", -1, &a->oe, ""))
+		return soap->error;
+	if (a->seq)
+	{	if (soap_out_string(soap, "seq", -1, &a->seq, ""))
+			return soap->error;
+	}
+	else if (soap_element_nil(soap, "seq"))
+		return soap->error;
+	if (a->memo)
+	{	if (soap_out_string(soap, "memo", -1, &a->memo, ""))
+			return soap->error;
+	}
+	else if (soap_element_nil(soap, "memo"))
+		return soap->error;
+	if (soap_out_int(soap, "header", -1, &a->header, ""))
+		return soap->error;
+	if (a->output)
+	{	if (soap_out_string(soap, "output", -1, &a->output, ""))
+			return soap->error;
+	}
+	else if (soap_element_nil(soap, "output"))
+		return soap->error;
+	return soap_element_end_out(soap, tag);
+}
+
+SOAP_FMAC3 struct ns1__signatureInputParams * SOAP_FMAC4 soap_in_ns1__signatureInputParams(struct soap *soap, const char *tag, struct ns1__signatureInputParams *a, const char *type)
+{
+	size_t soap_flag_wordlength = 1;
+	size_t soap_flag_bothstrand = 1;
+	size_t soap_flag_oe = 1;
+	size_t soap_flag_seq = 1;
+	size_t soap_flag_memo = 1;
+	size_t soap_flag_header = 1;
+	size_t soap_flag_output = 1;
+	if (soap_element_begin_in(soap, tag, 0, type))
+		return NULL;
+	a = (struct ns1__signatureInputParams *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_ns1__signatureInputParams, sizeof(struct ns1__signatureInputParams), 0, NULL, NULL, NULL);
+	if (!a)
+		return NULL;
+	soap_default_ns1__signatureInputParams(soap, a);
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag_wordlength && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_int(soap, "wordlength", &a->wordlength, "xsd:int"))
+				{	soap_flag_wordlength--;
+					continue;
+				}
+			if (soap_flag_bothstrand && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_int(soap, "bothstrand", &a->bothstrand, "xsd:int"))
+				{	soap_flag_bothstrand--;
+					continue;
+				}
+			if (soap_flag_oe && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_int(soap, "oe", &a->oe, "xsd:int"))
+				{	soap_flag_oe--;
+					continue;
+				}
+			if (soap_flag_seq && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in_string(soap, "seq", &a->seq, "xsd:string"))
+				{	soap_flag_seq--;
+					continue;
+				}
+			if (soap_flag_memo && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in_string(soap, "memo", &a->memo, "xsd:string"))
+				{	soap_flag_memo--;
+					continue;
+				}
+			if (soap_flag_header && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_int(soap, "header", &a->header, "xsd:int"))
+				{	soap_flag_header--;
+					continue;
+				}
+			if (soap_flag_output && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in_string(soap, "output", &a->output, "xsd:string"))
+				{	soap_flag_output--;
+					continue;
+				}
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (struct ns1__signatureInputParams *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE_ns1__signatureInputParams, 0, sizeof(struct ns1__signatureInputParams), 0, NULL);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	if ((soap->mode & SOAP_XML_STRICT) && (soap_flag_wordlength > 0 || soap_flag_bothstrand > 0 || soap_flag_oe > 0 || soap_flag_seq > 0 || soap_flag_memo > 0 || soap_flag_header > 0 || soap_flag_output > 0))
+	{	soap->error = SOAP_OCCURS;
+		return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__signatureInputParams(struct soap *soap, const struct ns1__signatureInputParams *a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_ns1__signatureInputParams);
+	if (soap_out_ns1__signatureInputParams(soap, tag?tag:"ns1:signatureInputParams", id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 struct ns1__signatureInputParams * SOAP_FMAC4 soap_get_ns1__signatureInputParams(struct soap *soap, struct ns1__signatureInputParams *p, const char *tag, const char *type)
+{
+	if ((p = soap_in_ns1__signatureInputParams(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__lda_USCOREbiasInputParams(struct soap *soap, struct ns1__lda_USCOREbiasInputParams *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
@@ -19834,9 +19807,9 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__dinucInputParams(struct soap *soap,
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	soap_default_string(soap, &a->position);
 	soap_default_string(soap, &a->id);
+	soap_default_string(soap, &a->output);
 	soap_default_int(soap, &a->translate);
 	soap_default_string(soap, &a->del_USCOREkey);
-	soap_default_string(soap, &a->output);
 }
 
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__dinucInputParams(struct soap *soap, const struct ns1__dinucInputParams *a)
@@ -19844,8 +19817,8 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__dinucInputParams(struct soap *soa
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	soap_serialize_string(soap, &a->position);
 	soap_serialize_string(soap, &a->id);
-	soap_serialize_string(soap, &a->del_USCOREkey);
 	soap_serialize_string(soap, &a->output);
+	soap_serialize_string(soap, &a->del_USCOREkey);
 }
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__dinucInputParams(struct soap *soap, const char *tag, int id, const struct ns1__dinucInputParams *a, const char *type)
@@ -19865,6 +19838,12 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__dinucInputParams(struct soap *soap, cons
 	}
 	else if (soap_element_nil(soap, "id"))
 		return soap->error;
+	if (a->output)
+	{	if (soap_out_string(soap, "output", -1, &a->output, ""))
+			return soap->error;
+	}
+	else if (soap_element_nil(soap, "output"))
+		return soap->error;
 	if (soap_out_int(soap, "translate", -1, &a->translate, ""))
 		return soap->error;
 	if (a->del_USCOREkey)
@@ -19873,12 +19852,6 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__dinucInputParams(struct soap *soap, cons
 	}
 	else if (soap_element_nil(soap, "del_key"))
 		return soap->error;
-	if (a->output)
-	{	if (soap_out_string(soap, "output", -1, &a->output, ""))
-			return soap->error;
-	}
-	else if (soap_element_nil(soap, "output"))
-		return soap->error;
 	return soap_element_end_out(soap, tag);
 }
 
@@ -19886,9 +19859,9 @@ SOAP_FMAC3 struct ns1__dinucInputParams * SOAP_FMAC4 soap_in_ns1__dinucInputPara
 {
 	size_t soap_flag_position = 1;
 	size_t soap_flag_id = 1;
+	size_t soap_flag_output = 1;
 	size_t soap_flag_translate = 1;
 	size_t soap_flag_del_USCOREkey = 1;
-	size_t soap_flag_output = 1;
 	if (soap_element_begin_in(soap, tag, 0, type))
 		return NULL;
 	a = (struct ns1__dinucInputParams *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_ns1__dinucInputParams, sizeof(struct ns1__dinucInputParams), 0, NULL, NULL, NULL);
@@ -19909,6 +19882,11 @@ SOAP_FMAC3 struct ns1__dinucInputParams * SOAP_FMAC4 soap_in_ns1__dinucInputPara
 				{	soap_flag_id--;
 					continue;
 				}
+			if (soap_flag_output && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in_string(soap, "output", &a->output, "xsd:string"))
+				{	soap_flag_output--;
+					continue;
+				}
 			if (soap_flag_translate && soap->error == SOAP_TAG_MISMATCH)
 				if (soap_in_int(soap, "translate", &a->translate, "xsd:int"))
 				{	soap_flag_translate--;
@@ -19917,11 +19895,6 @@ SOAP_FMAC3 struct ns1__dinucInputParams * SOAP_FMAC4 soap_in_ns1__dinucInputPara
 			if (soap_flag_del_USCOREkey && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
 				if (soap_in_string(soap, "del_key", &a->del_USCOREkey, "xsd:string"))
 				{	soap_flag_del_USCOREkey--;
-					continue;
-				}
-			if (soap_flag_output && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
-				if (soap_in_string(soap, "output", &a->output, "xsd:string"))
-				{	soap_flag_output--;
 					continue;
 				}
 			if (soap->error == SOAP_TAG_MISMATCH)
@@ -19939,7 +19912,7 @@ SOAP_FMAC3 struct ns1__dinucInputParams * SOAP_FMAC4 soap_in_ns1__dinucInputPara
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
-	if ((soap->mode & SOAP_XML_STRICT) && (soap_flag_position > 0 || soap_flag_id > 0 || soap_flag_translate > 0 || soap_flag_del_USCOREkey > 0 || soap_flag_output > 0))
+	if ((soap->mode & SOAP_XML_STRICT) && (soap_flag_position > 0 || soap_flag_id > 0 || soap_flag_output > 0 || soap_flag_translate > 0 || soap_flag_del_USCOREkey > 0))
 	{	soap->error = SOAP_OCCURS;
 		return NULL;
 	}
@@ -21215,7 +21188,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__codon_USCOREcompilerInputParams(str
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	soap_default_int(soap, &a->translate);
 	soap_default_string(soap, &a->id);
-	soap_default_string(soap, &a->data);
+	soap_default_int(soap, &a->data);
 	soap_default_string(soap, &a->output);
 	soap_default_string(soap, &a->del_USCOREkey);
 	soap_default_int(soap, &a->startcodon);
@@ -21226,7 +21199,6 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__codon_USCOREcompilerInputParams(s
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	soap_serialize_string(soap, &a->id);
-	soap_serialize_string(soap, &a->data);
 	soap_serialize_string(soap, &a->output);
 	soap_serialize_string(soap, &a->del_USCOREkey);
 }
@@ -21244,11 +21216,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__codon_USCOREcompilerInputParams(struct s
 	}
 	else if (soap_element_nil(soap, "id"))
 		return soap->error;
-	if (a->data)
-	{	if (soap_out_string(soap, "data", -1, &a->data, ""))
-			return soap->error;
-	}
-	else if (soap_element_nil(soap, "data"))
+	if (soap_out_int(soap, "data", -1, &a->data, ""))
 		return soap->error;
 	if (a->output)
 	{	if (soap_out_string(soap, "output", -1, &a->output, ""))
@@ -21298,8 +21266,8 @@ SOAP_FMAC3 struct ns1__codon_USCOREcompilerInputParams * SOAP_FMAC4 soap_in_ns1_
 				{	soap_flag_id--;
 					continue;
 				}
-			if (soap_flag_data && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
-				if (soap_in_string(soap, "data", &a->data, "xsd:string"))
+			if (soap_flag_data && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_int(soap, "data", &a->data, "xsd:int"))
 				{	soap_flag_data--;
 					continue;
 				}
@@ -21365,14 +21333,14 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__aauiInputParams(struct soap *soap, 
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	soap_default_string(soap, &a->id);
-	soap_default_string(soap, &a->output);
+	soap_default_string(soap, &a->tag);
 }
 
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__aauiInputParams(struct soap *soap, const struct ns1__aauiInputParams *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	soap_serialize_string(soap, &a->id);
-	soap_serialize_string(soap, &a->output);
+	soap_serialize_string(soap, &a->tag);
 }
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__aauiInputParams(struct soap *soap, const char *tag, int id, const struct ns1__aauiInputParams *a, const char *type)
@@ -21386,11 +21354,11 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__aauiInputParams(struct soap *soap, const
 	}
 	else if (soap_element_nil(soap, "id"))
 		return soap->error;
-	if (a->output)
-	{	if (soap_out_string(soap, "output", -1, &a->output, ""))
+	if (a->tag)
+	{	if (soap_out_string(soap, "tag", -1, &a->tag, ""))
 			return soap->error;
 	}
-	else if (soap_element_nil(soap, "output"))
+	else if (soap_element_nil(soap, "tag"))
 		return soap->error;
 	return soap_element_end_out(soap, tag);
 }
@@ -21398,7 +21366,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__aauiInputParams(struct soap *soap, const
 SOAP_FMAC3 struct ns1__aauiInputParams * SOAP_FMAC4 soap_in_ns1__aauiInputParams(struct soap *soap, const char *tag, struct ns1__aauiInputParams *a, const char *type)
 {
 	size_t soap_flag_id = 1;
-	size_t soap_flag_output = 1;
+	size_t soap_flag_tag = 1;
 	if (soap_element_begin_in(soap, tag, 0, type))
 		return NULL;
 	a = (struct ns1__aauiInputParams *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_ns1__aauiInputParams, sizeof(struct ns1__aauiInputParams), 0, NULL, NULL, NULL);
@@ -21414,9 +21382,9 @@ SOAP_FMAC3 struct ns1__aauiInputParams * SOAP_FMAC4 soap_in_ns1__aauiInputParams
 				{	soap_flag_id--;
 					continue;
 				}
-			if (soap_flag_output && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
-				if (soap_in_string(soap, "output", &a->output, "xsd:string"))
-				{	soap_flag_output--;
+			if (soap_flag_tag && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in_string(soap, "tag", &a->tag, "xsd:string"))
+				{	soap_flag_tag--;
 					continue;
 				}
 			if (soap->error == SOAP_TAG_MISMATCH)
@@ -21434,7 +21402,7 @@ SOAP_FMAC3 struct ns1__aauiInputParams * SOAP_FMAC4 soap_in_ns1__aauiInputParams
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
-	if ((soap->mode & SOAP_XML_STRICT) && (soap_flag_id > 0 || soap_flag_output > 0))
+	if ((soap->mode & SOAP_XML_STRICT) && (soap_flag_id > 0 || soap_flag_tag > 0))
 	{	soap->error = SOAP_OCCURS;
 		return NULL;
 	}
@@ -23307,115 +23275,6 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__togoWSInputParams(struct soap *soap, con
 SOAP_FMAC3 struct ns1__togoWSInputParams * SOAP_FMAC4 soap_get_ns1__togoWSInputParams(struct soap *soap, struct ns1__togoWSInputParams *p, const char *tag, const char *type)
 {
 	if ((p = soap_in_ns1__togoWSInputParams(soap, tag, p, type)))
-		if (soap_getindependent(soap))
-			return NULL;
-	return p;
-}
-
-SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__signatureInputParams(struct soap *soap, struct ns1__signatureInputParams *a)
-{
-	(void)soap; (void)a; /* appease -Wall -Werror */
-	soap_default_int(soap, &a->wordlength);
-	soap_default_string(soap, &a->output);
-	soap_default_int(soap, &a->oe);
-	soap_default_int(soap, &a->bothstrand);
-}
-
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__signatureInputParams(struct soap *soap, const struct ns1__signatureInputParams *a)
-{
-	(void)soap; (void)a; /* appease -Wall -Werror */
-	soap_serialize_string(soap, &a->output);
-}
-
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__signatureInputParams(struct soap *soap, const char *tag, int id, const struct ns1__signatureInputParams *a, const char *type)
-{
-	(void)soap; (void)tag; (void)id; (void)type;
-	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_ns1__signatureInputParams), type))
-		return soap->error;
-	if (soap_out_int(soap, "wordlength", -1, &a->wordlength, ""))
-		return soap->error;
-	if (a->output)
-	{	if (soap_out_string(soap, "output", -1, &a->output, ""))
-			return soap->error;
-	}
-	else if (soap_element_nil(soap, "output"))
-		return soap->error;
-	if (soap_out_int(soap, "oe", -1, &a->oe, ""))
-		return soap->error;
-	if (soap_out_int(soap, "bothstrand", -1, &a->bothstrand, ""))
-		return soap->error;
-	return soap_element_end_out(soap, tag);
-}
-
-SOAP_FMAC3 struct ns1__signatureInputParams * SOAP_FMAC4 soap_in_ns1__signatureInputParams(struct soap *soap, const char *tag, struct ns1__signatureInputParams *a, const char *type)
-{
-	size_t soap_flag_wordlength = 1;
-	size_t soap_flag_output = 1;
-	size_t soap_flag_oe = 1;
-	size_t soap_flag_bothstrand = 1;
-	if (soap_element_begin_in(soap, tag, 0, type))
-		return NULL;
-	a = (struct ns1__signatureInputParams *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_ns1__signatureInputParams, sizeof(struct ns1__signatureInputParams), 0, NULL, NULL, NULL);
-	if (!a)
-		return NULL;
-	soap_default_ns1__signatureInputParams(soap, a);
-	if (soap->body && !*soap->href)
-	{
-		for (;;)
-		{	soap->error = SOAP_TAG_MISMATCH;
-			if (soap_flag_wordlength && soap->error == SOAP_TAG_MISMATCH)
-				if (soap_in_int(soap, "wordlength", &a->wordlength, "xsd:int"))
-				{	soap_flag_wordlength--;
-					continue;
-				}
-			if (soap_flag_output && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
-				if (soap_in_string(soap, "output", &a->output, "xsd:string"))
-				{	soap_flag_output--;
-					continue;
-				}
-			if (soap_flag_oe && soap->error == SOAP_TAG_MISMATCH)
-				if (soap_in_int(soap, "oe", &a->oe, "xsd:int"))
-				{	soap_flag_oe--;
-					continue;
-				}
-			if (soap_flag_bothstrand && soap->error == SOAP_TAG_MISMATCH)
-				if (soap_in_int(soap, "bothstrand", &a->bothstrand, "xsd:int"))
-				{	soap_flag_bothstrand--;
-					continue;
-				}
-			if (soap->error == SOAP_TAG_MISMATCH)
-				soap->error = soap_ignore_element(soap);
-			if (soap->error == SOAP_NO_TAG)
-				break;
-			if (soap->error)
-				return NULL;
-		}
-		if (soap_element_end_in(soap, tag))
-			return NULL;
-	}
-	else
-	{	a = (struct ns1__signatureInputParams *)soap_id_forward(soap, soap->href, (void*)a, 0, SOAP_TYPE_ns1__signatureInputParams, 0, sizeof(struct ns1__signatureInputParams), 0, NULL);
-		if (soap->body && soap_element_end_in(soap, tag))
-			return NULL;
-	}
-	if ((soap->mode & SOAP_XML_STRICT) && (soap_flag_wordlength > 0 || soap_flag_output > 0 || soap_flag_oe > 0 || soap_flag_bothstrand > 0))
-	{	soap->error = SOAP_OCCURS;
-		return NULL;
-	}
-	return a;
-}
-
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__signatureInputParams(struct soap *soap, const struct ns1__signatureInputParams *a, const char *tag, const char *type)
-{
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_ns1__signatureInputParams);
-	if (soap_out_ns1__signatureInputParams(soap, tag?tag:"ns1:signatureInputParams", id, a, type))
-		return soap->error;
-	return soap_putindependent(soap);
-}
-
-SOAP_FMAC3 struct ns1__signatureInputParams * SOAP_FMAC4 soap_get_ns1__signatureInputParams(struct soap *soap, struct ns1__signatureInputParams *p, const char *tag, const char *type)
-{
-	if ((p = soap_in_ns1__signatureInputParams(soap, tag, p, type)))
 		if (soap_getindependent(soap))
 			return NULL;
 	return p;
@@ -26080,6 +25939,57 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons1__S_USCOREvalueInputParams(struct
 SOAP_FMAC3 struct ns1__S_USCOREvalueInputParams ** SOAP_FMAC4 soap_get_PointerTons1__S_USCOREvalueInputParams(struct soap *soap, struct ns1__S_USCOREvalueInputParams **p, const char *tag, const char *type)
 {
 	if ((p = soap_in_PointerTons1__S_USCOREvalueInputParams(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons1__leading_USCOREstrandResponse(struct soap *soap, struct ns1__leading_USCOREstrandResponse *const*a)
+{
+	if (!soap_reference(soap, *a, SOAP_TYPE_ns1__leading_USCOREstrandResponse))
+		soap_serialize_ns1__leading_USCOREstrandResponse(soap, *a);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons1__leading_USCOREstrandResponse(struct soap *soap, const char *tag, int id, struct ns1__leading_USCOREstrandResponse *const*a, const char *type)
+{
+	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE_ns1__leading_USCOREstrandResponse);
+	if (id < 0)
+		return soap->error;
+	return soap_out_ns1__leading_USCOREstrandResponse(soap, tag, id, *a, type);
+}
+
+SOAP_FMAC3 struct ns1__leading_USCOREstrandResponse ** SOAP_FMAC4 soap_in_PointerTons1__leading_USCOREstrandResponse(struct soap *soap, const char *tag, struct ns1__leading_USCOREstrandResponse **a, const char *type)
+{
+	if (soap_element_begin_in(soap, tag, 1, NULL))
+		return NULL;
+	if (!a)
+		if (!(a = (struct ns1__leading_USCOREstrandResponse **)soap_malloc(soap, sizeof(struct ns1__leading_USCOREstrandResponse *))))
+			return NULL;
+	*a = NULL;
+	if (!soap->null && *soap->href != '#')
+	{	soap_revert(soap);
+		if (!(*a = soap_in_ns1__leading_USCOREstrandResponse(soap, tag, *a, type)))
+			return NULL;
+	}
+	else
+	{	a = (struct ns1__leading_USCOREstrandResponse **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE_ns1__leading_USCOREstrandResponse, sizeof(struct ns1__leading_USCOREstrandResponse), 0);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons1__leading_USCOREstrandResponse(struct soap *soap, struct ns1__leading_USCOREstrandResponse *const*a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerTons1__leading_USCOREstrandResponse);
+	if (soap_out_PointerTons1__leading_USCOREstrandResponse(soap, tag?tag:"ns1:leading_strandResponse", id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 struct ns1__leading_USCOREstrandResponse ** SOAP_FMAC4 soap_get_PointerTons1__leading_USCOREstrandResponse(struct soap *soap, struct ns1__leading_USCOREstrandResponse **p, const char *tag, const char *type)
+{
+	if ((p = soap_in_PointerTons1__leading_USCOREstrandResponse(soap, tag, p, type)))
 		if (soap_getindependent(soap))
 			return NULL;
 	return p;

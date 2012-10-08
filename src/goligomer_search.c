@@ -42,7 +42,7 @@ int main(int argc, char *argv[]){
     inseq = NULL;
 
     if(ajSeqGetFeat(seq) && !accid){
-      inseq = getGenbank(seq);
+      inseq = getGenbank(seq,ajSeqGetFeat(seq));
     }else{
       ajStrAppendS(&inseq,ajSeqGetAccS(seq));
     }
@@ -52,13 +52,21 @@ int main(int argc, char *argv[]){
     in0 = ajCharNewS(inseq);
     in1 = ajCharNewS(oligomer);
 
-    fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
+    fprintf(stderr,"%s %s positions\n",ajCharNewS(ajSeqGetAccS(seq)),in1);
 
     if(!ajSeqGetFeat(seq) && !accid)
       fprintf(stderr,"Sequence does not have features\nProceeding with sequence accession ID\n");
 
     if(soap_call_ns1__oligomer_USCOREsearch(&soap,NULL,NULL,in0,in1,&params,&jobid)==SOAP_OK){
-      puts(jobid);
+      char* tp = jobid;
+      char* dlm = "<>";
+      int   pos = 0;;
+      tp = strtok(tp,dlm);
+      while((tp = strtok(NULL,dlm)) != NULL){
+	if(pos++ % 3 == 0){
+	  puts(tp);
+	}
+      }
     }else{
       soap_print_fault(&soap,stderr);
     }

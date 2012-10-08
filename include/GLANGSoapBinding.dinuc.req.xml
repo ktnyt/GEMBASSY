@@ -11,9 +11,9 @@
    <params>
     <position></position>
     <id></id>
+    <output></output>
     <translate>0</translate>
     <del_key></del_key>
-    <output></output>
    </params>
   </ns1:dinuc>
  </SOAP-ENV:Body>

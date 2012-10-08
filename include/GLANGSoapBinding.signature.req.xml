@@ -10,9 +10,12 @@
    <sequence></sequence>
    <params>
     <wordlength>0</wordlength>
-    <output></output>
-    <oe>0</oe>
     <bothstrand>0</bothstrand>
+    <oe>0</oe>
+    <seq></seq>
+    <memo></memo>
+    <header>0</header>
+    <output></output>
    </params>
   </ns1:signature>
  </SOAP-ENV:Body>
