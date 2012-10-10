@@ -20,28 +20,35 @@ section: advanced [
   information: "Advanced section"
   type: "page"
   ]
+
   string: position [
     information: "either 'start' (around start codon) or 'end' (around stop codon) to create the PWM"
     default: "start"
   ]
+
   integer: upstream [
     information: "Length upstream of specified position to create PWM"
     default: "30"
   ]
+
   integer: downstream [
     information: "Length downstream of specified position to create PWM"
     default: "30"
   ]
+
   integer: patlen [
     information: "Length of oligomer to count"
     default: "3"
   ]
+
   string: output [
     information: "Input 'g' for graph output, 'f' for CSV file output"
     default: "g"
   ]
+
   boolean: accid [
     information: "Include to use sequence accession ID as query"
     default: "0"
   ]
+
 endsection: advanced
