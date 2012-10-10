@@ -52,10 +52,10 @@ int main(int argc, char *argv[]){
     in0 = ajCharNewS(inseq);
     in1 = ajCharNewS(oligomer);
 
-    fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
-
     if(!ajSeqGetFeat(seq) && !accid)
       fprintf(stderr,"Sequence does not have features\nProceeding with sequence accession ID\n");
+
+    fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
 
     if(soap_call_ns1__oligomer_USCOREcounter(&soap,NULL,NULL,in0,in1,&params,&jobid)==SOAP_OK){
       puts(jobid);

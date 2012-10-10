@@ -66,10 +66,10 @@ int main(int argc, char *argv[]){
     char* in0;
     in0 = ajCharNewS(inseq);
 
-    fprintf(stderr,"%s\norigin\tterminus\n",ajCharNewS(ajSeqGetAccS(seq)));
-
     if(!ajSeqGetFeat(seq) && !accid)
       fprintf(stderr,"Sequence does not have features\nProceeding with sequence accession ID\n");
+
+    fprintf(stderr,"%s\norigin\tterminus\n",ajCharNewS(ajSeqGetAccS(seq)));
 
     if(soap_call_ns1__rep_USCOREori_USCOREter(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
       char* dlm = "<>";

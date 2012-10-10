@@ -31,19 +31,12 @@ int main(int argc, char *argv[]){
     
     inseq = NULL;
 
-    if(ajSeqGetFeat(seq) && !accid){
-      inseq = getGenbank(seq,ajSeqGetFeat(seq));
-    }else{
-      ajStrAppendS(&inseq,ajSeqGetAccS(seq));
-    }
+    ajStrAppendS(&inseq,ajSeqGetAccS(seq));
     
     char* in0;
     in0 = ajCharNewS(inseq);
 
     fprintf(stderr,"%s\nA\tT\tG\tC\t\n",ajCharNewS(ajSeqGetAccS(seq)));
-
-    if(!ajSeqGetFeat(seq) && !accid)
-      fprintf(stderr,"Sequence does not have features\nProceeding with sequence accession ID\n");
 
     if(soap_call_ns1__seqinfo(&soap,NULL,NULL,in0,&jobid)==SOAP_OK){
       char* dlm = "<>";
