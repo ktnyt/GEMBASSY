@@ -517,7 +517,7 @@ struct ns1__codon_USCOREcompilerInputParams
 {
 	int translate;	/* required element of type xsd:int */
 	char *id;	/* required element of type xsd:string */
-	int data;	/* required element of type xsd:int */
+	char *data;	/* required element of type xsd:string */
 	char *output;	/* required element of type xsd:string */
 	char *del_USCOREkey;	/* required element of type xsd:string */
 	int startcodon;	/* required element of type xsd:int */

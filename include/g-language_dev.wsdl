@@ -222,15 +222,6 @@
         </xsd:all>
       </xsd:complexType>
 
-      <xsd:complexType name="signatureInputParams">
-        <xsd:all>
-          <xsd:element name="wordlength" type="xsd:int"/>
-          <xsd:element name="output" type="xsd:string"/>
-          <xsd:element name="oe" type="xsd:int"/>
-          <xsd:element name="bothstrand" type="xsd:int"/>
-        </xsd:all>
-      </xsd:complexType>
-
       <xsd:complexType name="togoWSInputParams">
         <xsd:all>
           <xsd:element name="search" type="xsd:string"/>
@@ -376,7 +367,7 @@
       <xsd:complexType name="aauiInputParams">
         <xsd:all>
           <xsd:element name="id" type="xsd:string"/>
-          <xsd:element name="output" type="xsd:string"/>
+          <xsd:element name="tag" type="xsd:string"/>
         </xsd:all>
       </xsd:complexType>
 
@@ -494,9 +485,9 @@
         <xsd:all>
           <xsd:element name="position" type="xsd:string"/>
           <xsd:element name="id" type="xsd:string"/>
+          <xsd:element name="output" type="xsd:string"/>
           <xsd:element name="translate" type="xsd:int"/>
           <xsd:element name="del_key" type="xsd:string"/>
-          <xsd:element name="output" type="xsd:string"/>
         </xsd:all>
       </xsd:complexType>
 
@@ -550,7 +541,10 @@
           <xsd:element name="wordlength" type="xsd:int"/>
           <xsd:element name="bothstrand" type="xsd:int"/>
           <xsd:element name="oe" type="xsd:int"/>
-          <xsd:element name="memo" type="xsd:string"/>	  
+          <xsd:element name="seq" type="xsd:string"/>
+          <xsd:element name="memo" type="xsd:string"/>
+          <xsd:element name="header" type="xsd:int"/>
+          <xsd:element name="output" type="xsd:string"/>
         </xsd:all>
       </xsd:complexType>
 
@@ -1269,14 +1263,6 @@
     <part name="result" type="xsd:string" />
   </message>
 
-  <message name="signatureRequest">
-    <part name="sequence" type="xsd:string" />
-    <part name="params" type="tns:signatureInputParams" />
-  </message>
-  <message name="signatureResponse">
-    <part name="result" type="xsd:string" />
-  </message>
-
   <message name="scsRequest">
     <part name="sequence" type="xsd:string" />
     <part name="params" type="tns:scsInputParams" />
@@ -1289,7 +1275,7 @@
     <part name="sequence" type="xsd:string" />
   </message>
   <message name="leading_strandResponse">
-    <part name="jobid" type="xsd:string" />
+    <part name="result" type="tns:arrayOut" />
   </message>
 
   <message name="S_valueRequest">
@@ -1734,11 +1720,6 @@
     <operation name="lda_bias" parameterOrder="sequence params">
       <input  name="lda_biasRequest"  message="tns:lda_biasRequest" />
       <output name="lda_biasResponse" message="tns:lda_biasResponse" />
-    </operation>
-
-    <operation name="signature" parameterOrder="sequence params">
-      <input  name="signatureRequest"  message="tns:signatureRequest" />
-      <output name="signatureResponse" message="tns:signatureResponse" />
     </operation>
 
     <operation name="scs" parameterOrder="sequence params">
@@ -2809,18 +2790,6 @@
                    use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </input>
       <output name="lda_biasResponse">
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
-      </output>
-    </operation>
-
-    <operation name="signature">
-      <soap:operation soapAction="http://soap.g-language.org/GLANG#signature" />
-      <input name="signatureRequest">
-        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                   use="encoded" namespace="http://soap.g-language.org/GLANG" />
-      </input>
-      <output name="signatureResponse">
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
                    use="encoded" namespace="http://soap.g-language.org/GLANG" />
       </output>

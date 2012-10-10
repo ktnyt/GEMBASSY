@@ -19,7 +19,7 @@ compiling, linking, and/or using OpenSSL is allowed.
 extern "C" {
 #endif
 
-SOAP_SOURCE_STAMP("@(#) soapC.c ver 2.8.6 2012-10-08 08:43:23 GMT")
+SOAP_SOURCE_STAMP("@(#) soapC.c ver 2.8.6 2012-10-10 15:48:59 GMT")
 
 
 #ifndef WITH_NOGLOBAL
@@ -21188,7 +21188,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__codon_USCOREcompilerInputParams(str
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	soap_default_int(soap, &a->translate);
 	soap_default_string(soap, &a->id);
-	soap_default_int(soap, &a->data);
+	soap_default_string(soap, &a->data);
 	soap_default_string(soap, &a->output);
 	soap_default_string(soap, &a->del_USCOREkey);
 	soap_default_int(soap, &a->startcodon);
@@ -21199,6 +21199,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__codon_USCOREcompilerInputParams(s
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	soap_serialize_string(soap, &a->id);
+	soap_serialize_string(soap, &a->data);
 	soap_serialize_string(soap, &a->output);
 	soap_serialize_string(soap, &a->del_USCOREkey);
 }
@@ -21216,7 +21217,11 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__codon_USCOREcompilerInputParams(struct s
 	}
 	else if (soap_element_nil(soap, "id"))
 		return soap->error;
-	if (soap_out_int(soap, "data", -1, &a->data, ""))
+	if (a->data)
+	{	if (soap_out_string(soap, "data", -1, &a->data, ""))
+			return soap->error;
+	}
+	else if (soap_element_nil(soap, "data"))
 		return soap->error;
 	if (a->output)
 	{	if (soap_out_string(soap, "output", -1, &a->output, ""))
@@ -21266,8 +21271,8 @@ SOAP_FMAC3 struct ns1__codon_USCOREcompilerInputParams * SOAP_FMAC4 soap_in_ns1_
 				{	soap_flag_id--;
 					continue;
 				}
-			if (soap_flag_data && soap->error == SOAP_TAG_MISMATCH)
-				if (soap_in_int(soap, "data", &a->data, "xsd:int"))
+			if (soap_flag_data && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in_string(soap, "data", &a->data, "xsd:string"))
 				{	soap_flag_data--;
 					continue;
 				}
