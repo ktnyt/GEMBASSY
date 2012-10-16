@@ -55,10 +55,12 @@ bin_PROGRAMS = gaaui\
                gcgr\
                gcircular_map\
                gcodon_compiler\
+               gconsensus_z\
                gdelta_enc\
                gdelta_gcskew\
                gdinuc\
                gdist_in_cc\
+               gdnawalk\
                genc\
                gentrez\
                gew\
@@ -69,6 +71,7 @@ bin_PROGRAMS = gaaui\
                ggcwin\
                ggeneskew\
                ggenomicskew\
+               ggenome_map3\
                gicdi\
                gkmer_table\
                glda_bias\
@@ -106,10 +109,12 @@ gcbi_SOURCES            = gcbi.c
 gcgr_SOURCES            = gcgr.c
 gcircular_map_SOURCES   = gcircular_map.c
 gcodon_compiler_SOURCES = gcodon_compiler.c
+gconsensus_z_SOURCES    = gconsensus_z.c
 gdelta_enc_SOURCES      = gdelta_enc.c
 gdelta_gcskew_SOURCES   = gdelta_gcskew.c
 gdist_in_cc_SOURCES     = gdist_in_cc.c
 gdinuc_SOURCES          = gdinuc.c
+gdnawalk_SOURCES        = gdnawalk.c
 genc_SOURCES            = genc.c
 gentrez_SOURCES         = gentrez.c
 gew_SOURCES             = gew.c
@@ -119,6 +124,7 @@ ggcsi_SOURCES           = ggcsi.c
 ggcwin_SOURCES          = ggcwin.c
 ggeneskew_SOURCES       = ggeneskew.c
 ggenomicskew_SOURCES    = ggenomicskew.c
+ggenome_map3_SOURCES    = ggenome_map3.c
 gicdi_SOURCES           = gicdi.c
 gkmer_table_SOURCES     = gkmer_table.c
 glda_bias_SOURCES       = glda_bias.c
