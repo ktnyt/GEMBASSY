@@ -18,17 +18,17 @@ int main(int argc, char *argv[]){
 
   AjPSeqall seqall;
   AjPSeq    seq;
-  AjPStr    inseq     = NULL;
-  AjPStr    include   = NULL;
-  AjPStr    exclude   = NULL;
-  AjBool    accid     = 0;
-  AjPStr    filename  = NULL;
+  AjPStr    inseq    = NULL;
+  AjPStr    include  = NULL;
+  AjPStr    exclude  = NULL;
+  AjPStr    accid    = NULL;
+  AjPStr    filename = NULL;
   char*     jobid;
   
   seqall  = ajAcdGetSeqall("sequence");
   include = ajAcdGetString("include");
   exclude = ajAcdGetString("exclude");
-  accid   = ajAcdGetBoolean("accid");
+  accid   = ajAcdGetString("accid");
   
   params.include = ajCharNewS(include);
   params.exclude = ajCharNewS(exclude);
@@ -40,19 +40,27 @@ int main(int argc, char *argv[]){
 
     inseq = NULL;
 
-    if(ajSeqGetFeat(seq) && !accid){
+    if(ajSeqGetFeat(seq) && !strlen(ajCharNewS(accid))){
       inseq = getGenbank(seq,ajSeqGetFeat(seq));
     }else{
-      ajStrAppendS(&inseq,ajSeqGetAccS(seq));
+      if(!strlen(ajCharNewS(accid))){
+        fprintf(stderr,"Sequence does not have features\n");
+        fprintf(stderr,"Proceeding with sequence accession ID\n");
+        ajStrAssignS(&inseq,ajSeqGetAccS(seq));
+      }
+      if(!valID(ajCharNewS(accid))){
+          fprintf(stderr,"Invalid accession ID, exiting");
+          return 1;
+      }else{
+        ajStrAssignS(&inseq,accid);
+      }
     }
-    
+
     char* in0;
     in0 = ajCharNewS(inseq);
 
-    if(!ajSeqGetFeat(seq) && !accid)
-      fprintf(stderr,"Sequence does not have features\nProceeding with sequence accession ID\n");
-
     fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
+
 
     if(soap_call_ns1__w_USCOREvalue(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
       ajStrAssignS(&filename,ajSeqGetNameS(seq));

@@ -26,7 +26,7 @@ int main(int argc, char *argv[]){
   AjBool    purine     = 0;
   AjBool    keto       = 0;
   AjPStr    output     = NULL;
-  AjBool    accid    = 0;
+  AjPStr    accid      = NULL;
   AjPStr    filename   = NULL;
   char*     _result; 
   char*     jobid;
@@ -39,7 +39,7 @@ int main(int argc, char *argv[]){
   purine     = ajAcdGetBoolean("purine");
   keto       = ajAcdGetBoolean("keto");
   output     = ajAcdGetString("output");
-  accid      = ajAcdGetBoolean("accid");
+  accid      = ajAcdGetString("accid");
 
   params.window       = window;
   params.slide        = slide;

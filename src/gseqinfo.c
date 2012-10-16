@@ -18,12 +18,12 @@ int main(int argc, char *argv[]){
   AjPSeqall seqall;
   AjPSeq    seq    = NULL;
   AjPStr    inseq  = NULL;
-  AjBool    accid  = 0;
+  AjPStr    accid  = NULL;
   int n;
   char*     jobid;
 
   seqall = ajAcdGetSeqall("sequence");
-  accid  = ajAcdGetBoolean("accid");
+  accid  = ajAcdGetString("accid");
 
   while(ajSeqallNext(seqall,&seq)){
 

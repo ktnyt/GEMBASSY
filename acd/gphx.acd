@@ -31,9 +31,9 @@ section: advanced [
     information: "Regular expression to delete key"
     default: "[^ACDEFGHIKLMNPQRSTVWYacgtU]"
   ]
-  boolean: accid [
+  string: accid [
     information: "Include to use sequence accession ID as query"
-    default: "0"
+    default: ""
   ]
 endsection: advanced
 

@@ -28,9 +28,9 @@ section: advanced [
     information: "W value of codons absent from a reference set '-' when excludes such codons from the calculation"
     default: "-"
   ]
-  boolean: accid [
+  string: accid [
     information: "Include to use sequence accession ID as query"
-    default: "0"
+    default: ""
   ]
 endsection: advanced
 

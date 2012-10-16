@@ -21,14 +21,14 @@ int main(int argc, char *argv[]){
   AjPStr    inseq    = NULL;
   ajint     width    = 0;
   ajint     level    = 0;
-  AjBool    accid    = 0;
+  AjPStr    accid    = NULL;
   AjPStr    filename;
   char*     jobid;
 
   seqall = ajAcdGetSeqall("sequence");
   width  = ajAcdGetInt("width");
   level  = ajAcdGetInt("level");
-  accid  = ajAcdGetBoolean("accid");
+  accid  = ajAcdGetString("accid");
 
   params.width = width;
   params.level = level;

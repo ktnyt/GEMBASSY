@@ -23,7 +23,7 @@ int main(int argc, char *argv[]){
   AjPStr    position  = NULL;
   AjBool    translate = 0;
   AjPStr    delkey    = NULL;
-  AjBool    accid    = 0;
+  AjPStr    accid     = NULL;
   AjPStr    filename  = NULL;
   char*     jobid;
   
@@ -32,7 +32,7 @@ int main(int argc, char *argv[]){
   position  = ajAcdGetString("position");
   translate = ajAcdGetBoolean("translate");
   delkey    = ajAcdGetString("delkey");
-  accid     = ajAcdGetBoolean("accid");
+  accid     = ajAcdGetString("accid");
 
   if(translate){
     params.translate   = 1;
@@ -49,19 +49,27 @@ int main(int argc, char *argv[]){
 
     inseq = NULL;
 
-    if(ajSeqGetFeat(seq) && !accid){
+    if(ajSeqGetFeat(seq) && !strlen(ajCharNewS(accid))){
       inseq = getGenbank(seq,ajSeqGetFeat(seq));
     }else{
-      ajStrAppendS(&inseq,ajSeqGetAccS(seq));
+      if(!strlen(ajCharNewS(accid))){
+        fprintf(stderr,"Sequence does not have features\n");
+        fprintf(stderr,"Proceeding with sequence accession ID\n");
+        ajStrAssignS(&inseq,ajSeqGetAccS(seq));
+      }
+      if(!valID(ajCharNewS(accid))){
+          fprintf(stderr,"Invalid accession ID, exiting");
+          return 1;
+      }else{
+        ajStrAssignS(&inseq,accid);
+      }
     }
- 
+
     char* in0;
     in0 = ajCharNewS(inseq);
 
-    if(!ajSeqGetFeat(seq) && !accid)
-      fprintf(stderr,"Sequence does not have features\nProceeding with sequence accession ID\n");
-
     fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
+
 
     if(soap_call_ns1__dinuc(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
       ajStrAssignS(&filename,ajSeqGetAccS(seq));

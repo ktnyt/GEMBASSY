@@ -57,9 +57,9 @@ section: advanced [
 'C4' or 'R4': Relative adaptiveness; i.e., ratio to maximum of minor codon ('W')"
   ]
 
-  boolean: accid [
+  string: accid [
     information: "Include to use sequence accession ID as query"
-    default: "0"
+    default: ""
   ]
 
 endsection: advanced

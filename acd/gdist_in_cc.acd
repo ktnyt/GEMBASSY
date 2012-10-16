@@ -30,7 +30,7 @@ section: advanced [
     information: "If the second position is not given, position of replication origin is used"
   ]
 
-  boolean: accid [
+  string: accid [
     information: "Include to use sequence accession ID as query"
     default: ""
   ]

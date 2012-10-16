@@ -27,7 +27,7 @@ section: advanced [
     default: "6"
   ]
 
-  boolean: accid [
+  string: accid [
     information: "Include to use sequence accession ID as query"
     default: ""
   ]

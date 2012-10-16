@@ -32,9 +32,9 @@ section: advanced [
     default: "8192"
   ]
 
-  boolean: accid [
+  string: accid [
     information: "Include to use sequence accession ID as query"
-    default: "0"
+    default: ""
   ]
 
 endsection: advanced

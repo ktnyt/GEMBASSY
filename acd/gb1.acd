@@ -27,7 +27,7 @@ section: advanced [
     default: "rocha"
   ]
 
-  boolean: accid [
+  string: accid [
     information: "Include to use sequence accession ID as query"
     default: ""
   ]

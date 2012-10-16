@@ -22,7 +22,7 @@ int main(int argc, char *argv[]){
   ajint     width    = 0;
   ajint     window   = 0;
   AjPStr    output   = NULL;
-  AjBool    accid    = 0;
+  AjPStr    accid    = NULL;
   AjPStr    filename = NULL;
   char*     jobid;
   char*     _result;
@@ -31,7 +31,7 @@ int main(int argc, char *argv[]){
   window     = ajAcdGetInt("window");
   width      = ajAcdGetInt("width");
   output     = ajAcdGetString("output");
-  accid      = ajAcdGetBoolean("accid");
+  accid      = ajAcdGetString("accid");
   
   params.window = window;
   params.width  = width;
@@ -43,17 +43,10 @@ int main(int argc, char *argv[]){
 
     inseq = NULL;
 
-    if(ajSeqGetFeat(seq) && !accid){
-      inseq = getGenbank(seq,ajSeqGetFeat(seq));
-    }else{
-      ajStrAppendS(&inseq,ajSeqGetAccS(seq));
-    }
+    inseq = getGenbank(seq,ajSeqGetFeat(seq));
     
     char* in0;
     in0 = ajCharNewS(inseq);
-
-    if(!ajSeqGetFeat(seq) && !accid)
-      fprintf(stderr,"Sequence does not have features\nProceeding with sequence accession ID\n");
 
     fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
 
