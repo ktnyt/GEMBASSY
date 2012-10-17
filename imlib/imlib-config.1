@@ -1,0 +1,41 @@
+.\" Process this file with
+.\" groff -man -Tascii imlib-config.1
+.\"
+.TH imlib-config 1 "FEBRUARY 1999" "Library Configuration" "User Manuals"
+.SH NAME
+imlib-config \- Display Imlib and GDK-Imlib Library Configuration
+.SH SYNOPSIS
+.B imlib-config 
+.I OPTION 
+.B [
+.I OPTION
+.B ... ]
+.SH DESCRIPTION
+.B imlib-config
+is a script that is used to display what compiler flags and libraries were
+used when Imlib and GDK-Imlib were built.
+
+Note that
+.B imlib-config
+is not the same as the
+.B imlib_config
+program.
+.SH OPTIONS
+.IP --version
+Imlib/GDK-Imlib version information
+.IP --prefix
+displays prefix of directory where Imlib and GDK-Imlib were installed.
+.IP --exec-prefix
+displays exec-prefix of directory where Imlib and GDK-Imlib were installed.
+.IP --cflags
+C pre-processor and compiler flags for use with Imlib.
+.IP --cflags-gdk
+C pre-processor and compiler flags for use with GDK-Imlib
+.IP --libs
+Imlib library linking information
+.IP --libs-gdk
+GDK-Imlib library linking information
+.SH "SEE ALSO"
+.BR imlib_config (1)
+.SH AUTHOR
+Ossama Othman <ossama@debian.org>

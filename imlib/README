@@ -1,0 +1,35 @@
+-------------------------------------------------------------------------------
+                                I   M   L   I   B
+				      1.9.14
+-------------------------------------------------------------------------------
+
+This software is Copyright (C) 1998 By The Rasterman (Carsten Haitzler). I
+accept no responsability for anythign this software may or may not do to
+your system - you use it completely at your own risk. This software comes
+under the LGPL and GPL licences. The library itself is LGPL (all software in
+Imlib and gdk_imlib directories) see the COPYING and COPYING.LIB files for
+full legal details.
+
+-------------------------------------------------------------------------------
+
+If you have picked up a net release of imlib you should be able to
+just follow the instructions in the INSTALL file.
+
+If you are using imlib out of the CVS repository, then you need to
+have some extra tools installed, and the configuration process is
+lengthier.  The HACKING file has all the details for building from a
+CVS checkout.
+
+Imlib1 now *REQUIRES* libjpeg, libpng, libtiff, and libgif/libungif.  If you
+do not have these libraries, Imlib1 will *NOT* compile.
+
+Also note that gdk-imlib WILL NOT WORK with GTK2.  It won't even compile.
+This is not a bug.  This is a feature.  If you need an image loader for GTK2,
+use gdk-pixbuf.
+
+Only major bug fixes (crashes, security issues) will be accepted.
+
+Please submit bugs against Imlib1 to http://bugzilla.gnome.org.  
+
+Mark Crichton
+crichton@gimp.org

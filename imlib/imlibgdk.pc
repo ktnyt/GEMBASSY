@@ -1,0 +1,13 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+target=@gdktarget@
+
+
+Name: ImlibGdk
+Description: GDK support libraries for Imlib
+Version: 1.9.15
+Requires: gdk,gmodule
+Libs: -lgdk_imlib  -ljpeg -ltiff -lgif -lpng -lz -lm
+Cflags:

@@ -1,0 +1,13 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+target=@gdktarget@
+
+
+Name: ImlibGdk
+Description: GDK support libraries for Imlib
+Version: @VERSION@
+Requires: gdk,gmodule
+Libs: -lgdk_imlib @GDK_SUPPORT_LIBS@
+Cflags:
