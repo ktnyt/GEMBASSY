@@ -156,9 +156,11 @@ LDADD = ../../../nucleus/libnucleus.la ../../../ajax/acd/libacd.la \
 	../../../ajax/zlib/libezlib.la \
 	../../../ajax/expat/libeexpat.la \
 	../../../ajax/pcre/libepcre.la \
-	../../../plplot/libeplplot.la $(XLIB)
+	../../../plplot/libeplplot.la \
+  $(XLIB)
 else
-LDADD = -L${embprefix}/lib -lnucleus -lacd -lajaxdb -lensembl -lajaxg \
-        -lajax -leexpat -lepcre -lezlib -leplplot -lcurl $(XLIB)
+LDADD = -L${embprefix}/lib -lpng -lnucleus -lacd -lajaxdb -lensembl \
+        -lajaxg -lajax -leexpat -lepcre -lezlib -leplplot -lcurl -lX11 \
+        -lXext $(XLIB)
 endif
 
