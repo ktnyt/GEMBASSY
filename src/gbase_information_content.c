@@ -9,6 +9,7 @@
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
 #include "../include/gembassy.h"
+#include "../include/display_png.h"
 
 int main(int argc, char *argv[]){
   embInitPV("gbase_information_content",argc,argv,"GEMBASSY","1.0.0");
@@ -79,6 +80,10 @@ int main(int argc, char *argv[]){
       }
       if(get_file(jobid,ajCharNewS(filename))==0){
         fprintf(stderr,"Retrieval successful\n");
+
+  if(strcmp(params.output,"show") == 0)
+    if(display_png(ajCharNewS(filename), argv[0], ajCharNewS(ajSeqGetAccS(seq))))
+      fprintf(stderr,"Error in X11 displaying\n");
       }else{
         fprintf(stderr,"Retrieval unsuccessful\n");
       }

@@ -1,6 +1,6 @@
 application: gsignature [
   documentation: "Calculate oligonucleotide usage (genomic signature)"
-  groups: ""
+  groups: "Nucleic:Composition"
   embassy: "GEMBASSY"
 ]
 

@@ -33,7 +33,7 @@ section: advanced [
   ]
 
   string: output [
-    information: "Input 'g' for graph output"
+    information: "Input 'g' for graph output, 'show' for graph output to X11 window"
     default: "g"
   ]
 

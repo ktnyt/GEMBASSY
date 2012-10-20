@@ -53,7 +53,7 @@ section: advanced [
   ]
 
   string: output [
-    information: "Input 'g' for graph output, 'f' for CSV file output"
+    information: "Input 'g' for graph output, 'f' for CSV file output, 'show' for graph output to X11 window"
     default: "g"
   ]
 
@@ -61,6 +61,7 @@ section: advanced [
     information: "Include to use sequence accession ID as query"
     default: ""
   ]
+
 endsection: advanced
 
 section: output [

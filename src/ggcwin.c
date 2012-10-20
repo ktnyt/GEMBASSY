@@ -9,6 +9,7 @@
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
 #include "../include/gembassy.h"
+#include "../include/display_png.h"
 
 int main(int argc, char *argv[]){
   embInitPV("ggcwin",argc,argv,"GEMBASSY","1.0.0");

@@ -31,6 +31,11 @@ section: advanced [
     default: "0.2"
   ]
 
+  string: output [
+    information: "Input 'g' for graph output, 'show' for graph output to X11 window"
+    default: "g"
+  ]
+
 endsection: advanced
 
 section: output [

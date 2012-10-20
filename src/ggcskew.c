@@ -9,6 +9,7 @@
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
 #include "../include/gembassy.h"
+#include "../include/display_png.h"
 
 int main(int argc, char *argv[]){
   embInitPV("ggcskew",argc,argv,"GEMBASSY","1.0.0");
@@ -78,7 +79,9 @@ int main(int argc, char *argv[]){
     
     char* in0;
     in0 = ajCharNewS(inseq);
+
     fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
+
     if(soap_call_ns1__gcskew(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
       ajStrAssignS(&filename,ajSeqGetNameS(seq));
       if(strcmp(params.output,"g") == 0){
@@ -87,7 +90,12 @@ int main(int argc, char *argv[]){
 	ajStrAppendC(&filename,".csv");
       }
       if(get_file(jobid,ajCharNewS(filename))==0){
-        fprintf(stderr,"Retrieval successful\n");
+	fprintf(stderr,"Retrieval successful\n");
+
+	if(strcmp(params.output,"show") == 0)
+	  if(display_png(ajCharNewS(filename), argv[0], ajCharNewS(ajSeqGetAccS(seq))))
+	    fprintf(stderr,"Error in X11 displaying\n");
+	    
       }else{
         fprintf(stderr,"Retrieval unsuccessful\n");
       }

@@ -21,10 +21,17 @@ section: advanced [
   information: "Advanced section"
   type: "page"
 ]
+
+  string: output [
+    information: "Input 'g' for graph output, 'show' for graph output to X11 window"
+    default: "g"
+  ]
+
   string: accid [
     information: "Include to use sequence accession ID as query"
     default: ""
   ]
+
 endsection: advanced
 
 section: output [

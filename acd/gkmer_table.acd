@@ -27,6 +27,11 @@ section: advanced [
     default: "6"
   ]
 
+  string: output [
+    information: "Input 'g' for graph output, 'f' for CSV file output, 'show' for graph output to X11 window"
+    default: "g"
+  ]
+
   string: accid [
     information: "Include to use sequence accession ID as query"
     default: ""
