@@ -60,17 +60,15 @@ int main(int argc, char *argv[]){
     in0 = ajCharNewS(inseq);
 
     fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
-
-
     if(soap_call_ns1__w_USCOREvalue(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
       ajStrAssignS(&filename,ajSeqGetNameS(seq));
       ajStrAppendC(&filename,".csv");
-    }else{
       if(get_file(jobid,ajCharNewS(filename))==0){
         fprintf(stderr,"Retrieval successful\n");
       }else{
         fprintf(stderr,"Retrieval unsuccessful\n");
       }
+    }else{
       soap_print_fault(&soap,stderr);
     }
   
