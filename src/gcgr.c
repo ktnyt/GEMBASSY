@@ -42,6 +42,9 @@ int main(int argc, char *argv[]){
 
     inseq = NULL;
 
+    ajStrAppendC(&inseq,">");
+    ajStrAppendS(&inseq,ajSeqGetAccS(seq));
+    ajStrAppendC(&inseq,"\n");
     ajStrAppendS(&inseq,ajSeqGetSeqS(seq));
     
     char* in0;

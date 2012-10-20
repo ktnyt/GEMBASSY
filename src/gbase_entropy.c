@@ -73,10 +73,10 @@ int main(int argc, char *argv[]){
 
     if(soap_call_ns1__base_USCOREentropy(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
       ajStrAssignS(&filename,ajSeqGetNameS(seq));
-      if(strcmp(params.output,"g") == 0){
-	ajStrAppendC(&filename,".png");
-      }else{
+      if(strcmp(params.output,"f") == 0){
 	ajStrAppendC(&filename,".csv");
+      }else{
+	ajStrAppendC(&filename,".png");
       }
       if(get_file(jobid,ajCharNewS(filename))==0){
         fprintf(stderr,"Retrieval successful\n");
