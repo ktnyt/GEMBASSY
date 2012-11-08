@@ -9,7 +9,7 @@
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
 #include "../include/gembassy.h"
-#include "../include/gplot.h"
+#include "../include/gplot_dev.h"
 
 int main(int argc, char *argv[]){
   embInitPV("gview_cds",argc,argv,"GEMBASSY","1.0.0");

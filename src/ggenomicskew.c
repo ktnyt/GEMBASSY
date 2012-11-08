@@ -9,7 +9,7 @@
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
 #include "../include/gembassy.h"
-#include "../include/gplot.h"
+#include "../include/gplot_dev.h"
 
 int main(int argc, char *argv[]){
   embInitPV("ggenomicskew",argc,argv,"GEMBASSY","1.0.0");
@@ -25,7 +25,6 @@ int main(int argc, char *argv[]){
   AjPStr    accid    = NULL;
   AjPStr    filename = NULL;
   char*     jobid;
-
   AjPGraph    mult;
   gPlotParams gpp;
 
@@ -78,12 +77,23 @@ int main(int argc, char *argv[]){
       ajStrAppendC(&filename,".csv");
       if(get_file(jobid,ajCharNewS(filename))==0){
 	AjPStr title = NULL;
+	AjPPStr names = NULL;
+	if((names = (AjPPStr)malloc(sizeof(AjPStr)*5)) == NULL){
+	  fprintf(stderr,"Error in memory allocation, exiting\n");
+	  return 1;
+	}
+	names[0] = NULL;
+	names[1] = ajStrNewC("whole genome");
+	names[2] = ajStrNewC("coding region");
+	names[3] = ajStrNewC("intergenic region");
+	names[4] = ajStrNewC("codon third position");
 	ajStrAppendC(&title, argv[0]);
 	ajStrAppendC(&title, " of ");
 	ajStrAppendS(&title, accid);
 	ajStrAssignS(&(gpp.title), title);
 	gpp.xlab = ajStrNewC("location");
 	gpp.ylab = ajStrNewC("GC skew");
+	gpp.names = names;
 	ajStrDel(&title);
 	if(gPlotFile(filename, mult, &gpp) == 1)
 	  fprintf(stderr,"Error allocating\n");

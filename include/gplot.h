@@ -101,7 +101,8 @@ int gPlotFile(AjPStr filename, AjPGraph graphs, gPlotParams *gpp)
   (*gpp).setNum  = 0;
   (*gpp).dataNum = j;
   (*gpp).typeNum = col;
-  (*gpp).names   = name;
+  if(!(*gpp).names)
+    (*gpp).names = name;
 
   if(j < 2)
     gPlotFlip(gpp);
@@ -147,6 +148,7 @@ int gPlotData(AjPGraph graphs, gPlotParams *gpp)
   float y[dataNum];
   float begin = data[0][0];
   float end   = data[0][dataNum-1];
+  float range = end - begin;
 
   int c[] = {1,3,9,13};
 
@@ -157,9 +159,9 @@ int gPlotData(AjPGraph graphs, gPlotParams *gpp)
     }
   }
 
-  dif = (min == max) ? 1 : (max - min) / 20;
-  max += dif;
-  min -= dif;
+  dif = (min == max) ? 20 : max - min;
+  max += dif / 20;
+  min -= dif / 20;
 
   for(i = 1; i < typeNum; ++i){
     gd = ajGraphdataNewI(dataNum);
@@ -178,12 +180,18 @@ int gPlotData(AjPGraph graphs, gPlotParams *gpp)
     ajGraphDataAdd(graphs, gd);
       
     if(typeNum > 2){
+      float len = 0.0;
+      for(j = 1;j < typeNum; ++j)
+	len = (len < (float)ajStrGetLen(names[j])) ?
+	  (float)ajStrGetLen(names[j]) : len;
       ajGraphAddLine(graphs,
-		     end * 7.5/8, max * (8-i)/8,
-		     end * 7.9/8, max * (8-i)/8,
+		     range * 7.4/8 + begin, dif * (8.6-i*0.3)/8 + min,
+		     range * 7.8/8 + begin, dif * (8.6-i*0.3)/8 + min,
 		     c[i-1]);
       ajGraphAddTextScaleS(graphs,
-			   end * 7/8, max * (8-i)/8, 0, 0.5,
+			   range * (7.3/8 - len*1/144) + begin,
+			   dif * (8.6-i*0.3)/8 + min,
+			   0, 0.4,
 			   names[i]);
     }
       
