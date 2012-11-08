@@ -1,4 +1,4 @@
 pkgdata_DATA = *.html
 
-pkgdatadir=$(prefix)/share/EMBOSS/doc/html/embassy/kbws
+pkgdatadir=$(prefix)/share/EMBOSS/doc/html/embassy/gembassy
 
