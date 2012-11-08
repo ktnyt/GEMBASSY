@@ -21,7 +21,7 @@ int main(int argc, char *argv[]){
   AjPSeq    seq;
   AjPStr    inseq    = NULL;
   ajint     k        = 0;
-	AjPStr    output   = NULL;
+  AjPStr    output   = NULL;
   AjPStr    accid    = NULL;
   AjPStr    filename = NULL;
   char*     jobid;
@@ -41,11 +41,13 @@ int main(int argc, char *argv[]){
 
     if(ajSeqGetFeat(seq) && !strlen(ajCharNewS(accid))){
       inseq = getGenbank(seq,ajSeqGetFeat(seq));
+      ajStrAssignS(&accid,ajSeqGetAccS(seq));
     }else{
       if(!strlen(ajCharNewS(accid))){
         fprintf(stderr,"Sequence does not have features\n");
         fprintf(stderr,"Proceeding with sequence accession ID\n");
         ajStrAssignS(&inseq,ajSeqGetAccS(seq));
+        ajStrAssignS(&accid,ajSeqGetAccS(seq));
       }
       if(!valID(ajCharNewS(accid))){
           fprintf(stderr,"Invalid accession ID, exiting");
@@ -60,17 +62,14 @@ int main(int argc, char *argv[]){
 
     fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
 
-
     if(soap_call_ns1__kmer_USCOREtable(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
       ajStrAssignS(&filename,ajSeqGetAccS(seq));
       ajStrAppendC(&filename,".png");
       if(get_file(jobid,ajCharNewS(filename)) == 0){
-	fprintf(stderr,"Retrieval successful\n");
-
         if(strcmp(ajCharNewS(output),"show") == 0)
           if(display_png(ajCharNewS(filename), argv[0], ajCharNewS(ajSeqGetAccS(seq))))
             fprintf(stderr,"Error in X11 displaying\n");
-      }else{
+       }else{
 	fprintf(stderr,"Retrieval unsuccessful\n");
       }
     }else{

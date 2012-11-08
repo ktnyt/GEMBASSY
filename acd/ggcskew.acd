@@ -68,4 +68,10 @@ section: output [
 	information: "Output section"
 	type: "page"
 ]
+
+  xygraph: graph [
+    multiple: "8"
+    relations: "EDAM:0002968 data Image or plot"
+  ]
+
 endsection: output

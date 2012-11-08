@@ -15,7 +15,6 @@
     <seq></seq>
     <memo></memo>
     <header>0</header>
-    <output></output>
    </params>
   </ns1:signature>
  </SOAP-ENV:Body>

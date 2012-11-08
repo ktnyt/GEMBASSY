@@ -9,7 +9,7 @@
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
 #include "../include/gembassy.h"
-#include "../include/display_png.h"
+#include "../include/gplot.h"
 
 int main(int argc, char *argv[]){
   embInitPV("gconsensus_z",argc,argv,"GEMBASSY","1.0.0");
@@ -26,14 +26,18 @@ int main(int argc, char *argv[]){
   ajint     high     = 0;
   double    low      = 0;  
   char*     jobid;
+
+  AjPGraph    mult;
+  gPlotParams gpp;
   
   seqall = ajAcdGetSeqall("sequence");
   high   = ajAcdGetInt("high");
   low    = ajAcdGetFloat("low");
-  output = ajAcdGetString("output");
+  mult   = ajAcdGetGraphxy("graph");
   
-  params.high = high;
-  params.low  = low;
+  params.high   = high;
+  params.low    = low;
+  params.output = "f";
 
   char** tmp  = (char**)malloc(sizeof(char));
   int    size = 0;
@@ -48,19 +52,26 @@ int main(int argc, char *argv[]){
   array_seq.__size = size;
   array_seq.__ptr  = tmp;
 
+  if(size < 2){
+    fprintf(stderr,"File only has one sequence. Please input more than two.\n");
+    return 0;
+  }
+
   soap_init(&soap);
 
   if(soap_call_ns1__consensus_USCOREz(&soap,NULL,NULL,&array_seq,&params,&jobid)==SOAP_OK){
-
-    ajStrAppendC(&filename,".png");
+    ajStrAppendC(&filename,".csv");
     if(get_file(jobid,ajCharNewS(filename))==0){
-      fprintf(stderr,"Retrieval successful\n");
-
-      if(strcmp(ajCharNewS(output),"show") == 0)
-	if(display_png(ajCharNewS(filename), argv[0], ajCharNewS(ajSeqGetAccS(seq))))
-	  fprintf(stderr,"Error in X11 displaying\n");
-    }else{
-      fprintf(stderr,"Retrieval unsuccessful\n");
+      AjPStr title = NULL;
+      ajStrAppendC(&title, argv[0]);
+      ajStrAssignS(&(gpp.title), title);
+      gpp.xlab = ajStrNewC("position");
+      gpp.ylab = ajStrNewC("consensus");
+      ajStrDel(&title);
+      if(gPlotFile(filename, mult, &gpp) == 1)
+	fprintf(stderr,"Error allocating\n");
+     }else{ 
+     fprintf(stderr,"Retrieval unsuccessful\n");
     }
   }else{
     soap_print_fault(&soap,stderr);

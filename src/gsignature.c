@@ -43,7 +43,6 @@ int main(int argc, char *argv[]){
   }else{
     params.oe = 0;
   }
-  params.output = "f";
 
   while(ajSeqallNext(seqall,&seq)){  
 

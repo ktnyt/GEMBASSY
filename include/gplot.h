@@ -1,0 +1,250 @@
+#ifndef GPLOT_H
+#define GPLOT_H
+
+/* @datastatic gPlotParams*****************************************************
+**
+** gPlot plotting parameters
+**
+** @attr data [float**] Data used to plot
+** @attr setNum [size_t] Number of data sets
+** @attr typeNum [size_t] Number of data types
+** @attr dataNum [size_t] Number of data in set
+** @attr height [ajint] Height of graph - To be supported
+** @attr width [ajint] Width of graph - To be supported
+** @attr title [AjPStr] Graph title
+** @attr xlab [AjPStr] Label for X axis
+** @attr ylab [AjPStr] Label for Y axis
+** @attr names [AjPPStr] name of each data type
+** @@
+******************************************************************************/
+
+typedef struct
+{
+  float **data;
+  size_t  setNum;
+  size_t  typeNum;
+  size_t  dataNum;
+  ajint   width /* Not supported yet! */;
+  ajint   height /* Not supported yet! */;
+  AjPStr  title;
+  AjPStr  xlab;
+  AjPStr  ylab;
+  AjPPStr names;
+} gPlotParams;
+
+/*
+** Prototype Definitions
+*/
+
+int gPlotFile(AjPStr filename, AjPGraph graphs, gPlotParams *gpp);
+int gPlotData(AjPGraph graphs, gPlotParams *gpp);
+int gPlotFlip(gPlotParams *gpp);
+
+/* @funclist gPlotFile ********************************************************
+**
+** Retrieves data from CSV file and plots the data using gPlotData
+**
+******************************************************************************/
+
+int gPlotFile(AjPStr filename, AjPGraph graphs, gPlotParams *gpp)
+{
+  AjPFile file = ajFileNewInNameS(filename);
+  AjPStr  line = NULL;
+  AjPPStr temp = NULL;
+  AjPPStr name = NULL;
+  ajint   i=0, j=0, col=0, flag=0;
+  float **data = NULL;
+
+  while(ajReadline(file, &line)){
+
+    /*
+    ** Allocate first time only
+    */
+
+    if(!col){
+      col = ajStrCalcCountC(line, ",") + 1;
+
+      if((temp = (AjPPStr)malloc(sizeof(AjPStr) * col)) == NULL)
+	return 1;
+
+      if((name = (AjPPStr)malloc(sizeof(AjPStr) * col)) == NULL)
+	return 1;
+
+      if((data = (float**)malloc(sizeof(float*) * col)) == NULL)
+	return 1;
+      else
+	for(i = 0; i < col; ++i)
+	  if((data[i] = (float*)malloc(sizeof(float))) == NULL)
+	    return 1;
+    }
+
+    ajStrExchangeCC(&line, ",", "\n");
+    ajStrParseSplit(line, &temp);
+
+    for(i = 0; i < col; ++i){
+      if((data[i] = (float*)realloc(data[i], sizeof(float) * (j + 1))) == NULL)
+	return 1;
+
+      ajStrRemoveLastNewline(&(temp[i]));
+      if(ajStrIsFloat(temp[i])){
+	ajStrToFloat(temp[i], &(data[i][j]));
+	++flag;
+      }else{
+	name[i] = ajStrNewS(temp[i]);
+      }
+    }
+    j = flag ? j + 1 : j;
+    flag = 0;
+  }
+
+  (*gpp).data    = data;
+  (*gpp).setNum  = 0;
+  (*gpp).dataNum = j;
+  (*gpp).typeNum = col;
+  (*gpp).names   = name;
+
+  if(j < 2)
+    gPlotFlip(gpp);
+
+  gPlotData(graphs, gpp);
+
+  for(i = 0; i < col; ++i)
+    free(data[i]);
+  free(data);
+  data = NULL;
+
+  ajFileClose(&file);
+  ajStrDel(&line);
+
+  return 0;
+}
+
+/* @funclist gPlotData ********************************************************
+**
+** Function to plot from given data
+**
+******************************************************************************/
+
+int gPlotData(AjPGraph graphs, gPlotParams *gpp)
+{
+  AjPGraphdata gd = NULL;
+
+  float min = 0.0;
+  float max = 0.0;
+  float dif = 0.0;
+  ajint i, j;
+
+  ajint   setNum  = (*gpp).setNum;
+  ajint   dataNum = (*gpp).dataNum;
+  ajint   typeNum = (*gpp).typeNum;
+  AjPStr  title   = (*gpp).title;
+  AjPStr  xlab    = (*gpp).xlab;
+  AjPStr  ylab    = (*gpp).ylab;
+  AjPPStr names   = (*gpp).names;
+  float **data    = (*gpp).data;
+
+  float x[dataNum];
+  float y[dataNum];
+  float begin = data[0][0];
+  float end   = data[0][dataNum-1];
+
+  int c[] = {1,3,9,13};
+
+  for(i = 1; i < typeNum; ++i){
+    for(j = 0; j < dataNum; ++j){
+      min = (min < data[i][j]) ? min : data[i][j];
+      max = (max > data[i][j]) ? max : data[i][j];
+    }
+  }
+
+  dif = (min == max) ? 1 : (max - min) / 20;
+  max += dif;
+  min -= dif;
+
+  for(i = 1; i < typeNum; ++i){
+    gd = ajGraphdataNewI(dataNum);
+
+    ajGraphdataSetColour(gd, c[i-1]);
+    ajGraphdataSetMinmax(gd, begin, end, min, max);
+    ajGraphdataSetTruescale(gd, begin, end, min, max);
+    ajGraphdataSetTypeC(gd, "Multi 2D Plot");
+      
+    for(j = 0; j <  dataNum; ++j){
+      x[j] = data[0][j];
+      y[j] = data[i][j];
+    }
+      
+    ajGraphdataAddXY(gd, x, y);
+    ajGraphDataAdd(graphs, gd);
+      
+    if(typeNum > 2){
+      ajGraphAddLine(graphs,
+		     end * 7.5/8, max * (8-i)/8,
+		     end * 7.9/8, max * (8-i)/8,
+		     c[i-1]);
+      ajGraphAddTextScaleS(graphs,
+			   end * 7/8, max * (8-i)/8, 0, 0.5,
+			   names[i]);
+    }
+      
+    gd = NULL;
+  }
+
+  ajGraphxySetXstartF(graphs, begin);
+  ajGraphxySetXendF(graphs, end);
+  ajGraphxySetYstartF(graphs, min - ((max - min) / 10));
+  ajGraphxySetYendF(graphs, max + ((max - min) / 10));
+
+  ajGraphSetTitleS(graphs, title);
+  ajGraphSetXlabelS(graphs, xlab);
+  ajGraphSetYlabelS(graphs, ylab);
+  ajGraphxySetflagOverlay(graphs, ajTrue);
+
+  ajGraphxyDisplay(graphs, AJFALSE);
+  ajGraphicsClose();
+
+  return 0;
+}
+
+/* @funclist gPlotFlip ********************************************************
+**
+** Function to flip x and y data
+**
+******************************************************************************/
+
+int gPlotFlip(gPlotParams *gpp)
+{
+  ajint   setNum  = (*gpp).setNum;
+  ajint   dataNum = (*gpp).typeNum;
+  ajint   typeNum = (*gpp).dataNum;
+  float **data    = (*gpp).data;
+
+  float **tmp;
+  ajint i;
+
+  if((tmp = (float**)malloc(sizeof(float*) * typeNum)) == NULL)
+    return 1;
+  else
+    for(i = 0; i < typeNum; ++i)
+      if((tmp[i] = (float*)malloc(sizeof(float))) == NULL)
+	return 1;
+
+  for(i = 0; i < dataNum; ++i){
+    if((tmp[0] = (float*)realloc(tmp[0], sizeof(float) * (i + 1))) == NULL)
+      return 1;
+    if((tmp[1] = (float*)realloc(tmp[1], sizeof(float) * (i + 1))) == NULL)
+      return 1;
+    tmp[0][i] = i;
+    tmp[1][i] = data[i][0];
+  }
+
+  free((*gpp).data);
+
+  (*gpp).dataNum = dataNum;
+  (*gpp).typeNum = 2;
+  (*gpp).data    = tmp;
+
+  return 0;
+}
+
+#endif /* GPLOT_H */

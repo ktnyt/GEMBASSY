@@ -10,6 +10,7 @@
 #include "../gsoap/stdsoap2.c"
 #include "../include/gembassy.h"
 #include "../include/display_png.h"
+#include "../include/gplot.h"
 
 int main(int argc, char *argv[]){
   embInitPV("gbase_information_content",argc,argv,"GEMBASSY","1.0.0");
@@ -24,24 +25,26 @@ int main(int argc, char *argv[]){
   ajint     PatLen     = 0;
   ajint     upstream   = 0;
   ajint     downstream = 0;
-  AjPStr    output     = NULL;
   AjPStr    accid      = NULL;
   AjPStr    filename   = NULL;
   char*     jobid; 
+
+  AjPGraph    mult;
+  gPlotParams gpp;
 
   seqall     = ajAcdGetSeqall("sequence");
   position   = ajAcdGetString("position");
   PatLen     = ajAcdGetInt("patlen");
   upstream   = ajAcdGetInt("upstream");
   downstream = ajAcdGetInt("downstream");
-  output     = ajAcdGetString("output");
   accid      = ajAcdGetString("accid");
-  
+  mult       = ajAcdGetGraphxy("graph");
+
   params.position   = ajCharNewS(position);
   params.PatLength  = PatLen;
   params.upstream   = upstream;
   params.downstream = downstream;
-  params.output     = ajCharNewS(output);
+  params.output     = "f";
   
   while(ajSeqallNext(seqall,&seq)){
 
@@ -51,11 +54,13 @@ int main(int argc, char *argv[]){
 
     if(ajSeqGetFeat(seq) && !strlen(ajCharNewS(accid))){
       inseq = getGenbank(seq,ajSeqGetFeat(seq));
+      ajStrAssignS(&accid,ajSeqGetAccS(seq));
     }else{
       if(!strlen(ajCharNewS(accid))){
         fprintf(stderr,"Sequence does not have features\n");
         fprintf(stderr,"Proceeding with sequence accession ID\n");
         ajStrAssignS(&inseq,ajSeqGetAccS(seq));
+        ajStrAssignS(&accid,ajSeqGetAccS(seq));
       }
       if(!valID(ajCharNewS(accid))){
           fprintf(stderr,"Invalid accession ID, exiting");
@@ -70,21 +75,21 @@ int main(int argc, char *argv[]){
 
     fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
 
-
     if(soap_call_ns1__base_USCOREinformation_USCOREcontent(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
       ajStrAssignS(&filename,ajSeqGetNameS(seq));
-      if(strcmp(params.output,"f") == 0){
-	ajStrAppendC(&filename,".csv");
-      }else{
-	ajStrAppendC(&filename,".png");
-      }
+      ajStrAppendC(&filename,".csv");
       if(get_file(jobid,ajCharNewS(filename))==0){
-        fprintf(stderr,"Retrieval successful\n");
-
-  if(strcmp(params.output,"show") == 0)
-    if(display_png(ajCharNewS(filename), argv[0], ajCharNewS(ajSeqGetAccS(seq))))
-      fprintf(stderr,"Error in X11 displaying\n");
-      }else{
+	AjPStr title = NULL;
+        ajStrAppendC(&title, argv[0]);
+        ajStrAppendC(&title, " of ");
+        ajStrAppendS(&title, accid);
+        ajStrAssignS(&(gpp.title), title);
+        gpp.xlab = ajStrNewC("position");
+        gpp.ylab = ajStrNewC("information content");
+        ajStrDel(&title);
+        if(gPlotFile(filename, mult, &gpp) == 1)
+          fprintf(stderr,"Error allocating\n");
+       }else{
         fprintf(stderr,"Retrieval unsuccessful\n");
       }
     }else{

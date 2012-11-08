@@ -47,11 +47,6 @@ section: advanced [
     default: "0"
   ]
 
-  string: output [
-    information: "Input 'g' for graph output, 'f' for raw CSV output, 'show' for graph output to X11 window"
-    default: "g"
-  ]
-
   string: accid [
     information: "Include to use sequence accession ID as query"
     default: ""
@@ -63,4 +58,10 @@ section: output [
 	information: "Output section"
 	type: "page"
 ]
+
+  xygraph: graph [
+    multiple: "8"
+    relations: "EDAM:0002968 data Image or plot"
+  ]
+
 endsection: output

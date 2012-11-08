@@ -746,7 +746,6 @@ struct ns1__signatureInputParams
 	char *seq;	/* required element of type xsd:string */
 	char *memo;	/* required element of type xsd:string */
 	int header;	/* required element of type xsd:int */
-	char *output;	/* required element of type xsd:string */
 };
 #endif
 

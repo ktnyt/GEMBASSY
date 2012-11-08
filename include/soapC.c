@@ -19,7 +19,7 @@ compiling, linking, and/or using OpenSSL is allowed.
 extern "C" {
 #endif
 
-SOAP_SOURCE_STAMP("@(#) soapC.c ver 2.8.6 2012-10-10 15:48:59 GMT")
+SOAP_SOURCE_STAMP("@(#) soapC.c ver 2.8.6 2012-11-07 09:40:00 GMT")
 
 
 #ifndef WITH_NOGLOBAL
@@ -19102,7 +19102,6 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__signatureInputParams(struct soap *s
 	soap_default_string(soap, &a->seq);
 	soap_default_string(soap, &a->memo);
 	soap_default_int(soap, &a->header);
-	soap_default_string(soap, &a->output);
 }
 
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__signatureInputParams(struct soap *soap, const struct ns1__signatureInputParams *a)
@@ -19110,7 +19109,6 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__signatureInputParams(struct soap 
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	soap_serialize_string(soap, &a->seq);
 	soap_serialize_string(soap, &a->memo);
-	soap_serialize_string(soap, &a->output);
 }
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__signatureInputParams(struct soap *soap, const char *tag, int id, const struct ns1__signatureInputParams *a, const char *type)
@@ -19138,12 +19136,6 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__signatureInputParams(struct soap *soap, 
 		return soap->error;
 	if (soap_out_int(soap, "header", -1, &a->header, ""))
 		return soap->error;
-	if (a->output)
-	{	if (soap_out_string(soap, "output", -1, &a->output, ""))
-			return soap->error;
-	}
-	else if (soap_element_nil(soap, "output"))
-		return soap->error;
 	return soap_element_end_out(soap, tag);
 }
 
@@ -19155,7 +19147,6 @@ SOAP_FMAC3 struct ns1__signatureInputParams * SOAP_FMAC4 soap_in_ns1__signatureI
 	size_t soap_flag_seq = 1;
 	size_t soap_flag_memo = 1;
 	size_t soap_flag_header = 1;
-	size_t soap_flag_output = 1;
 	if (soap_element_begin_in(soap, tag, 0, type))
 		return NULL;
 	a = (struct ns1__signatureInputParams *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_ns1__signatureInputParams, sizeof(struct ns1__signatureInputParams), 0, NULL, NULL, NULL);
@@ -19196,11 +19187,6 @@ SOAP_FMAC3 struct ns1__signatureInputParams * SOAP_FMAC4 soap_in_ns1__signatureI
 				{	soap_flag_header--;
 					continue;
 				}
-			if (soap_flag_output && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
-				if (soap_in_string(soap, "output", &a->output, "xsd:string"))
-				{	soap_flag_output--;
-					continue;
-				}
 			if (soap->error == SOAP_TAG_MISMATCH)
 				soap->error = soap_ignore_element(soap);
 			if (soap->error == SOAP_NO_TAG)
@@ -19216,7 +19202,7 @@ SOAP_FMAC3 struct ns1__signatureInputParams * SOAP_FMAC4 soap_in_ns1__signatureI
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
-	if ((soap->mode & SOAP_XML_STRICT) && (soap_flag_wordlength > 0 || soap_flag_bothstrand > 0 || soap_flag_oe > 0 || soap_flag_seq > 0 || soap_flag_memo > 0 || soap_flag_header > 0 || soap_flag_output > 0))
+	if ((soap->mode & SOAP_XML_STRICT) && (soap_flag_wordlength > 0 || soap_flag_bothstrand > 0 || soap_flag_oe > 0 || soap_flag_seq > 0 || soap_flag_memo > 0 || soap_flag_header > 0))
 	{	soap->error = SOAP_OCCURS;
 		return NULL;
 	}

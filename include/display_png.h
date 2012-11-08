@@ -1,3 +1,4 @@
+#ifdef PLD_png
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
 #include <png.h>
@@ -450,6 +451,8 @@ int display_png(char* filename, char* gtool, char* accession){
   appname = gtool;
   icon_name = accession;
 
+  sprintf(titlebar, "%s: %s", gtool, accession);
+
   if(!(fp = fopen(filename,"rb")))
     return 1;
 
@@ -472,3 +475,9 @@ int display_png(char* filename, char* gtool, char* accession){
 
   return 0;
 }
+#else
+int display_png(char* filename, char* gtool, char* accession){
+  fprintf(stderr,"PNG support not found.\n");
+  return 0;
+}
+#endif

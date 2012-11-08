@@ -9,7 +9,7 @@
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
 #include "../include/gembassy.h"
-#include "../include/display_png.h"
+#include "../include/gplot.h"
 
 int main(int argc, char *argv[]){
   embInitPV("ggeneskew",argc,argv,"GEMBASSY","1.0.0");
@@ -31,14 +31,17 @@ int main(int argc, char *argv[]){
   char*     _result; 
   char*     jobid;
 
+  AjPGraph    mult;
+  gPlotParams gpp;
+
   seqall     = ajAcdGetSeqall("sequence");
   window     = ajAcdGetInt("window");
   slide      = ajAcdGetInt("slide");
   cumulative = ajAcdGetBoolean("cumulative");
   gc3        = ajAcdGetBoolean("gctri");
-  output     = ajAcdGetString("output");
   base       = ajAcdGetString("base");
   accid      = ajAcdGetString("accid");
+  mult       = ajAcdGetGraphxy("graph");
   
   params.window       = window;
   params.slide        = slide;
@@ -48,12 +51,12 @@ int main(int argc, char *argv[]){
     params.cumulative = 0;
   }
   if(gc3){
-    params.gc3         = 1;
+    params.gc3        = 1;
   }else{
-    params.gc3         = 0;
+    params.gc3        = 0;
   }
   params.base         = ajCharNewS(base);
-  params.output       = ajCharNewS(output);
+  params.output       = "f";
 
   while(ajSeqallNext(seqall,&seq)){
 
@@ -63,11 +66,13 @@ int main(int argc, char *argv[]){
 
     if(ajSeqGetFeat(seq) && !strlen(ajCharNewS(accid))){
       inseq = getGenbank(seq,ajSeqGetFeat(seq));
+      ajStrAssignS(&accid,ajSeqGetAccS(seq));
     }else{
       if(!strlen(ajCharNewS(accid))){
         fprintf(stderr,"Sequence does not have features\n");
         fprintf(stderr,"Proceeding with sequence accession ID\n");
         ajStrAssignS(&inseq,ajSeqGetAccS(seq));
+        ajStrAssignS(&accid,ajSeqGetAccS(seq));
       }
       if(!valID(ajCharNewS(accid))){
           fprintf(stderr,"Invalid accession ID, exiting");
@@ -85,18 +90,19 @@ int main(int argc, char *argv[]){
 
     if(soap_call_ns1__geneskew(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
       ajStrAssignS(&filename,ajSeqGetNameS(seq));
-      if(strcmp(params.output,"f") == 0){
-	ajStrAppendC(&filename,".csv");
-      }else{
-	ajStrAppendC(&filename,".png");
-      }
+      ajStrAppendC(&filename,".csv");
       if(get_file(jobid,ajCharNewS(filename))==0){
-        fprintf(stderr,"Retrieval successful\n");
-
-        if(strcmp(params.output,"show") == 0)
-	  if(display_png(ajCharNewS(filename), argv[0], ajCharNewS(ajSeqGetAccS(seq))))
-	    fprintf(stderr,"Error in X11 displaying\n");
-      }else{
+        AjPStr title = NULL;
+        ajStrAppendC(&title, argv[0]);
+        ajStrAppendC(&title, " of ");
+        ajStrAppendS(&title, accid);
+        ajStrAssignS(&(gpp.title), title);
+        gpp.xlab = ajStrNewC("location");
+        gpp.ylab = ajStrNewC("GC skew");
+        ajStrDel(&title);
+        if(gPlotFile(filename, mult, &gpp) == 1)
+          fprintf(stderr,"Error allocating\n");
+       }else{
         fprintf(stderr,"Retrieval unsuccessful\n");
       }
     }else{

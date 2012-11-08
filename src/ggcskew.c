@@ -9,7 +9,7 @@
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
 #include "../include/gembassy.h"
-#include "../include/display_png.h"
+#include "../include/gplot.h"
 
 int main(int argc, char *argv[]){
   embInitPV("ggcskew",argc,argv,"GEMBASSY","1.0.0");
@@ -32,6 +32,9 @@ int main(int argc, char *argv[]){
   char*     _result; 
   char*     jobid;
 
+  AjPGraph    mult;
+  gPlotParams gpp;
+
   seqall     = ajAcdGetSeqall("sequence");
   window     = ajAcdGetInt("window");
   slide      = ajAcdGetInt("slide");
@@ -41,6 +44,7 @@ int main(int argc, char *argv[]){
   keto       = ajAcdGetBoolean("keto");
   output     = ajAcdGetString("output");
   accid      = ajAcdGetString("accid");
+  mult       = ajAcdGetGraphxy("graph");
 
   params.window       = window;
   params.slide        = slide;
@@ -64,7 +68,7 @@ int main(int argc, char *argv[]){
   }else{
     params.keto       = 0;
   }
-  params.output       = ajCharNewS(output);
+  params.output       = "f";
   
   while(ajSeqallNext(seqall,&seq)){
 
@@ -76,7 +80,8 @@ int main(int argc, char *argv[]){
     ajStrAppendS(&inseq,ajSeqGetNameS(seq));
     ajStrAppendC(&inseq,"\n");
     ajStrAppendS(&inseq,ajSeqGetSeqS(seq));
-    
+    ajStrAssignS(&accid,ajSeqGetAccS(seq));
+
     char* in0;
     in0 = ajCharNewS(inseq);
 
@@ -84,18 +89,19 @@ int main(int argc, char *argv[]){
 
     if(soap_call_ns1__gcskew(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
       ajStrAssignS(&filename,ajSeqGetNameS(seq));
-      if(strcmp(params.output,"f") == 0){
-	ajStrAppendC(&filename,".csv");
-      }else{
-	ajStrAppendC(&filename,".png");
-      }
+      ajStrAppendC(&filename,".csv");
       if(get_file(jobid,ajCharNewS(filename))==0){
-	fprintf(stderr,"Retrieval successful\n");
-
-	if(strcmp(params.output,"show") == 0)
-	  if(display_png(ajCharNewS(filename), argv[0], ajCharNewS(ajSeqGetAccS(seq))))
-	    fprintf(stderr,"Error in X11 displaying\n");
-	    
+        AjPStr title = NULL;
+        ajStrAppendC(&title, argv[0]);
+        ajStrAppendC(&title, " of ");
+        ajStrAppendS(&title, accid);
+        ajStrAssignS(&(gpp.title), title);
+        gpp.xlab = ajStrNewC("location");
+        gpp.ylab = ajStrNewC("GC skew");
+        ajStrDel(&title);
+        if(gPlotFile(filename, mult, &gpp) == 1)
+          fprintf(stderr,"Error allocating\n");
+ 
       }else{
         fprintf(stderr,"Retrieval unsuccessful\n");
       }
