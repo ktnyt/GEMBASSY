@@ -10,15 +10,7 @@ Description
    Number of Codons (ENC) for highly-expressed genes (ribosomal genes) and weakly-
    expressed genes (all genes), and taking the relative difference between them.
 
-  Usage: 
-   $delta_enc = delta_enc($genome);
 
-  Options:
-   None.
-
-  References:
-   1. Rocha EPC (2004) "Codon 
-   G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
 
@@ -40,7 +32,6 @@ Usage
 % gdelta_enc NC_000913.gbk
 Calculate the codon usage bias related to translation optimization (delta ENC)
 NC_000913
-NA
 
 Command line arguments
 
@@ -50,8 +41,8 @@ Standard (Mandatory) qualifiers:
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
-   -accid              boolean    [0] Include to use sequence accession ID as
-                                  query
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -61,7 +52,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   gdelta_enc reads nucleotide sequences
+   gdelta_enc reads nucleotide sequences.
 
 Output file format
 
@@ -77,7 +68,7 @@ Notes
 
 References
 
-   1. Rocha EPC (2004) "Codon usage bias from tRNA's point of view: Redundancy, 
+   Rocha EPC (2004) "Codon usage bias from tRNA's point of view: Redundancy, 
       specialization, and efficient decoding for translation optimization",
       Genome Research, 14(11):2279-2286
 

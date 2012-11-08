@@ -6,35 +6,10 @@ Function
 Description
 
    This program calculates base usage indices for protein-coding sequences
-   (excluding start and stop codons), and inputs in the G instance.
-   Informations stored in the G instance are:
-   $gb->{$id}->{"acgt$p"}: total number of bases (A+T+G+C)
-   $gb->{$id}->{"ryr$p"}: purine/pyrimidine ratio (A+G)/(T+C)
-   $gb->{$id}->{"gac$p"}: G+A content (G+A)/(A+T+G+C)
-   $gb->{$id}->{"gcc$p"}: G+C content (G+C)/(A+T+G+C)
-   $gb->{$id}->{"gtc$p"}: G+T content (G+T)/(A+T+G+C)
-   $gb->{$id}->{"gcs$p"}: GC skew (G-C)/(G+C)
-   $gb->{$id}->{"tas$p"}: TA skew (T-A)/(T+A)
-   $gb->{$id}->{"Hbu$p"}: entropy of base usage
-   $gb->{header_bui}
+   (excluding start and stop codons).
 
-  Usage:
-   NULL = &bui(G instance);
 
-  Options:
-   -output   output option (default: 'stdout')
-   'stdout' for standard output,
-   'f' for file output in directory "data"
-   -filename   output filename (default: 'bui.csv')
-   -id   ID of a group of genes or a single gene (default: 'All')
-   -translate   1 when translates using standard codon table (default: 0)
-   -del_key   regular expression to delete key (i.e. amino acids and nucleotides)
-   (default: '[^ACDEFGHIKLMNPQRSTVWYacgtU]')
-   -position   codon position (default: '');
-   '' when assessing overall base usage of the gene
-   '1' when assessing base usage at 1st position of codons
-   '2' when assessing base usage at 2nd position of codons
-   '3' when assessing base 
+
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -70,12 +45,12 @@ Standard (Mandatory) qualifiers:
    -translate          boolean    [0] Include when translating using standard
                                   codon table
    -position           string     Codon position (Any string)
-   -id                 string     [All] ID of a group of genes or a single
-                                  gene (Any string)
+   -id                 string     ID of a group of genes or a single gene (Any
+                                  string)
    -delkey             string     [[^ACDEFGHIKLMNPQRSTVWYacgtU]] Regular
                                   expression to delete key (Any string)
-   -accid              boolean    [0] Include to use sequence accession ID as
-                                  query
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -85,7 +60,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   gbui reads nucleotide sequences
+   gbui reads nucleotide sequences.
 
 Output file format
 

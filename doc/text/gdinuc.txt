@@ -6,11 +6,7 @@ Function
 Description
 
    This program calculates dinucleotide usage indices for protein-coding sequences
-   (excluding start and stop codons), and inputs in the G instance. e.g. CG dinucleotide 
-   usage at the reading frame 1-2 will be accessible at $gb->{"FEATURE$i"}->{cg12}
-   Dinucleotide usage was computed as the ratio of observed (O) to expected (E) 
-   dinucleotide frequencies.
-   Informations stored in the G instance are: $gb->{header_dinuc}
+   (excluding start and stop codons).
 
  
    G-language SOAP service is provided by the
@@ -34,9 +30,8 @@ Usage
 
 % gdinuc NC_000913.gbk
 Calculates dinucleotide usage 
-SOAP 1.1 fault: SOAP-ENV:Client [no subcode]
-"Operation timed out"
-Detail: connect failed in tcp_connect()
+NC_000913
+Retrieval successful
 
 Command line arguments
 
@@ -58,8 +53,8 @@ Standard (Mandatory) qualifiers:
    -delkey             string     [[^ACDEFGHIKLMNPQRSTVWYacgtU]] regular
                                   expression to delete key (i.e. amino acids
                                   and nucleotides) (Any string)
-   -accid              boolean    [0] Include to use sequence accession ID as
-                                  query
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -69,7 +64,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   gdinuc reads nucleotide sequences
+   gdinuc reads nucleotide sequences.
 
 Output file format
 

@@ -5,10 +5,10 @@ Function
 
 Description
 
-  Converts a sequence to a png image, by representing nucleotide 
-  sequences with representative pixels. 
-  A is shown in red, T is shown in green, 
-  G is shown in yellow, and C is shown in blue. 
+   Converts a sequence to a png image, by representing nucleotide
+   sequences with representative pixels. 
+   A is shown in red, T is shown in green, 
+   G is shown in yellow, and C is shown in blue. 
 
   
    G-language SOAP service is provided by the
@@ -46,9 +46,10 @@ Standard (Mandatory) qualifiers:
    -width              integer    [640] Width of the image (Any integer value)
    -window             integer    [20] Window size of a sequence to represent
                                   each pixel (Any integer value)
-   -output             string     [g] Input 'g' for graph output (Any string)
-   -accid              boolean    [0] Include to use sequence accession ID as
-                                  query
+   -output             string     [g] Input 'g' for graph output, 'show' for
+                                  graph output to X11 window (Any string)
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -58,7 +59,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   gseq2png reads nucleotide sequences
+   gseq2png reads nucleotide sequences.
 
 Output file format
 

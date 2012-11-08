@@ -43,7 +43,7 @@ Command line arguments
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-  [-oligomer]          string     (no help text) string value (Any string)
+  [-oligomer]          string     Oligomer to search (Any string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -55,8 +55,8 @@ Standard (Mandatory) qualifiers:
                                   'distribution' to return four values (see
                                   above) about the distribution of given
                                   oligomer (Any string)
-   -accid              boolean    Include to use sequence accession ID as
-                                  query
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -66,7 +66,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   goligomer_search reads nucleotide sequences
+   goligomer_search reads nucleotide sequences.
 
 Output file format
 

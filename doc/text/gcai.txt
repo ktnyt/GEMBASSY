@@ -5,9 +5,7 @@ Function
 
 Description
 
-   This program calculates codon adaptation index (CAI) for each gene,
-   and inputs in the G instance. i.e. CAI values will be accessible at
-   $gb->{"FEATURE$i"}->{cai};
+   This program calculates codon adaptation index (CAI) for each gene.
 
   
    G-language SOAP service is provided by the
@@ -47,8 +45,8 @@ Standard (Mandatory) qualifiers:
    -wabsent            string     [-] W value of codons absent from a
                                   reference set '-' when excludes such codons
                                   from the calculation (Any string)
-   -accid              boolean    [0] Include to use sequence accession ID as
-                                  query
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -58,7 +56,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   gcai reads nucleotide sequences
+   gcai reads nucleotide sequences.
 
 Output file format
 
@@ -73,8 +71,7 @@ Notes
    None.
 
 References
-
-   Sharp PM, Li WH. 1987 Nucleic Acids Res. 15(3):1281-95.
+      Sharp PM, Li WH. 1987 Nucleic Acids Res. 15(3):1281-95.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench

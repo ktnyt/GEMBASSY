@@ -2,7 +2,7 @@
 
 <HTML>
 <HEAD>
-  <TITLE> EMBOSS: gnucleotide_periodicity </TITLE>
+  <TITLE> EMBOSS: gconsensus_z </TITLE>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" text="#000000">
 
@@ -15,7 +15,7 @@ oss_icon.jpg" alt="" width=150 height=48></a>
 </td>
 <td align=left valign=middle>
 <b><font size="+6">
-gnucleotide_periodicity
+gconsensus_z
 </font></b>
 </td></tr>
 </table>
@@ -31,7 +31,7 @@ gnucleotide_periodicity
 
 
 <H2> Function </H2>
-   Checks the periodicity of certain oligonucleotides
+   Calculate consensus in given array of sequences
 <!--
 DON'T WRITE ANYTHING HERE.
 IT IS DONE FOR YOU.
@@ -42,8 +42,12 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   Checks the periodicity of certain nucleotide (best known with AA dinucleotide)<br>
-   <br>
+   Calculates the consensus of given list of sequences, using Z-score.<br>
+   Consensus with Z value greater than int high_z (default is 1) is <br>
+   capitalized, and consensus with Z value less than int low_z <br>
+   (default is 0.2) is shown as '-'.<br>
+<br>
+  <br>
    G-language SOAP service is provided by the<br>
    Institute for Advanced Biosciences, Keio University.<br>
    The original web service is located at the following URL:<br>
@@ -64,16 +68,10 @@ IT IS DONE FOR YOU.
 
 <table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
 
-   Here is a sample session with gnucleotide_periodicity
+   Here is a sample session with gconsensus_z
 
-% gnucleotide_periodicity NC_000913.gbk
-Checks the periodicity of certain oligonucleotides
-Sequence does not have features
-Proceeding with sequence accession ID
-NC_000913
-Error 502 fault: SOAP-ENV:Server [no subcode]
-"HTTP/1.1 502 Proxy Error"
-Detail: [no detail]
+% gconsensus_z NC_000913.gbk
+Calculate consensus in given array of sequences
 
 </pre></td></tr></table>
 
@@ -115,27 +113,27 @@ Detail: [no detail]
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-window</td>
+<td>-high</td>
 <td>integer</td>
-<td>Window size to seek periodicity</td>
+<td>z value greater than which is significant</td>
 <td>Any integer value</td>
-<td>50</td>
+<td>1</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-nucleotide</td>
-<td>string</td>
-<td>Nucleotide to search</td>
-<td>Any string</td>
-<td>aa</td>
+<td>-low</td>
+<td>float</td>
+<td>z value less than which is insignificant</td>
+<td>Any numeric value</td>
+<td>0.2</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-accid</td>
+<td>-output</td>
 <td>string</td>
-<td>Include to use sequence accession ID as query</td>
+<td>Input 'g' for graph output, 'show' for graph output to X11 window</td>
 <td>Any string</td>
-<td>&nbsp;</td>
+<td>g</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -152,13 +150,26 @@ Detail: [no detail]
 <h2>Input file format</h2>
 
 <p>
-   gnucleotide_periodicity reads nucleotide sequences.
+                                  graph output to X11 window (Any string)
+   -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
+                                  (ps, hpgl, hp7470, hp7580, meta, cps, x11,
+                                  tek, tekt, none, data, xterm, png, gif, svg)
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+
+Input file format
+
+   gconsensus_z reads nucleotide sequences.
 </p>
 
 <h2>Ouptut file format</h2>
 
 <p>
-   The output from gnucleotide_periodicity is to the specified graphics device.
+   The output from gconsensus_z is to the specified graphics device.
 </p>
 
 <h2>Data files</h2>
@@ -192,7 +203,7 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   Method returns 502 status code. Complying.
+   None.
 </p>
 
 <h2>Diagnostic Error Messages</h2>

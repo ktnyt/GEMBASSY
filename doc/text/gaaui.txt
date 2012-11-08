@@ -6,18 +6,7 @@ Function
 Description
 
    This program calculates amino acid usage indices for proteins
-   (excluding formylmethionine), and inputs in the G instance.
-   Informations stored in the G instance are:
-   $gb->{$id}->{ndaa}: number of different amino acids
-   $gb->{$id}->{Haau}: entropy of amino acid usage
-   $gb->{$id}->{mmw}: mean molecular weight
-   $gb->{$id}->{gravy}: mean hydropathic indices of each amino acid
-   $gb->{$id}->{aroma}: relative frequency of aromatic amino acids
-   $gb->{$id}->{acidic}: relative frequency of acidic amino acids
-   $gb->{$id}->{basic}: relative frequency of basic amino acids
-   $gb->{$id}->{neutral}: relative frequency of neutral amino acids
-   $gb->{$id}->{polar}: relative frequency of polar amino acids
-   $gb->{header_aaui}
+   (excluding formylmethionine).
 
   
    G-language SOAP service is provided by the
@@ -52,9 +41,9 @@ Standard (Mandatory) qualifiers:
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
-   -id                 string     [All] ID of a group (Any string)
-   -accid              boolean    [0] Include to use sequence accession ID as
-                                  query
+   -id                 string     ID of a group (Any string)
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -64,7 +53,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   gaaui reads nucleotide sequences
+   gaaui reads nucleotide sequences.
 
 Output file format
 
@@ -81,6 +70,7 @@ Notes
 References
 
    Lobry and Gautier (1994) Nucleic Acids Res. 22:3174-3180.
+
    Zavala A et al. (2002) J Mol Evol. 54(5):563-8.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and

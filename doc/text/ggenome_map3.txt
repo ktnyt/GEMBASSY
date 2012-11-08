@@ -12,9 +12,7 @@ Description
 
    Entire genome is prepresented in a very large PNG image
    (8192x8192 pixel by default), and the number of nucleotides
-   represented by one pixel is automatically calculated. Then 
-   the large image is converted to a zoomable image usinig 
-   Google Map API.
+   represented by one pixel is automatically calculated. 
 
   
    G-language SOAP service is provided by the
@@ -38,9 +36,8 @@ Usage
 
 % ggenome_map3 NC_000913.gbk
 Draws the map of the genome (version 3)
-SOAP 1.1 fault: SOAP-ENV:Client [no subcode]
-"Operation timed out"
-Detail: connect failed in tcp_connect()
+NC_000913
+Retrieval successful
 
 Command line arguments
 
@@ -52,8 +49,10 @@ Standard (Mandatory) qualifiers:
    Advanced (Unprompted) qualifiers:
    -width              integer    [8192] Image width (Any integer value)
    -height             integer    [8192] Image height (Any integer value)
-   -accid              boolean    [0] Include to use sequence accession ID as
-                                  query
+   -output             string     [g] Input 'g' for graph output, 'show' for
+                                  graph output to X11 window (Any string)
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -63,7 +62,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   ggenome_map3 reads nucleotide sequences
+   ggenome_map3 reads nucleotide sequences.
 
 Output file format
 

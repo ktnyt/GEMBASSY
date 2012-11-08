@@ -42,8 +42,8 @@ Standard (Mandatory) qualifiers:
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
-   -accid              boolean    [0] Include to use sequence accession ID as
-                                  query
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -53,7 +53,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   gquery_arm reads nucleotide sequences
+   gquery_arm reads nucleotide sequences.
 
 Output file format
 

@@ -11,8 +11,6 @@ Description
    upward, T downward, G to the right, and C to the left.
    Position zero (first letter of the genome) is indicated
    by the crossing of thin axes.
-   Generated PNG is very large (8000x8000 pixels), and it is
-   suited to be converted to Google Map View with generate_gmap().
 
    Output file is created in the "graph" directory, with 
    the accession number as file name and ".png" as extension.
@@ -39,9 +37,8 @@ Usage
 
 % gdnawalk NC_000913.gbk
 Draws DNA Walk map of the genome
-SOAP 1.1 fault: SOAP-ENV:Client [no subcode]
-"Operation timed out"
-Detail: connect failed in tcp_connect()
+NC_000913
+Retrieval successful
 
 Command line arguments
 
@@ -51,8 +48,10 @@ Standard (Mandatory) qualifiers:
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
-   -accid              boolean    [0] Include to use sequence accession ID as
-                                  query
+   -output             string     [g] Input 'g' for graph output, 'show' for
+                                  graph output to X11 window (Any string)
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -62,7 +61,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   gdnawalk reads nucleotide sequences
+   gdnawalk reads nucleotide sequences.
 
 Output file format
 

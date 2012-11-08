@@ -31,24 +31,22 @@ Usage
 
 % goligomer_counter NC_000913.gbk
 Counts the number of given oligomers in a sequence
+Oligomer to count: atgcatgc
 NC_000913
-SOAP 1.1 fault: SOAP-ENV:Server [no subcode]
-"Error in oligomer_counter: oligomer not specified. at (eval 133) line 57, <DATA> line 1483.
-"
-Detail: [no detail]
+27
 
 Command line arguments
 
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-  [-oligomer]          string     (no help text) string value (Any string)
+  [-oligomer]          string     Oligomer to count (Any string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -window             integer    [0] Int window size (Any integer value)
-   -accid              boolean    Include to use sequence accession ID as
-                                  query
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -58,7 +56,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   goligomer_counter reads nucleotide sequences
+   goligomer_counter reads nucleotide sequences.
 
 Output file format
 

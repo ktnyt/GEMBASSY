@@ -46,8 +46,8 @@ Standard (Mandatory) qualifiers:
                                   gene (Any string)
    -delkey             string     [[^ACDEFGHIKLMNPQRSTVWYacgtU]] Regular
                                   expression to delete key (Any string)
-   -accid              boolean    [0] Include to use sequence accession ID as
-                                  query
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -57,7 +57,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   gicdi reads nucleotide sequences
+   gicdi reads nucleotide sequences.
 
 Output file format
 
@@ -72,6 +72,8 @@ Notes
    None.
 
 References
+
+   Comeron JM, Aguade M. (1998) J Mol Evol. 47(3):268-74.
 
    Freire-Picos MA et al. (1994) Gene 139:43-49.
 

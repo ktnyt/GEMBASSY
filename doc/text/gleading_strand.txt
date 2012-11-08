@@ -35,10 +35,7 @@ Usage
 % gleading_strand NC_000913.gbk
 Get the sequences of leading strands
 NC_000913
-SOAP 1.1 fault: SOAP-ENV:Server [no subcode]
-"substr outside of string at (eval 131) line 10.
-"
-Detail: [no detail]
+
 
 Command line arguments
 
@@ -48,8 +45,8 @@ Standard (Mandatory) qualifiers:
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
-   -accid              boolean    [0] Include to use sequence accession ID as
-                                  query
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
    -outseq             seqout     [<sequence>.<format>] Nucleotide sequence
                                   filename and optional format (output USA)
 
@@ -61,7 +58,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   gleading_strand reads nucleotide sequences
+   gleading_strand reads nucleotide sequences.
 
 Output file format
 

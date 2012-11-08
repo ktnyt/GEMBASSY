@@ -6,10 +6,10 @@ Function
 Description
 
    This program calculates the P2 index for each gene. This index describes the 
-   proportion of codons conforming to the intermediate strength of codon-anticodon 
-   interaction energy rule of Grosjean and Fiers: P2 = (WWC+SSU)/(WWY+SSY) 
+   proportion of codons conforming to the intermediate strength of
+   codon-anticodon interaction energy rule of Grosjean and Fiers:
+   P2 = (WWC+SSU)/(WWY+SSY) 
    where W = A or U, S = C or G, and Y = C or U.
-   P2 values will be accessible at $gb->{"FEATURE$i"}->{P2};
 
   
    G-language SOAP service is provided by the
@@ -44,8 +44,8 @@ Standard (Mandatory) qualifiers:
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
-   -accid              boolean    [0] Include to use sequence accession ID as
-                                  query
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -55,7 +55,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   gp2 reads nucleotide sequences
+   gp2 reads nucleotide sequences.
 
 Output file format
 

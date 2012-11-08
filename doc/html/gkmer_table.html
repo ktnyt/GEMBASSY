@@ -10,7 +10,8 @@
 
 <table align=center border=0 cellspacing=0 cellpadding=0>
 <tr><td valign=top>
-<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emboss_icon.jpg" alt="" width=150 height=48></a>
+<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emb
+oss_icon.jpg" alt="" width=150 height=48></a>
 </td>
 <td align=left valign=middle>
 <b><font size="+6">
@@ -30,7 +31,7 @@ gkmer_table
 
 
 <H2> Function </H2>
-Create an image showing all k-mer abundance within a sequence
+   Create an image showing all k-mer abundance within a sequence
 <!--
 DON'T WRITE ANYTHING HERE.
 IT IS DONE FOR YOU.
@@ -41,43 +42,43 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This program creates an image showing the abundance of all k-mers (oligonucleotides
-   of length k) in a given sequence. For example, for tetramers (k=4), resulting image
-   is composed of 4^4 = 256 boxes, each representing an oligomer. Oligomer name and 
-   abundance is written within these boxes, and abundance is also visualized with 
-   the box color, from white (none) to black (highly frequent).
-
-   This k-mer table is alternatively known as the FCGR (frequency matrices extracted
-   from Chaos Game Representation).
-
-   Position of the oligomers can be recursively located as follows:
-   For each letter in an oligomer, a box is subdivided into four quadrants, 
-   where A is upper left, T is lower right, G is upper right, and C is lower left.
-   Therefore, oligomer ATGC is in the 
-   A = upper left quadrant
-   T = lower right within the above quadrant
-   G = upper right within the above quadrant
-   C = lower left within the above quadrant
-
-   With Google Maps representation using -gmap=>1 option, oligomers can be searched
-   incrementally from the top search box.
-
-   More detailed documentation is available at 
-   http://www.g-language.org/wiki/cgr
- 
-  
-</p>
-
-<p>
-G-language SOAP service is provided by the Institute for Advanced Biosciences, Keio University.<br />
-
-The original web service is located at the following URL:<br />
-http://www.g-language.org/wiki/soap
-</p>
-
-<p>
-WSDL(RPC/Encoded) file is located at:<br />
-http://soap.g-language.org/g-language.wsdl
+   This program creates an image showing the abundance of all k-mers<br>
+   (oligonucleotides of length k) in a given sequence. For example, for<br>
+   tetramers (k=4), resulting image is composed of 4^4 = 256 boxes, each<br>
+   representing an oligomer. Oligomer name and abundance is written within<br>
+   these boxes, and abundance is also visualized with the box color, from white<br>
+   (none) to black (highly frequent). This k-mer table is alternatively known as<br>
+   the FCGR (frequency matrices extracted from Chaos Game Representation).<br>
+<br>
+   Position of the oligomers can be recursively located as follows:<br>
+   For each letter in an oligomer, a box is subdivided into four quadrants, <br>
+   where A is upper left, T is lower right, G is upper right, and C is lower<br>
+   left.<br>
+<br>
+   Therefore, oligomer ATGC is in the <br>
+   A = upper left quadrant<br>
+   T = lower right within the above quadrant<br>
+   G = upper right within the above quadrant<br>
+   C = lower left within the above quadrant<br>
+<br>
+   More detailed documentation is available at <br>
+   http://www.g-language.org/wiki/cgr<br>
+ <br>
+  <br>
+   G-language SOAP service is provided by the<br>
+   Institute for Advanced Biosciences, Keio University.<br>
+   The original web service is located at the following URL:<br>
+<br>
+   http://www.g-language.org/wiki/soap<br>
+<br>
+   WSDL(RPC/Encoded) file is located at:<br>
+<br>
+   http://soap.g-language.org/g-language.wsdl<br>
+<br>
+   Documentation on G-language Genome Analysis Environment methods are<br>
+   provided at the Document Center<br>
+<br>
+   http://ws.g-language.org/gdoc/
 </p>
 
 <H2>Usage</H2>
@@ -87,15 +88,14 @@ http://soap.g-language.org/g-language.wsdl
    Here is a sample session with gkmer_table
 
 % gkmer_table NC_000913.gbk
+Create an image showing all k-mer abundance within a sequence
 NC_000913
-Retrieval successful
-
 
 </pre></td></tr></table>
 
 
 
-<h2>Command line argumants</h2>
+<h2>Command line arguments</h2>
 
 <table border cellspacing=0 cellpadding=3 bgcolor="#ccccff">
 <tr bgcolor="#FFFFCC">
@@ -139,11 +139,19 @@ Retrieval successful
 </tr>
 
 <tr bgcolor="#FFFFCC">
+<td>-output</td>
+<td>string</td>
+<td>Input 'g' for graph output, 'show' for graph output to X11 window</td>
+<td>Any string</td>
+<td>g</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
 <td>-accid</td>
-<td>boolean</td>
+<td>string</td>
 <td>Include to use sequence accession ID as query</td>
-<td>Boolean value Yes/No</td>
-<td>No</td>
+<td>Any string</td>
+<td>&nbsp;</td>
 </tr>
 
 </table>
@@ -152,13 +160,25 @@ Retrieval successful
 <h2>Input file format</h2>
 
 <p>
-gkmer_table reads nucleotide sequences.
+                                  graph output to X11 window (Any string)
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+
+Input file format
+
+   gkmer_table reads nucleotide sequences.
 </p>
 
-<h2>Ouptput file format</h2>
+<h2>Ouptut file format</h2>
 
 <p>
-The output from gkmer_table is to PNG format.
+   The output from gkmer_table is to PNG format.
 </p>
 
 <h2>Data files</h2>
@@ -176,18 +196,14 @@ None.
 <h2>Refrences</h2>
 
 <pre>
-    1. Arakawa K, Oshita K, Tomita M (2009) "A web server for interactive and
-       zoomable Chaos Game Representation images", Source Code for Biol Med., 4:6.
-    2. Almeida JS, Carrico JA, Maretzek A, Noble PA, Fletcher M (2001) 
-       "Analysis of genomic sequences by Chaos Game Representation." 
-       Bioinformatics. 17(5):429-437.
-  
-  Author: 
-    Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
-    
-  History:
-    20090716-01 initial posting
+   Arakawa K, Oshita K, Tomita M (2009) "A web server for interactive and
+      zoomable Chaos Game Representation images", Source Code for Biol Med.,
+      4:6.
 
+   Almeida JS, Carrico JA, Maretzek A, Noble PA, Fletcher M (2001) 
+      "Analysis of genomic sequences by Chaos Game Representation." 
+      Bioinformatics. 17(5):429-437.
+      
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
       for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
@@ -200,6 +216,13 @@ None.
       Analysis Environment with REST and SOAP Wev Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
 </pre>
+
+<h2>Warnings</h2>
+
+<p>
+   None.
+</p>
+
 <h2>Diagnostic Error Messages</h2>
 
 <p>
@@ -220,6 +243,16 @@ None.
 
 <h2>See also</h2>
 
+<table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th>
+<th>Description</th></tr>
+
+<tr>
+<td><a href="NA.html">NA</a></td>
+<td>appdescription</td>
+</tr>
+
+</table>
+
 <h2>Author(s)</h2>
 
 <pre>
@@ -227,7 +260,7 @@ None.
    Institute for Advanced Biosciences, Keio University
    252-8520 Japan
 
-   Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Kazuharu Arakawa(gaou@g-language.org) 
 </pre>
 
 <h2>History</h2>
@@ -241,5 +274,5 @@ None.
 
 <h2>Comments</h2>
 
-    None.
+   None.
 

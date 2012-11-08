@@ -10,7 +10,8 @@
 
 <table align=center border=0 cellspacing=0 cellpadding=0>
 <tr><td valign=top>
-<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emboss_icon.jpg" alt="" width=150 height=48></a>
+<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emb
+oss_icon.jpg" alt="" width=150 height=48></a>
 </td>
 <td align=left valign=middle>
 <b><font size="+6">
@@ -30,7 +31,7 @@ gentrez
 
 
 <H2> Function </H2>
-Search NCBI Entrez in G-language Shell
+   Search NCBI Entrez in G-language Shell
 <!--
 DON'T WRITE ANYTHING HERE.
 IT IS DONE FOR YOU.
@@ -41,23 +42,25 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   Search NCBI Entrez with keyword through EUtilities. 
-   This is intended for quick lookup through G-language Shell, 
-   so only top ten hits are reported.
-
-  
-</p>
-
-<p>
-G-language SOAP service is provided by the Institute for Advanced Biosciences, Keio University.<br />
-
-The original web service is located at the following URL:<br />
-http://www.g-language.org/wiki/soap
-</p>
-
-<p>
-WSDL(RPC/Encoded) file is located at:<br />
-http://soap.g-language.org/g-language.wsdl
+   Search NCBI Entrez with keyword through EUtilities. <br>
+   This is intended for quick lookup through G-language Shell, <br>
+   so only top ten hits are reported.<br>
+<br>
+  <br>
+   G-language SOAP service is provided by the<br>
+   Institute for Advanced Biosciences, Keio University.<br>
+   The original web service is located at the following URL:<br>
+<br>
+   http://www.g-language.org/wiki/soap<br>
+<br>
+   WSDL(RPC/Encoded) file is located at:<br>
+<br>
+   http://soap.g-language.org/g-language.wsdl<br>
+<br>
+   Documentation on G-language Genome Analysis Environment methods are<br>
+   provided at the Document Center<br>
+<br>
+   http://ws.g-language.org/gdoc/
 </p>
 
 <H2>Usage</H2>
@@ -66,15 +69,57 @@ http://soap.g-language.org/g-language.wsdl
 
    Here is a sample session with gentrez
 
-% gentrez NC_000913.gbk
-(null)
+% gentrez 
+Search NCBI Entrez in G-language Shell
+NCBI database to search [pubmed]: 
+Query to search: NC_000913
+    20 entries found in PUBMED: (Showing up to 10 hits)
 
+     1. PMID:   21615970
+        Kylv?j? R et al. "Adhesive polypeptides of Staphylococcus aureus identified using a novel secretion library technique in Escherichia coli."
+        BMC Microbiol  2011 May 27;11:117
+
+     2. PMID:   21364914
+        Lyons E et al. "Using genomic sequencing for classical genetics in E. coli K12."
+        PLoS One  2011 Feb 25;6(2):e16717
+
+     3. PMID:   21284851
+        Navon S et al. "The role of codon selection in regulation of translation efficiency deduced from synthetic libraries."
+        Genome Biol  2011;12(2):R12
+
+     4. PMID:   19060147
+        Stewart V et al. "Catabolite repression control of napF (periplasmic nitrate reductase) operon expression in Escherichia coli K-12."
+        J Bacteriol  2009 Feb;191(3):996-1005
+
+     5. PMID:   18660809
+        Holt KE et al. "High-throughput sequencing provides insights into genome variation and evolution in Salmonella Typhi."
+        Nat Genet  2008 Aug;40(8):987-93
+
+     6. PMID:   18510552
+        Howard EC et al. "Abundant and diverse bacteria involved in DMSP degradation in marine surface waters."
+        Environ Microbiol  2008 Sep;10(9):2397-410
+
+     7. PMID:   17720788
+        Lin HY et al. "Activation of yeaR-yoaG operon transcription by the nitrate-responsive regulator NarL is independent of oxygen- responsive regulator Fnr in Escherichia coli K-12."
+        J Bacteriol  2007 Nov;189(21):7539-48
+
+     8. PMID:   17585908
+        Park J et al. "Identification and characterization of human ribokinase and comparison of its properties with E. coli ribokinase and human adenosine kinase."
+        FEBS Lett  2007 Jul 10;581(17):3211-6
+
+     9. PMID:   17238289
+        Blanc G et al. "Reductive genome evolution from the mother of Rickettsia."
+        PLoS Genet  2007 Jan 19;3(1):e14
+
+    10. PMID:   17083275
+        Hoede C et al. "Selection acts on DNA secondary structures to decrease transcriptional mutagenesis."
+        PLoS Genet  2006 Nov 3;2(11):e176
 
 </pre></td></tr></table>
 
 
 
-<h2>Command line argumants</h2>
+<h2>Command line arguments</h2>
 
 <table border cellspacing=0 cellpadding=3 bgcolor="#ccccff">
 <tr bgcolor="#FFFFCC">
@@ -127,13 +172,13 @@ http://soap.g-language.org/g-language.wsdl
 <h2>Input file format</h2>
 
 <p>
-gentrez reads nucleotide sequences.
+   gentrez does not have file input.
 </p>
 
-<h2>Ouptput file format</h2>
+<h2>Ouptut file format</h2>
 
 <p>
-The output from gentrez is to standard output.
+   The output from gentrez is to standard output.
 </p>
 
 <h2>Data files</h2>
@@ -151,7 +196,6 @@ None.
 <h2>Refrences</h2>
 
 <pre>
-
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
       for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
@@ -164,6 +208,13 @@ None.
       Analysis Environment with REST and SOAP Wev Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
 </pre>
+
+<h2>Warnings</h2>
+
+<p>
+   None.
+</p>
+
 <h2>Diagnostic Error Messages</h2>
 
 <p>
@@ -184,6 +235,16 @@ None.
 
 <h2>See also</h2>
 
+<table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th>
+<th>Description</th></tr>
+
+<tr>
+<td><a href="NA.html">NA</a></td>
+<td>appdescription</td>
+</tr>
+
+</table>
+
 <h2>Author(s)</h2>
 
 <pre>
@@ -191,7 +252,7 @@ None.
    Institute for Advanced Biosciences, Keio University
    252-8520 Japan
 
-   Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Kazuharu Arakawa(gaou@g-language.org) 
 </pre>
 
 <h2>History</h2>
@@ -205,5 +266,5 @@ None.
 
 <h2>Comments</h2>
 
-    None.
+   None.
 

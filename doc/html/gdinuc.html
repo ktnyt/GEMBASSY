@@ -10,7 +10,8 @@
 
 <table align=center border=0 cellspacing=0 cellpadding=0>
 <tr><td valign=top>
-<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emboss_icon.jpg" alt="" width=150 height=48></a>
+<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emb
+oss_icon.jpg" alt="" width=150 height=48></a>
 </td>
 <td align=left valign=middle>
 <b><font size="+6">
@@ -30,7 +31,7 @@ gdinuc
 
 
 <H2> Function </H2>
-Calculates dinucleotide usage 
+   Calculates dinucleotide usage
 <!--
 DON'T WRITE ANYTHING HERE.
 IT IS DONE FOR YOU.
@@ -41,26 +42,24 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This program calculates dinucleotide usage indices for protein-coding sequences
-   (excluding start and stop codons), and inputs in the G instance. e.g. CG dinucleotide 
-   usage at the reading frame 1-2 will be accessible at $gb->{"FEATURE$i"}->{cg12}
-   Dinucleotide usage was computed as the ratio of observed (O) to expected (E) 
-   dinucleotide frequencies.
-   Informations stored in the G instance are: $gb->{header_dinuc}
-
- 
-</p>
-
-<p>
-G-language SOAP service is provided by the Institute for Advanced Biosciences, Keio University.<br />
-
-The original web service is located at the following URL:<br />
-http://www.g-language.org/wiki/soap
-</p>
-
-<p>
-WSDL(RPC/Encoded) file is located at:<br />
-http://soap.g-language.org/g-language.wsdl
+   This program calculates dinucleotide usage indices for protein-coding sequences<br>
+   (excluding start and stop codons).<br>
+<br>
+ <br>
+   G-language SOAP service is provided by the<br>
+   Institute for Advanced Biosciences, Keio University.<br>
+   The original web service is located at the following URL:<br>
+<br>
+   http://www.g-language.org/wiki/soap<br>
+<br>
+   WSDL(RPC/Encoded) file is located at:<br>
+<br>
+   http://soap.g-language.org/g-language.wsdl<br>
+<br>
+   Documentation on G-language Genome Analysis Environment methods are<br>
+   provided at the Document Center<br>
+<br>
+   http://ws.g-language.org/gdoc/
 </p>
 
 <H2>Usage</H2>
@@ -70,16 +69,15 @@ http://soap.g-language.org/g-language.wsdl
    Here is a sample session with gdinuc
 
 % gdinuc NC_000913.gbk
-SOAP 1.1 fault: SOAP-ENV:Client [no subcode]
-"Operation timed out"
-Detail: connect failed in tcp_connect()
-
+Calculates dinucleotide usage 
+NC_000913
+Retrieval successful
 
 </pre></td></tr></table>
 
 
 
-<h2>Command line argumants</h2>
+<h2>Command line arguments</h2>
 
 <table border cellspacing=0 cellpadding=3 bgcolor="#ccccff">
 <tr bgcolor="#FFFFCC">
@@ -148,10 +146,10 @@ Detail: connect failed in tcp_connect()
 
 <tr bgcolor="#FFFFCC">
 <td>-accid</td>
-<td>boolean</td>
+<td>string</td>
 <td>Include to use sequence accession ID as query</td>
-<td>Boolean value Yes/No</td>
-<td>No</td>
+<td>Any string</td>
+<td>&nbsp;</td>
 </tr>
 
 </table>
@@ -160,13 +158,13 @@ Detail: connect failed in tcp_connect()
 <h2>Input file format</h2>
 
 <p>
-gdinuc reads nucleotide sequences.
+   gdinuc reads nucleotide sequences.
 </p>
 
-<h2>Ouptput file format</h2>
+<h2>Ouptut file format</h2>
 
 <p>
-The output from gdinuc is to raw CSV format.
+   The output from gdinuc is to raw CSV format.
 </p>
 
 <h2>Data files</h2>
@@ -198,6 +196,13 @@ None.
       Analysis Environment with REST and SOAP Wev Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
 </pre>
+
+<h2>Warnings</h2>
+
+<p>
+   None.
+</p>
+
 <h2>Diagnostic Error Messages</h2>
 
 <p>
@@ -218,6 +223,16 @@ None.
 
 <h2>See also</h2>
 
+<table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th>
+<th>Description</th></tr>
+
+<tr>
+<td><a href="NA.html">NA</a></td>
+<td>appdescription</td>
+</tr>
+
+</table>
+
 <h2>Author(s)</h2>
 
 <pre>
@@ -225,7 +240,7 @@ None.
    Institute for Advanced Biosciences, Keio University
    252-8520 Japan
 
-   Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Kazuharu Arakawa(gaou@g-language.org) 
 </pre>
 
 <h2>History</h2>
@@ -239,5 +254,5 @@ None.
 
 <h2>Comments</h2>
 
-    None.
+   None.
 

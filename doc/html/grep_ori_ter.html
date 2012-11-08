@@ -10,7 +10,8 @@
 
 <table align=center border=0 cellspacing=0 cellpadding=0>
 <tr><td valign=top>
-<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emboss_icon.jpg" alt="" width=150 height=48></a>
+<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emb
+oss_icon.jpg" alt="" width=150 height=48></a>
 </td>
 <td align=left valign=middle>
 <b><font size="+6">
@@ -30,7 +31,7 @@ grep_ori_ter
 
 
 <H2> Function </H2>
-Get the positions of replication origin and terminus
+   Get the positions of replication origin and terminus
 <!--
 DON'T WRITE ANYTHING HERE.
 IT IS DONE FOR YOU.
@@ -41,54 +42,46 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This method returns the positions of replication origin and terminus
-   in bacterial genomes by several means. 
-
-   1. Use of databases
-   By default, rep_ori_ter() tries to retrieve the position of replication
-   origin in DoriC (Reference 1) database, and the position of replication
-   terminus from the supplemental data provided in Reference 2.
-
-   If the position of origin cannot be found in the database, but "rep_origin" 
-   feature is available, center position within this feature is used for origin. 
-
-   2. Oriloc
-   Using -oriloc=>1 option, you can predict the replication origin and 
-   terminus using the popular Oriloc program developed by Lobry et al. 
-   available as part of the SeqinR package (Reference 3).
-
-   Installation of SeqinR package is required to use this feature.
-   Type: install.packages('seqinr', dep=T)
-   in R statistics package to install SeqinR.
-
-   3. Setting custom origin and terminus
-   Use -ori=>$position1, -ter=>$position2 to set your own positions.
-
-   4. Use GC skew shift-point
-   If the positions of origin or terminus cannot be found in the databases,
-   rep_ori_ter() automatically calls find_ori_ter() method to predict the 
-   positions using GC skew shift-points at one-base-pair resolution.
-
-   After calling this function, positions of origin and terminus are stored 
-   as follows:
-   $genome->{FEATURE0}->{origin}
-   $genome->{FEATURE0}->{terminus}
-
-   You can always use -clear=>1 option to disable the use of above cache.
-
- 
-</p>
-
-<p>
-G-language SOAP service is provided by the Institute for Advanced Biosciences, Keio University.<br />
-
-The original web service is located at the following URL:<br />
-http://www.g-language.org/wiki/soap
-</p>
-
-<p>
-WSDL(RPC/Encoded) file is located at:<br />
-http://soap.g-language.org/g-language.wsdl
+   This method returns the positions of replication origin and terminus<br>
+   in bacterial genomes by several means. <br>
+<br>
+   1. Use of databases<br>
+   By default, rep_ori_ter() tries to retrieve the position of replication<br>
+   origin in DoriC (Gao and Zhang 2007) database, and the position of<br>
+   replication terminus from the supplemental data provided in (Kono et al.<br>
+   2011).<br>
+<br>
+   If the position of origin cannot be found in the database, but "rep_origin" <br>
+   feature is available, center position within this feature is used for origin. <br>
+<br>
+   2. Oriloc<br>
+   Using -oriloc option, you can predict the replication origin and <br>
+   terminus using the popular Oriloc program developed by Lobry et al. (2000) <br>
+   available as part of the SeqinR package.<br>
+<br>
+   3. Setting custom origin and terminus<br>
+   Use -ori, -ter to set your own positions.<br>
+<br>
+   4. Use GC skew shift-point<br>
+   If the positions of origin or terminus cannot be found in the databases,<br>
+   rep_ori_ter() automatically calls find_ori_ter() method to predict the <br>
+   positions using GC skew shift-points at one-base-pair resolution.<br>
+<br>
+ <br>
+   G-language SOAP service is provided by the<br>
+   Institute for Advanced Biosciences, Keio University.<br>
+   The original web service is located at the following URL:<br>
+<br>
+   http://www.g-language.org/wiki/soap<br>
+<br>
+   WSDL(RPC/Encoded) file is located at:<br>
+<br>
+   http://soap.g-language.org/g-language.wsdl<br>
+<br>
+   Documentation on G-language Genome Analysis Environment methods are<br>
+   provided at the Document Center<br>
+<br>
+   http://ws.g-language.org/gdoc/
 </p>
 
 <H2>Usage</H2>
@@ -98,16 +91,15 @@ http://soap.g-language.org/g-language.wsdl
    Here is a sample session with grep_ori_ter
 
 % grep_ori_ter NC_000913.gbk
+Get the positions of replication origin and terminus
 NC_000913
-origin	terminus
 3923881	1550412
-
 
 </pre></td></tr></table>
 
 
 
-<h2>Command line argumants</h2>
+<h2>Command line arguments</h2>
 
 <table border cellspacing=0 cellpadding=3 bgcolor="#ccccff">
 <tr bgcolor="#FFFFCC">
@@ -176,10 +168,10 @@ origin	terminus
 
 <tr bgcolor="#FFFFCC">
 <td>-accid</td>
-<td>boolean</td>
+<td>string</td>
 <td>Include to use sequence accession ID as query</td>
-<td>Boolean value Yes/No</td>
-<td>No</td>
+<td>Any string</td>
+<td>&nbsp;</td>
 </tr>
 
 </table>
@@ -188,13 +180,13 @@ origin	terminus
 <h2>Input file format</h2>
 
 <p>
-grep_ori_ter reads nucleotide sequences.
+   grep_ori_ter reads nucleotide sequences.
 </p>
 
-<h2>Ouptput file format</h2>
+<h2>Ouptut file format</h2>
 
 <p>
-The output from grep_ori_ter is to standard output.
+   The output from grep_ori_ter is to standard output.
 </p>
 
 <h2>Data files</h2>
@@ -212,11 +204,13 @@ None.
 <h2>Refrences</h2>
 
 <pre>
-   1. Gao F and Zhang CT (2007) "DoriC: a database of oriC regions in bacterial
+   Gao F and Zhang CT (2007) "DoriC: a database of oriC regions in bacterial
       genomes", Bioinformatics, 23(14):1866-1867
-   2. Kono N et al. (2011) "Comprehensive prediction of chromosome dimer resolution 
+
+   Kono N et al. (2011) "Comprehensive prediction of chromosome dimer resolution
       sites in bacterial genomes", BMC Genomics, 12(1):19
-   3. Frank AC and Lobry JR (2000) "Oriloc: prediction of replication boundaries 
+
+   Frank AC and Lobry JR (2000) "Oriloc: prediction of replication boundaries 
       in unannotated bacterial chromosomes", Bioinformatics, 16(6):560-561
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
@@ -231,6 +225,13 @@ None.
       Analysis Environment with REST and SOAP Wev Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
 </pre>
+
+<h2>Warnings</h2>
+
+<p>
+   None.
+</p>
+
 <h2>Diagnostic Error Messages</h2>
 
 <p>
@@ -251,6 +252,16 @@ None.
 
 <h2>See also</h2>
 
+<table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th>
+<th>Description</th></tr>
+
+<tr>
+<td><a href="NA.html">NA</a></td>
+<td>appdescription</td>
+</tr>
+
+</table>
+
 <h2>Author(s)</h2>
 
 <pre>
@@ -258,7 +269,7 @@ None.
    Institute for Advanced Biosciences, Keio University
    252-8520 Japan
 
-   Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Kazuharu Arakawa(gaou@g-language.org) 
 </pre>
 
 <h2>History</h2>
@@ -272,5 +283,5 @@ None.
 
 <h2>Comments</h2>
 
-    None.
+   None.
 

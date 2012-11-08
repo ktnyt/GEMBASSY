@@ -31,7 +31,7 @@ Usage
 % gview_cds NC_000913.gbk
 Displays a graph of nucleotide contents around start and stop codons
 NC_000913
-Retrieval successful
+Created gview_cds.ps
 
 Command line arguments
 
@@ -45,10 +45,11 @@ Standard (Mandatory) qualifiers:
                                   start/stop codons (Any integer value)
    -gap                integer    [3] Gap shown in graph in between start/stop
                                   codon neighbors (Any integer value)
-   -output             string     [g] Input 'g' for graph output, 'f' for CSV
-                                  file output (Any string)
-   -accid              boolean    Include to use sequence accession ID as
-                                  query
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+   -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
+                                  (ps, hpgl, hp7470, hp7580, meta, cps, x11,
+                                  tek, tekt, none, data, xterm, png, gif, svg)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -58,11 +59,11 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   gview_cds reads nucleotide sequences
+   gview_cds reads nucleotide sequences.
 
 Output file format
 
-   The output from gview_cds is to raw CSV of PNG format.
+   The output from gview_cds is to the specified graphics device.
 
 Data files
 

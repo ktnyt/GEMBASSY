@@ -8,11 +8,7 @@ Description
    This function calculates and extracts conserved oligomers per position using Z-score,
    in regions around the start/stop codons using Z-score
 
-  Usage:
-   $structure = base_z_value($genome);
 
-   Here the $structure is a reference to the array of hashes, intended for 
-   internal 
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -56,8 +52,8 @@ Standard (Mandatory) qualifiers:
                                   to create PWM (Any integer value)
    -downstream         integer    [30] Length downstream of specified position
                                   to create PWM (Any integer value)
-   -accid              boolean    [0] Include to use sequence accession ID as
-                                  query
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -67,7 +63,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   gbase_z_value reads nucleotide sequences
+   gbase_z_value reads nucleotide sequences.
 
 Output file format
 

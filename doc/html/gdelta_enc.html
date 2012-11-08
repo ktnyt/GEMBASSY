@@ -10,7 +10,8 @@
 
 <table align=center border=0 cellspacing=0 cellpadding=0>
 <tr><td valign=top>
-<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emboss_icon.jpg" alt="" width=150 height=48></a>
+<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emb
+oss_icon.jpg" alt="" width=150 height=48></a>
 </td>
 <td align=left valign=middle>
 <b><font size="+6">
@@ -30,7 +31,7 @@ gdelta_enc
 
 
 <H2> Function </H2>
-Calculate the codon usage bias related to translation optimization (delta ENC)
+   Calculate the codon usage bias related to translation optimization (delta ENC)
 <!--
 DON'T WRITE ANYTHING HERE.
 IT IS DONE FOR YOU.
@@ -41,31 +42,25 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This method calculates the codon usage bias related to translation optimization 
-   (delta ENC) described in Reference 1. The basic idea is to calculate the Effective
-   Number of Codons (ENC) for highly-expressed genes (ribosomal genes) and weakly-
-   expressed genes (all genes), and taking the relative difference between them.
-
-  Usage: 
-   $delta_enc = delta_enc($genome);
-
-  Options:
-   None.
-
-  References:
-   1. Rocha EPC (2004) "Codon 
-</p>
-
-<p>
-G-language SOAP service is provided by the Institute for Advanced Biosciences, Keio University.<br />
-
-The original web service is located at the following URL:<br />
-http://www.g-language.org/wiki/soap
-</p>
-
-<p>
-WSDL(RPC/Encoded) file is located at:<br />
-http://soap.g-language.org/g-language.wsdl
+   This method calculates the codon usage bias related to translation optimization <br>
+   (delta ENC) described in Reference 1. The basic idea is to calculate the Effective<br>
+   Number of Codons (ENC) for highly-expressed genes (ribosomal genes) and weakly-<br>
+   expressed genes (all genes), and taking the relative difference between them.<br>
+<br>
+<br>
+   Institute for Advanced Biosciences, Keio University.<br>
+   The original web service is located at the following URL:<br>
+<br>
+   http://www.g-language.org/wiki/soap<br>
+<br>
+   WSDL(RPC/Encoded) file is located at:<br>
+<br>
+   http://soap.g-language.org/g-language.wsdl<br>
+<br>
+   Documentation on G-language Genome Analysis Environment methods are<br>
+   provided at the Document Center<br>
+<br>
+   http://ws.g-language.org/gdoc/
 </p>
 
 <H2>Usage</H2>
@@ -75,15 +70,14 @@ http://soap.g-language.org/g-language.wsdl
    Here is a sample session with gdelta_enc
 
 % gdelta_enc NC_000913.gbk
+Calculate the codon usage bias related to translation optimization (delta ENC)
 NC_000913
-NA
-
 
 </pre></td></tr></table>
 
 
 
-<h2>Command line argumants</h2>
+<h2>Command line arguments</h2>
 
 <table border cellspacing=0 cellpadding=3 bgcolor="#ccccff">
 <tr bgcolor="#FFFFCC">
@@ -120,10 +114,10 @@ NA
 
 <tr bgcolor="#FFFFCC">
 <td>-accid</td>
-<td>boolean</td>
+<td>string</td>
 <td>Include to use sequence accession ID as query</td>
-<td>Boolean value Yes/No</td>
-<td>No</td>
+<td>Any string</td>
+<td>&nbsp;</td>
 </tr>
 
 </table>
@@ -132,13 +126,13 @@ NA
 <h2>Input file format</h2>
 
 <p>
-gdelta_enc reads nucleotide sequences.
+   gdelta_enc reads nucleotide sequences.
 </p>
 
-<h2>Ouptput file format</h2>
+<h2>Ouptut file format</h2>
 
 <p>
-The output from gdelta_enc is to standard output.
+   The output from gdelta_enc is to standard output.
 </p>
 
 <h2>Data files</h2>
@@ -156,7 +150,7 @@ None.
 <h2>Refrences</h2>
 
 <pre>
-   1. Rocha EPC (2004) "Codon usage bias from tRNA's point of view: Redundancy, 
+   Rocha EPC (2004) "Codon usage bias from tRNA's point of view: Redundancy, 
       specialization, and efficient decoding for translation optimization",
       Genome Research, 14(11):2279-2286
 
@@ -172,6 +166,13 @@ None.
       Analysis Environment with REST and SOAP Wev Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
 </pre>
+
+<h2>Warnings</h2>
+
+<p>
+   None.
+</p>
+
 <h2>Diagnostic Error Messages</h2>
 
 <p>
@@ -192,6 +193,16 @@ None.
 
 <h2>See also</h2>
 
+<table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th>
+<th>Description</th></tr>
+
+<tr>
+<td><a href="NA.html">NA</a></td>
+<td>appdescription</td>
+</tr>
+
+</table>
+
 <h2>Author(s)</h2>
 
 <pre>
@@ -199,7 +210,7 @@ None.
    Institute for Advanced Biosciences, Keio University
    252-8520 Japan
 
-   Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Kazuharu Arakawa(gaou@g-language.org) 
 </pre>
 
 <h2>History</h2>
@@ -213,5 +224,5 @@ None.
 
 <h2>Comments</h2>
 
-    None.
+   None.
 

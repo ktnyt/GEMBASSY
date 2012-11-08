@@ -28,8 +28,12 @@ Usage
 
 % gnucleotide_periodicity NC_000913.gbk
 Checks the periodicity of certain oligonucleotides
+Sequence does not have features
+Proceeding with sequence accession ID
 NC_000913
-Retrieval successful
+Error 502 fault: SOAP-ENV:Server [no subcode]
+"HTTP/1.1 502 Proxy Error"
+Detail: [no detail]
 
 Command line arguments
 
@@ -42,10 +46,11 @@ Standard (Mandatory) qualifiers:
    -window             integer    [50] Window size to seek periodicity (Any
                                   integer value)
    -nucleotide         string     [aa] Nucleotide to search (Any string)
-   -output             string     [g] Input 'g' for graph output, 'f' for CSV
-                                  file output (Any string)
-   -accid              boolean    Include to use sequence accession ID as
-                                  query
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+   -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
+                                  (ps, hpgl, hp7470, hp7580, meta, cps, x11,
+                                  tek, tekt, none, data, xterm, png, gif, svg)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -55,11 +60,11 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   gnucleotide_periodicity reads nucleotide sequences
+   gnucleotide_periodicity reads nucleotide sequences.
 
 Output file format
 
-   The output from gnucleotide_periodicity is to raw CSV of PNG format.
+   The output from gnucleotide_periodicity is to the specified graphics device.
 
 Data files
 
@@ -85,7 +90,7 @@ References
 
 Warnings
 
-   None.
+   Method returns 502 status code. Complying.
 
 Diagnostic Error Messages
 
@@ -97,7 +102,7 @@ Exit status
 
 Known bugs
 
-   None.
+   Constantly returns 502 status code.
 
 See also
 

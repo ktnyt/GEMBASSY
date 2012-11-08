@@ -10,7 +10,8 @@
 
 <table align=center border=0 cellspacing=0 cellpadding=0>
 <tr><td valign=top>
-<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emboss_icon.jpg" alt="" width=150 height=48></a>
+<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emb
+oss_icon.jpg" alt="" width=150 height=48></a>
 </td>
 <td align=left valign=middle>
 <b><font size="+6">
@@ -30,7 +31,7 @@ gscs
 
 
 <H2> Function </H2>
-Calculates the scaled chi-square
+   Calculates the scaled chi-square
 <!--
 DON'T WRITE ANYTHING HERE.
 IT IS DONE FOR YOU.
@@ -41,22 +42,24 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This program calculates the chi-square for deviation from 
-   uniform synonymous codon usage, scaled by gene length.
-
-  
-</p>
-
-<p>
-G-language SOAP service is provided by the Institute for Advanced Biosciences, Keio University.<br />
-
-The original web service is located at the following URL:<br />
-http://www.g-language.org/wiki/soap
-</p>
-
-<p>
-WSDL(RPC/Encoded) file is located at:<br />
-http://soap.g-language.org/g-language.wsdl
+   This program calculates the chi-square for deviation from <br>
+   uniform synonymous codon usage, scaled by gene length.<br>
+<br>
+  <br>
+   G-language SOAP service is provided by the<br>
+   Institute for Advanced Biosciences, Keio University.<br>
+   The original web service is located at the following URL:<br>
+<br>
+   http://www.g-language.org/wiki/soap<br>
+<br>
+   WSDL(RPC/Encoded) file is located at:<br>
+<br>
+   http://soap.g-language.org/g-language.wsdl<br>
+<br>
+   Documentation on G-language Genome Analysis Environment methods are<br>
+   provided at the Document Center<br>
+<br>
+   http://ws.g-language.org/gdoc/
 </p>
 
 <H2>Usage</H2>
@@ -66,15 +69,15 @@ http://soap.g-language.org/g-language.wsdl
    Here is a sample session with gscs
 
 % gscs NC_000913.gbk
+Calculates the scaled chi-square
 NC_000913
 0.2651
-
 
 </pre></td></tr></table>
 
 
 
-<h2>Command line argumants</h2>
+<h2>Command line arguments</h2>
 
 <table border cellspacing=0 cellpadding=3 bgcolor="#ccccff">
 <tr bgcolor="#FFFFCC">
@@ -135,10 +138,10 @@ NC_000913
 
 <tr bgcolor="#FFFFCC">
 <td>-accid</td>
-<td>boolean</td>
+<td>string</td>
 <td>Include to use sequence accession ID as query</td>
-<td>Boolean value Yes/No</td>
-<td>No</td>
+<td>Any string</td>
+<td>&nbsp;</td>
 </tr>
 
 </table>
@@ -147,13 +150,30 @@ NC_000913
 <h2>Input file format</h2>
 
 <p>
-gscs reads nucleotide sequences.
+                                  codon table
+   -id                 string     [All] ID of a group of genes or a single
+                                  gene (Any string)
+   -delkey             string     [[^ACDEFGHIKLMNPQRSTVWYacgtU]] Regular
+                                  expression to delete key (i.e. amino acids
+                                  and nucleotides) (Any string)
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+
+Input file format
+
+   gscs reads nucleotide sequences.
 </p>
 
-<h2>Ouptput file format</h2>
+<h2>Ouptut file format</h2>
 
 <p>
-The output from gscs is to standard output.
+   The output from gscs is to standard output.
 </p>
 
 <h2>Data files</h2>
@@ -171,6 +191,8 @@ None.
 <h2>Refrences</h2>
 
 <pre>
+   Comeron JM, Aguade M. (1998) J Mol Evol. 47(3):268-74.
+
    Shields DC, Sharp PM. (1987) Nucleic Acids Res. 15(19):8023-40.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
@@ -185,6 +207,13 @@ None.
       Analysis Environment with REST and SOAP Wev Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
 </pre>
+
+<h2>Warnings</h2>
+
+<p>
+   None.
+</p>
+
 <h2>Diagnostic Error Messages</h2>
 
 <p>
@@ -205,6 +234,16 @@ None.
 
 <h2>See also</h2>
 
+<table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th>
+<th>Description</th></tr>
+
+<tr>
+<td><a href="NA.html">NA</a></td>
+<td>appdescription</td>
+</tr>
+
+</table>
+
 <h2>Author(s)</h2>
 
 <pre>
@@ -212,7 +251,7 @@ None.
    Institute for Advanced Biosciences, Keio University
    252-8520 Japan
 
-   Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Kazuharu Arakawa(gaou@g-language.org) 
 </pre>
 
 <h2>History</h2>
@@ -226,5 +265,5 @@ None.
 
 <h2>Comments</h2>
 
-    None.
+   None.
 

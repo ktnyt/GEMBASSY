@@ -47,8 +47,8 @@ Standard (Mandatory) qualifiers:
    -delkey             string     [[^ACDEFGHIKLMNPQRSTVWYacgtU]] Regular
                                   expression to delete key (i.e. amino acids
                                   and nucleotides) (Any string)
-   -accid              boolean    Include to use sequence accession ID as
-                                  query
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -58,7 +58,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   genc reads nucleotide sequences
+   genc reads nucleotide sequences.
 
 Output file format
 
@@ -73,8 +73,9 @@ Notes
    None.
 
 References
+   Comeron JM, Aguade M. (1998) J Mol Evol. 47(3):268-74.
 
-   Wright F (1990) Gene 87:23-29.
+   Wright F. (1990) Gene 87:23-29.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench

@@ -47,8 +47,8 @@ Standard (Mandatory) qualifiers:
    -loop               integer    [0] Longest stem loop to allow (Any integer
                                   value)
    -gtmatch            boolean    [0] If 1, allows g-t match
-   -accid              boolean    Include to use sequence accession ID as
-                                  query
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -58,7 +58,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   gpalindrome reads nucleotide sequences
+   gpalindrome reads nucleotide sequences.
 
 Output file format
 
@@ -88,7 +88,7 @@ References
 
 Warnings
 
-   None.
+   May return 502 codes for large scale genomes.
 
 Diagnostic Error Messages
 

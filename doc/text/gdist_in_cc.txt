@@ -47,8 +47,8 @@ Standard (Mandatory) qualifiers:
    -secondposition     integer    [0] If the second position is not given,
                                   position of replication origin is used (Any
                                   integer value)
-   -accid              boolean    Include to use sequence accession ID as
-                                  query
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -58,7 +58,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   gdist_in_cc reads nucleotide sequences
+   gdist_in_cc reads nucleotide sequences.
 
 Output file format
 

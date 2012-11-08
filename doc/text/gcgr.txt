@@ -23,9 +23,6 @@ Description
    CGR is a generalized scale-independent Markov probability table for the sequence, 
    and oligomer tables (see document for "kmer_table" function) can be deduced from CGR image.
 
-   With Google Maps representation using -gmap=>1 option, oligomers can be searched
-   incrementally from the top search box.
-
    More detailed documentation is available at 
    http://www.g-language.org/wiki/cgr
  
@@ -65,8 +62,10 @@ Standard (Mandatory) qualifiers:
    -width              integer    [1024] Width of image (Any integer value)
    -level              integer    [5] Zoom level for Google Maps
                                   representation (Any integer value)
-   -accid              boolean    [0] Include to use sequence accession ID as
-                                  query
+   -output             string     [g] Input 'g' for graph output, 'show' for
+                                  graph output to X11 window (Any string)
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -76,7 +75,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   gcgr reads nucleotide sequences
+   gcgr reads nucleotide sequences.
 
 Output file format
 
@@ -92,18 +91,13 @@ Notes
 
 References
 
-    1. Arakawa K, Oshita K, Tomita M (2009) "A web server for interactive and
-       zoomable Chaos Game Representation images", Source Code for Biol Med., 4:6.
-    2. Almeida JS, Carrico JA, Maretzek A, Noble PA, Fletcher M (2001) 
-       "Analysis of genomic sequences by Chaos Game Representation." 
-       Bioinformatics. 17(5):429-437.
-  
-  Author: 
-    Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
-    
-  History:
-    20090716-01 initial posting
+   Arakawa K, Oshita K, Tomita M (2009) "A web server for interactive and
+      zoomable Chaos Game Representation images", Source Code for Biol Med., 4:6.
 
+   Almeida JS, Carrico JA, Maretzek A, Noble PA, Fletcher M (2001) 
+      "Analysis of genomic sequences by Chaos Game Representation." 
+      Bioinformatics. 17(5):429-437.
+      
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
       for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.

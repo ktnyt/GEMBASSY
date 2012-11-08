@@ -10,7 +10,8 @@
 
 <table align=center border=0 cellspacing=0 cellpadding=0>
 <tr><td valign=top>
-<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emboss_icon.jpg" alt="" width=150 height=48></a>
+<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emb
+oss_icon.jpg" alt="" width=150 height=48></a>
 </td>
 <td align=left valign=middle>
 <b><font size="+6">
@@ -30,7 +31,7 @@ goligomer_counter
 
 
 <H2> Function </H2>
-Counts the number of given oligomers in a sequence
+   Counts the number of given oligomers in a sequence
 <!--
 DON'T WRITE ANYTHING HERE.
 IT IS DONE FOR YOU.
@@ -41,23 +42,25 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   Counts the number of oligomers in a sequence (by windows optionally).
-   Oligomer can be specified using degenerate nucleotide alphabet, or by 
-   regular expressions.
-
-  
-</p>
-
-<p>
-G-language SOAP service is provided by the Institute for Advanced Biosciences, Keio University.<br />
-
-The original web service is located at the following URL:<br />
-http://www.g-language.org/wiki/soap
-</p>
-
-<p>
-WSDL(RPC/Encoded) file is located at:<br />
-http://soap.g-language.org/g-language.wsdl
+   Counts the number of oligomers in a sequence (by windows optionally).<br>
+   Oligomer can be specified using degenerate nucleotide alphabet, or by <br>
+   regular expressions.<br>
+<br>
+  <br>
+   G-language SOAP service is provided by the<br>
+   Institute for Advanced Biosciences, Keio University.<br>
+   The original web service is located at the following URL:<br>
+<br>
+   http://www.g-language.org/wiki/soap<br>
+<br>
+   WSDL(RPC/Encoded) file is located at:<br>
+<br>
+   http://soap.g-language.org/g-language.wsdl<br>
+<br>
+   Documentation on G-language Genome Analysis Environment methods are<br>
+   provided at the Document Center<br>
+<br>
+   http://ws.g-language.org/gdoc/
 </p>
 
 <H2>Usage</H2>
@@ -67,18 +70,16 @@ http://soap.g-language.org/g-language.wsdl
    Here is a sample session with goligomer_counter
 
 % goligomer_counter NC_000913.gbk
+Counts the number of given oligomers in a sequence
+Oligomer to count: atgcatgc
 NC_000913
-SOAP 1.1 fault: SOAP-ENV:Server [no subcode]
-"Error in oligomer_counter: oligomer not specified. at (eval 133) line 57, <DATA> line 1483.
-"
-Detail: [no detail]
-
+27
 
 </pre></td></tr></table>
 
 
 
-<h2>Command line argumants</h2>
+<h2>Command line arguments</h2>
 
 <table border cellspacing=0 cellpadding=3 bgcolor="#ccccff">
 <tr bgcolor="#FFFFCC">
@@ -104,7 +105,7 @@ Detail: [no detail]
 <tr bgcolor="#FFFFCC">
 <td>[-oligomer]<br>(Parameter 2)</td>
 <td>string</td>
-<td>(no help text) string value</td>
+<td>Oligomer to count</td>
 <td>Any string</td>
 <td>&nbsp;</td>
 </tr>
@@ -131,10 +132,10 @@ Detail: [no detail]
 
 <tr bgcolor="#FFFFCC">
 <td>-accid</td>
-<td>boolean</td>
+<td>string</td>
 <td>Include to use sequence accession ID as query</td>
-<td>Boolean value Yes/No</td>
-<td>No</td>
+<td>Any string</td>
+<td>&nbsp;</td>
 </tr>
 
 </table>
@@ -143,13 +144,13 @@ Detail: [no detail]
 <h2>Input file format</h2>
 
 <p>
-goligomer_counter reads nucleotide sequences.
+   goligomer_counter reads nucleotide sequences.
 </p>
 
-<h2>Ouptput file format</h2>
+<h2>Ouptut file format</h2>
 
 <p>
-The output from goligomer_counter is to standard output.
+   The output from goligomer_counter is to standard output.
 </p>
 
 <h2>Data files</h2>
@@ -167,7 +168,6 @@ None.
 <h2>Refrences</h2>
 
 <pre>
-
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
       for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
@@ -180,6 +180,13 @@ None.
       Analysis Environment with REST and SOAP Wev Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
 </pre>
+
+<h2>Warnings</h2>
+
+<p>
+   None.
+</p>
+
 <h2>Diagnostic Error Messages</h2>
 
 <p>
@@ -200,6 +207,16 @@ None.
 
 <h2>See also</h2>
 
+<table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th>
+<th>Description</th></tr>
+
+<tr>
+<td><a href="NA.html">NA</a></td>
+<td>appdescription</td>
+</tr>
+
+</table>
+
 <h2>Author(s)</h2>
 
 <pre>
@@ -207,7 +224,7 @@ None.
    Institute for Advanced Biosciences, Keio University
    252-8520 Japan
 
-   Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Kazuharu Arakawa(gaou@g-language.org) 
 </pre>
 
 <h2>History</h2>
@@ -221,5 +238,5 @@ None.
 
 <h2>Comments</h2>
 
-    None.
+   None.
 

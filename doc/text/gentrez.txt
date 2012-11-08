@@ -29,9 +29,53 @@ Usage
 
    Here is a sample session with gentrez
 
-% gentrez NC_000913.gbk
+% gentrez 
 Search NCBI Entrez in G-language Shell
-(null)
+NCBI database to search [pubmed]: 
+Query to search: NC_000913
+    20 entries found in PUBMED: (Showing up to 10 hits)
+
+     1. PMID:   21615970
+        Kylv?j? R et al. "Adhesive polypeptides of Staphylococcus aureus identified using a novel secretion library technique in Escherichia coli."
+        BMC Microbiol  2011 May 27;11:117
+
+     2. PMID:   21364914
+        Lyons E et al. "Using genomic sequencing for classical genetics in E. coli K12."
+        PLoS One  2011 Feb 25;6(2):e16717
+
+     3. PMID:   21284851
+        Navon S et al. "The role of codon selection in regulation of translation efficiency deduced from synthetic libraries."
+        Genome Biol  2011;12(2):R12
+
+     4. PMID:   19060147
+        Stewart V et al. "Catabolite repression control of napF (periplasmic nitrate reductase) operon expression in Escherichia coli K-12."
+        J Bacteriol  2009 Feb;191(3):996-1005
+
+     5. PMID:   18660809
+        Holt KE et al. "High-throughput sequencing provides insights into genome variation and evolution in Salmonella Typhi."
+        Nat Genet  2008 Aug;40(8):987-93
+
+     6. PMID:   18510552
+        Howard EC et al. "Abundant and diverse bacteria involved in DMSP degradation in marine surface waters."
+        Environ Microbiol  2008 Sep;10(9):2397-410
+
+     7. PMID:   17720788
+        Lin HY et al. "Activation of yeaR-yoaG operon transcription by the nitrate-responsive regulator NarL is independent of oxygen- responsive regulator Fnr in Escherichia coli K-12."
+        J Bacteriol  2007 Nov;189(21):7539-48
+
+     8. PMID:   17585908
+        Park J et al. "Identification and characterization of human ribokinase and comparison of its properties with E. coli ribokinase and human adenosine kinase."
+        FEBS Lett  2007 Jul 10;581(17):3211-6
+
+     9. PMID:   17238289
+        Blanc G et al. "Reductive genome evolution from the mother of Rickettsia."
+        PLoS Genet  2007 Jan 19;3(1):e14
+
+    10. PMID:   17083275
+        Hoede C et al. "Selection acts on DNA secondary structures to decrease transcriptional mutagenesis."
+        PLoS Genet  2006 Nov 3;2(11):e176
+
+
 
 Command line arguments
 
@@ -50,7 +94,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   gentrez reads nucleotide sequences
+   gentrez does not have file input.
 
 Output file format
 

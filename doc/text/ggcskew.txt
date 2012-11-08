@@ -30,7 +30,7 @@ Usage
 % ggcskew NC_000913.gbk
 Calculates the GC skew of the input sequence
 NC_000913
-Retrieval successful
+Created ggcskew.ps
 
 Command line arguments
 
@@ -51,9 +51,13 @@ Standard (Mandatory) qualifiers:
                                   skew
    -keto               boolean    [0] Include for observing keto (TG/AC) skew
    -output             string     [g] Input 'g' for graph output, 'f' for CSV
-                                  file output (Any string)
-   -accid              boolean    [0] Include to use sequence accession ID as
-                                  query
+                                  file output, 'show' for graph output to X11
+                                  window (Any string)
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+   -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
+                                  (ps, hpgl, hp7470, hp7580, meta, cps, x11,
+                                  tek, tekt, none, data, xterm, png, gif, svg)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -63,11 +67,11 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   ggcskew reads nucleotide sequences
+   ggcskew reads nucleotide sequences.
 
 Output file format
 
-   The output from ggcskew is to raw CSV of PNG format.
+   The output from ggcskew is to the specified graphics device.
 
 Data files
 
