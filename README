@@ -34,7 +34,7 @@
 
 /* Installation **************************************************************
 
-REQUIREMENT
+REQUIREMENTS
    EMBOSS (> 6.4.0) - This EMBASSY package requires EMBOSS version 6.4.0 or
    above.
 
@@ -101,17 +101,17 @@ USAGE EXAMPLE
       ( GEMBASSY-1.0.0/data/* )
 
    1. ggcskew (GC skew)
-      % ggcskew ecoli.gbk
+      % ggcskew NC_000913.gbk -graph cps
       Calculates the GC skew of the input sequence
       NC_000913
-      Retrieval successful
+      Created ggcskew.ps
 
-      File "ggcskew.png" will be created at working directory.
+      NC_000913.csv file will be created at the working directory.
 
    2. ggcsi (GC Skew Index)
       % ggcsi 
       GC Skew Index: an index for strand-specefic mutational bias
-      Input nucleotide sequence: ecoli.gbk
+      Input nucleotide sequence: NC_000913.gbk
       NC_000913
       GCSI            SA              Dist
       0.029426        19.060829       163.543442
