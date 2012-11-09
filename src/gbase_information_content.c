@@ -83,7 +83,7 @@ int main(int argc, char *argv[]){
         ajStrAppendC(&title, argv[0]);
         ajStrAppendC(&title, " of ");
         ajStrAppendS(&title, accid);
-        ajStrAssignS(&(gpp.title), title);
+        gpp.title = ajStrNewS(title);
         gpp.xlab = ajStrNewC("position");
         gpp.ylab = ajStrNewC("information content");
         ajStrDel(&title);

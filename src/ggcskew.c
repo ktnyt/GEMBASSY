@@ -95,7 +95,7 @@ int main(int argc, char *argv[]){
         ajStrAppendC(&title, argv[0]);
         ajStrAppendC(&title, " of ");
         ajStrAppendS(&title, accid);
-        ajStrAssignS(&(gpp.title), title);
+        gpp.title = ajStrNewS(title);
         gpp.xlab = ajStrNewC("location");
         gpp.ylab = ajStrNewC("GC skew");
         ajStrDel(&title);

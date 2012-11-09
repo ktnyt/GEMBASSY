@@ -64,7 +64,7 @@ int main(int argc, char *argv[]){
     if(get_file(jobid,ajCharNewS(filename))==0){
       AjPStr title = NULL;
       ajStrAppendC(&title, argv[0]);
-      ajStrAssignS(&(gpp.title), title);
+      gpp.title = ajStrNewS(title);
       gpp.xlab = ajStrNewC("position");
       gpp.ylab = ajStrNewC("consensus");
       ajStrDel(&title);

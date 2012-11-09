@@ -9,7 +9,7 @@
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
 #include "../include/gembassy.h"
-#include "../include/gplot_dev.h"
+#include "../include/gplot.h"
 
 int main(int argc, char *argv[]){
   embInitPV("ggenomicskew",argc,argv,"GEMBASSY","1.0.0");
@@ -90,7 +90,7 @@ int main(int argc, char *argv[]){
 	ajStrAppendC(&title, argv[0]);
 	ajStrAppendC(&title, " of ");
 	ajStrAppendS(&title, accid);
-	ajStrAssignS(&(gpp.title), title);
+        gpp.title = ajStrNewS(title);
 	gpp.xlab = ajStrNewC("location");
 	gpp.ylab = ajStrNewC("GC skew");
 	gpp.names = names;
