@@ -75,7 +75,6 @@ bin_PROGRAMS = gaaui\
                gicdi\
                gkmer_table\
                glda_bias\
-               gleading_strand\
                gnucleotide_periodicity\
                goligomer_counter\
                goligomer_search\
@@ -128,7 +127,6 @@ ggenome_map3_SOURCES    = ggenome_map3.c
 gicdi_SOURCES           = gicdi.c
 gkmer_table_SOURCES     = gkmer_table.c
 glda_bias_SOURCES       = glda_bias.c
-gleading_strand_SOURCES = gleading_strand.c
 gnucleotide_periodicity_SOURCES = gnucleotide_periodicity.c
 goligomer_counter_SOURCES       = goligomer_counter.c
 goligomer_search_SOURCES        = goligomer_search.c
@@ -160,7 +158,7 @@ LDADD = ../../../nucleus/libnucleus.la ../../../ajax/acd/libacd.la \
   $(XLIB)
 else
 LDADD = -L${embprefix}/lib -lpng -lnucleus -lacd -lajaxdb -lensembl \
-        -lajaxg -lajax -leexpat -lepcre -lezlib -leplplot -lcurl -lX11 \
-        -lXext $(XLIB)
+        -lajaxg -lajax -leexpat -lepcre -lezlib -leplplot -lcurl \
+        $(XLIB)
 endif
 
