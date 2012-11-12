@@ -1,16 +1,16 @@
 
 /* GEMBASSY ver 1.0.0 beta ***************************************************
 
-   All rights reserved. Copyright (C) 2012 by ITAYA Hidetoshi.
+  All rights reserved. Copyright (C) 2012 by ITAYA Hidetoshi.
 
-   This EMBASSY package is free software for non-commercial and
-   education use only (limited due to wsdl2h); you can redistribute it
-   and/or modify it under the terms of the GNU General Public License as
-   published by the Free Software Foundation, either version 2 of the
-   License, or any later version expect commercial use.
+  This EMBASSY package is free software for non-commercial and
+  education use only (limited due to wsdl2h); you can redistribute it
+  and/or modify it under the terms of the GNU General Public License as
+  published by the Free Software Foundation, either version 2 of the
+  License, or any later version expect commercial use.
 
-   See also GNU General Public License Version 2, included in this
-   package as COPYING.
+  See also GNU General Public License Version 2, included in this
+  package as COPYING.
 
 *****************************************************************************/
 
@@ -18,15 +18,15 @@
 
 /* About *********************************************************************
 
-   This is an EMBASSY package for the utilization of G-language SOAP service.
+  This is an EMBASSY package for the utilization of G-language SOAP service.
 
-   All of the tools included in this package are wrapper programs to
-   utilize G-language SOAP services, which are web APIs to access the methods
-   of G-language Genome Analysis Environment (GAE); a powerful workbench for
-   genome analysis. The web services use SOAP 1.1.
+  All of the tools included in this package are wrapper programs to
+  utilize G-language SOAP services, which are web APIs to access the methods
+  of G-language Genome Analysis Environment (GAE); a powerful workbench for
+  genome analysis. The web services use SOAP 1.1.
 
-   Detailed documentation on G-language GAE methods are availabe at
-   http://www.g-language.org/wiki/soap
+  Detailed documentation on G-language GAE methods are availabe at
+  http://www.g-language.org/wiki/soap
 
 *****************************************************************************/
 
@@ -39,41 +39,69 @@ REQUIREMENTS
    above.
 
 INSTALLATION
-Root users
-   In the following examples we assume the downloaded EMBOSS archive filename
-   is EMBOSS-latest.tar.gz
+  Root users
+    In the following examples we assume the downloaded EMBOSS archive filename
+    is EMBOSS-latest.tar.gz
 
-   1. Download and compile EMBOSS source code
-      % wget ftp://emboss.open-bio.org/pub/EMBOSS/EMBOSS-latest.tar.gz
-      (or "curl -O ftp://emboss.open-bio.org/pub/EMBOSS/EMBOSS-latest.tar.gz")
-      % tar zxf EMBOSS-latest.tar.gz
-      % cd EMBOSS-6.4.0
-      % ./configure
-      % make
-      % sudo make install
+    1. Download and compile EMBOSS source code
+       % wget ftp://emboss.open-bio.org/pub/EMBOSS/EMBOSS-latest.tar.gz
+       (or "curl -O ftp://emboss.open-bio.org/pub/EMBOSS/EMBOSS-latest.tar.gz")
+       % tar zxf EMBOSS-latest.tar.gz
+       % cd EMBOSS-6.4.0
+       % ./configure
+       % make
+       % sudo make install
 
-   2. Make "embassy" directory in the EMBOSS-6.4.0/ directory if it does not
-      exist and go into the directory.
-      % mkdir embassy
-      % cd embassy
+    2. Make "embassy" directory in the EMBOSS-6.4.0/ directory if it does not
+       exist and go into the directory.
+       % mkdir embassy
+       % cd embassy
 
-   3. Download and compile the GEMBASSY source code
-      % wget http://web.sfc.keio.ac.jp/~t11080hi/GEMBASSY-1.0.0.tar.gz
-      (or "curl -O http://web.sfc.keio.ac.jp/~t11080hi/GEMBASSY-1.0.0.tar.gz")
-      % tar zxf GEMBASSY-1.0.0.tar.gz
-      % cd GEMBASSY-1.0.0
-      ( EMBOSS-6.4.0/embassy/GEMBASSY-1.0.0 )
-      % ./configure (use the same options as in step 1.)
-      % make
-      % sudo make install
+    3. Download and compile the GEMBASSY source code
+       % wget http://web.sfc.keio.ac.jp/~t11080hi/GEMBASSY-1.0.0.tar.gz
+       (or "curl -O http://web.sfc.keio.ac.jp/~t11080hi/GEMBASSY-1.0.0.tar.gz")
+       % tar zxf GEMBASSY-1.0.0.tar.gz
+       % cd GEMBASSY-1.0.0
+       ( EMBOSS-6.4.0/embassy/GEMBASSY-1.0.0 )
+       % ./configure (use the same options as in step 1.)
+       % make
+       % sudo make install
 
-Non-root users
-   On steps 1. and 3. do
-   % ./configure --prefix=/PATH/TO/DIR/
-   % make
-   % make install
-   Then rewrite the "emboss_acdroot" and "emboss_data" value in ~/.embossrc
-   file.
+NOTE
+  libtool problem
+    On some systems there may be compatibility problems with different
+    automake, autoconf or libtool versions. If a libtool problem
+    arises you can try deleting the following files:
+
+      config.cache
+      ltmain.sh
+      ltconfig
+      libtool
+
+    and then type
+
+      % aclocal -I m4
+      % autoconf
+      % automake -a
+
+    and then retry make.
+
+  Update of EMBOSS
+    When users are upgrading EMBOSS, please be sure to uninstall old version
+    of EMBOSS and GEMBASSY. If you override them, some older version of files
+    may cause errors.
+
+  EMBOSS is already installed
+    When EMBOSS is already installed in your system, please install GEMBASSY at
+    the same PATH as existed EMBOSS by '--prefix' option.
+
+  Non-root users
+    On steps 1. and 3. do
+    % ./configure --prefix=/PATH/TO/DIR/
+    % make
+    % make install
+    Then rewrite the "emboss_acdroot" and "emboss_data" value in ~/.embossrc
+    file.
 
 *****************************************************************************/
 
