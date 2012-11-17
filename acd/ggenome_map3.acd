@@ -32,11 +32,6 @@ section: advanced [
     default: "8192"
   ]
 
-  string: output [
-    information: "Input 'g' for graph output, 'show' for graph output to X11 window"
-    default: "g"
-  ]
-
   string: accid [
     information: "Include to use sequence accession ID as query"
     default: ""
@@ -48,4 +43,11 @@ section: output [
 	information: "Output section"
 	type: "page"
 ]
+
+  string: filename [
+    standard: "Y"
+    information: "Output filename"
+    default: "ggenome_map3.[accession].png"
+  ]
+
 endsection: output

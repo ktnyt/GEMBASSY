@@ -29,16 +29,20 @@ Usage
 
    Here is a sample session with gbase_counter
 
-% gbase_counter NC_000913.gbk
+% gbase_counter  NC_000913.gbk
 Creates a position weight matrix of oligomers around start codon
-NC_000913
-Retrieval successful
+Output filename [gbase_counter.[accession].csv]:
+
+   Creates gbase_counter.[accession].csv
+   Output example is prepared in the data directory
 
 Command line arguments
 
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
+  [-filename]          string     [gbase_counter.[accesssion].csv] Output
+                                  filename (Any string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -108,6 +112,9 @@ Known bugs
 
 See also
 
+   gbase_z_value Extracts conserved oligomers per position using Z-score
+   gview_cds     Displays a graph of nucleotide contents around start and stop
+                 codons
 
 
 Author(s)

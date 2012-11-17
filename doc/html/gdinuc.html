@@ -42,8 +42,10 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This program calculates dinucleotide usage indices for protein-coding sequences<br>
-   (excluding start and stop codons).<br>
+   This program calculates dinucleotide usage indices for protein-coding<br>
+   sequences (excluding start and stop codons).<br>
+   Dinucleotide usage was computed as the ratio of observed (O) to expected (E) <br>
+   dinucleotide frequencies.<br>
 <br>
  <br>
    G-language SOAP service is provided by the<br>
@@ -68,10 +70,12 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gdinuc
 
-% gdinuc NC_000913.gbk
+% gdinuc  NC_000913.gbk
 Calculates dinucleotide usage 
-NC_000913
-Retrieval successful
+Output filename [gdinuc.[accession].csv]:
+
+   Creates gdinuc.[accession].csv
+   Output example is prepared in the data directory
 
 </pre></td></tr></table>
 
@@ -98,6 +102,14 @@ Retrieval successful
 <td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
 <td>Readable sequence(s)</td>
 <td><b>Required</b></td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-filename</td>
+<td>string</td>
+<td>Output filename</td>
+<td>Any string</td>
+<td>gdinuc.[accession].csv</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -164,6 +176,46 @@ Retrieval successful
 <h2>Ouptut file format</h2>
 
 <p>
+   Creates gdinuc.[accession].csv
+   Output example is prepared in the data directory
+
+Command line arguments
+
+Standard (Mandatory) qualifiers:
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
+                                  format, or reference (input USA)
+   -filename           string     [gdinuc.[accession].csv] Output filename
+                                  (Any string)
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -translate          boolean    [0] '1' when translates using standard codon
+                                  table
+   -position           string     codon position or reading frame;\n'' when
+                                  assessing all codon positions\n'12' when
+                                  assessing the reading frame 1-2\n'23' when
+                                  assessing the reading frame 2-3\n'31' when
+                                  assessing the reading frame 3-1 (Any string)
+   -id                 string     [All] ID of a group of genes or a single
+                                  gene (Any string)
+   -delkey             string     [[^ACDEFGHIKLMNPQRSTVWYacgtU]] regular
+                                  expression to delete key (i.e. amino acids
+                                  and nucleotides) (Any string)
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+
+Input file format
+
+   gdinuc reads nucleotide sequences.
+
+Output file format
+
    The output from gdinuc is to raw CSV format.
 </p>
 
@@ -227,8 +279,8 @@ None.
 <th>Description</th></tr>
 
 <tr>
-<td><a href="NA.html">NA</a></td>
-<td>appdescription</td>
+<td><a href="gbui.html">gbui</a></td>
+<td>Calculates base usage indices for protein-coding sequences</td>
 </tr>
 
 </table>

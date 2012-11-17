@@ -29,10 +29,10 @@ Usage
 
    Here is a sample session with gdist_in_cc
 
-% gdist_in_cc NC_000913.gbk
+% gdist_in_cc  NC_000913.gbk
 Calculates the distance between two loci in circular chromosomes
-NC_000913
 0
+
 
 Command line arguments
 
@@ -104,6 +104,9 @@ Known bugs
 
 See also
 
+   gconsensus_z Calculate consensus in given array of sequences
+   gpalindrome  Searches palindrome sequences
+   gseqinfo     Prints out basic nucleotide sequence statistics
 
 
 Author(s)

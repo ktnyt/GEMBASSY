@@ -47,6 +47,11 @@ section: advanced [
     default: "0"
   ]
 
+  boolean: output [
+    information: "Include to create CSV file"
+    default: "0"
+  ]
+
   string: accid [
     information: "Include to use sequence accession ID as query"
     default: ""
@@ -62,6 +67,12 @@ section: output [
   xygraph: graph [
     multiple: "8"
     relations: "EDAM:0002968 data Image or plot"
+  ]
+
+  string: filename [
+    standard: "$(output)"
+    information: "Output filename"
+    default: "ggeneskew.[accession].csv"
   ]
 
 endsection: output

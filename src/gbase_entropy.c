@@ -12,7 +12,7 @@
 #include "../include/gplot.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("gbase_entropy",argc,argv,"GEMBASSY","1.0.0");
+  embInitPV("gbase_entropy", argc, argv, "GEMBASSY", "1.0.0");
 
   struct soap soap;
   struct ns1__base_USCOREentropyInputParams params;
@@ -26,6 +26,7 @@ int main(int argc, char *argv[]){
   ajint     downstream = 0;
   AjPStr    accid      = NULL;
   AjPStr    filename   = NULL;
+  AjBool    output     = 0;
   char*     jobid; 
 
   AjPGraph    mult;
@@ -37,6 +38,8 @@ int main(int argc, char *argv[]){
   upstream   = ajAcdGetInt("upstream");
   downstream = ajAcdGetInt("downstream");
   accid      = ajAcdGetString("accid");
+  filename   = ajAcdGetString("filename");
+  output     = ajAcdGetBoolean("output");
   mult       = ajAcdGetGraphxy("graph");
   
   params.position   = ajCharNewS(position);
@@ -45,54 +48,62 @@ int main(int argc, char *argv[]){
   params.downstream = downstream;
   params.output     = "f";
   
-  while(ajSeqallNext(seqall,&seq)){
+  while(ajSeqallNext(seqall, &seq)){
 
     soap_init(&soap);
 
     inseq = NULL;
 
     if(ajSeqGetFeat(seq) && !ajStrGetLen(accid)){
-      inseq = getGenbank(seq,ajSeqGetFeat(seq));
-      ajStrAssignS(&accid,ajSeqGetAccS(seq));
+      inseq = getGenbank(seq);
+      ajStrAssignS(&accid, ajSeqGetAccS(seq));
     }else{
-      if(!ajStrGetLen(accid)){
-        fprintf(stderr,"Sequence does not have features\n");
-        fprintf(stderr,"Proceeding with sequence accession ID\n");
-        ajStrAssignS(&inseq,ajSeqGetAccS(seq));
-        ajStrAssignS(&accid,ajSeqGetAccS(seq));
-      }
       if(!valID(ajCharNewS(accid))){
-          fprintf(stderr,"Invalid accession ID, exiting");
-          return 1;
-      }else{
-        ajStrAssignS(&inseq,accid);
+	fprintf(stderr, "Invalid accession ID, exiting\n");
+	return 1;
       }
+      if(!ajStrGetLen(accid)){
+	fprintf(stderr, "Sequence does not have features\n");
+	fprintf(stderr, "Proceeding with sequence accession ID\n");
+	ajStrAssignS(&accid, ajSeqGetAccS(seq));
+      }
+      ajStrAssignS(&inseq, accid);
     }
 
     char* in0;
     in0 = ajCharNewS(inseq);
 
-    fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
-
-    if(soap_call_ns1__base_USCOREentropy(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
-      ajStrAssignS(&filename,ajSeqGetNameS(seq));
-      ajStrAppendC(&filename,".csv");
-      if(get_file(jobid,ajCharNewS(filename))==0){
-        AjPStr title = NULL;
-        ajStrAppendC(&title, argv[0]);
-        ajStrAppendC(&title, " of ");
-        ajStrAppendS(&title, accid);
-	gpp.title = ajStrNewS(title);
-        gpp.xlab = ajStrNewC("position");
-        gpp.ylab = ajStrNewC("entropy");
-        ajStrDel(&title);
-        if(gPlotFile(filename, mult, &gpp) == 1)
-          fprintf(stderr,"Error allocating\n");
+    if(soap_call_ns1__base_USCOREentropy(
+					 &soap, NULL, NULL,
+					 in0, &params, &jobid
+					 ) == SOAP_OK){
+      if(ajStrCmpC(filename, "gbase_entropy.[accession].csv") == 0){
+	ajStrAssignC(&filename, argv[0]);
+	ajStrAppendC(&filename, ".");
+	ajStrAppendS(&filename, accid);
+	ajStrAppendC(&filename, ".csv");
       }else{
-        fprintf(stderr,"Retrieval unsuccessful\n");
+	ajStrInsertC(&filename, -5, ".");
+	ajStrInsertS(&filename, -5, accid);
+      }
+      if(get_file(jobid,ajCharNewS(filename))==0){
+	if(!output){
+	  AjPStr title = NULL;
+	  ajStrAppendC(&title, argv[0]);
+	  ajStrAppendC(&title, " of ");
+	  ajStrAppendS(&title, accid);
+	  gpp.title = ajStrNewS(title);
+	  gpp.xlab = ajStrNewC("position");
+	  gpp.ylab = ajStrNewC("entropy");
+	  ajStrDel(&title);
+	  if(gPlotFile(filename, mult, &gpp))
+	    fprintf(stderr, "Error in plotting\n");
+	}
+      }else{
+        fprintf(stderr, "Retrieval unsuccessful\n");
       }
     }else{
-      soap_print_fault(&soap,stderr);
+      soap_print_fault(&soap, stderr);
     }
   
     soap_destroy(&soap);

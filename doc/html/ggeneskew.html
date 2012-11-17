@@ -43,7 +43,8 @@ IT IS DONE FOR YOU.
 <H2>Description</H2>
 <p>
    This program calculates and graphs the strand bias of genes (or the GC skew<br>
-   within them). By default, this program visualizes the gene strand preference    (1 for direct, -1 for complement strand), but by specifying -base option<br>
+   within them). By default, this program visualizes the gene strand preference<br>
+   (1 for direct, -1 for complement strand), but by specifying -base option<br>
    option, GC/AT/Purine/Keto skews of the coding regions or more specifically<br>
    in the GC3 (third codon position) with -gc3 option can be calculated.<br>
 <br>
@@ -70,10 +71,12 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with ggeneskew
 
-% ggeneskew NC_000913.gbk
+% ggeneskew  NC_000913.gbk -graph cps
 Calculate the gene strand bias of the given genome
-NC_000913
 Created ggeneskew.ps
+
+   Creates ggeneskew.[accession].ps
+   Output example is prepared in the data directory
 
 </pre></td></tr></table>
 
@@ -100,6 +103,14 @@ Created ggeneskew.ps
 <td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
 <td>Readable sequence(s)</td>
 <td><b>Required</b></td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-filename</td>
+<td>string</td>
+<td>Output filename</td>
+<td>Any string</td>
+<td>ggeneskew.[accession].csv</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -155,6 +166,14 @@ Created ggeneskew.ps
 </tr>
 
 <tr bgcolor="#FFFFCC">
+<td>-output</td>
+<td>boolean</td>
+<td>Include to create CSV file</td>
+<td>Boolean value Yes/No</td>
+<td>No</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
 <td>-accid</td>
 <td>string</td>
 <td>Include to use sequence accession ID as query</td>
@@ -181,6 +200,7 @@ Created ggeneskew.ps
                                   string)
    -gctri              boolean    [0] Include to use only the third codon
                                   positions
+   -output             boolean    [0] Include to create CSV file
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
    -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
@@ -201,6 +221,39 @@ Input file format
 <h2>Ouptut file format</h2>
 
 <p>
+                                  (Any string)
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -window             integer    [10000] Window size to observe (Any integer
+                                  value)
+   -slide              integer    [10000] Window slide size (Any integer
+                                  value)
+   -cumulative         boolean    [0] Input 1 to calculate cumulative skew
+   -base               string     [none] Input 'gc', 'at', 'purine', or keto'
+                                  for observing GC/AT/Purine/Keto skews (Any
+                                  string)
+   -gctri              boolean    [0] Include to use only the third codon
+                                  positions
+   -output             boolean    [0] Include to create CSV file
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+   -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
+                                  (ps, hpgl, hp7470, hp7580, meta, cps, x11,
+                                  tek, tekt, none, data, xterm, png, gif, svg)
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+
+Input file format
+
+   ggeneskew reads nucleotide sequences.
+
+Output file format
+
    The output from ggeneskew is to the specified graphics device.
 </p>
 
@@ -262,8 +315,18 @@ None.
 <th>Description</th></tr>
 
 <tr>
-<td><a href="NA.html">NA</a></td>
-<td>appdescription</td>
+<td><a href="ggcskew.html">ggcskew</a></td>
+<td>Calculates the GC skew of the input sequence</td>
+</tr>
+
+<tr>
+<td><a href="ggcwin.html">ggcwin</a></td>
+<td>Calculates the GC content along the given genome</td>
+</tr>
+
+<tr>
+<td><a href="ggenomicskew.html">ggenomicskew</a></td>
+<td>Calculates the GC skew in different regions of the given genome</td>
 </tr>
 
 </table>

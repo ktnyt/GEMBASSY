@@ -42,8 +42,10 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   Checks the periodicity of certain nucleotide (best known with AA dinucleotide)<br>
-   <br>
+   Checks the periodicity of certain nucleotide (best known with AA<br>
+   dinucleotide)<br>
+    <br>
+  <br>
    G-language SOAP service is provided by the<br>
    Institute for Advanced Biosciences, Keio University.<br>
    The original web service is located at the following URL:<br>
@@ -66,14 +68,15 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gnucleotide_periodicity
 
-% gnucleotide_periodicity NC_000913.gbk
+% gnucleotide_periodicity  NC_000913.gbk -graph cps
 Checks the periodicity of certain oligonucleotides
-Sequence does not have features
-Proceeding with sequence accession ID
-NC_000913
-Error 502 fault: SOAP-ENV:Server [no subcode]
-"HTTP/1.1 502 Proxy Error"
+SOAP 1.1 fault: SOAP-ENV:Server [no subcode]
+"Can't use string ("LOCUS       NC_000913           ") as a HASH ref while "strict refs" in use at /usr/lib/perl5/site_perl/5.8.8/SubOpt.pm line 83, <DATA> line 1483.
+"
 Detail: [no detail]
+
+   Creates gnucleotide_periodicity.[accession].ps
+   Output example is prepared in the data directory
 
 </pre></td></tr></table>
 
@@ -100,6 +103,14 @@ Detail: [no detail]
 <td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
 <td>Readable sequence(s)</td>
 <td><b>Required</b></td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-filename</td>
+<td>string</td>
+<td>Output filename</td>
+<td>Any string</td>
+<td>gnucleotide_periodicity.[accession].csv</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -131,6 +142,14 @@ Detail: [no detail]
 </tr>
 
 <tr bgcolor="#FFFFCC">
+<td>-output</td>
+<td>boolean</td>
+<td>Include to create CSV file</td>
+<td>Boolean value Yes/No</td>
+<td>No</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
 <td>-accid</td>
 <td>string</td>
 <td>Include to use sequence accession ID as query</td>
@@ -158,6 +177,30 @@ Detail: [no detail]
 <h2>Ouptut file format</h2>
 
 <p>
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -window             integer    [50] Window size to seek periodicity (Any
+                                  integer value)
+   -nucleotide         string     [aa] Nucleotide to search (Any string)
+   -output             boolean    [N] Include to create CSV file
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+   -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
+                                  (ps, hpgl, hp7470, hp7580, meta, cps, x11,
+                                  tek, tekt, none, data, xterm, png, gif, svg)
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+
+Input file format
+
+   gnucleotide_periodicity reads nucleotide sequences.
+
+Output file format
+
    The output from gnucleotide_periodicity is to the specified graphics device.
 </p>
 
@@ -192,7 +235,7 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   Method returns 502 status code. Complying.
+   None.
 </p>
 
 <h2>Diagnostic Error Messages</h2>
@@ -219,8 +262,23 @@ None.
 <th>Description</th></tr>
 
 <tr>
-<td><a href="NA.html">NA</a></td>
-<td>appdescription</td>
+<td><a href="gkmer_table.html">gkmer_table</a></td>
+<td>Create an image showing all k-mer abundance within a sequence</td>
+</tr>
+
+<tr>
+<td><a href="goligomer_counter.html">goligomer_counter</a></td>
+<td>Counts the number of given oligomers in a sequence</td>
+</tr>
+
+<tr>
+<td><a href="goligomer_search.html">goligomer_search</a></td>
+<td>Searches oligomers in given sequence</td>
+</tr>
+
+<tr>
+<td><a href="gsignature.html">gsignature</a></td>
+<td>Calculate oligonucleotide usage (genomic signature)</td>
 </tr>
 
 </table>

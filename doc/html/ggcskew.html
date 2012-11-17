@@ -67,10 +67,12 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with ggcskew
 
-% ggcskew NC_000913.gbk
+% ggcskew  NC_000913.gbk -graph cps
 Calculates the GC skew of the input sequence
-NC_000913
 Created ggcskew.ps
+
+   Creates ggcskew.[accession].ps
+   Output example is prepared in the data directory
 
 </pre></td></tr></table>
 
@@ -97,6 +99,14 @@ Created ggcskew.ps
 <td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
 <td>Readable sequence(s)</td>
 <td><b>Required</b></td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-filename</td>
+<td>string</td>
+<td>Output filename</td>
+<td>Any string</td>
+<td>ggcskew.[accession].csv</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -161,10 +171,10 @@ Created ggcskew.ps
 
 <tr bgcolor="#FFFFCC">
 <td>-output</td>
-<td>string</td>
-<td>Input 'g' for graph output, 'f' for CSV file output, 'show' for graph output to X11 window</td>
-<td>Any string</td>
-<td>g</td>
+<td>boolean</td>
+<td>Include to create CSV file</td>
+<td>Boolean value Yes/No</td>
+<td>No</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -189,8 +199,27 @@ Created ggcskew.ps
 <h2>Input file format</h2>
 
 <p>
-                                  file output, 'show' for graph output to X11
-                                  window (Any string)
+   ggcskew reads nucleotide sequences.
+</p>
+
+<h2>Ouptut file format</h2>
+
+<p>
+                                  (Any string)
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -window             integer    [10000] Window size to observe (Any integer
+                                  value)
+   -slide              integer    [10000] Window slide size (Any integer
+                                  value)
+   -cumulative         boolean    [0] Include to calculate cumulative skew
+   -at                 boolean    [0] Include for observing AT skew instead of
+                                  GC skew
+   -purine             boolean    [0] Include for observing purine (AG/TC)
+                                  skew
+   -keto               boolean    [0] Include for observing keto (TG/AC) skew
+   -output             boolean    [N] Include to create CSV file
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
    -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
@@ -206,11 +235,9 @@ Created ggcskew.ps
 Input file format
 
    ggcskew reads nucleotide sequences.
-</p>
 
-<h2>Ouptut file format</h2>
+Output file format
 
-<p>
    The output from ggcskew is to the specified graphics device.
 </p>
 
@@ -272,8 +299,18 @@ None.
 <th>Description</th></tr>
 
 <tr>
-<td><a href="NA.html">NA</a></td>
-<td>appdescription</td>
+<td><a href="ggcwin.html">ggcwin</a></td>
+<td>Calculates the GC content along the given genome</td>
+</tr>
+
+<tr>
+<td><a href="ggeneskew.html">ggeneskew</a></td>
+<td>Calculate the gene strand bias of the given genome</td>
+</tr>
+
+<tr>
+<td><a href="ggenomicskew.html">ggenomicskew</a></td>
+<td>Calculates the GC skew in different regions of the given genome</td>
 </tr>
 
 </table>

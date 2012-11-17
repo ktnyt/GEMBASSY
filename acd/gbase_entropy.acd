@@ -1,5 +1,5 @@
 application: gbase_entropy [
-  documentation: "Calculates and graphs the sequence conservation using Shanon uncertainty (entropy)"
+documentation: "Calculates and graphs the sequence conservation using Shanon uncertainty (entropy)"
   groups: "Nucleic:Composition"
   embassy: "GEMBASSY"
 ]
@@ -46,6 +46,11 @@ section: advanced [
     default: ""
   ]
 
+  boolean: output [
+    information: "Include to create CSV file"
+    default: "N"
+  ]
+
 endsection: advanced
 
 section: output [
@@ -56,6 +61,12 @@ section: output [
   xygraph: graph [
     multiple: "8"
     relations: "EDAM:0002968 data Image or plot"
+  ]
+
+  string: filename [
+    standard: "$(output)"
+    information: "Output filename"
+    default: "gbase_entropy.[accession].csv"
   ]
 
 endsection: output

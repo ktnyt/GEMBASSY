@@ -7,21 +7,19 @@ Description
 
    This method calculates the strength of selected codon usage bias (S), also
    known as Sharp's S index. Using four codon pairs that are recognized by the
-   same tRNA anticodon, namely, Phe(UUC and UUU), Ile(AUC and AUU), Tyr(UAC and
-   UAU), and Asn(AAC and AAU), since the former in each of the pairs has
-   stronger Watson-Crick pairing, selection towards the former codon can be
-   observed for highly expressed genes. S index is therefore the weighted
-   average of such bias, giving an over-all value for a genome, indicating its
-   strength of selected codon usage bias.
+   same tRNA anticodon, namely, Phe(UUC and UUU), Ile(AUC and AUU), Tyr(UAC and    UAU), and Asn(AAC and AAU), since the former in each of the pairs has strong    er Watson-Crick pairing, selection towards the former codon can be observed
+   for highly expressed genes. S index is therefore the weighted average of such
+   bias, giving an over-all value for a genome, indicating its strength of
+   selected codon usage bias.
    See Sharp et al. (2005) for details.
 
    Sharp originally defined 40 genes as the highly expressed gene group, with
    tufA, tsf, fusA, rplA-rplF, rplI-rplT, rpsB-rpsT. Since the identificaiton 
    of these genes is not convenient for computational automation, by default, 
    this method uses ribosomal proteins as the highly expressed gene group, 
-   as used by Viera-Silva and Rocha (2010).
+   as used by Rocha and colleagues in Viera-Silva and Rocha (2010).
 
-   However, Sharp's gene group can be optionally used with -sharp option.
+   However, Sharp's gene group can be optionally used with -sharp=>1 option.
    With this option, all of the 40 genes must be named accordingly in the given
    genome file.
 
@@ -45,10 +43,10 @@ Usage
 
    Here is a sample session with gs_value
 
-% gs_value NC_000913.gbk
+% gs_value  NC_000913.gbk
 Calculate the strength of selected codon usage bias (S)
-NC_000913
 1.11907731545538
+
 
 Command line arguments
 
@@ -124,6 +122,9 @@ Known bugs
 
 See also
 
+   gcbi       Calculates the codon bias index (CBI)
+   gdelta_enc Calculate the codon usage bias related to translation optimization              (delta ENC)
+   gicdi      Calculates the intrinsic codon deviation index (ICDI)
 
 
 Author(s)

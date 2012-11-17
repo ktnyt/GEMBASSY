@@ -68,10 +68,12 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gew
 
-% gew NC_000913.gbk
+% gew  NC_000913.gbk
 Calculate a measure of synonymous codon usage evenness (Ew)
-NC_000913
-Retrieval successful
+Output filename [gew.[accession].csv]:
+
+   Creates gew.[accession].csv
+   Output example is prepared in the data directory
 
 </pre></td></tr></table>
 
@@ -98,6 +100,14 @@ Retrieval successful
 <td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
 <td>Readable sequence(s)</td>
 <td><b>Required</b></td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-filename</td>
+<td>string</td>
+<td>Output filename</td>
+<td>Any string</td>
+<td>gew.[accession].csv</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -148,6 +158,39 @@ Retrieval successful
 <h2>Ouptut file format</h2>
 
 <p>
+   Creates gew.[accession].csv
+   Output example is prepared in the data directory
+
+Command line arguments
+
+Standard (Mandatory) qualifiers:
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
+                                  format, or reference (input USA)
+   -filename           string     [gew.[accession].csv] Output filename (Any
+                                  string)
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -translate          boolean    [0] Include when translates using standard
+                                  codon table
+   -delkey             string     [[^ACDEFGHIKLMNPQRSTVWYacgtU]] Regular
+                                  expression to delete key (i.e. amino acids
+                                  and nucleotides) (Any string)
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+
+Input file format
+
+   gew reads nucleotide sequences.
+
+Output file format
+
    The output from gew is to raw CSV format.
 </p>
 
@@ -213,8 +256,23 @@ None.
 <th>Description</th></tr>
 
 <tr>
-<td><a href="NA.html">NA</a></td>
-<td>appdescription</td>
+<td><a href="genc.html">genc</a></td>
+<td>Calculate the effective number of codons (Nc)</td>
+</tr>
+
+<tr>
+<td><a href="gfop.html">gfop</a></td>
+<td>Calculate the frequency of optimal codons (Fop)</td>
+</tr>
+
+<tr>
+<td><a href="gscs.html">gscs</a></td>
+<td>Calculates the scaled chi-square</td>
+</tr>
+
+<tr>
+<td><a href="gw_value.html">gw_value</a></td>
+<td>Calculate the 'relative adaptiveness of each codon' (W)</td>
 </tr>
 
 </table>

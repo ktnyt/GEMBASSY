@@ -9,7 +9,6 @@ Description
    (excluding start and stop codons).
 
 
-
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -29,16 +28,20 @@ Usage
 
    Here is a sample session with gbui
 
-% gbui NC_000913.gbk
+% gbui  NC_000913.gbk
 Calculates base usage indices for protein-coding sequences
-NC_000913
-Retrieval successful
+Output filename [gbui.[accession].csv]:
+
+   Creates gbui.[accession].csv
+   Output example is prepared in the data directory
 
 Command line arguments
 
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
+   -filename           string     [gbui.[accession].csv] Output filename (Any
+                                  string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -106,6 +109,7 @@ Known bugs
 
 See also
 
+   gdinuc Calculates dinucleotide usage
 
 
 Author(s)

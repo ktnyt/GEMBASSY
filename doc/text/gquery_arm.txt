@@ -30,8 +30,9 @@ Usage
 
 % gquery_arm NC_000913.gbk
 Get the replication arm name (left or right) from the given position
-NC_000913
+Position to query [0]:
 right
+
 
 Command line arguments
 
@@ -99,6 +100,8 @@ Known bugs
 
 See also
 
+   gquery_strand Get the strand name (leading or lagging) from the given
+                 position
 
 
 Author(s)

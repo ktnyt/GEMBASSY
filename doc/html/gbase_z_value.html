@@ -42,8 +42,8 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This function calculates and extracts conserved oligomers per position using Z-score,<br>
-   in regions around the start/stop codons using Z-score<br>
+   This function calculates and extracts conserved oligomers per position using<br>
+   Z-score, in regions around the start/stop codons using Z-score<br>
 <br>
 <br>
    G-language SOAP service is provided by the<br>
@@ -68,10 +68,12 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gbase_z_value
 
-% gbase_z_value NC_000913.gbk
+% gbase_z_value  NC_000913.gbk
 Extracts conserved oligomers per position using Z-score
-NC_000913
-Retrieval successful
+Output filename [gbase_z_value.[accession].csv]:
+
+   Creates gbase_z_value.[accession].csv
+   Output example is prepared in the data directory
 
 </pre></td></tr></table>
 
@@ -98,6 +100,14 @@ Retrieval successful
 <td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
 <td>Readable sequence(s)</td>
 <td><b>Required</b></td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-filename</td>
+<td>string</td>
+<td>Output filename</td>
+<td>Any string</td>
+<td>gbase_z_value.[accession].csv</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -172,6 +182,45 @@ Retrieval successful
 <h2>Ouptut file format</h2>
 
 <p>
+   Creates gbase_z_value.[accession].csv
+   Output example is prepared in the data directory
+
+Command line arguments
+
+Standard (Mandatory) qualifiers:
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
+                                  format, or reference (input USA)
+   -filename           string     [gbase_z_value.[accession].csv] Output
+                                  filename (Any string)
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -limit              integer    [5] Rank threshold for showing the conserved
+                                  oligomer (Any integer value)
+   -position           string     [start] Either 'start' (around start codon)
+                                  or 'end' (around stop codon) to create the
+                                  PWM (Any string)
+   -patlen             integer    [3] Length of oligomer to count (Any integer
+                                  value)
+   -upstream           integer    [30] Length upstream of specified position
+                                  to create PWM (Any integer value)
+   -downstream         integer    [30] Length downstream of specified position
+                                  to create PWM (Any integer value)
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+
+Input file format
+
+   gbase_z_value reads nucleotide sequences.
+
+Output file format
+
    The output from gbase_z_value is to raw CSV format.
 </p>
 
@@ -233,8 +282,13 @@ None.
 <th>Description</th></tr>
 
 <tr>
-<td><a href="NA.html">NA</a></td>
-<td>appdescription</td>
+<td><a href="gbase_counter.html">gbase_counter</a></td>
+<td>Creates a position weight matrix of oligomers around start codon</td>
+</tr>
+
+<tr>
+<td><a href="gview_cds.html">gview_cds</a></td>
+<td>Displays a graph of nucleotide contents around start and stop codons</td>
 </tr>
 
 </table>

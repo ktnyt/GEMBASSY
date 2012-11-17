@@ -67,10 +67,12 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gcodon_compiler
 
-% gcodon_compiler NC_000913.gbk
+% gcodon_compiler  NC_000913.gbk
 Calculate various kinds of amino acid and codon usage data
-NC_000913
-Retrieval successful
+Output filename [gcodon_compiler.[accession].csv]:
+
+   Creates gcodon_compiler.[accession].csv
+   Output example is prepared in the data directory
 
 </pre></td></tr></table>
 
@@ -97,6 +99,14 @@ Retrieval successful
 <td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
 <td>Readable sequence(s)</td>
 <td><b>Required</b></td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-filename</td>
+<td>string</td>
+<td>Output filename</td>
+<td>Any string</td>
+<td>gcodon_compiler.[accession].csv</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -179,6 +189,53 @@ Retrieval successful
 <h2>Ouptut file format</h2>
 
 <p>
+   Creates gcodon_compiler.[accession].csv
+   Output example is prepared in the data directory
+
+Command line arguments
+
+Standard (Mandatory) qualifiers:
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
+                                  format, or reference (input USA)
+   -filename           string     [gcodon_compiler.[accession].csv] Output
+                                  filename (Any string)
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -id                 string     [All] ID of a group (Any string)
+   -translate          boolean    [0] '1' when translates using standard codon
+                                  table
+   -startcodon         boolean    [0] '1' when includes start codon
+   -stopcodon          boolean    [0] '1' when includes stop codon
+   -delkey             string     [[^ACDEFGHIKLMNPQRSTVWYacgtU]] Regular
+                                  expression to delete key (i.e. amino acids
+                                  and nucleotides) (Any string)
+   -data               string     kinds of codon usage data 'A0': Absolute
+                                  amino acid frequency ('AA') 'A1': Relative
+                                  amino acid frequency ('RAAU') 'C0' or 'R0':
+                                  Absolute codon frequency ('AF') 'C1' or
+                                  'R1': Relative codon frequency in a complete
+                                  sequence 'C2' or 'R2': Relative codon
+                                  frequency in each amino acid ('RF') 'C3' or
+                                  'R3': Relative synonymous codon usage
+                                  ('RSCU') 'C4' or 'R4': Relative
+                                  adaptiveness; i.e., ratio to maximum of
+                                  minor codon ('W') (Any string)
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+
+Input file format
+
+   gcodon_compiler reads nucleotide sequences.
+
+Output file format
+
    The output from gcodon_compiler is to raw CSV format.
 </p>
 
@@ -244,8 +301,13 @@ None.
 <th>Description</th></tr>
 
 <tr>
-<td><a href="NA.html">NA</a></td>
-<td>appdescription</td>
+<td><a href="gamino_info.html">gamino_info</a></td>
+<td>Prints out basic amino acid sequence statistics</td>
+</tr>
+
+<tr>
+<td><a href="gaaui.html">gaaui</a></td>
+<td>Calculates various indece of amino acid usage</td>
 </tr>
 
 </table>

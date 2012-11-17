@@ -1,0 +1,127 @@
+Reference set of highly expressed genes
+product
+30S ribosomal subunit protein S20
+30S ribosomal subunit protein S2
+ribosomal protein S12 methylthiotransferase; radical SAM superfamily
+ribosomal protein S6 modification protein
+ribosomal protein S12 methylthiotransferase accessory factor
+30S ribosomal subunit protein S1
+ribosomal-protein-S5-alanine N-acetyltransferase
+50S ribosomal subunit protein L32
+ribosomal-protein-L7/L12-serine acetyltransferase
+50S ribosomal subunit protein L20
+50S ribosomal subunit protein L35
+50S ribosomal subunit protein L25
+50S ribosomal subunit protein L19
+30S ribosomal subunit protein S16
+30S ribosomal subunit protein S21
+30S ribosomal subunit protein S15
+50S ribosomal subunit protein L27
+50S ribosomal subunit protein L21
+30S ribosomal subunit protein S9
+50S ribosomal subunit protein L13
+methyltransferase for 50S ribosomal subunit protein L11
+50S ribosomal subunit protein L17
+30S ribosomal subunit protein S4
+30S ribosomal subunit protein S11
+30S ribosomal subunit protein S13
+50S ribosomal subunit protein L36
+50S ribosomal subunit protein L15
+50S ribosomal subunit protein L30
+30S ribosomal subunit protein S5
+50S ribosomal subunit protein L18
+50S ribosomal subunit protein L6
+30S ribosomal subunit protein S8
+30S ribosomal subunit protein S14
+50S ribosomal subunit protein L5
+50S ribosomal subunit protein L24
+50S ribosomal subunit protein L14
+30S ribosomal subunit protein S17
+50S ribosomal subunit protein L29
+50S ribosomal subunit protein L16
+30S ribosomal subunit protein S3
+50S ribosomal subunit protein L22
+30S ribosomal subunit protein S19
+50S ribosomal subunit protein L2
+50S ribosomal subunit protein L23
+50S ribosomal subunit protein L4
+50S ribosomal subunit protein L3
+30S ribosomal subunit protein S10
+30S ribosomal subunit protein S7
+30S ribosomal subunit protein S12
+50S ribosomal subunit protein L33
+50S ribosomal subunit protein L28
+50S ribosomal subunit protein L34
+50S ribosomal subunit protein L31
+50S ribosomal subunit protein L11
+50S ribosomal subunit protein L1
+50S ribosomal subunit protein L10
+50S ribosomal subunit protein L7/L12
+30S ribosomal subunit protein S6
+30S ribosomal subunit protein S18
+50S ribosomal subunit protein L9
+ribosomal-protein-S18-alanine N-acetyltransferase
+
+Relative adaptiveness (W) of each codon
+amino acid,codon,W value
+A,gca,0.6244
+A,gcc,0.3071
+A,gcg,0.5000
+A,gct,1.0000
+C,tgc,1.0000
+C,tgt,0.4255
+D,gac,1.0000
+D,gat,0.7976
+E,gaa,1.0000
+E,gag,0.3285
+F,ttc,1.0000
+F,ttt,0.4975
+G,gga,0.0298
+G,ggc,0.7246
+G,ggg,0.0546
+G,ggt,1.0000
+H,cac,1.0000
+H,cat,0.5420
+I,ata,0.0229
+I,atc,1.0000
+I,att,0.4800
+K,aaa,1.0000
+K,aag,0.3845
+L,cta,0.0148
+L,ctc,0.0793
+L,ctg,1.0000
+L,ctt,0.0738
+L,tta,0.0738
+L,ttg,0.0775
+M,atg,1.0000
+N,aac,1.0000
+N,aat,0.2679
+P,cca,0.2523
+P,ccc,0.0467
+P,ccg,1.0000
+P,cct,0.2290
+Q,caa,0.3547
+Q,cag,1.0000
+R,aga,0.0107
+R,agg,0.0043
+R,cga,0.0150
+R,cgc,0.5321
+R,cgg,0.0214
+R,cgt,1.0000
+S,agc,0.8451
+S,agt,0.1761
+S,tca,0.1479
+S,tcc,0.7394
+S,tcg,0.1197
+S,tct,1.0000
+T,aca,0.1165
+T,acc,1.0000
+T,acg,0.2427
+T,act,0.8932
+V,gta,0.5052
+V,gtc,0.2344
+V,gtg,0.3672
+V,gtt,1.0000
+W,tgg,1.0000
+Y,tac,1.0000
+Y,tat,0.5935

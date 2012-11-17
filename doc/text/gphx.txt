@@ -28,16 +28,20 @@ Usage
 
    Here is a sample session with gphx
 
-% gphx NC_000913.gbk
+% gphx  NC_000913.gbk
 Identify predicted highly expressed gene
-NC_000913
-Retrieval successful
+Output filename [gphx.[accession].csv]:
+
+   Creates gphx.[accession].csv
+   Output example is prepared in the data directory
 
 Command line arguments
 
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
+   -filename           string     [gbase_entropy.[accession].csv] Output
+                                  filename (Any string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -111,6 +115,8 @@ Known bugs
 
 See also
 
+   gcai Calculate codon adaptation index for each gene
+   gp2  Calculate the P2 index of each gene
 
 
 Author(s)

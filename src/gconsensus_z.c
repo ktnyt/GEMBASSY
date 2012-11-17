@@ -12,7 +12,7 @@
 #include "../include/gplot.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("gconsensus_z",argc,argv,"GEMBASSY","1.0.0");
+  embInitPV("gconsensus_z", argc, argv, "GEMBASSY", "1.0.0");
   
   struct soap soap;
   struct ns1__consensus_USCOREzInputParams params;
@@ -21,8 +21,8 @@ int main(int argc, char *argv[]){
   AjPSeqall seqall;
   AjPSeq    seq;
   AjPStr    inseq    = NULL;
-  AjPStr    output   = NULL;
   AjPStr    filename = NULL;
+  AjBool    output   = 0;
   ajint     high     = 0;
   double    low      = 0;  
   char*     jobid;
@@ -30,10 +30,12 @@ int main(int argc, char *argv[]){
   AjPGraph    mult;
   gPlotParams gpp;
   
-  seqall = ajAcdGetSeqall("sequence");
-  high   = ajAcdGetInt("high");
-  low    = ajAcdGetFloat("low");
-  mult   = ajAcdGetGraphxy("graph");
+  seqall   = ajAcdGetSeqall("sequence");
+  filename = ajAcdGetString("filename");
+  output   = ajAcdGetBoolean("output");
+  high     = ajAcdGetInt("high");
+  low      = ajAcdGetFloat("low");
+  mult     = ajAcdGetGraphxy("graph");
   
   params.high   = high;
   params.low    = low;
@@ -42,9 +44,8 @@ int main(int argc, char *argv[]){
   char** tmp  = (char**)malloc(sizeof(char));
   int    size = 0;
 
-  while(ajSeqallNext(seqall,&seq)){
-    if(size == 0) ajStrAssignS(&filename,ajSeqGetAccS(seq));
-    tmp = (char**)realloc(tmp,sizeof(char)*(size+1));
+  while(ajSeqallNext(seqall, &seq)){
+    tmp = (char**)realloc(tmp, sizeof(char) * (size + 1));
     tmp[size] = ajCharNewS(ajSeqGetSeqS(seq));
     size++;
   }
@@ -53,25 +54,29 @@ int main(int argc, char *argv[]){
   array_seq.__ptr  = tmp;
 
   if(size < 2){
-    fprintf(stderr,"File only has one sequence. Please input more than two.\n");
+    fprintf(stderr, "File only has one sequence. Please input more than two.\n");
     return 0;
   }
 
   soap_init(&soap);
 
-  if(soap_call_ns1__consensus_USCOREz(&soap,NULL,NULL,&array_seq,&params,&jobid)==SOAP_OK){
-    ajStrAppendC(&filename,".csv");
+  if(soap_call_ns1__consensus_USCOREz(
+				      &soap, NULL, NULL,
+				      &array_seq, &params, &jobid
+				      ) == SOAP_OK){
     if(get_file(jobid,ajCharNewS(filename))==0){
-      AjPStr title = NULL;
-      ajStrAppendC(&title, argv[0]);
-      gpp.title = ajStrNewS(title);
-      gpp.xlab = ajStrNewC("position");
-      gpp.ylab = ajStrNewC("consensus");
-      ajStrDel(&title);
-      if(gPlotFile(filename, mult, &gpp) == 1)
-	fprintf(stderr,"Error allocating\n");
-     }else{ 
-     fprintf(stderr,"Retrieval unsuccessful\n");
+      if(!output){
+	AjPStr title = NULL;
+	ajStrAppendC(&title, argv[0]);
+	gpp.title = ajStrNewS(title);
+	gpp.xlab = ajStrNewC("position");
+	gpp.ylab = ajStrNewC("consensus");
+	ajStrDel(&title);
+	if(gPlotFile(filename, mult, &gpp) == 1)
+	  fprintf(stderr, "Error allocating\n");
+      }
+    }else{ 
+      fprintf(stderr, "Retrieval unsuccessful\n");
     }
   }else{
     soap_print_fault(&soap,stderr);

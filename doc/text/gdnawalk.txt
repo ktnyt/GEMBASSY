@@ -11,10 +11,7 @@ Description
    upward, T downward, G to the right, and C to the left.
    Position zero (first letter of the genome) is indicated
    by the crossing of thin axes.
-
-   Output file is created in the "graph" directory, with 
-   the accession number as file name and ".png" as extension.
-
+   
   
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
@@ -35,21 +32,24 @@ Usage
 
    Here is a sample session with gdnawalk
 
-% gdnawalk NC_000913.gbk
+% gdnawalk  refseqn:NC_000908
 Draws DNA Walk map of the genome
-NC_000913
-Retrieval successful
+Output filename [gdnawalk.[accession].png]:
+
+   Creates gdnawalk.[accession].png
+   Output example is prepared in the data directory
 
 Command line arguments
 
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
+   -filename           string     [gdnawalk.[accession].png] Output filename
+                                  (Any string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
-   -output             string     [g] Input 'g' for graph output, 'show' for
-                                  graph output to X11 window (Any string)
+   -show               boolean    [N] Include to show png with X11 window
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
 
@@ -107,6 +107,8 @@ Known bugs
 
 See also
 
+   gcircular_map Draws circular map of the genome
+   ggenome_map3  Draws the map of the genome (version 3)
 
 
 Author(s)

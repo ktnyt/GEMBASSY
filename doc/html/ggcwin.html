@@ -67,10 +67,12 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with ggcwin
 
-% ggcwin NC_000913.gbk
+% ggcwin  NC_000913.gbk -graph cps
 Calculates the GC content along the given genome
-NC_000913
 Created ggcwin.ps
+
+   Creates ggcwin.[accession].ps
+   Output example is prepared in the data directory
 
 </pre></td></tr></table>
 
@@ -97,6 +99,14 @@ Created ggcwin.ps
 <td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
 <td>Readable sequence(s)</td>
 <td><b>Required</b></td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-filename</td>
+<td>string</td>
+<td>Output filename</td>
+<td>Any string</td>
+<td>ggcwin.[accession].csv</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -144,6 +154,14 @@ Created ggcwin.ps
 </tr>
 
 <tr bgcolor="#FFFFCC">
+<td>-output</td>
+<td>boolean</td>
+<td>Include to create CSV file</td>
+<td>Boolean value Yes/No</td>
+<td>No</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
 <td>-accid</td>
 <td>string</td>
 <td>Include to use sequence accession ID as query</td>
@@ -171,6 +189,37 @@ Created ggcwin.ps
 <h2>Ouptut file format</h2>
 
 <p>
+                                  (Any string)
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -window             integer    [10000] Window size to observe (Any integer
+                                  value)
+   -at                 boolean    [0] Include for observing AT skew instead of
+                                  GC skew
+   -purine             boolean    [0] Include for observing purine (AG/TC)
+                                  skew
+   -keto               boolean    Include for observing keto (TG/AC) skew
+                                  default: "0
+   -output             boolean    [N] Include to create CSV file
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+   -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
+                                  (ps, hpgl, hp7470, hp7580, meta, cps, x11,
+                                  tek, tekt, none, data, xterm, png, gif, svg)
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+
+Input file format
+
+   ggcwin reads nucleotide sequences.
+
+Output file format
+
    The output from ggcwin is to the specified graphics device.
 </p>
 
@@ -232,8 +281,18 @@ None.
 <th>Description</th></tr>
 
 <tr>
-<td><a href="NA.html">NA</a></td>
-<td>appdescription</td>
+<td><a href="ggcskew.html">ggcskew</a></td>
+<td>Calculates the GC skew of the input sequence</td>
+</tr>
+
+<tr>
+<td><a href="ggeneskew.html">ggeneskew</a></td>
+<td>Calculate the gene strand bias of the given genome</td>
+</tr>
+
+<tr>
+<td><a href="ggenomicskew.html">ggenomicskew</a></td>
+<td>Calculates the GC skew in different regions of the given genome</td>
 </tr>
 
 </table>

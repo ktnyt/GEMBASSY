@@ -31,9 +31,9 @@ section: advanced [
     default: "0.2"
   ]
 
-  string: output [
-    information: "Input 'g' for graph output, 'show' for graph output to X11 window"
-    default: "g"
+  boolean: output [
+    information: "Include to create CSV file"
+    default: "N"
   ]
 
 endsection: advanced
@@ -46,6 +46,12 @@ section: output [
   xygraph: graph [
     multiple: "8"
     relations: "EDAM:0002968 data Image or plot"
+  ]
+
+  string: filename [
+    standard: "$(output)"
+    information: "Output filename"
+    default: "gconsensus_z.csv"
   ]
 
 endsection: output

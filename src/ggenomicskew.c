@@ -12,7 +12,7 @@
 #include "../include/gplot.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("ggenomicskew",argc,argv,"GEMBASSY","1.0.0");
+  embInitPV("ggenomicskew", argc, argv, "GEMBASSY", "1.0.0");
 
   struct soap soap;
   struct ns1__genomicskewInputParams params;
@@ -24,84 +24,96 @@ int main(int argc, char *argv[]){
   AjBool    at       = 0;
   AjPStr    accid    = NULL;
   AjPStr    filename = NULL;
+  AjBool    output   = 0;
   char*     jobid;
+
   AjPGraph    mult;
   gPlotParams gpp;
 
-  seqall = ajAcdGetSeqall("sequence");
-  divide = ajAcdGetInt("divide");
-  at     = ajAcdGetBoolean("at");
-  accid  = ajAcdGetString("accid");
-  mult   = ajAcdGetGraphxy("graph");
+  seqall   = ajAcdGetSeqall("sequence");
+  divide   = ajAcdGetInt("divide");
+  at       = ajAcdGetBoolean("at");
+  accid    = ajAcdGetString("accid");
+  filename = ajAcdGetString("filename");
+  output   = ajAcdGetBoolean("output");
+  mult     = ajAcdGetGraphxy("graph");
 
-  params.divide       = divide;
+  params.divide = divide;
   if(at){
-    params.at         = 1;
+    params.at   = 1;
   }else{
-    params.at         = 0;
+    params.at   = 0;
   }
-  params.output       = "f";
+  params.output = "f";
 
-  while(ajSeqallNext(seqall,&seq)){
+  while(ajSeqallNext(seqall, &seq)){
 
     soap_init(&soap);
 
     inseq = NULL;
 
     if(ajSeqGetFeat(seq) && !ajStrGetLen(accid)){
-      ajStrAssignS(&accid,ajSeqGetAccS(seq));
-      inseq = getGenbank(seq,ajSeqGetFeat(seq));
+      inseq = getGenbank(seq);
+      ajStrAssignS(&accid, ajSeqGetAccS(seq));
     }else{
-      if(!strlen(ajCharNewS(accid))){
-        fprintf(stderr,"Sequence does not have features\n");
-        fprintf(stderr,"Proceeding with sequence accession ID\n");
-	ajStrAssignS(&accid,ajSeqGetAccS(seq));
-        ajStrAssignS(&inseq,ajSeqGetAccS(seq));
+      if(!ajStrGetLen(accid)){
+        fprintf(stderr, "Sequence does not have features\n");
+        fprintf(stderr, "Proceeding with sequence accession ID\n");
+	ajStrAssignS(&accid, ajSeqGetAccS(seq));
       }
       if(!valID(ajCharNewS(accid))){
-          fprintf(stderr,"Invalid accession ID, exiting");
+          fprintf(stderr, "Invalid accession ID, exiting");
           return 1;
       }else{
-        ajStrAssignS(&inseq,accid);
+        ajStrAssignS(&inseq, accid);
       }
     }
 
     char* in0;
     in0 = ajCharNewS(inseq);
 
-    fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
-
-
-    if(soap_call_ns1__genomicskew(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
-      ajStrAssignS(&filename,ajSeqGetNameS(seq));
-      ajStrAppendC(&filename,".csv");
-      if(get_file(jobid,ajCharNewS(filename))==0){
-	AjPStr title = NULL;
-	AjPPStr names = NULL;
-	if((names = (AjPPStr)malloc(sizeof(AjPStr)*5)) == NULL){
-	  fprintf(stderr,"Error in memory allocation, exiting\n");
-	  return 1;
-	}
-	names[0] = NULL;
-	names[1] = ajStrNewC("whole genome");
-	names[2] = ajStrNewC("coding region");
-	names[3] = ajStrNewC("intergenic region");
-	names[4] = ajStrNewC("codon third position");
-	ajStrAppendC(&title, argv[0]);
-	ajStrAppendC(&title, " of ");
-	ajStrAppendS(&title, accid);
-        gpp.title = ajStrNewS(title);
-	gpp.xlab = ajStrNewC("location");
-	gpp.ylab = ajStrNewC("GC skew");
-	gpp.names = names;
-	ajStrDel(&title);
-	if(gPlotFile(filename, mult, &gpp) == 1)
-	  fprintf(stderr,"Error allocating\n");
+    if(soap_call_ns1__genomicskew(
+				  &soap, NULL, NULL,
+				  in0, &params, &jobid
+				  ) == SOAP_OK){
+      if(ajStrCmpC(filename, "ggenomicskew.[accession].csv") == 0){
+        ajStrAssignC(&filename, argv[0]);
+        ajStrAppendC(&filename, ".");
+        ajStrAppendS(&filename, accid);
+        ajStrAppendC(&filename, ".csv");
       }else{
-        fprintf(stderr,"Retrieval unsuccessful\n");
+        ajStrInsertC(&filename, -5, ".");
+        ajStrInsertS(&filename, -5, accid);
+      }
+      if(get_file(jobid, ajCharNewS(filename))==0){
+	if(!output){
+	  AjPStr title = NULL;
+	  AjPPStr names = NULL;
+	  if((names = (AjPPStr)malloc(sizeof(AjPStr)*5)) == NULL){
+	    fprintf(stderr, "Error in memory allocation, exiting\n");
+	    return 1;
+	  }
+	  names[0] = NULL;
+	  names[1] = ajStrNewC("whole genome");
+	  names[2] = ajStrNewC("coding region");
+	  names[3] = ajStrNewC("intergenic region");
+	  names[4] = ajStrNewC("codon third position");
+	  ajStrAppendC(&title, argv[0]);
+	  ajStrAppendC(&title, " of ");
+	  ajStrAppendS(&title, accid);
+	  gpp.title = ajStrNewS(title);
+	  gpp.xlab = ajStrNewC("location");
+	  gpp.ylab = ajStrNewC("GC skew");
+	  gpp.names = names;
+	  ajStrDel(&title);
+	  if(gPlotFile(filename, mult, &gpp) == 1)
+	    fprintf(stderr, "Error in plotting\n");
+	}
+      }else{
+        fprintf(stderr, "Retrieval unsuccessful\n");
       }
     }else{
-      soap_print_fault(&soap,stderr);
+      soap_print_fault(&soap, stderr);
     }
     
     soap_destroy(&soap);

@@ -15,8 +15,6 @@ Description
    origin and terminus predicted from the GC skew shift points 
    are also labeled. 
 
-   Generated SVG is very large (8000x8000 pixels).
-
   
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
@@ -37,16 +35,20 @@ Usage
 
    Here is a sample session with gcircular_map
 
-% gcircular_map NC_000913.gbk
+% gcircular_map  refseqn:NC_000908
 Draws circular map of the genome 
-NC_000908
-Retrieval Successful
+Output filename [gcircular_map.[accession].svg]:
+
+   Creates gcircular_map.[accession].svg
+   Output example is prepared in the data directory
 
 Command line arguments
 
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
+   -filename           string     [gcircular_map.[accession].svg] Output
+                                  filename (Any string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -91,7 +93,7 @@ References
 
 Warnings
 
-   May return 502 status code for large scale genomes.
+   None.
 
 Diagnostic Error Messages
 
@@ -107,6 +109,8 @@ Known bugs
 
 See also
 
+   gdnawalk      Draws DNA Walk map of the genome
+   ggenome_map3  Draws the map of the genome (version 3)
 
 
 Author(s)

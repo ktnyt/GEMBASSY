@@ -45,7 +45,8 @@ IT IS DONE FOR YOU.
    This method creates a graph showing the average A,T,G,C contents<br>
    around start/stop codons. This is useful to view consensus around<br>
    start/stop codons and to find characteristic pattern in CDS. <br>
-   <br>
+    <br>
+  <br>
    G-language SOAP service is provided by the<br>
    Institute for Advanced Biosciences, Keio University.<br>
    The original web service is located at the following URL:<br>
@@ -68,10 +69,12 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gview_cds
 
-% gview_cds NC_000913.gbk
+% gview_cds  NC_000913.gbk -graph cps
 Displays a graph of nucleotide contents around start and stop codons
-NC_000913
 Created gview_cds.ps
+
+   Creates gview_cds.[accession].ps
+   Output example is prepared in the data directory
 
 </pre></td></tr></table>
 
@@ -98,6 +101,14 @@ Created gview_cds.ps
 <td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
 <td>Readable sequence(s)</td>
 <td><b>Required</b></td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-filename</td>
+<td>string</td>
+<td>Output filename</td>
+<td>Any string</td>
+<td>gview_cds.[accession].csv</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -129,6 +140,14 @@ Created gview_cds.ps
 </tr>
 
 <tr bgcolor="#FFFFCC">
+<td>-output</td>
+<td>boolean</td>
+<td>Include to create CSV file</td>
+<td>Boolean value Yes/No</td>
+<td>No</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
 <td>-accid</td>
 <td>string</td>
 <td>Include to use sequence accession ID as query</td>
@@ -156,6 +175,33 @@ Created gview_cds.ps
 <h2>Ouptut file format</h2>
 
 <p>
+                                  (Any string)
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -length             integer    [100] Length in bases to show around
+                                  start/stop codons (Any integer value)
+   -gap                integer    [3] Gap shown in graph in between start/stop
+                                  codon neighbors (Any integer value)
+   -output             boolean    [N] Include to create CSV file
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+   -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
+                                  (ps, hpgl, hp7470, hp7580, meta, cps, x11,
+                                  tek, tekt, none, data, xterm, png, gif, svg)
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+
+Input file format
+
+   gview_cds reads nucleotide sequences.
+
+Output file format
+
    The output from gview_cds is to the specified graphics device.
 </p>
 
@@ -217,8 +263,13 @@ None.
 <th>Description</th></tr>
 
 <tr>
-<td><a href="NA.html">NA</a></td>
-<td>appdescription</td>
+<td><a href="gbase_counter.html">gbase_counter</a></td>
+<td>Creates a position weight matrix of oligomers around start codon</td>
+</tr>
+
+<tr>
+<td><a href="gbase_z_value.html">gbase_z_value</a></td>
+<td>Extracts conserved oligomers per position using Z-score</td>
 </tr>
 
 </table>

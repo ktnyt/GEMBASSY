@@ -41,4 +41,11 @@ section: output [
 	information: "Output section"
 	type: "page"
 ]
+
+  string: filename [
+    standard: "Y"
+    information: "Output filename"
+    default: "gbase_entropy.[accession].csv"
+  ]
+
 endsection: output

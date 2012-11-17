@@ -7,12 +7,12 @@ Description
 
    Predicts the replicational origin and terminus in circular bacterial genomes,
    by taking the vertices of cumulative skew graphs (GC, keto, or purine). See
-   Frank and Lobry (2000) for the basic idea behind thid algorithm (but also note
-   that this algorithm is different from that of Oriloc, which uses GC3 of genes). 
+   Reference 1 for the basic idea behind thid algorithm (but also note that this
+   algorithm is different from that of Oriloc, which uses GC3 of genes). 
 
    Terminus of replication can be more accurate by using noise-reduction 
    filtering using Fourier spectrum of the GC skew. This low-pass filtering
-   can be applied using -filter option. See Arakawa et al. (2007) for details.
+   can be applied using -filter option. See Reference 2 for details.
 
  
    G-language SOAP service is provided by the
@@ -34,10 +34,10 @@ Usage
 
    Here is a sample session with gfind_ori_ter
 
-% gfind_ori_ter NC_000913.gbk
+% gfind_ori_ter  NC_000913.gbk
 Predict the replication origin and terminus in bacterial genomes
-NC_000913
 3922946	1550274
+
 
 Command line arguments
 
@@ -83,11 +83,12 @@ Notes
 
 References
 
-   Frank AC, Lobry JR (2000) "Oriloc: prediction of replication boundaries in unannotated 
-      bacterial chromosomes", Bioinformatics, 16:566-567.
+   Frank AC, Lobry JR (2000) "Oriloc: prediction of replication boundaries in
+      unannotated bacterial chromosomes", Bioinformatics, 16:566-567.
 
-   Arakawa K, Saito R, Tomita M (2007) "Noise-reduction filtering for accurate detection 
-      of replication termini in bacterial genomes", FEBS Letters, 581(2):253-258.
+   Arakawa K, Saito R, Tomita M (2007) "Noise-reduction filtering for accurate
+      detection of replication termini in bacterial genomes", FEBS Letters,
+      581(2): 253-258.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -119,6 +120,7 @@ Known bugs
 
 See also
 
+   grep_ori_ter Get the positions of replication origin and terminus
 
 
 Author(s)

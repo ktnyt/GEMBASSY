@@ -52,8 +52,6 @@ IT IS DONE FOR YOU.
    origin and terminus predicted from the GC skew shift points <br>
    are also labeled. <br>
 <br>
-   Generated SVG is very large (8000x8000 pixels).<br>
-<br>
   <br>
    G-language SOAP service is provided by the<br>
    Institute for Advanced Biosciences, Keio University.<br>
@@ -77,10 +75,12 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gcircular_map
 
-% gcircular_map NC_000913.gbk
+% gcircular_map  refseqn:NC_000908
 Draws circular map of the genome 
-NC_000908
-Retrieval Successful
+Output filename [gcircular_map.[accession].svg]:
+
+   Creates gcircular_map.[accession].svg
+   Output example is prepared in the data directory
 
 </pre></td></tr></table>
 
@@ -107,6 +107,14 @@ Retrieval Successful
 <td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
 <td>Readable sequence(s)</td>
 <td><b>Required</b></td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-filename</td>
+<td>string</td>
+<td>Output filename</td>
+<td>Any string</td>
+<td>gcircular_map.[accession].svg</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -141,6 +149,34 @@ Retrieval Successful
 <h2>Ouptut file format</h2>
 
 <p>
+   Creates gcircular_map.[accession].svg
+   Output example is prepared in the data directory
+
+Command line arguments
+
+Standard (Mandatory) qualifiers:
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
+                                  format, or reference (input USA)
+   -filename           string     [gcircular_map.[accession].svg] Output
+                                  filename (Any string)
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+
+Input file format
+
+   gcircular_map reads nucleotide sequences.
+
+Output file format
+
    The output from gcircular_map is to SVG format.
 </p>
 
@@ -175,7 +211,7 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   May return 502 status code for large scale genomes.
+   None.
 </p>
 
 <h2>Diagnostic Error Messages</h2>
@@ -202,8 +238,13 @@ None.
 <th>Description</th></tr>
 
 <tr>
-<td><a href="NA.html">NA</a></td>
-<td>appdescription</td>
+<td><a href="gdnawalk.html">gdnawalk</a></td>
+<td>Draws DNA Walk map of the genome</td>
+</tr>
+
+<tr>
+<td><a href="ggenome_map3.html">ggenome_map3</a></td>
+<td>Draws the map of the genome (version 3)</td>
 </tr>
 
 </table>

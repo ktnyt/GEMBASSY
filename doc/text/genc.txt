@@ -27,10 +27,10 @@ Usage
 
    Here is a sample session with genc
 
-% genc NC_000913.gbk
+% genc  NC_000913.gbk
 Calculate the effective number of codons (Nc)
-NC_000913
 49.44
+
 
 Command line arguments
 
@@ -73,6 +73,7 @@ Notes
    None.
 
 References
+
    Comeron JM, Aguade M. (1998) J Mol Evol. 47(3):268-74.
 
    Wright F. (1990) Gene 87:23-29.
@@ -107,6 +108,10 @@ Known bugs
 
 See also
 
+   gew      Calculate a measure of synonymous codon usage evenness (Ew)
+   gfop     Calculate the frequency of optimal codons (Fop)
+   gscs     Calculates the scaled chi-square
+   gw_value Calculate the 'relative adaptiveness of each codon' (W)
 
 
 Author(s)

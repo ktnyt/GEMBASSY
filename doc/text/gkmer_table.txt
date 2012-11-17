@@ -10,19 +10,21 @@ Description
    tetramers (k=4), resulting image is composed of 4^4 = 256 boxes, each
    representing an oligomer. Oligomer name and abundance is written within
    these boxes, and abundance is also visualized with the box color, from white
-   (none) to black (highly frequent). This k-mer table is alternatively known as
-   the FCGR (frequency matrices extracted from Chaos Game Representation).
+   (none) to black (highly frequent).
+
+   This k-mer table is alternatively known as the FCGR (frequency matrices
+   extracted from Chaos Game Representation).
 
    Position of the oligomers can be recursively located as follows:
    For each letter in an oligomer, a box is subdivided into four quadrants, 
    where A is upper left, T is lower right, G is upper right, and C is lower
    left.
-
    Therefore, oligomer ATGC is in the 
-   A = upper left quadrant
-   T = lower right within the above quadrant
-   G = upper right within the above quadrant
-   C = lower left within the above quadrant
+     A = upper left quadrant
+     T = lower right within the above quadrant
+     G = upper right within the above quadrant
+     C = lower left within the above quadrant
+
 
    More detailed documentation is available at 
    http://www.g-language.org/wiki/cgr
@@ -47,21 +49,25 @@ Usage
 
    Here is a sample session with gkmer_table
 
-% gkmer_table NC_000913.gbk
+% gkmer_table  NC_000913.gbk
 Create an image showing all k-mer abundance within a sequence
-NC_000913
+Output filename [gkmer_table.[accession].png]:
+
+   Creates gkmer_table.[accession].png
+   Output example is prepared in the data directory
 
 Command line arguments
 
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
+   -filename           string     [gkmer_table.[accession].png] Output
+                                  filename (Any string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -k                  integer    [6] Length of oligomer (Any integer value)
-   -output             string     [g] Input 'g' for graph output, 'show' for
-                                  graph output to X11 window (Any string)
+   -show               boolean    [N] Include to show png with X11 window
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
 
@@ -96,7 +102,7 @@ References
    Almeida JS, Carrico JA, Maretzek A, Noble PA, Fletcher M (2001) 
       "Analysis of genomic sequences by Chaos Game Representation." 
       Bioinformatics. 17(5):429-437.
-      
+
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
       for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
@@ -127,6 +133,12 @@ Known bugs
 
 See also
 
+   gkmer_table             Create an image showing all k-mer abundance within a
+                           sequence
+   gnucleotide_periodicity Checks the periodicity of certain oligonucleotides
+   goligomer_counter       Counts the number of given oligomers in a sequence
+   goligomer_search        Searches oligomers in given sequence
+   gsignature              Calculate oligonucleotide usage (genomic signature)
 
 
 Author(s)

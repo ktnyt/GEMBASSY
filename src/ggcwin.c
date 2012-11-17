@@ -12,7 +12,7 @@
 #include "../include/gplot.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("ggcwin",argc,argv,"GEMBASSY","1.0.0");
+  embInitPV("ggcwin", argc, argv, "GEMBASSY", "1.0.0");
 
   struct soap soap;
   struct ns1__gcwinInputParams params;
@@ -26,19 +26,21 @@ int main(int argc, char *argv[]){
   AjBool    keto     = 0;
   AjPStr    accid    = NULL;
   AjPStr    filename = NULL;
+  AjBool    output   = 0;
   char*     jobid;
   char*     _result;
 
   AjPGraph    mult;
   gPlotParams gpp;
 
-  seqall = ajAcdGetSeqall("sequence");
-  window = ajAcdGetInt("window");
-  at     = ajAcdGetBoolean("at");
-  purine = ajAcdGetBoolean("purine");
-  keto   = ajAcdGetBoolean("keto");
-  accid  = ajAcdGetString("accid");
-  mult   = ajAcdGetGraphxy("graph");
+  seqall   = ajAcdGetSeqall("sequence");
+  window   = ajAcdGetInt("window");
+  at       = ajAcdGetBoolean("at");
+  purine   = ajAcdGetBoolean("purine");
+  keto     = ajAcdGetBoolean("keto");
+  accid    = ajAcdGetString("accid");
+  filename = ajAcdGetString("filename");
+  mult     = ajAcdGetGraphxy("graph");
 
   params.window       = window;
   if(at){
@@ -58,52 +60,59 @@ int main(int argc, char *argv[]){
   }
   params.output       = "f";
 
-  while(ajSeqallNext(seqall,&seq)){
+  while(ajSeqallNext(seqall, &seq)){
 
     soap_init(&soap);
 
     inseq = NULL;
 
-    if(ajSeqGetFeat(seq) && !strlen(ajCharNewS(accid))){
-      inseq = getGenbank(seq,ajSeqGetFeat(seq));
-      ajStrAssignS(&accid,ajSeqGetAccS(seq));
+    if(ajSeqGetFeat(seq) && !ajStrGetLen(accid)){
+      inseq = getGenbank(seq);
+      ajStrAssignS(&accid, ajSeqGetAccS(seq));      
     }else{
-      if(!strlen(ajCharNewS(accid))){
-        fprintf(stderr,"Sequence does not have features\n");
-        fprintf(stderr,"Proceeding with sequence accession ID\n");
-        ajStrAssignS(&inseq,ajSeqGetAccS(seq));
-        ajStrAssignS(&accid,ajSeqGetAccS(seq));
+      if(!ajStrGetLen(accid)){
+        fprintf(stderr, "Sequence does not have features\n");
+        fprintf(stderr, "Proceeding with sequence accession ID\n");
+        ajStrAssignS(&accid, ajSeqGetAccS(seq));
       }
       if(!valID(ajCharNewS(accid))){
-          fprintf(stderr,"Invalid accession ID, exiting");
+          fprintf(stderr, "Invalid accession ID, exiting");
           return 1;
-      }else{
-        ajStrAssignS(&inseq,accid);
       }
+      ajStrAssignS(&inseq,accid);
     }
 
     char* in0;
     in0 = ajCharNewS(inseq);
 
-    fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
-
-
-    if(soap_call_ns1__gcwin(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
-      ajStrAssignS(&filename,ajSeqGetNameS(seq));
-      ajStrAppendC(&filename,".csv");
-      if(get_file(jobid,ajCharNewS(filename))==0){
-        AjPStr title = NULL;
-        ajStrAppendC(&title, argv[0]);
-        ajStrAppendC(&title, " of ");
-        ajStrAppendS(&title, accid);
-        gpp.title = ajStrNewS(title);
-        gpp.xlab = ajStrNewC("location");
-        gpp.ylab = ajStrNewC("GC skew");
-        ajStrDel(&title);
-        if(gPlotFile(filename, mult, &gpp) == 1)
-          fprintf(stderr,"Error allocating\n");
-       }else{
-        fprintf(stderr,"Retrieval unsuccessful\n");
+    if(soap_call_ns1__gcwin(
+			    &soap, NULL, NULL,
+			    in0, &params, &jobid
+			    ) == SOAP_OK){
+      if(ajStrCmpC(filename, "ggcwin.[accession].csv") == 0){
+        ajStrAssignC(&filename, argv[0]);
+        ajStrAppendC(&filename, ".");
+        ajStrAppendS(&filename, accid);
+        ajStrAppendC(&filename, ".csv");
+      }else{
+        ajStrInsertC(&filename, -5, ".");
+        ajStrInsertS(&filename, -5, accid);
+      }
+      if(get_file(jobid, ajCharNewS(filename))==0){
+	if(!output){
+	  AjPStr title = NULL;
+	  ajStrAppendC(&title, argv[0]);
+	  ajStrAppendC(&title, " of ");
+	  ajStrAppendS(&title, accid);
+	  gpp.title = ajStrNewS(title);
+	  gpp.xlab = ajStrNewC("location");
+	  gpp.ylab = ajStrNewC("GC skew");
+	  ajStrDel(&title);
+	  if(gPlotFile(filename, mult, &gpp) == 1)
+	    fprintf(stderr, "Error allocating\n");
+	}
+      }else{
+        fprintf(stderr, "Retrieval unsuccessful\n");
       }
     }else{
       soap_print_fault(&soap,stderr);

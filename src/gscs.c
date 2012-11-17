@@ -40,19 +40,20 @@ int main(int argc, char *argv[]){
   params.id = ajCharNewS(id);
   params.del_USCOREkey = ajCharNewS(delkey);
 
-  while(ajSeqallNext(seqall,&seq)){  
+  while(ajSeqallNext(seqall, &seq)){  
 
     soap_init(&soap);
 
     inseq = NULL;
 
-    if(ajSeqGetFeat(seq) && !strlen(ajCharNewS(accid))){
-      inseq = getGenbank(seq,ajSeqGetFeat(seq));
+    if(ajSeqGetFeat(seq) && !ajStrGetLen(accid)){
+      inseq = getGenbank(seq);
+      ajStrAssignS(&accid, ajSeqGetAccS(seq));
     }else{
-      if(!strlen(ajCharNewS(accid))){
-        fprintf(stderr,"Sequence does not have features\n");
-        fprintf(stderr,"Proceeding with sequence accession ID\n");
-        ajStrAssignS(&inseq,ajSeqGetAccS(seq));
+      if(!ajStrGetLen(accid)){
+        fprintf(stderr, "Sequence does not have features\n");
+        fprintf(stderr, "Proceeding with sequence accession ID\n");
+        ajStrAssignS(&accid, ajSeqGetAccS(seq));
       }
       if(!valID(ajCharNewS(accid))){
           fprintf(stderr,"Invalid accession ID, exiting");
@@ -65,13 +66,13 @@ int main(int argc, char *argv[]){
     char* in0;
     in0 = ajCharNewS(inseq);
 
-    fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
-
-
-    if(soap_call_ns1__scs(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
-      puts(jobid);
+    if(soap_call_ns1__scs(
+			  &soap, NULL, NULL,
+			  in0, &params, &jobid
+			  )==SOAP_OK){
+      fprintf(stdout, "%s\n", jobid);
     }else{
-      soap_print_fault(&soap,stderr);
+      soap_print_fault(&soap, stderr);
     }
     
     soap_destroy(&soap);

@@ -12,7 +12,7 @@
 #include "../include/display_png.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("gcgr",argc,argv,"GEMBASSY","1.0.0");
+  embInitPV("gcgr", argc, argv, "GEMBASSY", "1.0.0");
 
   struct soap soap;
   struct ns1__cgrInputParams params;
@@ -22,21 +22,22 @@ int main(int argc, char *argv[]){
   AjPStr    inseq    = NULL;
   ajint     width    = 0;
   ajint     level    = 0;
-  AjPStr    output   = NULL;
   AjPStr    accid    = NULL;
-  AjPStr    filename;
+  AjPStr    filename = NULL;
+  AjBool    output   = 0;
   char*     jobid;
 
-  seqall = ajAcdGetSeqall("sequence");
-  width  = ajAcdGetInt("width");
-  level  = ajAcdGetInt("level");
-  output = ajAcdGetString("output");
-  accid  = ajAcdGetString("accid");
+  seqall   = ajAcdGetSeqall("sequence");
+  width    = ajAcdGetInt("width");
+  level    = ajAcdGetInt("level");
+  filename = ajAcdGetString("filename");
+  output   = ajAcdGetBoolean("show");
+  accid    = ajAcdGetString("accid");
 
   params.width = width;
   params.level = level;
     
-  while(ajSeqallNext(seqall,&seq)){
+  while(ajSeqallNext(seqall, &seq)){
 
     soap_init(&soap);
 
@@ -46,24 +47,35 @@ int main(int argc, char *argv[]){
     ajStrAppendS(&inseq,ajSeqGetAccS(seq));
     ajStrAppendC(&inseq,"\n");
     ajStrAppendS(&inseq,ajSeqGetSeqS(seq));
+
+    if(!ajStrGetLen(accid))
+      ajStrAssignS(&accid, ajSeqGetAccS(seq));
     
     char* in0;
     in0 = ajCharNewS(inseq);
-    fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
-    if(soap_call_ns1__cgr(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
-      ajStrAssignS(&filename,ajSeqGetNameS(seq));
-      ajStrAppendC(&filename,".png");
-      if(get_file(jobid,ajCharNewS(filename))==0){
-        fprintf(stderr,"Retrieval successful\n");
 
-        if(strcmp(ajCharNewS(output),"show") == 0)
-          if(display_png(ajCharNewS(filename), argv[0], ajCharNewS(ajSeqGetAccS(seq))))
-            fprintf(stderr,"Error in X11 displaying\n");
+    if(soap_call_ns1__cgr(
+			  &soap, NULL, NULL,
+			  in0, &params, &jobid
+			  ) == SOAP_OK){
+      if(ajStrCmpC(filename, "gcgr.[accession].png") == 0){
+        ajStrAssignC(&filename, argv[0]);
+        ajStrAppendC(&filename, ".");
+        ajStrAppendS(&filename, accid);
+        ajStrAppendC(&filename, ".png");
       }else{
-        fprintf(stderr,"Retrieval unsuccessful\n");
+        ajStrInsertC(&filename, -5, ".");
+        ajStrInsertS(&filename, -5, accid);
+      }
+      if(get_file(jobid, ajCharNewS(filename))==0){
+        if(output)
+          if(display_png(ajCharNewS(filename), argv[0], ajCharNewS(accid)))
+            fprintf(stderr, "Error in X11 displaying\n");
+      }else{
+        fprintf(stderr, "Retrieval unsuccessful\n");
       }
     }else{
-      soap_print_fault(&soap,stderr);
+      soap_print_fault(&soap, stderr);
     }
   
     soap_destroy(&soap);

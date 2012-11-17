@@ -27,9 +27,9 @@ section: advanced [
     default: "6"
   ]
 
-  string: output [
-    information: "Input 'g' for graph output, 'show' for graph output to X11 window"
-    default: "g"
+  boolean: show [
+    information: "Include to show png with X11 window"
+    default: "N"
   ]
 
   string: accid [
@@ -43,4 +43,11 @@ section: output [
 	information: "Output section"
 	type: "page"
 ]
+
+  string: filename [
+    standard: "Y"
+    information: "Output filename"
+    default: "gkmer_table.[accession].png"
+  ]
+
 endsection: output

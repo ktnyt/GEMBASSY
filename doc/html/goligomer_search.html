@@ -46,8 +46,6 @@ IT IS DONE FOR YOU.
    specified using degenerate nucleotide alphabet, or by regular expressions.<br>
    Performance is optimized for fast searching.<br>
 <br>
-   This method changes the returning value according to the given options.<br>
-<br>
   <br>
    G-language SOAP service is provided by the<br>
    Institute for Advanced Biosciences, Keio University.<br>
@@ -71,12 +69,36 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with goligomer_search
 
-% goligomer_search NC_000913.gbk
+% goligomer_search ecoli.gbk
 Searches oligomers in given sequence
-NC_000913
-Error 502 fault: SOAP-ENV:Server [no subcode]
-"HTTP/1.1 502 Proxy Error"
-Detail: [no detail]
+Oligomer to search: atgcatgc
+147018
+366819
+653138
+863326
+1288615
+1627117
+2111200
+2246695
+2697278
+2750962
+2826906
+2882353
+2998362
+3022134
+3346029
+3477018
+3629113
+3842819
+3958304
+3982183
+4013480
+4285578
+4474663
+4484501
+4499080
+4604562
+4638391
 
 </pre></td></tr></table>
 
@@ -214,8 +236,23 @@ None.
 <th>Description</th></tr>
 
 <tr>
-<td><a href="NA.html">NA</a></td>
-<td>appdescription</td>
+<td><a href="gkmer_table.html">gkmer_table</a></td>
+<td>Create an image showing all k-mer abundance within a sequence</td>
+</tr>
+
+<tr>
+<td><a href="gnucleotide_periodicity.html">gnucleotide_periodicity</a></td>
+<td>Checks the periodicity of certain oligonucleotides</td>
+</tr>
+
+<tr>
+<td><a href="goligomer_counter.html">goligomer_counter</a></td>
+<td>Counts the number of given oligomers in a sequence</td>
+</tr>
+
+<tr>
+<td><a href="gsignature.html">gsignature</a></td>
+<td>Calculate oligonucleotide usage (genomic signature)</td>
 </tr>
 
 </table>

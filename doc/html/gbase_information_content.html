@@ -68,10 +68,12 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gbase_information_content
 
-% gbase_information_content NC_000913.gbk
+% gbase_information_content  NC_000913.gbk -graph cps
 Calculates and graphs the sequence conservation using information content
-NC_000913
 Created gbase_information_content.ps
+
+   Creates gbase_information_content.[accession].ps
+   Output example is prepared in the data directory
 
 </pre></td></tr></table>
 
@@ -98,6 +100,14 @@ Created gbase_information_content.ps
 <td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
 <td>Readable sequence(s)</td>
 <td><b>Required</b></td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-filename</td>
+<td>string</td>
+<td>Output filename</td>
+<td>Any string</td>
+<td>gbase_information_content.[accession].csv</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -153,6 +163,14 @@ Created gbase_information_content.ps
 </tr>
 
 <tr bgcolor="#FFFFCC">
+<td>-output</td>
+<td>boolean</td>
+<td>Include to create CSV file</td>
+<td>Boolean value Yes/No</td>
+<td>No</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
 <td>-graph</td>
 <td>xygraph</td>
 <td>Graph type</td>
@@ -172,6 +190,36 @@ Created gbase_information_content.ps
 <h2>Ouptut file format</h2>
 
 <p>
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -position           string     [start] either 'start' (around start codon)
+                                  or 'end' (around stop codon) to create the
+                                  PWM (Any string)
+   -upstream           integer    [30] Length upstream of specified position
+                                  to create PWM (Any integer value)
+   -downstream         integer    [30] Length downstream of specified position
+                                  to create PWM (Any integer value)
+   -patlen             integer    [3] Length of oligomer to count (Any integer
+                                  value)
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+   -output             boolean    [N] Include to create CSV file
+   -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
+                                  (ps, hpgl, hp7470, hp7580, meta, cps, x11,
+                                  tek, tekt, none, data, xterm, png, gif, svg)
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+
+Input file format
+
+   gbase_information_content reads nucleotide sequences.
+
+Output file format
+
    The output from gbase_information_content is to the specified graphics device.
 </p>
 
@@ -233,8 +281,13 @@ None.
 <th>Description</th></tr>
 
 <tr>
-<td><a href="NA.html">NA</a></td>
-<td>appdescription</td>
+<td><a href="gbase_entropy.html">gbase_entropy</a></td>
+<td>Calculates and graphs the sequence conservation using Shanon uncertainty (entropy)</td>
+</tr>
+
+<tr>
+<td><a href="gbase_relative_entropy.html">gbase_relative_entropy</a></td>
+<td>Calculates and graphs the sequence conservation using Kullback-Leibler divergence (relative entropy)</td>
 </tr>
 
 </table>

@@ -5,8 +5,10 @@ Function
 
 Description
 
-   Checks the periodicity of certain nucleotide (best known with AA dinucleotide)
-   
+   Checks the periodicity of certain nucleotide (best known with AA
+   dinucleotide)
+    
+  
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -26,26 +28,30 @@ Usage
 
    Here is a sample session with gnucleotide_periodicity
 
-% gnucleotide_periodicity NC_000913.gbk
+% gnucleotide_periodicity  NC_000913.gbk -graph cps
 Checks the periodicity of certain oligonucleotides
-Sequence does not have features
-Proceeding with sequence accession ID
-NC_000913
-Error 502 fault: SOAP-ENV:Server [no subcode]
-"HTTP/1.1 502 Proxy Error"
+SOAP 1.1 fault: SOAP-ENV:Server [no subcode]
+"Can't use string ("LOCUS       NC_000913           ") as a HASH ref while "strict refs" in use at /usr/lib/perl5/site_perl/5.8.8/SubOpt.pm line 83, <DATA> line 1483.
+"
 Detail: [no detail]
+
+   Creates gnucleotide_periodicity.[accession].ps
+   Output example is prepared in the data directory
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
+*  -filename           string     [gnucleotide_periodicity.[accession].csv]
+                                  Output filename (Any string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -window             integer    [50] Window size to seek periodicity (Any
                                   integer value)
    -nucleotide         string     [aa] Nucleotide to search (Any string)
+   -output             boolean    [N] Include to create CSV file
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
    -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
@@ -90,7 +96,7 @@ References
 
 Warnings
 
-   Method returns 502 status code. Complying.
+   None.
 
 Diagnostic Error Messages
 
@@ -102,10 +108,14 @@ Exit status
 
 Known bugs
 
-   Constantly returns 502 status code.
+   None.
 
 See also
 
+   gkmer_table             Create an image showing all k-mer abundance within a                            sequence
+   goligomer_counter       Counts the number of given oligomers in a sequence
+   goligomer_search        Searches oligomers in given sequence
+   gsignature              Calculate oligonucleotide usage (genomic signature)
 
 
 Author(s)

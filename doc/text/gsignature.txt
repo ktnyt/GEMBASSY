@@ -8,7 +8,8 @@ Description
    This program calculates short oligonucleotide usage (genomic signature),
    defined as the ratio of observed (O) to expected (E) oligonucleotide
    frequencies. O/E value of dinucleotide CG will be accessible at 
-   
+    
+  
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -28,16 +29,20 @@ Usage
 
    Here is a sample session with gsignature
 
-% gsignature NC_000913.gbk
+% gsignature  NC_000913.gbk
 Calculate oligonucleotide usage (genomic signature)
-NC_000913
-Retrieval successful
+Output filename [gsignature.[accession].csv]:
+
+   Creates gsignature.[accession].csv
+   Output example is prepared in the data directory
 
 Command line arguments
 
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
+   -filename           string     [gsignature.[accession].csv] Output filename
+                                  (Any string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -105,6 +110,10 @@ Known bugs
 
 See also
 
+   gkmer_table             Create an image showing all k-mer abundance within a                            sequence
+   gnucleotide_periodicity Checks the periodicity of certain oligonucleotides
+   goligomer_counter       Counts the number of given oligomers in a sequence
+   goligomer_search        Searches oligomers in given sequence
 
 
 Author(s)

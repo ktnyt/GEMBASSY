@@ -27,10 +27,10 @@ Usage
 
    Here is a sample session with gicdi
 
-% gicdi NC_000913.gbk
+% gicdi  NC_000913.gbk
 Calculates the intrinsic codon deviation index (ICDI)
-NC_000913
 0.0880
+
 
 Command line arguments
 
@@ -107,6 +107,9 @@ Known bugs
 
 See also
 
+   gcbi       Calculates the codon bias index (CBI)
+   gdelta_enc Calculate the codon usage bias related to translation optimization              (delta ENC)
+   gs_value   Calculate the strength of selected codon usage bias (S)
 
 
 Author(s)

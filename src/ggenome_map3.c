@@ -12,7 +12,7 @@
 #include "../include/display_png.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("ggenome_map3",argc,argv,"GEMBASSY","1.0.0");
+  embInitPV("ggenome_map3", argc, argv, "GEMBASSY", "1.0.0");
   
   struct soap soap;
   struct ns1__genome_USCOREmap3InputParams params;
@@ -26,16 +26,17 @@ int main(int argc, char *argv[]){
   AjPStr    filename = NULL;
   char*     jobid;
   
-  seqall = ajAcdGetSeqall("sequence");
-  width  = ajAcdGetInt("width");
-  height = ajAcdGetInt("height");
-  accid  = ajAcdGetString("accid");
+  seqall   = ajAcdGetSeqall("sequence");
+  width    = ajAcdGetInt("width");
+  height   = ajAcdGetInt("height");
+  filename = ajAcdGetString("filename");
+  accid    = ajAcdGetString("accid");
 
   params.width  = width;
   params.height = height;
   params.gmap   = 0;
   
-  while(ajSeqallNext(seqall,&seq)){
+  while(ajSeqallNext(seqall, &seq)){
 
     soap_init(&soap);
 
@@ -44,34 +45,39 @@ int main(int argc, char *argv[]){
 
     inseq = NULL;
 
-    if(ajSeqGetFeat(seq) && !strlen(ajCharNewS(accid))){
-      inseq = getGenbank(seq,ajSeqGetFeat(seq));
+    if(ajSeqGetFeat(seq) && !ajStrGetLen(accid)){
+      inseq = getGenbank(seq);
+      ajStrAssignS(&accid,ajSeqGetAccS(seq));
     }else{
-      if(!strlen(ajCharNewS(accid))){
+      if(!ajStrGetLen(accid)){
         fprintf(stderr,"Sequence does not have features\n");
         fprintf(stderr,"Proceeding with sequence accession ID\n");
-        ajStrAssignS(&inseq,ajSeqGetAccS(seq));
+        ajStrAssignS(&accid,ajSeqGetAccS(seq));
       }
       if(!valID(ajCharNewS(accid))){
           fprintf(stderr,"Invalid accession ID, exiting");
           return 1;
-      }else{
-        ajStrAssignS(&inseq,accid);
       }
+      ajStrAssignS(&inseq,accid);
     }
 
     char* in0;
     in0 = ajCharNewS(inseq);
 
-    fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
-
-
-    if(soap_call_ns1__genome_USCOREmap3(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
-      ajStrAssignS(&filename,ajSeqGetNameS(seq));
-      ajStrAppendC(&filename,".png");
-      if(get_file(jobid,ajCharNewS(filename))==0){
-        fprintf(stderr,"Retrieval successful\n");
+    if(soap_call_ns1__genome_USCOREmap3(
+					&soap, NULL, NULL,
+					in0, &params, &jobid
+					) == SOAP_OK){
+      if(ajStrCmpC(filename, "ggenome_map3.[accession].png") == 0){
+        ajStrAssignC(&filename, argv[0]);
+        ajStrAppendC(&filename, ".");
+        ajStrAppendS(&filename, accid);
+        ajStrAppendC(&filename, ".png");
       }else{
+        ajStrInsertC(&filename, -5, ".");
+        ajStrInsertS(&filename, -5, accid);
+      }
+      if(get_file(jobid,ajCharNewS(filename))){
         fprintf(stderr,"Retrieval unsuccessful\n");
       }
     }else{

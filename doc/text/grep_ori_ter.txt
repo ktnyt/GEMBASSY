@@ -9,26 +9,29 @@ Description
    in bacterial genomes by several means. 
 
    1. Use of databases
-   By default, rep_ori_ter() tries to retrieve the position of replication
-   origin in DoriC (Gao and Zhang 2007) database, and the position of
-   replication terminus from the supplemental data provided in (Kono et al.
-   2011).
+     By default, grep_ori_ter tries to retrieve the position of replication
+     origin in DoriC Gao and Zhang (2007) database, and the position of
+     replication terminus from the supplemental data provided in Kono et al.
+     (2011).
 
-   If the position of origin cannot be found in the database, but "rep_origin" 
-   feature is available, center position within this feature is used for origin. 
+     If the position of origin cannot be found in the database, but "rep_origin 
+     feature is available, center position within this feature is used for
+     origin. 
 
    2. Oriloc
-   Using -oriloc option, you can predict the replication origin and 
-   terminus using the popular Oriloc program developed by Lobry et al. (2000) 
-   available as part of the SeqinR package.
+     Using -oriloc option, you can predict the replication origin and 
+     terminus using the popular Oriloc program developed by Lobry et al. 
+     available as part of the SeqinR package Frank and Lobry (2000).
 
    3. Setting custom origin and terminus
-   Use -ori, -ter to set your own positions.
+     Use -ori=>position1, -ter=>position2 to set your own positions.
 
    4. Use GC skew shift-point
-   If the positions of origin or terminus cannot be found in the databases,
-   rep_ori_ter() automatically calls find_ori_ter() method to predict the 
-   positions using GC skew shift-points at one-base-pair resolution.
+      If the positions of origin or terminus cannot be found in the databases,
+      grep_ori_ter automatically calls find_ori_ter() method to predict the 
+      positions using GC skew shift-points at one-base-pair resolution.
+
+   You can always use -clear option to disable the use of above cache.
 
  
    G-language SOAP service is provided by the
@@ -52,8 +55,8 @@ Usage
 
 % grep_ori_ter NC_000913.gbk
 Get the positions of replication origin and terminus
-NC_000913
 3923881	1550412
+
 
 Command line arguments
 
@@ -103,8 +106,8 @@ References
    Gao F and Zhang CT (2007) "DoriC: a database of oriC regions in bacterial
       genomes", Bioinformatics, 23(14):1866-1867
 
-   Kono N et al. (2011) "Comprehensive prediction of chromosome dimer resolution
-      sites in bacterial genomes", BMC Genomics, 12(1):19
+   Kono N et al. (2011) "Comprehensive prediction of chromosome dimer
+      resolution sites in bacterial genomes", BMC Genomics, 12(1):19
 
    Frank AC and Lobry JR (2000) "Oriloc: prediction of replication boundaries 
       in unannotated bacterial chromosomes", Bioinformatics, 16(6):560-561
@@ -139,6 +142,8 @@ Known bugs
 
 See also
 
+   gfind_ori_ter Predict the replication origin and terminus in bacterial
+                 genomes
 
 
 Author(s)

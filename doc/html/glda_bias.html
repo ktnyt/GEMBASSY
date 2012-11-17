@@ -31,7 +31,8 @@ glda_bias
 
 
 <H2> Function </H2>
-   Calculate strand bias of bacterial genome using linear discriminant analysis (LDA)
+   Calculate strand bias of bacterial genome using linear discriminant analysis
+   (LDA)
 <!--
 DON'T WRITE ANYTHING HERE.
 IT IS DONE FOR YOU.
@@ -43,15 +44,15 @@ IT IS DONE FOR YOU.
 <H2>Description</H2>
 <p>
    This method calculate strand bias of bacterial genome using linear<br>
-   discriminant analysis (LDA), as proposed in Reference 1. The basic idea is to<br>
-   use composition data of genes to train and predict the strand of genes<br>
-   residing either on the  leading or the lagging strand. For computational<br>
+   discriminant analysis (LDA), as proposed in Reference 1. The basic idea is<br>
+   to use composition data of genes to train and predict the strand of genes<br>
+   residing either on the leading or the lagging strand. For computational<br>
    efficiency, this method trans and predicts the strands at putative<br>
    replication origin as reported by the rep_ori_ter() method. This usually<br>
    results in maximum predictability of LDA within bacterial genomes.<br>
 <br>
    Data to use for LDA can be chosen from "base", "codonbase", "codon", and<br>
-   "amino", with -variable option.<br>
+  "amino", with -variable option.<br>
 <br>
  <br>
    G-language SOAP service is provided by the<br>
@@ -76,9 +77,8 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with glda_bias
 
-% glda_bias NC_000913.gbk
+% glda_bias  NC_000913.gbk
 Calculate strand bias of bacterial genome using linear discriminant analysis (LDA)
-NC_000913
 0.7421296
 
 </pre></td></tr></table>
@@ -220,8 +220,23 @@ None.
 <th>Description</th></tr>
 
 <tr>
-<td><a href="NA.html">NA</a></td>
-<td>appdescription</td>
+<td><a href="gb1.html">gb1</a></td>
+<td>Calculate strand bias of bacterial genome using B1 index</td>
+</tr>
+
+<tr>
+<td><a href="gb2.html">gb2</a></td>
+<td>Calculate strand bias of bacterial genome using B2 index</td>
+</tr>
+
+<tr>
+<td><a href="gdelta_gcskew.html">gdelta_gcskew</a></td>
+<td>Calculate strand bias of bacterial genome using delta GC skew index</td>
+</tr>
+
+<tr>
+<td><a href="ggcsi.html">ggcsi</a></td>
+<td>GC Skew Index: an index for strand-specefic mutational bias</td>
 </tr>
 
 </table>

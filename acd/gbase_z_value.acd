@@ -8,6 +8,7 @@ section: input [
   information: "Input section"
   type: "page"
 ]
+
   seqall: sequence [
     parameter: "Y"
     type: "nucleotide"
@@ -20,34 +21,48 @@ section: advanced [
   information: "Advanced section"
   type: "page"
 ]
+
   integer: limit [
     information: "Rank threshold for showing the conserved oligomer"
     default: "5"
   ]
+
   string: position [
     information: "Either 'start' (around start codon) or 'end' (around stop codon) to create the PWM"
     default: "start"
   ]
+
   integer: patlen [
     information: "Length of oligomer to count"
     default: "3"
   ]
+
   integer: upstream [
     information: "Length upstream of specified position to create PWM"
     default: "30"
   ]
+
   integer: downstream [
     information: "Length downstream of specified position to create PWM"
     default: "30"
   ]
+
   string: accid [
     information: "Include to use sequence accession ID as query"
     default: ""
   ]
+
 endsection: advanced
 
 section: output [
   information: "Output section"
   type: "page"
 ]
+
+  string: filename [
+    standard: "Y"
+    information: "Output filename"
+    default: "gbase_z_value.[accession].csv"
+  ]
+
 endsection: output

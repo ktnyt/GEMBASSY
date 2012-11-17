@@ -9,8 +9,6 @@ Description
    specified using degenerate nucleotide alphabet, or by regular expressions.
    Performance is optimized for fast searching.
 
-   This method changes the returning value according to the given options.
-
   
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
@@ -31,12 +29,37 @@ Usage
 
    Here is a sample session with goligomer_search
 
-% goligomer_search NC_000913.gbk
+% goligomer_search ecoli.gbk
 Searches oligomers in given sequence
-NC_000913
-Error 502 fault: SOAP-ENV:Server [no subcode]
-"HTTP/1.1 502 Proxy Error"
-Detail: [no detail]
+Oligomer to search: atgcatgc
+147018
+366819
+653138
+863326
+1288615
+1627117
+2111200
+2246695
+2697278
+2750962
+2826906
+2882353
+2998362
+3022134
+3346029
+3477018
+3629113
+3842819
+3958304
+3982183
+4013480
+4285578
+4474663
+4484501
+4499080
+4604562
+4638391
+
 
 Command line arguments
 
@@ -112,6 +135,10 @@ Known bugs
 
 See also
 
+   gkmer_table             Create an image showing all k-mer abundance within a                            sequence
+   gnucleotide_periodicity Checks the periodicity of certain oligonucleotides
+   goligomer_counter       Counts the number of given oligomers in a sequence
+   gsignature              Calculate oligonucleotide usage (genomic signature)
 
 
 Author(s)

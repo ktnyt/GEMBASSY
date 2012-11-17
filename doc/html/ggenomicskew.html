@@ -68,10 +68,12 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with ggenomicskew
 
-% ggenomicskew NC_000913.gbk
+% ggenomicskew  NC_000913.gbk -graph cps
 Calculates the GC skew in different regions of the given genome
-NC_000913
 Created ggenomicskew.ps
+
+   Creates ggenomicskew.[accession].ps
+   Output example is prepared in the data directory
 
 </pre></td></tr></table>
 
@@ -98,6 +100,14 @@ Created ggenomicskew.ps
 <td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
 <td>Readable sequence(s)</td>
 <td><b>Required</b></td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-filename</td>
+<td>string</td>
+<td>Output filename</td>
+<td>Any string</td>
+<td>ggenomicskew.[accession].png</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -129,6 +139,14 @@ Created ggenomicskew.ps
 </tr>
 
 <tr bgcolor="#FFFFCC">
+<td>-output</td>
+<td>boolean</td>
+<td>Include to create CSV file</td>
+<td>Boolean value Yes/No</td>
+<td>No</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
 <td>-accid</td>
 <td>string</td>
 <td>Include to use sequence accession ID as query</td>
@@ -151,6 +169,7 @@ Created ggenomicskew.ps
 
 <p>
                                   of GC skew
+   -output             boolean    [N] Include to create CSV file
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
    -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
@@ -232,8 +251,18 @@ None.
 <th>Description</th></tr>
 
 <tr>
-<td><a href="NA.html">NA</a></td>
-<td>appdescription</td>
+<td><a href="ggcskew.html">ggcskew</a></td>
+<td>Calculates the GC skew of the input sequence</td>
+</tr>
+
+<tr>
+<td><a href="ggcwin.html">ggcwin</a></td>
+<td>Calculates the GC content along the given genome</td>
+</tr>
+
+<tr>
+<td><a href="ggeneskew.html">ggeneskew</a></td>
+<td>Calculate the gene strand bias of the given genome</td>
 </tr>
 
 </table>

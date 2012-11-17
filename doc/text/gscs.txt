@@ -28,10 +28,10 @@ Usage
 
    Here is a sample session with gscs
 
-% gscs NC_000913.gbk
+% gscs  NC_000913.gbk
 Calculates the scaled chi-square
-NC_000913
 0.2651
+
 
 Command line arguments
 
@@ -109,6 +109,10 @@ Known bugs
 
 See also
 
+   genc     Calculate the effective number of codons (Nc)
+   gew      Calculate a measure of synonymous codon usage evenness (Ew)
+   gfop     Calculate the frequency of optimal codons (Fop)
+   gw_value Calculate the 'relative adaptiveness of each codon' (W)
 
 
 Author(s)

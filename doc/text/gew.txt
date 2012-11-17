@@ -28,16 +28,20 @@ Usage
 
    Here is a sample session with gew
 
-% gew NC_000913.gbk
+% gew  NC_000913.gbk
 Calculate a measure of synonymous codon usage evenness (Ew)
-NC_000913
-Retrieval successful
+Output filename [gew.[accession].csv]:
+
+   Creates gew.[accession].csv
+   Output example is prepared in the data directory
 
 Command line arguments
 
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
+   -filename           string     [gew.[accession].csv] Output filename (Any
+                                  string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -107,6 +111,10 @@ Known bugs
 
 See also
 
+   genc     Calculate the effective number of codons (Nc)
+   gfop     Calculate the frequency of optimal codons (Fop)
+   gscs     Calculates the scaled chi-square
+   gw_value Calculate the 'relative adaptiveness of each codon' (W)
 
 
 Author(s)

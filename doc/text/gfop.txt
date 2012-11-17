@@ -27,16 +27,20 @@ Usage
 
    Here is a sample session with gfop
 
-% gfop NC_000913.gbk
+% gfop  NC_000913.gbk
 Calculate the frequency of optimal codons (Fop)
-NC_000913
-Retrieval successful
+Output filename [gfop.[accession].csv]:
+
+   Creates gfop.[accession].csv
+   Output example is prepared in the data directory
 
 Command line arguments
 
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
+   -filename           string     [gfop.[accession].csv] Output filename (Any
+                                  string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -103,6 +107,10 @@ Known bugs
 
 See also
 
+   genc     Calculate the effective number of codons (Nc)
+   gew      Calculate a measure of synonymous codon usage evenness (Ew)
+   gscs          Calculates the scaled chi-square
+   gw_value Calculate the 'relative adaptiveness of each codon' (W)
 
 
 Author(s)

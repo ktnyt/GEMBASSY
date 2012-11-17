@@ -45,7 +45,8 @@ IT IS DONE FOR YOU.
    This program calculates short oligonucleotide usage (genomic signature),<br>
    defined as the ratio of observed (O) to expected (E) oligonucleotide<br>
    frequencies. O/E value of dinucleotide CG will be accessible at <br>
-   <br>
+    <br>
+  <br>
    G-language SOAP service is provided by the<br>
    Institute for Advanced Biosciences, Keio University.<br>
    The original web service is located at the following URL:<br>
@@ -68,10 +69,12 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gsignature
 
-% gsignature NC_000913.gbk
+% gsignature  NC_000913.gbk
 Calculate oligonucleotide usage (genomic signature)
-NC_000913
-Retrieval successful
+Output filename [gsignature.[accession].csv]:
+
+   Creates gsignature.[accession].csv
+   Output example is prepared in the data directory
 
 </pre></td></tr></table>
 
@@ -98,6 +101,14 @@ Retrieval successful
 <td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
 <td>Readable sequence(s)</td>
 <td><b>Required</b></td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-filename</td>
+<td>string</td>
+<td>Output filename</td>
+<td>Any string</td>
+<td>gsignature.[accession].csv</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -156,6 +167,37 @@ Retrieval successful
 <h2>Ouptut file format</h2>
 
 <p>
+   Creates gsignature.[accession].csv
+   Output example is prepared in the data directory
+
+Command line arguments
+
+Standard (Mandatory) qualifiers:
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
+                                  format, or reference (input USA)
+   -filename           string     [gsignature.[accession].csv] Output filename
+                                  (Any string)
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -wordlength         integer    [2] Word length (Any integer value)
+   -[no]bothstrand     boolean    [1] Use direct (0) or both (1) strand
+   -[no]oe             boolean    [1] Use observed (0) or O/E (1) value
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+
+Input file format
+
+   gsignature reads nucleotide sequences.
+
+Output file format
+
    The output from gsignature is to raw CSV format.
 </p>
 
@@ -221,8 +263,23 @@ None.
 <th>Description</th></tr>
 
 <tr>
-<td><a href="NA.html">NA</a></td>
-<td>appdescription</td>
+<td><a href="gkmer_table.html">gkmer_table</a></td>
+<td>Create an image showing all k-mer abundance within a sequence</td>
+</tr>
+
+<tr>
+<td><a href="gnucleotide_periodicity.html">gnucleotide_periodicity</a></td>
+<td>Checks the periodicity of certain oligonucleotides</td>
+</tr>
+
+<tr>
+<td><a href="goligomer_counter.html">goligomer_counter</a></td>
+<td>Counts the number of given oligomers in a sequence</td>
+</tr>
+
+<tr>
+<td><a href="goligomer_search.html">goligomer_search</a></td>
+<td>Searches oligomers in given sequence</td>
 </tr>
 
 </table>

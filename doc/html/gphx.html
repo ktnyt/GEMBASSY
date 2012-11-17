@@ -68,10 +68,12 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gphx
 
-% gphx NC_000913.gbk
+% gphx  NC_000913.gbk
 Identify predicted highly expressed gene
-NC_000913
-Retrieval successful
+Output filename [gphx.[accession].csv]:
+
+   Creates gphx.[accession].csv
+   Output example is prepared in the data directory
 
 </pre></td></tr></table>
 
@@ -98,6 +100,14 @@ Retrieval successful
 <td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
 <td>Readable sequence(s)</td>
 <td><b>Required</b></td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-filename</td>
+<td>string</td>
+<td>Output filename</td>
+<td>Any string</td>
+<td>gbase_entropy.[accession].csv</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -156,6 +166,41 @@ Retrieval successful
 <h2>Ouptut file format</h2>
 
 <p>
+   Creates gphx.[accession].csv
+   Output example is prepared in the data directory
+
+Command line arguments
+
+Standard (Mandatory) qualifiers:
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
+                                  format, or reference (input USA)
+   -filename           string     [gbase_entropy.[accession].csv] Output
+                                  filename (Any string)
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -translate          boolean    [0] Include when translating using standard
+                                  codon table
+   -usage              string     Pointer HASH of vectors of amino acid and
+                                  codon usage of a set of highly expressed
+                                  genes (Any string)
+   -delkey             string     [[^ACDEFGHIKLMNPQRSTVWYacgtU]] Regular
+                                  expression to delete key (Any string)
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+
+Input file format
+
+   gphx reads nucleotide sequences.
+
+Output file format
+
    The output from gphx is to raw CSV format.
 </p>
 
@@ -223,8 +268,13 @@ None.
 <th>Description</th></tr>
 
 <tr>
-<td><a href="NA.html">NA</a></td>
-<td>appdescription</td>
+<td><a href="gcai.html">gcai</a></td>
+<td>Calculate codon adaptation index for each gene</td>
+</tr>
+
+<tr>
+<td><a href="gp2.html">gp2</a></td>
+<td>Calculate the P2 index of each gene</td>
 </tr>
 
 </table>

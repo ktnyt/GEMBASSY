@@ -43,9 +43,6 @@ IT IS DONE FOR YOU.
 <H2>Description</H2>
 <p>
    Calculates the consensus of given list of sequences, using Z-score.<br>
-   Consensus with Z value greater than int high_z (default is 1) is <br>
-   capitalized, and consensus with Z value less than int low_z <br>
-   (default is 0.2) is shown as '-'.<br>
 <br>
   <br>
    G-language SOAP service is provided by the<br>
@@ -70,8 +67,12 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gconsensus_z
 
-% gconsensus_z NC_000913.gbk
+% gconsensus_z  consensus.fasta -graph cps
 Calculate consensus in given array of sequences
+Created gconsensus_z.ps
+
+   Creates gconsensus_z.[accession].ps
+   Output example is prepared in the data directory
 
 </pre></td></tr></table>
 
@@ -98,6 +99,14 @@ Calculate consensus in given array of sequences
 <td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
 <td>Readable sequence(s)</td>
 <td><b>Required</b></td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-filename</td>
+<td>string</td>
+<td>Output filename</td>
+<td>Any string</td>
+<td>gconsensus_z.csv</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -130,10 +139,10 @@ Calculate consensus in given array of sequences
 
 <tr bgcolor="#FFFFCC">
 <td>-output</td>
-<td>string</td>
-<td>Input 'g' for graph output, 'show' for graph output to X11 window</td>
-<td>Any string</td>
-<td>g</td>
+<td>boolean</td>
+<td>Include to create CSV file</td>
+<td>Boolean value Yes/No</td>
+<td>No</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -150,7 +159,21 @@ Calculate consensus in given array of sequences
 <h2>Input file format</h2>
 
 <p>
-                                  graph output to X11 window (Any string)
+   gconsensus_z reads nucleotide sequences.
+</p>
+
+<h2>Ouptut file format</h2>
+
+<p>
+                                  string)
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -high               integer    [1] z value greater than which is
+                                  significant (Any integer value)
+   -low                float      [0.2] z value less than which is
+                                  insignificant (Any numeric value)
+   -output             boolean    [N] Include to create CSV file
    -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
                                   (ps, hpgl, hp7470, hp7580, meta, cps, x11,
                                   tek, tekt, none, data, xterm, png, gif, svg)
@@ -164,11 +187,9 @@ Calculate consensus in given array of sequences
 Input file format
 
    gconsensus_z reads nucleotide sequences.
-</p>
 
-<h2>Ouptut file format</h2>
+Output file format
 
-<p>
    The output from gconsensus_z is to the specified graphics device.
 </p>
 
@@ -230,8 +251,18 @@ None.
 <th>Description</th></tr>
 
 <tr>
-<td><a href="NA.html">NA</a></td>
-<td>appdescription</td>
+<td><a href="gdist_in_cc.html">gdist_in_cc</a></td>
+<td>Calculates the distance between two loci in circular chromosomes</td>
+</tr>
+
+<tr>
+<td><a href="gpalindrome.html">gpalindrome</a></td>
+<td>Searches palindrome sequences</td>
+</tr>
+
+<tr>
+<td><a href="gseqinfo.html">gseqinfo</a></td>
+<td>Prints out basic nucleotide sequence statistics</td>
 </tr>
 
 </table>

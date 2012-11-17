@@ -67,12 +67,12 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gpalindrome
 
-% gpalindrome NC_000913.gbk
+% gpalindrome  NC_000913.gbk
 Searches palindrome sequences
-NC_000913
-Error 502 fault: SOAP-ENV:Server [no subcode]
-"HTTP/1.1 502 Proxy Error"
-Detail: [no detail]
+Output filename [gpalindrome.[accession].csv]:
+
+   Creates gpalindrome.[accession].csv
+   Output example is prepared in the data directory
 
 </pre></td></tr></table>
 
@@ -99,6 +99,14 @@ Detail: [no detail]
 <td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
 <td>Readable sequence(s)</td>
 <td><b>Required</b></td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-filename</td>
+<td>string</td>
+<td>Output filename</td>
+<td>Any string</td>
+<td>gpalindrome.[accession].csv</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -157,6 +165,39 @@ Detail: [no detail]
 <h2>Ouptut file format</h2>
 
 <p>
+   Creates gpalindrome.[accession].csv
+   Output example is prepared in the data directory
+
+Command line arguments
+
+Standard (Mandatory) qualifiers:
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
+                                  format, or reference (input USA)
+   -filename           string     [gpalindrome.[accession].csv] Output
+                                  filename (Any string)
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -shortest           integer    [4] Shortest palindrome to search (Any
+                                  integer value)
+   -loop               integer    [0] Longest stem loop to allow (Any integer
+                                  value)
+   -gtmatch            boolean    [0] If 1, allows g-t match
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+
+Input file format
+
+   gpalindrome reads nucleotide sequences.
+
+Output file format
+
    The output from gpalindrome is to raw CSV format.
 </p>
 
@@ -191,7 +232,7 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   May return 502 codes for large scale genomes.
+   None.
 </p>
 
 <h2>Diagnostic Error Messages</h2>
@@ -218,8 +259,18 @@ None.
 <th>Description</th></tr>
 
 <tr>
-<td><a href="NA.html">NA</a></td>
-<td>appdescription</td>
+<td><a href="gconsensus_z.html">gconsensus_z</a></td>
+<td>Calculate consensus in given array of sequences</td>
+</tr>
+
+<tr>
+<td><a href="gdist_in_cc.html">gdist_in_cc</a></td>
+<td>Calculates the distance between two loci in circular chromosomes</td>
+</tr>
+
+<tr>
+<td><a href="gseqinfo.html">gseqinfo</a></td>
+<td>Prints out basic nucleotide sequence statistics</td>
 </tr>
 
 </table>

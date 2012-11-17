@@ -5,7 +5,7 @@ Function
 
 Description
 
-   Converts a sequence to a png image, by representing nucleotide
+   Converts a sequence to a png image, by representing nucleotide 
    sequences with representative pixels. 
    A is shown in red, T is shown in green, 
    G is shown in yellow, and C is shown in blue. 
@@ -30,24 +30,27 @@ Usage
 
    Here is a sample session with gseq2png
 
-% gseq2png NC_000913.gbk
+% gseq2png  NC_000913.gbk
 Converts a sequence to PNG image
-NC_000913
-Retrieval successful
+Output filename [gseq2png.[accession].png]:
+
+   Creates gseq2png.[accession].png
+   Output example is prepared in the data directory
 
 Command line arguments
 
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
+   -filename           string     [gseq2png.[accession].png] Output filename
+                                  (Any string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -width              integer    [640] Width of the image (Any integer value)
    -window             integer    [20] Window size of a sequence to represent
                                   each pixel (Any integer value)
-   -output             string     [g] Input 'g' for graph output, 'show' for
-                                  graph output to X11 window (Any string)
+   -show               boolean    [N] Include to show png with X11 window
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
 
@@ -105,6 +108,7 @@ Known bugs
 
 See also
 
+   gcgr Create a Chaos Game Representation of a given sequence
 
 
 Author(s)

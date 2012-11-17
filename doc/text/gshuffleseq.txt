@@ -15,10 +15,10 @@ Description
    k=3 preserves all triplet, doublet, and single nucleotide composition. 
    Algorithm for k-mer preserved shuffling is non-trivial, which is solved
    by graph theoretical approach with Eulerian random walks in the graph of 
-   k-1-mers. See Jiang et al. (2008), Kandel et al. (1996) Propp and Wilson
+   k-1-mers. See Jiang et al., (2008) Kandel et al. (1996), and Propp et al.
    (1998) for details of this algorithm. 
-
-   
+    
+  
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -38,9 +38,8 @@ Usage
 
    Here is a sample session with gshuffleseq
 
-% gshuffleseq NC_000913.gbk
+% gshuffleseq  NC_000913.gbk
 Create randomized sequence with conserved k-mer composition
-NC_000913
 
 Command line arguments
 
@@ -124,6 +123,7 @@ Known bugs
 
 See also
 
+   shuffleseq Shuffles a set of sequences maintaining composition
 
 
 Author(s)

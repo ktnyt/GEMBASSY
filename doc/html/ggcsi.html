@@ -48,14 +48,15 @@ IT IS DONE FOR YOU.
    bacterial genomes, caused by replicational selection. <br>
 <br>
    GCSI is calculated by the following formula:<br>
-   GCSI = sqrt((SA/6000) * (dist/600))<br>
+       GCSI = sqrt((SA/6000) * (dist/600))<br>
    where SA is the spectral amplitude of Fourier power spectrum at 1Hz,<br>
    and dist is the normalized Euclidean distance between the vertices of <br>
    cumulative GC skew.<br>
 <br>
-   GCSI ranges from 0 (no observable skew) to 1 (strong skew), and Archaeal genomes<br>
-   that have multiple replication origins and therefore have no observable skew<br>
-   mostly have GCSI below 0.05. Escherichia coli genome has values around 0.10.<br>
+   GCSI ranges from 0 (no observable skew) to 1 (strong skew), and Archaeal<br>
+   genomes that have multiple replication origins and therefore have no<br>
+   observable skew mostly have GCSI below 0.05. Escherichia coli genome has<br>
+   values around 0.10.<br>
 <br>
    Version 1 of GCSI required fixed number of windows (4096), but the new GCSI<br>
    version 2 (also known as generalized GCSI: gGCSI) is invariant of the number<br>
@@ -86,9 +87,8 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with ggcsi
 
-% ggcsi NC_000913.gbk
+% ggcsi  NC_000913.gbk
 GC Skew Index: an index for strand-specefic mutational bias
-NC_000913
 0.096662	487.218567	69.037727
 
 </pre></td></tr></table>
@@ -224,8 +224,9 @@ None.
 <h2>Refrences</h2>
 
 <pre>
-   Arakawa K, Tomita M (2007) "The GC skew index: a measure of genomic compositional 
-      asymmetry and the degree of replicational selection", Evolutionary Bioinformatics, 3:145-154.
+   Arakawa K, Tomita M (2007) "The GC skew index: a measure of genomic
+      compositional asymmetry and the degree of replicational selection",
+      Evolutionary Bioinformatics, 3:145-154.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -270,8 +271,23 @@ None.
 <th>Description</th></tr>
 
 <tr>
-<td><a href="NA.html">NA</a></td>
-<td>appdescription</td>
+<td><a href="gb1.html">gb1</a></td>
+<td>Calculate strand bias of bacterial genome using B1 index</td>
+</tr>
+
+<tr>
+<td><a href="gb2.html">gb2</a></td>
+<td>Calculate strand bias of bacterial genome using B2 index</td>
+</tr>
+
+<tr>
+<td><a href="gdelta_gcskew.html">gdelta_gcskew</a></td>
+<td>Calculate strand bias of bacterial genome using delta GC skew index</td>
+</tr>
+
+<tr>
+<td><a href="glda_bias.html">glda_bias</a></td>
+<td>Calculate strand bias of bacterial genome using linear discriminant analysis (LDA)</td>
 </tr>
 
 </table>

@@ -31,7 +31,8 @@ gbase_entropy
 
 
 <H2> Function </H2>
-   Calculates and graphs the sequence conservation using Shanon uncertainty (entropy)
+   Calculates and graphs the sequence conservation using Shanon uncertainty
+   (entropy)
 <!--
 DON'T WRITE ANYTHING HERE.
 IT IS DONE FOR YOU.
@@ -68,10 +69,12 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gbase_entropy
 
-% gbase_entropy NC_000913.gbk
+% gbase_entropy  NC_000913.gbk -graph cps
 Calculates and graphs the sequence conservation using Shanon uncertainty (entropy)
-NC_000913
 Created gbase_entropy.ps
+
+   Creates gbase_entropy.[accession].ps
+   Output example is prepared in the data directory
 
 </pre></td></tr></table>
 
@@ -98,6 +101,14 @@ Created gbase_entropy.ps
 <td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
 <td>Readable sequence(s)</td>
 <td><b>Required</b></td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-filename</td>
+<td>string</td>
+<td>Output filename</td>
+<td>Any string</td>
+<td>gbase_entropy.[accession].csv</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -150,6 +161,14 @@ Created gbase_entropy.ps
 <td>Include to use sequence accession ID as query</td>
 <td>Any string</td>
 <td>&nbsp;</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-output</td>
+<td>boolean</td>
+<td>Include to create CSV file</td>
+<td>Boolean value Yes/No</td>
+<td>No</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -233,8 +252,13 @@ None.
 <th>Description</th></tr>
 
 <tr>
-<td><a href="NA.html">NA</a></td>
-<td>appdescription</td>
+<td><a href="gbase_information_content.html">gbase_information_content</a></td>
+<td>Calculates and graphs the sequence conservation using information content</td>
+</tr>
+
+<tr>
+<td><a href="gbase_relative_entropy.html">gbase_relative_entropy</a></td>
+<td>Calculates and graphs the sequence conservation using Kullback-Leibler divergence (relative entropy)</td>
 </tr>
 
 </table>

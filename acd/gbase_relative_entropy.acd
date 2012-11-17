@@ -46,6 +46,11 @@ section: advanced [
     default: ""
   ]
 
+  boolean: output [
+    information: "Include to create CSV file"
+    default: "N"
+  ]
+
 endsection: advanced
 
 section: output 
@@ -57,6 +62,12 @@ section: output
   xygraph: graph [
     multiple: "8"
     relations: "EDAM:0002968 data Image or plot"
+  ]
+
+  string: filename [
+    standard: "$(output)"
+    information: "Output filename"
+    default: "gbase_relative_entropy.[accession].csv"
   ]
 
 endsection: output

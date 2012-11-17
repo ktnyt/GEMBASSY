@@ -11,7 +11,7 @@
 #include "../include/gembassy.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("gfind_ori_ter",argc,argv,"GEMBASSY","1.0.0");
+  embInitPV("gfind_ori_ter", argc, argv, "GEMBASSY", "1.0.0");
 
   struct soap soap;
   struct ns1__find_USCOREori_USCOREterInputParams params;
@@ -23,7 +23,7 @@ int main(int argc, char *argv[]){
   AjBool    purine   = 0;
   AjBool    keto     = 0;
   ajint     filter   = 0;
-  AjPStr    accid     = NULL;
+  AjPStr    accid    = NULL;
   AjPStr    filename = NULL;
   char*     jobid;
 
@@ -47,46 +47,46 @@ int main(int argc, char *argv[]){
     params.keto   = 0;
   }
 
-  while(ajSeqallNext(seqall,&seq)){
+  while(ajSeqallNext(seqall, &seq)){
 
     soap_init(&soap);
 
     inseq = NULL;
 
-    if(ajSeqGetFeat(seq) && !strlen(ajCharNewS(accid))){
-      inseq = getGenbank(seq,ajSeqGetFeat(seq));
+    if(ajSeqGetFeat(seq) && !ajStrGetLen(accid)){
+      inseq = getGenbank(seq);
+      ajStrAssignS(&accid, ajSeqGetAccS(seq));
     }else{
-      if(!strlen(ajCharNewS(accid))){
-        fprintf(stderr,"Sequence does not have features\n");
-        fprintf(stderr,"Proceeding with sequence accession ID\n");
-        ajStrAssignS(&inseq,ajSeqGetAccS(seq));
+      if(!ajStrGetLen(accid)){
+        fprintf(stderr, "Sequence does not have features\n");
+        fprintf(stderr, "Proceeding with sequence accession ID\n");
+        ajStrAssignS(&accid,ajSeqGetAccS(seq));
       }
       if(!valID(ajCharNewS(accid))){
-          fprintf(stderr,"Invalid accession ID, exiting");
+          fprintf(stderr, "Invalid accession ID, exiting");
           return 1;
-      }else{
-        ajStrAssignS(&inseq,accid);
       }
+      ajStrAssignS(&inseq, accid);
     }
 
     char* in0;
     in0 = ajCharNewS(inseq);
 
-    fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
-
-
-    if(soap_call_ns1__find_USCOREori_USCOREter(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
+    if(soap_call_ns1__find_USCOREori_USCOREter(
+					       &soap, NULL, NULL,
+					       in0, &params, &jobid
+					       ) == SOAP_OK){
       char* dlm = "<>";
       char* tp  = jobid;
-      tp = strtok(tp,dlm);
-      tp = strtok(NULL,dlm);
-      printf("%s\t",tp);
-      tp = strtok(NULL,dlm);
-      tp = strtok(NULL,dlm);
-      tp = strtok(NULL,dlm);
-      printf("%s\n",tp);
+      tp = strtok(tp, dlm);
+      tp = strtok(NULL, dlm);
+      fprintf(stdout, "%s\t", tp);
+      tp = strtok(NULL, dlm);
+      tp = strtok(NULL, dlm);
+      tp = strtok(NULL, dlm);
+      fprintf(stdout, "%s\n", tp);
     }else{
-      soap_print_fault(&soap,stderr);
+      soap_print_fault(&soap, stderr);
     }
     
     soap_destroy(&soap);

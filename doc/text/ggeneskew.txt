@@ -6,7 +6,8 @@ Function
 Description
 
    This program calculates and graphs the strand bias of genes (or the GC skew
-   within them). By default, this program visualizes the gene strand preference    (1 for direct, -1 for complement strand), but by specifying -base option
+   within them). By default, this program visualizes the gene strand preference
+   (1 for direct, -1 for complement strand), but by specifying -base option
    option, GC/AT/Purine/Keto skews of the coding regions or more specifically
    in the GC3 (third codon position) with -gc3 option can be calculated.
 
@@ -30,16 +31,20 @@ Usage
 
    Here is a sample session with ggeneskew
 
-% ggeneskew NC_000913.gbk
+% ggeneskew  NC_000913.gbk -graph cps
 Calculate the gene strand bias of the given genome
-NC_000913
 Created ggeneskew.ps
+
+   Creates ggeneskew.[accession].ps
+   Output example is prepared in the data directory
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
+*  -filename           string     [ggeneskew.[accession].csv] Output filename
+                                  (Any string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -53,6 +58,7 @@ Standard (Mandatory) qualifiers:
                                   string)
    -gctri              boolean    [0] Include to use only the third codon
                                   positions
+   -output             boolean    [0] Include to create CSV file
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
    -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
@@ -113,6 +119,9 @@ Known bugs
 
 See also
 
+   ggcskew      Calculates the GC skew of the input sequence
+   ggcwin       Calculates the GC content along the given genome
+   ggenomicskew Calculates the GC skew in different regions of the given genom
 
 
 Author(s)

@@ -48,4 +48,11 @@ section: output [
 	information: "Output section"
 	type: "page"
 ]
+
+  string: filename [
+    standard: "Y"
+    information: "Output filename"
+    default: "gsignature.[accession].csv"
+  ]
+
 endsection: output

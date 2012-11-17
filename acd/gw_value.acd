@@ -43,4 +43,11 @@ section: output [
   information: "Output section"
   type: "page"
 ]
+
+  string: filename [
+    standard: "Y"
+    information: "Output filename"
+    default: "gw_value.[accession].csv"
+  ]
+
 endsection: output

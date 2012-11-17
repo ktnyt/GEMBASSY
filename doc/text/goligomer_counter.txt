@@ -29,10 +29,9 @@ Usage
 
    Here is a sample session with goligomer_counter
 
-% goligomer_counter NC_000913.gbk
+% goligomer_counter ecoli.gbk
 Counts the number of given oligomers in a sequence
 Oligomer to count: atgcatgc
-NC_000913
 27
 
 Command line arguments
@@ -102,6 +101,10 @@ Known bugs
 
 See also
 
+   gkmer_table             Create an image showing all k-mer abundance within a                            sequence
+   gnucleotide_periodicity Checks the periodicity of certain oligonucleotides
+   goligomer_search        Searches oligomers in given sequence
+   gsignature              Calculate oligonucleotide usage (genomic signature)
 
 
 Author(s)

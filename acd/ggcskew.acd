@@ -49,12 +49,12 @@ section: advanced [
 
   boolean: keto [
     information: "Include for observing keto (TG/AC) skew"
-		default: "0"
+    default: "0"
   ]
 
-  string: output [
-    information: "Input 'g' for graph output, 'f' for CSV file output, 'show' for graph output to X11 window"
-    default: "g"
+  boolean: output [
+    information: "Include to create CSV file"
+    default: "N"
   ]
 
   string: accid [
@@ -72,6 +72,12 @@ section: output [
   xygraph: graph [
     multiple: "8"
     relations: "EDAM:0002968 data Image or plot"
+  ]
+
+  string: filename [
+    standard: "$(output)"
+    information: "Output filename"
+    default: "ggcskew.[accession].csv"
   ]
 
 endsection: output

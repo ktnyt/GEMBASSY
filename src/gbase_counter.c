@@ -11,7 +11,7 @@
 #include "../include/gembassy.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("gbase_counter",argc,argv,"GEMBASSY","1.0.0");
+  embInitPV("gbase_counter", argc, argv, "GEMBASSY", "1.0.0");
 
   struct soap soap;
   struct ns1__base_USCOREcounterInputParams params;
@@ -24,6 +24,7 @@ int main(int argc, char *argv[]){
   ajint     upstream   = 0;
   ajint     downstream = 0;
   AjPStr    accid      = NULL;
+  AjPStr    output     = 0;
   AjPStr    filename   = NULL;
   char*     jobid; 
 
@@ -33,50 +34,56 @@ int main(int argc, char *argv[]){
   upstream   = ajAcdGetInt("upstream");
   downstream = ajAcdGetInt("downstream");
   accid      = ajAcdGetString("accid");
+  filename   = ajAcdGetString("filename");
   
   params.position   = ajCharNewS(position);
   params.PatLen     = PatLen;
   params.upstream   = upstream;
   params.downstream = downstream;
   
-  while(ajSeqallNext(seqall,&seq)){
+  while(ajSeqallNext(seqall, &seq)){
 
     soap_init(&soap);
 
     inseq = NULL;
 
-    if(ajSeqGetFeat(seq) && !strlen(ajCharNewS(accid))){
-      inseq = getGenbank(seq,ajSeqGetFeat(seq));
+    if(ajSeqGetFeat(seq) && !ajStrGetLen(accid)){
+      inseq = getGenbank(seq);
+      ajStrAssignS(&accid, ajSeqGetAccS(seq));
     }else{
-      if(!strlen(ajCharNewS(accid))){
-        fprintf(stderr,"Sequence does not have features\n");
-        fprintf(stderr,"Proceeding with sequence accession ID\n");
-        ajStrAssignS(&inseq,ajSeqGetAccS(seq));
-      }
       if(!valID(ajCharNewS(accid))){
-          fprintf(stderr,"Invalid accession ID, exiting");
+          fprintf(stderr, "Invalid accession ID, exiting\n");
           return 1;
-      }else{
-        ajStrAssignS(&inseq,accid);
       }
+      if(!ajStrGetLen(accid)){
+	fprintf(stderr, "Sequence does not have features\n");
+	fprintf(stderr, "Proceeding with sequence accession ID\n");
+	ajStrAssignS(&accid, ajSeqGetAccS(seq));
+      }
+      ajStrAssignS(&inseq, accid);
     }
 
     char* in0;
     in0 = ajCharNewS(inseq);
 
-    fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
-
-
-    if(soap_call_ns1__base_USCOREcounter(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
-      ajStrAssignS(&filename,ajSeqGetNameS(seq));
-      ajStrAppendC(&filename,".csv");
-      if(get_file(jobid,ajCharNewS(filename))==0){
-        fprintf(stderr,"Retrieval successful\n");
+    if(soap_call_ns1__base_USCOREcounter(
+					 &soap, NULL, NULL,
+					 in0, &params, &jobid
+					 ) == SOAP_OK){
+      if(ajStrCmpC(filename, "gbase_counter.[accession].csv")){
+        ajStrAssignC(&filename, argv[0]);
+        ajStrAppendC(&filename, ".");
+        ajStrAppendS(&filename, accid);
+        ajStrAppendC(&filename, ".csv");
       }else{
-        fprintf(stderr,"Retrieval unsuccessful\n");
+	ajStrInsertC(&filename, -5, ".");
+	ajStrInsertS(&filename, -5, accid);
+      }
+      if(get_file(jobid,ajCharNewS(filename))){
+        fprintf(stderr, "Retrieval unsuccessful\n");
       }
     }else{
-      soap_print_fault(&soap,stderr);
+      soap_print_fault(&soap, stderr);
     }
   
     soap_destroy(&soap);
@@ -88,6 +95,7 @@ int main(int argc, char *argv[]){
   ajSeqDel(&seq);
   ajStrDel(&inseq);
   ajStrDel(&filename);
+  ajStrDel(&position);
 
   embExit();
   return 0;

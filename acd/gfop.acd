@@ -38,4 +38,11 @@ section: output [
 	information: "Output section"
 	type: "page"
 ]
+
+  string: filename [
+    standard: "Y"
+    information: "Output filename"
+    default: "gfop.[accession].csv"
+  ]
+
 endsection: output

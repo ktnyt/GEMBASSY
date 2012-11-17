@@ -31,7 +31,8 @@ gdelta_enc
 
 
 <H2> Function </H2>
-   Calculate the codon usage bias related to translation optimization (delta ENC)
+   Calculate the codon usage bias related to translation optimization
+   (delta ENC)
 <!--
 DON'T WRITE ANYTHING HERE.
 IT IS DONE FOR YOU.
@@ -42,12 +43,14 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This method calculates the codon usage bias related to translation optimization <br>
-   (delta ENC) described in Reference 1. The basic idea is to calculate the Effective<br>
-   Number of Codons (ENC) for highly-expressed genes (ribosomal genes) and weakly-<br>
-   expressed genes (all genes), and taking the relative difference between them.<br>
+   This method calculates the codon usage bias related to translation<br>
+   optimization (delta ENC) described in Rocha (2004). The basic idea is to<br>
+   calculate the Effective Number of Codons (ENC) for highly-expressed genes<br>
+   (ribosomal genes) and weakly-expressed genes (all genes), and taking the<br>
+   relative difference between them.<br>
 <br>
 <br>
+   G-language SOAP service is provided by the<br>
    Institute for Advanced Biosciences, Keio University.<br>
    The original web service is located at the following URL:<br>
 <br>
@@ -69,9 +72,9 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gdelta_enc
 
-% gdelta_enc NC_000913.gbk
+% gdelta_enc  NC_000913.gbk
 Calculate the codon usage bias related to translation optimization (delta ENC)
-NC_000913
+0.23826860841424
 
 </pre></td></tr></table>
 
@@ -162,7 +165,6 @@ None.
       large-scale analysis of high-throughput omics data, J. Pest Sci.,
       31, 7.
 
-   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Wev Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
 </pre>
@@ -197,8 +199,18 @@ None.
 <th>Description</th></tr>
 
 <tr>
-<td><a href="NA.html">NA</a></td>
-<td>appdescription</td>
+<td><a href="gcbi.html">gcbi</a></td>
+<td>Calculates the codon bias index (CBI)</td>
+</tr>
+
+<tr>
+<td><a href="gicdi.html">gicdi</a></td>
+<td>Calculates the intrinsic codon deviation index (ICDI)</td>
+</tr>
+
+<tr>
+<td><a href="gs_value.html">gs_value</a></td>
+<td>Calculate the strength of selected codon usage bias (S)</td>
 </tr>
 
 </table>
