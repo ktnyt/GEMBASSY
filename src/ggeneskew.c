@@ -41,6 +41,8 @@ int main(int argc, char *argv[]){
   gc3        = ajAcdGetBoolean("gctri");
   base       = ajAcdGetString("base");
   accid      = ajAcdGetString("accid");
+  filename   = ajAcdGetString("filename");
+  output     = ajAcdGetBoolean("output");
   mult       = ajAcdGetGraphxy("graph");
   
   params.window       = window;

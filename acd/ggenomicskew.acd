@@ -57,7 +57,7 @@ section: output [
   string: filename [
     standard: "$(output)"
     information: "Output filename"
-    default: "ggenomicskew.[accession].png"
+    default: "ggenomicskew.[accession].csv"
   ]
 
 endsection: output

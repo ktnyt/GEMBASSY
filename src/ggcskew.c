@@ -43,6 +43,7 @@ int main(int argc, char *argv[]){
   purine     = ajAcdGetBoolean("purine");
   keto       = ajAcdGetBoolean("keto");
   accid      = ajAcdGetString("accid");
+  filename   = ajAcdGetString("filename");
   output     = ajAcdGetBoolean("output");
   mult       = ajAcdGetGraphxy("graph");
 
