@@ -27,9 +27,8 @@ Usage
 
    Here is a sample session with gcbi
 
-% gcbi NC_000913.gbk
+% gcbi  NC_000913.gbk
 Calculates the codon bias index (CBI)
-NC_000913
 0.3017
 
 Command line arguments
@@ -46,8 +45,8 @@ Standard (Mandatory) qualifiers:
                                   gene (Any string)
    -delkey             string     [[^ACDEFGHIKLMNPQRSTVWYacgtU]] Regular
                                   expression to delete key (Any string)
-   -accid              boolean    [0] Include to use sequence accession ID as
-                                  query
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -57,7 +56,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   gcbi reads nucleotide sequences
+   gcbi reads nucleotide sequences.
 
 Output file format
 
@@ -72,6 +71,8 @@ Notes
    None.
 
 References
+
+   Comeron JM, Aguade M. (1998) J Mol Evol. 47(3):268-74.
 
    Morton BR (1993) J.Mol.Evol. 37:273-280.
 
@@ -105,6 +106,9 @@ Known bugs
 
 See also
 
+   gdelta_enc Calculate the codon usage bias related to translation optimization              (delta ENC)
+   gicdi      Calculates the intrinsic codon deviation index (ICDI)
+   gs_value   Calculate the strength of selected codon usage bias (S)
 
 
 Author(s)

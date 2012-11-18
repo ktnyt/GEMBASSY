@@ -27,16 +27,20 @@ Usage
 
    Here is a sample session with ggcwin
 
-% ggcwin NC_000913.gbk
+% ggcwin  NC_000913.gbk -graph cps
 Calculates the GC content along the given genome
-NC_000913
-Retrieval successful
+Created ggcwin.ps
+
+   Creates ggcwin.[accession].ps
+   Output example is prepared in the data directory
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
+*  -filename           string     [ggcwin.[accession].csv] Output filename
+                                  (Any string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -48,10 +52,12 @@ Standard (Mandatory) qualifiers:
                                   skew
    -keto               boolean    Include for observing keto (TG/AC) skew
                                   default: "0
-   -output             string     [g] Input 'g' for graph output, 'f' for CSV
-                                  file output (Any string)
-   -accid              boolean    [0] Include to use sequence accession ID as
-                                  query
+   -output             boolean    [N] Include to create CSV file
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+   -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
+                                  (ps, hpgl, hp7470, hp7580, meta, cps, x11,
+                                  tek, tekt, none, data, xterm, png, gif, svg)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -61,11 +67,11 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   ggcwin reads nucleotide sequences
+   ggcwin reads nucleotide sequences.
 
 Output file format
 
-   The output from ggcwin is to raw CSV of PNG format.
+   The output from ggcwin is to the specified graphics device.
 
 Data files
 
@@ -107,6 +113,9 @@ Known bugs
 
 See also
 
+   ggcskew      Calculates the GC skew of the input sequence
+   ggeneskew    Calculate the gene strand bias of the given genome
+   ggenomicskew Calculates the GC skew in different regions of the given genom
 
 
 Author(s)

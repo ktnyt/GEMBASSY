@@ -6,10 +6,9 @@ Function
 Description
 
    This program calculates the P2 index for each gene. This index describes the 
-   proportion of codons conforming to the intermediate strength of codon-anticodon 
-   interaction energy rule of Grosjean and Fiers: P2 = (WWC+SSU)/(WWY+SSY) 
-   where W = A or U, S = C or G, and Y = C or U.
-   P2 values will be accessible at $gb->{"FEATURE$i"}->{P2};
+   proportion of codons conforming to the intermediate strength of
+   codon-anticodon interaction energy rule of Grosjean and Fiers:
+   P2 = (WWC+SSU)/(WWY+SSY) where W = A or U, S = C or G, and Y = C or U.
 
   
    G-language SOAP service is provided by the
@@ -31,21 +30,25 @@ Usage
 
    Here is a sample session with gp2
 
-% gp2 NC_000913.gbk
+% gp2  NC_000913.gbk
 Calculate the P2 index of each gene
-NC_000913
-Retrieval successful
+Output filename [gp2.[accession].csv]:
+
+   Creates gp2.[accession].csv
+   Output example is prepared in the data directory
 
 Command line arguments
 
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
+   -filename           string     [gp2.[accession].csv] Output filename (Any
+                                  string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
-   -accid              boolean    [0] Include to use sequence accession ID as
-                                  query
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -55,7 +58,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   gp2 reads nucleotide sequences
+   gp2 reads nucleotide sequences.
 
 Output file format
 
@@ -103,6 +106,8 @@ Known bugs
 
 See also
 
+   gcai Calculate codon adaptation index for each gene
+   gphx Identify predicted highly expressed gene
 
 
 Author(s)

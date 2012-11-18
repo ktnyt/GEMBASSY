@@ -51,8 +51,9 @@ Command line argumants
 
 % gquery_arm NC_000913.gbk
 Get the replication arm name (left or right) from the given position
-NC_000913
+Position to query [0]:
 right
+
 
 Command line arguments
 
@@ -75,8 +76,8 @@ Ouptput file format
    The output from gqueryarm is to standard output.
 =======
    Advanced (Unprompted) qualifiers:
-   -accid              boolean    [0] Include to use sequence accession ID as
-                                  query
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -86,7 +87,7 @@ Ouptput file format
 
 Input file format
 
-   gquery_arm reads nucleotide sequences
+   gquery_arm reads nucleotide sequences.
 
 Output file format
 
@@ -142,6 +143,7 @@ Known bugs
 See also
 
 <<<<<<< HEAD
+<<<<<<< HEAD
    gfindoriter  - Predict the replication origin and terminus in bacterial
                   genomes
    ggcsi        - GC Skew Index: an index for strand-specific mutational bias
@@ -156,6 +158,11 @@ See also
 =======
 
 >>>>>>> 1.0.0-beta
+=======
+   gquery_strand Get the strand name (leading or lagging) from the given
+                 position
+
+>>>>>>> 1.0.0
 
 Author(s)
 

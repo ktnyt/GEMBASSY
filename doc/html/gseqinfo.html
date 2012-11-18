@@ -10,7 +10,8 @@
 
 <table align=center border=0 cellspacing=0 cellpadding=0>
 <tr><td valign=top>
-<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emboss_icon.jpg" alt="" width=150 height=48></a>
+<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emb
+oss_icon.jpg" alt="" width=150 height=48></a>
 </td>
 <td align=left valign=middle>
 <b><font size="+6">
@@ -30,7 +31,7 @@ gseqinfo
 
 
 <H2> Function </H2>
-Prints out basic nucleotide sequence statistics
+   Prints out basic nucleotide sequence statistics
 <!--
 DON'T WRITE ANYTHING HERE.
 IT IS DONE FOR YOU.
@@ -41,23 +42,25 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This method prints out basic compositional statistics of the 
-   given nucleotide sequence, in a format similar to the one printed
-   right after calling load(). Returns the number of A, T, G, and C bases.
-
- 
-</p>
-
-<p>
-G-language SOAP service is provided by the Institute for Advanced Biosciences, Keio University.<br />
-
-The original web service is located at the following URL:<br />
-http://www.g-language.org/wiki/soap
-</p>
-
-<p>
-WSDL(RPC/Encoded) file is located at:<br />
-http://soap.g-language.org/g-language.wsdl
+   This method prints out basic compositional statistics of the <br>
+   given nucleotide sequence, in a format similar to the one printed<br>
+   right after calling load(). Returns the number of A, T, G, and C bases.<br>
+<br>
+ <br>
+   G-language SOAP service is provided by the<br>
+   Institute for Advanced Biosciences, Keio University.<br>
+   The original web service is located at the following URL:<br>
+<br>
+   http://www.g-language.org/wiki/soap<br>
+<br>
+   WSDL(RPC/Encoded) file is located at:<br>
+<br>
+   http://soap.g-language.org/g-language.wsdl<br>
+<br>
+   Documentation on G-language Genome Analysis Environment methods are<br>
+   provided at the Document Center<br>
+<br>
+   http://ws.g-language.org/gdoc/
 </p>
 
 <H2>Usage</H2>
@@ -66,17 +69,16 @@ http://soap.g-language.org/g-language.wsdl
 
    Here is a sample session with gseqinfo
 
-% gseqinfo NC_000913.gbk
-NC_000913
+% gseqinfo  NC_000913.gbk
+Prints out basic nucleotide sequence statistics
 A	T	G	C	
-1142228	1140970	1176923	1179555	
-
+1142228	1140970	1176923	1179555
 
 </pre></td></tr></table>
 
 
 
-<h2>Command line argumants</h2>
+<h2>Command line arguments</h2>
 
 <table border cellspacing=0 cellpadding=3 bgcolor="#ccccff">
 <tr bgcolor="#FFFFCC">
@@ -113,10 +115,10 @@ A	T	G	C
 
 <tr bgcolor="#FFFFCC">
 <td>-accid</td>
-<td>boolean</td>
+<td>string</td>
 <td>Include to use sequence accession ID as query</td>
-<td>Boolean value Yes/No</td>
-<td>No</td>
+<td>Any string</td>
+<td>&nbsp;</td>
 </tr>
 
 </table>
@@ -125,13 +127,13 @@ A	T	G	C
 <h2>Input file format</h2>
 
 <p>
-gseqinfo reads nucleotide sequences.
+   gseqinfo reads nucleotide sequences.
 </p>
 
-<h2>Ouptput file format</h2>
+<h2>Ouptut file format</h2>
 
 <p>
-The output from gseqinfo is to standard output.
+   The output from gseqinfo is to standard output.
 </p>
 
 <h2>Data files</h2>
@@ -149,7 +151,6 @@ None.
 <h2>Refrences</h2>
 
 <pre>
-
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
       for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
@@ -162,6 +163,13 @@ None.
       Analysis Environment with REST and SOAP Wev Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
 </pre>
+
+<h2>Warnings</h2>
+
+<p>
+   None.
+</p>
+
 <h2>Diagnostic Error Messages</h2>
 
 <p>
@@ -182,6 +190,26 @@ None.
 
 <h2>See also</h2>
 
+<table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th>
+<th>Description</th></tr>
+
+<tr>
+<td><a href="gconsensus_z.html">gconsensus_z</a></td>
+<td>Calculate consensus in given array of sequences</td>
+</tr>
+
+<tr>
+<td><a href="gdist_in_cc.html">gdist_in_cc</a></td>
+<td>Calculates the distance between two loci in circular chromosomes</td>
+</tr>
+
+<tr>
+<td><a href="gpalindrome.html">gpalindrome</a></td>
+<td>Searches palindrome sequences</td>
+</tr>
+
+</table>
+
 <h2>Author(s)</h2>
 
 <pre>
@@ -189,7 +217,7 @@ None.
    Institute for Advanced Biosciences, Keio University
    252-8520 Japan
 
-   Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Kazuharu Arakawa(gaou@g-language.org) 
 </pre>
 
 <h2>History</h2>
@@ -203,5 +231,5 @@ None.
 
 <h2>Comments</h2>
 
-    None.
+   None.
 

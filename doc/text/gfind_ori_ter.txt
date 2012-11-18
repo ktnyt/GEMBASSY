@@ -63,11 +63,10 @@ Command line argumants
 =======
    Here is a sample session with gfind_ori_ter
 
-% gfind_ori_ter NC_000913.gbk
+% gfind_ori_ter  NC_000913.gbk
 Predict the replication origin and terminus in bacterial genomes
-NC_000913
-origin	terminus
 3922946	1550274
+
 
 Command line arguments
 
@@ -88,6 +87,7 @@ Standard (Mandatory) qualifiers:
                                   Typically 95 or 99 works best (Any integer
                                   value)
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 Input file format
 
@@ -99,6 +99,10 @@ Ouptput file format
 =======
    -accid              boolean    [0] Include to use sequence accession ID as
                                   query
+=======
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+>>>>>>> 1.0.0
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -108,7 +112,7 @@ Ouptput file format
 
 Input file format
 
-   gfind_ori_ter reads nucleotide sequences
+   gfind_ori_ter reads nucleotide sequences.
 
 Output file format
 
@@ -131,11 +135,20 @@ Refrences
 =======
 References
 
+<<<<<<< HEAD
    1. Frank AC, Lobry JR (2000) "Oriloc: prediction of replication boundaries in unannotated 
       bacterial chromosomes", Bioinformatics, 16:566-567.
    2. Arakawa K, Saito R, Tomita M (2007) "Noise-reduction filtering for accurate detection 
       of replication termini in bacterial genomes", FEBS Letters, 581(2):253-258.
 >>>>>>> 1.0.0-beta
+=======
+   Frank AC, Lobry JR (2000) "Oriloc: prediction of replication boundaries in
+      unannotated bacterial chromosomes", Bioinformatics, 16:566-567.
+
+   Arakawa K, Saito R, Tomita M (2007) "Noise-reduction filtering for accurate
+      detection of replication termini in bacterial genomes", FEBS Letters,
+      581(2): 253-258.
+>>>>>>> 1.0.0
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -176,6 +189,7 @@ Known bugs
 See also
 
 <<<<<<< HEAD
+<<<<<<< HEAD
    ggcsi        - GC Skew Index: an index for strand-specific mutational bias
    ggcskew      - Calculate the GC skew of the given genome
    ggcwin       - Calculate the GC content along the given genome
@@ -189,6 +203,9 @@ See also
    greporiter   - Get the positions of replication origin and terminus
 =======
 >>>>>>> 1.0.0-beta
+=======
+   grep_ori_ter Get the positions of replication origin and terminus
+>>>>>>> 1.0.0
 
 
 Author(s)

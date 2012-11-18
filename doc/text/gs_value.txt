@@ -5,34 +5,25 @@ Function
 
 Description
 
-   This method calculates the strength of selected codon usage bias (S), also known
-   as Sharp's S index. Using four codon pairs that are recognized by the same tRNA 
-   anticodon, namely, Phe(UUC and UUU), Ile(AUC and AUU), Tyr(UAC and UAU), and 
-   Asn(AAC and AAU), since the former in each of the pairs has stronger Watson-Crick
-   pairing, selection towards the former codon can be observed for highly expressed 
-   genes. S index is therefore the weighted average of such bias, giving an over-all
-   value for a genome, indicating its strength of selected codon usage bias.
-   See Reference 1 for details.
+   This method calculates the strength of selected codon usage bias (S), also
+   known as Sharp's S index. Using four codon pairs that are recognized by the
+   same tRNA anticodon, namely, Phe(UUC and UUU), Ile(AUC and AUU), Tyr(UAC and    UAU), and Asn(AAC and AAU), since the former in each of the pairs has strong    er Watson-Crick pairing, selection towards the former codon can be observed
+   for highly expressed genes. S index is therefore the weighted average of such
+   bias, giving an over-all value for a genome, indicating its strength of
+   selected codon usage bias.
+   See Sharp et al. (2005) for details.
 
    Sharp originally defined 40 genes as the highly expressed gene group, with
    tufA, tsf, fusA, rplA-rplF, rplI-rplT, rpsB-rpsT. Since the identificaiton 
    of these genes is not convenient for computational automation, by default, 
    this method uses ribosomal proteins as the highly expressed gene group, 
-   as used by Rocha and colleagues in Reference 2.
+   as used by Rocha and colleagues in Viera-Silva and Rocha (2010).
 
    However, Sharp's gene group can be optionally used with -sharp=>1 option.
    With this option, all of the 40 genes must be named accordingly in the given
    genome file.
 
-  Usage: 
-   $s_value = S_value($genome);
 
-  Options:
-   -sharp   set to 1 to use the 40 genes used by Sharp instead of ribosomal proteins
-   (default: 0)
-
-  References:
-   1. Sharp PM et al. (2005) "Variation in the strength of selected codon 
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -52,10 +43,10 @@ Usage
 
    Here is a sample session with gs_value
 
-% gs_value NC_000913.gbk
+% gs_value  NC_000913.gbk
 Calculate the strength of selected codon usage bias (S)
-NC_000913
 1.11907731545538
+
 
 Command line arguments
 
@@ -68,8 +59,8 @@ Standard (Mandatory) qualifiers:
    -sharp              integer    [0] Set to 1 to use the 40 genes used by
                                   Sharp instead of ribosomal proteins (Any
                                   integer value)
-   -accid              boolean    Include to use sequence accession ID as
-                                  query
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -79,7 +70,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   gs_value reads nucleotide sequences
+   gs_value reads nucleotide sequences.
 
 Output file format
 
@@ -95,10 +86,11 @@ Notes
 
 References
 
-   1. Sharp PM et al. (2005) "Variation in the strength of selected codon usage bias among 
-      bacteria", Nucleic Acids Research, 33(4):1141-1153
-   2. Vieira-Silva S and Rocha EPC (2010) "The systemic imprint of growth and its uses in 
-      ecological (meta)genomics", PLoS Genetics, 6(1):e1000808
+   Sharp PM et al. (2005) "Variation in the strength of selected codon usage
+      bias among bacteria", Nucleic Acids Research, 33(4):1141-1153
+
+   Vieira-Silva S and Rocha EPC (2010) "The systemic imprint of growth and its
+      uses in ecological (meta)genomics", PLoS Genetics, 6(1):e1000808
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -130,6 +122,9 @@ Known bugs
 
 See also
 
+   gcbi       Calculates the codon bias index (CBI)
+   gdelta_enc Calculate the codon usage bias related to translation optimization              (delta ENC)
+   gicdi      Calculates the intrinsic codon deviation index (ICDI)
 
 
 Author(s)

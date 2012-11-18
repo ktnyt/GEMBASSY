@@ -11,14 +11,18 @@
 
 char *_upper(char *s){
   char *p;
-  for(p=s; *p; p++){
+  for(p = s; *p; p++){
     *p = toupper(*p);
   }
   return(s);
 }
 
 int main(int argc, char *argv[]){
+<<<<<<< HEAD
   embInitPV("gshuffleseq",argc,argv,"GEMBASSY","0.0.1");
+=======
+  embInitPV("gshuffleseq", argc, argv, "GEMBASSY", "1.0.0");
+>>>>>>> 1.0.0
   
   struct soap soap;
   struct ns1__shuffleseqInputParams params;
@@ -37,25 +41,26 @@ int main(int argc, char *argv[]){
   
   params.k = k;
 
-  while(ajSeqallNext(seqall,&seq)){
+  while(ajSeqallNext(seqall, &seq)){
 
     soap_init(&soap);
     
     inseq = NULL;
 
-    ajStrAppendS(&inseq,ajSeqGetSeqS(seq));
-    ajStrAppendS(&filename,ajSeqGetNameS(seq));
-    
+    ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
+
     char* in0;
     in0 = ajCharNewS(inseq);
-    fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
-    if(soap_call_ns1__shuffleseq(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
+
+    if(soap_call_ns1__shuffleseq(
+				 &soap, NULL, NULL,
+				 in0, &params, &jobid
+				 ) == SOAP_OK){
       ajCharFmtUpper(jobid);
       ajSeqAssignSeqC(seq, jobid);
       ajSeqoutWriteSeq(seqout, seq);
-      ajSeqoutClose(seqout);
     }else{
-      soap_print_fault(&soap,stderr);
+      soap_print_fault(&soap, stderr);
     }
     
     soap_destroy(&soap);
@@ -63,6 +68,8 @@ int main(int argc, char *argv[]){
     soap_done(&soap);
   }
 
+  ajSeqoutClose(seqout);
+  ajSeqoutDel(&seqout);
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
   ajStrDel(&inseq);

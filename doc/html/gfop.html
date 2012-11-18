@@ -10,7 +10,8 @@
 
 <table align=center border=0 cellspacing=0 cellpadding=0>
 <tr><td valign=top>
-<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emboss_icon.jpg" alt="" width=150 height=48></a>
+<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emb
+oss_icon.jpg" alt="" width=150 height=48></a>
 </td>
 <td align=left valign=middle>
 <b><font size="+6">
@@ -30,7 +31,7 @@ gfop
 
 
 <H2> Function </H2>
-Calculate the frequency of optimal codons (Fop)
+   Calculate the frequency of optimal codons (Fop)
 <!--
 DON'T WRITE ANYTHING HERE.
 IT IS DONE FOR YOU.
@@ -41,23 +42,23 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This program calculates the frequency of optimal codons (Fop), and
-   inputs in the G instance; i.e. Fop values will be accessible at
-   $gb->{"FEATURE$i"}->{fop};
-
-  
-</p>
-
-<p>
-G-language SOAP service is provided by the Institute for Advanced Biosciences, Keio University.<br />
-
-The original web service is located at the following URL:<br />
-http://www.g-language.org/wiki/soap
-</p>
-
-<p>
-WSDL(RPC/Encoded) file is located at:<br />
-http://soap.g-language.org/g-language.wsdl
+   This program calculates the frequency of optimal codons (Fop).<br>
+<br>
+  <br>
+   G-language SOAP service is provided by the<br>
+   Institute for Advanced Biosciences, Keio University.<br>
+   The original web service is located at the following URL:<br>
+<br>
+   http://www.g-language.org/wiki/soap<br>
+<br>
+   WSDL(RPC/Encoded) file is located at:<br>
+<br>
+   http://soap.g-language.org/g-language.wsdl<br>
+<br>
+   Documentation on G-language Genome Analysis Environment methods are<br>
+   provided at the Document Center<br>
+<br>
+   http://ws.g-language.org/gdoc/
 </p>
 
 <H2>Usage</H2>
@@ -66,16 +67,18 @@ http://soap.g-language.org/g-language.wsdl
 
    Here is a sample session with gfop
 
-% gfop NC_000913.gbk
-NC_000913
-Retrieval successful
+% gfop  NC_000913.gbk
+Calculate the frequency of optimal codons (Fop)
+Output filename [gfop.[accession].csv]:
 
+   Creates gfop.[accession].csv
+   Output example is prepared in the data directory
 
 </pre></td></tr></table>
 
 
 
-<h2>Command line argumants</h2>
+<h2>Command line arguments</h2>
 
 <table border cellspacing=0 cellpadding=3 bgcolor="#ccccff">
 <tr bgcolor="#FFFFCC">
@@ -96,6 +99,14 @@ Retrieval successful
 <td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
 <td>Readable sequence(s)</td>
 <td><b>Required</b></td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-filename</td>
+<td>string</td>
+<td>Output filename</td>
+<td>Any string</td>
+<td>gfop.[accession].csv</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -120,10 +131,10 @@ Retrieval successful
 
 <tr bgcolor="#FFFFCC">
 <td>-accid</td>
-<td>boolean</td>
+<td>string</td>
 <td>Include to use sequence accession ID as query</td>
-<td>Boolean value Yes/No</td>
-<td>No</td>
+<td>Any string</td>
+<td>&nbsp;</td>
 </tr>
 
 </table>
@@ -132,13 +143,43 @@ Retrieval successful
 <h2>Input file format</h2>
 
 <p>
-gfop reads nucleotide sequences.
+   gfop reads nucleotide sequences.
 </p>
 
-<h2>Ouptput file format</h2>
+<h2>Ouptut file format</h2>
 
 <p>
-The output from gfop is to raw CSV format.
+   Creates gfop.[accession].csv
+   Output example is prepared in the data directory
+
+Command line arguments
+
+Standard (Mandatory) qualifiers:
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
+                                  format, or reference (input USA)
+   -filename           string     [gfop.[accession].csv] Output filename (Any
+                                  string)
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -translate          boolean    [0] Include when translates using standard
+                                  codon table
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+
+Input file format
+
+   gfop reads nucleotide sequences.
+
+Output file format
+
+   The output from gfop is to raw CSV format.
 </p>
 
 <h2>Data files</h2>
@@ -157,6 +198,7 @@ None.
 
 <pre>
    Ikemura (1981) J.Mol.Biol. 151:389-409.
+
    Ikemura (1985) Mol.Biol.Evol. 2(1):13-34.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
@@ -171,6 +213,13 @@ None.
       Analysis Environment with REST and SOAP Wev Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
 </pre>
+
+<h2>Warnings</h2>
+
+<p>
+   None.
+</p>
+
 <h2>Diagnostic Error Messages</h2>
 
 <p>
@@ -191,6 +240,31 @@ None.
 
 <h2>See also</h2>
 
+<table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th>
+<th>Description</th></tr>
+
+<tr>
+<td><a href="genc.html">genc</a></td>
+<td>Calculate the effective number of codons (Nc)</td>
+</tr>
+
+<tr>
+<td><a href="gew.html">gew</a></td>
+<td>Calculate a measure of synonymous codon usage evenness (Ew)</td>
+</tr>
+
+<tr>
+<td><a href="gscs.html">gscs</a></td>
+<td>Calculates the scaled chi-square</td>
+</tr>
+
+<tr>
+<td><a href="gw_value.html">gw_value</a></td>
+<td>Calculate the 'relative adaptiveness of each codon' (W)</td>
+</tr>
+
+</table>
+
 <h2>Author(s)</h2>
 
 <pre>
@@ -198,7 +272,7 @@ None.
    Institute for Advanced Biosciences, Keio University
    252-8520 Japan
 
-   Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Kazuharu Arakawa(gaou@g-language.org) 
 </pre>
 
 <h2>History</h2>
@@ -212,5 +286,5 @@ None.
 
 <h2>Comments</h2>
 
-    None.
+   None.
 

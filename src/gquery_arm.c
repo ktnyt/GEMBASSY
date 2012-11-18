@@ -11,7 +11,11 @@
 #include "../include/gembassy.h"
 
 int main(int argc, char *argv[]){
+<<<<<<< HEAD
   embInitPV("gquery_arm",argc,argv,"GEMBASSY","0.0.1");
+=======
+  embInitPV("gquery_arm", argc, argv, "GEMBASSY", "1.0.0");
+>>>>>>> 1.0.0
 
   struct soap soap;
 
@@ -19,36 +23,44 @@ int main(int argc, char *argv[]){
   AjPSeq    seq;
   AjPStr    inseq    = NULL;
   ajint     position = 0;
-  AjBool    accid    = 0;
+  AjPStr    accid    = NULL;
   AjPStr    filename = NULL;
   char*     jobid;
 
   seqall   = ajAcdGetSeqall("sequence");
   position = ajAcdGetInt("position");
-  accid    = ajAcdGetBoolean("accid");
+  accid    = ajAcdGetString("accid");
 
-  while(ajSeqallNext(seqall,&seq)){
+  while(ajSeqallNext(seqall, &seq)){
 
     soap_init(&soap);
 
     inseq = NULL;
 
-    if(ajSeqGetFeat(seq) && !accid){
+    if(ajSeqGetFeat(seq) && !ajStrGetLen(accid)){
       inseq = getGenbank(seq);
+      ajStrAssignS(&accid, ajSeqGetAccS(seq));
     }else{
-      ajStrAppendS(&inseq,ajSeqGetAccS(seq));
+      if(!ajStrGetLen(accid)){
+        fprintf(stderr, "Sequence does not have features\n");
+        fprintf(stderr, "Proceeding with sequence accession ID\n");
+        ajStrAssignS(&accid, ajSeqGetAccS(seq));
+      }
+      if(!valID(ajCharNewS(accid))){
+          fprintf(stderr, "Invalid accession ID, exiting");
+          return 1;
+      }
+      ajStrAssignS(&inseq,accid);
     }
-    
+
     char* in0;
     in0 = ajCharNewS(inseq);
 
-    fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
-
-    if(!ajSeqGetFeat(seq) && !accid)
-      fprintf(stderr,"Sequence does not have features\nProceeding with sequence accession ID\n");
-
-    if(soap_call_ns1__query_USCOREarm(&soap,NULL,NULL,in0,position,&jobid)==SOAP_OK){
-      puts(jobid);
+    if(soap_call_ns1__query_USCOREarm(
+				      &soap, NULL, NULL,
+				      in0, position, &jobid
+				      ) == SOAP_OK){
+      fprintf(stdout, "%s\n", jobid);
     }else{
       soap_print_fault(&soap,stderr);
     }

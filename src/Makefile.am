@@ -53,6 +53,11 @@ bin_PROGRAMS = gamino_info\
                gcgr\
                gcircular_map\
                gcodon_compiler\
+<<<<<<< HEAD
+=======
+               gconsensus_z\
+               gdelta_enc\
+>>>>>>> 1.0.0
                gdelta_gcskew\
                gdinuc\
                gdist_in_cc\
@@ -71,7 +76,6 @@ bin_PROGRAMS = gamino_info\
                gicdi\
                gkmer_table\
                glda_bias\
-               gleading_strand\
                gnucleotide_periodicity\
                gp2\
                gpalindrome\
@@ -101,6 +105,11 @@ gcbi_SOURCES            = gcbi.c
 gcgr_SOURCES            = gcgr.c
 gcircular_map_SOURCES   = gcircular_map.c
 gcodon_compiler_SOURCES = gcodon_compiler.c
+<<<<<<< HEAD
+=======
+gconsensus_z_SOURCES    = gconsensus_z.c
+gdelta_enc_SOURCES      = gdelta_enc.c
+>>>>>>> 1.0.0
 gdelta_gcskew_SOURCES   = gdelta_gcskew.c
 gdist_in_cc_SOURCES     = gdist_in_cc.c
 gdinuc_SOURCES          = gdinuc.c
@@ -118,7 +127,6 @@ ggenome_map3_SOURCES    = ggenome_map3.c
 gicdi_SOURCES           = gicdi.c
 gkmer_table_SOURCES     = gkmer_table.c
 glda_bias_SOURCES       = glda_bias.c
-gleading_strand_SOURCES = gleading_strand.c
 gnucleotide_periodicity_SOURCES = gnucleotide_periodicity.c
 gp2_SOURCES             = gp2.c
 gpalindrome_SOURCES     = gpalindrome.c
@@ -144,9 +152,11 @@ LDADD = ../../../nucleus/libnucleus.la ../../../ajax/acd/libacd.la \
 	../../../ajax/zlib/libezlib.la \
 	../../../ajax/expat/libeexpat.la \
 	../../../ajax/pcre/libepcre.la \
-	../../../plplot/libeplplot.la $(XLIB)
+	../../../plplot/libeplplot.la \
+  $(XLIB)
 else
-LDADD = -L${embprefix}/lib -lnucleus -lacd -lajaxdb -lensembl -lajaxg \
-        -lajax -leexpat -lepcre -lezlib -leplplot -lcurl $(XLIB)
+LDADD = -L${embprefix}/lib -lpng -lnucleus -lacd -lajaxdb -lensembl \
+        -lajaxg -lajax -leexpat -lepcre -lezlib -leplplot -lcurl \
+        $(XLIB)
 endif
 

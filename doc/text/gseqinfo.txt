@@ -29,11 +29,11 @@ Usage
 
    Here is a sample session with gseqinfo
 
-% gseqinfo NC_000913.gbk
+% gseqinfo  NC_000913.gbk
 Prints out basic nucleotide sequence statistics
-NC_000913
 A	T	G	C	
 1142228	1140970	1176923	1179555	
+
 
 Command line arguments
 
@@ -43,8 +43,8 @@ Standard (Mandatory) qualifiers:
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
-   -accid              boolean    [0] Include to use sequence accession ID as
-                                  query
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -54,7 +54,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   gseqinfo reads nucleotide sequences
+   gseqinfo reads nucleotide sequences.
 
 Output file format
 
@@ -100,6 +100,9 @@ Known bugs
 
 See also
 
+   gconsensus_z Calculate consensus in given array of sequences
+   gdist_in_cc  Calculates the distance between two loci in circular chromosomes
+   gpalindrome  Searches palindrome sequences
 
 
 Author(s)

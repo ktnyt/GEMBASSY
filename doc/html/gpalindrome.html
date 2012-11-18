@@ -10,7 +10,8 @@
 
 <table align=center border=0 cellspacing=0 cellpadding=0>
 <tr><td valign=top>
-<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emboss_icon.jpg" alt="" width=150 height=48></a>
+<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emb
+oss_icon.jpg" alt="" width=150 height=48></a>
 </td>
 <td align=left valign=middle>
 <b><font size="+6">
@@ -30,7 +31,7 @@ gpalindrome
 
 
 <H2> Function </H2>
-Searches palindrome sequences
+   Searches palindrome sequences
 <!--
 DON'T WRITE ANYTHING HERE.
 IT IS DONE FOR YOU.
@@ -41,21 +42,23 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   Searches palindrome sequences
-
- 
-</p>
-
-<p>
-G-language SOAP service is provided by the Institute for Advanced Biosciences, Keio University.<br />
-
-The original web service is located at the following URL:<br />
-http://www.g-language.org/wiki/soap
-</p>
-
-<p>
-WSDL(RPC/Encoded) file is located at:<br />
-http://soap.g-language.org/g-language.wsdl
+   Searches palindrome sequences<br>
+<br>
+ <br>
+   G-language SOAP service is provided by the<br>
+   Institute for Advanced Biosciences, Keio University.<br>
+   The original web service is located at the following URL:<br>
+<br>
+   http://www.g-language.org/wiki/soap<br>
+<br>
+   WSDL(RPC/Encoded) file is located at:<br>
+<br>
+   http://soap.g-language.org/g-language.wsdl<br>
+<br>
+   Documentation on G-language Genome Analysis Environment methods are<br>
+   provided at the Document Center<br>
+<br>
+   http://ws.g-language.org/gdoc/
 </p>
 
 <H2>Usage</H2>
@@ -64,18 +67,18 @@ http://soap.g-language.org/g-language.wsdl
 
    Here is a sample session with gpalindrome
 
-% gpalindrome NC_000913.gbk
-NC_000913
-Error 502 fault: SOAP-ENV:Server [no subcode]
-"HTTP/1.1 502 Proxy Error"
-Detail: [no detail]
+% gpalindrome  NC_000913.gbk
+Searches palindrome sequences
+Output filename [gpalindrome.[accession].csv]:
 
+   Creates gpalindrome.[accession].csv
+   Output example is prepared in the data directory
 
 </pre></td></tr></table>
 
 
 
-<h2>Command line argumants</h2>
+<h2>Command line arguments</h2>
 
 <table border cellspacing=0 cellpadding=3 bgcolor="#ccccff">
 <tr bgcolor="#FFFFCC">
@@ -96,6 +99,14 @@ Detail: [no detail]
 <td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
 <td>Readable sequence(s)</td>
 <td><b>Required</b></td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-filename</td>
+<td>string</td>
+<td>Output filename</td>
+<td>Any string</td>
+<td>gpalindrome.[accession].csv</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -136,10 +147,10 @@ Detail: [no detail]
 
 <tr bgcolor="#FFFFCC">
 <td>-accid</td>
-<td>boolean</td>
+<td>string</td>
 <td>Include to use sequence accession ID as query</td>
-<td>Boolean value Yes/No</td>
-<td>No</td>
+<td>Any string</td>
+<td>&nbsp;</td>
 </tr>
 
 </table>
@@ -148,13 +159,46 @@ Detail: [no detail]
 <h2>Input file format</h2>
 
 <p>
-gpalindrome reads nucleotide sequences.
+   gpalindrome reads nucleotide sequences.
 </p>
 
-<h2>Ouptput file format</h2>
+<h2>Ouptut file format</h2>
 
 <p>
-The output from gpalindrome is to raw CSV format.
+   Creates gpalindrome.[accession].csv
+   Output example is prepared in the data directory
+
+Command line arguments
+
+Standard (Mandatory) qualifiers:
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
+                                  format, or reference (input USA)
+   -filename           string     [gpalindrome.[accession].csv] Output
+                                  filename (Any string)
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -shortest           integer    [4] Shortest palindrome to search (Any
+                                  integer value)
+   -loop               integer    [0] Longest stem loop to allow (Any integer
+                                  value)
+   -gtmatch            boolean    [0] If 1, allows g-t match
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+
+Input file format
+
+   gpalindrome reads nucleotide sequences.
+
+Output file format
+
+   The output from gpalindrome is to raw CSV format.
 </p>
 
 <h2>Data files</h2>
@@ -172,7 +216,6 @@ None.
 <h2>Refrences</h2>
 
 <pre>
-
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
       for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
@@ -185,6 +228,13 @@ None.
       Analysis Environment with REST and SOAP Wev Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
 </pre>
+
+<h2>Warnings</h2>
+
+<p>
+   None.
+</p>
+
 <h2>Diagnostic Error Messages</h2>
 
 <p>
@@ -205,6 +255,26 @@ None.
 
 <h2>See also</h2>
 
+<table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th>
+<th>Description</th></tr>
+
+<tr>
+<td><a href="gconsensus_z.html">gconsensus_z</a></td>
+<td>Calculate consensus in given array of sequences</td>
+</tr>
+
+<tr>
+<td><a href="gdist_in_cc.html">gdist_in_cc</a></td>
+<td>Calculates the distance between two loci in circular chromosomes</td>
+</tr>
+
+<tr>
+<td><a href="gseqinfo.html">gseqinfo</a></td>
+<td>Prints out basic nucleotide sequence statistics</td>
+</tr>
+
+</table>
+
 <h2>Author(s)</h2>
 
 <pre>
@@ -212,7 +282,7 @@ None.
    Institute for Advanced Biosciences, Keio University
    252-8520 Japan
 
-   Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Kazuharu Arakawa(gaou@g-language.org) 
 </pre>
 
 <h2>History</h2>
@@ -226,5 +296,5 @@ None.
 
 <h2>Comments</h2>
 
-    None.
+   None.
 

@@ -10,7 +10,8 @@
 
 <table align=center border=0 cellspacing=0 cellpadding=0>
 <tr><td valign=top>
-<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emboss_icon.jpg" alt="" width=150 height=48></a>
+<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emb
+oss_icon.jpg" alt="" width=150 height=48></a>
 </td>
 <td align=left valign=middle>
 <b><font size="+6">
@@ -30,7 +31,7 @@ ggenomicskew
 
 
 <H2> Function </H2>
-Calculates the GC skew in different regions of the given genome
+   Calculates the GC skew in different regions of the given genome
 <!--
 DON'T WRITE ANYTHING HERE.
 IT IS DONE FOR YOU.
@@ -41,22 +42,24 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This program graphs the GC skew for the whole genome, coding regions,
-   intergenic regions, and the third codon.
-
- 
-</p>
-
-<p>
-G-language SOAP service is provided by the Institute for Advanced Biosciences, Keio University.<br />
-
-The original web service is located at the following URL:<br />
-http://www.g-language.org/wiki/soap
-</p>
-
-<p>
-WSDL(RPC/Encoded) file is located at:<br />
-http://soap.g-language.org/g-language.wsdl
+   This program graphs the GC skew for the whole genome, coding regions,<br>
+   intergenic regions, and the third codon.<br>
+<br>
+ <br>
+   G-language SOAP service is provided by the<br>
+   Institute for Advanced Biosciences, Keio University.<br>
+   The original web service is located at the following URL:<br>
+<br>
+   http://www.g-language.org/wiki/soap<br>
+<br>
+   WSDL(RPC/Encoded) file is located at:<br>
+<br>
+   http://soap.g-language.org/g-language.wsdl<br>
+<br>
+   Documentation on G-language Genome Analysis Environment methods are<br>
+   provided at the Document Center<br>
+<br>
+   http://ws.g-language.org/gdoc/
 </p>
 
 <H2>Usage</H2>
@@ -65,16 +68,18 @@ http://soap.g-language.org/g-language.wsdl
 
    Here is a sample session with ggenomicskew
 
-% ggenomicskew NC_000913.gbk
-NC_000913
-Retrieval successful
+% ggenomicskew  NC_000913.gbk -graph cps
+Calculates the GC skew in different regions of the given genome
+Created ggenomicskew.ps
 
+   Creates ggenomicskew.[accession].ps
+   Output example is prepared in the data directory
 
 </pre></td></tr></table>
 
 
 
-<h2>Command line argumants</h2>
+<h2>Command line arguments</h2>
 
 <table border cellspacing=0 cellpadding=3 bgcolor="#ccccff">
 <tr bgcolor="#FFFFCC">
@@ -95,6 +100,14 @@ Retrieval successful
 <td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
 <td>Readable sequence(s)</td>
 <td><b>Required</b></td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-filename</td>
+<td>string</td>
+<td>Output filename</td>
+<td>Any string</td>
+<td>ggenomicskew.[accession].png</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -127,18 +140,26 @@ Retrieval successful
 
 <tr bgcolor="#FFFFCC">
 <td>-output</td>
-<td>string</td>
-<td>Input 'g' for graph output, 'f' for CSV file output</td>
-<td>Any string</td>
-<td>g</td>
+<td>boolean</td>
+<td>Include to create CSV file</td>
+<td>Boolean value Yes/No</td>
+<td>No</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
 <td>-accid</td>
-<td>boolean</td>
+<td>string</td>
 <td>Include to use sequence accession ID as query</td>
-<td>Boolean value Yes/No</td>
-<td>No</td>
+<td>Any string</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-graph</td>
+<td>xygraph</td>
+<td>Graph type</td>
+<td>EMBOSS has a list of known devices, including ps, hpgl, hp7470, hp7580, meta, cps, x11, tek, tekt, none, data, xterm, png, gif, svg</td>
+<td><i>EMBOSS_GRAPHICS</i> value, or x11</td>
 </tr>
 
 </table>
@@ -147,13 +168,29 @@ Retrieval successful
 <h2>Input file format</h2>
 
 <p>
-ggenomicskew reads nucleotide sequences.
+                                  of GC skew
+   -output             boolean    [N] Include to create CSV file
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+   -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
+                                  (ps, hpgl, hp7470, hp7580, meta, cps, x11,
+                                  tek, tekt, none, data, xterm, png, gif, svg)
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+
+Input file format
+
+   ggenomicskew reads nucleotide sequences.
 </p>
 
-<h2>Ouptput file format</h2>
+<h2>Ouptut file format</h2>
 
 <p>
-The output from ggenomicskew is to raw CSV of PNG format.
+   The output from ggenomicskew is to the specified graphics device.
 </p>
 
 <h2>Data files</h2>
@@ -171,7 +208,6 @@ None.
 <h2>Refrences</h2>
 
 <pre>
-
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
       for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
@@ -184,6 +220,13 @@ None.
       Analysis Environment with REST and SOAP Wev Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
 </pre>
+
+<h2>Warnings</h2>
+
+<p>
+   None.
+</p>
+
 <h2>Diagnostic Error Messages</h2>
 
 <p>
@@ -204,6 +247,26 @@ None.
 
 <h2>See also</h2>
 
+<table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th>
+<th>Description</th></tr>
+
+<tr>
+<td><a href="ggcskew.html">ggcskew</a></td>
+<td>Calculates the GC skew of the input sequence</td>
+</tr>
+
+<tr>
+<td><a href="ggcwin.html">ggcwin</a></td>
+<td>Calculates the GC content along the given genome</td>
+</tr>
+
+<tr>
+<td><a href="ggeneskew.html">ggeneskew</a></td>
+<td>Calculate the gene strand bias of the given genome</td>
+</tr>
+
+</table>
+
 <h2>Author(s)</h2>
 
 <pre>
@@ -211,7 +274,7 @@ None.
    Institute for Advanced Biosciences, Keio University
    252-8520 Japan
 
-   Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Kazuharu Arakawa(gaou@g-language.org) 
 </pre>
 
 <h2>History</h2>
@@ -225,5 +288,5 @@ None.
 
 <h2>Comments</h2>
 
-    None.
+   None.
 

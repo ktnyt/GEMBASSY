@@ -1,0 +1,48 @@
+application: gaaui [
+  documentation: "Calculates various indece of amino acid usage"
+  groups: "Protein:Properties"
+  embassy: "GEMBASSY"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+
+  seqall: sequence [
+    parameter: "Y"
+    features: "Y"
+    type: "nucleotide"
+  ]
+
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+
+  string: id [
+    information: "ID of a group"
+    default: ""
+  ]
+
+  string: accid [
+    information: "Include to use sequence accession ID as query"
+    default: ""
+  ]
+
+endsection: advanced
+
+section: output [
+  information: "Output section"
+  type: "page"
+]
+
+  string: filename [
+     parameter: "Y"
+     information: "Output filename"
+     default: "gaaui.[accession].csv"
+  ]
+
+endsection: output

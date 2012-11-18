@@ -8,6 +8,7 @@ section: input [
   information: "Input section"
   type: "page"
 ]
+
   seqall: sequence [
     parameter: "Y"
     type: "nucleotide"
@@ -20,20 +21,32 @@ section: advanced [
   information: "Advanced section"
   type: "page"
 ]
+
   boolean: translate [
     information: "Include when translating using standard codon table"
     default: "0"
   ]
+
   string: id [
     information: "ID of a group of genes or a single gene"
     default: "All"
   ]
+
   string: delkey [
     information: "Regular expression to delete key"
     default: "[^ACDEFGHIKLMNPQRSTVWYacgtU]"
   ]
-  boolean: accid [
+
+  string: accid [
     information: "Include to use sequence accession ID as query"
-    default: "0"
+    default: ""
   ]
+
 endsection: advanced
+
+section: output [
+  information: "Output section"
+  type: "page"
+]
+
+endsection: output

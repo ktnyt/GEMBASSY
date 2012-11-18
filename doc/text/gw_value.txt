@@ -28,15 +28,20 @@ Usage
 
    Here is a sample session with gw_value
 
-% gw_value NC_000913.gbk
+% gw_value  NC_000913.gbk
 Calculate the 'relative adaptiveness of each codon' (W)
-NC_000913
+Output filename [gw_value.[accession].csv]:
+
+   Creates gw_value.[accession].csv
+   Output example is prepared in the data directory
 
 Command line arguments
 
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
+   -filename           string     [gw_value.[accession].csv] Output filename
+                                  (Any string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -48,8 +53,8 @@ Standard (Mandatory) qualifiers:
    -exclude            string     [[Mm]itochondrial] Regular expression to
                                   exclude genes from a reference set (Any
                                   string)
-   -accid              boolean    [0] Include to use sequence accession ID as
-                                  query
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -59,7 +64,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   gw_value reads nucleotide sequences
+   gw_value reads nucleotide sequences.
 
 Output file format
 
@@ -75,9 +80,13 @@ Notes
 
 References
 
-   Sharp and Li (1987) Nucleic Acids Res. 15:1281-1295.
-   Nakamura and Tabata (1997) Microb.Comp.Genomics 2:299-312.
+   Sharp PM et al. (2005) Nucleic Acids Res. 33(4):1141-1153
+
    Sakai et al. (2001) J.Mol.Evol. 52:164-170.
+
+   Nakamura and Tabata (1997) Microb.Comp.Genomics 2:299-312.
+
+   Sharp and Li (1987) Nucleic Acids Res. 15:1281-1295.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -109,6 +118,10 @@ Known bugs
 
 See also
 
+   genc Calculate the effective number of codons (Nc)
+   gew  Calculate a measure of synonymous codon usage evenness (Ew)
+   gfop Calculate the frequency of optimal codons (Fop)
+   gscs Calculates the scaled chi-square
 
 
 Author(s)

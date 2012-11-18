@@ -28,10 +28,10 @@ Usage
 
    Here is a sample session with gscs
 
-% gscs NC_000913.gbk
+% gscs  NC_000913.gbk
 Calculates the scaled chi-square
-NC_000913
 0.2651
+
 
 Command line arguments
 
@@ -48,8 +48,8 @@ Standard (Mandatory) qualifiers:
    -delkey             string     [[^ACDEFGHIKLMNPQRSTVWYacgtU]] Regular
                                   expression to delete key (i.e. amino acids
                                   and nucleotides) (Any string)
-   -accid              boolean    Include to use sequence accession ID as
-                                  query
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -59,7 +59,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   gscs reads nucleotide sequences
+   gscs reads nucleotide sequences.
 
 Output file format
 
@@ -74,6 +74,8 @@ Notes
    None.
 
 References
+
+   Comeron JM, Aguade M. (1998) J Mol Evol. 47(3):268-74.
 
    Shields DC, Sharp PM. (1987) Nucleic Acids Res. 15(19):8023-40.
 
@@ -107,6 +109,10 @@ Known bugs
 
 See also
 
+   genc     Calculate the effective number of codons (Nc)
+   gew      Calculate a measure of synonymous codon usage evenness (Ew)
+   gfop     Calculate the frequency of optimal codons (Fop)
+   gw_value Calculate the 'relative adaptiveness of each codon' (W)
 
 
 Author(s)

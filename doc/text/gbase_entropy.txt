@@ -1,7 +1,8 @@
                                 gbase_entropy
 Function
 
-   Calculates and graphs the sequence conservation using Shanon uncertainty (entropy)
+   Calculates and graphs the sequence conservation using Shanon uncertainty
+   (entropy)
 
 Description
 
@@ -28,16 +29,20 @@ Usage
 
    Here is a sample session with gbase_entropy
 
-% gbase_entropy NC_000913.gbk
+% gbase_entropy  NC_000913.gbk -graph cps
 Calculates and graphs the sequence conservation using Shanon uncertainty (entropy)
-NC_000913
-Retrieval successful
+Created gbase_entropy.ps
+
+   Creates gbase_entropy.[accession].ps
+   Output example is prepared in the data directory
 
 Command line arguments
 
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
+   -filename           string     [gbase_entropy.[accession].csv] Output
+                                  filename (Any string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -50,10 +55,12 @@ Standard (Mandatory) qualifiers:
                                   to create PWM (Any integer value)
    -downstream         integer    [30] Length downstream of specified position
                                   to create PWM (Any integer value)
-   -output             string     [g] Input 'g' for graph output, 'f' for CSV
-                                  file output (Any string)
-   -accid              boolean    [0] Include to use sequence accession ID as
-                                  query
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+   -output             boolean    [N] Include to create CSV file
+   -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
+                                  (ps, hpgl, hp7470, hp7580, meta, cps, x11,
+                                  tek, tekt, none, data, xterm, png, gif, svg)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -63,11 +70,11 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   gbase_entropy reads nucleotide sequences
+   gbase_entropy reads nucleotide sequences.
 
 Output file format
 
-   The output from gbase_entropy is to raw CSV of PNG format.
+   The output from gbase_entropy is to the specified graphics device.
 
 Data files
 
@@ -109,6 +116,11 @@ Known bugs
 
 See also
 
+   gbase_information_content Calculates and graphs the sequence conservation
+                             using information content
+   gbase_relative_entropy    Calculates and graphs the sequence conservation
+                             using Kullback-Leibler divergence (relative
+                             entropy)
 
 
 Author(s)

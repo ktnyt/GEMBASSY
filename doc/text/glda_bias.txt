@@ -1,22 +1,21 @@
                                   glda_bias
 Function
 
-   Calculate strand bias of bacterial genome using linear discriminant analysis (LDA)
+   Calculate strand bias of bacterial genome using linear discriminant analysis
+   (LDA)
 
 Description
 
-   This method calculate strand bias of bacterial genome using linear discriminant 
-   analysis (LDA), as proposed in Reference 1. The basic idea is to use composition
-   data of genes to train and predict the strand of genes residing either on the 
-   leading or the lagging strand. For computational efficiency, this method trans
-   and predicts the strands at putative replication origin as reported by the 
-   rep_ori_ter() method. This usually results in maximum predictability of LDA
-   within bacterial genomes.
+   This method calculate strand bias of bacterial genome using linear
+   discriminant analysis (LDA), as proposed in Reference 1. The basic idea is
+   to use composition data of genes to train and predict the strand of genes
+   residing either on the leading or the lagging strand. For computational
+   efficiency, this method trans and predicts the strands at putative
+   replication origin as reported by the rep_ori_ter() method. This usually
+   results in maximum predictability of LDA within bacterial genomes.
 
-   Data to use for LDA can be chosen from "base", "codonbase", "codon", and "amino",
-   with -variable option.
-
-   Installation of R statistics package is required.
+   Data to use for LDA can be chosen from "base", "codonbase", "codon", and
+  "amino", with -variable option.
 
  
    G-language SOAP service is provided by the
@@ -38,10 +37,10 @@ Usage
 
    Here is a sample session with glda_bias
 
-% glda_bias NC_000913.gbk
+% glda_bias  NC_000913.gbk
 Calculate strand bias of bacterial genome using linear discriminant analysis (LDA)
-NC_000913
 0.7421296
+
 
 Command line arguments
 
@@ -56,8 +55,8 @@ Standard (Mandatory) qualifiers:
    -variable           string     [codon] Data to use for LDA. Either 'base',
                                   'codonbase', 'codon', or 'amino' (Any
                                   string)
-   -accid              boolean    Include to use sequence accession ID as
-                                  query
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -67,7 +66,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   glda_bias reads nucleotide sequences
+   glda_bias reads nucleotide sequences.
 
 Output file format
 
@@ -83,7 +82,7 @@ Notes
 
 References
 
-   1. Rocha EPC et al. (1999) "Universal replication biases in bacteria",
+   Rocha EPC et al. (1999) "Universal replication biases in bacteria",
       Molecular Microbiology, 32(1):11-16
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
@@ -116,6 +115,11 @@ Known bugs
 
 See also
 
+   gb1           Calculate strand bias of bacterial genome using B1 index
+   gb2           Calculate strand bias of bacterial genome using B2 index
+   gdelta_gcskew Calculate strand bias of bacterial genome using delta GC skew
+                 index
+   ggcsi         GC Skew Index: an index for strand-specefic mutational bias
 
 
 Author(s)

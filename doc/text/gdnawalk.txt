@@ -11,12 +11,7 @@ Description
    upward, T downward, G to the right, and C to the left.
    Position zero (first letter of the genome) is indicated
    by the crossing of thin axes.
-   Generated PNG is very large (8000x8000 pixels), and it is
-   suited to be converted to Google Map View with generate_gmap().
-
-   Output file is created in the "graph" directory, with 
-   the accession number as file name and ".png" as extension.
-
+   
   
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
@@ -37,22 +32,26 @@ Usage
 
    Here is a sample session with gdnawalk
 
-% gdnawalk NC_000913.gbk
+% gdnawalk  refseqn:NC_000908
 Draws DNA Walk map of the genome
-SOAP 1.1 fault: SOAP-ENV:Client [no subcode]
-"Operation timed out"
-Detail: connect failed in tcp_connect()
+Output filename [gdnawalk.[accession].png]:
+
+   Creates gdnawalk.[accession].png
+   Output example is prepared in the data directory
 
 Command line arguments
 
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
+   -filename           string     [gdnawalk.[accession].png] Output filename
+                                  (Any string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
-   -accid              boolean    [0] Include to use sequence accession ID as
-                                  query
+   -show               boolean    [N] Include to show png with X11 window
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -62,7 +61,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   gdnawalk reads nucleotide sequences
+   gdnawalk reads nucleotide sequences.
 
 Output file format
 
@@ -108,6 +107,8 @@ Known bugs
 
 See also
 
+   gcircular_map Draws circular map of the genome
+   ggenome_map3  Draws the map of the genome (version 3)
 
 
 Author(s)

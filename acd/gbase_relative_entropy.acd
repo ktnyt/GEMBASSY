@@ -20,30 +20,37 @@ section: advanced [
   information: "Advanced section"
   type: "page"
 ]
+
   string: position [
     information: "either 'start' (around start codon) or 'end' (around stop codon) to create the PWM"
     default: "start"
   ]
+
   integer: patlen [
     information: " length of oligomer to count"
     default: "3"
   ]
+
   integer: upstream [
     information: "length upstream of specified position to create PWM"
     default: "30"
   ]
+
   integer: downstream [
     information: "length downstream of specified position to create PWM"
     default: "30"
   ]
-  string: output [
-    information: "Input 'g' for graph output, 'f' for CSV file output"
-    default: "g"
-  ]
-  boolean: accid [
+
+  string: accid [
     information: "Include to use sequence accession ID as query"
-    default: "0"
+    default: ""
   ]
+
+  boolean: output [
+    information: "Include to create CSV file"
+    default: "N"
+  ]
+
 endsection: advanced
 
 section: output 
@@ -51,4 +58,16 @@ section: output
   information: "Output section"
   type: "page"
 ]
+
+  xygraph: graph [
+    multiple: "8"
+    relations: "EDAM:0002968 data Image or plot"
+  ]
+
+  string: filename [
+    standard: "$(output)"
+    information: "Output filename"
+    default: "gbase_relative_entropy.[accession].csv"
+  ]
+
 endsection: output

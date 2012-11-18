@@ -5,19 +5,10 @@ Function
 
 Description
 
-   This program calculates codon usage differences between gene classes for identifying 
-   predicted highly expressed (PHX) genes. The "expression measure" of a gene, E_g, 
-   will be accessible at $gb->{"FEATURE$i"}->{E_g}.
+   This program calculates codon usage differences between gene classes for
+   identifying Predicted Highly eXpressed (PHX) and Putative Alien (PA) genes.
 
-  Usage:
-   NULL = &phx(G instance);
 
-  Options:
-   -output   output option (default: 'stdout')
-   'stdout' for standard output,
-   'f' for file output in directory "data"
-   -filename   output filename (default: 'phx.csv')
-   -usage   pointer HASH of vectors of amino acid and codon 
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -37,16 +28,20 @@ Usage
 
    Here is a sample session with gphx
 
-% gphx NC_000913.gbk
+% gphx  NC_000913.gbk
 Identify predicted highly expressed gene
-NC_000913
-Retrieval successful
+Output filename [gphx.[accession].csv]:
+
+   Creates gphx.[accession].csv
+   Output example is prepared in the data directory
 
 Command line arguments
 
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
+   -filename           string     [gbase_entropy.[accession].csv] Output
+                                  filename (Any string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -57,8 +52,8 @@ Standard (Mandatory) qualifiers:
                                   genes (Any string)
    -delkey             string     [[^ACDEFGHIKLMNPQRSTVWYacgtU]] Regular
                                   expression to delete key (Any string)
-   -accid              boolean    [0] Include to use sequence accession ID as
-                                  query
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -68,7 +63,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   gphx reads nucleotide sequences
+   gphx reads nucleotide sequences.
 
 Output file format
 
@@ -84,8 +79,11 @@ Notes
 
 References
 
-   Karlin and Mrazek (2000) J.Bacteriol. 182(18):5238-5250.
+   CMBL- PHX/PA user guide http://www.cmbl.uga.edu/software/PHX-PA-guide.htm
+
    Henry I, Sharp PM. 2007 Mol Biol Evol. 24(1):10-2.
+
+   Karlin and Mrazek (2000) J.Bacteriol. 182(18):5238-5250.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -117,6 +115,8 @@ Known bugs
 
 See also
 
+   gcai Calculate codon adaptation index for each gene
+   gp2  Calculate the P2 index of each gene
 
 
 Author(s)

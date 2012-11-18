@@ -5,8 +5,10 @@ Function
 
 Description
 
-   Checks the periodicity of certain nucleotide (best known with AA dinucleotide)
-   
+   Checks the periodicity of certain nucleotide (best known with AA
+   dinucleotide)
+    
+  
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -26,26 +28,35 @@ Usage
 
    Here is a sample session with gnucleotide_periodicity
 
-% gnucleotide_periodicity NC_000913.gbk
+% gnucleotide_periodicity  NC_000913.gbk -graph cps
 Checks the periodicity of certain oligonucleotides
-NC_000913
-Retrieval successful
+SOAP 1.1 fault: SOAP-ENV:Server [no subcode]
+"Can't use string ("LOCUS       NC_000913           ") as a HASH ref while "strict refs" in use at /usr/lib/perl5/site_perl/5.8.8/SubOpt.pm line 83, <DATA> line 1483.
+"
+Detail: [no detail]
+
+   Creates gnucleotide_periodicity.[accession].ps
+   Output example is prepared in the data directory
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
+*  -filename           string     [gnucleotide_periodicity.[accession].csv]
+                                  Output filename (Any string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -window             integer    [50] Window size to seek periodicity (Any
                                   integer value)
    -nucleotide         string     [aa] Nucleotide to search (Any string)
-   -output             string     [g] Input 'g' for graph output, 'f' for CSV
-                                  file output (Any string)
-   -accid              boolean    Include to use sequence accession ID as
-                                  query
+   -output             boolean    [N] Include to create CSV file
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+   -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
+                                  (ps, hpgl, hp7470, hp7580, meta, cps, x11,
+                                  tek, tekt, none, data, xterm, png, gif, svg)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -55,11 +66,11 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   gnucleotide_periodicity reads nucleotide sequences
+   gnucleotide_periodicity reads nucleotide sequences.
 
 Output file format
 
-   The output from gnucleotide_periodicity is to raw CSV of PNG format.
+   The output from gnucleotide_periodicity is to the specified graphics device.
 
 Data files
 
@@ -101,6 +112,10 @@ Known bugs
 
 See also
 
+   gkmer_table             Create an image showing all k-mer abundance within a                            sequence
+   goligomer_counter       Counts the number of given oligomers in a sequence
+   goligomer_search        Searches oligomers in given sequence
+   gsignature              Calculate oligonucleotide usage (genomic signature)
 
 
 Author(s)

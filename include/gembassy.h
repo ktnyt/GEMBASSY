@@ -3,19 +3,64 @@
 #include <curl/easy.h>
 #include <string.h>
 
-size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream) {
+typedef struct{
+  char* memory;
+  size_t size;
+} Memory;
+
+size_t get_data(void* ptr, size_t size, size_t nmemb, void* data){
+  if(size * nmemb == 0)
+    return 0;
+
+  size_t realsize = size * nmemb;
+  Memory* mem = (Memory*)data;
+  mem->memory = (char*)realloc(mem->memory,mem->size + realsize + 1);
+  if(mem->memory){
+    memcpy(&(mem->memory[mem->size]),ptr,realsize);
+    mem->size += realsize;
+    mem->memory[mem->size] = 0;
+  }
+
+  return realsize;
+}
+
+int valID(char* id){
+  char url[100];
+  CURL *curl;
+  CURLcode res;
+  Memory* mem = malloc(sizeof(Memory*));
+  int ret;
+
+  mem->size = 0;
+  mem->memory = NULL;
+
+  sprintf(url,"http://web.sfc.keio.ac.jp/~t11080hi/valID/valID.cgi?id=%s",id);
+  curl = curl_easy_init();
+  if(curl){
+    curl_easy_setopt(curl, CURLOPT_URL, url);
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, get_data);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void*)mem);
+    res = curl_easy_perform(curl);
+    curl_easy_cleanup(curl);
+    ret = atoi(mem->memory);
+    return ret;
+  }
+
+  return 0;
+}
+
+size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream){
   size_t written;
   written = fwrite(ptr, size, nmemb, stream);
   return written;
 }
 
-
-int get_file(char* url, char* outfilename) {
+int get_file(char* url, char* outfilename){
   CURL *curl;
   FILE *fp;
   CURLcode res;
   curl = curl_easy_init();
-  if (curl) {
+  if(curl){
     fp = fopen(outfilename,"wb");
     curl_easy_setopt(curl, CURLOPT_URL, url);
     curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
@@ -44,13 +89,13 @@ AjPStr getUniqueFileName(void) {
 AjPStr getGenbank(AjPSeq seq){
   AjPSeqout     seqout   = NULL;
   AjPFeattabOut featout  = NULL;
+  AjPFeattable  feat      = NULL;
   AjPStr        seqline  = NULL;
   AjPStr        featline = NULL;
   AjPFile       seqfile  = NULL;
   AjPFile       featfile = NULL;
   AjPStr        inseq    = NULL;
   AjPStr        filename = NULL;
-  AjPFeattable  feat     = NULL;
 
   filename = getUniqueFileName();
   feat = ajSeqGetFeatCopy(seq);
@@ -95,7 +140,6 @@ AjPStr getGenbank(AjPSeq seq){
   ajStrDel(&filename);
   ajFileClose(&seqfile);
   ajFileClose(&featfile);
-  ajFeattableDel(&feat);
 
   return inseq;
 }

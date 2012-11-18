@@ -1,6 +1,6 @@
 application: gentrez [
   documentation: "Search NCBI Entrez in G-language Shell"
-  groups: "Protein:Composition"
+  groups: "Data:Retrieval"
   embassy: "GEMBASSY"
 ]
 

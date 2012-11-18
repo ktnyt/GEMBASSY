@@ -5,14 +5,10 @@ Function
 
 Description
 
-   This function calculates and extracts conserved oligomers per position using Z-score,
-   in regions around the start/stop codons using Z-score
+   This function calculates and extracts conserved oligomers per position using
+   Z-score, in regions around the start/stop codons using Z-score
 
-  Usage:
-   $structure = base_z_value($genome);
 
-   Here the $structure is a reference to the array of hashes, intended for 
-   internal 
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -32,16 +28,20 @@ Usage
 
    Here is a sample session with gbase_z_value
 
-% gbase_z_value NC_000913.gbk
+% gbase_z_value  NC_000913.gbk
 Extracts conserved oligomers per position using Z-score
-NC_000913
-Retrieval successful
+Output filename [gbase_z_value.[accession].csv]:
+
+   Creates gbase_z_value.[accession].csv
+   Output example is prepared in the data directory
 
 Command line arguments
 
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
+   -filename           string     [gbase_z_value.[accession].csv] Output
+                                  filename (Any string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -56,8 +56,8 @@ Standard (Mandatory) qualifiers:
                                   to create PWM (Any integer value)
    -downstream         integer    [30] Length downstream of specified position
                                   to create PWM (Any integer value)
-   -accid              boolean    [0] Include to use sequence accession ID as
-                                  query
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -67,7 +67,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   gbase_z_value reads nucleotide sequences
+   gbase_z_value reads nucleotide sequences.
 
 Output file format
 
@@ -113,6 +113,8 @@ Known bugs
 
 See also
 
+   gbase_counter Creates a position weight matrix of oligomers around start                  codon
+   gview_cds     Displays a graph of nucleotide contents around start and stop                  codons
 
 
 Author(s)

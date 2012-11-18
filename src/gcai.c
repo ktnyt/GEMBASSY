@@ -11,7 +11,11 @@
 #include "../include/gembassy.h"
 
 int main(int argc, char *argv[]){
+<<<<<<< HEAD
   embInitPV("gcai",argc,argv,"GEMBASSY","0.0.1");
+=======
+  embInitPV("gcai", argc, argv, "GEMBASSY", "1.0.0");
+>>>>>>> 1.0.0
 
   struct soap soap;
   struct ns1__caiInputParams params;
@@ -22,14 +26,15 @@ int main(int argc, char *argv[]){
   AjBool    translate = 0;
   AjPStr    wabsent   = NULL;
   AjPStr    command   = NULL;
-  AjBool    accid    = 0;
+  AjPStr    accid     = NULL;
   AjPStr    filename  = NULL;
   char*     jobid;
   
   seqall    = ajAcdGetSeqall("sequence");
   translate = ajAcdGetBoolean("translate");
   wabsent   = ajAcdGetString("wabsent");
-  accid     = ajAcdGetBoolean("accid");
+  filename  = ajAcdGetString("filename");
+  accid     = ajAcdGetString("accid");
   
   if(translate){
     params.translate    = 1;
@@ -40,36 +45,49 @@ int main(int argc, char *argv[]){
   params.w_USCOREfilename = "w_value.csv";
   params.w_USCOREoutput   = "stdout";
 
-  while(ajSeqallNext(seqall,&seq)){  
+  while(ajSeqallNext(seqall, &seq)){  
 
     soap_init(&soap);
 
     inseq = NULL;
 
-    if(ajSeqGetFeat(seq) && !accid){
+    if(ajSeqGetFeat(seq) && !ajStrGetLen(accid)){
       inseq = getGenbank(seq);
+      ajStrAssignS(&accid, ajSeqGetAccS(seq));
     }else{
-      ajStrAppendS(&inseq,ajSeqGetAccS(seq));
+      if(!ajStrGetLen(accid)){
+        fprintf(stderr, "Sequence does not have features\n");
+        fprintf(stderr, "Proceeding with sequence accession ID\n");
+        ajStrAssignS(&accid, ajSeqGetAccS(seq));
+      }
+      if(!valID(ajCharNewS(accid))){
+          fprintf(stderr, "Invalid accession ID, exiting");
+          return 1;
+      }
+      ajStrAssignS(&inseq, accid);
     }
-    
+
     char* in0;
     in0 = ajCharNewS(inseq);
 
-    fprintf(stderr,"%s\n",ajCharNewS(ajSeqGetAccS(seq)));
-
-    if(!ajSeqGetFeat(seq) && !accid)
-      fprintf(stderr,"Sequence does not have features\nProceeding with sequence accession ID\n");
-
-    if(soap_call_ns1__cai(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
-      ajStrAssignS(&filename,ajSeqGetNameS(seq));
-      ajStrAppendC(&filename,".csv");
-      if(get_file(jobid,ajCharNewS(filename))==0){
-        fprintf(stderr,"Retrieval successful\n");
+    if(soap_call_ns1__cai(
+			  &soap, NULL, NULL,
+			  in0, &params, &jobid
+			  ) == SOAP_OK){
+      if(ajStrCmpC(filename, "gcai.[accession].csv") == 0){
+        ajStrAssignC(&filename, argv[0]);
+        ajStrAppendC(&filename, ".");
+        ajStrAppendS(&filename, accid);
+        ajStrAppendC(&filename, ".csv");
       }else{
-        fprintf(stderr,"Retrieval unsuccessful\n");
+        ajStrInsertC(&filename, -5, ".");
+        ajStrInsertS(&filename, -5, accid);
+      }
+      if(get_file(jobid, ajCharNewS(filename))){
+        fprintf(stderr, "Retrieval unsuccessful\n");
       }
     }else{
-      soap_print_fault(&soap,stderr);
+      soap_print_fault(&soap, stderr);
     }
     
     soap_destroy(&soap);

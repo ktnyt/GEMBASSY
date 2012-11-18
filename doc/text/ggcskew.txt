@@ -27,16 +27,20 @@ Usage
 
    Here is a sample session with ggcskew
 
-% ggcskew NC_000913.gbk
+% ggcskew  NC_000913.gbk -graph cps
 Calculates the GC skew of the input sequence
-NC_000913
-Retrieval successful
+Created ggcskew.ps
+
+   Creates ggcskew.[accession].ps
+   Output example is prepared in the data directory
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
+*  -filename           string     [ggcskew.[accession].csv] Output filename
+                                  (Any string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -50,10 +54,12 @@ Standard (Mandatory) qualifiers:
    -purine             boolean    [0] Include for observing purine (AG/TC)
                                   skew
    -keto               boolean    [0] Include for observing keto (TG/AC) skew
-   -output             string     [g] Input 'g' for graph output, 'f' for CSV
-                                  file output (Any string)
-   -accid              boolean    [0] Include to use sequence accession ID as
-                                  query
+   -output             boolean    [N] Include to create CSV file
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+   -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
+                                  (ps, hpgl, hp7470, hp7580, meta, cps, x11,
+                                  tek, tekt, none, data, xterm, png, gif, svg)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -63,11 +69,11 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   ggcskew reads nucleotide sequences
+   ggcskew reads nucleotide sequences.
 
 Output file format
 
-   The output from ggcskew is to raw CSV of PNG format.
+   The output from ggcskew is to the specified graphics device.
 
 Data files
 
@@ -109,6 +115,9 @@ Known bugs
 
 See also
 
+   ggcwin       Calculates the GC content along the given genome
+   ggeneskew    Calculate the gene strand bias of the given genome
+   ggenomicskew Calculates the GC skew in different regions of the given genom
 
 
 Author(s)

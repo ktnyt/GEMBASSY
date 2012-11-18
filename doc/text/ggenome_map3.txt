@@ -12,10 +12,7 @@ Description
 
    Entire genome is prepresented in a very large PNG image
    (8192x8192 pixel by default), and the number of nucleotides
-   represented by one pixel is automatically calculated. Then 
-   the large image is converted to a zoomable image usinig 
-   Google Map API.
-
+   represented by one pixel is automatically calculated. 
   
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
@@ -36,24 +33,27 @@ Usage
 
    Here is a sample session with ggenome_map3
 
-% ggenome_map3 NC_000913.gbk
+% ggenome_map3  refseqn:NC_000908
 Draws the map of the genome (version 3)
-SOAP 1.1 fault: SOAP-ENV:Client [no subcode]
-"Operation timed out"
-Detail: connect failed in tcp_connect()
+Output filename [ggenome_map3.[accession].png]:
+
+   Creates ggenome_map3.[accession].png
+   Output example is prepared in the data directory
 
 Command line arguments
 
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
+   -filename           string     [ggenome_map3.[accession].png] Output
+                                  filename (Any string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -width              integer    [8192] Image width (Any integer value)
    -height             integer    [8192] Image height (Any integer value)
-   -accid              boolean    [0] Include to use sequence accession ID as
-                                  query
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -63,7 +63,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   ggenome_map3 reads nucleotide sequences
+   ggenome_map3 reads nucleotide sequences.
 
 Output file format
 
@@ -109,6 +109,8 @@ Known bugs
 
 See also
 
+   gcircular_map Draws circular map of the genome
+   gdnawalk      Draws DNA Walk map of the genome
 
 
 Author(s)

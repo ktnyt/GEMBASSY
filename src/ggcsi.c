@@ -26,7 +26,7 @@ int main(int argc, char *argv[]){
   AjBool    keto      = 0;
   AjBool    p         = 0;
   AjPStr    outstring = NULL;
-  AjBool    accid     = 0;
+  AjPStr    accid     = NULL;
   AjPStr    filename  = NULL;
   char*     jobid;
   int       i;
@@ -38,7 +38,7 @@ int main(int argc, char *argv[]){
   purine  = ajAcdGetBoolean("purine");
   keto    = ajAcdGetBoolean("keto");
   p       = ajAcdGetBoolean("p");
-  accid   = ajAcdGetBoolean("accid");
+  accid   = ajAcdGetString("accid");
 
   params.window       = window;
   params.version      = version;
@@ -63,45 +63,53 @@ int main(int argc, char *argv[]){
     params.p          = 0;
   }
 
-  while(ajSeqallNext(seqall,&seq)){    
+  while(ajSeqallNext(seqall, &seq)){    
 
     soap_init(&soap);
-    
+
     inseq = NULL;
 
-    if(ajSeqGetFeat(seq) && !accid){
+    if(ajSeqGetFeat(seq) && !ajStrGetLen(accid)){
       inseq = getGenbank(seq);
+      ajStrAssignS(&accid,ajSeqGetAccS(seq));
     }else{
-      ajStrAppendS(&inseq,ajSeqGetAccS(seq));
+      if(!ajStrGetLen(accid)){
+        fprintf(stderr, "Sequence does not have features\n");
+        fprintf(stderr, "Proceeding with sequence accession ID\n");
+        ajStrAssignS(&accid, ajSeqGetAccS(seq));
+      }
+      if(!valID(ajCharNewS(accid))){
+          fprintf(stderr, "Invalid accession ID, exiting");
+          return 1;
+      }
+      ajStrAssignS(&inseq, accid);
     }
-    
+
     char* in0;
     in0 = ajCharNewS(inseq);
 
-    fprintf(stderr,"%s:\nGCSI\t\tSA\t\tDist\n",ajCharNewS(ajSeqGetAccS(seq)));
-
-    if(!ajSeqGetFeat(seq) && !accid)
-      fprintf(stderr,"Sequence does not have features\nProceeding with sequence accession ID\n");
-
-    if(soap_call_ns1__gcsi(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
+    if(soap_call_ns1__gcsi(
+			   &soap, NULL, NULL,
+			   in0, &params, &jobid
+			   ) == SOAP_OK){
       float gcsi,sa,dist;
       int n;
       char* tp  = jobid;
       char* dlm = "<>";
-      tp = strtok(tp,dlm);
-      tp = strtok(NULL,dlm);
+      tp = strtok(tp, dlm);
+      tp = strtok(NULL, dlm);
       gcsi = atof(tp);
-      for(n=0;n<3;n++){
-	tp = strtok(NULL,dlm);
+      for(n=0; n<3; n++){
+	tp = strtok(NULL, dlm);
       }
       sa = atof(tp);
-      for(i=0;i<3;i++){
-	tp = strtok(NULL,dlm);
+      for(i=0; i<3; i++){
+	tp = strtok(NULL, dlm);
       }
       dist = atof(tp);
-      printf("%f\t%f\t%f\n",gcsi,sa,dist);
+      fprintf(stdout, "%f\t%f\t%f\n", gcsi, sa, dist);
     }else{
-      soap_print_fault(&soap,stderr);
+      soap_print_fault(&soap, stderr);
     }
     
     soap_destroy(&soap);

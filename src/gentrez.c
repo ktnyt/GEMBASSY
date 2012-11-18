@@ -23,8 +23,11 @@ int main(int argc, char *argv[]){
   in0 = ajCharNewS(ajAcdGetString("db"));
   in1 = ajCharNewS(ajAcdGetString("query"));
 
-  if(soap_call_ns1__entrez(&soap,NULL,NULL,in0,in1,&_result)==SOAP_OK){
-    puts(_result);
+  if(soap_call_ns1__entrez(
+			   &soap, NULL, NULL,
+			   in0, in1, &_result
+			   ) == SOAP_OK){
+    fprintf(stdout, "%s\n", _result);
   }else{
     soap_print_fault(&soap,stderr);
   }

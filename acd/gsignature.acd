@@ -1,6 +1,6 @@
 application: gsignature [
   documentation: "Calculate oligonucleotide usage (genomic signature)"
-  groups: ""
+  groups: "Nucleic:Composition"
   embassy: "GEMBASSY"
 ]
 
@@ -37,7 +37,7 @@ section: advanced [
     default: "1"
   ]
 
-  boolean: accid [
+  string: accid [
     information: "Include to use sequence accession ID as query"
     default: ""
   ]
@@ -48,4 +48,11 @@ section: output [
 	information: "Output section"
 	type: "page"
 ]
+
+  string: filename [
+    standard: "Y"
+    information: "Output filename"
+    default: "gsignature.[accession].csv"
+  ]
+
 endsection: output

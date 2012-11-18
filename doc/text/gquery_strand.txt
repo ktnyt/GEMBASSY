@@ -53,8 +53,9 @@ Command line argumants
 
 % gquery_strand NC_000913.gbk
 Get the strand name (leading or lagging) from the given position
-NC_000913
+Position to query [0]:
 leading
+
 
 Command line arguments
 
@@ -69,6 +70,7 @@ Standard (Mandatory) qualifiers:
    -direction          string     [direct] Strand of the querying position
                                   either 'direct' or 'complement' (Any string)
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 Input file format
 
@@ -80,6 +82,10 @@ Ouptput file format
 =======
    -accid              boolean    [0] Include to use sequence accession ID as
                                   query
+=======
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+>>>>>>> 1.0.0
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -89,7 +95,7 @@ Ouptput file format
 
 Input file format
 
-   gquery_strand reads nucleotide sequences
+   gquery_strand reads nucleotide sequences.
 
 Output file format
 
@@ -145,6 +151,7 @@ Known bugs
 See also
 
 <<<<<<< HEAD
+<<<<<<< HEAD
    gfindoriter  - Predict the replication origin and terminus in bacterial
                   genomes
    ggcsi        - GC Skew Index: an index for strand-specific mutational bias
@@ -159,6 +166,11 @@ See also
 =======
 
 >>>>>>> 1.0.0-beta
+=======
+   gquery_arm    Get the replication arm name (left or right) from the given
+                 position
+
+>>>>>>> 1.0.0
 
 Author(s)
 

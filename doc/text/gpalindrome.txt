@@ -27,18 +27,20 @@ Usage
 
    Here is a sample session with gpalindrome
 
-% gpalindrome NC_000913.gbk
+% gpalindrome  NC_000913.gbk
 Searches palindrome sequences
-NC_000913
-Error 502 fault: SOAP-ENV:Server [no subcode]
-"HTTP/1.1 502 Proxy Error"
-Detail: [no detail]
+Output filename [gpalindrome.[accession].csv]:
+
+   Creates gpalindrome.[accession].csv
+   Output example is prepared in the data directory
 
 Command line arguments
 
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
+   -filename           string     [gpalindrome.[accession].csv] Output
+                                  filename (Any string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -47,8 +49,8 @@ Standard (Mandatory) qualifiers:
    -loop               integer    [0] Longest stem loop to allow (Any integer
                                   value)
    -gtmatch            boolean    [0] If 1, allows g-t match
-   -accid              boolean    Include to use sequence accession ID as
-                                  query
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -58,7 +60,7 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   gpalindrome reads nucleotide sequences
+   gpalindrome reads nucleotide sequences.
 
 Output file format
 
@@ -104,6 +106,9 @@ Known bugs
 
 See also
 
+   gconsensus_z Calculate consensus in given array of sequences
+   gdist_in_cc  Calculates the distance between two loci in circular chromosomes
+   gseqinfo     Prints out basic nucleotide sequence statistics
 
 
 Author(s)

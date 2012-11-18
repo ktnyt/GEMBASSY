@@ -32,7 +32,7 @@ section: advanced [
     default: "[^ACDEFGHIKLMNPQRSTVWYacgtU]"
   ]
 
-  boolean: accid [
+  string: accid [
     information: "Include to use sequence accession ID as query"
     default: ""
   ]
@@ -43,4 +43,11 @@ section: output [
 	information: "Output section"
 	type: "page"
 ]
+
+  string: filename [
+    standard: "Y"
+    information: "Output filename"
+    default: "gew.[accession].csv"
+  ]
+
 endsection: output

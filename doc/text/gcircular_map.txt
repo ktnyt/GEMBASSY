@@ -15,12 +15,6 @@ Description
    origin and terminus predicted from the GC skew shift points 
    are also labeled. 
 
-   Generated SVG is very large (8000x8000 pixels), and it is
-   suited to be converted to Google Map View with generate_gmap().
-
-   Output file is created in the "graph" directory, with 
-   the accession number as file name and ".svg" as extension.
-
   
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
@@ -41,23 +35,25 @@ Usage
 
    Here is a sample session with gcircular_map
 
-% gcircular_map NC_000913.gbk
+% gcircular_map  refseqn:NC_000908
 Draws circular map of the genome 
-NC_000913
-Error 502 fault: SOAP-ENV:Server [no subcode]
-"HTTP/1.1 502 Proxy Error"
-Detail: [no detail]
+Output filename [gcircular_map.[accession].svg]:
+
+   Creates gcircular_map.[accession].svg
+   Output example is prepared in the data directory
 
 Command line arguments
 
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
+   -filename           string     [gcircular_map.[accession].svg] Output
+                                  filename (Any string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
-   -accid              boolean    [0] Include to use sequence accession ID as
-                                  query
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -67,11 +63,11 @@ Standard (Mandatory) qualifiers:
 
 Input file format
 
-   gcircular_map reads nucleotide sequences
+   gcircular_map reads nucleotide sequences.
 
 Output file format
 
-   The output from gcircular_map is to standard output.
+   The output from gcircular_map is to SVG format.
 
 Data files
 
@@ -113,6 +109,8 @@ Known bugs
 
 See also
 
+   gdnawalk      Draws DNA Walk map of the genome
+   ggenome_map3  Draws the map of the genome (version 3)
 
 
 Author(s)

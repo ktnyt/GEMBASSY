@@ -31,9 +31,9 @@ section: advanced [
     information: "Regular expression to delete key"
     default: "[^ACDEFGHIKLMNPQRSTVWYacgtU]"
   ]
-  boolean: accid [
+  string: accid [
     information: "Include to use sequence accession ID as query"
-    default: "0"
+    default: ""
   ]
 endsection: advanced
 
@@ -41,4 +41,11 @@ section: output [
 	information: "Output section"
 	type: "page"
 ]
+
+  string: filename [
+    standard: "Y"
+    information: "Output filename"
+    default: "gbase_entropy.[accession].csv"
+  ]
+
 endsection: output

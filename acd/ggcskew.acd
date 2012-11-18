@@ -49,22 +49,35 @@ section: advanced [
 
   boolean: keto [
     information: "Include for observing keto (TG/AC) skew"
-		default: "0"
-  ]
-
-  string: output [
-    information: "Input 'g' for graph output, 'f' for CSV file output"
-    default: "g"
-  ]
-
-  boolean: accid [
-    information: "Include to use sequence accession ID as query"
     default: "0"
   ]
+
+  boolean: output [
+    information: "Include to create CSV file"
+    default: "N"
+  ]
+
+  string: accid [
+    information: "Include to use sequence accession ID as query"
+    default: ""
+  ]
+
 endsection: advanced
 
 section: output [
 	information: "Output section"
 	type: "page"
 ]
+
+  xygraph: graph [
+    multiple: "8"
+    relations: "EDAM:0002968 data Image or plot"
+  ]
+
+  string: filename [
+    standard: "$(output)"
+    information: "Output filename"
+    default: "ggcskew.[accession].csv"
+  ]
+
 endsection: output

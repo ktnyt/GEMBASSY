@@ -20,26 +20,32 @@ section: advanced [
   information: "Advanced section"
   type: "page"
 ]
+
   string: id [
     information: "ID of a group"
     default: "All"
   ]
+
   boolean: translate [
     information: "'1' when translates using standard codon table"
     default: "0"
   ]
+
   boolean: startcodon [
     information: "'1' when includes start codon"
     default: "0"
   ]
+
   boolean: stopcodon [
     information: "'1' when includes stop codon"
     default: "0"
   ]
+
   string: delkey [
     information: "Regular expression to delete key (i.e. amino acids and nucleotides)"
     default: "[^ACDEFGHIKLMNPQRSTVWYacgtU]"
   ]
+
   string: data [
     information: "kinds of codon usage data
 'A0': Absolute amino acid frequency ('AA')
@@ -50,14 +56,23 @@ section: advanced [
 'C3' or 'R3': Relative synonymous codon usage ('RSCU') 
 'C4' or 'R4': Relative adaptiveness; i.e., ratio to maximum of minor codon ('W')"
   ]
-  boolean: accid [
+
+  string: accid [
     information: "Include to use sequence accession ID as query"
-    default: "0"
+    default: ""
   ]
- endsection: advanced
+
+endsection: advanced
 
 section: output [
   information: "Output section"
   type: "page"
 ]
+
+  string: filename [
+    standard: "Y"
+    information: "Output filename"
+    default: "gcodon_compiler.[accession].csv"
+  ]
+
 endsection: output

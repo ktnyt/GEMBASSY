@@ -10,7 +10,8 @@
 
 <table align=center border=0 cellspacing=0 cellpadding=0>
 <tr><td valign=top>
-<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emboss_icon.jpg" alt="" width=150 height=48></a>
+<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emb
+oss_icon.jpg" alt="" width=150 height=48></a>
 </td>
 <td align=left valign=middle>
 <b><font size="+6">
@@ -30,7 +31,7 @@ gdnawalk
 
 
 <H2> Function </H2>
-Draws DNA Walk map of the genome
+   Draws DNA Walk map of the genome
 <!--
 DON'T WRITE ANYTHING HERE.
 IT IS DONE FOR YOU.
@@ -41,31 +42,28 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This method draws the DNA Walk map of the given genome.
-   DNA Walk is drawn by moving a single pixel per nucleotide, 
-   in the direction specified for each base. Here A is moved
-   upward, T downward, G to the right, and C to the left.
-   Position zero (first letter of the genome) is indicated
-   by the crossing of thin axes.
-   Generated PNG is very large (8000x8000 pixels), and it is
-   suited to be converted to Google Map View with generate_gmap().
-
-   Output file is created in the "graph" directory, with 
-   the accession number as file name and ".png" as extension.
-
-  
-</p>
-
-<p>
-G-language SOAP service is provided by the Institute for Advanced Biosciences, Keio University.<br />
-
-The original web service is located at the following URL:<br />
-http://www.g-language.org/wiki/soap
-</p>
-
-<p>
-WSDL(RPC/Encoded) file is located at:<br />
-http://soap.g-language.org/g-language.wsdl
+   This method draws the DNA Walk map of the given genome.<br>
+   DNA Walk is drawn by moving a single pixel per nucleotide, <br>
+   in the direction specified for each base. Here A is moved<br>
+   upward, T downward, G to the right, and C to the left.<br>
+   Position zero (first letter of the genome) is indicated<br>
+   by the crossing of thin axes.<br>
+   <br>
+  <br>
+   G-language SOAP service is provided by the<br>
+   Institute for Advanced Biosciences, Keio University.<br>
+   The original web service is located at the following URL:<br>
+<br>
+   http://www.g-language.org/wiki/soap<br>
+<br>
+   WSDL(RPC/Encoded) file is located at:<br>
+<br>
+   http://soap.g-language.org/g-language.wsdl<br>
+<br>
+   Documentation on G-language Genome Analysis Environment methods are<br>
+   provided at the Document Center<br>
+<br>
+   http://ws.g-language.org/gdoc/
 </p>
 
 <H2>Usage</H2>
@@ -74,17 +72,18 @@ http://soap.g-language.org/g-language.wsdl
 
    Here is a sample session with gdnawalk
 
-% gdnawalk NC_000913.gbk
-SOAP 1.1 fault: SOAP-ENV:Client [no subcode]
-"Operation timed out"
-Detail: connect failed in tcp_connect()
+% gdnawalk  refseqn:NC_000908
+Draws DNA Walk map of the genome
+Output filename [gdnawalk.[accession].png]:
 
+   Creates gdnawalk.[accession].png
+   Output example is prepared in the data directory
 
 </pre></td></tr></table>
 
 
 
-<h2>Command line argumants</h2>
+<h2>Command line arguments</h2>
 
 <table border cellspacing=0 cellpadding=3 bgcolor="#ccccff">
 <tr bgcolor="#FFFFCC">
@@ -108,6 +107,14 @@ Detail: connect failed in tcp_connect()
 </tr>
 
 <tr bgcolor="#FFFFCC">
+<td>-filename</td>
+<td>string</td>
+<td>Output filename</td>
+<td>Any string</td>
+<td>gdnawalk.[accession].png</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
 <th align="left" colspan=5>Additional (Optional) qualifiers</th>
 </tr>
 
@@ -120,11 +127,19 @@ Detail: connect failed in tcp_connect()
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-accid</td>
+<td>-show</td>
 <td>boolean</td>
-<td>Include to use sequence accession ID as query</td>
+<td>Include to show png with X11 window</td>
 <td>Boolean value Yes/No</td>
 <td>No</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-accid</td>
+<td>string</td>
+<td>Include to use sequence accession ID as query</td>
+<td>Any string</td>
+<td>&nbsp;</td>
 </tr>
 
 </table>
@@ -133,13 +148,42 @@ Detail: connect failed in tcp_connect()
 <h2>Input file format</h2>
 
 <p>
-gdnawalk reads nucleotide sequences.
+   gdnawalk reads nucleotide sequences.
 </p>
 
-<h2>Ouptput file format</h2>
+<h2>Ouptut file format</h2>
 
 <p>
-The output from gdnawalk is to PNG format.
+   Creates gdnawalk.[accession].png
+   Output example is prepared in the data directory
+
+Command line arguments
+
+Standard (Mandatory) qualifiers:
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
+                                  format, or reference (input USA)
+   -filename           string     [gdnawalk.[accession].png] Output filename
+                                  (Any string)
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -show               boolean    [N] Include to show png with X11 window
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+
+Input file format
+
+   gdnawalk reads nucleotide sequences.
+
+Output file format
+
+   The output from gdnawalk is to PNG format.
 </p>
 
 <h2>Data files</h2>
@@ -157,7 +201,6 @@ None.
 <h2>Refrences</h2>
 
 <pre>
-
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
       for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
@@ -170,6 +213,13 @@ None.
       Analysis Environment with REST and SOAP Wev Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
 </pre>
+
+<h2>Warnings</h2>
+
+<p>
+   None.
+</p>
+
 <h2>Diagnostic Error Messages</h2>
 
 <p>
@@ -190,6 +240,21 @@ None.
 
 <h2>See also</h2>
 
+<table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th>
+<th>Description</th></tr>
+
+<tr>
+<td><a href="gcircular_map.html">gcircular_map</a></td>
+<td>Draws circular map of the genome</td>
+</tr>
+
+<tr>
+<td><a href="ggenome_map3.html">ggenome_map3</a></td>
+<td>Draws the map of the genome (version 3)</td>
+</tr>
+
+</table>
+
 <h2>Author(s)</h2>
 
 <pre>
@@ -197,7 +262,7 @@ None.
    Institute for Advanced Biosciences, Keio University
    252-8520 Japan
 
-   Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Kazuharu Arakawa(gaou@g-language.org) 
 </pre>
 
 <h2>History</h2>
@@ -211,5 +276,5 @@ None.
 
 <h2>Comments</h2>
 
-    None.
+   None.
 
