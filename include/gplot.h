@@ -55,41 +55,76 @@ int gPlotFile(AjPStr filename, AjPGraph graphs, gPlotParams *gpp)
   ajint   i=0, j=0, col=0, flag=0;
   float **data = NULL;
 
-  while(ajReadline(file, &line)){
+  while(ajReadline(file, &line))
+    {
 
     /*
     ** Allocate first time only
     */
 
-    if(!col){
+    if(!col)
+      {
       col = ajStrCalcCountC(line, ",") + 1;
 
       if((temp = (AjPPStr)malloc(sizeof(AjPStr) * col)) == NULL)
+	{
 	return 1;
+      }
 
       if((name = (AjPPStr)malloc(sizeof(AjPStr) * col)) == NULL)
+	{
+	free(temp);
 	return 1;
+      }
 
       if((data = (float**)malloc(sizeof(float*) * col)) == NULL)
+	{
+	free(temp);
+	free(name);
 	return 1;
-      else
-	for(i = 0; i < col; ++i)
-	  if((data[i] = (float*)malloc(sizeof(float))) == NULL)
-	    return 1;
-    }
-
+      }
+      for(i = 0; i < col; ++i)
+	{
+	  if((data[i] = (float*)malloc(sizeof(float))) == NULL){
+	    {
+	      free(temp);
+	      free(name);
+	      for(j = 0; j < i; ++j)
+		{
+		  free(data[j]);
+		}
+	      free(data);
+	      return 1;
+	    }
+	  }
+	}
+      }
+    
     ajStrExchangeCC(&line, ",", "\n");
     ajStrParseSplit(line, &temp);
 
-    for(i = 0; i < col; ++i){
+    for(i = 0; i < col; ++i)
+      {
       if((data[i] = (float*)realloc(data[i], sizeof(float) * (j + 1))) == NULL)
+	{
+	free(temp);
+	free(name);
+	for(j = 0; j < i; ++j)
+	  {
+	  free(data[j]);
+	}
+	free(data);
 	return 1;
+      }
 
       ajStrRemoveLastNewline(&(temp[i]));
-      if(ajStrIsFloat(temp[i])){
+      if(ajStrIsFloat(temp[i]))
+	{
 	ajStrToFloat(temp[i], &(data[i][j]));
 	++flag;
-      }else{
+      }
+      else
+	{
 	name[i] = ajStrNewS(temp[i]);
       }
     }
@@ -104,14 +139,16 @@ int gPlotFile(AjPStr filename, AjPGraph graphs, gPlotParams *gpp)
   if(!(*gpp).names)
     (*gpp).names = name;
 
+  ajSysFileUnlinkS(filename);
+
   if(j < 2)
     gPlotFlip(gpp);
 
   gPlotData(graphs, gpp);
 
-  for(i = 0; i < col; ++i)
-    free(data[i]);
-  free(data);
+  for(i = 0; i < (*gpp).typeNum; ++i)
+    free((*gpp).data[i]);
+  free((*gpp).data);
   data = NULL;
 
   ajFileClose(&file);
@@ -152,8 +189,10 @@ int gPlotData(AjPGraph graphs, gPlotParams *gpp)
 
   int c[] = {1,3,9,13};
 
-  for(i = 1; i < typeNum; ++i){
-    for(j = 0; j < dataNum; ++j){
+  for(i = 1; i < typeNum; ++i)
+    {
+    for(j = 0; j < dataNum; ++j)
+      {
       min = (min < data[i][j]) ? min : data[i][j];
       max = (max > data[i][j]) ? max : data[i][j];
     }
@@ -163,7 +202,8 @@ int gPlotData(AjPGraph graphs, gPlotParams *gpp)
   max += dif / 20;
   min -= dif / 20;
 
-  for(i = 1; i < typeNum; ++i){
+  for(i = 1; i < typeNum; ++i)
+    {
     gd = ajGraphdataNewI(dataNum);
 
     ajGraphdataSetColour(gd, c[i-1]);
@@ -171,7 +211,8 @@ int gPlotData(AjPGraph graphs, gPlotParams *gpp)
     ajGraphdataSetTruescale(gd, begin, end, min, max);
     ajGraphdataSetTypeC(gd, "Multi 2D Plot");
       
-    for(j = 0; j <  dataNum; ++j){
+    for(j = 0; j <  dataNum; ++j)
+      {
       x[j] = data[0][j];
       y[j] = data[i][j];
     }
@@ -179,11 +220,14 @@ int gPlotData(AjPGraph graphs, gPlotParams *gpp)
     ajGraphdataAddXY(gd, x, y);
     ajGraphDataAdd(graphs, gd);
       
-    if(typeNum > 2){
+    if(typeNum > 2)
+      {
       float len = 0.0;
-      for(j = 1;j < typeNum; ++j)
+
+      for(j = 1; j < typeNum; ++j)
 	len = (len < (float)ajStrGetLen(names[j])) ?
 	  (float)ajStrGetLen(names[j]) : len;
+
       ajGraphAddLine(graphs,
 		     range * 7.4/8 + begin, dif * (8.6-i*0.3)/8 + min,
 		     range * 7.8/8 + begin, dif * (8.6-i*0.3)/8 + min,
@@ -246,6 +290,10 @@ int gPlotFlip(gPlotParams *gpp)
     tmp[1][i] = data[i][0];
   }
 
+  for(i = 0; i < dataNum; ++i)
+    {
+      free((*gpp).data[i]);
+  }
   free((*gpp).data);
 
   (*gpp).dataNum = dataNum;

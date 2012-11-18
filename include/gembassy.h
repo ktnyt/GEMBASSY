@@ -86,9 +86,10 @@ AjPStr getUniqueFileName(void) {
   return filename;
 }
 
-AjPStr getGenbank(AjPSeq seq, const AjPFeattable feat){
+AjPStr getGenbank(AjPSeq seq){
   AjPSeqout     seqout   = NULL;
   AjPFeattabOut featout  = NULL;
+  AjPFeattable  feat      = NULL;
   AjPStr        seqline  = NULL;
   AjPStr        featline = NULL;
   AjPFile       seqfile  = NULL;

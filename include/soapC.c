@@ -19,7 +19,7 @@ compiling, linking, and/or using OpenSSL is allowed.
 extern "C" {
 #endif
 
-SOAP_SOURCE_STAMP("@(#) soapC.c ver 2.8.6 2012-11-07 09:40:00 GMT")
+SOAP_SOURCE_STAMP("@(#) soapC.c ver 2.8.6 2012-11-18 13:16:56 GMT")
 
 
 #ifndef WITH_NOGLOBAL
@@ -20695,14 +20695,12 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__view_USCOREcdsInputParams(struct so
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	soap_default_int(soap, &a->length);
 	soap_default_int(soap, &a->gap);
-	soap_default_string(soap, &a->application);
 	soap_default_string(soap, &a->output);
 }
 
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__view_USCOREcdsInputParams(struct soap *soap, const struct ns1__view_USCOREcdsInputParams *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
-	soap_serialize_string(soap, &a->application);
 	soap_serialize_string(soap, &a->output);
 }
 
@@ -20714,12 +20712,6 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__view_USCOREcdsInputParams(struct soap *s
 	if (soap_out_int(soap, "length", -1, &a->length, ""))
 		return soap->error;
 	if (soap_out_int(soap, "gap", -1, &a->gap, ""))
-		return soap->error;
-	if (a->application)
-	{	if (soap_out_string(soap, "application", -1, &a->application, ""))
-			return soap->error;
-	}
-	else if (soap_element_nil(soap, "application"))
 		return soap->error;
 	if (a->output)
 	{	if (soap_out_string(soap, "output", -1, &a->output, ""))
@@ -20734,7 +20726,6 @@ SOAP_FMAC3 struct ns1__view_USCOREcdsInputParams * SOAP_FMAC4 soap_in_ns1__view_
 {
 	size_t soap_flag_length = 1;
 	size_t soap_flag_gap = 1;
-	size_t soap_flag_application = 1;
 	size_t soap_flag_output = 1;
 	if (soap_element_begin_in(soap, tag, 0, type))
 		return NULL;
@@ -20754,11 +20745,6 @@ SOAP_FMAC3 struct ns1__view_USCOREcdsInputParams * SOAP_FMAC4 soap_in_ns1__view_
 			if (soap_flag_gap && soap->error == SOAP_TAG_MISMATCH)
 				if (soap_in_int(soap, "gap", &a->gap, "xsd:int"))
 				{	soap_flag_gap--;
-					continue;
-				}
-			if (soap_flag_application && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
-				if (soap_in_string(soap, "application", &a->application, "xsd:string"))
-				{	soap_flag_application--;
 					continue;
 				}
 			if (soap_flag_output && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
@@ -20781,7 +20767,7 @@ SOAP_FMAC3 struct ns1__view_USCOREcdsInputParams * SOAP_FMAC4 soap_in_ns1__view_
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
-	if ((soap->mode & SOAP_XML_STRICT) && (soap_flag_length > 0 || soap_flag_gap > 0 || soap_flag_application > 0 || soap_flag_output > 0))
+	if ((soap->mode & SOAP_XML_STRICT) && (soap_flag_length > 0 || soap_flag_gap > 0 || soap_flag_output > 0))
 	{	soap->error = SOAP_OCCURS;
 		return NULL;
 	}

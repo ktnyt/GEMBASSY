@@ -571,7 +571,6 @@ struct ns1__view_USCOREcdsInputParams
 {
 	int length;	/* required element of type xsd:int */
 	int gap;	/* required element of type xsd:int */
-	char *application;	/* required element of type xsd:string */
 	char *output;	/* required element of type xsd:string */
 };
 #endif
