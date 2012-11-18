@@ -1,5 +1,5 @@
 
-/* GEMBASSY ver 0.0.1 beta ***************************************************
+/* GEMBASSY ver 1.0.0 beta ***************************************************
 
   All rights reserved. Copyright (C) 2012 by ITAYA Hidetoshi.
 
@@ -39,43 +39,6 @@ REQUIREMENTS
    above.
 
 INSTALLATION
-<<<<<<< HEAD
-Root users
-   In the following examples we assume the downloaded EMBOSS archive filename
-   is EMBOSS-latest.tar.gz
-
-   1. Download and compile EMBOSS source code
-      % wget ftp://emboss.open-bio.org/pub/EMBOSS/EMBOSS-latest.tar.gz
-      (or "curl -O ftp://emboss.open-bio.org/pub/EMBOSS/EMBOSS-latest.tar.gz")
-      % tar zxf EMBOSS-latest.tar.gz
-      % cd EMBOSS-6.4.0
-      % ./configure
-      % make
-      % sudo make install
-
-   2. Make "embassy" directory in the EMBOSS-6.4.0/ directory if it does not
-      exist and go into the directory.
-      % mkdir embassy
-      % cd embassy
-
-   3. Download and compile the GEMBASSY source code
-      % wget http://web.sfc.keio.ac.jp/~t11080hi/GEMBASSY-0.0.1.tar.gz
-      (or "curl -O http://web.sfc.keio.ac.jp/~t11080hi/GEMBASSY-0.0.1.tar.gz")
-      % tar zxf GEMBASSY-0.0.1.tar.gz
-      % cd GEMBASSY-0.0.1
-      ( EMBOSS-6.4.0/embassy/GEMBASSY-0.0.1 )
-      % ./configure (use the same options as in step 1.)
-      % make
-      % sudo make install
-
-Non-root users
-   On steps 1. and 3. do
-   % ./configure --prefix=/PATH/TO/DIR/
-   % make
-   % make install
-   Then rewrite the "emboss_acdroot" and "emboss_data" value in ~/.embossrc
-   file.
-=======
   Root users
     In the following examples we assume the downloaded EMBOSS archive filename
     is EMBOSS-latest.tar.gz
@@ -139,7 +102,6 @@ NOTE
     % make install
     Then rewrite the "emboss_acdroot" and "emboss_data" value in ~/.embossrc
     file.
->>>>>>> 1.0.0
 
 *****************************************************************************/
 
@@ -164,7 +126,7 @@ INFORMATION OF GEMBASSY TOOLS
 
 USAGE EXAMPLE
    Sample files used in the following examples are included in this package.
-      ( GEMBASSY-0.0.1/data/* )
+      ( GEMBASSY-1.0.0/data/* )
 
    1. ggcskew (GC skew)
       % ggcskew NC_000913.gbk -graph cps
@@ -181,7 +143,7 @@ USAGE EXAMPLE
       0.029426        19.060829       163.543442
 
    3. grep_ori_ter (Replication Origin & Terminus)
-      % grep_ori_ter 
+      % greporiter 
       Get the positions of replication origin and terminus
       Input nucleotide sequence: refseqn:NC_000913
       origin  terminus
