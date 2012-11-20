@@ -1,0 +1,133 @@
+                                 gsignature
+Function
+
+   Calculate oligonucleotide usage (genomic signature)
+
+Description
+
+   This program calculates short oligonucleotide usage (genomic signature),
+   defined as the ratio of observed (O) to expected (E) oligonucleotide frequencies.
+   O/E value of dinucleotide CG will be accessible at 
+   $gb->{signature}->{'cg'}.
+   
+   G-language SOAP service is provided by the
+   Institute for Advanced Biosciences, Keio University.
+   The original web service is located at the following URL:
+
+   http://www.g-language.org/wiki/soap
+
+   WSDL(RPC/Encoded) file is located at:
+
+   http://soap.g-language.org/g-language.wsdl
+
+   Documentation on G-language Genome Analysis Environment methods are
+   provided at the Document Center
+
+   http://ws.g-language.org/gdoc/
+
+Usage
+
+   Here is a sample session with gsignature
+
+% gsignature NC_000913.gbk
+Calculate oligonucleotide usage (genomic signature)
+Output filename [nc_000913.gsignature]:
+
+   Creates nc_000913.gsignature
+   Output example is prepared in the data directory
+
+Command line arguments
+
+Standard (Mandatory) qualifiers:
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
+                                  format, or reference (input USA)
+   -outfile            outfile    [*.gsignature] Output file name
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -wordlength         integer    [2] Word length (Any integer value)
+   -[no]bothstrand     boolean    [1] Use direct (0) or both (1) strand
+   -[no]oe             boolean    [1] Use observed (0) or O/E (1) value
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+
+Input file format
+
+   gsignature reads nucleotide sequences.
+
+Output file format
+
+   The output from gsignature is to a raw CSV file.
+
+Data files
+
+   None.
+
+Notes
+
+   None.
+
+References
+
+      Campbell A et al. (1999) Proc Natl Acad Sci U S A. 96(16):9184-9.
+      Karlin S. (2001) Trends Microbiol. 9(7):335-43.
+
+   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
+      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
+      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
+
+   Arakawa, K. and Tomita, M. (2006) G-language System as a Platfor for
+      large-scale analysis of high-throughput omics data, J. Pest Sci.,
+      31, 7.
+
+   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
+      Analysis Environment with REST and SOAP Wev Service Interfaces,
+      Nucleic Acids Res., 38, W700-W705.
+
+Warnings
+
+   None.
+
+Diagnostic Error Messages
+
+   None.
+
+Exit status
+
+   It always exits with a status of 0.
+
+Known bugs
+
+   None.
+
+See also
+
+
+
+Author(s)
+
+   Hidetoshi Itaya (celery@g-language.org)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
+
+   Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+
+History
+
+   2012 - Written by Hidetoshi Itaya
+
+Target users
+
+   This program is intended to be used by everyone and everything, from
+   naive users to embedded scripts.
+
+Comments
+
+   None.
+

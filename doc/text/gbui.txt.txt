@@ -1,0 +1,165 @@
+                                    gbui
+Function
+
+   Calculates base usage indices for protein-coding sequences
+
+Description
+
+   This program calculates base usage indices for protein-coding sequences
+   (excluding start and stop codons).
+
+
+   G-language SOAP service is provided by the
+   Institute for Advanced Biosciences, Keio University.
+   The original web service is located at the following URL:
+
+   http://www.g-language.org/wiki/soap
+
+   WSDL(RPC/Encoded) file is located at:
+
+   http://soap.g-language.org/g-language.wsdl
+
+   Documentation on G-language Genome Analysis Environment methods are
+   provided at the Document Center
+
+   http://ws.g-language.org/gdoc/
+
+Usage:
+    NULL = &bui(G instance);
+
+  Options:
+   -output      output option (default: 'stdout')
+                'stdout' for standard output,
+                'f' for file output in directory "data"
+   -filename    output filename (default: 'bui.csv')
+   -id          ID of a group of genes or a single gene (default: '')
+   -translate   1 when translates using standard codon table (default: 0)
+   -del_key     regular expression to delete key (i.e. amino acids and nucleotides)
+                (default: '[^ACDEFGHIKLMNPQRSTVWYacgtU\/]')
+   -position    codon position (default: '');
+                '' when assessing overall base usage of the gene
+                '1' when assessing base usage at 1st position of codons
+                '2' when assessing base usage at 2nd position of codons
+                '3' when assessing base 
+   G-language SOAP service is provided by the
+   Institute for Advanced Biosciences, Keio University.
+   The original web service is located at the following URL:
+
+   http://www.g-language.org/wiki/soap
+
+   WSDL(RPC/Encoded) file is located at:
+
+   http://soap.g-language.org/g-language.wsdl
+
+   Documentation on G-language Genome Analysis Environment methods are
+   provided at the Document Center
+
+   http://ws.g-language.org/gdoc/
+
+Usage
+
+   Here is a sample session with gbui
+
+% gbui NC_000913.gbk
+Calculates base usage indices for protein-coding sequences
+Output filename [nc_000913.gbui]:
+
+   Creates nc_000913.gbui
+   Output example is prepared in the data directory
+
+Command line arguments
+
+Standard (Mandatory) qualifiers:
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
+                                  format, or reference (input USA)
+   -outfile            outfile    [*.gbui] Output file name
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -translate          boolean    [0] Include when translating using standard
+                                  codon table
+   -position           string     Codon position (Any string)
+   -id                 string     ID of a group of genes or a single gene (Any
+                                  string)
+   -delkey             string     [[^ACDEFGHIKLMNPQRSTVWYacgtU]] Regular
+                                  expression to delete key (Any string)
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+
+Input file format
+
+   gbui reads nucleotide sequences.
+
+Output file format
+
+   The output from gbui is to a raw CSV file.
+
+Data files
+
+   None.
+
+Notes
+
+   None.
+
+References
+
+   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
+      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
+      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
+
+   Arakawa, K. and Tomita, M. (2006) G-language System as a Platfor for
+      large-scale analysis of high-throughput omics data, J. Pest Sci.,
+      31, 7.
+
+   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
+      Analysis Environment with REST and SOAP Wev Service Interfaces,
+      Nucleic Acids Res., 38, W700-W705.
+
+Warnings
+
+   None.
+
+Diagnostic Error Messages
+
+   None.
+
+Exit status
+
+   It always exits with a status of 0.
+
+Known bugs
+
+   None.
+
+See also
+
+
+
+Author(s)
+
+   Hidetoshi Itaya (celery@g-language.org)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
+
+   Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+
+History
+
+   2012 - Written by Hidetoshi Itaya
+
+Target users
+
+   This program is intended to be used by everyone and everything, from
+   naive users to embedded scripts.
+
+Comments
+
+   None.
+
