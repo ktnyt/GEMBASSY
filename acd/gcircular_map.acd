@@ -37,7 +37,7 @@ section: output
   string: filename [
     standard: "Y"
     information: "Output filename"
-    default: "gcircular_map.[accession].svg"
+    default: "gcircular_map.svg"
   ]
 
 endsection: output

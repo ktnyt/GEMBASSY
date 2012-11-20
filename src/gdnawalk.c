@@ -22,12 +22,12 @@ int main(int argc, char *argv[]){
   AjPStr    inseq    = NULL;
   AjPStr    accid    = NULL;
   AjPStr    filename = NULL;
-  AjBool    output   = 0;
-  char*     jobid;
+  AjBool    show     = 0;
+  char*     result;
   
   seqall   = ajAcdGetSeqall("sequence");
-  output   = ajAcdGetBoolean("show");
   filename = ajAcdGetString("filename");
+  show    = ajAcdGetToggle("show");
   accid    = ajAcdGetString("accid");
 
   params.gmap = 0;
@@ -60,18 +60,20 @@ int main(int argc, char *argv[]){
     char* in0;
     in0 = ajCharNewS(inseq);
 
-    if(soap_call_ns1__dnawalk(&soap,NULL,NULL,in0,&params,&jobid)==SOAP_OK){
-      if(ajStrCmpC(filename, "gdnawalk.[accession].png") == 0){
-        ajStrAssignC(&filename, argv[0]);
+    if(soap_call_ns1__dnawalk(
+			      &soap, NULL, NULL,
+			      in0, &params, &result
+			      ) == SOAP_OK){
+      AjPStr tmp = ajStrNew();
+      ajStrFromLong(&tmp, ajSeqallGetCount(seqall));
+      ajStrInsertC(&tmp, 0, ".");
+      ajStrAppendC(&tmp, ".png");
+      if(!ajStrExchangeCS(&filename, ".png", tmp)){
         ajStrAppendC(&filename, ".");
-        ajStrAppendS(&filename, accid);
-        ajStrAppendC(&filename, ".png");
-      }else{
-        ajStrInsertC(&filename, -5, ".");
-        ajStrInsertS(&filename, -5, accid);
       }
-      if(get_file(jobid, ajCharNewS(filename))==0){
-        if(output)
+
+      if(get_file(result, ajCharNewS(filename))==0){
+        if(show)
           if(display_png(ajCharNewS(filename), argv[0], ajCharNewS(accid)))
             fprintf(stderr, "Error in X11 displaying\n");
       }else{

@@ -30,4 +30,14 @@ section: output [
   information: "Output section"
   type: "page"
 ]
+
+  toggle: show [
+    information: "Include to dump result to stdout"
+    default: "N"
+  ]
+
+  outfile: outfile [
+    standard: "@(!$(show))"
+  ]
+
 endsection: output

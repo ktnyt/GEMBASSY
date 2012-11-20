@@ -39,10 +39,8 @@ section: output [
 	type: "page"
 ]
 
-  string: filename [
+  outfile: outfile [
     standard: "Y"
-    information: "Output filename"
-    default: "gfop.[accession].csv"
   ]
 
 endsection: output

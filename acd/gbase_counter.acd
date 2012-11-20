@@ -54,10 +54,8 @@ section: output [
   type: "page"
 ]
 
-  string: filename [
-    parameter: "Y"
-    information: "Output filename"
-    default: "gbase_counter.[accesssion].csv"
+  outfile: outfile [
+    standard: "Y"
   ]
 
 endsection: output

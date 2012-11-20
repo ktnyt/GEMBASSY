@@ -23,20 +23,25 @@ int main(int argc, char *argv[]){
   ajint     window     = 0;
   AjPStr    nucleotide = 0;
   AjPStr    accid      = NULL;
-  AjPStr    filename   = NULL;
   AjBool    output     = 0;
   char*     jobid;
 
-  AjPGraph    mult;
+  AjBool   plot = 0;
+  AjPFile  outf = NULL;
+  AjPGraph mult = NULL;
+
+  AjPStr filename = getUniqueFileName();
+
   gPlotParams gpp;
 
   seqall     = ajAcdGetSeqall("sequence");
   window     = ajAcdGetInt("window");
   nucleotide = ajAcdGetString("nucleotide");
   accid      = ajAcdGetString("accid");
-  filename   = ajAcdGetString("filename");
-  output     = ajAcdGetBoolean("output");
-  mult       = ajAcdGetGraphxy("graph");
+
+  plot = ajAcdGetToggle("plot");
+  outf = ajAcdGetOutfile("outfile");
+  mult = ajAcdGetGraphxy("graph");
 
   params.window     = window;
   params.nucleotide = ajCharNewS(nucleotide);
@@ -71,17 +76,8 @@ int main(int argc, char *argv[]){
 						   &soap, NULL, NULL,
 						   in0, &params, &jobid
 						   ) == SOAP_OK){
-      if(ajStrCmpC(filename, "gnucleotide_periodicity.[accession].csv") == 0){
-        ajStrAssignC(&filename, argv[0]);
-        ajStrAppendC(&filename, ".");
-        ajStrAppendS(&filename, accid);
-        ajStrAppendC(&filename, ".csv");
-      }else{
-        ajStrInsertC(&filename, -5, ".");
-        ajStrInsertS(&filename, -5, accid);
-      }
       if(get_file(jobid, ajCharNewS(filename))==0){
-	if(!output){
+	if(plot){
 	  AjPStr title = NULL;
 	  ajStrAppendC(&title, argv[0]);
 	  ajStrAppendC(&title, " of ");
@@ -92,6 +88,9 @@ int main(int argc, char *argv[]){
 	  ajStrDel(&title);
 	  if(gPlotFile(filename, mult, &gpp) == 1)
 	    fprintf(stderr, "Error allocating\n");
+	}else{
+	  ajFmtPrintF(outf, "Sequence: %S\n%S\n",
+                      ajSeqGetNameS(seq), getContentS(filename));
 	}
       }else{
         fprintf(stderr, "Retrieval unsuccessful\n");
@@ -105,10 +104,12 @@ int main(int argc, char *argv[]){
     soap_done(&soap);
   }
 
+  if(outf)
+    ajFileClose(&outf);
+
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
   ajStrDel(&inseq);
-  ajStrDel(&filename);
   
   embExit();
   return 0;

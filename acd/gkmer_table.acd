@@ -27,11 +27,6 @@ section: advanced [
     default: "6"
   ]
 
-  boolean: show [
-    information: "Include to show png with X11 window"
-    default: "N"
-  ]
-
   string: accid [
     information: "Include to use sequence accession ID as query"
     default: ""
@@ -44,10 +39,15 @@ section: output [
 	type: "page"
 ]
 
+  toggle: show [
+    information: "Include to show png with X11 window"
+    default: "N"
+  ]
+
   string: filename [
-    standard: "Y"
+    standard: "@(!$(show))"
     information: "Output filename"
-    default: "gkmer_table.[accession].png"
+    default: "gkmer_table.png"
   ]
 
 endsection: output

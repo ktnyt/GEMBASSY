@@ -19,11 +19,16 @@ int main(int argc, char *argv[]){
   AjPSeq    seq;
   AjPStr    inseq    = NULL;
   AjPStr    accid    = NULL;
-  AjPStr    filename = NULL;
-  char*     jobid;
+  char*     result;
+
+  AjBool  show = 0;
+  AjPFile outf = NULL;
 
   seqall = ajAcdGetSeqall("sequence");
   accid  = ajAcdGetString("accid");
+
+  show = ajAcdGetToggle("show");
+  outf = ajAcdGetOutfile("outfile");
   
   while(ajSeqallNext(seqall, &seq)){
 
@@ -52,9 +57,12 @@ int main(int argc, char *argv[]){
 
     if(soap_call_ns1__delta_USCOREenc(
 				      &soap, NULL, NULL,
-				      in0, &jobid
+				      in0, &result
 				      ) == SOAP_OK){
-      fprintf(stdout, "%s\n", jobid);
+      if(show)
+	ajFmtPrint("Sequence: %S delta ENC: %S\n", ajSeqGetAccS(seq), ajStrNewC(result));
+      else
+	ajFmtPrintF(outf, "Sequence: %S delta ENC: %S\n", ajSeqGetAccS(seq), ajStrNewC(result));
     }else{
       soap_print_fault(&soap, stderr);
     }
@@ -64,10 +72,12 @@ int main(int argc, char *argv[]){
     soap_done(&soap);
   }
 
+  if(outf)
+    ajFileClose(&outf);
+
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
   ajStrDel(&inseq);
-  ajStrDel(&filename);
   
   embExit();
   return 0;

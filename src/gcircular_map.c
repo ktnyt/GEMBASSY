@@ -21,7 +21,7 @@ int main(int argc, char *argv[]){
   AjPStr    inseq     = NULL;
   AjPStr    accid     = NULL;
   AjPStr    filename  = NULL;
-  char*     jobid;
+  char*     result;
   
   seqall   = ajAcdGetSeqall("sequence");
   filename = ajAcdGetString("filename");
@@ -59,18 +59,17 @@ int main(int argc, char *argv[]){
 
     if(soap_call_ns1__circular_USCOREmap(
 					 &soap, NULL, NULL,
-					 in0, &params, &jobid
+					 in0, &params, &result
 					 ) == SOAP_OK){
-      if(ajStrCmpC(filename, "gcircular_map.[accession].svg") == 0){
-        ajStrAssignC(&filename, argv[0]);
-        ajStrAppendC(&filename, ".");
-        ajStrAppendS(&filename, accid);
-        ajStrAppendC(&filename, ".svg");
-      }else{
-        ajStrInsertC(&filename, -5, ".");
-        ajStrInsertS(&filename, -5, accid);
+      AjPStr tmp = ajStrNew();
+      ajStrFromLong(&tmp, ajSeqallGetCount(seqall));
+      ajStrInsertC(&tmp, 0, ".");
+      ajStrAppendC(&tmp, ".svg");
+      if(!ajStrExchangeCS(&filename, ".svg", tmp)){
+        ajStrAppendS(&filename, tmp);
       }
-      if(get_file(jobid,ajCharNewS(filename))){
+
+      if(get_file(result, ajCharNewS(filename))){
         fprintf(stderr, "Retrieval unsuccessful\n");
       }
     }else{

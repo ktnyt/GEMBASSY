@@ -26,10 +26,9 @@ int main(int argc, char *argv[]){
   AjPSeqall seqall;
   AjPSeqout seqout;
   AjPSeq    seq;
-  AjPStr    inseq      = NULL;
-  AjPStr    filename   = NULL;
-  ajint     k          = 0;
-  char*     jobid;
+  AjPStr    inseq = NULL;
+  ajint     k     = 0;
+  char*     result;
   
   seqall = ajAcdGetSeqall("sequence");
   k      = ajAcdGetInt("k");
@@ -50,10 +49,10 @@ int main(int argc, char *argv[]){
 
     if(soap_call_ns1__shuffleseq(
 				 &soap, NULL, NULL,
-				 in0, &params, &jobid
+				 in0, &params, &result
 				 ) == SOAP_OK){
-      ajCharFmtUpper(jobid);
-      ajSeqAssignSeqC(seq, jobid);
+      ajCharFmtUpper(result);
+      ajSeqAssignSeqC(seq, result);
       ajSeqoutWriteSeq(seqout, seq);
     }else{
       soap_print_fault(&soap, stderr);
@@ -69,7 +68,6 @@ int main(int argc, char *argv[]){
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
   ajStrDel(&inseq);
-  ajStrDel(&filename);
 
   embExit();
   return 0;

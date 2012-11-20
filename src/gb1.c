@@ -21,11 +21,15 @@ int main(int argc, char *argv[]){
   AjPStr    inseq    = NULL;
   AjPStr    method   = NULL;
   AjPStr    accid    = NULL;
-  char*     jobid;
-  
+  char*     result;
+
+  AjPFile outf = NULL;
+
   seqall   = ajAcdGetSeqall("sequence");
   method   = ajAcdGetString("method");
   accid    = ajAcdGetString("accid");
+
+  outf = ajAcdGetOutfile("outfile");
   
   params.method = ajCharNewS(method);
   
@@ -56,9 +60,9 @@ int main(int argc, char *argv[]){
 
     if(soap_call_ns1__B1(
                          &soap, NULL, NULL,
-                         in0, &params, &jobid
+                         in0, &params, &result
                         ) == SOAP_OK){
-      fprintf(stdout, "%s\n", jobid);
+      ajFmtPrintF(outf, "Sequence: %S B1: %S\n", ajSeqGetAccS(seq), ajStrNewC(result));
     }else{
       soap_print_fault(&soap, stderr);
     }
@@ -67,6 +71,9 @@ int main(int argc, char *argv[]){
     soap_end(&soap);
     soap_done(&soap);
   }
+
+  if(outf)
+    ajFileClose(&outf);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);

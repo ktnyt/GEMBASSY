@@ -25,12 +25,14 @@ int main(int argc, char *argv[]){
   AjBool    purine   = 0;
   AjBool    keto     = 0;
   AjPStr    accid    = NULL;
-  AjPStr    filename = NULL;
-  AjBool    output   = 0;
-  char*     jobid;
-  char*     _result;
+  char*     result;
 
-  AjPGraph    mult;
+  AjBool   plot = 0;
+  AjPFile  outf = NULL;
+  AjPGraph mult = NULL;
+
+  AjPStr filename = getUniqueFileName();
+
   gPlotParams gpp;
 
   seqall   = ajAcdGetSeqall("sequence");
@@ -39,9 +41,10 @@ int main(int argc, char *argv[]){
   purine   = ajAcdGetBoolean("purine");
   keto     = ajAcdGetBoolean("keto");
   accid    = ajAcdGetString("accid");
-  filename = ajAcdGetString("filename");
-  output   = ajAcdGetBoolean("output");
-  mult     = ajAcdGetGraphxy("graph");
+
+  plot = ajAcdGetToggle("plot");
+  outf = ajAcdGetOutfile("outfile");
+  mult = ajAcdGetGraphxy("graph");
 
   params.window       = window;
   if(at){
@@ -88,19 +91,10 @@ int main(int argc, char *argv[]){
 
     if(soap_call_ns1__gcwin(
 			    &soap, NULL, NULL,
-			    in0, &params, &jobid
+			    in0, &params, &result
 			    ) == SOAP_OK){
-      if(ajStrCmpC(filename, "ggcwin.[accession].csv") == 0){
-        ajStrAssignC(&filename, argv[0]);
-        ajStrAppendC(&filename, ".");
-        ajStrAppendS(&filename, accid);
-        ajStrAppendC(&filename, ".csv");
-      }else{
-        ajStrInsertC(&filename, -5, ".");
-        ajStrInsertS(&filename, -5, accid);
-      }
-      if(get_file(jobid, ajCharNewS(filename))==0){
-	if(!output){
+      if(get_file(result, ajCharNewS(filename))==0){
+	if(plot){
 	  AjPStr title = NULL;
 	  ajStrAppendC(&title, argv[0]);
 	  ajStrAppendC(&title, " of ");
@@ -111,6 +105,9 @@ int main(int argc, char *argv[]){
 	  ajStrDel(&title);
 	  if(gPlotFile(filename, mult, &gpp) == 1)
 	    fprintf(stderr, "Error allocating\n");
+	}else{
+	  ajFmtPrintF(outf, "Sequence: %S\n%S\n",
+                      ajSeqGetNameS(seq), getContentS(filename));
 	}
       }else{
         fprintf(stderr, "Retrieval unsuccessful\n");
@@ -124,10 +121,12 @@ int main(int argc, char *argv[]){
     soap_done(&soap);
   }
 
+  if(outf)
+    ajFileClose(&outf);
+
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
   ajStrDel(&inseq);
-  ajStrDel(&filename);
 
   embExit();
   return 0;

@@ -24,9 +24,10 @@ int main(int argc, char *argv[]){
   ajint     upstream   = 0;
   ajint     downstream = 0;
   AjPStr    accid      = NULL;
-  AjPStr    output     = 0;
-  AjPStr    filename   = NULL;
   char*     jobid; 
+
+  AjPStr  tmp  = NULL;
+  AjPFile outf = NULL;
 
   seqall     = ajAcdGetSeqall("sequence");
   position   = ajAcdGetString("position");
@@ -34,7 +35,7 @@ int main(int argc, char *argv[]){
   upstream   = ajAcdGetInt("upstream");
   downstream = ajAcdGetInt("downstream");
   accid      = ajAcdGetString("accid");
-  filename   = ajAcdGetString("filename");
+  outf       = ajAcdGetOutfile("outfile");
   
   params.position   = ajCharNewS(position);
   params.PatLen     = PatLen;
@@ -65,23 +66,16 @@ int main(int argc, char *argv[]){
 
     char* in0;
     in0 = ajCharNewS(inseq);
-
+    tmp = getUniqueFileName();
     if(soap_call_ns1__base_USCOREcounter(
 					 &soap, NULL, NULL,
 					 in0, &params, &jobid
 					 ) == SOAP_OK){
-      if(ajStrCmpC(filename, "gbase_counter.[accession].csv")){
-        ajStrAssignC(&filename, argv[0]);
-        ajStrAppendC(&filename, ".");
-        ajStrAppendS(&filename, accid);
-        ajStrAppendC(&filename, ".csv");
-      }else{
-	ajStrInsertC(&filename, -5, ".");
-	ajStrInsertS(&filename, -5, accid);
-      }
-      if(get_file(jobid,ajCharNewS(filename))){
+      if(get_file(jobid,ajCharNewS(tmp))){
         fprintf(stderr, "Retrieval unsuccessful\n");
       }
+      ajFmtPrintF(outf, "Sequence: %S\n%S\n",
+		  ajSeqGetNameS(seq), getContentS(tmp));
     }else{
       soap_print_fault(&soap, stderr);
     }
@@ -91,10 +85,12 @@ int main(int argc, char *argv[]){
     soap_done(&soap);
   }
 
+  if(outf)
+    ajFileClose(&outf);
+
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
   ajStrDel(&inseq);
-  ajStrDel(&filename);
   ajStrDel(&position);
 
   embExit();

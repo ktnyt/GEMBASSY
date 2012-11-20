@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
+# include <stdio.h>
+# include <stdlib.h>
 #include "emboss.h"
 
 #include "soapH.h"
@@ -22,14 +22,19 @@ int main(int argc, char *argv[]){
   AjPStr    oligomer = NULL;
   AjPStr    return_  = NULL;
   AjPStr    accid    = NULL;
-  AjPStr    filename = NULL;
-  char*     jobid;
+  char*     result;
+
+  AjBool  show = 0;
+  AjPFile outf = NULL;
 
   seqall   = ajAcdGetSeqall("sequence");
   oligomer = ajAcdGetString("oligomer");
   return_  = ajAcdGetString("return");
   accid    = ajAcdGetString("accid");
   
+  show = ajAcdGetToggle("show");
+  outf = ajAcdGetOutfile("outfile");
+
   params.return_ = ajCharNewS(return_);
 
   while(ajSeqallNext(seqall, &seq)){  
@@ -64,30 +69,42 @@ int main(int argc, char *argv[]){
 
     if(soap_call_ns1__oligomer_USCOREsearch(
 					    &soap, NULL, NULL,
-					    in0, in1, &params, &jobid
+					    in0, in1, &params, &result
 					    ) == SOAP_OK){
-      char* tp = jobid;
-      char* dlm = "<>";
-      int   pos = 0;;
-      tp = strtok(tp, dlm);
-      while((tp = strtok(NULL, dlm)) != NULL){
-	if(pos++ % 3 == 0){
-	  fprintf(stdout, "%s\n", tp);
-	}
+      AjPStr tmp = ajStrNewC(result);
+      AjPStr parse = ajStrNew();
+      AjPStrTok handle = NULL;
+      ajStrExchangeCC(&tmp, "<", "\n");
+      ajStrExchangeCC(&tmp, ">", "\n");
+      handle = ajStrTokenNewC(tmp, "\n");
+      if(show)
+	ajFmtPrint("Sequence: %S Oligomer: %S\n",
+		   ajSeqGetAccS(seq), oligomer);
+      else
+	ajFmtPrintF(outf,"Sequence: %S Oligomer: %S\n",
+		    ajSeqGetAccS(seq), oligomer);
+      while(ajStrTokenNextParse(&handle, &parse)){
+        if(ajStrIsInt(parse))
+	  if(show)
+	    ajFmtPrint("%S\n", parse);
+	  else
+	    ajFmtPrintF(outf, "%S\n", parse);
       }
     }else{
       soap_print_fault(&soap, stderr);
     }
-    
+
     soap_destroy(&soap);
     soap_end(&soap);
     soap_done(&soap);
   }
 
+  if(outf)
+    ajFileClose(&outf);
+
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
   ajStrDel(&inseq);
-  ajStrDel(&filename);
     
   embExit();
   return 0;

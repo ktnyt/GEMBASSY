@@ -44,10 +44,8 @@ section: output [
 	type: "page"
 ]
 
-  string: filename [
+  outfile: outfile [
     standard: "Y"
-    information: "Output filename"
-    default: "gcai.[accession].csv"
   ]
 
 endsection: output

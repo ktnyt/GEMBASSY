@@ -32,11 +32,6 @@ section: advanced [
     default: "aa"
   ]
 
-  boolean: output [
-    information: "Include to create CSV file"
-    default: "N"
-  ]
-
   string: accid [
     information: "Include to use sequence accession ID as query"
     default: ""
@@ -49,15 +44,20 @@ section: output [
 	type: "page"
 ]
 
+  toggle: plot [
+    information: "Include to plot result"
+    default: "N"
+  ]
+
   xygraph: graph [
-    multiple: "8"
+    standard: "$(plot)"
     relations: "EDAM:0002968 data Image or plot"
   ]
 
-  string: filename [
-    standard: "$(output)"
-    information: "Output filename"
-    default: "gnucleotide_periodicity.[accession].csv"
+  outfile: outfile [
+    standard: "@(!$(plot))"
+    nullok: "Y"
+    nulldefault: "$(plot)"
   ]
 
 endsection: output

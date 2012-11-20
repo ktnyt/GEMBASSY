@@ -32,7 +32,7 @@ section: advanced [
     default: "0"
   ]
 
-  boolean: output [
+  boolean: csv [
     information: "Include to create CSV file"
     default: "N"
   ]
@@ -45,19 +45,25 @@ section: advanced [
 endsection: advanced
 
 section: output [
-	information: "Output section"
-	type: "page"
+  information: "Output section"
+  type: "page"
 ]
 
-  xygraph: graph [	
-    multiple: "8"
+  toggle: plot [
+    information: "Include to plot result"
+    default: "N"
+  ]
+
+  xygraph: graph [
+    standard: "$(plot)"
+    multiple: "4"
     relations: "EDAM:0002968 data Image or plot"
   ]
 
-  string: filename [
-    standard: "$(output)"
-    information: "Output filename"
-    default: "ggenomicskew.[accession].csv"
+  outfile: outfile [
+    standard: "@(!$(plot))"
+    nullok: "Y"
+    nulldefault: "$(plot)"
   ]
 
 endsection: output

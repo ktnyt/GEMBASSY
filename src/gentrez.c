@@ -16,21 +16,33 @@ int main(int argc, char *argv[]){
   
   char* in0;
   char* in1;
-  char* _result;
-  
-  soap_init(&soap);
+  char* result;
+
+  AjBool  show = 0;
+  AjPFile outf = NULL;
 
   in0 = ajCharNewS(ajAcdGetString("db"));
   in1 = ajCharNewS(ajAcdGetString("query"));
 
+  show = ajAcdGetToggle("show");
+  outf = ajAcdGetOutfile("outfile");
+  
+  soap_init(&soap);
+
   if(soap_call_ns1__entrez(
 			   &soap, NULL, NULL,
-			   in0, in1, &_result
+			   in0, in1, &result
 			   ) == SOAP_OK){
-    fprintf(stdout, "%s\n", _result);
+    if(show)
+      ajFmtPrint("%S", ajStrNewC(result));
+    else
+      ajFmtPrintF(outf, "%S", ajStrNewC(result));
   }else{
     soap_print_fault(&soap,stderr);
   }
+
+  if(outf)
+    ajFileClose(&outf);
   
   soap_destroy(&soap);
   soap_end(&soap);
