@@ -75,9 +75,11 @@ int main(int argc, char *argv[]){
 			   in0, &params, &result
 			   ) == SOAP_OK){
       if(show)
-	ajFmtPrint("Sequence: %S ICDI: %S\n", ajSeqGetAccS(seq), ajStrNewC(result));
+	ajFmtPrint("Sequence: %S ICDI: %S\n",
+		   ajSeqGetAccS(seq), ajStrNewC(result));
       else
-	ajFmtPrintF(outf, "Sequence: %S ICDI: %S\n", ajSeqGetAccS(seq), ajStrNewC(result));
+	ajFmtPrintF(outf, "Sequence: %S ICDI: %S\n",
+		    ajSeqGetAccS(seq), ajStrNewC(result));
     }else{
       soap_print_fault(&soap, stderr);
     }

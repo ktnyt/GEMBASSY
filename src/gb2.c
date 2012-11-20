@@ -21,11 +21,13 @@ int main(int argc, char *argv[]){
   AjPStr    accid    = NULL;
   char*     result;
 
+  AjBool  show = 0;
   AjPFile outf = NULL;
   
   seqall = ajAcdGetSeqall("sequence");
   accid  = ajAcdGetString("accid");
 
+  show = ajAcdGetToggle("show");
   outf = ajAcdGetOutfile("outfile");
   
   while(ajSeqallNext(seqall, &seq)){
@@ -57,7 +59,12 @@ int main(int argc, char *argv[]){
 			 &soap, NULL, NULL,
 			 in0, &result
 			 ) == SOAP_OK){
-      ajFmtPrintF(outf, "Sequence: %S B2: %S\n", ajSeqGetAccS(seq), ajStrNewC(result));
+      if(show)
+        ajFmtPrint("Sequence: %S B1: %S\n",
+                   ajSeqGetAccS(seq), ajStrNewC(result));
+      else
+        ajFmtPrintF(outf, "Sequence: %S B1: %S\n",
+		    ajSeqGetAccS(seq), ajStrNewC(result));
     }else{
       soap_print_fault(&soap, stderr);
     }

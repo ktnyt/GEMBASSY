@@ -64,9 +64,11 @@ int main(int argc, char *argv[]){
 					     in0, position1, position2, &result
 					     )==SOAP_OK){
       if(show)
-	ajFmtPrint("Sequence: %S Distance: %S\n", ajSeqGetAccS(seq), ajStrNewC(result));
+	ajFmtPrint("Sequence: %S Distance: %S\n",
+		   ajSeqGetAccS(seq), ajStrNewC(result));
       else
-	ajFmtPrintF(outf, "Sequence: %S Distance: %S\n", ajSeqGetAccS(seq), ajStrNewC(result));
+	ajFmtPrintF(outf, "Sequence: %S Distance: %S\n",
+		    ajSeqGetAccS(seq), ajStrNewC(result));
     }else{
       soap_print_fault(&soap, stderr);
     }

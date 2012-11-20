@@ -67,7 +67,8 @@ int main(int argc, char *argv[]){
       if(get_file(result, ajCharNewS(filename))){
 	fprintf(stderr, "Retrieval unsuccessful\n");
       }
-      ajFmtPrintF(outf, "Sequence: %S %S\n", ajSeqGetNameS(seq), getContentS(filename));
+      ajFmtPrintF(outf, "Sequence: %S %S\n",
+		  ajSeqGetNameS(seq), getContentS(filename));
     }else{
       soap_print_fault(&soap, stderr);
     }
