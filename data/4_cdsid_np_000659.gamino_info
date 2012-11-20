@@ -1,0 +1,51 @@
+Sequence: 
+AminoInfo of  from 1 to 406
+
+Molecular weight = 47725.11 Residues = 406
+Average Weight = 117.55 Charge = 8
+Isoelectric Point = 8.0134
+Residue         Number          Mole%               DayhoffStat
+
+ =             1               0.246                     0.000
+. =             2               0.493                     0.000
+0 =             6               1.478                     0.000
+2 =             1               0.246                     0.000
+4 =             1               0.246                     0.000
+5 =             1               0.246                     0.000
+6 =             3               0.739                     0.000
+8 =             1               0.246                     0.000
+9 =             1               0.246                     0.000
+> =             1               0.246                     0.000
+A = Ala         31              7.635                     0.888
+C = Cys         16              3.941                     1.359
+D = Asp         19              4.680                     0.851
+E = Glu         19              4.680                     0.780
+F = Phe         16              3.941                     1.095
+G = Gly         38              9.360                     1.114
+H = His         8               1.970                     0.985
+I = Ile         23              5.665                     1.259
+K = Lys         32              7.882                     1.194
+L = Leu         29              7.143                     0.965
+M = Met         9               2.217                     1.304
+N = Asn         14              3.448                     0.802
+P = Pro         21              5.172                     0.995
+Q = Gln         6               1.478                     0.379
+R = Arg         10              2.463                     0.503
+S = Ser         22              5.419                     0.774
+T = Thr         24              5.911                     0.969
+V = Val         39              9.606                     1.455
+W = Trp         2               0.493                     0.379
+Y = Tyr         6               1.478                     0.435
+_ =             4               0.985                     0.000
+
+Property        Residues                Number          Mole%
+Tiny            (A+C+G+S+T)             131             32.266
+Small           (A+B+C+D+G+N+P+S+T+V)   224             55.172
+Aliphatic       (I+L+V)                 91              22.414
+Aromatic        (F+H+W+Y)               32              7.882
+Non-polar       (A+C+F+G+I+L+M+P+V+W+Y) 230             56.650
+Polar           (D+E+H+K+N+Q+R+S+T+Z)   154             37.931
+Charged         (B+D+E+H+K+R+Z)         88              21.675
+Basic           (H+K+R)                 50              12.315
+Acidic          (B+D+E+Z)               38              9.360
+
