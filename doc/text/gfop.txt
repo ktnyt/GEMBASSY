@@ -5,7 +5,9 @@ Function
 
 Description
 
-   This program calculates the frequency of optimal codons (Fop).
+   This program calculates the frequency of optimal codons (Fop), and
+   inputs in the G instance; i.e. Fop values will be accessible at
+   $gb->{"FEATURE$i"}->{fop};
 
   
    G-language SOAP service is provided by the
@@ -29,9 +31,10 @@ Usage
 
 % gfop  NC_000913.gbk
 Calculate the frequency of optimal codons (Fop)
-Output filename [gfop.[accession].csv]:
+Output filename [*.gfop]:
 
-   Creates gfop.[accession].csv
+
+   Creates *.gfop
    Output example is prepared in the data directory
 
 Command line arguments
@@ -39,8 +42,7 @@ Command line arguments
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-   -filename           string     [gfop.[accession].csv] Output filename (Any
-                                  string)
+   -outfile            outfile    [*.gfop] Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -61,7 +63,7 @@ Input file format
 
 Output file format
 
-   The output from gfop is to raw CSV format.
+   The output from gfop is to a raw CSV file.
 
 Data files
 
@@ -73,9 +75,8 @@ Notes
 
 References
 
-   Ikemura (1981) J.Mol.Biol. 151:389-409.
-
-   Ikemura (1985) Mol.Biol.Evol. 2(1):13-34.
+      Ikemura (1981) J.Mol.Biol. 151:389-409.
+      Ikemura (1985) Mol.Biol.Evol. 2(1):13-34.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -111,7 +112,6 @@ See also
    gew      Calculate a measure of synonymous codon usage evenness (Ew)
    gscs          Calculates the scaled chi-square
    gw_value Calculate the 'relative adaptiveness of each codon' (W)
-
 
 Author(s)
 

@@ -6,6 +6,9 @@ Function
 Description
 
    Calculates the consensus of given list of sequences, using Z-score.
+   Consensus with Z value greater than int high_z (default is 1) is 
+   capitalized, and consensus with Z value less than int low_z 
+   (default is 0.2) is shown as '-'.
 
   
    G-language SOAP service is provided by the
@@ -27,11 +30,15 @@ Usage
 
    Here is a sample session with gconsensus_z
 
-% gconsensus_z  consensus.fasta -graph cps
+% gconsensus_z  -plotconsensus.fasta -graph cps
 Calculate consensus in given array of sequences
-Created gconsensus_z.ps
+Output filename [*.gconsensus_z]:Error: Failed to open filename '-plotconsensus.fasta'
+Error: Unable to read sequence '-plotconsensus.fasta'
+Died: gconsensus_z terminated: Bad value for '-sequence' with -auto defined
 
-   Creates gconsensus_z.[accession].ps
+
+
+   Creates *.gconsensus_z
    Output example is prepared in the data directory
 
 Command line arguments
@@ -39,8 +46,10 @@ Command line arguments
 Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-*  -filename           string     [gconsensus_z.csv] Output filename (Any
-                                  string)
+*  -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
+                                  (ps, hpgl, hp7470, hp7580, meta, cps, x11,
+                                  tek, tekt, none, data, xterm, png, gif, svg)
+*  -outfile            outfile    [*.gconsensus_z] Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -48,10 +57,8 @@ Standard (Mandatory) qualifiers (* if not always prompted):
                                   significant (Any integer value)
    -low                float      [0.2] z value less than which is
                                   insignificant (Any numeric value)
-   -output             boolean    [N] Include to create CSV file
-   -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
-                                  (ps, hpgl, hp7470, hp7580, meta, cps, x11,
-                                  tek, tekt, none, data, xterm, png, gif, svg)
+   -csv                boolean    [N] Include to create CSV file
+   -plot               toggle     [N] Include to plot result
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -110,7 +117,6 @@ See also
    gdist_in_cc  Calculates the distance between two loci in circular chromosomes
    gpalindrome  Searches palindrome sequences
    gseqinfo     Prints out basic nucleotide sequence statistics
-
 
 Author(s)
 

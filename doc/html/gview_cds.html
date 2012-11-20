@@ -1,0 +1,208 @@
+<!--START OF HEADER - DON'T ALTER -->
+
+<HTML>
+<HEAD>
+  <TITLE> EMBOSS: gview_cds </TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" text="#000000">
+
+
+
+<table align=center border=0 cellspacing=0 cellpadding=0>
+<tr><td valign=top>
+<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emb
+oss_icon.jpg" alt="" width=150 height=48></a>
+</td>
+<td align=left valign=middle>
+<b><font size="+6">
+gview_cds
+</font></b>
+</td></tr>
+</table>
+<br>&nbsp;
+<p>
+
+
+<!--END OF HEADER-->
+
+
+
+
+
+
+<H2> Function </H2>
+   Displays a graph of nucleotide contents around start and stop codons
+<!--
+DON'T WRITE ANYTHING HERE.
+IT IS DONE FOR YOU.
+-->
+
+
+
+
+<H2>Description</H2>
+<p>
+   This method creates a graph showing the average A,T,G,C contents<br>
+   around start/stop codons. This is useful to view consensus around<br>
+   start/stop codons and to find characteristic pattern in CDS. <br>
+   <br>
+   G-language SOAP service is provided by the<br>
+   Institute for Advanced Biosciences, Keio University.<br>
+   The original web service is located at the following URL:<br>
+<br>
+   http://www.g-language.org/wiki/soap<br>
+<br>
+   WSDL(RPC/Encoded) file is located at:<br>
+<br>
+   http://soap.g-language.org/g-language.wsdl<br>
+<br>
+   Documentation on G-language Genome Analysis Environment methods are<br>
+   provided at the Document Center<br>
+<br>
+   http://ws.g-language.org/gdoc/
+</p>
+
+<H2>Usage</H2>
+
+<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
+
+   Here is a sample session with gview_cds
+
+% gview_cds  -plotNC_000913.gbk -graph cps
+Displays a graph of nucleotide contents around start and stop codons
+Output filename [*.gview_cds]:Error: File /Users/kotone/usr/emblocal/share/EMBOSS/acd/gview_cds.acd line 57: (graph) Attribute 'multipe' unknown
+
+
+
+
+   Creates *.gview_cds
+   Output example is prepared in the data directory
+
+</pre></td></tr></table>
+
+
+
+<h2>Command line arguments</h2>
+
+Error: File /Users/kotone/usr/emblocal/share/EMBOSS/acd/gview_cds.acd line 57: (graph) Attribute 'multipe' unknown
+
+
+
+<h2>Input file format</h2>
+
+<p>
+   gview_cds reads nucleotide sequences.
+</p>
+
+<h2>Ouptut file format</h2>
+
+<p>
+   Creates *.gview_cds
+   Output example is prepared in the data directory
+
+Command line arguments
+
+Error: File /Users/kotone/usr/emblocal/share/EMBOSS/acd/gview_cds.acd line 57: (graph) Attribute 'multipe' unknown
+
+
+Input file format
+
+   gview_cds reads nucleotide sequences.
+
+Output file format
+
+   The output from gview_cds is to the specified graphics device.
+</p>
+
+<h2>Data files</h2>
+
+<p>
+None.
+</p>
+
+<h2>Notes</h2>
+
+<p>
+None.
+</p>
+
+<h2>Refrences</h2>
+
+<pre>
+   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
+      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
+      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
+
+   Arakawa, K. and Tomita, M. (2006) G-language System as a Platfor for
+      large-scale analysis of high-throughput omics data, J. Pest Sci.,
+      31, 7.
+
+   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
+      Analysis Environment with REST and SOAP Wev Service Interfaces,
+      Nucleic Acids Res., 38, W700-W705.
+</pre>
+
+<h2>Warnings</h2>
+
+<p>
+   None.
+</p>
+
+<h2>Diagnostic Error Messages</h2>
+
+<p>
+None.
+</p>
+
+<h2>Exit status</h2>
+
+<p>
+It always exits with a status of 0.
+</p>
+
+<h2>Known bugs</h2>
+
+<p>
+None.
+</p>
+
+<h2>See also</h2>
+
+<table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th>
+<th>Description</th></tr>
+
+<tr>
+<td><a href="gbase_counter.html">gbase_counter</a></td>
+<td>Creates a position weight matrix of oligomers around start codon</td>
+</tr>
+
+<tr>
+<td><a href="gbase_z_value.html">gbase_z_value</a></td>
+<td>Extracts conserved oligomers per position using Z-score</td>
+</tr>
+
+</table>
+
+<h2>Author(s)</h2>
+
+<pre>
+   Hidetoshi Itaya (celery@g-language.org)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
+
+   Kazuharu Arakawa(gaou@g-language.org) 
+</pre>
+
+<h2>History</h2>
+
+   2012 - Written by Hidetoshi Itaya
+
+<h2>Target users</h2>
+
+   This program is intended to be used by everyone and everything, from
+   naive users to embedded scrips.
+
+<h2>Comments</h2>
+
+   None.
+

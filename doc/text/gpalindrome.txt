@@ -29,9 +29,10 @@ Usage
 
 % gpalindrome  NC_000913.gbk
 Searches palindrome sequences
-Output filename [gpalindrome.[accession].csv]:
+Output filename [*.gpalindrome]:
 
-   Creates gpalindrome.[accession].csv
+
+   Creates *.gpalindrome
    Output example is prepared in the data directory
 
 Command line arguments
@@ -39,8 +40,7 @@ Command line arguments
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-   -filename           string     [gpalindrome.[accession].csv] Output
-                                  filename (Any string)
+   -outfile            outfile    [*.gpalindrome] Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -64,7 +64,7 @@ Input file format
 
 Output file format
 
-   The output from gpalindrome is to raw CSV format.
+   The output from gpalindrome is to a raw CSV file.
 
 Data files
 
@@ -109,7 +109,6 @@ See also
    gconsensus_z Calculate consensus in given array of sequences
    gdist_in_cc  Calculates the distance between two loci in circular chromosomes
    gseqinfo     Prints out basic nucleotide sequence statistics
-
 
 Author(s)
 

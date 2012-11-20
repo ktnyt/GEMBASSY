@@ -9,6 +9,8 @@ Description
    specified using degenerate nucleotide alphabet, or by regular expressions.
    Performance is optimized for fast searching.
 
+   This method changes the returning value according to the given options.
+
   
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
@@ -29,44 +31,21 @@ Usage
 
    Here is a sample session with goligomer_search
 
-% goligomer_search ecoli.gbk
+% goligomer_search  NC_000913.gbk atgcatgc
 Searches oligomers in given sequence
-Oligomer to search: atgcatgc
-147018
-366819
-653138
-863326
-1288615
-1627117
-2111200
-2246695
-2697278
-2750962
-2826906
-2882353
-2998362
-3022134
-3346029
-3477018
-3629113
-3842819
-3958304
-3982183
-4013480
-4285578
-4474663
-4484501
-4499080
-4604562
-4638391
+Output filename [*.goligomer_search]:
 
+
+   Creates *.goligomer_search
+   Output example is prepared in the data directory
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
   [-oligomer]          string     Oligomer to search (Any string)
+*  -outfile            outfile    [*.goligomer_search] Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -80,6 +59,7 @@ Standard (Mandatory) qualifiers:
                                   oligomer (Any string)
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
+   -show               toggle     [N] Include to dump result to stdout
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -93,7 +73,7 @@ Input file format
 
 Output file format
 
-   The output from goligomer_search is to standard output.
+   The output from goligomer_search is to a file or stdout.
 
 Data files
 
@@ -139,7 +119,6 @@ See also
    gnucleotide_periodicity Checks the periodicity of certain oligonucleotides
    goligomer_counter       Counts the number of given oligomers in a sequence
    gsignature              Calculate oligonucleotide usage (genomic signature)
-
 
 Author(s)
 

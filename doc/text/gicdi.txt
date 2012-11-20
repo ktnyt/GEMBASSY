@@ -29,14 +29,18 @@ Usage
 
 % gicdi  NC_000913.gbk
 Calculates the intrinsic codon deviation index (ICDI)
-0.0880
+Output filename [*.gicdi]:
 
+
+   Creates *.gicdi
+   Output example is prepared in the data directory
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
+*  -outfile            outfile    [*.gicdi] Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -48,6 +52,7 @@ Standard (Mandatory) qualifiers:
                                   expression to delete key (Any string)
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
+   -show               toggle     [N] Include to dump result to stdout
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -61,7 +66,7 @@ Input file format
 
 Output file format
 
-   The output from gicdi is to standard output.
+   The output from gicdi is to a file or stdout.
 
 Data files
 
@@ -73,9 +78,8 @@ Notes
 
 References
 
-   Comeron JM, Aguade M. (1998) J Mol Evol. 47(3):268-74.
-
-   Freire-Picos MA et al. (1994) Gene 139:43-49.
+      Comeron JM, Aguade M. (1998) J Mol Evol. 47(3):268-74.
+      Freire-Picos MA et al. (1994) Gene 139:43-49.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -110,7 +114,6 @@ See also
    gcbi       Calculates the codon bias index (CBI)
    gdelta_enc Calculate the codon usage bias related to translation optimization              (delta ENC)
    gs_value   Calculate the strength of selected codon usage bias (S)
-
 
 Author(s)
 

@@ -10,9 +10,6 @@ Description
    A is shown in red, T is shown in green, 
    G is shown in yellow, and C is shown in blue. 
 
-   Entire genome is prepresented in a very large PNG image
-   (8192x8192 pixel by default), and the number of nucleotides
-   represented by one pixel is automatically calculated. 
   
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
@@ -35,18 +32,15 @@ Usage
 
 % ggenome_map3  refseqn:NC_000908
 Draws the map of the genome (version 3)
-Output filename [ggenome_map3.[accession].png]:
-
-   Creates ggenome_map3.[accession].png
-   Output example is prepared in the data directory
+Output filename [*.ggenome_map3]:
 
 Command line arguments
 
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-   -filename           string     [ggenome_map3.[accession].png] Output
-                                  filename (Any string)
+   -filename           string     [ggenome_map3.png] Output filename (Any
+                                  string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -67,7 +61,7 @@ Input file format
 
 Output file format
 
-   The output from ggenome_map3 is to PNG format.
+   The output from ggenome_map3 is to .
 
 Data files
 
@@ -111,7 +105,6 @@ See also
 
    gcircular_map Draws circular map of the genome
    gdnawalk      Draws DNA Walk map of the genome
-
 
 Author(s)
 

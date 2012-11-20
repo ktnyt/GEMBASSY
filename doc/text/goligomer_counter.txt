@@ -29,23 +29,28 @@ Usage
 
    Here is a sample session with goligomer_counter
 
-% goligomer_counter ecoli.gbk
+% goligomer_counter  NC_000913.gbk atgcatgc
 Counts the number of given oligomers in a sequence
-Oligomer to count: atgcatgc
-27
+Output filename [*.goligomer_counter]:
+
+
+   Creates *.goligomer_counter
+   Output example is prepared in the data directory
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
   [-oligomer]          string     Oligomer to count (Any string)
+*  -outfile            outfile    [*.goligomer_counter] Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -window             integer    [0] Int window size (Any integer value)
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
+   -show               toggle     [N] Include to dump result to stdout
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -59,7 +64,7 @@ Input file format
 
 Output file format
 
-   The output from goligomer_counter is to standard output.
+   The output from goligomer_counter is to a file or stdout.
 
 Data files
 
@@ -105,7 +110,6 @@ See also
    gnucleotide_periodicity Checks the periodicity of certain oligonucleotides
    goligomer_search        Searches oligomers in given sequence
    gsignature              Calculate oligonucleotide usage (genomic signature)
-
 
 Author(s)
 

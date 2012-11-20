@@ -36,14 +36,18 @@ Usage
 
 % gfind_ori_ter  NC_000913.gbk
 Predict the replication origin and terminus in bacterial genomes
-3922946	1550274
+Output filename [*.gfind_ori_ter]:
 
+
+   Creates *.gfind_ori_ter
+   Output example is prepared in the data directory
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
+*  -outfile            outfile    [*.gfind_ori_ter] Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -58,6 +62,7 @@ Standard (Mandatory) qualifiers:
                                   value)
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
+   -show               toggle     [N] Include to dump result to stdout
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -71,7 +76,7 @@ Input file format
 
 Output file format
 
-   The output from gfind_ori_ter is to standard output.
+   The output from gfind_ori_ter is to a file or stdout.
 
 Data files
 
@@ -83,12 +88,11 @@ Notes
 
 References
 
-   Frank AC, Lobry JR (2000) "Oriloc: prediction of replication boundaries in
-      unannotated bacterial chromosomes", Bioinformatics, 16:566-567.
+   Frank AC, Lobry JR (2000) "Oriloc: prediction of replication boundaries in unannotated 
+      bacterial chromosomes", Bioinformatics, 16:566-567.
 
-   Arakawa K, Saito R, Tomita M (2007) "Noise-reduction filtering for accurate
-      detection of replication termini in bacterial genomes", FEBS Letters,
-      581(2): 253-258.
+   Arakawa K, Saito R, Tomita M (2007) "Noise-reduction filtering for accurate detection 
+      of replication termini in bacterial genomes", FEBS Letters, 581(2):253-258.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -121,7 +125,6 @@ Known bugs
 See also
 
    grep_ori_ter Get the positions of replication origin and terminus
-
 
 Author(s)
 

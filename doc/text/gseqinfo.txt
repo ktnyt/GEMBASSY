@@ -31,20 +31,24 @@ Usage
 
 % gseqinfo  NC_000913.gbk
 Prints out basic nucleotide sequence statistics
-A	T	G	C	
-1142228	1140970	1176923	1179555	
+Output filename [*.gseqinfo]:
 
+
+   Creates *.gseqinfo
+   Output example is prepared in the data directory
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
+*  -outfile            outfile    [*.gseqinfo] Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
+   -show               toggle     [N] Include to dump result to stdout
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -58,7 +62,7 @@ Input file format
 
 Output file format
 
-   The output from gseqinfo is to standard output.
+   The output from gseqinfo is to a file or stdout.
 
 Data files
 
@@ -103,7 +107,6 @@ See also
    gconsensus_z Calculate consensus in given array of sequences
    gdist_in_cc  Calculates the distance between two loci in circular chromosomes
    gpalindrome  Searches palindrome sequences
-
 
 Author(s)
 

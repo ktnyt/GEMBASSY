@@ -1,21 +1,22 @@
                                   glda_bias
 Function
 
-   Calculate strand bias of bacterial genome using linear discriminant analysis
-   (LDA)
+   Calculate strand bias of bacterial genome using linear discriminant analysis (LDA)
 
 Description
 
-   This method calculate strand bias of bacterial genome using linear
-   discriminant analysis (LDA), as proposed in Reference 1. The basic idea is
-   to use composition data of genes to train and predict the strand of genes
-   residing either on the leading or the lagging strand. For computational
-   efficiency, this method trans and predicts the strands at putative
-   replication origin as reported by the rep_ori_ter() method. This usually
-   results in maximum predictability of LDA within bacterial genomes.
+   This method calculate strand bias of bacterial genome using linear discriminant 
+   analysis (LDA), as proposed in Reference 1. The basic idea is to use composition
+   data of genes to train and predict the strand of genes residing either on the 
+   leading or the lagging strand. For computational efficiency, this method trans
+   and predicts the strands at putative replication origin as reported by the 
+   rep_ori_ter() method. This usually results in maximum predictability of LDA
+   within bacterial genomes.
 
-   Data to use for LDA can be chosen from "base", "codonbase", "codon", and
-  "amino", with -variable option.
+   Data to use for LDA can be chosen from "base", "codonbase", "codon", and "amino",
+   with -variable option.
+
+   Installation of R statistics package is required.
 
  
    G-language SOAP service is provided by the
@@ -39,14 +40,18 @@ Usage
 
 % glda_bias  NC_000913.gbk
 Calculate strand bias of bacterial genome using linear discriminant analysis (LDA)
-0.7421296
+Output filename [*.glda_bias]:
 
+
+   Creates *.glda_bias
+   Output example is prepared in the data directory
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
+*  -outfile            outfile    [*.glda_bias] Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -57,6 +62,7 @@ Standard (Mandatory) qualifiers:
                                   string)
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
+   -show               toggle     [N] Include to dump result to stdout
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -70,7 +76,7 @@ Input file format
 
 Output file format
 
-   The output from glda_bias is to standard output.
+   The output from glda_bias is to a file or stdout.
 
 Data files
 
@@ -120,7 +126,6 @@ See also
    gdelta_gcskew Calculate strand bias of bacterial genome using delta GC skew
                  index
    ggcsi         GC Skew Index: an index for strand-specefic mutational bias
-
 
 Author(s)
 

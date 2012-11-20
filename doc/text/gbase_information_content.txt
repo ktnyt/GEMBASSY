@@ -28,11 +28,15 @@ Usage
 
    Here is a sample session with gbase_information_content
 
-% gbase_information_content  NC_000913.gbk -graph cps
+% gbase_information_content  -plotNC_000913.gbk -graph cps
 Calculates and graphs the sequence conservation using information content
-Created gbase_information_content.ps
+Output filename [*.gbase_information_content]:Error: Failed to open filename '-plotNC_000913.gbk'
+Error: Unable to read sequence '-plotNC_000913.gbk'
+Died: gbase_information_content terminated: Bad value for '-sequence' with -auto defined
 
-   Creates gbase_information_content.[accession].ps
+
+
+   Creates *.gbase_information_content
    Output example is prepared in the data directory
 
 Command line arguments
@@ -40,8 +44,11 @@ Command line arguments
 Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-*  -filename           string     [gbase_information_content.[accession].csv]
-                                  Output filename (Any string)
+*  -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
+                                  (ps, hpgl, hp7470, hp7580, meta, cps, x11,
+                                  tek, tekt, none, data, xterm, png, gif, svg)
+*  -outfile            outfile    [*.gbase_information_content] Output file
+                                  name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -56,10 +63,7 @@ Standard (Mandatory) qualifiers (* if not always prompted):
                                   value)
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
-   -output             boolean    [N] Include to create CSV file
-   -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
-                                  (ps, hpgl, hp7470, hp7580, meta, cps, x11,
-                                  tek, tekt, none, data, xterm, png, gif, svg)
+   -plot               toggle     [N] Include to plot result
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -120,7 +124,6 @@ See also
    gbase_relative_entropy    Calculates and graphs the sequence conservation
                              using Kullback-Leibler divergence (relative
                              entropy)
-
 
 Author(s)
 

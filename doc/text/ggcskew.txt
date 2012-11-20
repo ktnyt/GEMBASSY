@@ -27,11 +27,15 @@ Usage
 
    Here is a sample session with ggcskew
 
-% ggcskew  NC_000913.gbk -graph cps
+% ggcskew  -plotNC_000913.gbk -graph cps
 Calculates the GC skew of the input sequence
-Created ggcskew.ps
+Output filename [*.ggcskew]:Error: Failed to open filename '-plotNC_000913.gbk'
+Error: Unable to read sequence '-plotNC_000913.gbk'
+Died: ggcskew terminated: Bad value for '-sequence' with -auto defined
 
-   Creates ggcskew.[accession].ps
+
+
+   Creates *.ggcskew
    Output example is prepared in the data directory
 
 Command line arguments
@@ -39,8 +43,10 @@ Command line arguments
 Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-*  -filename           string     [ggcskew.[accession].csv] Output filename
-                                  (Any string)
+*  -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
+                                  (ps, hpgl, hp7470, hp7580, meta, cps, x11,
+                                  tek, tekt, none, data, xterm, png, gif, svg)
+*  -outfile            outfile    [*.ggcskew] Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -54,12 +60,9 @@ Standard (Mandatory) qualifiers (* if not always prompted):
    -purine             boolean    [0] Include for observing purine (AG/TC)
                                   skew
    -keto               boolean    [0] Include for observing keto (TG/AC) skew
-   -output             boolean    [N] Include to create CSV file
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
-   -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
-                                  (ps, hpgl, hp7470, hp7580, meta, cps, x11,
-                                  tek, tekt, none, data, xterm, png, gif, svg)
+   -plot               toggle     [N] Include to plot result
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -118,7 +121,6 @@ See also
    ggcwin       Calculates the GC content along the given genome
    ggeneskew    Calculate the gene strand bias of the given genome
    ggenomicskew Calculates the GC skew in different regions of the given genom
-
 
 Author(s)
 

@@ -1,0 +1,291 @@
+<!--START OF HEADER - DON'T ALTER -->
+
+<HTML>
+<HEAD>
+  <TITLE> EMBOSS: gcai </TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" text="#000000">
+
+
+
+<table align=center border=0 cellspacing=0 cellpadding=0>
+<tr><td valign=top>
+<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emb
+oss_icon.jpg" alt="" width=150 height=48></a>
+</td>
+<td align=left valign=middle>
+<b><font size="+6">
+gcai
+</font></b>
+</td></tr>
+</table>
+<br>&nbsp;
+<p>
+
+
+<!--END OF HEADER-->
+
+
+
+
+
+
+<H2> Function </H2>
+   Calculate codon adaptation index for each gene
+<!--
+DON'T WRITE ANYTHING HERE.
+IT IS DONE FOR YOU.
+-->
+
+
+
+
+<H2>Description</H2>
+<p>
+   This program calculates codon adaptation index (CAI) for each gene,<br>
+   and inputs in the G instance. i.e. CAI values will be accessible at<br>
+   $gb->{"FEATURE$i"}->{cai};<br>
+<br>
+  <br>
+   G-language SOAP service is provided by the<br>
+   Institute for Advanced Biosciences, Keio University.<br>
+   The original web service is located at the following URL:<br>
+<br>
+   http://www.g-language.org/wiki/soap<br>
+<br>
+   WSDL(RPC/Encoded) file is located at:<br>
+<br>
+   http://soap.g-language.org/g-language.wsdl<br>
+<br>
+   Documentation on G-language Genome Analysis Environment methods are<br>
+   provided at the Document Center<br>
+<br>
+   http://ws.g-language.org/gdoc/
+</p>
+
+<H2>Usage</H2>
+
+<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
+
+   Here is a sample session with gcai
+
+% gcai  NC_000913.gbk
+Calculate codon adaptation index for each gene
+Output filename [*.gcai]:
+
+
+   Creates *.gcai
+   Output example is prepared in the data directory
+
+</pre></td></tr></table>
+
+
+
+<h2>Command line arguments</h2>
+
+<table border cellspacing=0 cellpadding=3 bgcolor="#ccccff">
+<tr bgcolor="#FFFFCC">
+<th align="left">Qualifier</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+<th align="left">Allowed values</th>
+<th align="left">Default</th>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<th align="left" colspan=5>Standard (Mandatory) qualifiers</th>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>[-sequence]<br>(Parameter 1)</td>
+<td>seqall</td>
+<td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
+<td>Readable sequence(s)</td>
+<td><b>Required</b></td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-outfile</td>
+<td>outfile</td>
+<td>Output file name</td>
+<td>Output file</td>
+<td><i>&lt;*&gt;</i>.gcai</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<th align="left" colspan=5>Additional (Optional) qualifiers</th>
+</tr>
+
+<tr>
+<td colspan=5>(none)</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<th align="left" colspan=5>Advanced (Unprompted) qualifiers</th>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-translate</td>
+<td>boolean</td>
+<td>Include when translating using standard codon table</td>
+<td>Boolean value Yes/No</td>
+<td>No</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-wabsent</td>
+<td>string</td>
+<td>W value of codons absent from a reference set '-' when excludes such codons from the calculation</td>
+<td>Any string</td>
+<td>-</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-accid</td>
+<td>string</td>
+<td>Include to use sequence accession ID as query</td>
+<td>Any string</td>
+<td>&nbsp;</td>
+</tr>
+
+</table>
+
+
+<h2>Input file format</h2>
+
+<p>
+   gcai reads nucleotide sequences.
+</p>
+
+<h2>Ouptut file format</h2>
+
+<p>
+   Creates *.gcai
+   Output example is prepared in the data directory
+
+Command line arguments
+
+Standard (Mandatory) qualifiers:
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
+                                  format, or reference (input USA)
+   -outfile            outfile    [*.gcai] Output file name
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -translate          boolean    [0] Include when translating using standard
+                                  codon table
+   -wabsent            string     [-] W value of codons absent from a
+                                  reference set '-' when excludes such codons
+                                  from the calculation (Any string)
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+
+Input file format
+
+   gcai reads nucleotide sequences.
+
+Output file format
+
+   The output from gcai is to a raw CSV file.
+</p>
+
+<h2>Data files</h2>
+
+<p>
+None.
+</p>
+
+<h2>Notes</h2>
+
+<p>
+None.
+</p>
+
+<h2>Refrences</h2>
+
+<pre>
+      Sharp PM, Li WH. 1987 Nucleic Acids Res. 15(3):1281-95.
+
+   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
+      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
+      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
+
+   Arakawa, K. and Tomita, M. (2006) G-language System as a Platfor for
+      large-scale analysis of high-throughput omics data, J. Pest Sci.,
+      31, 7.
+
+   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
+      Analysis Environment with REST and SOAP Wev Service Interfaces,
+      Nucleic Acids Res., 38, W700-W705.
+</pre>
+
+<h2>Warnings</h2>
+
+<p>
+   None.
+</p>
+
+<h2>Diagnostic Error Messages</h2>
+
+<p>
+None.
+</p>
+
+<h2>Exit status</h2>
+
+<p>
+It always exits with a status of 0.
+</p>
+
+<h2>Known bugs</h2>
+
+<p>
+None.
+</p>
+
+<h2>See also</h2>
+
+<table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th>
+<th>Description</th></tr>
+
+<tr>
+<td><a href="gp2.html">gp2</a></td>
+<td>Calculate the P2 index of each gene</td>
+</tr>
+
+<tr>
+<td><a href="gphx.html">gphx</a></td>
+<td>Identify predicted highly expressed gene</td>
+</tr>
+
+</table>
+
+<h2>Author(s)</h2>
+
+<pre>
+   Hidetoshi Itaya (celery@g-language.org)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
+
+   Kazuharu Arakawa(gaou@g-language.org) 
+</pre>
+
+<h2>History</h2>
+
+   2012 - Written by Hidetoshi Itaya
+
+<h2>Target users</h2>
+
+   This program is intended to be used by everyone and everything, from
+   naive users to embedded scrips.
+
+<h2>Comments</h2>
+
+   None.
+
