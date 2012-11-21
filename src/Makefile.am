@@ -53,11 +53,8 @@ bin_PROGRAMS = gamino_info\
                gcgr\
                gcircular_map\
                gcodon_compiler\
-<<<<<<< HEAD
-=======
                gconsensus_z\
                gdelta_enc\
->>>>>>> 1.0.0
                gdelta_gcskew\
                gdinuc\
                gdist_in_cc\
@@ -105,11 +102,8 @@ gcbi_SOURCES            = gcbi.c
 gcgr_SOURCES            = gcgr.c
 gcircular_map_SOURCES   = gcircular_map.c
 gcodon_compiler_SOURCES = gcodon_compiler.c
-<<<<<<< HEAD
-=======
 gconsensus_z_SOURCES    = gconsensus_z.c
 gdelta_enc_SOURCES      = gdelta_enc.c
->>>>>>> 1.0.0
 gdelta_gcskew_SOURCES   = gdelta_gcskew.c
 gdist_in_cc_SOURCES     = gdist_in_cc.c
 gdinuc_SOURCES          = gdinuc.c
