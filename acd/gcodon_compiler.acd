@@ -71,6 +71,7 @@ section: output [
 
   outfile: outfile [
     standard: "Y"
+    default: "gcodon_compiler.$(sequence.name).csv"
   ]
 
 endsection: output

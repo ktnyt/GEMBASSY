@@ -56,6 +56,7 @@ section: output [
 
   outfile: outfile [
     standard: "Y"
+    default: "gdinuc.$(sequence.name).csv"
   ]
 
 endsection: output

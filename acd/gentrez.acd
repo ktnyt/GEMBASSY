@@ -34,6 +34,7 @@ section: output [
 
   outfile: outfile [
     standard: "@(!$(show))"
+    default: "$(db).$(query).gentrez"
   ]
 
 endsection: output

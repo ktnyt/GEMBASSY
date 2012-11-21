@@ -67,6 +67,7 @@ section: output [
     standard: "@(!$(plot))"
     nullok: "Y"
     nulldefault: "$(plot)"
+    default: "ggcwin.$(sequence.name).csv"
   ]
 
 endsection: output

@@ -41,6 +41,7 @@ section: output [
 
   outfile: outfile [
     standard: "Y"
+    default: "gaaui.$(sequence.name).csv"
   ]
 
 endsection: output

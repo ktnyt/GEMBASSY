@@ -36,6 +36,7 @@ section: output [
 
   outfile: outfile [
     standard: "Y"
+    default: "gp2.$(sequence.name).csv"
   ]
 
 endsection: output
