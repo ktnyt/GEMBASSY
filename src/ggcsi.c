@@ -24,7 +24,7 @@ int main(int argc, char *argv[]){
   AjBool    at      = 0;
   AjBool    purine  = 0;
   AjBool    keto    = 0;
-  AjBool    p       = 0;
+  AjBool    pval    = 0;
   AjPStr    accid   = NULL;
   char*     result;
 
@@ -33,11 +33,11 @@ int main(int argc, char *argv[]){
   
   seqall  = ajAcdGetSeqall("sequence");
   window  = ajAcdGetInt("window");
-  version = ajAcdGetInt("v");
+  version = ajAcdGetInt("version");
   at      = ajAcdGetBoolean("at");
   purine  = ajAcdGetBoolean("purine");
   keto    = ajAcdGetBoolean("keto");
-  p       = ajAcdGetBoolean("p");
+  pval    = ajAcdGetBoolean("pval");
   accid   = ajAcdGetString("accid");
 
   show = ajAcdGetToggle("show");
@@ -60,7 +60,7 @@ int main(int argc, char *argv[]){
   }else{
     params.keto       = 0;
   }
-  if(p){
+  if(pval){
     params.p          = 1;
   }else{
     params.p          = 0;
