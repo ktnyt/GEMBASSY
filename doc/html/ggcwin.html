@@ -67,16 +67,9 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with ggcwin
 
-% ggcwin  -plotNC_000913.gbk -graph cps
+% ggcwin -plot NC_000913.gbk
 Calculates the GC content along the given genome
-Output filename [*.ggcwin]:Error: Failed to open filename '-plotNC_000913.gbk'
-Error: Unable to read sequence '-plotNC_000913.gbk'
-Died: ggcwin terminated: Bad value for '-sequence' with -auto defined
-
-
-
-   Creates *.ggcwin
-   Output example is prepared in the data directory
+Created ggcwin.ps
 
 </pre></td></tr></table>
 
@@ -118,7 +111,7 @@ Died: ggcwin terminated: Bad value for '-sequence' with -auto defined
 <td>outfile</td>
 <td>Output file name</td>
 <td>Output file</td>
-<td><i>&lt;*&gt;</i>.ggcwin</td>
+<td>ggcwin.$(sequence.name).csv</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -193,6 +186,8 @@ Died: ggcwin terminated: Bad value for '-sequence' with -auto defined
 <h2>Ouptut file format</h2>
 
 <p>
+                                  name
+
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -window             integer    [10000] Window size to observe (Any integer

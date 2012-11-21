@@ -6,8 +6,7 @@ Function
 Description
 
    This program calculates the 'weighted sum of relative entropy' (Ew) as a 
-   measure of synonymous codon usage evenness for each gene, and inputs in the 
-   G instance; i.e. Ew values will be accessible at $gb->{"FEATURE$i"}->{Ew};
+   measure of synonymous codon usage evenness for each gene.
 
   
    G-language SOAP service is provided by the
@@ -29,20 +28,18 @@ Usage
 
    Here is a sample session with gew
 
-% gew  NC_000913.gbk
+% gew NC_000913.gbk
 Calculate a measure of synonymous codon usage evenness (Ew)
-Output filename [*.gew]:
+Output filename [gew.nc_000913.csv]:
 
-
-   Creates *.gew
-   Output example is prepared in the data directory
+   Creates gew.nc_000913.csv
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+   Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-   -outfile            outfile    [*.gew] Output file name
+   -outfile            outfile    [gew.$(sequence.name).csv] Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -78,8 +75,9 @@ Notes
 
 References
 
-      Suzuki H. et al. (2004) Gene. 23;335:19-23.
-      Suzuki H. et al. (2007) EURASIP J Bioinform Syst Biol. 2007:61374.
+   Suzuki H. et al. (2004) Gene. 23;335:19-23.
+
+   Suzuki H. et al. (2007) EURASIP J Bioinform Syst Biol. 2007:61374.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench

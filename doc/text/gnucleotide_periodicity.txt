@@ -5,7 +5,8 @@ Function
 
 Description
 
-   Checks the periodicity of certain nucleotide (best known with AA dinucleotide)
+   Checks the periodicity of certain nucleotide (best known with AA
+   dinucleotide)
    
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
@@ -26,26 +27,22 @@ Usage
 
    Here is a sample session with gnucleotide_periodicity
 
-% gnucleotide_periodicity  -plotNC_000913.gbk -graph cps
+% gnucleotide_periodicity -plot NC_000913.gbk
 Checks the periodicity of certain oligonucleotides
-Output filename [*.gnucleotide_periodicity]:Error: Failed to open filename '-plotNC_000913.gbk'
-Error: Unable to read sequence '-plotNC_000913.gbk'
-Died: gnucleotide_periodicity terminated: Bad value for '-sequence' with -auto defined
+Output filename [gnucleotide_periodicity.nc_000913.csv]:
 
-
-
-   Creates *.gnucleotide_periodicity
-   Output example is prepared in the data directory
+   Creates gnucleotide_periodicity.nc_000913.csv
 
 Command line arguments
 
-Standard (Mandatory) qualifiers (* if not always prompted):
+   Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
 *  -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
                                   (ps, hpgl, hp7470, hp7580, meta, cps, x11,
                                   tek, tekt, none, data, xterm, png, gif, svg)
-*  -outfile            outfile    [*.gnucleotide_periodicity] Output file name
+*  -outfile            outfile    [gnucleotide_periodicity.$(sequence.name).csv]
+                                  Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -110,7 +107,6 @@ Known bugs
 
 See also
 
-   gkmer_table             Create an image showing all k-mer abundance within a                            sequence
    goligomer_counter       Counts the number of given oligomers in a sequence
    goligomer_search        Searches oligomers in given sequence
    gsignature              Calculate oligonucleotide usage (genomic signature)

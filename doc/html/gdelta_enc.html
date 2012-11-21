@@ -31,7 +31,8 @@ gdelta_enc
 
 
 <H2> Function </H2>
-   Calculate the codon usage bias related to translation optimization (delta ENC)
+   Calculate the codon usage bias related to translation optimization
+   (delta ENC)
 <!--
 DON'T WRITE ANYTHING HERE.
 IT IS DONE FOR YOU.
@@ -42,10 +43,27 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This method calculates the codon usage bias related to translation optimization <br>
-   (delta ENC) described in Reference 1. The basic idea is to calculate the Effective<br>
-   Number of Codons (ENC) for highly-expressed genes (ribosomal genes) and weakly-<br>
-   expressed genes (all genes), and taking the relative difference between them.
+   This method calculates the codon usage bias related to translation<br>
+   optimization (delta ENC) described in Reference 1. The basic idea is to<br>
+   calculate the Effective Number of Codons (ENC) for highly-expressed genes<br>
+   (ribosomal genes) and weakly-expressed genes (all genes), and taking the<br>
+   relative difference between them.<br>
+<br>
+<br>
+   G-language SOAP service is provided by the<br>
+   Institute for Advanced Biosciences, Keio University.<br>
+   The original web service is located at the following URL:<br>
+<br>
+   http://www.g-language.org/wiki/soap<br>
+<br>
+   WSDL(RPC/Encoded) file is located at:<br>
+<br>
+   http://soap.g-language.org/g-language.wsdl<br>
+<br>
+   Documentation on G-language Genome Analysis Environment methods are<br>
+   provided at the Document Center<br>
+<br>
+   http://ws.g-language.org/gdoc/
 </p>
 
 <H2>Usage</H2>
@@ -54,13 +72,11 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gdelta_enc
 
-% gdelta_enc  NC_000913.gbk
+% gdelta_enc NC_000913.gbk
 Calculate the codon usage bias related to translation optimization (delta ENC)
-Output filename [*.gdelta_enc]:
+Output filename [nc_000913.gdelta_enc]:
 
-
-   Creates *.gdelta_enc
-   Output example is prepared in the data directory
+   Creates nc_000913.gdelta_enc
 
 </pre></td></tr></table>
 
@@ -137,12 +153,11 @@ Output filename [*.gdelta_enc]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates *.gdelta_enc
-   Output example is prepared in the data directory
+   Creates nc_000913.gdelta_enc
 
 Command line arguments
 
-Standard (Mandatory) qualifiers (* if not always prompted):
+   Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
 *  -outfile            outfile    [*.gdelta_enc] Output file name

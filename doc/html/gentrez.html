@@ -69,13 +69,11 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gentrez
 
-% gentrez  pubmed 'Venter C'
+% gentrez pubmed 'Venter C'
 Search NCBI Entrez in G-language Shell
-Output filename [*.gentrez]:
+Output filename [pubmed.Venter C.gentrez]:
 
-
-   Creates *.gentrez
-   Output example is prepared in the data directory
+   Creates pubmed.Venter C.gentrez
 
 </pre></td></tr></table>
 
@@ -117,7 +115,7 @@ Output filename [*.gentrez]:
 <td>outfile</td>
 <td>Output file name</td>
 <td>Output file</td>
-<td><i>&lt;*&gt;</i>.gentrez</td>
+<td>$(db).$(query).gentrez</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -152,16 +150,15 @@ Output filename [*.gentrez]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates *.gentrez
-   Output example is prepared in the data directory
+   Creates pubmed.Venter C.gentrez
 
 Command line arguments
 
-Standard (Mandatory) qualifiers (* if not always prompted):
+   Standard (Mandatory) qualifiers (* if not always prompted):
   [-db]                string     [pubmed] NCBI database to search (Any
                                   string)
   [-query]             string     Query to search (Any string)
-*  -outfile            outfile    [*.gentrez] Output file name
+*  -outfile            outfile    [$(db).$(query).gentrez] Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:

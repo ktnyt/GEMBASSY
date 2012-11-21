@@ -76,16 +76,12 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gamino_info
 
-% gamino_info  proteinSample.faa
+% gamino_info ADH_HUMAN.fasta
 Prints out basic amino acid sequence statistics
-Output filename [*.gamino_info]:Error: Failed to open filename 'proteinSample.faa'
-Error: Unable to read sequence 'proteinSample.faa'
-Died: gamino_info terminated: Bad value for '-sequence' with -auto defined
+Output filename [4_cdsid_np_000659.gamino_info]:
 
 
-
-   Creates *.gamino_info
-   Output example is prepared in the data directory
+   Creates 4_cdsid_np_000659.gamino_info
 
 </pre></td></tr></table>
 
@@ -156,12 +152,21 @@ Died: gamino_info terminated: Bad value for '-sequence' with -auto defined
 <h2>Input file format</h2>
 
 <p>
-   gamino_info reads nucleotide sequences.
+   gamino_info reads protien sequences.
 </p>
 
 <h2>Ouptut file format</h2>
 
 <p>
+   Creates 4_cdsid_np_000659.gamino_info
+
+Command line arguments
+
+   Standard (Mandatory) qualifiers (* if not always prompted):
+  [-sequence]          seqall     Protein sequence(s) filename and optional
+                                  format, or reference (input USA)
+*  -outfile            outfile    [*.gamino_info] Output file name
+
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -accid              string     Include to use sequence accession ID as
@@ -176,7 +181,7 @@ Died: gamino_info terminated: Bad value for '-sequence' with -auto defined
 
 Input file format
 
-   gamino_info reads nucleotide sequences.
+   gamino_info reads protien sequences.
 
 Output file format
 

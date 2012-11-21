@@ -5,9 +5,7 @@ Function
 
 Description
 
-   This program calculates codon adaptation index (CAI) for each gene,
-   and inputs in the G instance. i.e. CAI values will be accessible at
-   $gb->{"FEATURE$i"}->{cai};
+   This program calculates codon adaptation index (CAI) for each gene.
 
   
    G-language SOAP service is provided by the
@@ -29,20 +27,18 @@ Usage
 
    Here is a sample session with gcai
 
-% gcai  NC_000913.gbk
+% gcai NC_000913.gbk
 Calculate codon adaptation index for each gene
-Output filename [*.gcai]:
+Output filename [gcai.nc_000913.csv]:
 
-
-   Creates *.gcai
-   Output example is prepared in the data directory
+   Creates gcai.nc_000913.csv
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+   Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-   -outfile            outfile    [*.gcai] Output file name
+   -outfile            outfile    [gcai.$(sequence.name).csv] Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -78,7 +74,7 @@ Notes
 
 References
 
-      Sharp PM, Li WH. 1987 Nucleic Acids Res. 15(3):1281-95.
+   Sharp PM, Li WH. 1987 Nucleic Acids Res. 15(3):1281-95.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench

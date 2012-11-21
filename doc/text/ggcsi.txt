@@ -16,15 +16,16 @@ Description
    and dist is the normalized Euclidean distance between the vertices of 
    cumulative GC skew.
 
-   GCSI ranges from 0 (no observable skew) to 1 (strong skew), and Archaeal genomes
-   that have multiple replication origins and therefore have no observable skew
-   mostly have GCSI below 0.05. Escherichia coli genome has values around 0.10.
+   GCSI ranges from 0 (no observable skew) to 1 (strong skew), and Archaeal
+   genomes that have multiple replication origins and therefore have no
+   observable skew mostly have GCSI below 0.05. Escherichia coli genome has
+   values around 0.10.
 
    Version 1 of GCSI required fixed number of windows (4096), but the new GCSI
    version 2 (also known as generalized GCSI: gGCSI) is invariant of the number
-   of windows. GCSI version 1 is calculated as an arithmetic mean (as opposed to 
-   the geometric mean of gGCSI) of SR (spectral ratio, the signal-to-noise ratio
-   of 1Hz power spectrum) and dist. 
+   of windows. GCSI version 1 is calculated as an arithmetic mean (as opposed
+   to the geometric mean of gGCSI) of SR (spectral ratio, the signal-to-noise
+   ratio of 1Hz power spectrum) and dist. 
 
   
    G-language SOAP service is provided by the
@@ -46,19 +47,15 @@ Usage
 
    Here is a sample session with ggcsi
 
-% ggcsi  NC_000913.gbk
+% ggcsi NC_000913.gbk
 GC Skew Index: an index for strand-specefic mutational bias
-Output filename [*.ggcsi]:Error: File /Users/kotone/usr/emblocal/share/EMBOSS/acd/ggcsi.acd line 71: (outfile) Bad standard flag @!(No)
+Output filename [nc_000913.ggcsi]:
 
-
-
-
-   Creates *.ggcsi
-   Output example is prepared in the data directory
+   Creates nc_000913.ggcsi
 
 Command line arguments
 
-Standard (Mandatory) qualifiers (* if not always prompted):
+   Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
 *  -outfile            outfile    [*.ggcsi] Output file name
@@ -102,8 +99,9 @@ Notes
 
 References
 
-   Arakawa K, Tomita M (2007) "The GC skew index: a measure of genomic compositional 
-      asymmetry and the degree of replicational selection", Evolutionary Bioinformatics, 3:145-154.
+   Arakawa K, Tomita M (2007) "The GC skew index: a measure of genomic
+      compositional asymmetry and the degree of replicational selection",
+      Evolutionary Bioinformatics, 3:145-154.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench

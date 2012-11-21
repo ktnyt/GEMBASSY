@@ -6,9 +6,6 @@ Function
 Description
 
    Calculates the consensus of given list of sequences, using Z-score.
-   Consensus with Z value greater than int high_z (default is 1) is 
-   capitalized, and consensus with Z value less than int low_z 
-   (default is 0.2) is shown as '-'.
 
   
    G-language SOAP service is provided by the
@@ -30,26 +27,20 @@ Usage
 
    Here is a sample session with gconsensus_z
 
-% gconsensus_z  -plotconsensus.fasta -graph cps
+% gconsensus_z -plot consensus.fasta
 Calculate consensus in given array of sequences
-Output filename [*.gconsensus_z]:Error: Failed to open filename '-plotconsensus.fasta'
-Error: Unable to read sequence '-plotconsensus.fasta'
-Died: gconsensus_z terminated: Bad value for '-sequence' with -auto defined
-
-
-
-   Creates *.gconsensus_z
-   Output example is prepared in the data directory
+Created gconsensus_z.ps
 
 Command line arguments
 
-Standard (Mandatory) qualifiers (* if not always prompted):
+   Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
 *  -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
                                   (ps, hpgl, hp7470, hp7580, meta, cps, x11,
                                   tek, tekt, none, data, xterm, png, gif, svg)
-*  -outfile            outfile    [*.gconsensus_z] Output file name
+*  -outfile            outfile    [gconsensus_z.$(sequence.name).csv] Output
+                                  file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:

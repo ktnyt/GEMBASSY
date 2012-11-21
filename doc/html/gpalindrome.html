@@ -67,13 +67,11 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gpalindrome
 
-% gpalindrome  NC_000913.gbk
+% gpalindrome NC_000913.gbk
 Searches palindrome sequences
-Output filename [*.gpalindrome]:
+Output filename [gpalindrome.nc_000913.csv]:
 
-
-   Creates *.gpalindrome
-   Output example is prepared in the data directory
+   Creates gpalindrome.nc_000913.csv
 
 </pre></td></tr></table>
 
@@ -107,7 +105,7 @@ Output filename [*.gpalindrome]:
 <td>outfile</td>
 <td>Output file name</td>
 <td>Output file</td>
-<td><i>&lt;*&gt;</i>.gpalindrome</td>
+<td>gpalindrome.$(sequence.name).csv</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -166,15 +164,15 @@ Output filename [*.gpalindrome]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates *.gpalindrome
-   Output example is prepared in the data directory
+   Creates gpalindrome.nc_000913.csv
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+   Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-   -outfile            outfile    [*.gpalindrome] Output file name
+   -outfile            outfile    [gpalindrome.$(sequence.name).csv] Output
+                                  file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:

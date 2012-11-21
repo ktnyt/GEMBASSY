@@ -6,12 +6,12 @@ Function
 Description
 
    This method calculate strand bias of bacterial genome using B2 index,
-   proposed by Lobry and Sueoka in Reference 1. Basic idea of B2 index is 
-   to calculate the distance from neutral parity state (0.5, 0.5), when the bias of
-   the coding regions is plotted in a coordinate system with axes representing 
-   G/(G+C) and A/(A+T), using the third codon position of genes. This index measures 
-   the degree of transcription- and translation-associated effects of bias from 
-   Chargaff's second parity rule.
+   proposed by Lobry and Sueoka (2002). Basic idea of B2 index is to calculate
+   the distance from neutral parity state (0.5, 0.5), when the bias of the
+   coding regions is plotted in a coordinate system with axes representing 
+   G/(G+C) and A/(A+T), using the third codon position of genes. This index
+   measure  the degree of transcription- and translation-associated effects of
+   bias from Chargaff's second parity rule.
 
  
    G-language SOAP service is provided by the
@@ -33,18 +33,15 @@ Usage
 
    Here is a sample session with gb2
 
-% gb2  NC_000913.gbk
+% gb2 NC_000913.gbk
 Calculate strand bias of bacterial genome using B2 index
-Output filename [*.gb2]:Died: Qualifier '-show' not found
+Output filename [nc_000913.gb2]:
 
-
-
-   Creates *.gb2
-   Output example is prepared in the data directory
+   Creates nc_000913.gb2
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+   Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
    -outfile            outfile    [*.gb2] Output file name
@@ -53,6 +50,7 @@ Standard (Mandatory) qualifiers:
    Advanced (Unprompted) qualifiers:
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
+   -show               toggle     [N] Include to dump result to stdout
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -78,8 +76,8 @@ Notes
 
 References
 
-   Lobry JR and Sueoka N (2002) "Asymmetric directional mutation pressures in bacteria",
-      Genome Biology, 3(10):0058
+   Lobry JR and Sueoka N (2002) "Asymmetric directional mutation pressures in
+      bacteria", Genome Biology, 3(10):0058
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench

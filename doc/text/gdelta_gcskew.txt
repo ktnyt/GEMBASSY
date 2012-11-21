@@ -5,11 +5,13 @@ Function
 
 Description
 
-   This method calculate strand bias of bacterial genome using delta GC skew index,
-   first proposed by Rocha et al in Reference 1, and further extended   in Reference 2. Basic idea of delta GC skew index is to calculate the 
-   difference of GC skew in coding regions residing in leading and lagging strands.
-   Reference 1 calculates delta GC skew index using the third codon position of genes,
-   and Reference 2  modified to only use >fourfold degenerate codons.
+   This method calculate strand bias of bacterial genome using delta GC skew
+   index, first proposed by Rocha et al. (2001), and further extended in
+   Rocha et al. (2006) Basic idea of delta GC skew index is to calculate the 
+   difference of GC skew in coding regions residing in leading and lagging
+   strands. Rocha et al. (2001) calculates delta GC skew index using the third
+   codon position of genes, and Rocha et al. (2006)  modified to only use
+   >fourfold degenerate codons.
 
  
    G-language SOAP service is provided by the
@@ -31,17 +33,15 @@ Usage
 
    Here is a sample session with gdelta_gcskew
 
-% gdelta_gcskew  NC_000913.gbk
+% gdelta_gcskew NC_000913.gbk
 Calculate strand bias of bacterial genome using delta GC skew index
-Output filename [*.gdelta_gcskew]:
+Output filename [nc_000913.gdelta_gcskew]:
 
-
-   Creates *.gdelta_gcskew
-   Output example is prepared in the data directory
+   Creates nc_000913.gdelta_gcskew
 
 Command line arguments
 
-Standard (Mandatory) qualifiers (* if not always prompted):
+   Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
 *  -outfile            outfile    [*.gdelta_gcskew] Output file name
@@ -82,11 +82,11 @@ Notes
 
 References
 
-   Rocha EPC et al. (2001) "Ongoing Evolution of Strand Composition in Bacterial Genomes",
-      Molecular Biology and Evolution, 18(9):1789-1799
+   Rocha EPC et al. (2001) "Ongoing Evolution of Strand Composition in Bacterial
+      Genomes", Molecular Biology and Evolution, 18(9):1789-1799
 
-   Rocha EPC et al. (2006) "Similar compositional biases are caused by very different
-      mutational effects", Genome Research, 16:1537-1547
+   Rocha EPC et al. (2006) "Similar compositional biases are caused by very
+      different mutational effects", Genome Research, 16:1537-1547
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench

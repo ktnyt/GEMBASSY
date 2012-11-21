@@ -42,10 +42,13 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This program calculates and graphs the strand bias of genes (or the GC skew within them).<br>
-   By default, this program visualizes the gene strand preference (1 for direct, -1 for complement strand),<br>
-   but by specifying -base option  option, GC/AT/Purine/Keto skews of the coding regions<br>
-   or more specifically in the GC3 (third codon position) with -gc3 option can be calculated.<br>
+   This program calculates and graphs the strand bias of genes<br>
+   (or the GC skew within them).<br>
+<br>
+   By default, this program visualizes the gene strand preference (1 for<br>
+   direct, -1 for complement strand) but by specifying -base option,<br>
+   GC/AT/Purine/Keto skews of the coding regions or more specifically in the<br>
+   GC3 (third codon position) with -gc3 option can be calculated.<br>
 <br>
  <br>
    G-language SOAP service is provided by the<br>
@@ -70,16 +73,9 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with ggeneskew
 
-% ggeneskew  -plotNC_000913.gbk -graph cps
+% ggeneskew -plot NC_000913.gbk
 Calculate the gene strand bias of the given genome
-Output filename [*.ggeneskew]:Error: Failed to open filename '-plotNC_000913.gbk'
-Error: Unable to read sequence '-plotNC_000913.gbk'
-Died: ggeneskew terminated: Bad value for '-sequence' with -auto defined
-
-
-
-   Creates *.ggeneskew
-   Output example is prepared in the data directory
+Created ggeneskew.ps
 
 </pre></td></tr></table>
 
@@ -121,7 +117,7 @@ Died: ggeneskew terminated: Bad value for '-sequence' with -auto defined
 <td>outfile</td>
 <td>Output file name</td>
 <td>Output file</td>
-<td><i>&lt;*&gt;</i>.ggeneskew</td>
+<td>ggeneskew.$(sequence.name).csv</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -230,6 +226,8 @@ Input file format
 <h2>Ouptut file format</h2>
 
 <p>
+                                  name
+
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -window             integer    [10000] Window size to observe (Any integer

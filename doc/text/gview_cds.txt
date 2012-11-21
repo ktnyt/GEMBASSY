@@ -28,20 +28,36 @@ Usage
 
    Here is a sample session with gview_cds
 
-% gview_cds  -plotNC_000913.gbk -graph cps
+% gview_cds -plot NC_000913.gbk
 Displays a graph of nucleotide contents around start and stop codons
-Output filename [*.gview_cds]:Error: File /Users/kotone/usr/emblocal/share/EMBOSS/acd/gview_cds.acd line 57: (graph) Attribute 'multipe' unknown
-
-
-
-
-   Creates *.gview_cds
-   Output example is prepared in the data directory
+Created gview_cds.ps
 
 Command line arguments
 
-Error: File /Users/kotone/usr/emblocal/share/EMBOSS/acd/gview_cds.acd line 57: (graph) Attribute 'multipe' unknown
+   Standard (Mandatory) qualifiers (* if not always prompted):
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
+                                  format, or reference (input USA)
+*  -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
+                                  (ps, hpgl, hp7470, hp7580, meta, cps, x11,
+                                  tek, tekt, none, data, xterm, png, gif, svg)
+*  -outfile            outfile    [gview_cds.$(sequence.name).csv] Output file
+                                  name
 
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -length             integer    [100] Length in bases to show around
+                                  start/stop codons (Any integer value)
+   -gap                integer    [3] Gap shown in graph in between start/stop
+                                  codon neighbors (Any integer value)
+   -csv                boolean    [N] Include to create CSV file
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+   -plot               toggle     [N] Include to plot result
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
 
 Input file format
 

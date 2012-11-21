@@ -68,13 +68,11 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gbui
 
-% gbui  NC_000913.gbk
+% gbui NC_000913.gbk
 Calculates base usage indices for protein-coding sequences
-Output filename [*.gbui]:
+Output filename [gbui.nc_000913.csv]:
 
-
-   Creates *.gbui
-   Output example is prepared in the data directory
+   Creates gbui.nc_000913.csv
 
 </pre></td></tr></table>
 
@@ -108,7 +106,7 @@ Output filename [*.gbui]:
 <td>outfile</td>
 <td>Output file name</td>
 <td>Output file</td>
-<td><i>&lt;*&gt;</i>.gbui</td>
+<td>gbui.$(sequence.name).csv</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -175,15 +173,14 @@ Output filename [*.gbui]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates *.gbui
-   Output example is prepared in the data directory
+   Creates gbui.nc_000913.csv
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+   Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-   -outfile            outfile    [*.gbui] Output file name
+   -outfile            outfile    [gbui.$(sequence.name).csv] Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:

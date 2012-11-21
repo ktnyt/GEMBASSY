@@ -5,26 +5,26 @@ Function
 
 Description
 
-   This program creates an image showing the abundance of all k-mers (oligonucleotides
-   of length k) in a given sequence. For example, for tetramers (k=4), resulting image
-   is composed of 4^4 = 256 boxes, each representing an oligomer. Oligomer name and 
-   abundance is written within these boxes, and abundance is also visualized with 
-   the box color, from white (none) to black (highly frequent).
+   This program creates an image showing the abundance of all k-mers
+   (oligonucleotides of length k) in a given sequence. For example, for
+   tetramers (k=4), resulting image is composed of 4^4 = 256 boxes, each
+   representing an oligomer. Oligomer name and abundance is written within
+   these boxes, and abundance is also visualized with the box color, from
+   white (none) to black (highly frequent).
 
-   This k-mer table is alternatively known as the FCGR (frequency matrices extracted
-   from Chaos Game Representation).
+   This k-mer table is alternatively known as the FCGR (frequency matrices
+   extracted from Chaos Game Representation).
 
    Position of the oligomers can be recursively located as follows:
    For each letter in an oligomer, a box is subdivided into four quadrants, 
-   where A is upper left, T is lower right, G is upper right, and C is lower left.
+   where A is upper left, T is lower right, G is upper right, and C is lower
+   left.
    Therefore, oligomer ATGC is in the 
    A = upper left quadrant
    T = lower right within the above quadrant
    G = upper right within the above quadrant
    C = lower left within the above quadrant
 
-   With Google Maps representation using -gmap=>1 option, oligomers can be searched
-   incrementally from the top search box.
 
    More detailed documentation is available at 
    http://www.g-language.org/wiki/cgr
@@ -49,17 +49,15 @@ Usage
 
    Here is a sample session with gkmer_table
 
-% gkmer_table  NC_000913.gbk
+% gkmer_table NC_000913.gbk
 Create an image showing all k-mer abundance within a sequence
-Output filename [*.gkmer_table]:
+Output filename [gkmer_table.1.png]:
 
-
-   Creates *.gkmer_table
-   Output example is prepared in the data directory
+   Creates gkmer_table.1.png
 
 Command line arguments
 
-Standard (Mandatory) qualifiers (* if not always prompted):
+   Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
 *  -filename           string     [gkmer_table.png] Output filename (Any
@@ -84,7 +82,7 @@ Input file format
 
 Output file format
 
-   The output from gkmer_table is to png.
+   The output from gkmer_table is to png file.
 
 Data files
 
@@ -97,17 +95,12 @@ Notes
 References
 
    Arakawa K, Oshita K, Tomita M (2009) "A web server for interactive and
-      zoomable Chaos Game Representation images", Source Code for Biol Med., 4:6.
+      zoomable Chaos Game Representation images", Source Code for Biol Med.,
+      4:6.
 
    Almeida JS, Carrico JA, Maretzek A, Noble PA, Fletcher M (2001) 
       "Analysis of genomic sequences by Chaos Game Representation." 
       Bioinformatics. 17(5):429-437.
-      
-      Author: 
-      Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
-      
-      History:
-      20090716-01 initial posting
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -139,12 +132,8 @@ Known bugs
 
 See also
 
-   gkmer_table             Create an image showing all k-mer abundance within a
-                           sequence
-   gnucleotide_periodicity Checks the periodicity of certain oligonucleotides
-   goligomer_counter       Counts the number of given oligomers in a sequence
-   goligomer_search        Searches oligomers in given sequence
-   gsignature              Calculate oligonucleotide usage (genomic signature)
+   gcgr     Create a Chaos Game Representation of a given sequence
+   gseq2png Converts a sequence to PNG image
 
 Author(s)
 

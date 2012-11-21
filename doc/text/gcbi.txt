@@ -27,17 +27,15 @@ Usage
 
    Here is a sample session with gcbi
 
-% gcbi  NC_000913.gbk
+% gcbi NC_000913.gbk
 Calculates the codon bias index (CBI)
-Output filename [*.gcbi]:
+Output filename [nc_000913.gcbi]:
 
-
-   Creates *.gcbi
-   Output example is prepared in the data directory
+   Creates nc_000913.gcbi
 
 Command line arguments
 
-Standard (Mandatory) qualifiers (* if not always prompted):
+   Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
 *  -outfile            outfile    [*.gcbi] Output file name
@@ -78,8 +76,9 @@ Notes
 
 References
 
-      Comeron JM, Aguade M. (1998) J Mol Evol. 47(3):268-74.
-      Morton BR (1993) J.Mol.Evol. 37:273-280.
+   Comeron JM, Aguade M. (1998) J Mol Evol. 47(3):268-74.
+
+   Morton BR (1993) J.Mol.Evol. 37:273-280.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench

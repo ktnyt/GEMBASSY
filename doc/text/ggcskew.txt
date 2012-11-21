@@ -27,26 +27,20 @@ Usage
 
    Here is a sample session with ggcskew
 
-% ggcskew  -plotNC_000913.gbk -graph cps
+% ggcskew -plot NC_000913.gbk
 Calculates the GC skew of the input sequence
-Output filename [*.ggcskew]:Error: Failed to open filename '-plotNC_000913.gbk'
-Error: Unable to read sequence '-plotNC_000913.gbk'
-Died: ggcskew terminated: Bad value for '-sequence' with -auto defined
-
-
-
-   Creates *.ggcskew
-   Output example is prepared in the data directory
+Created ggcskew.ps
 
 Command line arguments
 
-Standard (Mandatory) qualifiers (* if not always prompted):
+   Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
 *  -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
                                   (ps, hpgl, hp7470, hp7580, meta, cps, x11,
                                   tek, tekt, none, data, xterm, png, gif, svg)
-*  -outfile            outfile    [*.ggcskew] Output file name
+*  -outfile            outfile    [ggcskew.$(sequence.name).csv] Output file
+                                  name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:

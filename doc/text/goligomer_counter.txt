@@ -29,17 +29,15 @@ Usage
 
    Here is a sample session with goligomer_counter
 
-% goligomer_counter  NC_000913.gbk atgcatgc
+% goligomer_counter NC_000913.gbk atgcatgc
 Counts the number of given oligomers in a sequence
-Output filename [*.goligomer_counter]:
+Output filename [nc_000913.goligomer_counter]:
 
-
-   Creates *.goligomer_counter
-   Output example is prepared in the data directory
+   Creates nc_000913.goligomer_counter
 
 Command line arguments
 
-Standard (Mandatory) qualifiers (* if not always prompted):
+   Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
   [-oligomer]          string     Oligomer to count (Any string)
@@ -106,7 +104,6 @@ Known bugs
 
 See also
 
-   gkmer_table             Create an image showing all k-mer abundance within a                            sequence
    gnucleotide_periodicity Checks the periodicity of certain oligonucleotides
    goligomer_search        Searches oligomers in given sequence
    gsignature              Calculate oligonucleotide usage (genomic signature)

@@ -36,20 +36,16 @@ Usage
 
    Here is a sample session with gamino_info
 
-% gamino_info  proteinSample.faa
+% gamino_info ADH_HUMAN.fasta
 Prints out basic amino acid sequence statistics
-Output filename [*.gamino_info]:Error: Failed to open filename 'proteinSample.faa'
-Error: Unable to read sequence 'proteinSample.faa'
-Died: gamino_info terminated: Bad value for '-sequence' with -auto defined
+Output filename [4_cdsid_np_000659.gamino_info]:
 
 
-
-   Creates *.gamino_info
-   Output example is prepared in the data directory
+   Creates 4_cdsid_np_000659.gamino_info
 
 Command line arguments
 
-Standard (Mandatory) qualifiers (* if not always prompted):
+   Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Protein sequence(s) filename and optional
                                   format, or reference (input USA)
 *  -outfile            outfile    [*.gamino_info] Output file name
@@ -68,7 +64,7 @@ Standard (Mandatory) qualifiers (* if not always prompted):
 
 Input file format
 
-   gamino_info reads nucleotide sequences.
+   gamino_info reads protien sequences.
 
 Output file format
 

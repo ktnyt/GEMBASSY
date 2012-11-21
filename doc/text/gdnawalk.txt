@@ -32,17 +32,16 @@ Usage
 
    Here is a sample session with gdnawalk
 
-% gdnawalk  refseqn:NC_000908
+% gdnawalk refseqn:NC_000908
 Draws DNA Walk map of the genome
-Output filename [*.gdnawalk]:
+Output filename [gdnawalk.1.png]:
 
 
-   Creates *.gdnawalk
-   Output example is prepared in the data directory
+   Creates gdnawalk.1.png
 
 Command line arguments
 
-Standard (Mandatory) qualifiers (* if not always prompted):
+   Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
 *  -filename           string     [gdnawalk.png] Output filename (Any string)
@@ -65,7 +64,7 @@ Input file format
 
 Output file format
 
-   The output from gdnawalk is to png.
+   The output from gdnawalk is to png file.
 
 Data files
 

@@ -6,8 +6,7 @@ Function
 Description
 
    This method prints out basic compositional statistics of the 
-   given nucleotide sequence, in a format similar to the one printed
-   right after calling load(). Returns the number of A, T, G, and C bases.
+   given nucleotide sequence. Returns the number of A, T, G, and C bases.
 
  
    G-language SOAP service is provided by the
@@ -29,17 +28,15 @@ Usage
 
    Here is a sample session with gseqinfo
 
-% gseqinfo  NC_000913.gbk
+% gseqinfo NC_000913.gbk
 Prints out basic nucleotide sequence statistics
-Output filename [*.gseqinfo]:
+Output filename [nc_000913.gseqinfo]:
 
-
-   Creates *.gseqinfo
-   Output example is prepared in the data directory
+   Creates nc_000913.gseqinfo
 
 Command line arguments
 
-Standard (Mandatory) qualifiers (* if not always prompted):
+   Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
 *  -outfile            outfile    [*.gseqinfo] Output file name
