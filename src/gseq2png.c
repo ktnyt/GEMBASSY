@@ -12,11 +12,7 @@
 #include "../include/display_png.h"
 
 int main(int argc, char *argv[]){
-<<<<<<< HEAD
-  embInitPV("gseq2png",argc,argv,"GEMBASSY","0.0.1");
-=======
   embInitPV("gseq2png", argc, argv, "GEMBASSY", "1.0.0");
->>>>>>> 1.0.0
   
   struct soap soap;
   struct ns1__seq2pngInputParams params;
@@ -48,24 +44,10 @@ int main(int argc, char *argv[]){
 
     inseq = NULL;
 
-<<<<<<< HEAD
-    if(!accid){
-      ajStrAppendC(&inseq,">");
-      ajStrAppendS(&inseq,ajSeqGetNameS(seq));
-      ajStrAppendC(&inseq,"\n");
-      ajStrAppendS(&inseq,ajSeqGetSeqS(seq));
-    }else{
-      ajStrAppendS(&inseq,ajSeqGetAccS(seq));
-    }
-    
-    char* in0;
-    in0 = ajCharNewS(inseq);
-=======
     ajStrAppendC(&inseq, ">");
     ajStrAppendS(&inseq, ajSeqGetNameS(seq));
     ajStrAppendC(&inseq, "\n");
     ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
->>>>>>> 1.0.0
 
     if(!ajStrGetLen(accid))
       ajStrAssignS(&accid, ajSeqGetAccS(seq));

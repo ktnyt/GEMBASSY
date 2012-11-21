@@ -11,7 +11,7 @@
 #include "../include/gembassy.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("gseqinfo",argc,argv,"GEMBASSY","0.0.1");
+  embInitPV("gseqinfo", argc, argv, "GEMBASSY", "0.0.1");
   
   struct soap soap;
 
@@ -37,16 +37,6 @@ int main(int argc, char *argv[]){
     
     inseq = NULL;
 
-<<<<<<< HEAD
-    if(!accid){
-      ajStrAppendC(&inseq,">");
-      ajStrAppendS(&inseq,ajSeqGetNameS(seq));
-      ajStrAppendC(&inseq,"\n");
-      ajStrAppendS(&inseq,ajSeqGetSeqS(seq));
-    }else{
-      ajStrAppendS(&inseq,ajSeqGetAccS(seq));
-    }
-=======
     ajStrAppendC(&inseq, ">");
     ajStrAppendS(&inseq, ajSeqGetNameS(seq));
     ajStrAppendC(&inseq, "\n");
@@ -54,7 +44,6 @@ int main(int argc, char *argv[]){
 
     if(!ajStrGetLen(accid))
       ajStrAssignS(&accid, ajSeqGetAccS(seq));
->>>>>>> 1.0.0
     
     char* in0;
     in0 = ajCharNewS(inseq);

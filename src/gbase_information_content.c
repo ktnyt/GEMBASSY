@@ -12,11 +12,7 @@
 #include "../include/gplot.h"
 
 int main(int argc, char *argv[]){
-<<<<<<< HEAD
-  embInitPV("gbase_information_content",argc,argv,"GEMBASSY","0.0.1");
-=======
   embInitPV("gbase_information_content", argc, argv, "GEMBASSY", "1.0.0");
->>>>>>> 1.0.0
 
   struct soap soap;
   struct ns1__base_USCOREinformation_USCOREcontentInputParams params;

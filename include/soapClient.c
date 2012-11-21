@@ -17,30 +17,14 @@ compiling, linking, and/or using OpenSSL is allowed.
 extern "C" {
 #endif
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-SOAP_SOURCE_STAMP("@(#) soapClient.c ver 2.8.6 2012-07-19 01:48:59 GMT")
-=======
-SOAP_SOURCE_STAMP("@(#) soapClient.c ver 2.8.6 2012-09-30 07:16:34 GMT")
->>>>>>> 1.0.0-beta
-=======
-SOAP_SOURCE_STAMP("@(#) soapClient.c ver 2.8.6 2012-11-18 13:16:56 GMT")
->>>>>>> 1.0.0
+SOAP_SOURCE_STAMP("@(#) soapClient.c ver 2.8.6 2012-11-21 06:35:00 GMT")
 
 
 SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__codon_USCOREmva(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, struct ns1__codon_USCOREmvaInputParams *_params, char **_result)
 {	struct ns1__codon_USCOREmva soap_tmp_ns1__codon_USCOREmva;
 	struct ns1__codon_USCOREmvaResponse *soap_tmp_ns1__codon_USCOREmvaResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#codon_mva";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -97,15 +81,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__P2(struct soap *soap, const char *soap_
 {	struct ns1__P2 soap_tmp_ns1__P2;
 	struct ns1__P2Response *soap_tmp_ns1__P2Response;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#P2";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -162,15 +138,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__w_USCOREvalue(struct soap *soap, const 
 {	struct ns1__w_USCOREvalue soap_tmp_ns1__w_USCOREvalue;
 	struct ns1__w_USCOREvalueResponse *soap_tmp_ns1__w_USCOREvalueResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#w_value";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -227,15 +195,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__splitprintseq(struct soap *soap, const 
 {	struct ns1__splitprintseq soap_tmp_ns1__splitprintseq;
 	struct ns1__splitprintseqResponse *soap_tmp_ns1__splitprintseqResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#splitprintseq";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -291,15 +251,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__median(struct soap *soap, const char *s
 {	struct ns1__median soap_tmp_ns1__median;
 	struct ns1__medianResponse *soap_tmp_ns1__medianResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#median";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -355,15 +307,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__find_USCOREori_USCOREter(struct soap *s
 {	struct ns1__find_USCOREori_USCOREter soap_tmp_ns1__find_USCOREori_USCOREter;
 	struct ns1__find_USCOREori_USCOREterResponse *soap_tmp_ns1__find_USCOREori_USCOREterResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#find_ori_ter";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -420,15 +364,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__plasmid_USCOREmap(struct soap *soap, co
 {	struct ns1__plasmid_USCOREmap soap_tmp_ns1__plasmid_USCOREmap;
 	struct ns1__plasmid_USCOREmapResponse *soap_tmp_ns1__plasmid_USCOREmapResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#plasmid_map";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -485,15 +421,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__sum(struct soap *soap, const char *soap
 {	struct ns1__sum soap_tmp_ns1__sum;
 	struct ns1__sumResponse *soap_tmp_ns1__sumResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#sum";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -549,15 +477,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__nucleotide_USCOREperiodicity(struct soa
 {	struct ns1__nucleotide_USCOREperiodicity soap_tmp_ns1__nucleotide_USCOREperiodicity;
 	struct ns1__nucleotide_USCOREperiodicityResponse *soap_tmp_ns1__nucleotide_USCOREperiodicityResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#nucleotide_periodicity";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -614,15 +534,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__variance(struct soap *soap, const char 
 {	struct ns1__variance soap_tmp_ns1__variance;
 	struct ns1__varianceResponse *soap_tmp_ns1__varianceResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#variance";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -678,15 +590,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__amino_USCOREinfo(struct soap *soap, con
 {	struct ns1__amino_USCOREinfo soap_tmp_ns1__amino_USCOREinfo;
 	struct ns1__amino_USCOREinfoResponse *soap_tmp_ns1__amino_USCOREinfoResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#amino_info";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -742,15 +646,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__circular_USCOREmap(struct soap *soap, c
 {	struct ns1__circular_USCOREmap soap_tmp_ns1__circular_USCOREmap;
 	struct ns1__circular_USCOREmapResponse *soap_tmp_ns1__circular_USCOREmapResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#circular_map";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -807,15 +703,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__togoWS(struct soap *soap, const char *s
 {	struct ns1__togoWS soap_tmp_ns1__togoWS;
 	struct ns1__togoWSResponse *soap_tmp_ns1__togoWSResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#togoWS";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -872,15 +760,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__translate(struct soap *soap, const char
 {	struct ns1__translate soap_tmp_ns1__translate;
 	struct ns1__translateResponse *soap_tmp_ns1__translateResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#translate";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -936,15 +816,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__phx(struct soap *soap, const char *soap
 {	struct ns1__phx soap_tmp_ns1__phx;
 	struct ns1__phxResponse *soap_tmp_ns1__phxResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#phx";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -1001,15 +873,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__icdi(struct soap *soap, const char *soa
 {	struct ns1__icdi soap_tmp_ns1__icdi;
 	struct ns1__icdiResponse *soap_tmp_ns1__icdiResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#icdi";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -1066,15 +930,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__enc(struct soap *soap, const char *soap
 {	struct ns1__enc soap_tmp_ns1__enc;
 	struct ns1__encResponse *soap_tmp_ns1__encResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#enc";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -1131,15 +987,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__fop(struct soap *soap, const char *soap
 {	struct ns1__fop soap_tmp_ns1__fop;
 	struct ns1__fopResponse *soap_tmp_ns1__fopResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#fop";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -1196,15 +1044,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__bui(struct soap *soap, const char *soap
 {	struct ns1__bui soap_tmp_ns1__bui;
 	struct ns1__buiResponse *soap_tmp_ns1__buiResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#bui";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -1261,15 +1101,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__dist_USCOREin_USCOREcc(struct soap *soa
 {	struct ns1__dist_USCOREin_USCOREcc soap_tmp_ns1__dist_USCOREin_USCOREcc;
 	struct ns1__dist_USCOREin_USCOREccResponse *soap_tmp_ns1__dist_USCOREin_USCOREccResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#dist_in_cc";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -1327,15 +1159,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__find_USCOREdnaAbox(struct soap *soap, c
 {	struct ns1__find_USCOREdnaAbox soap_tmp_ns1__find_USCOREdnaAbox;
 	struct ns1__find_USCOREdnaAboxResponse *soap_tmp_ns1__find_USCOREdnaAboxResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#find_dnaAbox";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -1391,15 +1215,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__find_USCOREdnaAbox(struct soap *soap, c
 SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__ttest(struct soap *soap, const char *soap_endpoint, const char *soap_action, struct arrayIn *_array1, struct arrayIn *_array2, struct ns1__ttestInputParams *_params, struct ns1__ttestResponse *_param_1)
 {	struct ns1__ttest soap_tmp_ns1__ttest;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#ttest";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -1455,15 +1271,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__seq2png(struct soap *soap, const char *
 {	struct ns1__seq2png soap_tmp_ns1__seq2png;
 	struct ns1__seq2pngResponse *soap_tmp_ns1__seq2pngResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#seq2png";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -1520,15 +1328,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__amino_USCOREcounter(struct soap *soap, 
 {	struct ns1__amino_USCOREcounter soap_tmp_ns1__amino_USCOREcounter;
 	struct ns1__amino_USCOREcounterResponse *soap_tmp_ns1__amino_USCOREcounterResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#amino_counter";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -1585,15 +1385,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__aaui(struct soap *soap, const char *soa
 {	struct ns1__aaui soap_tmp_ns1__aaui;
 	struct ns1__aauiResponse *soap_tmp_ns1__aauiResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#aaui";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -1650,15 +1442,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__codon_USCOREcompiler(struct soap *soap,
 {	struct ns1__codon_USCOREcompiler soap_tmp_ns1__codon_USCOREcompiler;
 	struct ns1__codon_USCOREcompilerResponse *soap_tmp_ns1__codon_USCOREcompilerResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#codon_compiler";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -1715,15 +1499,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__over_USCORElapping_USCOREfinder(struct 
 {	struct ns1__over_USCORElapping_USCOREfinder soap_tmp_ns1__over_USCORElapping_USCOREfinder;
 	struct ns1__over_USCORElapping_USCOREfinderResponse *soap_tmp_ns1__over_USCORElapping_USCOREfinderResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#over_lapping_finder";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -1780,15 +1556,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__Ew(struct soap *soap, const char *soap_
 {	struct ns1__Ew soap_tmp_ns1__Ew;
 	struct ns1__EwResponse *soap_tmp_ns1__EwResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#Ew";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -1845,15 +1613,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__base_USCORErelative_USCOREentropy(struc
 {	struct ns1__base_USCORErelative_USCOREentropy soap_tmp_ns1__base_USCORErelative_USCOREentropy;
 	struct ns1__base_USCORErelative_USCOREentropyResponse *soap_tmp_ns1__base_USCORErelative_USCOREentropyResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#base_relative_entropy";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -1910,15 +1670,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__view_USCOREcds(struct soap *soap, const
 {	struct ns1__view_USCOREcds soap_tmp_ns1__view_USCOREcds;
 	struct ns1__view_USCOREcdsResponse *soap_tmp_ns1__view_USCOREcdsResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#view_cds";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -1975,15 +1727,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__query_USCOREstrand(struct soap *soap, c
 {	struct ns1__query_USCOREstrand soap_tmp_ns1__query_USCOREstrand;
 	struct ns1__query_USCOREstrandResponse *soap_tmp_ns1__query_USCOREstrandResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#query_strand";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -2041,15 +1785,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__genomicskew(struct soap *soap, const ch
 {	struct ns1__genomicskew soap_tmp_ns1__genomicskew;
 	struct ns1__genomicskewResponse *soap_tmp_ns1__genomicskewResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#genomicskew";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -2105,15 +1841,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__genomicskew(struct soap *soap, const ch
 SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__filter_USCOREcds_USCOREby_USCOREatg(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, struct ns1__filter_USCOREcds_USCOREby_USCOREatgInputParams *_params, struct ns1__filter_USCOREcds_USCOREby_USCOREatgResponse *_param_2)
 {	struct ns1__filter_USCOREcds_USCOREby_USCOREatg soap_tmp_ns1__filter_USCOREcds_USCOREby_USCOREatg;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#filter_cds_by_atg";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -2168,15 +1896,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__gcsi(struct soap *soap, const char *soa
 {	struct ns1__gcsi soap_tmp_ns1__gcsi;
 	struct ns1__gcsiResponse *soap_tmp_ns1__gcsiResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#gcsi";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -2233,15 +1953,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__cai(struct soap *soap, const char *soap
 {	struct ns1__cai soap_tmp_ns1__cai;
 	struct ns1__caiResponse *soap_tmp_ns1__caiResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#cai";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -2298,15 +2010,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__maxdex(struct soap *soap, const char *s
 {	struct ns1__maxdex soap_tmp_ns1__maxdex;
 	struct ns1__maxdexResponse *soap_tmp_ns1__maxdexResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#maxdex";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -2362,15 +2066,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__max(struct soap *soap, const char *soap
 {	struct ns1__max soap_tmp_ns1__max;
 	struct ns1__maxResponse *soap_tmp_ns1__maxResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#max";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -2426,15 +2122,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__query_USCOREarm(struct soap *soap, cons
 {	struct ns1__query_USCOREarm soap_tmp_ns1__query_USCOREarm;
 	struct ns1__query_USCOREarmResponse *soap_tmp_ns1__query_USCOREarmResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#query_arm";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -2491,15 +2179,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__mindex(struct soap *soap, const char *s
 {	struct ns1__mindex soap_tmp_ns1__mindex;
 	struct ns1__mindexResponse *soap_tmp_ns1__mindexResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#mindex";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -2555,15 +2235,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__peptide_USCOREmass(struct soap *soap, c
 {	struct ns1__peptide_USCOREmass soap_tmp_ns1__peptide_USCOREmass;
 	struct ns1__peptide_USCOREmassResponse *soap_tmp_ns1__peptide_USCOREmassResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#peptide_mass";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -2619,15 +2291,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__consensus_USCOREz(struct soap *soap, co
 {	struct ns1__consensus_USCOREz soap_tmp_ns1__consensus_USCOREz;
 	struct ns1__consensus_USCOREzResponse *soap_tmp_ns1__consensus_USCOREzResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#consensus_z";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -2684,15 +2348,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__genome_USCOREmap(struct soap *soap, con
 {	struct ns1__genome_USCOREmap soap_tmp_ns1__genome_USCOREmap;
 	struct ns1__genome_USCOREmapResponse *soap_tmp_ns1__genome_USCOREmapResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#genome_map";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -2749,15 +2405,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__longest_USCOREORF(struct soap *soap, co
 {	struct ns1__longest_USCOREORF soap_tmp_ns1__longest_USCOREORF;
 	struct ns1__longest_USCOREORFResponse *soap_tmp_ns1__longest_USCOREORFResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#longest_ORF";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -2813,15 +2461,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__rep_USCOREori_USCOREter(struct soap *so
 {	struct ns1__rep_USCOREori_USCOREter soap_tmp_ns1__rep_USCOREori_USCOREter;
 	struct ns1__rep_USCOREori_USCOREterResponse *soap_tmp_ns1__rep_USCOREori_USCOREterResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#rep_ori_ter";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -2878,15 +2518,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__calc_USCOREpI(struct soap *soap, const 
 {	struct ns1__calc_USCOREpI soap_tmp_ns1__calc_USCOREpI;
 	struct ns1__calc_USCOREpIResponse *soap_tmp_ns1__calc_USCOREpIResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#calc_pI";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -2942,15 +2574,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__DoubleHelix(struct soap *soap, const ch
 {	struct ns1__DoubleHelix soap_tmp_ns1__DoubleHelix;
 	struct ns1__DoubleHelixResponse *soap_tmp_ns1__DoubleHelixResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#DoubleHelix";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -3007,15 +2631,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__base_USCOREentropy(struct soap *soap, c
 {	struct ns1__base_USCOREentropy soap_tmp_ns1__base_USCOREentropy;
 	struct ns1__base_USCOREentropyResponse *soap_tmp_ns1__base_USCOREentropyResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#base_entropy";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -3072,15 +2688,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__to_USCOREfasta(struct soap *soap, const
 {	struct ns1__to_USCOREfasta soap_tmp_ns1__to_USCOREfasta;
 	struct ns1__to_USCOREfastaResponse *soap_tmp_ns1__to_USCOREfastaResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#to_fasta";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -3136,15 +2744,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__to_USCOREfasta(struct soap *soap, const
 SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__find_USCOREdif(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, struct ns1__find_USCOREdifInputParams *_params, struct ns1__find_USCOREdifResponse *_param_3)
 {	struct ns1__find_USCOREdif soap_tmp_ns1__find_USCOREdif;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#find_dif";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -3199,15 +2799,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__cbi(struct soap *soap, const char *soap
 {	struct ns1__cbi soap_tmp_ns1__cbi;
 	struct ns1__cbiResponse *soap_tmp_ns1__cbiResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#cbi";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -3263,15 +2855,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__cbi(struct soap *soap, const char *soap
 SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__genes_USCOREfrom_USCOREori(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, char *_direction, struct ns1__genes_USCOREfrom_USCOREoriInputParams *_params, struct ns1__genes_USCOREfrom_USCOREoriResponse *_param_4)
 {	struct ns1__genes_USCOREfrom_USCOREori soap_tmp_ns1__genes_USCOREfrom_USCOREori;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#genes_from_ori";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -3327,15 +2911,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__geneskew(struct soap *soap, const char 
 {	struct ns1__geneskew soap_tmp_ns1__geneskew;
 	struct ns1__geneskewResponse *soap_tmp_ns1__geneskewResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#geneskew";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -3392,15 +2968,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__standard_USCOREdeviation(struct soap *s
 {	struct ns1__standard_USCOREdeviation soap_tmp_ns1__standard_USCOREdeviation;
 	struct ns1__standard_USCOREdeviationResponse *soap_tmp_ns1__standard_USCOREdeviationResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#standard_deviation";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -3455,15 +3023,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__standard_USCOREdeviation(struct soap *s
 SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__cor(struct soap *soap, const char *soap_endpoint, const char *soap_action, struct arrayIn *_array1, struct arrayIn *_array2, struct ns1__corInputParams *_params, struct ns1__corResponse *_param_5)
 {	struct ns1__cor soap_tmp_ns1__cor;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#cor";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -3518,15 +3078,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__cor(struct soap *soap, const char *soap
 SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__cumulative(struct soap *soap, const char *soap_endpoint, const char *soap_action, struct arrayIn *_array, struct ns1__cumulativeResponse *_param_6)
 {	struct ns1__cumulative soap_tmp_ns1__cumulative;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#cumulative";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -3580,15 +3132,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__delta_USCOREenc(struct soap *soap, cons
 {	struct ns1__delta_USCOREenc soap_tmp_ns1__delta_USCOREenc;
 	struct ns1__delta_USCOREencResponse *soap_tmp_ns1__delta_USCOREencResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#delta_enc";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -3644,15 +3188,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__delta_USCOREgcskew(struct soap *soap, c
 {	struct ns1__delta_USCOREgcskew soap_tmp_ns1__delta_USCOREgcskew;
 	struct ns1__delta_USCOREgcskewResponse *soap_tmp_ns1__delta_USCOREgcskewResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#delta_gcskew";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -3709,15 +3245,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__molecular_USCOREweight(struct soap *soa
 {	struct ns1__molecular_USCOREweight soap_tmp_ns1__molecular_USCOREweight;
 	struct ns1__molecular_USCOREweightResponse *soap_tmp_ns1__molecular_USCOREweightResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#molecular_weight";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -3774,15 +3302,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__gcskew(struct soap *soap, const char *s
 {	struct ns1__gcskew soap_tmp_ns1__gcskew;
 	struct ns1__gcskewResponse *soap_tmp_ns1__gcskewResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#gcskew";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -3839,15 +3359,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__genome_USCOREmap3(struct soap *soap, co
 {	struct ns1__genome_USCOREmap3 soap_tmp_ns1__genome_USCOREmap3;
 	struct ns1__genome_USCOREmap3Response *soap_tmp_ns1__genome_USCOREmap3Response;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#genome_map3";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -3904,15 +3416,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__seqinfo(struct soap *soap, const char *
 {	struct ns1__seqinfo soap_tmp_ns1__seqinfo;
 	struct ns1__seqinfoResponse *soap_tmp_ns1__seqinfoResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#seqinfo";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -3968,15 +3472,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__signature(struct soap *soap, const char
 {	struct ns1__signature soap_tmp_ns1__signature;
 	struct ns1__signatureResponse *soap_tmp_ns1__signatureResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#signature";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -4033,15 +3529,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__base_USCOREinformation_USCOREcontent(st
 {	struct ns1__base_USCOREinformation_USCOREcontent soap_tmp_ns1__base_USCOREinformation_USCOREcontent;
 	struct ns1__base_USCOREinformation_USCOREcontentResponse *soap_tmp_ns1__base_USCOREinformation_USCOREcontentResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#base_information_content";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -4098,15 +3586,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__dnawalk(struct soap *soap, const char *
 {	struct ns1__dnawalk soap_tmp_ns1__dnawalk;
 	struct ns1__dnawalkResponse *soap_tmp_ns1__dnawalkResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#dnawalk";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -4162,15 +3642,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__dnawalk(struct soap *soap, const char *
 SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__find_USCOREter(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, struct ns1__find_USCOREterInputParams *_params, struct ns1__find_USCOREterResponse *_param_7)
 {	struct ns1__find_USCOREter soap_tmp_ns1__find_USCOREter;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#find_ter";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -4225,15 +3697,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__shuffleseq(struct soap *soap, const cha
 {	struct ns1__shuffleseq soap_tmp_ns1__shuffleseq;
 	struct ns1__shuffleseqResponse *soap_tmp_ns1__shuffleseqResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#shuffleseq";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -4286,19 +3750,10 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__shuffleseq(struct soap *soap, const cha
 	return soap_closesock(soap);
 }
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__oligomer_USCOREsearch(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, char *_oligomer, struct ns1__oligomer_USCOREsearchInputParams *_params, char **_result)
+SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__oligomer_USCOREsearch(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, char *_oligomer, struct ns1__oligomer_USCOREsearchInputParams *_params, struct ns1__oligomer_USCOREsearchResponse *_param_8)
 {	struct ns1__oligomer_USCOREsearch soap_tmp_ns1__oligomer_USCOREsearch;
-	struct ns1__oligomer_USCOREsearchResponse *soap_tmp_ns1__oligomer_USCOREsearchResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#oligomer_search";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -4330,9 +3785,9 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__oligomer_USCOREsearch(struct soap *soap
 	 || soap_envelope_end_out(soap)
 	 || soap_end_send(soap))
 		return soap_closesock(soap);
-	if (!_result)
+	if (!_param_8)
 		return soap_closesock(soap);
-	*_result = NULL;
+	soap_default_ns1__oligomer_USCOREsearchResponse(soap, _param_8);
 	if (soap_begin_recv(soap)
 	 || soap_envelope_begin_in(soap)
 	 || soap_recv_header(soap)
@@ -4340,15 +3795,13 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__oligomer_USCOREsearch(struct soap *soap
 		return soap_closesock(soap);
 	if (soap_recv_fault(soap, 1))
 		return soap->error;
-	soap_tmp_ns1__oligomer_USCOREsearchResponse = soap_get_ns1__oligomer_USCOREsearchResponse(soap, NULL, "", "");
+	soap_get_ns1__oligomer_USCOREsearchResponse(soap, _param_8, "", "");
 	if (soap->error)
 		return soap_recv_fault(soap, 0);
 	if (soap_body_end_in(soap)
 	 || soap_envelope_end_in(soap)
 	 || soap_end_recv(soap))
 		return soap_closesock(soap);
-	if (_result && soap_tmp_ns1__oligomer_USCOREsearchResponse->_result)
-		*_result = *soap_tmp_ns1__oligomer_USCOREsearchResponse->_result;
 	return soap_closesock(soap);
 }
 
@@ -4356,15 +3809,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__find_USCOREpattern(struct soap *soap, c
 {	struct ns1__find_USCOREpattern soap_tmp_ns1__find_USCOREpattern;
 	struct ns1__find_USCOREpatternResponse *soap_tmp_ns1__find_USCOREpatternResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#find_pattern";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -4422,15 +3867,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__gcwin(struct soap *soap, const char *so
 {	struct ns1__gcwin soap_tmp_ns1__gcwin;
 	struct ns1__gcwinResponse *soap_tmp_ns1__gcwinResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#gcwin";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -4487,15 +3924,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__oligomer_USCOREcounter(struct soap *soa
 {	struct ns1__oligomer_USCOREcounter soap_tmp_ns1__oligomer_USCOREcounter;
 	struct ns1__oligomer_USCOREcounterResponse *soap_tmp_ns1__oligomer_USCOREcounterResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#oligomer_counter";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -4553,15 +3982,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__codon_USCOREusage(struct soap *soap, co
 {	struct ns1__codon_USCOREusage soap_tmp_ns1__codon_USCOREusage;
 	struct ns1__codon_USCOREusageResponse *soap_tmp_ns1__codon_USCOREusageResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#codon_usage";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -4618,15 +4039,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__min(struct soap *soap, const char *soap
 {	struct ns1__min soap_tmp_ns1__min;
 	struct ns1__minResponse *soap_tmp_ns1__minResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#min";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -4682,15 +4095,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__find_USCOREiteron(struct soap *soap, co
 {	struct ns1__find_USCOREiteron soap_tmp_ns1__find_USCOREiteron;
 	struct ns1__find_USCOREiteronResponse *soap_tmp_ns1__find_USCOREiteronResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#find_iteron";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -4747,15 +4152,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__complement(struct soap *soap, const cha
 {	struct ns1__complement soap_tmp_ns1__complement;
 	struct ns1__complementResponse *soap_tmp_ns1__complementResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#complement";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -4811,15 +4208,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__mean(struct soap *soap, const char *soa
 {	struct ns1__mean soap_tmp_ns1__mean;
 	struct ns1__meanResponse *soap_tmp_ns1__meanResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#mean";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -4875,15 +4264,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__codon_USCOREcounter(struct soap *soap, 
 {	struct ns1__codon_USCOREcounter soap_tmp_ns1__codon_USCOREcounter;
 	struct ns1__codon_USCOREcounterResponse *soap_tmp_ns1__codon_USCOREcounterResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#codon_counter";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -4940,15 +4321,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__entrez(struct soap *soap, const char *s
 {	struct ns1__entrez soap_tmp_ns1__entrez;
 	struct ns1__entrezResponse *soap_tmp_ns1__entrezResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#entrez";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -5005,15 +4378,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__palindrome(struct soap *soap, const cha
 {	struct ns1__palindrome soap_tmp_ns1__palindrome;
 	struct ns1__palindromeResponse *soap_tmp_ns1__palindromeResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#palindrome";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -5066,18 +4431,10 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__palindrome(struct soap *soap, const cha
 	return soap_closesock(soap);
 }
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__least_USCOREsquares_USCOREfit(struct soap *soap, const char *soap_endpoint, const char *soap_action, struct arrayIn *_array, struct ns1__least_USCOREsquares_USCOREfitResponse *_param_8)
+SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__least_USCOREsquares_USCOREfit(struct soap *soap, const char *soap_endpoint, const char *soap_action, struct arrayIn *_array, struct ns1__least_USCOREsquares_USCOREfitResponse *_param_9)
 {	struct ns1__least_USCOREsquares_USCOREfit soap_tmp_ns1__least_USCOREsquares_USCOREfit;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#least_squares_fit";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -5107,9 +4464,9 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__least_USCOREsquares_USCOREfit(struct so
 	 || soap_envelope_end_out(soap)
 	 || soap_end_send(soap))
 		return soap_closesock(soap);
-	if (!_param_8)
+	if (!_param_9)
 		return soap_closesock(soap);
-	soap_default_ns1__least_USCOREsquares_USCOREfitResponse(soap, _param_8);
+	soap_default_ns1__least_USCOREsquares_USCOREfitResponse(soap, _param_9);
 	if (soap_begin_recv(soap)
 	 || soap_envelope_begin_in(soap)
 	 || soap_recv_header(soap)
@@ -5117,7 +4474,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__least_USCOREsquares_USCOREfit(struct so
 		return soap_closesock(soap);
 	if (soap_recv_fault(soap, 1))
 		return soap->error;
-	soap_get_ns1__least_USCOREsquares_USCOREfitResponse(soap, _param_8, "", "");
+	soap_get_ns1__least_USCOREsquares_USCOREfitResponse(soap, _param_9, "", "");
 	if (soap->error)
 		return soap_recv_fault(soap, 0);
 	if (soap_body_end_in(soap)
@@ -5131,15 +4488,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__dinuc(struct soap *soap, const char *so
 {	struct ns1__dinuc soap_tmp_ns1__dinuc;
 	struct ns1__dinucResponse *soap_tmp_ns1__dinucResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#dinuc";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -5196,15 +4545,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__cgr(struct soap *soap, const char *soap
 {	struct ns1__cgr soap_tmp_ns1__cgr;
 	struct ns1__cgrResponse *soap_tmp_ns1__cgrResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
->>>>>>> 1.0.0-beta
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#cgr";
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
@@ -5257,15 +4598,6 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__cgr(struct soap *soap, const char *soap
 	return soap_closesock(soap);
 }
 
-<<<<<<< HEAD
-SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__help(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_keywords, char **_result)
-{	struct ns1__help soap_tmp_ns1__help;
-	struct ns1__helpResponse *soap_tmp_ns1__helpResponse;
-	if (!soap_endpoint)
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-	if (!soap_action)
-		soap_action = "http://soap.g-language.org/GLANG#help";
-=======
 SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__B1(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, struct ns1__B1InputParams *_params, char **_result)
 {	struct ns1__B1 soap_tmp_ns1__B1;
 	struct ns1__B1Response *soap_tmp_ns1__B1Response;
@@ -5330,7 +4662,6 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__B2(struct soap *soap, const char *soap_
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#B2";
->>>>>>> 1.0.0-beta
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
 	soap_tmp_ns1__B2._sequence = _sequence;
 	soap_begin(soap);
@@ -5384,19 +4715,9 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__base_USCOREcounter(struct soap *soap, c
 {	struct ns1__base_USCOREcounter soap_tmp_ns1__base_USCOREcounter;
 	struct ns1__base_USCOREcounterResponse *soap_tmp_ns1__base_USCOREcounterResponse;
 	if (!soap_endpoint)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-	if (!soap_action)
-		soap_action = "http://soap.g-language.org/GLANG#hydropathy";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
-=======
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
->>>>>>> 1.0.0
 	if (!soap_action)
 		soap_action = "http://soap.g-language.org/GLANG#base_counter";
->>>>>>> 1.0.0-beta
 	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
 	soap_tmp_ns1__base_USCOREcounter._sequence = _sequence;
 	soap_tmp_ns1__base_USCOREcounter._params = _params;
@@ -5675,7 +4996,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__scs(struct soap *soap, const char *soap
 	return soap_closesock(soap);
 }
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__leading_USCOREstrand(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, struct ns1__leading_USCOREstrandResponse *_param_9)
+SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__leading_USCOREstrand(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, struct ns1__leading_USCOREstrandResponse *_param_10)
 {	struct ns1__leading_USCOREstrand soap_tmp_ns1__leading_USCOREstrand;
 	if (!soap_endpoint)
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
@@ -5708,9 +5029,9 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__leading_USCOREstrand(struct soap *soap,
 	 || soap_envelope_end_out(soap)
 	 || soap_end_send(soap))
 		return soap_closesock(soap);
-	if (!_param_9)
+	if (!_param_10)
 		return soap_closesock(soap);
-	soap_default_ns1__leading_USCOREstrandResponse(soap, _param_9);
+	soap_default_ns1__leading_USCOREstrandResponse(soap, _param_10);
 	if (soap_begin_recv(soap)
 	 || soap_envelope_begin_in(soap)
 	 || soap_recv_header(soap)
@@ -5718,7 +5039,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__leading_USCOREstrand(struct soap *soap,
 		return soap_closesock(soap);
 	if (soap_recv_fault(soap, 1))
 		return soap->error;
-	soap_get_ns1__leading_USCOREstrandResponse(soap, _param_9, "", "");
+	soap_get_ns1__leading_USCOREstrandResponse(soap, _param_10, "", "");
 	if (soap->error)
 		return soap_recv_fault(soap, 0);
 	if (soap_body_end_in(soap)
@@ -5728,15 +5049,9 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__leading_USCOREstrand(struct soap *soap,
 	return soap_closesock(soap);
 }
 
-<<<<<<< HEAD
-SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__leading_USCOREstrand(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, char **_result)
-{	struct ns1__leading_USCOREstrand soap_tmp_ns1__leading_USCOREstrand;
-	struct ns1__leading_USCOREstrandResponse *soap_tmp_ns1__leading_USCOREstrandResponse;
-=======
 SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__S_USCOREvalue(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, struct ns1__S_USCOREvalueInputParams *_params, char **_result)
 {	struct ns1__S_USCOREvalue soap_tmp_ns1__S_USCOREvalue;
 	struct ns1__S_USCOREvalueResponse *soap_tmp_ns1__S_USCOREvalueResponse;
->>>>>>> 1.0.0
 	if (!soap_endpoint)
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
 	if (!soap_action)
@@ -5770,70 +5085,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__S_USCOREvalue(struct soap *soap, const 
 	 || soap_end_send(soap))
 		return soap_closesock(soap);
 	if (!_result)
-<<<<<<< HEAD
 		return soap_closesock(soap);
-	*_result = NULL;
-	if (soap_begin_recv(soap)
-	 || soap_envelope_begin_in(soap)
-	 || soap_recv_header(soap)
-	 || soap_body_begin_in(soap))
-		return soap_closesock(soap);
-	if (soap_recv_fault(soap, 1))
-		return soap->error;
-	soap_tmp_ns1__leading_USCOREstrandResponse = soap_get_ns1__leading_USCOREstrandResponse(soap, NULL, "", "");
-	if (soap->error)
-		return soap_recv_fault(soap, 0);
-	if (soap_body_end_in(soap)
-	 || soap_envelope_end_in(soap)
-	 || soap_end_recv(soap))
-		return soap_closesock(soap);
-	if (_result && soap_tmp_ns1__leading_USCOREstrandResponse->_result)
-		*_result = *soap_tmp_ns1__leading_USCOREstrandResponse->_result;
-	return soap_closesock(soap);
-}
-
-<<<<<<< HEAD
-=======
-SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__S_USCOREvalue(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, struct ns1__S_USCOREvalueInputParams *_params, char **_result)
-{	struct ns1__S_USCOREvalue soap_tmp_ns1__S_USCOREvalue;
-	struct ns1__S_USCOREvalueResponse *soap_tmp_ns1__S_USCOREvalueResponse;
-	if (!soap_endpoint)
-		soap_endpoint = "http://soap.g-language.org/WS/g-language_dev.cgi";
-	if (!soap_action)
-		soap_action = "http://soap.g-language.org/GLANG#S_value";
-	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
-	soap_tmp_ns1__S_USCOREvalue._sequence = _sequence;
-	soap_tmp_ns1__S_USCOREvalue._params = _params;
-	soap_begin(soap);
-	soap_serializeheader(soap);
-	soap_serialize_ns1__S_USCOREvalue(soap, &soap_tmp_ns1__S_USCOREvalue);
-	if (soap_begin_count(soap))
-		return soap->error;
-	if (soap->mode & SOAP_IO_LENGTH)
-	{	if (soap_envelope_begin_out(soap)
-		 || soap_putheader(soap)
-		 || soap_body_begin_out(soap)
-		 || soap_put_ns1__S_USCOREvalue(soap, &soap_tmp_ns1__S_USCOREvalue, "ns1:S_value", NULL)
-		 || soap_body_end_out(soap)
-		 || soap_envelope_end_out(soap))
-			 return soap->error;
-	}
-	if (soap_end_count(soap))
-		return soap->error;
-	if (soap_connect(soap, soap_endpoint, soap_action)
-	 || soap_envelope_begin_out(soap)
-	 || soap_putheader(soap)
-	 || soap_body_begin_out(soap)
-	 || soap_put_ns1__S_USCOREvalue(soap, &soap_tmp_ns1__S_USCOREvalue, "ns1:S_value", NULL)
-	 || soap_body_end_out(soap)
-	 || soap_envelope_end_out(soap)
-	 || soap_end_send(soap))
-		return soap_closesock(soap);
-	if (!_result)
-		return soap_closesock(soap);
-=======
-		return soap_closesock(soap);
->>>>>>> 1.0.0
 	*_result = NULL;
 	if (soap_begin_recv(soap)
 	 || soap_envelope_begin_in(soap)
@@ -5966,7 +5218,6 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__hydropathy(struct soap *soap, const cha
 	return soap_closesock(soap);
 }
 
->>>>>>> 1.0.0-beta
 #ifdef __cplusplus
 }
 #endif

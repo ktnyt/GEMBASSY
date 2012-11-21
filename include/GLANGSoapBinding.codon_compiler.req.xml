@@ -11,15 +11,7 @@
    <params>
     <translate>0</translate>
     <id></id>
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <data>0</data>
-=======
     <data></data>
->>>>>>> 1.0.0-beta
-=======
-    <data></data>
->>>>>>> 1.0.0
     <output></output>
     <del_key></del_key>
     <startcodon>0</startcodon>

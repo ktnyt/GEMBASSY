@@ -11,11 +11,7 @@
 #include "../include/gembassy.h"
 
 int main(int argc, char *argv[]){
-<<<<<<< HEAD
-  embInitPV("gfind_ori_ter",argc,argv,"GEMBASSY","0.0.1");
-=======
   embInitPV("gfind_ori_ter", argc, argv, "GEMBASSY", "1.0.0");
->>>>>>> 1.0.0
 
   struct soap soap;
   struct ns1__find_USCOREori_USCOREterInputParams params;
