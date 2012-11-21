@@ -56,7 +56,7 @@ section: output [
 
   xygraph: graph [
     standard: "$(plot)"
-    multipe: "4"
+    multiple: "4"
     relations: "EDAM:0002968 data Image or plot"
   ]
 
