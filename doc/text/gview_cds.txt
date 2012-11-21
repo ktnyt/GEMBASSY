@@ -8,8 +8,7 @@ Description
    This method creates a graph showing the average A,T,G,C contents
    around start/stop codons. This is useful to view consensus around
    start/stop codons and to find characteristic pattern in CDS. 
-    
-  
+   
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -29,38 +28,19 @@ Usage
 
    Here is a sample session with gview_cds
 
-% gview_cds  NC_000913.gbk -graph cps
+% gview_cds  -plotNC_000913.gbk -graph cps
 Displays a graph of nucleotide contents around start and stop codons
-Created gview_cds.ps
+Output filename [*.gview_cds]:Error: File /Users/kotone/usr/emblocal/share/EMBOSS/acd/gview_cds.acd line 57: (graph) Attribute 'multipe' unknown
 
-   Creates gview_cds.[accession].ps
+
+
+
+   Creates *.gview_cds
    Output example is prepared in the data directory
 
 Command line arguments
 
-Standard (Mandatory) qualifiers (* if not always prompted):
-  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
-                                  format, or reference (input USA)
-*  -filename           string     [gview_cds.[accession].csv] Output filename
-                                  (Any string)
-
-   Additional (Optional) qualifiers: (none)
-   Advanced (Unprompted) qualifiers:
-   -length             integer    [100] Length in bases to show around
-                                  start/stop codons (Any integer value)
-   -gap                integer    [3] Gap shown in graph in between start/stop
-                                  codon neighbors (Any integer value)
-   -output             boolean    [N] Include to create CSV file
-   -accid              string     Include to use sequence accession ID as
-                                  query (Any string)
-   -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
-                                  (ps, hpgl, hp7470, hp7580, meta, cps, x11,
-                                  tek, tekt, none, data, xterm, png, gif, svg)
-
-   General qualifiers:
-   -help               boolean    Report command line options and exit. More
-                                  information on associated and general
-                                  qualifiers can be found with -help -verbose
+Error: File /Users/kotone/usr/emblocal/share/EMBOSS/acd/gview_cds.acd line 57: (graph) Attribute 'multipe' unknown
 
 
 Input file format
@@ -113,7 +93,6 @@ See also
 
    gbase_counter Creates a position weight matrix of oligomers around start                  codon
    gbase_z_value Extracts conserved oligomers per position using Z-score
-
 
 Author(s)
 

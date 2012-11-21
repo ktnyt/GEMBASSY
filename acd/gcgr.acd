@@ -31,11 +31,6 @@ section: advanced [
     default: "5"
   ]
 
-  boolean: show [
-    information: "Include to show png with X11 window"
-    default: "N"
-  ]
-
   string: accid [
     information: "Include to use sequence accession ID as query"
     default: ""
@@ -48,10 +43,14 @@ section: output [
 	type: "page"
 ]
 
+  toggle: show [
+    information: "Include to show png with X11 window"
+    default: "N"
+  ]
+
   string: filename [
-    standard: "Y"
-    information: "Output filename"
-    default: "gcgr.[accession].png"
+    standard: "@(!$(show))"
+    default: "gcgr.png"
   ]
 
 endsection: output

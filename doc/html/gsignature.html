@@ -43,10 +43,10 @@ IT IS DONE FOR YOU.
 <H2>Description</H2>
 <p>
    This program calculates short oligonucleotide usage (genomic signature),<br>
-   defined as the ratio of observed (O) to expected (E) oligonucleotide<br>
-   frequencies. O/E value of dinucleotide CG will be accessible at <br>
-    <br>
-  <br>
+   defined as the ratio of observed (O) to expected (E) oligonucleotide frequencies.<br>
+   O/E value of dinucleotide CG will be accessible at <br>
+   $gb->{signature}->{'cg'}.<br>
+   <br>
    G-language SOAP service is provided by the<br>
    Institute for Advanced Biosciences, Keio University.<br>
    The original web service is located at the following URL:<br>
@@ -71,9 +71,10 @@ IT IS DONE FOR YOU.
 
 % gsignature  NC_000913.gbk
 Calculate oligonucleotide usage (genomic signature)
-Output filename [gsignature.[accession].csv]:
+Output filename [*.gsignature]:
 
-   Creates gsignature.[accession].csv
+
+   Creates *.gsignature
    Output example is prepared in the data directory
 
 </pre></td></tr></table>
@@ -104,11 +105,11 @@ Output filename [gsignature.[accession].csv]:
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-filename</td>
-<td>string</td>
-<td>Output filename</td>
-<td>Any string</td>
-<td>gsignature.[accession].csv</td>
+<td>-outfile</td>
+<td>outfile</td>
+<td>Output file name</td>
+<td>Output file</td>
+<td><i>&lt;*&gt;</i>.gsignature</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -167,7 +168,7 @@ Output filename [gsignature.[accession].csv]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates gsignature.[accession].csv
+   Creates *.gsignature
    Output example is prepared in the data directory
 
 Command line arguments
@@ -175,8 +176,7 @@ Command line arguments
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-   -filename           string     [gsignature.[accession].csv] Output filename
-                                  (Any string)
+   -outfile            outfile    [*.gsignature] Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -198,7 +198,7 @@ Input file format
 
 Output file format
 
-   The output from gsignature is to raw CSV format.
+   The output from gsignature is to a raw CSV file.
 </p>
 
 <h2>Data files</h2>
@@ -216,9 +216,8 @@ None.
 <h2>Refrences</h2>
 
 <pre>
-   Campbell A et al. (1999) Proc Natl Acad Sci U S A. 96(16):9184-9.
-
-   Karlin S. (2001) Trends Microbiol. 9(7):335-43.
+      Campbell A et al. (1999) Proc Natl Acad Sci U S A. 96(16):9184-9.
+      Karlin S. (2001) Trends Microbiol. 9(7):335-43.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench

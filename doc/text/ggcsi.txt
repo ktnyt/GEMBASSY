@@ -11,15 +11,14 @@ Description
    bacterial genomes, caused by replicational selection. 
 
    GCSI is calculated by the following formula:
-       GCSI = sqrt((SA/6000) * (dist/600))
+   GCSI = sqrt((SA/6000) * (dist/600))
    where SA is the spectral amplitude of Fourier power spectrum at 1Hz,
    and dist is the normalized Euclidean distance between the vertices of 
    cumulative GC skew.
 
-   GCSI ranges from 0 (no observable skew) to 1 (strong skew), and Archaeal
-   genomes that have multiple replication origins and therefore have no
-   observable skew mostly have GCSI below 0.05. Escherichia coli genome has
-   values around 0.10.
+   GCSI ranges from 0 (no observable skew) to 1 (strong skew), and Archaeal genomes
+   that have multiple replication origins and therefore have no observable skew
+   mostly have GCSI below 0.05. Escherichia coli genome has values around 0.10.
 
    Version 1 of GCSI required fixed number of windows (4096), but the new GCSI
    version 2 (also known as generalized GCSI: gGCSI) is invariant of the number
@@ -49,14 +48,20 @@ Usage
 
 % ggcsi  NC_000913.gbk
 GC Skew Index: an index for strand-specefic mutational bias
-0.096662	487.218567	69.037727
+Output filename [*.ggcsi]:Error: File /Users/kotone/usr/emblocal/share/EMBOSS/acd/ggcsi.acd line 71: (outfile) Bad standard flag @!(No)
 
+
+
+
+   Creates *.ggcsi
+   Output example is prepared in the data directory
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
+*  -outfile            outfile    [*.ggcsi] Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -71,7 +76,7 @@ Standard (Mandatory) qualifiers:
                                   selected
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
-   -outstring          string     (no help text) string value (Any string)
+   -show               toggle     [N] Include to dump result to stdout
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -85,7 +90,7 @@ Input file format
 
 Output file format
 
-   The output from ggcsi is to standard output.
+   The output from ggcsi is to a file or stdout.
 
 Data files
 
@@ -97,9 +102,8 @@ Notes
 
 References
 
-   Arakawa K, Tomita M (2007) "The GC skew index: a measure of genomic
-      compositional asymmetry and the degree of replicational selection",
-      Evolutionary Bioinformatics, 3:145-154.
+   Arakawa K, Tomita M (2007) "The GC skew index: a measure of genomic compositional 
+      asymmetry and the degree of replicational selection", Evolutionary Bioinformatics, 3:145-154.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -137,7 +141,6 @@ See also
                  index
    glda_bias     Calculate strand bias of bacterial genome using linear
                  discriminant analysis (LDA)
-
 
 Author(s)
 

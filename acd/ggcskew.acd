@@ -52,11 +52,6 @@ section: advanced [
     default: "0"
   ]
 
-  boolean: output [
-    information: "Include to create CSV file"
-    default: "N"
-  ]
-
   string: accid [
     information: "Include to use sequence accession ID as query"
     default: ""
@@ -65,19 +60,24 @@ section: advanced [
 endsection: advanced
 
 section: output [
-	information: "Output section"
-	type: "page"
+  information: "Output section"
+  type: "page"
 ]
 
+  toggle: plot [
+    information: "Include to plot result"
+    default: "N"
+  ]
+
   xygraph: graph [
-    multiple: "8"
+    standard: "$(plot)"
     relations: "EDAM:0002968 data Image or plot"
   ]
 
-  string: filename [
-    standard: "$(output)"
-    information: "Output filename"
-    default: "ggcskew.[accession].csv"
+  outfile: outfile [
+    standard: "@(!$(plot))"
+    nullok: "Y"
+    nulldefault: "$(plot)"
   ]
 
 endsection: output

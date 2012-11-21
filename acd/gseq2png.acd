@@ -32,11 +32,6 @@ section: advanced [
     default: "20"
   ]
 
-  boolean: show [
-    information: "Include to show png with X11 window"
-    default: "N"
-  ]
-
   string: accid [
     information: "Include to use sequence accession ID as query"
     default: ""
@@ -49,10 +44,15 @@ section: output [
 	type: "page"
 ]
 
+  toggle: show [
+    information: "Inclue to show PNG through X11 window"
+    default: "N"
+  ]
+
   string: filename [
-    standard: "Y"
+    standard: "@(!$(show))"
     information: "Output filename"
-    default: "gseq2png.[accession].png"
+    default: "gseq2png.png"
   ]
 
 endsection: output

@@ -27,9 +27,11 @@ int main(int argc, char *argv[]){
   AjPStr    id        = NULL;
   AjPStr    delkey    = NULL;
   AjPStr    accid     = NULL;
-  AjPStr    filename  = NULL;
-  char*     jobid;
-  
+  char*     result;
+
+  AjBool  show = 0;
+  AjPFile outf = NULL;
+
   seqall     = ajAcdGetSeqall("sequence");
   translate  = ajAcdGetBoolean("translate");
   id         = ajAcdGetString("id");
@@ -71,9 +73,14 @@ int main(int argc, char *argv[]){
 
     if(soap_call_ns1__cbi(
 			  &soap, NULL, NULL,
-			  in0, &params, &jobid
+			  in0, &params, &result
 			  ) == SOAP_OK){
-      fprintf(stdout, "%s\n", jobid);
+      if(show)
+        ajFmtPrint("Sequence: %S CBI: %S\n",
+		   ajSeqGetAccS(seq), ajStrNewC(result));
+      else
+        ajFmtPrintF(outf, "Sequence: %S CBI: %S\n",
+		    ajSeqGetAccS(seq), ajStrNewC(result));
     }else{
       soap_print_fault(&soap, stderr);
     }
@@ -83,10 +90,12 @@ int main(int argc, char *argv[]){
     soap_done(&soap);
   }
 
+  if(outf)
+    ajFileClose(&outf);
+
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
   ajStrDel(&inseq);
-  ajStrDel(&filename);
   
   embExit();
   return 0;

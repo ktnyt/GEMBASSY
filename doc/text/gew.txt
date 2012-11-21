@@ -6,7 +6,8 @@ Function
 Description
 
    This program calculates the 'weighted sum of relative entropy' (Ew) as a 
-   measure of synonymous codon usage evenness for each gene.
+   measure of synonymous codon usage evenness for each gene, and inputs in the 
+   G instance; i.e. Ew values will be accessible at $gb->{"FEATURE$i"}->{Ew};
 
   
    G-language SOAP service is provided by the
@@ -30,9 +31,10 @@ Usage
 
 % gew  NC_000913.gbk
 Calculate a measure of synonymous codon usage evenness (Ew)
-Output filename [gew.[accession].csv]:
+Output filename [*.gew]:
 
-   Creates gew.[accession].csv
+
+   Creates *.gew
    Output example is prepared in the data directory
 
 Command line arguments
@@ -40,8 +42,7 @@ Command line arguments
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-   -filename           string     [gew.[accession].csv] Output filename (Any
-                                  string)
+   -outfile            outfile    [*.gew] Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -65,7 +66,7 @@ Input file format
 
 Output file format
 
-   The output from gew is to raw CSV format.
+   The output from gew is to a raw CSV file.
 
 Data files
 
@@ -77,9 +78,8 @@ Notes
 
 References
 
-   Suzuki H. et al. (2004) Gene. 23;335:19-23.
-
-   Suzuki H. et al. (2007) EURASIP J Bioinform Syst Biol. 2007:61374.
+      Suzuki H. et al. (2004) Gene. 23;335:19-23.
+      Suzuki H. et al. (2007) EURASIP J Bioinform Syst Biol. 2007:61374.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -115,7 +115,6 @@ See also
    gfop     Calculate the frequency of optimal codons (Fop)
    gscs     Calculates the scaled chi-square
    gw_value Calculate the 'relative adaptiveness of each codon' (W)
-
 
 Author(s)
 

@@ -67,11 +67,15 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with ggcwin
 
-% ggcwin  NC_000913.gbk -graph cps
+% ggcwin  -plotNC_000913.gbk -graph cps
 Calculates the GC content along the given genome
-Created ggcwin.ps
+Output filename [*.ggcwin]:Error: Failed to open filename '-plotNC_000913.gbk'
+Error: Unable to read sequence '-plotNC_000913.gbk'
+Died: ggcwin terminated: Bad value for '-sequence' with -auto defined
 
-   Creates ggcwin.[accession].ps
+
+
+   Creates *.ggcwin
    Output example is prepared in the data directory
 
 </pre></td></tr></table>
@@ -102,11 +106,19 @@ Created ggcwin.ps
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-filename</td>
-<td>string</td>
-<td>Output filename</td>
-<td>Any string</td>
-<td>ggcwin.[accession].csv</td>
+<td>-graph</td>
+<td>xygraph</td>
+<td>Graph type</td>
+<td>EMBOSS has a list of known devices, including ps, hpgl, hp7470, hp7580, meta, cps, x11, tek, tekt, none, data, xterm, png, gif, svg</td>
+<td><i>EMBOSS_GRAPHICS</i> value, or x11</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-outfile</td>
+<td>outfile</td>
+<td>Output file name</td>
+<td>Output file</td>
+<td><i>&lt;*&gt;</i>.ggcwin</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -154,14 +166,6 @@ Created ggcwin.ps
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-output</td>
-<td>boolean</td>
-<td>Include to create CSV file</td>
-<td>Boolean value Yes/No</td>
-<td>No</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
 <td>-accid</td>
 <td>string</td>
 <td>Include to use sequence accession ID as query</td>
@@ -170,11 +174,11 @@ Created ggcwin.ps
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-graph</td>
-<td>xygraph</td>
-<td>Graph type</td>
-<td>EMBOSS has a list of known devices, including ps, hpgl, hp7470, hp7580, meta, cps, x11, tek, tekt, none, data, xterm, png, gif, svg</td>
-<td><i>EMBOSS_GRAPHICS</i> value, or x11</td>
+<td>-plot</td>
+<td>toggle</td>
+<td>Include to plot result</td>
+<td>Toggle value Yes/No</td>
+<td>No</td>
 </tr>
 
 </table>
@@ -189,8 +193,6 @@ Created ggcwin.ps
 <h2>Ouptut file format</h2>
 
 <p>
-                                  (Any string)
-
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -window             integer    [10000] Window size to observe (Any integer
@@ -201,12 +203,9 @@ Created ggcwin.ps
                                   skew
    -keto               boolean    Include for observing keto (TG/AC) skew
                                   default: "0
-   -output             boolean    [N] Include to create CSV file
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
-   -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
-                                  (ps, hpgl, hp7470, hp7580, meta, cps, x11,
-                                  tek, tekt, none, data, xterm, png, gif, svg)
+   -plot               toggle     [N] Include to plot result
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More

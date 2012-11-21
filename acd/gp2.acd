@@ -34,10 +34,8 @@ section: output [
   type: "page"
 ]
 
-  string: filename [
+  outfile: outfile [
     standard: "Y"
-    information: "Output filename"
-    default: "gp2.[accession].csv"
   ]
 
 endsection: output

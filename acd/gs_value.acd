@@ -35,7 +35,16 @@ section: advanced [
 endsection: advanced
 
 section: output [
-	information: "Output section"
-	type: "page"
+  information: "Output section"
+  type: "page"
 ]
-endsection: output
+
+  toggle: show [
+    information: "Include to dump result to stdout"
+    default: "N"
+  ]
+
+  outfile: outfile [
+    standard: "@(!$(show))"
+  ]
+

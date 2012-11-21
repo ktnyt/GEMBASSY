@@ -21,13 +21,17 @@ int main(int argc, char *argv[]){
   AjPStr    inseq     = NULL;
   AjPStr    id        = NULL;
   AjPStr    accid     = NULL;
-  AjPStr    filename  = NULL;
-  char*     jobid;
+  char*     result;
 
-  seqall   = ajAcdGetSeqall("sequence");
-  id       = ajAcdGetString("id");
-  accid    = ajAcdGetString("accid");
-  filename = ajAcdGetString("filename");
+  AjPFile outf = NULL;
+
+  AjPStr filename = getUniqueFileName();
+
+  seqall = ajAcdGetSeqall("sequence");
+  id     = ajAcdGetString("id");
+  accid  = ajAcdGetString("accid");
+
+  outf = ajAcdGetOutfile("outfile");
 
   params.id = ajCharNewS(id);
 
@@ -58,34 +62,29 @@ int main(int argc, char *argv[]){
 
     if(soap_call_ns1__aaui(
 			   &soap, NULL, NULL,
-			   in0, &params, &jobid
+			   in0, &params, &result
 			   ) == SOAP_OK){
-      if(ajStrCmpC(filename, "gaaui.[accession].csv") == 0){
-        ajStrAssignC(&filename, argv[0]);
-        ajStrAppendC(&filename, ".");
-        ajStrAppendS(&filename, accid);
-        ajStrAppendC(&filename, ".csv");
-      }else{
-	ajStrInsertC(&filename, -5, ".");
-	ajStrInsertS(&filename, -5, accid);
-      }
-      if(get_file(jobid, ajCharNewS(filename))){
+      if(get_file(result, ajCharNewS(filename))){
 	fprintf(stderr, "Retrieval unsuccessful\n");
       }
+      ajFmtPrintF(outf, "Sequence: %S %S\n",
+		  ajSeqGetNameS(seq), getContentS(filename));
     }else{
       soap_print_fault(&soap, stderr);
     }
-    
+
     soap_destroy(&soap);
     soap_end(&soap);
     soap_done(&soap);
   }
 
+  if(outf)
+    ajFileClose(&outf);
+
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
   ajStrDel(&inseq);
   ajStrDel(&accid);
-  ajStrDel(&filename);
   ajStrDel(&id);
     
   embExit();

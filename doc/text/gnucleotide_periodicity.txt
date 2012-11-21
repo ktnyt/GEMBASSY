@@ -5,10 +5,8 @@ Function
 
 Description
 
-   Checks the periodicity of certain nucleotide (best known with AA
-   dinucleotide)
-    
-  
+   Checks the periodicity of certain nucleotide (best known with AA dinucleotide)
+   
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -28,14 +26,15 @@ Usage
 
    Here is a sample session with gnucleotide_periodicity
 
-% gnucleotide_periodicity  NC_000913.gbk -graph cps
+% gnucleotide_periodicity  -plotNC_000913.gbk -graph cps
 Checks the periodicity of certain oligonucleotides
-SOAP 1.1 fault: SOAP-ENV:Server [no subcode]
-"Can't use string ("LOCUS       NC_000913           ") as a HASH ref while "strict refs" in use at /usr/lib/perl5/site_perl/5.8.8/SubOpt.pm line 83, <DATA> line 1483.
-"
-Detail: [no detail]
+Output filename [*.gnucleotide_periodicity]:Error: Failed to open filename '-plotNC_000913.gbk'
+Error: Unable to read sequence '-plotNC_000913.gbk'
+Died: gnucleotide_periodicity terminated: Bad value for '-sequence' with -auto defined
 
-   Creates gnucleotide_periodicity.[accession].ps
+
+
+   Creates *.gnucleotide_periodicity
    Output example is prepared in the data directory
 
 Command line arguments
@@ -43,20 +42,19 @@ Command line arguments
 Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-*  -filename           string     [gnucleotide_periodicity.[accession].csv]
-                                  Output filename (Any string)
+*  -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
+                                  (ps, hpgl, hp7470, hp7580, meta, cps, x11,
+                                  tek, tekt, none, data, xterm, png, gif, svg)
+*  -outfile            outfile    [*.gnucleotide_periodicity] Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -window             integer    [50] Window size to seek periodicity (Any
                                   integer value)
    -nucleotide         string     [aa] Nucleotide to search (Any string)
-   -output             boolean    [N] Include to create CSV file
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
-   -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
-                                  (ps, hpgl, hp7470, hp7580, meta, cps, x11,
-                                  tek, tekt, none, data, xterm, png, gif, svg)
+   -plot               toggle     [N] Include to plot result
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -116,7 +114,6 @@ See also
    goligomer_counter       Counts the number of given oligomers in a sequence
    goligomer_search        Searches oligomers in given sequence
    gsignature              Calculate oligonucleotide usage (genomic signature)
-
 
 Author(s)
 

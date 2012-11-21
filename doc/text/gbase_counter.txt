@@ -25,15 +25,36 @@ Description
 
    http://ws.g-language.org/gdoc/
 
+Usage:
+    $structure = base_counter($genome);
+
+    Here the $structure is a reference to the array of hashes, intended for 
+    internal 
+   G-language SOAP service is provided by the
+   Institute for Advanced Biosciences, Keio University.
+   The original web service is located at the following URL:
+
+   http://www.g-language.org/wiki/soap
+
+   WSDL(RPC/Encoded) file is located at:
+
+   http://soap.g-language.org/g-language.wsdl
+
+   Documentation on G-language Genome Analysis Environment methods are
+   provided at the Document Center
+
+   http://ws.g-language.org/gdoc/
+
 Usage
 
    Here is a sample session with gbase_counter
 
 % gbase_counter  NC_000913.gbk
 Creates a position weight matrix of oligomers around start codon
-Output filename [gbase_counter.[accession].csv]:
+Output filename [*.gbase_counter]:
 
-   Creates gbase_counter.[accession].csv
+
+   Creates *.gbase_counter
    Output example is prepared in the data directory
 
 Command line arguments
@@ -41,8 +62,7 @@ Command line arguments
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-  [-filename]          string     [gbase_counter.[accesssion].csv] Output
-                                  filename (Any string)
+   -outfile            outfile    [*.gbase_counter] Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -70,7 +90,7 @@ Input file format
 
 Output file format
 
-   The output from gbase_counter is to raw CSV format.
+   The output from gbase_counter is to a raw CSV file.
 
 Data files
 
@@ -115,7 +135,6 @@ See also
    gbase_z_value Extracts conserved oligomers per position using Z-score
    gview_cds     Displays a graph of nucleotide contents around start and stop
                  codons
-
 
 Author(s)
 

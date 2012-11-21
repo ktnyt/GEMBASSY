@@ -22,14 +22,19 @@ int main(int argc, char *argv[]){
   ajint     coefficients = 0;
   AjPStr    variable     = NULL;
   AjPStr    accid        = NULL;
-  AjPStr    filename     = NULL;
-  char*     jobid;
+  char*     result;
+
+  AjBool  show = 0;
+  AjPFile outf = NULL;
 
   seqall       = ajAcdGetSeqall("sequence");
   coefficients = ajAcdGetInt("coefficients");
   variable     = ajAcdGetString("variable");
   accid        = ajAcdGetString("accid");
-  
+
+  show = ajAcdGetToggle("show");
+  outf = ajAcdGetOutfile("outfile");
+
   params.coefficients = coefficients;
   params.variable     = ajCharNewS(variable);
 
@@ -60,9 +65,14 @@ int main(int argc, char *argv[]){
 
     if(soap_call_ns1__lda_USCOREbias(
 				     &soap, NULL, NULL,
-				     in0, &params, &jobid
+				     in0, &params, &result
 				     ) == SOAP_OK){
-      fprintf(stdout, "%s\n", jobid);
+      if(show)
+        ajFmtPrint("Sequence: %S LDA bias: %S\n",
+		   ajSeqGetAccS(seq), ajStrNewC(result));
+      else
+        ajFmtPrintF(outf, "Sequence: %S LDA bias: %S\n",
+		    ajSeqGetAccS(seq), ajStrNewC(result));
     }else{
       soap_print_fault(&soap, stderr);
     }
@@ -72,10 +82,12 @@ int main(int argc, char *argv[]){
     soap_done(&soap);
   }
 
+  if(outf)
+    ajFileClose(&outf);
+
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
   ajStrDel(&inseq);
-  ajStrDel(&filename);
     
   embExit();
   return 0;

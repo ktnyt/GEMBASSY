@@ -22,11 +22,6 @@ section: advanced [
   type: "page"
 ]
 
-  boolean: show [
-    information: "Include to show png with X11 window"
-    default: "N"
-  ]
-
   string: accid [
     information: "Include to use sequence accession ID as query"
     default: ""
@@ -39,10 +34,15 @@ section: output [
 	type: "page"
 ]
 
+  toggle: show [
+    information: "Include to show png with X11 window"
+    default: "N"
+  ]
+
   string: filename [
-    standard: "Y"
+    standard: "@(!$(show))"
     information: "Output filename"
-    default: "gdnawalk.[accession].png"
+    default: "gdnawalk.png"
   ]
 
 endsection: output

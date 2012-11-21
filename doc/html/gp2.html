@@ -43,9 +43,10 @@ IT IS DONE FOR YOU.
 <H2>Description</H2>
 <p>
    This program calculates the P2 index for each gene. This index describes the <br>
-   proportion of codons conforming to the intermediate strength of<br>
-   codon-anticodon interaction energy rule of Grosjean and Fiers:<br>
-   P2 = (WWC+SSU)/(WWY+SSY) where W = A or U, S = C or G, and Y = C or U.<br>
+   proportion of codons conforming to the intermediate strength of codon-anticodon <br>
+   interaction energy rule of Grosjean and Fiers: P2 = (WWC+SSU)/(WWY+SSY) <br>
+   where W = A or U, S = C or G, and Y = C or U.<br>
+   P2 values will be accessible at $gb->{"FEATURE$i"}->{P2};<br>
 <br>
   <br>
    G-language SOAP service is provided by the<br>
@@ -72,9 +73,10 @@ IT IS DONE FOR YOU.
 
 % gp2  NC_000913.gbk
 Calculate the P2 index of each gene
-Output filename [gp2.[accession].csv]:
+Output filename [*.gp2]:
 
-   Creates gp2.[accession].csv
+
+   Creates *.gp2
    Output example is prepared in the data directory
 
 </pre></td></tr></table>
@@ -105,11 +107,11 @@ Output filename [gp2.[accession].csv]:
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-filename</td>
-<td>string</td>
-<td>Output filename</td>
-<td>Any string</td>
-<td>gp2.[accession].csv</td>
+<td>-outfile</td>
+<td>outfile</td>
+<td>Output file name</td>
+<td>Output file</td>
+<td><i>&lt;*&gt;</i>.gp2</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -144,7 +146,7 @@ Output filename [gp2.[accession].csv]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates gp2.[accession].csv
+   Creates *.gp2
    Output example is prepared in the data directory
 
 Command line arguments
@@ -152,8 +154,7 @@ Command line arguments
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-   -filename           string     [gp2.[accession].csv] Output filename (Any
-                                  string)
+   -outfile            outfile    [*.gp2] Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -172,7 +173,7 @@ Input file format
 
 Output file format
 
-   The output from gp2 is to raw CSV format.
+   The output from gp2 is to a raw CSV file.
 </p>
 
 <h2>Data files</h2>
@@ -190,7 +191,7 @@ None.
 <h2>Refrences</h2>
 
 <pre>
-   Gouy M, Gautier C. (1982) Nucleic Acids Res. 10(22):7055-74.
+      Gouy M, Gautier C. (1982) Nucleic Acids Res. 10(22):7055-74.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench

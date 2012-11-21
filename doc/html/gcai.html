@@ -42,7 +42,9 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This program calculates codon adaptation index (CAI) for each gene.<br>
+   This program calculates codon adaptation index (CAI) for each gene,<br>
+   and inputs in the G instance. i.e. CAI values will be accessible at<br>
+   $gb->{"FEATURE$i"}->{cai};<br>
 <br>
   <br>
    G-language SOAP service is provided by the<br>
@@ -69,9 +71,10 @@ IT IS DONE FOR YOU.
 
 % gcai  NC_000913.gbk
 Calculate codon adaptation index for each gene
-Output filename [gcai.[accession].csv]:
+Output filename [*.gcai]:
 
-   Creates gcai.[accession].csv
+
+   Creates *.gcai
    Output example is prepared in the data directory
 
 </pre></td></tr></table>
@@ -102,11 +105,11 @@ Output filename [gcai.[accession].csv]:
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-filename</td>
-<td>string</td>
-<td>Output filename</td>
-<td>Any string</td>
-<td>gcai.[accession].csv</td>
+<td>-outfile</td>
+<td>outfile</td>
+<td>Output file name</td>
+<td>Output file</td>
+<td><i>&lt;*&gt;</i>.gcai</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -157,7 +160,7 @@ Output filename [gcai.[accession].csv]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates gcai.[accession].csv
+   Creates *.gcai
    Output example is prepared in the data directory
 
 Command line arguments
@@ -165,8 +168,7 @@ Command line arguments
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-   -filename           string     [gcai.[accession].csv] Output filename (Any
-                                  string)
+   -outfile            outfile    [*.gcai] Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -190,7 +192,7 @@ Input file format
 
 Output file format
 
-   The output from gcai is to raw CSV format.
+   The output from gcai is to a raw CSV file.
 </p>
 
 <h2>Data files</h2>
@@ -208,7 +210,7 @@ None.
 <h2>Refrences</h2>
 
 <pre>
-   Sharp PM, Li WH. 1987 Nucleic Acids Res. 15(3):1281-95.
+      Sharp PM, Li WH. 1987 Nucleic Acids Res. 15(3):1281-95.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench

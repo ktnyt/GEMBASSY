@@ -21,13 +21,18 @@ int main(int argc, char *argv[]){
   AjPStr    inseq    = NULL;
   ajint     sharp    = 0;
   AjPStr    accid    = NULL;
-  AjPStr    filename = NULL;
-  char*     jobid;
+  char*     result;
+
+  AjBool  show = 0;
+  AjPFile outf = NULL;
 
   seqall = ajAcdGetSeqall("sequence");
   sharp  = ajAcdGetInt("sharp");
   accid  = ajAcdGetString("accid");
-  
+
+  show = ajAcdGetToggle("show");
+  outf = ajAcdGetOutfile("outf");
+
   params.sharp = sharp;
 
   while(ajSeqallNext(seqall,&seq)){  
@@ -57,9 +62,14 @@ int main(int argc, char *argv[]){
 
     if(soap_call_ns1__S_USCOREvalue(
 				    &soap, NULL, NULL,
-				    in0, &params, &jobid
+				    in0, &params, &result
 				    ) == SOAP_OK){
-      fprintf(stdout, "%s\n", jobid);
+      if(show)
+	ajFmtPrint("Sequence: %S S value: %S\n",
+		   ajSeqGetAccS(seq), ajStrNewC(result));
+      else
+	ajFmtPrintF(outf, "Sequence: %S S value: %S\n",
+		    ajSeqGetAccS(seq), ajStrNewC(result));
     }else{
       soap_print_fault(&soap,stderr);
     }
@@ -69,10 +79,12 @@ int main(int argc, char *argv[]){
     soap_done(&soap);
   }
 
+  if(outf)
+    ajFileClose(&outf);
+
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
   ajStrDel(&inseq);
-  ajStrDel(&filename);
     
   embExit();
   return 0;

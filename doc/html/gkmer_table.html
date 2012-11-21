@@ -42,26 +42,26 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This program creates an image showing the abundance of all k-mers<br>
-   (oligonucleotides of length k) in a given sequence. For example, for<br>
-   tetramers (k=4), resulting image is composed of 4^4 = 256 boxes, each<br>
-   representing an oligomer. Oligomer name and abundance is written within<br>
-   these boxes, and abundance is also visualized with the box color, from white<br>
-   (none) to black (highly frequent).<br>
+   This program creates an image showing the abundance of all k-mers (oligonucleotides<br>
+   of length k) in a given sequence. For example, for tetramers (k=4), resulting image<br>
+   is composed of 4^4 = 256 boxes, each representing an oligomer. Oligomer name and <br>
+   abundance is written within these boxes, and abundance is also visualized with <br>
+   the box color, from white (none) to black (highly frequent).<br>
 <br>
-   This k-mer table is alternatively known as the FCGR (frequency matrices<br>
-   extracted from Chaos Game Representation).<br>
+   This k-mer table is alternatively known as the FCGR (frequency matrices extracted<br>
+   from Chaos Game Representation).<br>
 <br>
    Position of the oligomers can be recursively located as follows:<br>
    For each letter in an oligomer, a box is subdivided into four quadrants, <br>
-   where A is upper left, T is lower right, G is upper right, and C is lower<br>
-   left.<br>
+   where A is upper left, T is lower right, G is upper right, and C is lower left.<br>
    Therefore, oligomer ATGC is in the <br>
-     A = upper left quadrant<br>
-     T = lower right within the above quadrant<br>
-     G = upper right within the above quadrant<br>
-     C = lower left within the above quadrant<br>
+   A = upper left quadrant<br>
+   T = lower right within the above quadrant<br>
+   G = upper right within the above quadrant<br>
+   C = lower left within the above quadrant<br>
 <br>
+   With Google Maps representation using -gmap=>1 option, oligomers can be searched<br>
+   incrementally from the top search box.<br>
 <br>
    More detailed documentation is available at <br>
    http://www.g-language.org/wiki/cgr<br>
@@ -91,9 +91,10 @@ IT IS DONE FOR YOU.
 
 % gkmer_table  NC_000913.gbk
 Create an image showing all k-mer abundance within a sequence
-Output filename [gkmer_table.[accession].png]:
+Output filename [*.gkmer_table]:
 
-   Creates gkmer_table.[accession].png
+
+   Creates *.gkmer_table
    Output example is prepared in the data directory
 
 </pre></td></tr></table>
@@ -128,7 +129,7 @@ Output filename [gkmer_table.[accession].png]:
 <td>string</td>
 <td>Output filename</td>
 <td>Any string</td>
-<td>gkmer_table.[accession].png</td>
+<td>gkmer_table.png</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -152,19 +153,19 @@ Output filename [gkmer_table.[accession].png]:
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-show</td>
-<td>boolean</td>
-<td>Include to show png with X11 window</td>
-<td>Boolean value Yes/No</td>
-<td>No</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
 <td>-accid</td>
 <td>string</td>
 <td>Include to use sequence accession ID as query</td>
 <td>Any string</td>
 <td>&nbsp;</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-show</td>
+<td>toggle</td>
+<td>Include to show png with X11 window</td>
+<td>Toggle value Yes/No</td>
+<td>No</td>
 </tr>
 
 </table>
@@ -179,23 +180,23 @@ Output filename [gkmer_table.[accession].png]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates gkmer_table.[accession].png
+   Creates *.gkmer_table
    Output example is prepared in the data directory
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-   -filename           string     [gkmer_table.[accession].png] Output
-                                  filename (Any string)
+*  -filename           string     [gkmer_table.png] Output filename (Any
+                                  string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -k                  integer    [6] Length of oligomer (Any integer value)
-   -show               boolean    [N] Include to show png with X11 window
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
+   -show               toggle     [N] Include to show png with X11 window
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -209,7 +210,7 @@ Input file format
 
 Output file format
 
-   The output from gkmer_table is to PNG format.
+   The output from gkmer_table is to png.
 </p>
 
 <h2>Data files</h2>
@@ -228,12 +229,17 @@ None.
 
 <pre>
    Arakawa K, Oshita K, Tomita M (2009) "A web server for interactive and
-      zoomable Chaos Game Representation images", Source Code for Biol Med.,
-      4:6.
+      zoomable Chaos Game Representation images", Source Code for Biol Med., 4:6.
 
    Almeida JS, Carrico JA, Maretzek A, Noble PA, Fletcher M (2001) 
       "Analysis of genomic sequences by Chaos Game Representation." 
       Bioinformatics. 17(5):429-437.
+      
+      Author: 
+      Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+      
+      History:
+      20090716-01 initial posting
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench

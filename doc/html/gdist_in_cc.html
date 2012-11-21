@@ -69,9 +69,13 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gdist_in_cc
 
-% gdist_in_cc  NC_000913.gbk
+% gdist_in_cc  NC_000913.gbk 1234
 Calculates the distance between two loci in circular chromosomes
-0
+Output filename [*.gdist_in_cc]:
+
+
+   Creates *.gdist_in_cc
+   Output example is prepared in the data directory
 
 </pre></td></tr></table>
 
@@ -109,6 +113,14 @@ Calculates the distance between two loci in circular chromosomes
 </tr>
 
 <tr bgcolor="#FFFFCC">
+<td>-outfile</td>
+<td>outfile</td>
+<td>Output file name</td>
+<td>Output file</td>
+<td><i>&lt;*&gt;</i>.gdist_in_cc</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
 <th align="left" colspan=5>Additional (Optional) qualifiers</th>
 </tr>
 
@@ -136,6 +148,14 @@ Calculates the distance between two loci in circular chromosomes
 <td>&nbsp;</td>
 </tr>
 
+<tr bgcolor="#FFFFCC">
+<td>-show</td>
+<td>toggle</td>
+<td>Include to dump result to stdout</td>
+<td>Toggle value Yes/No</td>
+<td>No</td>
+</tr>
+
 </table>
 
 
@@ -148,7 +168,40 @@ Calculates the distance between two loci in circular chromosomes
 <h2>Ouptut file format</h2>
 
 <p>
-   The output from gdist_in_cc is to standard output.
+   Creates *.gdist_in_cc
+   Output example is prepared in the data directory
+
+Command line arguments
+
+Standard (Mandatory) qualifiers (* if not always prompted):
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
+                                  format, or reference (input USA)
+  [-position]          integer    [0] (no help text) integer value (Any
+                                  integer value)
+*  -outfile            outfile    [*.gdist_in_cc] Output file name
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -secondposition     integer    [0] If the second position is not given,
+                                  position of replication origin is used (Any
+                                  integer value)
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+   -show               toggle     [N] Include to dump result to stdout
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+
+Input file format
+
+   gdist_in_cc reads nucleotide sequences.
+
+Output file format
+
+   The output from gdist_in_cc is to a file or stdout.
 </p>
 
 <h2>Data files</h2>

@@ -21,3 +21,19 @@ section: input [
   ]
 
 endsection: input
+
+section: output [
+        information: "Output section"
+        type: "page"
+]
+
+  toggle: show [
+    information: "Include to show png with X11 window"
+    default: "N"
+  ]
+
+  outfile: outfile [
+    standard: "@(!$(show))"
+  ]
+
+endsection: output

@@ -31,8 +31,7 @@ gbase_entropy
 
 
 <H2> Function </H2>
-   Calculates and graphs the sequence conservation using Shanon uncertainty
-   (entropy)
+   Calculates and graphs the sequence conservation using Shanon uncertainty (entropy)
 <!--
 DON'T WRITE ANYTHING HERE.
 IT IS DONE FOR YOU.
@@ -69,11 +68,15 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gbase_entropy
 
-% gbase_entropy  NC_000913.gbk -graph cps
+% gbase_entropy  -plotNC_000913.gbk -graph cps
 Calculates and graphs the sequence conservation using Shanon uncertainty (entropy)
-Created gbase_entropy.ps
+Output filename [*.gbase_entropy]:Error: Failed to open filename '-plotNC_000913.gbk'
+Error: Unable to read sequence '-plotNC_000913.gbk'
+Died: gbase_entropy terminated: Bad value for '-sequence' with -auto defined
 
-   Creates gbase_entropy.[accession].ps
+
+
+   Creates *.gbase_entropy
    Output example is prepared in the data directory
 
 </pre></td></tr></table>
@@ -104,11 +107,19 @@ Created gbase_entropy.ps
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-filename</td>
-<td>string</td>
-<td>Output filename</td>
-<td>Any string</td>
-<td>gbase_entropy.[accession].csv</td>
+<td>-graph</td>
+<td>xygraph</td>
+<td>Graph type</td>
+<td>EMBOSS has a list of known devices, including ps, hpgl, hp7470, hp7580, meta, cps, x11, tek, tekt, none, data, xterm, png, gif, svg</td>
+<td><i>EMBOSS_GRAPHICS</i> value, or x11</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-outfile</td>
+<td>outfile</td>
+<td>Output file name</td>
+<td>Output file</td>
+<td><i>&lt;*&gt;</i>.gbase_entropy</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -164,19 +175,11 @@ Created gbase_entropy.ps
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-output</td>
-<td>boolean</td>
-<td>Include to create CSV file</td>
-<td>Boolean value Yes/No</td>
+<td>-plot</td>
+<td>toggle</td>
+<td>Include to plot result</td>
+<td>Toggle value Yes/No</td>
 <td>No</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-graph</td>
-<td>xygraph</td>
-<td>Graph type</td>
-<td>EMBOSS has a list of known devices, including ps, hpgl, hp7470, hp7580, meta, cps, x11, tek, tekt, none, data, xterm, png, gif, svg</td>
-<td><i>EMBOSS_GRAPHICS</i> value, or x11</td>
 </tr>
 
 </table>
@@ -191,6 +194,33 @@ Created gbase_entropy.ps
 <h2>Ouptut file format</h2>
 
 <p>
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -position           string     [start] Either 'start' (around start codon)
+                                  or 'end' (around stop codon) to create the
+                                  PWM (Any string)
+   -patlen             integer    [3] Length of oligomer to count (Any integer
+                                  value)
+   -upstream           integer    [30] Length upstream of specified position
+                                  to create PWM (Any integer value)
+   -downstream         integer    [30] Length downstream of specified position
+                                  to create PWM (Any integer value)
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+   -plot               toggle     [N] Include to plot result
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+
+Input file format
+
+   gbase_entropy reads nucleotide sequences.
+
+Output file format
+
    The output from gbase_entropy is to the specified graphics device.
 </p>
 

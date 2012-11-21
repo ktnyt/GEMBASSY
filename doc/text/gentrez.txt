@@ -6,7 +6,7 @@ Function
 Description
 
    Search NCBI Entrez with keyword through EUtilities. 
-   This is intended for quick lookup through Shell, 
+   This is intended for quick lookup through G-language Shell, 
    so only top ten hits are reported.
 
   
@@ -29,63 +29,26 @@ Usage
 
    Here is a sample session with gentrez
 
-% gentrez
+% gentrez  pubmed 'Venter C'
 Search NCBI Entrez in G-language Shell
-NCBI database to search [pubmed]:
-Query to search: Arakawa K
-    980 entries found in PUBMED: (Showing up to 10 hits)
-
-     1. PMID:   23120804
-        Arakawa K et al. "[Practice guidelines for food allergy]."
-        Nihon Jibiinkoka Gakkai Kaiho  2012 Jul;115(7):702-3
-
-     2. PMID:   23051740
-        Kim-Mitsuyama S et al. "An angiotensin II receptor blocker-calcium channel blocker combination prevents cardiovascular events in elderly high-risk hypertensive patients with chronic kidney disease better than high-dose angiotensin II receptor blockade alone."
-        Kidney Int  2012 Oct 10;
-
-     3. PMID:   23035710
-        Wulijideligen et al. "Production of bacteriocin by Leuconostoc mesenteroides 406 isolated from Mongolian fermented mare's milk, airag."
-        Anim Sci J  2012 Oct;83(10):704-11
-
-     4. PMID:   23006398
-        Shiratsuchi Y et al. "Detection and in situ switching of unreversed interfacial antiferromagnetic spins in a perpendicular-exchange-biased system."
-        Phys Rev Lett  2012 Aug 17;109(7):077202
-
-     5. PMID:   22990047
-        Mutoh H et al. "Angiokeratomas in Fabry Disease."
-        Am J Med Sci  2012 Sep 17;
-
-     6. PMID:   22942671
-        Arakawa K et al. "Measures of compositional strand bias related to replication machinery and its applications."
-        Curr Genomics  2012 Mar;13(1):4-15
-
-     7. PMID:   22937162
-        Yamaguchi A et al. "Two novel heat-soluble protein families abundantly expressed in an anhydrobiotic tardigrade."
-        PLoS One  2012;7(8):e44209
-
-     8. PMID:   22901079
-        Kasuga J et al. "Roles of cell walls and intracellular contents in supercooling capability of xylem parenchyma cells of boreal trees."
-        Physiol Plant  2012 Aug 17;
-
-     9. PMID:   22898810
-        Oh J et al. "Scattering of CO and N2 molecules by a graphite surface."
-        J Phys Condens Matter  2012 Sep 5;24(35):354001
-
-    10. PMID:   22805328
-        Kaira K et al. "Prognostic significance of L-type amino-acid transporter 1 expression in surgically resected pancreatic cancer."
-        Br J Cancer  2012 Aug 7;107(4):632-8
+Output filename [*.gentrez]:
 
 
+   Creates *.gentrez
+   Output example is prepared in the data directory
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+Standard (Mandatory) qualifiers (* if not always prompted):
   [-db]                string     [pubmed] NCBI database to search (Any
                                   string)
   [-query]             string     Query to search (Any string)
+*  -outfile            outfile    [*.gentrez] Output file name
 
    Additional (Optional) qualifiers: (none)
-   Advanced (Unprompted) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -show               toggle     [N] Include to show png with X11 window
+
    General qualifiers:
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
@@ -98,7 +61,7 @@ Input file format
 
 Output file format
 
-   The output from gentrez is to standard output.
+   The output from gentrez is to a file or stdout.
 
 Data files
 
@@ -141,7 +104,6 @@ Known bugs
 See also
 
    None.
-
 
 Author(s)
 

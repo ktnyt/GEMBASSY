@@ -68,15 +68,14 @@ int main(int argc, char *argv[]){
 					&soap, NULL, NULL,
 					in0, &params, &jobid
 					) == SOAP_OK){
-      if(ajStrCmpC(filename, "ggenome_map3.[accession].png") == 0){
-        ajStrAssignC(&filename, argv[0]);
+      AjPStr tmp = ajStrNew();
+      ajStrFromLong(&tmp, ajSeqallGetCount(seqall));
+      ajStrInsertC(&tmp, 0, ".");
+      ajStrAppendC(&tmp, ".png");
+      if(!ajStrExchangeCS(&filename, ".png", tmp)){
         ajStrAppendC(&filename, ".");
-        ajStrAppendS(&filename, accid);
-        ajStrAppendC(&filename, ".png");
-      }else{
-        ajStrInsertC(&filename, -5, ".");
-        ajStrInsertS(&filename, -5, accid);
       }
+
       if(get_file(jobid,ajCharNewS(filename))){
         fprintf(stderr,"Retrieval unsuccessful\n");
       }

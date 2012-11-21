@@ -42,10 +42,8 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   Checks the periodicity of certain nucleotide (best known with AA<br>
-   dinucleotide)<br>
-    <br>
-  <br>
+   Checks the periodicity of certain nucleotide (best known with AA dinucleotide)<br>
+   <br>
    G-language SOAP service is provided by the<br>
    Institute for Advanced Biosciences, Keio University.<br>
    The original web service is located at the following URL:<br>
@@ -68,14 +66,15 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gnucleotide_periodicity
 
-% gnucleotide_periodicity  NC_000913.gbk -graph cps
+% gnucleotide_periodicity  -plotNC_000913.gbk -graph cps
 Checks the periodicity of certain oligonucleotides
-SOAP 1.1 fault: SOAP-ENV:Server [no subcode]
-"Can't use string ("LOCUS       NC_000913           ") as a HASH ref while "strict refs" in use at /usr/lib/perl5/site_perl/5.8.8/SubOpt.pm line 83, <DATA> line 1483.
-"
-Detail: [no detail]
+Output filename [*.gnucleotide_periodicity]:Error: Failed to open filename '-plotNC_000913.gbk'
+Error: Unable to read sequence '-plotNC_000913.gbk'
+Died: gnucleotide_periodicity terminated: Bad value for '-sequence' with -auto defined
 
-   Creates gnucleotide_periodicity.[accession].ps
+
+
+   Creates *.gnucleotide_periodicity
    Output example is prepared in the data directory
 
 </pre></td></tr></table>
@@ -106,11 +105,19 @@ Detail: [no detail]
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-filename</td>
-<td>string</td>
-<td>Output filename</td>
-<td>Any string</td>
-<td>gnucleotide_periodicity.[accession].csv</td>
+<td>-graph</td>
+<td>xygraph</td>
+<td>Graph type</td>
+<td>EMBOSS has a list of known devices, including ps, hpgl, hp7470, hp7580, meta, cps, x11, tek, tekt, none, data, xterm, png, gif, svg</td>
+<td><i>EMBOSS_GRAPHICS</i> value, or x11</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-outfile</td>
+<td>outfile</td>
+<td>Output file name</td>
+<td>Output file</td>
+<td><i>&lt;*&gt;</i>.gnucleotide_periodicity</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -142,14 +149,6 @@ Detail: [no detail]
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-output</td>
-<td>boolean</td>
-<td>Include to create CSV file</td>
-<td>Boolean value Yes/No</td>
-<td>No</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
 <td>-accid</td>
 <td>string</td>
 <td>Include to use sequence accession ID as query</td>
@@ -158,11 +157,11 @@ Detail: [no detail]
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-graph</td>
-<td>xygraph</td>
-<td>Graph type</td>
-<td>EMBOSS has a list of known devices, including ps, hpgl, hp7470, hp7580, meta, cps, x11, tek, tekt, none, data, xterm, png, gif, svg</td>
-<td><i>EMBOSS_GRAPHICS</i> value, or x11</td>
+<td>-plot</td>
+<td>toggle</td>
+<td>Include to plot result</td>
+<td>Toggle value Yes/No</td>
+<td>No</td>
 </tr>
 
 </table>
@@ -182,12 +181,9 @@ Detail: [no detail]
    -window             integer    [50] Window size to seek periodicity (Any
                                   integer value)
    -nucleotide         string     [aa] Nucleotide to search (Any string)
-   -output             boolean    [N] Include to create CSV file
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
-   -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
-                                  (ps, hpgl, hp7470, hp7580, meta, cps, x11,
-                                  tek, tekt, none, data, xterm, png, gif, svg)
+   -plot               toggle     [N] Include to plot result
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More

@@ -21,27 +21,31 @@ int main(int argc, char *argv[]){
   AjPSeqall seqall;
   AjPSeq    seq;
   AjPStr    inseq    = NULL;
-  AjPStr    filename = NULL;
-  AjBool    output   = 0;
   ajint     high     = 0;
   double    low      = 0;  
-  char*     jobid;
+  char*     result;
 
-  AjPGraph    mult;
+  AjBool   plot = 0;
+  AjPFile  outf = NULL;
+  AjPGraph mult = NULL;
+
+  AjPStr filename = getUniqueFileName();
+
   gPlotParams gpp;
   
-  seqall   = ajAcdGetSeqall("sequence");
-  filename = ajAcdGetString("filename");
-  output   = ajAcdGetBoolean("output");
-  high     = ajAcdGetInt("high");
-  low      = ajAcdGetFloat("low");
-  mult     = ajAcdGetGraphxy("graph");
+  seqall = ajAcdGetSeqall("sequence");
+  high   = ajAcdGetInt("high");
+  low    = ajAcdGetFloat("low");
+
+  plot = ajAcdGetToggle("plot");
+  outf = ajAcdGetOutfile("outfile");
+  mult = ajAcdGetGraphxy("graph");
   
   params.high   = high;
   params.low    = low;
   params.output = "f";
 
-  char** tmp  = (char**)malloc(sizeof(char));
+  char** tmp = (char**)malloc(sizeof(char));
   int    size = 0;
 
   while(ajSeqallNext(seqall, &seq)){
@@ -62,10 +66,10 @@ int main(int argc, char *argv[]){
 
   if(soap_call_ns1__consensus_USCOREz(
 				      &soap, NULL, NULL,
-				      &array_seq, &params, &jobid
+				      &array_seq, &params, &result
 				      ) == SOAP_OK){
-    if(get_file(jobid,ajCharNewS(filename))==0){
-      if(!output){
+    if(get_file(result, ajCharNewS(filename))==0){
+      if(plot){
 	AjPStr title = NULL;
 	ajStrAppendC(&title, argv[0]);
 	gpp.title = ajStrNewS(title);
@@ -74,6 +78,9 @@ int main(int argc, char *argv[]){
 	ajStrDel(&title);
 	if(gPlotFile(filename, mult, &gpp) == 1)
 	  fprintf(stderr, "Error allocating\n");
+      }else{
+	ajFmtPrintF(outf, "Sequence: %S\n%S\n",
+		    ajSeqGetNameS(seq), getContentS(filename));
       }
     }else{ 
       fprintf(stderr, "Retrieval unsuccessful\n");
@@ -81,16 +88,19 @@ int main(int argc, char *argv[]){
   }else{
     soap_print_fault(&soap,stderr);
   }
-    
+
   soap_destroy(&soap);
   soap_end(&soap);
   soap_done(&soap);
+
+  if(outf)
+    ajFileClose(&outf);
+
   free(tmp);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
   ajStrDel(&inseq);
-  ajStrDel(&filename);
 
   embExit();
   return 0;

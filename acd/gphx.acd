@@ -42,10 +42,8 @@ section: output [
 	type: "page"
 ]
 
-  string: filename [
+  outfile: outfile [
     standard: "Y"
-    information: "Output filename"
-    default: "gbase_entropy.[accession].csv"
   ]
 
 endsection: output

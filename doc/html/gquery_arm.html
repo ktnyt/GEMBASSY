@@ -68,10 +68,13 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gquery_arm
 
-% gquery_arm NC_000913.gbk
+% gquery_arm  NC_000913.gbk 1234
 Get the replication arm name (left or right) from the given position
-Position to query [0]:
-right
+Output filename [*.gquery_arm]:
+
+
+   Creates *.gquery_arm
+   Output example is prepared in the data directory
 
 </pre></td></tr></table>
 
@@ -109,6 +112,14 @@ right
 </tr>
 
 <tr bgcolor="#FFFFCC">
+<td>-outfile</td>
+<td>outfile</td>
+<td>Output file name</td>
+<td>Output file</td>
+<td><i>&lt;*&gt;</i>.gquery_arm</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
 <th align="left" colspan=5>Additional (Optional) qualifiers</th>
 </tr>
 
@@ -128,6 +139,14 @@ right
 <td>&nbsp;</td>
 </tr>
 
+<tr bgcolor="#FFFFCC">
+<td>-show</td>
+<td>toggle</td>
+<td>Include to dump result to stdout</td>
+<td>Toggle value Yes/No</td>
+<td>No</td>
+</tr>
+
 </table>
 
 
@@ -140,7 +159,36 @@ right
 <h2>Ouptut file format</h2>
 
 <p>
-   The output from gquery_arm is to standard output.
+   Creates *.gquery_arm
+   Output example is prepared in the data directory
+
+Command line arguments
+
+Standard (Mandatory) qualifiers (* if not always prompted):
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
+                                  format, or reference (input USA)
+  [-position]          integer    [0] Position to query (Any integer value)
+*  -outfile            outfile    [*.gquery_arm] Output file name
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+   -show               toggle     [N] Include to dump result to stdout
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+
+Input file format
+
+   gquery_arm reads nucleotide sequences.
+
+Output file format
+
+   The output from gquery_arm is to a file or stdout.
 </p>
 
 <h2>Data files</h2>

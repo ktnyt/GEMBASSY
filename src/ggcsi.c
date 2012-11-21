@@ -18,18 +18,18 @@ int main(int argc, char *argv[]){
 
   AjPSeqall seqall;
   AjPSeq    seq;
-  AjPStr    inseq     = NULL;
-  ajint     window    = 0;
-  ajint     version   = 0;
-  AjBool    at        = 0;
-  AjBool    purine    = 0;
-  AjBool    keto      = 0;
-  AjBool    p         = 0;
-  AjPStr    outstring = NULL;
-  AjPStr    accid     = NULL;
-  AjPStr    filename  = NULL;
-  char*     jobid;
-  int       i;
+  AjPStr    inseq   = NULL;
+  ajint     window  = 0;
+  ajint     version = 0;
+  AjBool    at      = 0;
+  AjBool    purine  = 0;
+  AjBool    keto    = 0;
+  AjBool    p       = 0;
+  AjPStr    accid   = NULL;
+  char*     result;
+
+  AjBool  show = 0;
+  AjPFile outf = NULL;
   
   seqall  = ajAcdGetSeqall("sequence");
   window  = ajAcdGetInt("window");
@@ -39,6 +39,9 @@ int main(int argc, char *argv[]){
   keto    = ajAcdGetBoolean("keto");
   p       = ajAcdGetBoolean("p");
   accid   = ajAcdGetString("accid");
+
+  show = ajAcdGetToggle("show");
+  outf = ajAcdGetOutfile("outfile");
 
   params.window       = window;
   params.version      = version;
@@ -90,24 +93,32 @@ int main(int argc, char *argv[]){
 
     if(soap_call_ns1__gcsi(
 			   &soap, NULL, NULL,
-			   in0, &params, &jobid
+			   in0, &params, &result
 			   ) == SOAP_OK){
-      float gcsi,sa,dist;
-      int n;
-      char* tp  = jobid;
-      char* dlm = "<>";
-      tp = strtok(tp, dlm);
-      tp = strtok(NULL, dlm);
-      gcsi = atof(tp);
-      for(n=0; n<3; n++){
-	tp = strtok(NULL, dlm);
+      AjPStr tmp = ajStrNewC(result);
+      AjPStr parse = ajStrNew();
+      AjPStr gcsi = NULL;
+      AjPStr sa = NULL;
+      AjPStr dist = NULL;
+      AjPStrTok handle = NULL;
+      ajStrExchangeCC(&tmp, "<", "\n");
+      ajStrExchangeCC(&tmp, ">", "\n");
+      handle = ajStrTokenNewC(tmp, "\n");
+      while(ajStrTokenNextParse(&handle, &parse)){
+        if(ajStrIsFloat(parse))
+          if(!gcsi)
+            gcsi = ajStrNewS(parse);
+          else if(!sa)
+            sa = ajStrNewS(parse);
+	  else if(!dist)
+	    dist = ajStrNewS(parse);
       }
-      sa = atof(tp);
-      for(i=0; i<3; i++){
-	tp = strtok(NULL, dlm);
-      }
-      dist = atof(tp);
-      fprintf(stdout, "%f\t%f\t%f\n", gcsi, sa, dist);
+      if(show)
+        ajFmtPrint("Sequence: %S GCSI: %S SA: %S DIST: %S\n",
+                   ajSeqGetAccS(seq), gcsi, sa, dist);
+      else
+        ajFmtPrintF(outf, "Sequence: %S GCSI: %S SA: %S DIST: %S\n",
+		    ajSeqGetAccS(seq), gcsi, sa, dist);
     }else{
       soap_print_fault(&soap, stderr);
     }
@@ -117,10 +128,12 @@ int main(int argc, char *argv[]){
     soap_done(&soap);
   }
 
+  if(outf)
+    ajFileClose(&outf);
+
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
   ajStrDel(&inseq);
-  ajStrDel(&filename);
 
   embExit();
   return 0;

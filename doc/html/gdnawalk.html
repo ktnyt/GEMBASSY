@@ -48,7 +48,7 @@ IT IS DONE FOR YOU.
    upward, T downward, G to the right, and C to the left.<br>
    Position zero (first letter of the genome) is indicated<br>
    by the crossing of thin axes.<br>
-   <br>
+<br>
   <br>
    G-language SOAP service is provided by the<br>
    Institute for Advanced Biosciences, Keio University.<br>
@@ -74,9 +74,10 @@ IT IS DONE FOR YOU.
 
 % gdnawalk  refseqn:NC_000908
 Draws DNA Walk map of the genome
-Output filename [gdnawalk.[accession].png]:
+Output filename [*.gdnawalk]:
 
-   Creates gdnawalk.[accession].png
+
+   Creates *.gdnawalk
    Output example is prepared in the data directory
 
 </pre></td></tr></table>
@@ -111,7 +112,7 @@ Output filename [gdnawalk.[accession].png]:
 <td>string</td>
 <td>Output filename</td>
 <td>Any string</td>
-<td>gdnawalk.[accession].png</td>
+<td>gdnawalk.png</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -127,19 +128,19 @@ Output filename [gdnawalk.[accession].png]:
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-show</td>
-<td>boolean</td>
-<td>Include to show png with X11 window</td>
-<td>Boolean value Yes/No</td>
-<td>No</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
 <td>-accid</td>
 <td>string</td>
 <td>Include to use sequence accession ID as query</td>
 <td>Any string</td>
 <td>&nbsp;</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-show</td>
+<td>toggle</td>
+<td>Include to show png with X11 window</td>
+<td>Toggle value Yes/No</td>
+<td>No</td>
 </tr>
 
 </table>
@@ -154,22 +155,21 @@ Output filename [gdnawalk.[accession].png]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates gdnawalk.[accession].png
+   Creates *.gdnawalk
    Output example is prepared in the data directory
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-   -filename           string     [gdnawalk.[accession].png] Output filename
-                                  (Any string)
+*  -filename           string     [gdnawalk.png] Output filename (Any string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
-   -show               boolean    [N] Include to show png with X11 window
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
+   -show               toggle     [N] Include to show png with X11 window
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -183,7 +183,7 @@ Input file format
 
 Output file format
 
-   The output from gdnawalk is to PNG format.
+   The output from gdnawalk is to png.
 </p>
 
 <h2>Data files</h2>

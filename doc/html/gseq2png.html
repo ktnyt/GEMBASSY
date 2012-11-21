@@ -72,9 +72,10 @@ IT IS DONE FOR YOU.
 
 % gseq2png  NC_000913.gbk
 Converts a sequence to PNG image
-Output filename [gseq2png.[accession].png]:
+Output filename [*.gseq2png]:
 
-   Creates gseq2png.[accession].png
+
+   Creates *.gseq2png
    Output example is prepared in the data directory
 
 </pre></td></tr></table>
@@ -109,7 +110,7 @@ Output filename [gseq2png.[accession].png]:
 <td>string</td>
 <td>Output filename</td>
 <td>Any string</td>
-<td>gseq2png.[accession].png</td>
+<td>gseq2png.png</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -141,19 +142,19 @@ Output filename [gseq2png.[accession].png]:
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-show</td>
-<td>boolean</td>
-<td>Include to show png with X11 window</td>
-<td>Boolean value Yes/No</td>
-<td>No</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
 <td>-accid</td>
 <td>string</td>
 <td>Include to use sequence accession ID as query</td>
 <td>Any string</td>
 <td>&nbsp;</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-show</td>
+<td>toggle</td>
+<td>Inclue to show PNG through X11 window</td>
+<td>Toggle value Yes/No</td>
+<td>No</td>
 </tr>
 
 </table>
@@ -168,25 +169,24 @@ Output filename [gseq2png.[accession].png]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates gseq2png.[accession].png
+   Creates *.gseq2png
    Output example is prepared in the data directory
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-   -filename           string     [gseq2png.[accession].png] Output filename
-                                  (Any string)
+*  -filename           string     [gseq2png.png] Output filename (Any string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -width              integer    [640] Width of the image (Any integer value)
    -window             integer    [20] Window size of a sequence to represent
                                   each pixel (Any integer value)
-   -show               boolean    [N] Include to show png with X11 window
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
+   -show               toggle     [N] Inclue to show PNG through X11 window
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -200,7 +200,7 @@ Input file format
 
 Output file format
 
-   The output from gseq2png is to PNG format.
+   The output from gseq2png is to png.
 </p>
 
 <h2>Data files</h2>

@@ -28,8 +28,10 @@ int main(int argc, char *argv[]){
   AjBool    keto     = 0;
   ajint     filter   = 0;
   AjPStr    accid    = NULL;
-  AjPStr    filename = NULL;
-  char*     jobid;
+  char*     result;
+
+  AjBool  show = 0;
+  AjPFile outf = NULL;
 
   seqall = ajAcdGetSeqall("sequence");
   window = ajAcdGetInt("window");
@@ -37,6 +39,9 @@ int main(int argc, char *argv[]){
   purine = ajAcdGetBoolean("purine");
   keto   = ajAcdGetBoolean("keto");
   accid  = ajAcdGetString("accid");
+
+  show = ajAcdGetToggle("show");
+  outf = ajAcdGetOutfile("outfile");
 
   params.window   = window;
   params.filter   = filter;
@@ -78,17 +83,29 @@ int main(int argc, char *argv[]){
 
     if(soap_call_ns1__find_USCOREori_USCOREter(
 					       &soap, NULL, NULL,
-					       in0, &params, &jobid
+					       in0, &params, &result
 					       ) == SOAP_OK){
-      char* dlm = "<>";
-      char* tp  = jobid;
-      tp = strtok(tp, dlm);
-      tp = strtok(NULL, dlm);
-      fprintf(stdout, "%s\t", tp);
-      tp = strtok(NULL, dlm);
-      tp = strtok(NULL, dlm);
-      tp = strtok(NULL, dlm);
-      fprintf(stdout, "%s\n", tp);
+      AjPStr tmp = ajStrNewC(result);
+      AjPStr parse = ajStrNew();
+      AjPStr ori = NULL;
+      AjPStr ter = NULL;
+      AjPStrTok handle = NULL;
+      ajStrExchangeCC(&tmp, "<", "\n");
+      ajStrExchangeCC(&tmp, ">", "\n");
+      handle = ajStrTokenNewC(tmp, "\n");
+      while(ajStrTokenNextParse(&handle, &parse)){
+	if(ajStrIsInt(parse))
+	  if(!ori)
+	    ori = ajStrNewS(parse);
+	  else if(!ter)
+	    ter = ajStrNewS(parse);
+      }
+      if(show)
+	ajFmtPrint("Sequence: %S Origin: %S Terminus: %S\n",
+		   ajSeqGetAccS(seq), ori, ter);
+      else
+	ajFmtPrintF(outf, "Sequence: %S Origin: %S Terminus: %S\n",
+		    ajSeqGetAccS(seq), ori, ter);
     }else{
       soap_print_fault(&soap, stderr);
     }
@@ -98,10 +115,12 @@ int main(int argc, char *argv[]){
     soap_done(&soap);
   }
 
+  if(outf)
+    ajFileClose(&outf);
+
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
   ajStrDel(&inseq);
-  ajStrDel(&filename);
 
   embExit();
   return 0;

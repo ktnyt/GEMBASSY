@@ -23,24 +23,28 @@ int main(int argc, char *argv[]){
 
   AjPSeqall seqall;
   AjPSeq    seq;
-  AjPStr    inseq    = NULL;
-  ajint     divide   = 0;
-  AjBool    at       = 0;
-  AjPStr    accid    = NULL;
-  AjPStr    filename = NULL;
-  AjBool    output   = 0;
-  char*     jobid;
+  AjPStr    inseq  = NULL;
+  ajint     divide = 0;
+  AjBool    at     = 0;
+  AjPStr    accid  = NULL;
+  char*     result;
 
-  AjPGraph    mult;
+  AjBool   plot = 0;
+  AjPFile  outf = NULL;
+  AjPGraph mult = NULL;
+
+  AjPStr filename = getUniqueFileName();
+
   gPlotParams gpp;
 
-  seqall   = ajAcdGetSeqall("sequence");
-  divide   = ajAcdGetInt("divide");
-  at       = ajAcdGetBoolean("at");
-  accid    = ajAcdGetString("accid");
-  filename = ajAcdGetString("filename");
-  output   = ajAcdGetBoolean("output");
-  mult     = ajAcdGetGraphxy("graph");
+  seqall = ajAcdGetSeqall("sequence");
+  divide = ajAcdGetInt("divide");
+  at     = ajAcdGetBoolean("at");
+  accid  = ajAcdGetString("accid");
+
+  plot = ajAcdGetToggle("plot");
+  outf = ajAcdGetOutfile("outfile");
+  mult = ajAcdGetGraphxy("graph");
 
   params.divide = divide;
   if(at){
@@ -78,19 +82,10 @@ int main(int argc, char *argv[]){
 
     if(soap_call_ns1__genomicskew(
 				  &soap, NULL, NULL,
-				  in0, &params, &jobid
+				  in0, &params, &result
 				  ) == SOAP_OK){
-      if(ajStrCmpC(filename, "ggenomicskew.[accession].csv") == 0){
-        ajStrAssignC(&filename, argv[0]);
-        ajStrAppendC(&filename, ".");
-        ajStrAppendS(&filename, accid);
-        ajStrAppendC(&filename, ".csv");
-      }else{
-        ajStrInsertC(&filename, -5, ".");
-        ajStrInsertS(&filename, -5, accid);
-      }
-      if(get_file(jobid, ajCharNewS(filename))==0){
-	if(!output){
+      if(get_file(result, ajCharNewS(filename))==0){
+	if(plot){
 	  AjPStr title = NULL;
 	  AjPPStr names = NULL;
 	  if((names = (AjPPStr)malloc(sizeof(AjPStr)*5)) == NULL){
@@ -112,6 +107,9 @@ int main(int argc, char *argv[]){
 	  ajStrDel(&title);
 	  if(gPlotFile(filename, mult, &gpp) == 1)
 	    fprintf(stderr, "Error in plotting\n");
+	}else{
+	  ajFmtPrintF(outf, "Sequence: %S\n%S\n",
+		      ajSeqGetNameS(seq), getContentS(filename));
 	}
       }else{
         fprintf(stderr, "Retrieval unsuccessful\n");
@@ -125,10 +123,12 @@ int main(int argc, char *argv[]){
     soap_done(&soap);
   }
 
+  if(outf)
+    ajFileClose(&outf);
+
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
   ajStrDel(&inseq);
-  ajStrDel(&filename);
 
   embExit();
   return 0;

@@ -6,15 +6,15 @@ Function
 Description
 
    This method calculate strand bias of bacterial genome using B1 index,
-   first proposed by Lobry and Sueoka in (2002), and further extended by 
+   first proposed by Lobry and Sueoka (2002), and further extended by 
    Rocha et al. (2006). Basic idea of B1 index is to calculate the 
    distance between the two strands, when the leading and lagging strands
-   are plotted in a coordinate system with axes representing G/(G+C) and
-   A/(A+T), using the third codon position of genes. This index measures the
-   degree of  replication-induced bias from Chargaff's second parity rule.
+   are plotted in a coordinate system with axes representing G/(G+C) and A/(A+T),
+   using the third codon position of genes. This index measures the degree of 
+   replication-induced bias from Chargaff's second parity rule.
 
-   Rocha et al. (2006) modified B1 index to only use >fourfold degenerate
-   codons, and to use T/(A+T) in place of A/(A+T).
+   Rocha et al. modified B1 index to only use >fourfold degenerate codons,
+   and to use T/(A+T) in place of A/(A+T).
 
  
    G-language SOAP service is provided by the
@@ -38,14 +38,19 @@ Usage
 
 % gb1  NC_000913.gbk
 Calculate strand bias of bacterial genome using B1 index
-0.063080624778723
+Output filename [*.gb1]:Died: Qualifier '-show' not found
 
+
+
+   Creates *.gb1
+   Output example is prepared in the data directory
 
 Command line arguments
 
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
+   -outfile            outfile    [*.gb1] Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -66,7 +71,7 @@ Input file format
 
 Output file format
 
-   The output from gb1 is to standard output.
+   The output from gb1 is to a file or stdout.
 
 Data files
 
@@ -120,7 +125,6 @@ See also
    ggcsi         GC Skew Index: an index for strand-specefic mutational bias
    glda_bias     Calculate strand bias of bacterial genome using linear
                  discriminant analysis (LDA)
-
 
 Author(s)
 

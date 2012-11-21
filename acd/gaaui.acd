@@ -39,10 +39,8 @@ section: output [
   type: "page"
 ]
 
-  string: filename [
-     parameter: "Y"
-     information: "Output filename"
-     default: "gaaui.[accession].csv"
+  outfile: outfile [
+    standard: "Y"
   ]
 
 endsection: output

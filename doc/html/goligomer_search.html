@@ -46,6 +46,8 @@ IT IS DONE FOR YOU.
    specified using degenerate nucleotide alphabet, or by regular expressions.<br>
    Performance is optimized for fast searching.<br>
 <br>
+   This method changes the returning value according to the given options.<br>
+<br>
   <br>
    G-language SOAP service is provided by the<br>
    Institute for Advanced Biosciences, Keio University.<br>
@@ -69,36 +71,13 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with goligomer_search
 
-% goligomer_search ecoli.gbk
+% goligomer_search  NC_000913.gbk atgcatgc
 Searches oligomers in given sequence
-Oligomer to search: atgcatgc
-147018
-366819
-653138
-863326
-1288615
-1627117
-2111200
-2246695
-2697278
-2750962
-2826906
-2882353
-2998362
-3022134
-3346029
-3477018
-3629113
-3842819
-3958304
-3982183
-4013480
-4285578
-4474663
-4484501
-4499080
-4604562
-4638391
+Output filename [*.goligomer_search]:
+
+
+   Creates *.goligomer_search
+   Output example is prepared in the data directory
 
 </pre></td></tr></table>
 
@@ -136,6 +115,14 @@ Oligomer to search: atgcatgc
 </tr>
 
 <tr bgcolor="#FFFFCC">
+<td>-outfile</td>
+<td>outfile</td>
+<td>Output file name</td>
+<td>Output file</td>
+<td><i>&lt;*&gt;</i>.goligomer_search</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
 <th align="left" colspan=5>Additional (Optional) qualifiers</th>
 </tr>
 
@@ -163,6 +150,14 @@ Oligomer to search: atgcatgc
 <td>&nbsp;</td>
 </tr>
 
+<tr bgcolor="#FFFFCC">
+<td>-show</td>
+<td>toggle</td>
+<td>Include to dump result to stdout</td>
+<td>Toggle value Yes/No</td>
+<td>No</td>
+</tr>
+
 </table>
 
 
@@ -175,7 +170,44 @@ Oligomer to search: atgcatgc
 <h2>Ouptut file format</h2>
 
 <p>
-   The output from goligomer_search is to standard output.
+   Creates *.goligomer_search
+   Output example is prepared in the data directory
+
+Command line arguments
+
+Standard (Mandatory) qualifiers (* if not always prompted):
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
+                                  format, or reference (input USA)
+  [-oligomer]          string     Oligomer to search (Any string)
+*  -outfile            outfile    [*.goligomer_search] Output file name
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -return             string     [position] 'position"' to return list of
+                                  positions where oligomers are found, 'oligo'
+                                  to return list of oligomers found ordered
+                                  by positions, 'both' to return a hash with
+                                  positions as keys and oligomers as values,
+                                  'distribution' to return four values (see
+                                  above) about the distribution of given
+                                  oligomer (Any string)
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+   -show               toggle     [N] Include to dump result to stdout
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+
+Input file format
+
+   goligomer_search reads nucleotide sequences.
+
+Output file format
+
+   The output from goligomer_search is to a file or stdout.
 </p>
 
 <h2>Data files</h2>

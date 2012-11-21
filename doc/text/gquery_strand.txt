@@ -51,19 +51,25 @@ Command line argumants
 =======
    Here is a sample session with gquery_strand
 
-% gquery_strand NC_000913.gbk
+% gquery_strand  NC_000913.gbk 1234
 Get the strand name (leading or lagging) from the given position
-Position to query [0]:
-leading
+Output filename [*.gquery_strand]:
 
+
+   Creates *.gquery_strand
+   Output example is prepared in the data directory
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
   [-position]          string     [0] Position to query (Any string)
+<<<<<<< HEAD
 >>>>>>> 1.0.0-beta
+=======
+*  -outfile            outfile    [*.gquery_strand] Output file name
+>>>>>>> devel
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -85,7 +91,11 @@ Ouptput file format
 =======
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
+<<<<<<< HEAD
 >>>>>>> 1.0.0
+=======
+   -show               toggle     [N] Include to dump result to stdout
+>>>>>>> devel
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -99,8 +109,12 @@ Input file format
 
 Output file format
 
+<<<<<<< HEAD
    The output from gquery_strand is to standard output.
 >>>>>>> 1.0.0-beta
+=======
+   The output from gquery_strand is to a file or stdout.
+>>>>>>> devel
 
 Data files
 
@@ -170,8 +184,11 @@ See also
    gquery_arm    Get the replication arm name (left or right) from the given
                  position
 
+<<<<<<< HEAD
 >>>>>>> 1.0.0
 
+=======
+>>>>>>> devel
 Author(s)
 
    Hidetoshi Itaya (celery@g-language.org)

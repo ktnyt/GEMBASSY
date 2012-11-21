@@ -30,9 +30,10 @@ Usage
 
 % gaaui  NC_000913.gbk
 Calculates various indece of amino acid usage
-Output filename [gaaui.[accession].csv]:
+Output filename [*.gaaui]:
 
-   Creates gaaui.[accession].csv
+
+   Creates *.gaaui
    Output example is prepared in the data directory
 
 Command line arguments
@@ -40,8 +41,7 @@ Command line arguments
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-  [-filename]          string     [gaaui.[accession].csv] Output filename (Any
-                                  string)
+   -outfile            outfile    [*.gaaui] Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -61,7 +61,7 @@ Input file format
 
 Output file format
 
-   The output from gaaui is to raw CSV format.
+   The output from gaaui is to a raw CSV file.
 
 Data files
 
@@ -109,7 +109,6 @@ See also
 
    gamino_info     Prints out basic amino acid sequence statistics
    gcodon_compiler Calculate various kinds of amino acid and codon usage data
-
 
 Author(s)
 

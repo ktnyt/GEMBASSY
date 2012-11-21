@@ -47,7 +47,7 @@ section: output [
   string: filename [
     standard: "Y"
     information: "Output filename"
-    default: "ggenome_map3.[accession].png"
+    default: "ggenome_map3.png"
   ]
 
 endsection: output

@@ -43,15 +43,15 @@ IT IS DONE FOR YOU.
 <H2>Description</H2>
 <p>
    This method calculate strand bias of bacterial genome using B1 index,<br>
-   first proposed by Lobry and Sueoka in (2002), and further extended by <br>
+   first proposed by Lobry and Sueoka (2002), and further extended by <br>
    Rocha et al. (2006). Basic idea of B1 index is to calculate the <br>
    distance between the two strands, when the leading and lagging strands<br>
-   are plotted in a coordinate system with axes representing G/(G+C) and<br>
-   A/(A+T), using the third codon position of genes. This index measures the<br>
-   degree of  replication-induced bias from Chargaff's second parity rule.<br>
+   are plotted in a coordinate system with axes representing G/(G+C) and A/(A+T),<br>
+   using the third codon position of genes. This index measures the degree of <br>
+   replication-induced bias from Chargaff's second parity rule.<br>
 <br>
-   Rocha et al. (2006) modified B1 index to only use >fourfold degenerate<br>
-   codons, and to use T/(A+T) in place of A/(A+T).<br>
+   Rocha et al. modified B1 index to only use >fourfold degenerate codons,<br>
+   and to use T/(A+T) in place of A/(A+T).<br>
 <br>
  <br>
    G-language SOAP service is provided by the<br>
@@ -78,7 +78,12 @@ IT IS DONE FOR YOU.
 
 % gb1  NC_000913.gbk
 Calculate strand bias of bacterial genome using B1 index
-0.063080624778723
+Output filename [*.gb1]:Died: Qualifier '-show' not found
+
+
+
+   Creates *.gb1
+   Output example is prepared in the data directory
 
 </pre></td></tr></table>
 
@@ -105,6 +110,14 @@ Calculate strand bias of bacterial genome using B1 index
 <td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
 <td>Readable sequence(s)</td>
 <td><b>Required</b></td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-outfile</td>
+<td>outfile</td>
+<td>Output file name</td>
+<td>Output file</td>
+<td><i>&lt;*&gt;</i>.gb1</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -147,7 +160,36 @@ Calculate strand bias of bacterial genome using B1 index
 <h2>Ouptut file format</h2>
 
 <p>
-   The output from gb1 is to standard output.
+   Creates *.gb1
+   Output example is prepared in the data directory
+
+Command line arguments
+
+Standard (Mandatory) qualifiers:
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
+                                  format, or reference (input USA)
+   -outfile            outfile    [*.gb1] Output file name
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -method             string     [rocha] Choose method of 'lobry' or 'rocha'
+                                  (Any string)
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+
+Input file format
+
+   gb1 reads nucleotide sequences.
+
+Output file format
+
+   The output from gb1 is to a file or stdout.
 </p>
 
 <h2>Data files</h2>

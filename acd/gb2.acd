@@ -30,7 +30,12 @@ section: advanced [
 endsection: advanced
 
 section: output [
-	information: "Output section"
-	type: "page"
+  information: "Output section"
+  type: "page"
 ]
+
+  outfile: outfile [
+    standard: "Y"
+  ]
+
 endsection: output

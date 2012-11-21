@@ -32,27 +32,27 @@ Usage
 
 % gseq2png  NC_000913.gbk
 Converts a sequence to PNG image
-Output filename [gseq2png.[accession].png]:
+Output filename [*.gseq2png]:
 
-   Creates gseq2png.[accession].png
+
+   Creates *.gseq2png
    Output example is prepared in the data directory
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-   -filename           string     [gseq2png.[accession].png] Output filename
-                                  (Any string)
+*  -filename           string     [gseq2png.png] Output filename (Any string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -width              integer    [640] Width of the image (Any integer value)
    -window             integer    [20] Window size of a sequence to represent
                                   each pixel (Any integer value)
-   -show               boolean    [N] Include to show png with X11 window
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
+   -show               toggle     [N] Inclue to show PNG through X11 window
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -66,7 +66,7 @@ Input file format
 
 Output file format
 
-   The output from gseq2png is to PNG format.
+   The output from gseq2png is to png.
 
 Data files
 
@@ -109,7 +109,6 @@ Known bugs
 See also
 
    gcgr Create a Chaos Game Representation of a given sequence
-
 
 Author(s)
 

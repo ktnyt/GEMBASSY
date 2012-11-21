@@ -44,22 +44,8 @@ IT IS DONE FOR YOU.
 <p>
    This program calculates codon usage differences between gene classes for<br>
    identifying Predicted Highly eXpressed (PHX) and Putative Alien (PA) genes.<br>
-<br>
-<br>
-   G-language SOAP service is provided by the<br>
-   Institute for Advanced Biosciences, Keio University.<br>
-   The original web service is located at the following URL:<br>
-<br>
-   http://www.g-language.org/wiki/soap<br>
-<br>
-   WSDL(RPC/Encoded) file is located at:<br>
-<br>
-   http://soap.g-language.org/g-language.wsdl<br>
-<br>
-   Documentation on G-language Genome Analysis Environment methods are<br>
-   provided at the Document Center<br>
-<br>
-   http://ws.g-language.org/gdoc/
+   The "expression measure" of a gene, E_g, will be accessible at<br>
+   $gb->{"FEATURE$i"}->{E_g}.
 </p>
 
 <H2>Usage</H2>
@@ -70,9 +56,10 @@ IT IS DONE FOR YOU.
 
 % gphx  NC_000913.gbk
 Identify predicted highly expressed gene
-Output filename [gphx.[accession].csv]:
+Output filename [*.gphx]:
 
-   Creates gphx.[accession].csv
+
+   Creates *.gphx
    Output example is prepared in the data directory
 
 </pre></td></tr></table>
@@ -103,11 +90,11 @@ Output filename [gphx.[accession].csv]:
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-filename</td>
-<td>string</td>
-<td>Output filename</td>
-<td>Any string</td>
-<td>gbase_entropy.[accession].csv</td>
+<td>-outfile</td>
+<td>outfile</td>
+<td>Output file name</td>
+<td>Output file</td>
+<td><i>&lt;*&gt;</i>.gphx</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -166,7 +153,7 @@ Output filename [gphx.[accession].csv]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates gphx.[accession].csv
+   Creates *.gphx
    Output example is prepared in the data directory
 
 Command line arguments
@@ -174,8 +161,7 @@ Command line arguments
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-   -filename           string     [gbase_entropy.[accession].csv] Output
-                                  filename (Any string)
+   -outfile            outfile    [*.gphx] Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -201,7 +187,7 @@ Input file format
 
 Output file format
 
-   The output from gphx is to raw CSV format.
+   The output from gphx is to a raw CSV file.
 </p>
 
 <h2>Data files</h2>
@@ -219,11 +205,9 @@ None.
 <h2>Refrences</h2>
 
 <pre>
-   CMBL- PHX/PA user guide http://www.cmbl.uga.edu/software/PHX-PA-guide.htm
-
-   Henry I, Sharp PM. 2007 Mol Biol Evol. 24(1):10-2.
-
-   Karlin and Mrazek (2000) J.Bacteriol. 182(18):5238-5250.
+      CMBL- PHX/PA user guide http://www.cmbl.uga.edu/software/PHX-PA-guide.htm
+      Henry I, Sharp PM. 2007 Mol Biol Evol. 24(1):10-2.
+      Karlin and Mrazek (2000) J.Bacteriol. 182(18):5238-5250.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench

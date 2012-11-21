@@ -1,18 +1,23 @@
                                  gdelta_enc
 Function
 
-   Calculate the codon usage bias related to translation optimization
-   (delta ENC)
+   Calculate the codon usage bias related to translation optimization (delta ENC)
 
 Description
 
-   This method calculates the codon usage bias related to translation
-   optimization (delta ENC) described in Rocha (2004). The basic idea is to
-   calculate the Effective Number of Codons (ENC) for highly-expressed genes
-   (ribosomal genes) and weakly-expressed genes (all genes), and taking the
-   relative difference between them.
+   This method calculates the codon usage bias related to translation optimization 
+   (delta ENC) described in Reference 1. The basic idea is to calculate the Effective
+   Number of Codons (ENC) for highly-expressed genes (ribosomal genes) and weakly-
+   expressed genes (all genes), and taking the relative difference between them.
 
+Usage: 
+    $delta_enc = delta_enc($genome);
 
+  Options:
+    None.
+
+  References:
+   1. Rocha EPC (2004) "Codon 
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -34,19 +39,24 @@ Usage
 
 % gdelta_enc  NC_000913.gbk
 Calculate the codon usage bias related to translation optimization (delta ENC)
-0.23826860841424
+Output filename [*.gdelta_enc]:
 
+
+   Creates *.gdelta_enc
+   Output example is prepared in the data directory
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
+*  -outfile            outfile    [*.gdelta_enc] Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
+   -show               toggle     [N] Include to dump result to stdout
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -60,7 +70,7 @@ Input file format
 
 Output file format
 
-   The output from gdelta_enc is to standard output.
+   The output from gdelta_enc is to a file or stdout.
 
 Data files
 
@@ -84,6 +94,7 @@ References
       large-scale analysis of high-throughput omics data, J. Pest Sci.,
       31, 7.
 
+   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Wev Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
 
@@ -108,7 +119,6 @@ See also
    gcbi     Calculates the codon bias index (CBI)
    gicdi    Calculates the intrinsic codon deviation index (ICDI)
    gs_value Calculate the strength of selected codon usage bias (S)
-
 
 Author(s)
 

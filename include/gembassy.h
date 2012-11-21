@@ -143,3 +143,22 @@ AjPStr getGenbank(AjPSeq seq){
 
   return inseq;
 }
+
+AjPStr getContentS(AjPStr filename){
+  AjPFile file    = NULL;
+  AjPStr  line    = NULL;
+  AjPStr  content = NULL;
+
+  if((file = ajFileNewInNameS(filename)) == NULL)
+    embExitBad();
+
+  while(ajReadline(file, &line))
+    ajStrAppendS(&content, line);
+
+  if(file)
+    ajFileClose(&file);
+
+  ajSysFileUnlinkS(filename);
+
+  return content;
+}

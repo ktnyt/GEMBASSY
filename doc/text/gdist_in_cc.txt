@@ -29,18 +29,22 @@ Usage
 
    Here is a sample session with gdist_in_cc
 
-% gdist_in_cc  NC_000913.gbk
+% gdist_in_cc  NC_000913.gbk 1234
 Calculates the distance between two loci in circular chromosomes
-0
+Output filename [*.gdist_in_cc]:
 
+
+   Creates *.gdist_in_cc
+   Output example is prepared in the data directory
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
   [-position]          integer    [0] (no help text) integer value (Any
                                   integer value)
+*  -outfile            outfile    [*.gdist_in_cc] Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -49,6 +53,7 @@ Standard (Mandatory) qualifiers:
                                   integer value)
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
+   -show               toggle     [N] Include to dump result to stdout
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -62,7 +67,7 @@ Input file format
 
 Output file format
 
-   The output from gdist_in_cc is to standard output.
+   The output from gdist_in_cc is to a file or stdout.
 
 Data files
 
@@ -107,7 +112,6 @@ See also
    gconsensus_z Calculate consensus in given array of sequences
    gpalindrome  Searches palindrome sequences
    gseqinfo     Prints out basic nucleotide sequence statistics
-
 
 Author(s)
 

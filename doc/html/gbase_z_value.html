@@ -42,24 +42,8 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This function calculates and extracts conserved oligomers per position using<br>
-   Z-score, in regions around the start/stop codons using Z-score<br>
-<br>
-<br>
-   G-language SOAP service is provided by the<br>
-   Institute for Advanced Biosciences, Keio University.<br>
-   The original web service is located at the following URL:<br>
-<br>
-   http://www.g-language.org/wiki/soap<br>
-<br>
-   WSDL(RPC/Encoded) file is located at:<br>
-<br>
-   http://soap.g-language.org/g-language.wsdl<br>
-<br>
-   Documentation on G-language Genome Analysis Environment methods are<br>
-   provided at the Document Center<br>
-<br>
-   http://ws.g-language.org/gdoc/
+   This function calculates and extracts conserved oligomers per position using Z-score,<br>
+   in regions around the start/stop codons using Z-score
 </p>
 
 <H2>Usage</H2>
@@ -70,9 +54,10 @@ IT IS DONE FOR YOU.
 
 % gbase_z_value  NC_000913.gbk
 Extracts conserved oligomers per position using Z-score
-Output filename [gbase_z_value.[accession].csv]:
+Output filename [*.gbase_z_value]:
 
-   Creates gbase_z_value.[accession].csv
+
+   Creates *.gbase_z_value
    Output example is prepared in the data directory
 
 </pre></td></tr></table>
@@ -103,11 +88,11 @@ Output filename [gbase_z_value.[accession].csv]:
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-filename</td>
-<td>string</td>
-<td>Output filename</td>
-<td>Any string</td>
-<td>gbase_z_value.[accession].csv</td>
+<td>-outfile</td>
+<td>outfile</td>
+<td>Output file name</td>
+<td>Output file</td>
+<td><i>&lt;*&gt;</i>.gbase_z_value</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -182,7 +167,7 @@ Output filename [gbase_z_value.[accession].csv]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates gbase_z_value.[accession].csv
+   Creates *.gbase_z_value
    Output example is prepared in the data directory
 
 Command line arguments
@@ -190,8 +175,7 @@ Command line arguments
 Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-   -filename           string     [gbase_z_value.[accession].csv] Output
-                                  filename (Any string)
+   -outfile            outfile    [*.gbase_z_value] Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -221,7 +205,7 @@ Input file format
 
 Output file format
 
-   The output from gbase_z_value is to raw CSV format.
+   The output from gbase_z_value is to a raw CSV file.
 </p>
 
 <h2>Data files</h2>

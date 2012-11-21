@@ -46,29 +46,36 @@ IT IS DONE FOR YOU.
    in bacterial genomes by several means. <br>
 <br>
    1. Use of databases<br>
-     By default, grep_ori_ter tries to retrieve the position of replication<br>
-     origin in DoriC Gao and Zhang (2007) database, and the position of<br>
-     replication terminus from the supplemental data provided in Kono et al.<br>
-     (2011).<br>
+   By default, rep_ori_ter() tries to retrieve the position of replication<br>
+   origin in DoriC (Reference 1) database, and the position of replication<br>
+   terminus from the supplemental data provided in Reference 2.<br>
 <br>
-     If the position of origin cannot be found in the database, but "rep_origin <br>
-     feature is available, center position within this feature is used for<br>
-     origin. <br>
+   If the position of origin cannot be found in the database, but "rep_origin" <br>
+   feature is available, center position within this feature is used for origin. <br>
 <br>
    2. Oriloc<br>
-     Using -oriloc option, you can predict the replication origin and <br>
-     terminus using the popular Oriloc program developed by Lobry et al. <br>
-     available as part of the SeqinR package Frank and Lobry (2000).<br>
+   Using -oriloc=>1 option, you can predict the replication origin and <br>
+   terminus using the popular Oriloc program developed by Lobry et al. <br>
+   available as part of the SeqinR package (Reference 3).<br>
+<br>
+   Installation of SeqinR package is required to use this feature.<br>
+   Type: install.packages('seqinr', dep=T)<br>
+   in R statistics package to install SeqinR.<br>
 <br>
    3. Setting custom origin and terminus<br>
-     Use -ori=>position1, -ter=>position2 to set your own positions.<br>
+   Use -ori=>$position1, -ter=>$position2 to set your own positions.<br>
 <br>
    4. Use GC skew shift-point<br>
-      If the positions of origin or terminus cannot be found in the databases,<br>
-      grep_ori_ter automatically calls find_ori_ter() method to predict the <br>
-      positions using GC skew shift-points at one-base-pair resolution.<br>
+   If the positions of origin or terminus cannot be found in the databases,<br>
+   rep_ori_ter() automatically calls find_ori_ter() method to predict the <br>
+   positions using GC skew shift-points at one-base-pair resolution.<br>
 <br>
-   You can always use -clear option to disable the use of above cache.<br>
+   After calling this function, positions of origin and terminus are stored <br>
+   as follows:<br>
+   $genome->{FEATURE0}->{origin}<br>
+   $genome->{FEATURE0}->{terminus}<br>
+<br>
+   You can always use -clear=>1 option to disable the use of above cache.<br>
 <br>
  <br>
    G-language SOAP service is provided by the<br>
@@ -93,9 +100,13 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with grep_ori_ter
 
-% grep_ori_ter NC_000913.gbk
+% grep_ori_ter  NC_000913.gbk
 Get the positions of replication origin and terminus
-3923881	1550412
+Output filename [*.grep_ori_ter]:
+
+
+   Creates *.grep_ori_ter
+   Output example is prepared in the data directory
 
 </pre></td></tr></table>
 
@@ -122,6 +133,14 @@ Get the positions of replication origin and terminus
 <td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
 <td>Readable sequence(s)</td>
 <td><b>Required</b></td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-outfile</td>
+<td>outfile</td>
+<td>Output file name</td>
+<td>Output file</td>
+<td><i>&lt;*&gt;</i>.grep_ori_ter</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -176,6 +195,14 @@ Get the positions of replication origin and terminus
 <td>&nbsp;</td>
 </tr>
 
+<tr bgcolor="#FFFFCC">
+<td>-show</td>
+<td>toggle</td>
+<td>Include to dump result to stdout</td>
+<td>Toggle value Yes/No</td>
+<td>No</td>
+</tr>
+
 </table>
 
 
@@ -188,7 +215,45 @@ Get the positions of replication origin and terminus
 <h2>Ouptut file format</h2>
 
 <p>
-   The output from grep_ori_ter is to standard output.
+   Creates *.grep_ori_ter
+   Output example is prepared in the data directory
+
+Command line arguments
+
+Standard (Mandatory) qualifiers (* if not always prompted):
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
+                                  format, or reference (input USA)
+*  -outfile            outfile    [*.grep_ori_ter] Output file name
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -oriloc             boolean    [0] Set to 1 to use Oriloc for prediction
+   -gcskew             boolean    [0] Set to 1 to use GC skew shift-point for
+                                  prediction
+   -difthreshold       integer    [0] Distance between the GC skew shift point
+                                  and predicted dif site expressed as the
+                                  precentage of genome size, used as a
+                                  threshold to retrieve dif sequence from the
+                                  database (Any integer value)
+   -dbonly             boolean    [0] Set to 1 to only use values available in
+                                  databases and to suppress prediction
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+   -show               toggle     [N] Include to dump result to stdout
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+
+Input file format
+
+   grep_ori_ter reads nucleotide sequences.
+
+Output file format
+
+   The output from grep_ori_ter is to a file or stdout.
 </p>
 
 <h2>Data files</h2>
@@ -209,8 +274,8 @@ None.
    Gao F and Zhang CT (2007) "DoriC: a database of oriC regions in bacterial
       genomes", Bioinformatics, 23(14):1866-1867
 
-   Kono N et al. (2011) "Comprehensive prediction of chromosome dimer
-      resolution sites in bacterial genomes", BMC Genomics, 12(1):19
+   Kono N et al. (2011) "Comprehensive prediction of chromosome dimer resolution 
+      sites in bacterial genomes", BMC Genomics, 12(1):19
 
    Frank AC and Lobry JR (2000) "Oriloc: prediction of replication boundaries 
       in unannotated bacterial chromosomes", Bioinformatics, 16(6):560-561

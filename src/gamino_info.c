@@ -22,9 +22,15 @@ int main(int argc, char *argv[]){
   AjPSeqall seqall;
   AjPSeq    seq;
   AjPStr    inseq = NULL;
-  char*     jobid;
+  char*     result;
+
+  AjBool  show = 0;
+  AjPFile outf = NULL;
 
   seqall = ajAcdGetSeqall("sequence");
+
+  show = ajAcdGetToggle("show");
+  outf = ajAcdGetOutfile("outfile");
   
   while(ajSeqallNext(seqall, &seq)){
 
@@ -42,20 +48,25 @@ int main(int argc, char *argv[]){
 
     if(soap_call_ns1__amino_USCOREinfo(
                                        &soap, NULL, NULL,
-                                       in0, &jobid
-                                       ) == SOAP_OK)
-      fprintf(stdout, "%s\n", jobid);
-    else
+                                       in0, &result
+                                       ) == SOAP_OK){
+      if(show)
+	ajFmtPrint("Sequence: %S\n%S\n",
+		   ajSeqGetAccS(seq), ajStrNewC(result));
+      else
+	ajFmtPrintF(outf, "Sequence: %S\n%S\n",
+		    ajSeqGetAccS(seq), ajStrNewC(result));
+    }else{
       soap_print_fault(&soap, stderr);
+    }
   
     soap_destroy(&soap);
     soap_end(&soap);
     soap_done(&soap);
   }
   
-  soap_destroy(&soap);
-  soap_end(&soap);
-  soap_done(&soap);
+  if(outf)
+    ajFileClose(&outf);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
