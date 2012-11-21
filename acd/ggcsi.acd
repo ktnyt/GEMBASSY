@@ -21,7 +21,7 @@ section: advanced [
   type: "page"
 ]
 
-  integer: v [
+  integer: version [
     information: "Version of GCSI. Generalized GCSI is selected by default"
     default: "2"
   ]
@@ -46,7 +46,7 @@ section: advanced [
     default: "0"
   ]
 
-  boolean: p [
+  boolean: pval [
     information: "Calculate p-value when GCSI version 2 is selected"
     default: "0"
   ]

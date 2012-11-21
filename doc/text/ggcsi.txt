@@ -62,14 +62,14 @@ Command line arguments
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
-   -v                  integer    [2] Version of GCSI. Generalized GCSI is
+   -version            integer    [2] Version of GCSI. Generalized GCSI is
                                   selected by default (Any integer value)
    -window             integer    [4096] Number of windows. Must be a power of
                                   2 (Any integer value)
    -purine             boolean    [0] Use purine skew for calculation
    -keto               boolean    [0] Use keto skew for calculation
    -at                 boolean    [0] Use AT skew for calculation
-   -p                  boolean    [0] Calculate p-value when GCSI version 2 is
+   -pval               boolean    [0] Calculate p-value when GCSI version 2 is
                                   selected
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
