@@ -49,17 +49,15 @@ Command line argumants
 =======
    Here is a sample session with gquery_arm
 
-% gquery_arm  NC_000913.gbk 1234
+% gquery_arm NC_000913.gbk 1234
 Get the replication arm name (left or right) from the given position
-Output filename [*.gquery_arm]:
+Output filename [nc_000913.gquery_arm]:
 
-
-   Creates *.gquery_arm
-   Output example is prepared in the data directory
+   Creates nc_000913.gquery_arm
 
 Command line arguments
 
-Standard (Mandatory) qualifiers (* if not always prompted):
+   Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
 >>>>>>> 1.0.0-beta
                                   format, or reference (input USA)

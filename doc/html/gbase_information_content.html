@@ -68,16 +68,9 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gbase_information_content
 
-% gbase_information_content  -plotNC_000913.gbk -graph cps
+% gbase_information_content -plot NC_000913.gbk
 Calculates and graphs the sequence conservation using information content
-Output filename [*.gbase_information_content]:Error: Failed to open filename '-plotNC_000913.gbk'
-Error: Unable to read sequence '-plotNC_000913.gbk'
-Died: gbase_information_content terminated: Bad value for '-sequence' with -auto defined
-
-
-
-   Creates *.gbase_information_content
-   Output example is prepared in the data directory
+Created gbase_information_content.ps
 
 </pre></td></tr></table>
 
@@ -119,7 +112,7 @@ Died: gbase_information_content terminated: Bad value for '-sequence' with -auto
 <td>outfile</td>
 <td>Output file name</td>
 <td>Output file</td>
-<td><i>&lt;*&gt;</i>.gbase_information_content</td>
+<td>gbase_information_content.$(sequence.name).csv</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -194,8 +187,6 @@ Died: gbase_information_content terminated: Bad value for '-sequence' with -auto
 <h2>Ouptut file format</h2>
 
 <p>
-                                  name
-
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -position           string     [start] either 'start' (around start codon)

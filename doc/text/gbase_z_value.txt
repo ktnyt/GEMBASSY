@@ -5,14 +5,10 @@ Function
 
 Description
 
-   This function calculates and extracts conserved oligomers per position using Z-score,
-   in regions around the start/stop codons using Z-score
+   This function calculates and extracts conserved oligomers per position using
+   Z-score, in regions around the start/stop codons using Z-score
 
-Usage:
-    $structure = base_z_value($genome);
 
-    Here the $structure is a reference to the array of hashes, intended for 
-    internal 
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -32,20 +28,20 @@ Usage
 
    Here is a sample session with gbase_z_value
 
-% gbase_z_value  NC_000913.gbk
+% gbase_z_value NC_000913.gbk
 Extracts conserved oligomers per position using Z-score
-Output filename [*.gbase_z_value]:
+Output filename [nc_000913.gbase_z_value]:
 
 
-   Creates *.gbase_z_value
-   Output example is prepared in the data directory
+   Creates nc_000913.gbase_z_value
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+   Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-   -outfile            outfile    [*.gbase_z_value] Output file name
+   -outfile            outfile    [gbase_z_value.$(sequence.name).csv] Output
+                                  file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:

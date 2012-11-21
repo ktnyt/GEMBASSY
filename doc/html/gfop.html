@@ -42,9 +42,7 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This program calculates the frequency of optimal codons (Fop), and<br>
-   inputs in the G instance; i.e. Fop values will be accessible at<br>
-   $gb->{"FEATURE$i"}->{fop};<br>
+   This program calculates the frequency of optimal codons (Fop).<br>
 <br>
   <br>
    G-language SOAP service is provided by the<br>
@@ -69,13 +67,11 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gfop
 
-% gfop  NC_000913.gbk
+% gfop NC_000913.gbk
 Calculate the frequency of optimal codons (Fop)
-Output filename [*.gfop]:
+Output filename [gfop.nc_000913.csv]:
 
-
-   Creates *.gfop
-   Output example is prepared in the data directory
+   Creates gfop.nc_000913.csv
 
 </pre></td></tr></table>
 
@@ -109,7 +105,7 @@ Output filename [*.gfop]:
 <td>outfile</td>
 <td>Output file name</td>
 <td>Output file</td>
-<td><i>&lt;*&gt;</i>.gfop</td>
+<td>gfop.$(sequence.name).csv</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -152,15 +148,14 @@ Output filename [*.gfop]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates *.gfop
-   Output example is prepared in the data directory
+   Creates gfop.nc_000913.csv
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+   Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-   -outfile            outfile    [*.gfop] Output file name
+   -outfile            outfile    [gfop.$(sequence.name).csv] Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -199,8 +194,9 @@ None.
 <h2>Refrences</h2>
 
 <pre>
-      Ikemura (1981) J.Mol.Biol. 151:389-409.
-      Ikemura (1985) Mol.Biol.Evol. 2(1):13-34.
+   Ikemura (1981) J.Mol.Biol. 151:389-409.
+
+   Ikemura (1985) Mol.Biol.Evol. 2(1):13-34.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench

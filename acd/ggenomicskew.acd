@@ -64,6 +64,7 @@ section: output [
     standard: "@(!$(plot))"
     nullok: "Y"
     nulldefault: "$(plot)"
+    default: "genomicskew.$(sequence.name).csv"
   ]
 
 endsection: output

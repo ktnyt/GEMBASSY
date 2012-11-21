@@ -57,6 +57,7 @@ section: output [
     standard: "@(!$(plot))"
     nullok: "Y"
     nulldefault: "$(plot)"
+    default: "gconsensus_z.$(sequence.name).csv"
   ]
 
 endsection: output

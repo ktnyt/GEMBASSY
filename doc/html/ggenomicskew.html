@@ -68,16 +68,9 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with ggenomicskew
 
-% ggenomicskew  -plotNC_000913.gbk -graph cps
+% ggenomicskew -plot NC_000913.gbk
 Calculates the GC skew in different regions of the given genome
-Output filename [*.ggenomicskew]:Error: Failed to open filename '-plotNC_000913.gbk'
-Error: Unable to read sequence '-plotNC_000913.gbk'
-Died: ggenomicskew terminated: Bad value for '-sequence' with -auto defined
-
-
-
-   Creates *.ggenomicskew
-   Output example is prepared in the data directory
+Created ggenomicskew.ps
 
 </pre></td></tr></table>
 
@@ -119,7 +112,7 @@ Died: ggenomicskew terminated: Bad value for '-sequence' with -auto defined
 <td>outfile</td>
 <td>Output file name</td>
 <td>Output file</td>
-<td><i>&lt;*&gt;</i>.ggenomicskew</td>
+<td>genomicskew.$(sequence.name).csv</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -200,29 +193,6 @@ Input file format
 <h2>Ouptut file format</h2>
 
 <p>
-   Additional (Optional) qualifiers: (none)
-   Advanced (Unprompted) qualifiers:
-   -divide             integer    [250] Window to divide into (Any integer
-                                  value)
-   -at                 boolean    [0] Input 1 when observing AT skew instead
-                                  of GC skew
-   -csv                boolean    [N] Include to create CSV file
-   -accid              string     Include to use sequence accession ID as
-                                  query (Any string)
-   -plot               toggle     [N] Include to plot result
-
-   General qualifiers:
-   -help               boolean    Report command line options and exit. More
-                                  information on associated and general
-                                  qualifiers can be found with -help -verbose
-
-
-Input file format
-
-   ggenomicskew reads nucleotide sequences.
-
-Output file format
-
    The output from ggenomicskew is to the specified graphics device.
 </p>
 

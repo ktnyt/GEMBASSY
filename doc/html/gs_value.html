@@ -42,24 +42,40 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This method calculates the strength of selected codon usage bias (S), also known<br>
-   as Sharp's S index. Using four codon pairs that are recognized by the same tRNA <br>
-   anticodon, namely, Phe(UUC and UUU), Ile(AUC and AUU), Tyr(UAC and UAU), and <br>
-   Asn(AAC and AAU), since the former in each of the pairs has stronger Watson-Crick<br>
-   pairing, selection towards the former codon can be observed for highly expressed <br>
-   genes. S index is therefore the weighted average of such bias, giving an over-all<br>
-   value for a genome, indicating its strength of selected codon usage bias.<br>
-   See Reference 1 for details.<br>
+   This method calculates the strength of selected codon usage bias (S), also<br>
+   known as Sharp's S index. Using four codon pairs that are recognized by the<br>
+   same tRNA anticodon, namely, Phe(UUC and UUU), Ile(AUC and AUU), Tyr(UAC<br>
+   and UAU), and Asn(AAC and AAU), since the former in each of the pairs has<br>
+   stronger Watson-Crick pairing, selection towards the former codon can be<br>
+   observed for highly expressed genes. S index is therefore the weighted<br>
+   average of such bias, giving an over-all value for a genome, indicating its<br>
+   strength of selected codon usage bias. See Sharp et al. (2005) for details.<br>
 <br>
    Sharp originally defined 40 genes as the highly expressed gene group, with<br>
    tufA, tsf, fusA, rplA-rplF, rplI-rplT, rpsB-rpsT. Since the identificaiton <br>
    of these genes is not convenient for computational automation, by default, <br>
    this method uses ribosomal proteins as the highly expressed gene group, <br>
-   as used by Rocha and colleagues in Reference 2.<br>
+   as used by Vieira-Silva and Rocha (2010).<br>
 <br>
-   However, Sharp's gene group can be optionally used with -sharp=>1 option.<br>
+   However, Sharp's gene group can be optionally used with -sharp option.<br>
    With this option, all of the 40 genes must be named accordingly in the given<br>
-   genome file.
+   genome file.<br>
+<br>
+<br>
+   G-language SOAP service is provided by the<br>
+   Institute for Advanced Biosciences, Keio University.<br>
+   The original web service is located at the following URL:<br>
+<br>
+   http://www.g-language.org/wiki/soap<br>
+<br>
+   WSDL(RPC/Encoded) file is located at:<br>
+<br>
+   http://soap.g-language.org/g-language.wsdl<br>
+<br>
+   Documentation on G-language Genome Analysis Environment methods are<br>
+   provided at the Document Center<br>
+<br>
+   http://ws.g-language.org/gdoc/
 </p>
 
 <H2>Usage</H2>
@@ -68,15 +84,11 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gs_value
 
-% gs_value  NC_000913.gbk
+% gs_value NC_000913.gbk
 Calculate the strength of selected codon usage bias (S)
-Output filename [*.gs_value]:Error: Section 'output' has no endsection
-Error: File /Users/kotone/usr/emblocal/share/EMBOSS/acd/gs_value.acd line 48: Unclosed sections in ACD file
+Output filename [nc_000913.gs_value]:
 
-
-
-   Creates *.gs_value
-   Output example is prepared in the data directory
+   Creates nc_000913.gs_value
 
 </pre></td></tr></table>
 
@@ -84,8 +96,72 @@ Error: File /Users/kotone/usr/emblocal/share/EMBOSS/acd/gs_value.acd line 48: Un
 
 <h2>Command line arguments</h2>
 
-Error: Section 'output' has no endsection
-Error: File /Users/kotone/usr/emblocal/share/EMBOSS/acd/gs_value.acd line 48: Unclosed sections in ACD file
+<table border cellspacing=0 cellpadding=3 bgcolor="#ccccff">
+<tr bgcolor="#FFFFCC">
+<th align="left">Qualifier</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+<th align="left">Allowed values</th>
+<th align="left">Default</th>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<th align="left" colspan=5>Standard (Mandatory) qualifiers</th>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>[-sequence]<br>(Parameter 1)</td>
+<td>seqall</td>
+<td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
+<td>Readable sequence(s)</td>
+<td><b>Required</b></td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-outfile</td>
+<td>outfile</td>
+<td>Output file name</td>
+<td>Output file</td>
+<td><i>&lt;*&gt;</i>.gs_value</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<th align="left" colspan=5>Additional (Optional) qualifiers</th>
+</tr>
+
+<tr>
+<td colspan=5>(none)</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<th align="left" colspan=5>Advanced (Unprompted) qualifiers</th>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-sharp</td>
+<td>integer</td>
+<td>Set to 1 to use the 40 genes used by Sharp instead of ribosomal proteins</td>
+<td>Any integer value</td>
+<td>0</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-accid</td>
+<td>string</td>
+<td>Include to use sequence accession ID as query</td>
+<td>Any string</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-show</td>
+<td>toggle</td>
+<td>Include to dump result to stdout</td>
+<td>Toggle value Yes/No</td>
+<td>No</td>
+</tr>
+
+</table>
 
 
 <h2>Input file format</h2>
@@ -97,6 +173,35 @@ Error: File /Users/kotone/usr/emblocal/share/EMBOSS/acd/gs_value.acd line 48: Un
 <h2>Ouptut file format</h2>
 
 <p>
+   Creates nc_000913.gs_value
+
+Command line arguments
+
+   Standard (Mandatory) qualifiers (* if not always prompted):
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
+                                  format, or reference (input USA)
+*  -outfile            outfile    [*.gs_value] Output file name
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -sharp              integer    [0] Set to 1 to use the 40 genes used by
+                                  Sharp instead of ribosomal proteins (Any
+                                  integer value)
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+   -show               toggle     [N] Include to dump result to stdout
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+Input file format
+
+   gs_value reads nucleotide sequences.
+
+Output file format
+
    The output from gs_value is to a file or stdout.
 </p>
 
@@ -115,11 +220,11 @@ None.
 <h2>Refrences</h2>
 
 <pre>
-   Sharp PM et al. (2005) "Variation in the strength of selected codon usage bias among 
-      bacteria", Nucleic Acids Research, 33(4):1141-1153
+   Sharp PM et al. (2005) "Variation in the strength of selected codon usage
+      bias among bacteria", Nucleic Acids Research, 33(4):1141-1153
 
-   Vieira-Silva S and Rocha EPC (2010) "The systemic imprint of growth and its uses in 
-      ecological (meta)genomics", PLoS Genetics, 6(1):e1000808
+   Vieira-Silva S and Rocha EPC (2010) "The systemic imprint of growth and its
+      uses in ecological (meta)genomics", PLoS Genetics, 6(1):e1000808
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench

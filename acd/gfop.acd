@@ -41,6 +41,7 @@ section: output [
 
   outfile: outfile [
     standard: "Y"
+    default: "gfop.$(sequence.name).csv"
   ]
 
 endsection: output

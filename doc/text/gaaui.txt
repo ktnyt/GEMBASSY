@@ -28,20 +28,19 @@ Usage
 
    Here is a sample session with gaaui
 
-% gaaui  NC_000913.gbk
+% gaaui NC_000913.gbk
 Calculates various indece of amino acid usage
-Output filename [*.gaaui]:
+Output filename [gaaui.nc_000913.csv]:
 
-
-   Creates *.gaaui
-   Output example is prepared in the data directory
+   Creates gaaui.nc_000913.csv
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+   Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-   -outfile            outfile    [*.gaaui] Output file name
+   -outfile            outfile    [gaaui.$(sequence.name).csv] Output file
+                                  name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:

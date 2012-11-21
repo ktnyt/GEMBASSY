@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-                                 gfindoriter
-=======
                                 gfind_ori_ter
->>>>>>> 1.0.0-beta
 Function
 
    Predict the replication origin and terminus in bacterial genomes
@@ -11,25 +7,19 @@ Description
 
    Predicts the replicational origin and terminus in circular bacterial genomes,
    by taking the vertices of cumulative skew graphs (GC, keto, or purine). See
-<<<<<<< HEAD
    (Frank and Lobry, 2000) for the basic idea behind this algorithm
    (but also note that this algorithm is different from that of Oriloc, which
    uses GC3 of genes). 
 
-   Terminus of replication can be more accurate by using noise-reduction 
-   filtering using Fourier spectrum of the GC skew. This low-pass filtering
-   can be applied using -filter option. See (Arakawa et al., 2007) for details.
-
-=======
-   Reference 1 for the basic idea behind thid algorithm (but also note that this
-   algorithm is different from that of Oriloc, which uses GC3 of genes). 
+   Frank and Lobry (2000) for the basic idea behind thid algorithm (but also
+   note that this algorithm is different from that of Oriloc, which uses GC3
+   of genes). 
 
    Terminus of replication can be more accurate by using noise-reduction 
    filtering using Fourier spectrum of the GC skew. This low-pass filtering
-   can be applied using -filter option. See Reference 2 for details.
+   can be applied using -filter option. See Arakawa et al. (2003) for details.
 
  
->>>>>>> 1.0.0-beta
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -47,35 +37,18 @@ Description
 
 Usage
 
-<<<<<<< HEAD
-   Here is a sample session with gfindoriter
-
-% gfindoriter 
-Predict the replication origin and terminus in bacterial genomes
-Input nucleotide sequence: nucleotideSample.fna
-origin	terminus
-3768	65288
- 
-Command line argumants
-
-   Standard (Mandatory) qualifiers:
-  [-sequence]          sequence   Nucleotide sequence filename and optional
-=======
    Here is a sample session with gfind_ori_ter
 
-% gfind_ori_ter  NC_000913.gbk
+% gfind_ori_ter NC_000913.gbk
 Predict the replication origin and terminus in bacterial genomes
-Output filename [*.gfind_ori_ter]:
+Output filename [nc_000913.gfind_ori_ter]:
 
-
-   Creates *.gfind_ori_ter
-   Output example is prepared in the data directory
+   Creates nc_000913.gfind_ori_ter
 
 Command line arguments
 
-Standard (Mandatory) qualifiers (* if not always prompted):
+   Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
->>>>>>> 1.0.0-beta
                                   format, or reference (input USA)
 *  -outfile            outfile    [*.gfind_ori_ter] Output file name
 
@@ -90,27 +63,9 @@ Standard (Mandatory) qualifiers (* if not always prompted):
    -filt               integer    [0] Lowpass filter strength in percent.
                                   Typically 95 or 99 works best (Any integer
                                   value)
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-Input file format
-
-   gfindoriter reads genome sequence.
-
-Ouptput file format
-
-   The output from gfindoriter is to standard output.
-=======
-   -accid              boolean    [0] Include to use sequence accession ID as
-                                  query
-=======
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
-<<<<<<< HEAD
->>>>>>> 1.0.0
-=======
    -show               toggle     [N] Include to dump result to stdout
->>>>>>> devel
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
@@ -124,12 +79,7 @@ Input file format
 
 Output file format
 
-<<<<<<< HEAD
-   The output from gfind_ori_ter is to standard output.
->>>>>>> 1.0.0-beta
-=======
    The output from gfind_ori_ter is to a file or stdout.
->>>>>>> devel
 
 Data files
 
@@ -139,36 +89,14 @@ Notes
 
    None.
 
-<<<<<<< HEAD
 Refrences
 
-   Frank AC, Lobry JR (2000) "Oriloc: prediction of replication boundaries
-      in unannotated  bacterial chromosomes", Bioinformatics, 16:566-567.
-=======
-References
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-   1. Frank AC, Lobry JR (2000) "Oriloc: prediction of replication boundaries in unannotated 
-      bacterial chromosomes", Bioinformatics, 16:566-567.
-   2. Arakawa K, Saito R, Tomita M (2007) "Noise-reduction filtering for accurate detection 
-      of replication termini in bacterial genomes", FEBS Letters, 581(2):253-258.
->>>>>>> 1.0.0-beta
-=======
    Frank AC, Lobry JR (2000) "Oriloc: prediction of replication boundaries in
       unannotated bacterial chromosomes", Bioinformatics, 16:566-567.
 
    Arakawa K, Saito R, Tomita M (2007) "Noise-reduction filtering for accurate
       detection of replication termini in bacterial genomes", FEBS Letters,
-      581(2): 253-258.
->>>>>>> 1.0.0
-=======
-   Frank AC, Lobry JR (2000) "Oriloc: prediction of replication boundaries in unannotated 
-      bacterial chromosomes", Bioinformatics, 16:566-567.
-
-   Arakawa K, Saito R, Tomita M (2007) "Noise-reduction filtering for accurate detection 
-      of replication termini in bacterial genomes", FEBS Letters, 581(2):253-258.
->>>>>>> devel
+      581(2):253-258.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -176,15 +104,7 @@ References
 
    Arakawa, K. and Tomita, M. (2006) G-language System as a Platfor for
       large-scale analysis of high-throughput omics data, J. Pest Sci.,
-<<<<<<< HEAD
       31, 7.                     
-
-   Arakawa K, Saito R, Tomita M (2007) "Noise-reduction filtering for
-      accurate detection of replication termini in bacterial genomes",
-      FEBS Letters, 581(2):253-258.
-=======
-      31, 7.
->>>>>>> 1.0.0-beta
 
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Wev Service Interfaces,
@@ -208,24 +128,7 @@ Known bugs
 
 See also
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-   ggcsi        - GC Skew Index: an index for strand-specific mutational bias
-   ggcskew      - Calculate the GC skew of the given genome
-   ggcwin       - Calculate the GC content along the given genome
-   ggeneskew    - Calculate the gene strand bias of the given genome
-   ggenomicskew - Calculate the GC skew in different regions of the given
-                  genome
-   gqueryarm    - Get the replication arm name (left or right) from the given
-                  position
-   gquerystrand - Get the strand name (leading or lagging) from the given
-                  position
-   greporiter   - Get the positions of replication origin and terminus
-=======
->>>>>>> 1.0.0-beta
-=======
    grep_ori_ter Get the positions of replication origin and terminus
->>>>>>> 1.0.0
 
 Author(s)
 
@@ -242,11 +145,7 @@ History
 Target users
 
    This program is intended to be used by everyone and everything, from
-<<<<<<< HEAD
-   naive users to embedded scrips.
-=======
    naive users to embedded scripts.
->>>>>>> 1.0.0-beta
 
 Comments
 

@@ -69,7 +69,7 @@ section: output [
   ]
 
   outfile: outfile [
-    standard: "@!($(show))"
+    standard: "@(!$(show))"
   ]
 
 endsection: output

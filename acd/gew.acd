@@ -46,6 +46,7 @@ section: output [
 
   outfile: outfile [
     standard: "Y"
+    default: "gew.$(sequence.name).csv"
   ]
 
 endsection: output

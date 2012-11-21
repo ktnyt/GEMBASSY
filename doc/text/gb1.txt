@@ -7,9 +7,9 @@ Description
 
    This method calculate strand bias of bacterial genome using B1 index,
    first proposed by Lobry and Sueoka (2002), and further extended by 
-   Rocha et al. (2006). Basic idea of B1 index is to calculate the 
-   distance between the two strands, when the leading and lagging strands
-   are plotted in a coordinate system with axes representing G/(G+C) and A/(A+T),
+   Rocha et al. (2006). Basic idea of B1 index is to calculate the distance 
+   between the two strands, when the leading and lagging strands are plotted
+   in a coordinate system with axes representing G/(G+C) and A/(A+T),
    using the third codon position of genes. This index measures the degree of 
    replication-induced bias from Chargaff's second parity rule.
 
@@ -36,18 +36,15 @@ Usage
 
    Here is a sample session with gb1
 
-% gb1  NC_000913.gbk
+% gb1 NC_000913.gbk
 Calculate strand bias of bacterial genome using B1 index
-Output filename [*.gb1]:Died: Qualifier '-show' not found
+Output filename [nc_000913.gb1]:
 
-
-
-   Creates *.gb1
-   Output example is prepared in the data directory
+   Creates nc_000913.gb1
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+   Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
    -outfile            outfile    [*.gb1] Output file name
@@ -58,6 +55,7 @@ Standard (Mandatory) qualifiers:
                                   (Any string)
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
+   -show               toggle     [N] Include to dump result to stdout
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More

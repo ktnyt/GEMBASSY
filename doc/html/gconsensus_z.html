@@ -43,9 +43,6 @@ IT IS DONE FOR YOU.
 <H2>Description</H2>
 <p>
    Calculates the consensus of given list of sequences, using Z-score.<br>
-   Consensus with Z value greater than int high_z (default is 1) is <br>
-   capitalized, and consensus with Z value less than int low_z <br>
-   (default is 0.2) is shown as '-'.<br>
 <br>
   <br>
    G-language SOAP service is provided by the<br>
@@ -70,16 +67,9 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gconsensus_z
 
-% gconsensus_z  -plotconsensus.fasta -graph cps
+% gconsensus_z -plot consensus.fasta
 Calculate consensus in given array of sequences
-Output filename [*.gconsensus_z]:Error: Failed to open filename '-plotconsensus.fasta'
-Error: Unable to read sequence '-plotconsensus.fasta'
-Died: gconsensus_z terminated: Bad value for '-sequence' with -auto defined
-
-
-
-   Creates *.gconsensus_z
-   Output example is prepared in the data directory
+Created gconsensus_z.ps
 
 </pre></td></tr></table>
 
@@ -121,7 +111,7 @@ Died: gconsensus_z terminated: Bad value for '-sequence' with -auto defined
 <td>outfile</td>
 <td>Output file name</td>
 <td>Output file</td>
-<td><i>&lt;*&gt;</i>.gconsensus_z</td>
+<td>gconsensus_z.$(sequence.name).csv</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -180,27 +170,6 @@ Died: gconsensus_z terminated: Bad value for '-sequence' with -auto defined
 <h2>Ouptut file format</h2>
 
 <p>
-   Additional (Optional) qualifiers: (none)
-   Advanced (Unprompted) qualifiers:
-   -high               integer    [1] z value greater than which is
-                                  significant (Any integer value)
-   -low                float      [0.2] z value less than which is
-                                  insignificant (Any numeric value)
-   -csv                boolean    [N] Include to create CSV file
-   -plot               toggle     [N] Include to plot result
-
-   General qualifiers:
-   -help               boolean    Report command line options and exit. More
-                                  information on associated and general
-                                  qualifiers can be found with -help -verbose
-
-
-Input file format
-
-   gconsensus_z reads nucleotide sequences.
-
-Output file format
-
    The output from gconsensus_z is to the specified graphics device.
 </p>
 

@@ -31,7 +31,8 @@ gbase_relative_entropy
 
 
 <H2> Function </H2>
-   Calculates and graphs the sequence conservation using Kullback-Leibler divergence (relative entropy)
+   Calculates and graphs the sequence conservation using Kullback-Leibler
+   divergence (relative entropy)
 <!--
 DON'T WRITE ANYTHING HERE.
 IT IS DONE FOR YOU.
@@ -43,7 +44,8 @@ IT IS DONE FOR YOU.
 <H2>Description</H2>
 <p>
    This function calculates and graphs the sequence conservation in regions <br>
-   around the start/stop codons using Kullback-Leibler divergence (relative entropy).<br>
+   around the start/stop codons using Kullback-Leibler divergence<br>
+   (relative entropy).<br>
 <br>
   <br>
    G-language SOAP service is provided by the<br>
@@ -68,16 +70,9 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gbase_relative_entropy
 
-% gbase_relative_entropy  -plotNC_000913.gbk -graph cps
+% gbase_relative_entropy -plot NC_000913.gbk
 Calculates and graphs the sequence conservation using Kullback-Leibler divergence (relative entropy)
-Output filename [*.gbase_relative_entropy]:Error: Failed to open filename '-plotNC_000913.gbk'
-Error: Unable to read sequence '-plotNC_000913.gbk'
-Died: gbase_relative_entropy terminated: Bad value for '-sequence' with -auto defined
-
-
-
-   Creates *.gbase_relative_entropy
-   Output example is prepared in the data directory
+Created gbase_relative_entropy.ps
 
 </pre></td></tr></table>
 
@@ -119,7 +114,7 @@ Died: gbase_relative_entropy terminated: Bad value for '-sequence' with -auto de
 <td>outfile</td>
 <td>Output file name</td>
 <td>Output file</td>
-<td><i>&lt;*&gt;</i>.gbase_relative_entropy</td>
+<td>gbase_relative_entropy.$(sequence.name).csv</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">

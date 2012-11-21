@@ -30,17 +30,15 @@ Usage
 
    Here is a sample session with gseq2png
 
-% gseq2png  NC_000913.gbk
+% gseq2png NC_000913.gbk
 Converts a sequence to PNG image
-Output filename [*.gseq2png]:
+Output filename [gseq2png.1.png]:
 
-
-   Creates *.gseq2png
-   Output example is prepared in the data directory
+   Creates gseq2png.1.png
 
 Command line arguments
 
-Standard (Mandatory) qualifiers (* if not always prompted):
+   Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
 *  -filename           string     [gseq2png.png] Output filename (Any string)
@@ -66,7 +64,7 @@ Input file format
 
 Output file format
 
-   The output from gseq2png is to png.
+   The output from gseq2png is to png file.
 
 Data files
 
@@ -108,7 +106,8 @@ Known bugs
 
 See also
 
-   gcgr Create a Chaos Game Representation of a given sequence
+   gcgr        Create a Chaos Game Representation of a given sequence
+   gkmer_table Create an image showing all k-mer abundance within a sequence
 
 Author(s)
 

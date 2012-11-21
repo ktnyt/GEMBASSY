@@ -51,17 +51,15 @@ Command line argumants
 =======
    Here is a sample session with gquery_strand
 
-% gquery_strand  NC_000913.gbk 1234
+% gquery_strand NC_000913.gbk 1234
 Get the strand name (leading or lagging) from the given position
-Output filename [*.gquery_strand]:
+Output filename [nc_000913.gquery_strand]:
 
-
-   Creates *.gquery_strand
-   Output example is prepared in the data directory
+   Creates nc_000913.gquery_strand
 
 Command line arguments
 
-Standard (Mandatory) qualifiers (* if not always prompted):
+   Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
   [-position]          string     [0] Position to query (Any string)

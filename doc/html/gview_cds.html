@@ -68,15 +68,9 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gview_cds
 
-% gview_cds  -plotNC_000913.gbk -graph cps
+% gview_cds -plot NC_000913.gbk
 Displays a graph of nucleotide contents around start and stop codons
-Output filename [*.gview_cds]:Error: File /Users/kotone/usr/emblocal/share/EMBOSS/acd/gview_cds.acd line 57: (graph) Attribute 'multipe' unknown
-
-
-
-
-   Creates *.gview_cds
-   Output example is prepared in the data directory
+Created gview_cds.ps
 
 </pre></td></tr></table>
 
@@ -84,8 +78,96 @@ Output filename [*.gview_cds]:Error: File /Users/kotone/usr/emblocal/share/EMBOS
 
 <h2>Command line arguments</h2>
 
-Error: File /Users/kotone/usr/emblocal/share/EMBOSS/acd/gview_cds.acd line 57: (graph) Attribute 'multipe' unknown
+<table border cellspacing=0 cellpadding=3 bgcolor="#ccccff">
+<tr bgcolor="#FFFFCC">
+<th align="left">Qualifier</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+<th align="left">Allowed values</th>
+<th align="left">Default</th>
+</tr>
 
+<tr bgcolor="#FFFFCC">
+<th align="left" colspan=5>Standard (Mandatory) qualifiers</th>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>[-sequence]<br>(Parameter 1)</td>
+<td>seqall</td>
+<td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
+<td>Readable sequence(s)</td>
+<td><b>Required</b></td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-graph</td>
+<td>xygraph</td>
+<td>Graph type</td>
+<td>EMBOSS has a list of known devices, including ps, hpgl, hp7470, hp7580, meta, cps, x11, tek, tekt, none, data, xterm, png, gif, svg</td>
+<td><i>EMBOSS_GRAPHICS</i> value, or x11</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-outfile</td>
+<td>outfile</td>
+<td>Output file name</td>
+<td>Output file</td>
+<td>gview_cds.$(sequence.name).csv</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<th align="left" colspan=5>Additional (Optional) qualifiers</th>
+</tr>
+
+<tr>
+<td colspan=5>(none)</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<th align="left" colspan=5>Advanced (Unprompted) qualifiers</th>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-length</td>
+<td>integer</td>
+<td>Length in bases to show around start/stop codons</td>
+<td>Any integer value</td>
+<td>100</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-gap</td>
+<td>integer</td>
+<td>Gap shown in graph in between start/stop codon neighbors</td>
+<td>Any integer value</td>
+<td>3</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-csv</td>
+<td>boolean</td>
+<td>Include to create CSV file</td>
+<td>Boolean value Yes/No</td>
+<td>No</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-accid</td>
+<td>string</td>
+<td>Include to use sequence accession ID as query</td>
+<td>Any string</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-plot</td>
+<td>toggle</td>
+<td>Include to plot result</td>
+<td>Toggle value Yes/No</td>
+<td>No</td>
+</tr>
+
+</table>
 
 
 <h2>Input file format</h2>
@@ -97,13 +179,23 @@ Error: File /Users/kotone/usr/emblocal/share/EMBOSS/acd/gview_cds.acd line 57: (
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates *.gview_cds
-   Output example is prepared in the data directory
+                                  name
 
-Command line arguments
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -length             integer    [100] Length in bases to show around
+                                  start/stop codons (Any integer value)
+   -gap                integer    [3] Gap shown in graph in between start/stop
+                                  codon neighbors (Any integer value)
+   -csv                boolean    [N] Include to create CSV file
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+   -plot               toggle     [N] Include to plot result
 
-Error: File /Users/kotone/usr/emblocal/share/EMBOSS/acd/gview_cds.acd line 57: (graph) Attribute 'multipe' unknown
-
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
 
 Input file format
 

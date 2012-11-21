@@ -67,16 +67,9 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with ggcskew
 
-% ggcskew  -plotNC_000913.gbk -graph cps
+% ggcskew -plot NC_000913.gbk
 Calculates the GC skew of the input sequence
-Output filename [*.ggcskew]:Error: Failed to open filename '-plotNC_000913.gbk'
-Error: Unable to read sequence '-plotNC_000913.gbk'
-Died: ggcskew terminated: Bad value for '-sequence' with -auto defined
-
-
-
-   Creates *.ggcskew
-   Output example is prepared in the data directory
+Created ggcskew.ps
 
 </pre></td></tr></table>
 
@@ -118,7 +111,7 @@ Died: ggcskew terminated: Bad value for '-sequence' with -auto defined
 <td>outfile</td>
 <td>Output file name</td>
 <td>Output file</td>
-<td><i>&lt;*&gt;</i>.ggcskew</td>
+<td>ggcskew.$(sequence.name).csv</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -209,6 +202,8 @@ Died: ggcskew terminated: Bad value for '-sequence' with -auto defined
 <h2>Ouptut file format</h2>
 
 <p>
+                                  name
+
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -window             integer    [10000] Window size to observe (Any integer

@@ -43,12 +43,12 @@ IT IS DONE FOR YOU.
 <H2>Description</H2>
 <p>
    This program calculates the P2 index for each gene. This index describes the <br>
-   proportion of codons conforming to the intermediate strength of codon-anticodon <br>
-   interaction energy rule of Grosjean and Fiers: P2 = (WWC+SSU)/(WWY+SSY) <br>
+   proportion of codons conforming to the intermediate strength of<br>
+   codon-anticodon interaction energy rule of Grosjean and Fiers:<br>
+   P2 = (WWC+SSU)/(WWY+SSY) <br>
    where W = A or U, S = C or G, and Y = C or U.<br>
-   P2 values will be accessible at $gb->{"FEATURE$i"}->{P2};<br>
-<br>
   <br>
+<br>
    G-language SOAP service is provided by the<br>
    Institute for Advanced Biosciences, Keio University.<br>
    The original web service is located at the following URL:<br>
@@ -71,13 +71,11 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gp2
 
-% gp2  NC_000913.gbk
+% gp2 NC_000913.gbk
 Calculate the P2 index of each gene
-Output filename [*.gp2]:
+Output filename [gp2.nc_000913.csv]:
 
-
-   Creates *.gp2
-   Output example is prepared in the data directory
+   Creates gp2.nc_000913.csv
 
 </pre></td></tr></table>
 
@@ -111,7 +109,7 @@ Output filename [*.gp2]:
 <td>outfile</td>
 <td>Output file name</td>
 <td>Output file</td>
-<td><i>&lt;*&gt;</i>.gp2</td>
+<td>gp2.$(sequence.name).csv</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -146,15 +144,14 @@ Output filename [*.gp2]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates *.gp2
-   Output example is prepared in the data directory
+   Creates gp2.nc_000913.csv
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+   Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-   -outfile            outfile    [*.gp2] Output file name
+   -outfile            outfile    [gp2.$(sequence.name).csv] Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -191,7 +188,7 @@ None.
 <h2>Refrences</h2>
 
 <pre>
-      Gouy M, Gautier C. (1982) Nucleic Acids Res. 10(22):7055-74.
+   Gouy M, Gautier C. (1982) Nucleic Acids Res. 10(22):7055-74.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench

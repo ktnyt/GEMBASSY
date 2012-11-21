@@ -1,23 +1,18 @@
                                  gdelta_enc
 Function
 
-   Calculate the codon usage bias related to translation optimization (delta ENC)
+   Calculate the codon usage bias related to translation optimization
+   (delta ENC)
 
 Description
 
-   This method calculates the codon usage bias related to translation optimization 
-   (delta ENC) described in Reference 1. The basic idea is to calculate the Effective
-   Number of Codons (ENC) for highly-expressed genes (ribosomal genes) and weakly-
-   expressed genes (all genes), and taking the relative difference between them.
+   This method calculates the codon usage bias related to translation
+   optimization (delta ENC) described in Reference 1. The basic idea is to
+   calculate the Effective Number of Codons (ENC) for highly-expressed genes
+   (ribosomal genes) and weakly-expressed genes (all genes), and taking the
+   relative difference between them.
 
-Usage: 
-    $delta_enc = delta_enc($genome);
 
-  Options:
-    None.
-
-  References:
-   1. Rocha EPC (2004) "Codon 
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -37,17 +32,15 @@ Usage
 
    Here is a sample session with gdelta_enc
 
-% gdelta_enc  NC_000913.gbk
+% gdelta_enc NC_000913.gbk
 Calculate the codon usage bias related to translation optimization (delta ENC)
-Output filename [*.gdelta_enc]:
+Output filename [nc_000913.gdelta_enc]:
 
-
-   Creates *.gdelta_enc
-   Output example is prepared in the data directory
+   Creates nc_000913.gdelta_enc
 
 Command line arguments
 
-Standard (Mandatory) qualifiers (* if not always prompted):
+   Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
 *  -outfile            outfile    [*.gdelta_enc] Output file name

@@ -69,13 +69,11 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gbase_counter
 
-% gbase_counter  NC_000913.gbk
+% gbase_counter NC_000913.gbk
 Creates a position weight matrix of oligomers around start codon
-Output filename [*.gbase_counter]:
+Output filename [gbase_counter.nc_000913.csv]:
 
-
-   Creates *.gbase_counter
-   Output example is prepared in the data directory
+   Creates gbase_counter.nc_000913.csv
 
 </pre></td></tr></table>
 
@@ -109,7 +107,7 @@ Output filename [*.gbase_counter]:
 <td>outfile</td>
 <td>Output file name</td>
 <td>Output file</td>
-<td><i>&lt;*&gt;</i>.gbase_counter</td>
+<td>gbase_counter.$(sequence.name).csv</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -176,15 +174,15 @@ Output filename [*.gbase_counter]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates *.gbase_counter
-   Output example is prepared in the data directory
+   Creates gbase_counter.nc_000913.csv
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+   Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-   -outfile            outfile    [*.gbase_counter] Output file name
+   -outfile            outfile    [gbase_counter.$(sequence.name).csv] Output
+                                  file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:

@@ -42,8 +42,24 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This function calculates and extracts conserved oligomers per position using Z-score,<br>
-   in regions around the start/stop codons using Z-score
+   This function calculates and extracts conserved oligomers per position using<br>
+   Z-score, in regions around the start/stop codons using Z-score<br>
+<br>
+<br>
+   G-language SOAP service is provided by the<br>
+   Institute for Advanced Biosciences, Keio University.<br>
+   The original web service is located at the following URL:<br>
+<br>
+   http://www.g-language.org/wiki/soap<br>
+<br>
+   WSDL(RPC/Encoded) file is located at:<br>
+<br>
+   http://soap.g-language.org/g-language.wsdl<br>
+<br>
+   Documentation on G-language Genome Analysis Environment methods are<br>
+   provided at the Document Center<br>
+<br>
+   http://ws.g-language.org/gdoc/
 </p>
 
 <H2>Usage</H2>
@@ -52,13 +68,12 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gbase_z_value
 
-% gbase_z_value  NC_000913.gbk
+% gbase_z_value NC_000913.gbk
 Extracts conserved oligomers per position using Z-score
-Output filename [*.gbase_z_value]:
+Output filename [nc_000913.gbase_z_value]:
 
 
-   Creates *.gbase_z_value
-   Output example is prepared in the data directory
+   Creates nc_000913.gbase_z_value
 
 </pre></td></tr></table>
 
@@ -92,7 +107,7 @@ Output filename [*.gbase_z_value]:
 <td>outfile</td>
 <td>Output file name</td>
 <td>Output file</td>
-<td><i>&lt;*&gt;</i>.gbase_z_value</td>
+<td>gbase_z_value.$(sequence.name).csv</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -167,15 +182,15 @@ Output filename [*.gbase_z_value]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates *.gbase_z_value
-   Output example is prepared in the data directory
+   Creates nc_000913.gbase_z_value
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+   Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-   -outfile            outfile    [*.gbase_z_value] Output file name
+   -outfile            outfile    [gbase_z_value.$(sequence.name).csv] Output
+                                  file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:

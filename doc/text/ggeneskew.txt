@@ -5,10 +5,13 @@ Function
 
 Description
 
-   This program calculates and graphs the strand bias of genes (or the GC skew within them).
-   By default, this program visualizes the gene strand preference (1 for direct, -1 for complement strand),
-   but by specifying -base option  option, GC/AT/Purine/Keto skews of the coding regions
-   or more specifically in the GC3 (third codon position) with -gc3 option can be calculated.
+   This program calculates and graphs the strand bias of genes
+   (or the GC skew within them).
+
+   By default, this program visualizes the gene strand preference (1 for
+   direct, -1 for complement strand) but by specifying -base option,
+   GC/AT/Purine/Keto skews of the coding regions or more specifically in the
+   GC3 (third codon position) with -gc3 option can be calculated.
 
  
    G-language SOAP service is provided by the
@@ -30,26 +33,20 @@ Usage
 
    Here is a sample session with ggeneskew
 
-% ggeneskew  -plotNC_000913.gbk -graph cps
+% ggeneskew -plot NC_000913.gbk
 Calculate the gene strand bias of the given genome
-Output filename [*.ggeneskew]:Error: Failed to open filename '-plotNC_000913.gbk'
-Error: Unable to read sequence '-plotNC_000913.gbk'
-Died: ggeneskew terminated: Bad value for '-sequence' with -auto defined
-
-
-
-   Creates *.ggeneskew
-   Output example is prepared in the data directory
+Created ggeneskew.ps
 
 Command line arguments
 
-Standard (Mandatory) qualifiers (* if not always prompted):
+   Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
 *  -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
                                   (ps, hpgl, hp7470, hp7580, meta, cps, x11,
                                   tek, tekt, none, data, xterm, png, gif, svg)
-*  -outfile            outfile    [*.ggeneskew] Output file name
+*  -outfile            outfile    [ggeneskew.$(sequence.name).csv] Output file
+                                  name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:

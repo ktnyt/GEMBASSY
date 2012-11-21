@@ -5,12 +5,11 @@ Function
 
 Description
 
-   This program calculates dinucleotide usage indices for protein-coding sequences
-   (excluding start and stop codons), and inputs in the G instance. e.g. CG dinucleotide 
-   usage at the reading frame 1-2 will be accessible at $gb->{"FEATURE$i"}->{cg12}
+   This program calculates dinucleotide usage indices for protein-coding
+   sequences (excluding start and stop codons).
+
    Dinucleotide usage was computed as the ratio of observed (O) to expected (E) 
    dinucleotide frequencies.
-   Informations stored in the G instance are: $gb->{header_dinuc}
 
  
    G-language SOAP service is provided by the
@@ -32,20 +31,19 @@ Usage
 
    Here is a sample session with gdinuc
 
-% gdinuc  NC_000913.gbk
+% gdinuc NC_000913.gbk
 Calculates dinucleotide usage 
-Output filename [*.gdinuc]:
+Output filename [gdinuc.nc_000913.csv]:
 
-
-   Creates *.gdinuc
-   Output example is prepared in the data directory
+   Creates gdinuc.nc_000913.csv
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+   Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-   -outfile            outfile    [*.gdinuc] Output file name
+   -outfile            outfile    [gdinuc.$(sequence.name).csv] Output file
+                                  name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -88,7 +86,7 @@ Notes
 
 References
 
-      Yew et al. (2004) Virus Genes 28:1,41-53.
+   Yew et al. (2004) Virus Genes 28:1,41-53.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench

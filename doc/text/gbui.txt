@@ -24,56 +24,22 @@ Description
 
    http://ws.g-language.org/gdoc/
 
-Usage:
-    NULL = &bui(G instance);
-
-  Options:
-   -output      output option (default: 'stdout')
-                'stdout' for standard output,
-                'f' for file output in directory "data"
-   -filename    output filename (default: 'bui.csv')
-   -id          ID of a group of genes or a single gene (default: '')
-   -translate   1 when translates using standard codon table (default: 0)
-   -del_key     regular expression to delete key (i.e. amino acids and nucleotides)
-                (default: '[^ACDEFGHIKLMNPQRSTVWYacgtU\/]')
-   -position    codon position (default: '');
-                '' when assessing overall base usage of the gene
-                '1' when assessing base usage at 1st position of codons
-                '2' when assessing base usage at 2nd position of codons
-                '3' when assessing base 
-   G-language SOAP service is provided by the
-   Institute for Advanced Biosciences, Keio University.
-   The original web service is located at the following URL:
-
-   http://www.g-language.org/wiki/soap
-
-   WSDL(RPC/Encoded) file is located at:
-
-   http://soap.g-language.org/g-language.wsdl
-
-   Documentation on G-language Genome Analysis Environment methods are
-   provided at the Document Center
-
-   http://ws.g-language.org/gdoc/
-
 Usage
 
    Here is a sample session with gbui
 
-% gbui  NC_000913.gbk
+% gbui NC_000913.gbk
 Calculates base usage indices for protein-coding sequences
-Output filename [*.gbui]:
+Output filename [gbui.nc_000913.csv]:
 
-
-   Creates *.gbui
-   Output example is prepared in the data directory
+   Creates gbui.nc_000913.csv
 
 Command line arguments
 
-Standard (Mandatory) qualifiers:
+   Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-   -outfile            outfile    [*.gbui] Output file name
+   -outfile            outfile    [gbui.$(sequence.name).csv] Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:

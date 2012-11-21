@@ -78,6 +78,7 @@ section: output [
     standard: "@(!$(plot))"
     nullok: "Y"
     nulldefault: "$(plot)"
+    default: "ggeneskew.$(sequence.name).csv"
   ]
 
 endsection: output

@@ -31,7 +31,8 @@ gbase_entropy
 
 
 <H2> Function </H2>
-   Calculates and graphs the sequence conservation using Shanon uncertainty (entropy)
+   Calculates and graphs the sequence conservation using Shanon uncertainty
+   (entropy)
 <!--
 DON'T WRITE ANYTHING HERE.
 IT IS DONE FOR YOU.
@@ -68,16 +69,9 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gbase_entropy
 
-% gbase_entropy  -plotNC_000913.gbk -graph cps
+% gbase_entropy -plot NC_000913.gbk
 Calculates and graphs the sequence conservation using Shanon uncertainty (entropy)
-Output filename [*.gbase_entropy]:Error: Failed to open filename '-plotNC_000913.gbk'
-Error: Unable to read sequence '-plotNC_000913.gbk'
-Died: gbase_entropy terminated: Bad value for '-sequence' with -auto defined
-
-
-
-   Creates *.gbase_entropy
-   Output example is prepared in the data directory
+Created gbase_entropy.ps
 
 </pre></td></tr></table>
 
@@ -119,7 +113,7 @@ Died: gbase_entropy terminated: Bad value for '-sequence' with -auto defined
 <td>outfile</td>
 <td>Output file name</td>
 <td>Output file</td>
-<td><i>&lt;*&gt;</i>.gbase_entropy</td>
+<td>gbase_entropy.$(sequence.name).csv</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -194,33 +188,6 @@ Died: gbase_entropy terminated: Bad value for '-sequence' with -auto defined
 <h2>Ouptut file format</h2>
 
 <p>
-   Additional (Optional) qualifiers: (none)
-   Advanced (Unprompted) qualifiers:
-   -position           string     [start] Either 'start' (around start codon)
-                                  or 'end' (around stop codon) to create the
-                                  PWM (Any string)
-   -patlen             integer    [3] Length of oligomer to count (Any integer
-                                  value)
-   -upstream           integer    [30] Length upstream of specified position
-                                  to create PWM (Any integer value)
-   -downstream         integer    [30] Length downstream of specified position
-                                  to create PWM (Any integer value)
-   -accid              string     Include to use sequence accession ID as
-                                  query (Any string)
-   -plot               toggle     [N] Include to plot result
-
-   General qualifiers:
-   -help               boolean    Report command line options and exit. More
-                                  information on associated and general
-                                  qualifiers can be found with -help -verbose
-
-
-Input file format
-
-   gbase_entropy reads nucleotide sequences.
-
-Output file format
-
    The output from gbase_entropy is to the specified graphics device.
 </p>
 

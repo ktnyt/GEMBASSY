@@ -27,26 +27,20 @@ Usage
 
    Here is a sample session with ggcwin
 
-% ggcwin  -plotNC_000913.gbk -graph cps
+% ggcwin -plot NC_000913.gbk
 Calculates the GC content along the given genome
-Output filename [*.ggcwin]:Error: Failed to open filename '-plotNC_000913.gbk'
-Error: Unable to read sequence '-plotNC_000913.gbk'
-Died: ggcwin terminated: Bad value for '-sequence' with -auto defined
-
-
-
-   Creates *.ggcwin
-   Output example is prepared in the data directory
+Created ggcwin.ps
 
 Command line arguments
 
-Standard (Mandatory) qualifiers (* if not always prompted):
+   Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
 *  -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
                                   (ps, hpgl, hp7470, hp7580, meta, cps, x11,
                                   tek, tekt, none, data, xterm, png, gif, svg)
-*  -outfile            outfile    [*.ggcwin] Output file name
+*  -outfile            outfile    [ggcwin.$(sequence.name).csv] Output file
+                                  name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
