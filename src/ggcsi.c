@@ -33,7 +33,7 @@ int main(int argc, char *argv[]){
   
   seqall  = ajAcdGetSeqall("sequence");
   window  = ajAcdGetInt("window");
-  version = ajAcdGetInt("version");
+  version = ajAcdGetInt("ver");
   at      = ajAcdGetBoolean("at");
   purine  = ajAcdGetBoolean("purine");
   keto    = ajAcdGetBoolean("keto");
