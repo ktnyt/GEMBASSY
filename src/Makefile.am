@@ -40,7 +40,8 @@ AM_CFLAGS =  $(AIX_CFLAGS) $(WARN_CFLAGS) $(DEVWARN_CFLAGS)
 ## make will compile and link the program
 ## make install will copy the program to the install directory
 
-bin_PROGRAMS = gamino_info\
+bin_PROGRAMS = gaaui\
+               gamino_info\
                gb1\
                gb2\
                gbase_counter\
@@ -89,6 +90,7 @@ bin_PROGRAMS = gamino_info\
                gview_cds\
                gw_value
 
+gaaui_SOURCES           = gaaui.c
 gamino_info_SOURCES     = gamino_info.c
 gb1_SOURCES             = gb1.c
 gb2_SOURCES             = gb2.c
