@@ -12,134 +12,134 @@
 #include "../include/gembassy.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("ggcsi",argc,argv,"GEMBASSY","1.0.0");
+	embInitPV("ggcsi",argc,argv,"GEMBASSY","1.0.0");
 
-  struct soap soap;
-  struct ns1__gcsiInputParams params;
+	struct soap soap;
+	struct ns1__gcsiInputParams params;
 
-  AjPSeqall seqall;
-  AjPSeq    seq;
-  AjPStr    inseq   = NULL;
-  ajint     window  = 0;
-  AjBool    _gcsi   = 0;
-  AjBool    at      = 0;
-  AjBool    purine  = 0;
-  AjBool    keto    = 0;
-  AjBool    pval    = 0;
-  AjPStr    accid   = NULL;
-  char*     result;
+	AjPSeqall seqall;
+	AjPSeq    seq;
+	AjPStr    inseq   = NULL;
+	ajint     window  = 0;
+	AjBool    _gcsi   = 0;
+	AjBool    at      = 0;
+	AjBool    purine  = 0;
+	AjBool    keto    = 0;
+	AjBool    pval    = 0;
+	AjPStr    accid   = NULL;
+	char*     result;
 
-  AjBool  show = 0;
-  AjPFile outf = NULL;
-  
-  seqall  = ajAcdGetSeqall("sequence");
-  window  = ajAcdGetInt("window");
-  _gcsi   = ajAcdGetBoolean("gcsi");
-  at      = ajAcdGetBoolean("at");
-  purine  = ajAcdGetBoolean("purine");
-  keto    = ajAcdGetBoolean("keto");
-  pval    = ajAcdGetBoolean("pval");
-  accid   = ajAcdGetString("accid");
+	AjBool  show = 0;
+	AjPFile outf = NULL;
 
-  show = ajAcdGetToggle("show");
-  outf = ajAcdGetOutfile("outfile");
+	seqall  = ajAcdGetSeqall("sequence");
+	window  = ajAcdGetInt("window");
+	_gcsi   = ajAcdGetBoolean("gcsi");
+	at      = ajAcdGetBoolean("at");
+	purine  = ajAcdGetBoolean("purine");
+	keto    = ajAcdGetBoolean("keto");
+	pval    = ajAcdGetBoolean("pval");
+	accid   = ajAcdGetString("accid");
 
-  params.window       = window;
-  if(_gcsi){
-    params.version = 1;
-  }else{
-    params.version = 2;
-  }
-  if(at){
-    params.at         = 1;
-  }else{
-    params.at         = 0;
-  }
-  if(purine){
-    params.purine     = 1;
-  }else{
-    params.purine     = 0;
-  }
-  if(keto){
-    params.keto       = 1;
-  }else{
-    params.keto       = 0;
-  }
-  if(pval){
-    params.p          = 1;
-  }else{
-    params.p          = 0;
-  }
+	show = ajAcdGetToggle("show");
+	outf = ajAcdGetOutfile("outfile");
 
-  while(ajSeqallNext(seqall, &seq)){    
+	params.window       = window;
+	if(_gcsi){
+		params.version = 1;
+	}else{
+		params.version = 2;
+	}
+	if(at){
+		params.at         = 1;
+	}else{
+		params.at         = 0;
+	}
+	if(purine){
+		params.purine     = 1;
+	}else{
+		params.purine     = 0;
+	}
+	if(keto){
+		params.keto       = 1;
+	}else{
+		params.keto       = 0;
+	}
+	if(pval){
+		params.p          = 1;
+	}else{
+		params.p          = 0;
+	}
 
-    soap_init(&soap);
+	while(ajSeqallNext(seqall, &seq)){    
 
-    inseq = NULL;
+		soap_init(&soap);
 
-    ajStrAppendC(&inseq, ">");
-    ajStrAppendS(&inseq, ajSeqGetNameS(seq));
-    ajStrAppendC(&inseq, "\n");
-    ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
+		inseq = NULL;
 
-    if(!ajStrGetLen(accid))
-      ajStrAssignS(&accid, ajSeqGetAccS(seq));    
+		ajStrAppendC(&inseq, ">");
+		ajStrAppendS(&inseq, ajSeqGetNameS(seq));
+		ajStrAppendC(&inseq, "\n");
+		ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
 
-    char* in0;
-    in0 = ajCharNewS(inseq);
+		if(!ajStrGetLen(accid))
+			ajStrAssignS(&accid, ajSeqGetAccS(seq));    
 
-    if(soap_call_ns1__gcsi(
-			   &soap, NULL, NULL,
-			   in0, &params, &result
-			   ) == SOAP_OK){
-      AjPStr tmp = ajStrNewC(result);
-      AjPStr parse = ajStrNew();
-      AjPStr gcsi = NULL;
-      AjPStr sa = NULL;
-      AjPStr dist = NULL;
-      AjPStr z = NULL;
-      AjPStr p = NULL;
-      AjPStrTok handle = NULL;
-      ajStrExchangeCC(&tmp, "<", "\n");
-      ajStrExchangeCC(&tmp, ">", "\n");
-      handle = ajStrTokenNewC(tmp, "\n");
-      while(ajStrTokenNextParse(&handle, &parse)){
-        if(ajStrIsFloat(parse))
-          if(!gcsi)
-            gcsi = ajStrNewS(parse);
-          else if(!sa)
-            sa = ajStrNewS(parse);
-	  else if(!dist)
-	    dist = ajStrNewS(parse);
-	  else if (!z)
-	    z = ajStrNewS(parse);
-	  else if (!p)
-	    p = ajStrNewS(parse);
-      }
-      tmp = ajFmtStr("Sequence: %S GCSI: %S SA: %S DIST: %S",
-		     accid, gcsi, sa, dist);
-      if(pval)
-	tmp = ajFmtStr("%S Z: %S P: %S", tmp, z, p);
-      if(show)
-        ajFmtPrint("%S\n", tmp);
-      else
-        ajFmtPrintF(outf, "%S\n", tmp);
-    }else{
-      soap_print_fault(&soap, stderr);
-    }
-    
-    soap_destroy(&soap);
-    soap_end(&soap);
-    soap_done(&soap);
-  }
+		char* in0;
+		in0 = ajCharNewS(inseq);
 
-  if(outf)
-    ajFileClose(&outf);
+		if(soap_call_ns1__gcsi(
+					&soap, NULL, NULL,
+					in0, &params, &result
+				      ) == SOAP_OK){
+			AjPStr tmp = ajStrNewC(result);
+			AjPStr parse = ajStrNew();
+			AjPStr gcsi = NULL;
+			AjPStr sa = NULL;
+			AjPStr dist = NULL;
+			AjPStr z = NULL;
+			AjPStr p = NULL;
+			AjPStrTok handle = NULL;
+			ajStrExchangeCC(&tmp, "<", "\n");
+			ajStrExchangeCC(&tmp, ">", "\n");
+			handle = ajStrTokenNewC(tmp, "\n");
+			while(ajStrTokenNextParse(&handle, &parse)){
+				if(ajStrIsFloat(parse))
+					if(!gcsi)
+						gcsi = ajStrNewS(parse);
+					else if(!sa)
+						sa = ajStrNewS(parse);
+					else if(!dist)
+						dist = ajStrNewS(parse);
+					else if (!z)
+						z = ajStrNewS(parse);
+					else if (!p)
+						p = ajStrNewS(parse);
+			}
+			tmp = ajFmtStr("Sequence: %S GCSI: %S SA: %S DIST: %S",
+					accid, gcsi, sa, dist);
+			if(pval)
+				tmp = ajFmtStr("%S Z: %S P: %S", tmp, z, p);
+			if(show)
+				ajFmtPrint("%S\n", tmp);
+			else
+				ajFmtPrintF(outf, "%S\n", tmp);
+		}else{
+			soap_print_fault(&soap, stderr);
+		}
 
-  ajSeqallDel(&seqall);
-  ajSeqDel(&seq);
-  ajStrDel(&inseq);
+		soap_destroy(&soap);
+		soap_end(&soap);
+		soap_done(&soap);
+	}
 
-  embExit();
-  return 0;
+	if(outf)
+		ajFileClose(&outf);
+
+	ajSeqallDel(&seqall);
+	ajSeqDel(&seq);
+	ajStrDel(&inseq);
+
+	embExit();
+	return 0;
 }

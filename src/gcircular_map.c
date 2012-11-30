@@ -11,81 +11,81 @@
 #include "../include/gembassy.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("gcircular_map", argc, argv, "GEMBASSY", "1.0.0");
-  
-  struct soap soap;
-  struct ns1__circular_USCOREmapInputParams params;
+	embInitPV("gcircular_map", argc, argv, "GEMBASSY", "1.0.0");
 
-  AjPSeqall seqall;
-  AjPSeq    seq;
-  AjPStr    inseq     = NULL;
-  AjPStr    accid     = NULL;
-  AjPStr    filename  = NULL;
-  char*     result;
-  
-  seqall   = ajAcdGetSeqall("sequence");
-  filename = ajAcdGetString("filename");
-  accid    = ajAcdGetString("accid");
+	struct soap soap;
+	struct ns1__circular_USCOREmapInputParams params;
 
-  params.gmap = 0;
-  
-  while(ajSeqallNext(seqall, &seq)){
+	AjPSeqall seqall;
+	AjPSeq    seq;
+	AjPStr    inseq     = NULL;
+	AjPStr    accid     = NULL;
+	AjPStr    filename  = NULL;
+	char*     result;
 
-    soap_init(&soap);
+	seqall   = ajAcdGetSeqall("sequence");
+	filename = ajAcdGetString("filename");
+	accid    = ajAcdGetString("accid");
 
-    soap.send_timeout = 0; 
-    soap.recv_timeout = 0;
+	params.gmap = 0;
 
-    inseq = NULL;
+	while(ajSeqallNext(seqall, &seq)){
 
-    if(ajSeqGetFeat(seq) && !ajStrGetLen(accid)){
-      inseq = getGenbank(seq);
-      ajStrAssignS(&accid, ajSeqGetAccS(seq));
-    }else{
-      if(!ajStrGetLen(accid)){
-        fprintf(stderr, "Sequence does not have features\n");
-        fprintf(stderr, "Proceeding with sequence accession ID\n");
-        ajStrAssignS(&accid, ajSeqGetAccS(seq));
-      }
-      if(!valID(ajCharNewS(accid))){
-          fprintf(stderr, "Invalid accession ID, exiting");
-          return 1;
-      }
-      ajStrAssignS(&inseq, accid);
-    }
+		soap_init(&soap);
 
-    char* in0;
-    in0 = ajCharNewS(inseq);
+		soap.send_timeout = 0; 
+		soap.recv_timeout = 0;
 
-    if(soap_call_ns1__circular_USCOREmap(
-					 &soap, NULL, NULL,
-					 in0, &params, &result
-					 ) == SOAP_OK){
-      AjPStr tmp = ajStrNew();
-      ajStrFromLong(&tmp, ajSeqallGetCount(seqall));
-      ajStrInsertC(&tmp, 0, ".");
-      ajStrAppendC(&tmp, ".svg");
-      if(!ajStrExchangeCS(&filename, ".svg", tmp)){
-        ajStrAppendS(&filename, tmp);
-      }
+		inseq = NULL;
 
-      if(get_file(result, ajCharNewS(filename))){
-        fprintf(stderr, "Retrieval unsuccessful\n");
-      }
-    }else{
-      soap_print_fault(&soap, stderr);
-    }
-  
-    soap_destroy(&soap);
-    soap_end(&soap);
-    soap_done(&soap);
-  }
+		if(ajSeqGetFeat(seq) && !ajStrGetLen(accid)){
+			inseq = getGenbank(seq);
+			ajStrAssignS(&accid, ajSeqGetAccS(seq));
+		}else{
+			if(!ajStrGetLen(accid)){
+				fprintf(stderr, "Sequence does not have features\n");
+				fprintf(stderr, "Proceeding with sequence accession ID\n");
+				ajStrAssignS(&accid, ajSeqGetAccS(seq));
+			}
+			if(!valID(ajCharNewS(accid))){
+				fprintf(stderr, "Invalid accession ID, exiting");
+				return 1;
+			}
+			ajStrAssignS(&inseq, accid);
+		}
 
-  ajSeqallDel(&seqall);
-  ajSeqDel(&seq);
-  ajStrDel(&inseq);
-  ajStrDel(&filename);
-  
-  embExit();
-  return 0;
+		char* in0;
+		in0 = ajCharNewS(inseq);
+
+		if(soap_call_ns1__circular_USCOREmap(
+					&soap, NULL, NULL,
+					in0, &params, &result
+					) == SOAP_OK){
+			AjPStr tmp = ajStrNew();
+			ajStrFromLong(&tmp, ajSeqallGetCount(seqall));
+			ajStrInsertC(&tmp, 0, ".");
+			ajStrAppendC(&tmp, ".svg");
+			if(!ajStrExchangeCS(&filename, ".svg", tmp)){
+				ajStrAppendS(&filename, tmp);
+			}
+
+			if(get_file(result, ajCharNewS(filename))){
+				fprintf(stderr, "Retrieval unsuccessful\n");
+			}
+		}else{
+			soap_print_fault(&soap, stderr);
+		}
+
+		soap_destroy(&soap);
+		soap_end(&soap);
+		soap_done(&soap);
+	}
+
+	ajSeqallDel(&seqall);
+	ajSeqDel(&seq);
+	ajStrDel(&inseq);
+	ajStrDel(&filename);
+
+	embExit();
+	return 0;
 }

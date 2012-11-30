@@ -12,105 +12,105 @@
 #include "../include/gplot.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("gnucleotide_periodicity", argc, argv, "GEMBASSY", "1.0.0");
+	embInitPV("gnucleotide_periodicity", argc, argv, "GEMBASSY", "1.0.0");
 
-  struct soap soap;
-  struct ns1__nucleotide_USCOREperiodicityInputParams params;
+	struct soap soap;
+	struct ns1__nucleotide_USCOREperiodicityInputParams params;
 
-  AjPSeqall seqall;
-  AjPSeq    seq;
-  AjPStr    inseq      = NULL;
-  ajint     window     = 0;
-  AjPStr    nucleotide = 0;
-  AjPStr    accid      = NULL;
-  AjBool    output     = 0;
-  char*     jobid;
+	AjPSeqall seqall;
+	AjPSeq    seq;
+	AjPStr    inseq      = NULL;
+	ajint     window     = 0;
+	AjPStr    nucleotide = 0;
+	AjPStr    accid      = NULL;
+	AjBool    output     = 0;
+	char*     jobid;
 
-  AjBool   plot = 0;
-  AjPFile  outf = NULL;
-  AjPGraph mult = NULL;
+	AjBool   plot = 0;
+	AjPFile  outf = NULL;
+	AjPGraph mult = NULL;
 
-  AjPStr filename = getUniqueFileName();
+	AjPStr filename = getUniqueFileName();
 
-  gPlotParams gpp;
+	gPlotParams gpp;
 
-  seqall     = ajAcdGetSeqall("sequence");
-  window     = ajAcdGetInt("window");
-  nucleotide = ajAcdGetString("nucleotide");
-  accid      = ajAcdGetString("accid");
+	seqall     = ajAcdGetSeqall("sequence");
+	window     = ajAcdGetInt("window");
+	nucleotide = ajAcdGetString("nucleotide");
+	accid      = ajAcdGetString("accid");
 
-  plot = ajAcdGetToggle("plot");
-  outf = ajAcdGetOutfile("outfile");
-  mult = ajAcdGetGraphxy("graph");
+	plot = ajAcdGetToggle("plot");
+	outf = ajAcdGetOutfile("outfile");
+	mult = ajAcdGetGraphxy("graph");
 
-  params.window     = window;
-  params.nucleotide = ajCharNewS(nucleotide);
-  params.output     = "f";
-  
-  while(ajSeqallNext(seqall, &seq)){
+	params.window     = window;
+	params.nucleotide = ajCharNewS(nucleotide);
+	params.output     = "f";
 
-    soap_init(&soap);
+	while(ajSeqallNext(seqall, &seq)){
 
-    inseq = NULL;
+		soap_init(&soap);
 
-    if(ajSeqGetFeat(seq) && !ajStrGetLen(accid)){
-      inseq = getGenbank(seq);
-      ajStrAssignS(&accid, ajSeqGetAccS(seq));
-    }else{
-      if(!ajStrGetLen(accid)){
-        fprintf(stderr, "Sequence does not have features\n");
-        fprintf(stderr, "Proceeding with sequence accession ID\n");
-        ajStrAssignS(&accid, ajSeqGetAccS(seq));
-      }
-      if(!valID(ajCharNewS(accid))){
-          fprintf(stderr, "Invalid accession ID, exiting");
-          return 1;
-      }
-      ajStrAssignS(&inseq, accid);
-    }
+		inseq = NULL;
 
-    char* in0;
-    in0 = ajCharNewS(inseq);
+		if(ajSeqGetFeat(seq) && !ajStrGetLen(accid)){
+			inseq = getGenbank(seq);
+			ajStrAssignS(&accid, ajSeqGetAccS(seq));
+		}else{
+			if(!ajStrGetLen(accid)){
+				fprintf(stderr, "Sequence does not have features\n");
+				fprintf(stderr, "Proceeding with sequence accession ID\n");
+				ajStrAssignS(&accid, ajSeqGetAccS(seq));
+			}
+			if(!valID(ajCharNewS(accid))){
+				fprintf(stderr, "Invalid accession ID, exiting");
+				return 1;
+			}
+			ajStrAssignS(&inseq, accid);
+		}
 
-    if(soap_call_ns1__nucleotide_USCOREperiodicity(
-						   &soap, NULL, NULL,
-						   in0, &params, &jobid
-						   ) == SOAP_OK){
-      if(get_file(jobid, ajCharNewS(filename))==0){
-	if(plot){
-	  AjPStr title = NULL;
-	  ajStrAppendC(&title, argv[0]);
-	  ajStrAppendC(&title, " of ");
-	  ajStrAppendS(&title, accid);
-	  gpp.title = ajStrNewS(title);
-	  gpp.xlab = ajStrNewC("location");
-	  gpp.ylab = ajStrNewC("GC skew");
-	  ajStrDel(&title);
-	  if(gPlotFile(filename, mult, &gpp) == 1)
-	    fprintf(stderr, "Error allocating\n");
-	}else{
-	  ajFmtPrintF(outf, "Sequence: %S\n%S\n",
-                      ajSeqGetNameS(seq), getContentS(filename));
+		char* in0;
+		in0 = ajCharNewS(inseq);
+
+		if(soap_call_ns1__nucleotide_USCOREperiodicity(
+					&soap, NULL, NULL,
+					in0, &params, &jobid
+					) == SOAP_OK){
+			if(get_file(jobid, ajCharNewS(filename))==0){
+				if(plot){
+					AjPStr title = NULL;
+					ajStrAppendC(&title, argv[0]);
+					ajStrAppendC(&title, " of ");
+					ajStrAppendS(&title, accid);
+					gpp.title = ajStrNewS(title);
+					gpp.xlab = ajStrNewC("location");
+					gpp.ylab = ajStrNewC("GC skew");
+					ajStrDel(&title);
+					if(gPlotFile(filename, mult, &gpp) == 1)
+						fprintf(stderr, "Error allocating\n");
+				}else{
+					ajFmtPrintF(outf, "Sequence: %S\n%S\n",
+							accid, getContentS(filename));
+				}
+			}else{
+				fprintf(stderr, "Retrieval unsuccessful\n");
+			}
+		}else{
+			soap_print_fault(&soap, stderr);
+		}
+
+		soap_destroy(&soap);
+		soap_end(&soap);
+		soap_done(&soap);
 	}
-      }else{
-        fprintf(stderr, "Retrieval unsuccessful\n");
-      }
-    }else{
-      soap_print_fault(&soap, stderr);
-    }
-    
-    soap_destroy(&soap);
-    soap_end(&soap);
-    soap_done(&soap);
-  }
 
-  if(outf)
-    ajFileClose(&outf);
+	if(outf)
+		ajFileClose(&outf);
 
-  ajSeqallDel(&seqall);
-  ajSeqDel(&seq);
-  ajStrDel(&inseq);
-  
-  embExit();
-  return 0;
+	ajSeqallDel(&seqall);
+	ajSeqDel(&seq);
+	ajStrDel(&inseq);
+
+	embExit();
+	return 0;
 }

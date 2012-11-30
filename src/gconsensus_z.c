@@ -12,96 +12,96 @@
 #include "../include/gplot.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("gconsensus_z", argc, argv, "GEMBASSY", "1.0.0");
-  
-  struct soap soap;
-  struct ns1__consensus_USCOREzInputParams params;
-  struct arrayIn array_seq;
+	embInitPV("gconsensus_z", argc, argv, "GEMBASSY", "1.0.0");
 
-  AjPSeqall seqall;
-  AjPSeq    seq;
-  AjPStr    inseq    = NULL;
-  ajint     high     = 0;
-  double    low      = 0;  
-  char*     result;
+	struct soap soap;
+	struct ns1__consensus_USCOREzInputParams params;
+	struct arrayIn array_seq;
 
-  AjBool   plot = 0;
-  AjPFile  outf = NULL;
-  AjPGraph mult = NULL;
+	AjPSeqall seqall;
+	AjPSeq    seq;
+	AjPStr    inseq    = NULL;
+	ajint     high     = 0;
+	double    low      = 0;  
+	char*     result;
 
-  AjPStr filename = getUniqueFileName();
+	AjBool   plot = 0;
+	AjPFile  outf = NULL;
+	AjPGraph mult = NULL;
 
-  gPlotParams gpp;
-  
-  seqall = ajAcdGetSeqall("sequence");
-  high   = ajAcdGetInt("high");
-  low    = ajAcdGetFloat("low");
+	AjPStr filename = getUniqueFileName();
 
-  plot = ajAcdGetToggle("plot");
-  outf = ajAcdGetOutfile("outfile");
-  mult = ajAcdGetGraphxy("graph");
-  
-  params.high   = high;
-  params.low    = low;
-  params.output = "f";
+	gPlotParams gpp;
 
-  char** tmp = (char**)malloc(sizeof(char));
-  int    size = 0;
+	seqall = ajAcdGetSeqall("sequence");
+	high   = ajAcdGetInt("high");
+	low    = ajAcdGetFloat("low");
 
-  while(ajSeqallNext(seqall, &seq)){
-    tmp = (char**)realloc(tmp, sizeof(char) * (size + 1));
-    tmp[size] = ajCharNewS(ajSeqGetSeqS(seq));
-    size++;
-  }
+	plot = ajAcdGetToggle("plot");
+	outf = ajAcdGetOutfile("outfile");
+	mult = ajAcdGetGraphxy("graph");
 
-  array_seq.__size = size;
-  array_seq.__ptr  = tmp;
+	params.high   = high;
+	params.low    = low;
+	params.output = "f";
 
-  if(size < 2){
-    fprintf(stderr, "File only has one sequence. Please input more than two.\n");
-    return 0;
-  }
+	char** tmp = (char**)malloc(sizeof(char));
+	int    size = 0;
 
-  soap_init(&soap);
+	while(ajSeqallNext(seqall, &seq)){
+		tmp = (char**)realloc(tmp, sizeof(char) * (size + 1));
+		tmp[size] = ajCharNewS(ajSeqGetSeqS(seq));
+		size++;
+	}
 
-  if(soap_call_ns1__consensus_USCOREz(
-				      &soap, NULL, NULL,
-				      &array_seq, &params, &result
-				      ) == SOAP_OK){
-    if(get_file(result, ajCharNewS(filename))==0){
-      if(plot){
-	AjPStr title = NULL;
-	ajStrAppendC(&title, argv[0]);
-	gpp.title = ajStrNewS(title);
-	gpp.xlab = ajStrNewC("position");
-	gpp.ylab = ajStrNewC("consensus");
-	ajStrDel(&title);
-	if(gPlotFile(filename, mult, &gpp) == 1)
-	  fprintf(stderr, "Error allocating\n");
-      }else{
-	ajFmtPrintF(outf, "Sequence: %S\n%S\n",
-		    ajSeqGetNameS(seq), getContentS(filename));
-      }
-    }else{ 
-      fprintf(stderr, "Retrieval unsuccessful\n");
-    }
-  }else{
-    soap_print_fault(&soap,stderr);
-  }
+	array_seq.__size = size;
+	array_seq.__ptr  = tmp;
 
-  soap_destroy(&soap);
-  soap_end(&soap);
-  soap_done(&soap);
+	if(size < 2){
+		fprintf(stderr, "File only has one sequence. Please input more than two.\n");
+		return 0;
+	}
 
-  if(outf)
-    ajFileClose(&outf);
+	soap_init(&soap);
 
-  free(tmp);
+	if(soap_call_ns1__consensus_USCOREz(
+				&soap, NULL, NULL,
+				&array_seq, &params, &result
+				) == SOAP_OK){
+		if(get_file(result, ajCharNewS(filename))==0){
+			if(plot){
+				AjPStr title = NULL;
+				ajStrAppendC(&title, argv[0]);
+				gpp.title = ajStrNewS(title);
+				gpp.xlab = ajStrNewC("position");
+				gpp.ylab = ajStrNewC("consensus");
+				ajStrDel(&title);
+				if(gPlotFile(filename, mult, &gpp) == 1)
+					fprintf(stderr, "Error allocating\n");
+			}else{
+				ajFmtPrintF(outf, "Sequence: %S\n%S\n",
+						accid, getContentS(filename));
+			}
+		}else{ 
+			fprintf(stderr, "Retrieval unsuccessful\n");
+		}
+	}else{
+		soap_print_fault(&soap,stderr);
+	}
 
-  ajSeqallDel(&seqall);
-  ajSeqDel(&seq);
-  ajStrDel(&inseq);
+	soap_destroy(&soap);
+	soap_end(&soap);
+	soap_done(&soap);
 
-  embExit();
-  return 0;
+	if(outf)
+		ajFileClose(&outf);
+
+	free(tmp);
+
+	ajSeqallDel(&seqall);
+	ajSeqDel(&seq);
+	ajStrDel(&inseq);
+
+	embExit();
+	return 0;
 }

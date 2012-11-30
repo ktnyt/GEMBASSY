@@ -12,109 +12,109 @@
 #include "../include/gplot.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("gbase_entropy", argc, argv, "GEMBASSY", "1.0.0");
+	embInitPV("gbase_entropy", argc, argv, "GEMBASSY", "1.0.0");
 
-  struct soap soap;
-  struct ns1__base_USCOREentropyInputParams params;
+	struct soap soap;
+	struct ns1__base_USCOREentropyInputParams params;
 
-  AjPSeqall seqall;
-  AjPSeq    seq;
-  AjPStr    inseq      = NULL;
-  AjPStr    position   = NULL;
-  ajint     PatLen     = 0;
-  ajint     upstream   = 0;
-  ajint     downstream = 0;
-  AjPStr    accid      = NULL;
-  char*     jobid; 
+	AjPSeqall seqall;
+	AjPSeq    seq;
+	AjPStr    inseq      = NULL;
+	AjPStr    position   = NULL;
+	ajint     PatLen     = 0;
+	ajint     upstream   = 0;
+	ajint     downstream = 0;
+	AjPStr    accid      = NULL;
+	char*     jobid; 
 
-  AjBool   plot = 0;
-  AjPFile  outf = NULL;
-  AjPGraph mult = NULL;
+	AjBool   plot = 0;
+	AjPFile  outf = NULL;
+	AjPGraph mult = NULL;
 
-  gPlotParams gpp;
+	gPlotParams gpp;
 
-  AjPStr filename = getUniqueFileName();
+	AjPStr filename = getUniqueFileName();
 
-  seqall     = ajAcdGetSeqall("sequence");
-  position   = ajAcdGetString("position");
-  PatLen     = ajAcdGetInt("patlen");
-  upstream   = ajAcdGetInt("upstream");
-  downstream = ajAcdGetInt("downstream");
-  accid      = ajAcdGetString("accid");
+	seqall     = ajAcdGetSeqall("sequence");
+	position   = ajAcdGetString("position");
+	PatLen     = ajAcdGetInt("patlen");
+	upstream   = ajAcdGetInt("upstream");
+	downstream = ajAcdGetInt("downstream");
+	accid      = ajAcdGetString("accid");
 
-  plot = ajAcdGetToggle("plot");
-  outf = ajAcdGetOutfile("outfile");
-  mult = ajAcdGetGraphxy("graph");
-  
-  params.position   = ajCharNewS(position);
-  params.PatLength  = PatLen;
-  params.upstream   = upstream;
-  params.downstream = downstream;
-  params.output     = "f";
-  
-  while(ajSeqallNext(seqall, &seq)){
+	plot = ajAcdGetToggle("plot");
+	outf = ajAcdGetOutfile("outfile");
+	mult = ajAcdGetGraphxy("graph");
 
-    soap_init(&soap);
+	params.position   = ajCharNewS(position);
+	params.PatLength  = PatLen;
+	params.upstream   = upstream;
+	params.downstream = downstream;
+	params.output     = "f";
 
-    inseq = NULL;
+	while(ajSeqallNext(seqall, &seq)){
 
-    if(ajSeqGetFeat(seq) && !ajStrGetLen(accid)){
-      inseq = getGenbank(seq);
-      ajStrAssignS(&accid, ajSeqGetAccS(seq));
-    }else{
-      if(!valID(ajCharNewS(accid))){
-	fprintf(stderr, "Invalid accession ID, exiting\n");
-	return 1;
-      }
-      if(!ajStrGetLen(accid)){
-	fprintf(stderr, "Sequence does not have features\n");
-	fprintf(stderr, "Proceeding with sequence accession ID\n");
-	ajStrAssignS(&accid, ajSeqGetAccS(seq));
-      }
-      ajStrAssignS(&inseq, accid);
-    }
+		soap_init(&soap);
 
-    char* in0;
-    in0 = ajCharNewS(inseq);
-    if(soap_call_ns1__base_USCOREentropy(
-					 &soap, NULL, NULL,
-					 in0, &params, &jobid
-					 ) == SOAP_OK){
-      if(get_file(jobid,ajCharNewS(filename))==0){
-	if(plot){
-	  AjPStr title = NULL;
-	  ajStrAppendC(&title, argv[0]);
-	  ajStrAppendC(&title, " of ");
-	  ajStrAppendS(&title, accid);
-	  gpp.title = ajStrNewS(title);
-	  gpp.xlab = ajStrNewC("position");
-	  gpp.ylab = ajStrNewC("entropy");
-	  ajStrDel(&title);
-	  if(gPlotFile(filename, mult, &gpp))
-	    fprintf(stderr, "Error in plotting\n");
-	}else{
-	  ajFmtPrintF(outf, "Sequence: %S\n%S\n",
-                      ajSeqGetNameS(seq), getContentS(filename));
+		inseq = NULL;
+
+		if(ajSeqGetFeat(seq) && !ajStrGetLen(accid)){
+			inseq = getGenbank(seq);
+			ajStrAssignS(&accid, ajSeqGetAccS(seq));
+		}else{
+			if(!valID(ajCharNewS(accid))){
+				fprintf(stderr, "Invalid accession ID, exiting\n");
+				return 1;
+			}
+			if(!ajStrGetLen(accid)){
+				fprintf(stderr, "Sequence does not have features\n");
+				fprintf(stderr, "Proceeding with sequence accession ID\n");
+				ajStrAssignS(&accid, ajSeqGetAccS(seq));
+			}
+			ajStrAssignS(&inseq, accid);
+		}
+
+		char* in0;
+		in0 = ajCharNewS(inseq);
+		if(soap_call_ns1__base_USCOREentropy(
+					&soap, NULL, NULL,
+					in0, &params, &jobid
+					) == SOAP_OK){
+			if(get_file(jobid,ajCharNewS(filename))==0){
+				if(plot){
+					AjPStr title = NULL;
+					ajStrAppendC(&title, argv[0]);
+					ajStrAppendC(&title, " of ");
+					ajStrAppendS(&title, accid);
+					gpp.title = ajStrNewS(title);
+					gpp.xlab = ajStrNewC("position");
+					gpp.ylab = ajStrNewC("entropy");
+					ajStrDel(&title);
+					if(gPlotFile(filename, mult, &gpp))
+						fprintf(stderr, "Error in plotting\n");
+				}else{
+					ajFmtPrintF(outf, "Sequence: %S\n%S\n",
+							accid, getContentS(filename));
+				}
+			}else{
+				fprintf(stderr, "Retrieval unsuccessful\n");
+			}
+		}else{
+			soap_print_fault(&soap, stderr);
+		}
+
+		soap_destroy(&soap);
+		soap_end(&soap);
+		soap_done(&soap);
 	}
-      }else{
-        fprintf(stderr, "Retrieval unsuccessful\n");
-      }
-    }else{
-      soap_print_fault(&soap, stderr);
-    }
-  
-    soap_destroy(&soap);
-    soap_end(&soap);
-    soap_done(&soap);
-  }
 
-  if(outf)
-    ajFileClose(&outf);
+	if(outf)
+		ajFileClose(&outf);
 
-  ajSeqallDel(&seqall);
-  ajSeqDel(&seq);
-  ajStrDel(&inseq);
+	ajSeqallDel(&seqall);
+	ajSeqDel(&seq);
+	ajStrDel(&inseq);
 
-  embExit();
-  return 0;
+	embExit();
+	return 0;
 }

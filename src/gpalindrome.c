@@ -11,86 +11,78 @@
 #include "../include/gembassy.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("gpalindrome",argc,argv,"GEMBASSY","1.0.0");
+	embInitPV("gpalindrome",argc,argv,"GEMBASSY","1.0.0");
 
-  struct soap soap;
-  struct ns1__palindromeInputParams params;
+	struct soap soap;
+	struct ns1__palindromeInputParams params;
 
-  AjPSeqall seqall;
-  AjPSeq    seq;
-  AjPStr    inseq    = NULL;
-  ajint     shortest = 0;
-  ajint     loop     = 0;
-  AjBool    gtmatch  = 0;
-  AjPStr    accid    = NULL;
-  char*     result;
+	AjPSeqall seqall;
+	AjPSeq    seq;
+	AjPStr    inseq    = NULL;
+	ajint     shortest = 0;
+	ajint     loop     = 0;
+	AjBool    gtmatch  = 0;
+	AjPStr    accid    = NULL;
+	char*     result;
 
-  AjPFile outf = NULL;
+	AjPFile outf = NULL;
 
-  AjPStr filename = getUniqueFileName();
+	AjPStr filename = getUniqueFileName();
 
-  seqall   = ajAcdGetSeqall("sequence");
-  shortest = ajAcdGetInt("shortest");
-  loop     = ajAcdGetInt("loop");
-  gtmatch  = ajAcdGetBoolean("gtmatch");
-  accid    = ajAcdGetString("accid");
-  outf     = ajAcdGetOutfile("outfile");
-  
-  params.shortest = shortest;
-  params.loop     = loop;
-  params.gtmatch  = gtmatch;
-  params.output   = "f";
+	seqall   = ajAcdGetSeqall("sequence");
+	shortest = ajAcdGetInt("shortest");
+	loop     = ajAcdGetInt("loop");
+	gtmatch  = ajAcdGetBoolean("gtmatch");
+	accid    = ajAcdGetString("accid");
+	outf     = ajAcdGetOutfile("outfile");
 
-  while(ajSeqallNext(seqall, &seq)){  
+	params.shortest = shortest;
+	params.loop     = loop;
+	params.gtmatch  = gtmatch;
+	params.output   = "f";
 
-    soap_init(&soap);
+	while(ajSeqallNext(seqall, &seq)){  
 
-    inseq = NULL;
+		soap_init(&soap);
 
-    if(ajSeqGetFeat(seq) && !ajStrGetLen(accid)){
-      inseq = getGenbank(seq);
-      ajStrAssignS(&accid, ajSeqGetAccS(seq));
-    }else{
-      if(!ajStrGetLen(accid)){
-        fprintf(stderr, "Sequence does not have features\n");
-        fprintf(stderr, "Proceeding with sequence accession ID\n");
-        ajStrAssignS(&accid, ajSeqGetAccS(seq));
-      }
-      if(!valID(ajCharNewS(accid))){
-          fprintf(stderr,"Invalid accession ID, exiting");
-          return 1;
-      }
-      ajStrAssignS(&inseq, accid);
-    }
+		inseq = NULL;
 
-    char* in0;
-    in0 = ajCharNewS(inseq);
+		ajStrAppendC(&inseq, ">");
+		ajStrAppendS(&inseq, ajSeqGetNameS(seq));
+		ajStrAppendC(&inseq, "\n");
+		ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
 
-    if(soap_call_ns1__palindrome(
-				 &soap, NULL, NULL,
-				 in0, &params, &result
-				 ) == SOAP_OK){
-      if(get_file(result, ajCharNewS(filename))){
-	fprintf(stderr, "Retrieval unsuccessful\n");
-      }
-      ajFmtPrintF(outf, "Sequence: %S\n%S\n",
-                  ajSeqGetNameS(seq), getContentS(filename));
-    }else{
-      soap_print_fault(&soap, stderr);
-    }
-    
-    soap_destroy(&soap);
-    soap_end(&soap);
-    soap_done(&soap);
-  }
+		if(!ajStrGetLen(accid))
+			ajStrAssignS(&accid, ajSeqGetAccS(seq));
 
-  if(outf)
-    ajFileClose(&outf);
+		char* in0;
+		in0 = ajCharNewS(inseq);
 
-  ajSeqallDel(&seqall);
-  ajSeqDel(&seq);
-  ajStrDel(&inseq);
-    
-  embExit();
-  return 0;
+		if(soap_call_ns1__palindrome(
+					&soap, NULL, NULL,
+					in0, &params, &result
+					) == SOAP_OK){
+			if(get_file(result, ajCharNewS(filename))){
+				fprintf(stderr, "Retrieval unsuccessful\n");
+			}
+			ajFmtPrintF(outf, "Sequence: %S\n%S\n",
+					accid, getContentS(filename));
+		}else{
+			soap_print_fault(&soap, stderr);
+		}
+
+		soap_destroy(&soap);
+		soap_end(&soap);
+		soap_done(&soap);
+	}
+
+	if(outf)
+		ajFileClose(&outf);
+
+	ajSeqallDel(&seqall);
+	ajSeqDel(&seq);
+	ajStrDel(&inseq);
+
+	embExit();
+	return 0;
 }

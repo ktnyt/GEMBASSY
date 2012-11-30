@@ -1,5 +1,5 @@
-# include <stdio.h>
-# include <stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "emboss.h"
 
 #include "soapH.h"
@@ -11,101 +11,93 @@
 #include "../include/gembassy.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("goligomer_search", argc, argv, "GEMBASSY", "1.0.0");
+	embInitPV("goligomer_search", argc, argv, "GEMBASSY", "1.0.0");
 
-  struct soap soap;
-  struct ns1__oligomer_USCOREsearchInputParams params;
+	struct soap soap;
+	struct ns1__oligomer_USCOREsearchInputParams params;
 
-  AjPSeqall seqall;
-  AjPSeq    seq;
-  AjPStr    inseq    = NULL;
-  AjPStr    oligomer = NULL;
-  AjPStr    return_  = NULL;
-  AjPStr    accid    = NULL;
-  char*     result;
+	AjPSeqall seqall;
+	AjPSeq    seq;
+	AjPStr    inseq    = NULL;
+	AjPStr    oligomer = NULL;
+	AjPStr    return_  = NULL;
+	AjPStr    accid    = NULL;
+	char*     result;
 
-  AjBool  show = 0;
-  AjPFile outf = NULL;
+	AjBool  show = 0;
+	AjPFile outf = NULL;
 
-  seqall   = ajAcdGetSeqall("sequence");
-  oligomer = ajAcdGetString("oligomer");
-  return_  = ajAcdGetString("return");
-  accid    = ajAcdGetString("accid");
-  
-  show = ajAcdGetToggle("show");
-  outf = ajAcdGetOutfile("outfile");
+	seqall   = ajAcdGetSeqall("sequence");
+	oligomer = ajAcdGetString("oligomer");
+	return_  = ajAcdGetString("return");
+	accid    = ajAcdGetString("accid");
 
-  params.return_ = ajCharNewS(return_);
+	show = ajAcdGetToggle("show");
+	outf = ajAcdGetOutfile("outfile");
 
-  while(ajSeqallNext(seqall, &seq)){  
+	params.return_ = ajCharNewS(return_);
 
-    soap_init(&soap);
+	while(ajSeqallNext(seqall, &seq)){  
 
-    soap.send_timeout = 0;
-    soap.recv_timeout = 0;
+		soap_init(&soap);
 
-    inseq = NULL;
+		soap.send_timeout = 0;
+		soap.recv_timeout = 0;
 
-    if(ajSeqGetFeat(seq) && !ajStrGetLen(accid)){
-      inseq = getGenbank(seq);
-      ajStrAssignS(&accid, ajSeqGetAccS(seq));
-    }else{
-      if(!ajStrGetLen(accid)){
-        fprintf(stderr, "Sequence does not have features\n");
-        fprintf(stderr, "Proceeding with sequence accession ID\n");
-        ajStrAssignS(&accid, ajSeqGetAccS(seq));
-      }
-      if(!valID(ajCharNewS(accid))){
-          fprintf(stderr, "Invalid accession ID, exiting");
-          return 1;
-      }
-      ajStrAssignS(&inseq,accid);
-    }
+		inseq = NULL;
 
-    char* in0;
-    char* in1;
-    in0 = ajCharNewS(inseq);
-    in1 = ajCharNewS(oligomer);
+		ajStrAppendC(&inseq, ">");
+		ajStrAppendS(&inseq, ajSeqGetNameS(seq));
+		ajStrAppendC(&inseq, "\n");
+		ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
 
-    if(soap_call_ns1__oligomer_USCOREsearch(
-					    &soap, NULL, NULL,
-					    in0, in1, &params, &result
-					    ) == SOAP_OK){
-      AjPStr tmp = ajStrNewC(result);
-      AjPStr parse = ajStrNew();
-      AjPStrTok handle = NULL;
-      ajStrExchangeCC(&tmp, "<", "\n");
-      ajStrExchangeCC(&tmp, ">", "\n");
-      handle = ajStrTokenNewC(tmp, "\n");
-      if(show)
-	ajFmtPrint("Sequence: %S Oligomer: %S\n",
-		   ajSeqGetAccS(seq), oligomer);
-      else
-	ajFmtPrintF(outf,"Sequence: %S Oligomer: %S\n",
-		    ajSeqGetAccS(seq), oligomer);
-      while(ajStrTokenNextParse(&handle, &parse)){
-        if(ajStrIsInt(parse))
-	  if(show)
-	    ajFmtPrint("%S\n", parse);
-	  else
-	    ajFmtPrintF(outf, "%S\n", parse);
-      }
-    }else{
-      soap_print_fault(&soap, stderr);
-    }
+		if(!ajStrGetLen(accid))
+			ajStrAssignS(&accid, ajSeqGetAccS(seq));
 
-    soap_destroy(&soap);
-    soap_end(&soap);
-    soap_done(&soap);
-  }
+		char* in0;
+		char* in1;
+		in0 = ajCharNewS(inseq);
+		in1 = ajCharNewS(oligomer);
 
-  if(outf)
-    ajFileClose(&outf);
+		if(soap_call_ns1__oligomer_USCOREsearch(
+					&soap, NULL, NULL,
+					in0, in1, &params, &result
+					) == SOAP_OK){
+			AjPStr tmp = ajStrNewC(result);
+			AjPStr parse = ajStrNew();
+			AjPStrTok handle = NULL;
+			ajStrExchangeCC(&tmp, "<", "\n");
+			ajStrExchangeCC(&tmp, ">", "\n");
+			handle = ajStrTokenNewC(tmp, "\n");
+			if(show)
+				ajFmtPrint("Sequence: %S Oligomer: %S\n",
+						accid, oligomer);
+			else
+				ajFmtPrintF(outf,"Sequence: %S Oligomer: %S\n",
+						accid, oligomer);
+			while(ajStrTokenNextParse(&handle, &parse)){
+				if(ajStrIsInt(parse))
+					if(show)
+						ajFmtPrint("%S\n", parse);
+					else
+						ajFmtPrintF(outf, "%S\n", parse);
+			}
+		}else{
+			soap_print_fault(&soap, stderr);
+		}
 
-  ajSeqallDel(&seqall);
-  ajSeqDel(&seq);
-  ajStrDel(&inseq);
-    
-  embExit();
-  return 0;
+		soap_destroy(&soap);
+		soap_end(&soap);
+		soap_done(&soap);
+	}
+
+	if(outf)
+		ajFileClose(&outf);
+
+	ajSeqallDel(&seqall);
+	ajSeqDel(&seq);
+	ajStrDel(&inseq);
+
+	embExit();
+	return 0;
 }

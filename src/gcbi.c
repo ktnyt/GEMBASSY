@@ -11,88 +11,88 @@
 #include "../include/gembassy.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("gcbi", argc, argv, "GEMBASSY", "1.0.0");
-  
-  struct soap soap;
-  struct ns1__cbiInputParams params;
+	embInitPV("gcbi", argc, argv, "GEMBASSY", "1.0.0");
 
-  AjPSeqall seqall;
-  AjPSeq    seq;
-  AjPStr    inseq     = NULL;
-  AjBool    translate = 0;
-  AjPStr    id        = NULL;
-  AjPStr    delkey    = NULL;
-  AjPStr    accid     = NULL;
-  char*     result;
+	struct soap soap;
+	struct ns1__cbiInputParams params;
 
-  AjBool  show = 0;
-  AjPFile outf = NULL;
+	AjPSeqall seqall;
+	AjPSeq    seq;
+	AjPStr    inseq     = NULL;
+	AjBool    translate = 0;
+	AjPStr    id        = NULL;
+	AjPStr    delkey    = NULL;
+	AjPStr    accid     = NULL;
+	char*     result;
 
-  seqall     = ajAcdGetSeqall("sequence");
-  translate  = ajAcdGetBoolean("translate");
-  id         = ajAcdGetString("id");
-  delkey     = ajAcdGetString("delkey");
-  accid      = ajAcdGetString("accid");
-  
-  if(translate){
-    params.translate   = 1;
-  }else{
-    params.translate   = 0;
-  }
-  params.id            = ajCharNewS(id);
-  params.del_USCOREkey = ajCharNewS(delkey);
-  
-  while(ajSeqallNext(seqall,&seq)){
+	AjBool  show = 0;
+	AjPFile outf = NULL;
 
-    soap_init(&soap);
+	seqall     = ajAcdGetSeqall("sequence");
+	translate  = ajAcdGetBoolean("translate");
+	id         = ajAcdGetString("id");
+	delkey     = ajAcdGetString("delkey");
+	accid      = ajAcdGetString("accid");
 
-    inseq = NULL;
+	if(translate){
+		params.translate   = 1;
+	}else{
+		params.translate   = 0;
+	}
+	params.id            = ajCharNewS(id);
+	params.del_USCOREkey = ajCharNewS(delkey);
 
-    if(ajSeqGetFeat(seq) && !ajStrGetLen(accid)){
-      inseq = getGenbank(seq);
-      ajStrAssignS(&accid, ajSeqGetAccS(seq));
-    }else{
-      if(!ajStrGetLen(accid)){
-        fprintf(stderr,"Sequence does not have features\n");
-        fprintf(stderr,"Proceeding with sequence accession ID\n");
-        ajStrAssignS(&accid, ajSeqGetAccS(seq));
-      }
-      if(!valID(ajCharNewS(accid))){
-          fprintf(stderr,"Invalid accession ID, exiting");
-          return 1;
-      }
-      ajStrAssignS(&inseq,accid);
-    }
+	while(ajSeqallNext(seqall,&seq)){
 
-    char* in0;
-    in0 = ajCharNewS(inseq);
+		soap_init(&soap);
 
-    if(soap_call_ns1__cbi(
-			  &soap, NULL, NULL,
-			  in0, &params, &result
-			  ) == SOAP_OK){
-      if(show)
-        ajFmtPrint("Sequence: %S CBI: %S\n",
-		   ajSeqGetAccS(seq), ajStrNewC(result));
-      else
-        ajFmtPrintF(outf, "Sequence: %S CBI: %S\n",
-		    ajSeqGetAccS(seq), ajStrNewC(result));
-    }else{
-      soap_print_fault(&soap, stderr);
-    }
-  
-    soap_destroy(&soap);
-    soap_end(&soap);
-    soap_done(&soap);
-  }
+		inseq = NULL;
 
-  if(outf)
-    ajFileClose(&outf);
+		if(ajSeqGetFeat(seq) && !ajStrGetLen(accid)){
+			inseq = getGenbank(seq);
+			ajStrAssignS(&accid, ajSeqGetAccS(seq));
+		}else{
+			if(!ajStrGetLen(accid)){
+				fprintf(stderr,"Sequence does not have features\n");
+				fprintf(stderr,"Proceeding with sequence accession ID\n");
+				ajStrAssignS(&accid, ajSeqGetAccS(seq));
+			}
+			if(!valID(ajCharNewS(accid))){
+				fprintf(stderr,"Invalid accession ID, exiting");
+				return 1;
+			}
+			ajStrAssignS(&inseq,accid);
+		}
 
-  ajSeqallDel(&seqall);
-  ajSeqDel(&seq);
-  ajStrDel(&inseq);
-  
-  embExit();
-  return 0;
+		char* in0;
+		in0 = ajCharNewS(inseq);
+
+		if(soap_call_ns1__cbi(
+					&soap, NULL, NULL,
+					in0, &params, &result
+				     ) == SOAP_OK){
+			if(show)
+				ajFmtPrint("Sequence: %S CBI: %S\n",
+						accid, ajStrNewC(result));
+			else
+				ajFmtPrintF(outf, "Sequence: %S CBI: %S\n",
+						accid, ajStrNewC(result));
+		}else{
+			soap_print_fault(&soap, stderr);
+		}
+
+		soap_destroy(&soap);
+		soap_end(&soap);
+		soap_done(&soap);
+	}
+
+	if(outf)
+		ajFileClose(&outf);
+
+	ajSeqallDel(&seqall);
+	ajSeqDel(&seq);
+	ajStrDel(&inseq);
+
+	embExit();
+	return 0;
 }

@@ -12,109 +12,109 @@
 #include "../include/gplot.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("gbase_information_content", argc, argv, "GEMBASSY", "1.0.0");
+	embInitPV("gbase_information_content", argc, argv, "GEMBASSY", "1.0.0");
 
-  struct soap soap;
-  struct ns1__base_USCOREinformation_USCOREcontentInputParams params;
+	struct soap soap;
+	struct ns1__base_USCOREinformation_USCOREcontentInputParams params;
 
-  AjPSeqall seqall;
-  AjPSeq    seq;
-  AjPStr    inseq      = NULL;
-  AjPStr    position   = NULL;
-  ajint     PatLen     = 0;
-  ajint     upstream   = 0;
-  ajint     downstream = 0;
-  AjPStr    accid      = NULL;
-  char*     result; 
+	AjPSeqall seqall;
+	AjPSeq    seq;
+	AjPStr    inseq      = NULL;
+	AjPStr    position   = NULL;
+	ajint     PatLen     = 0;
+	ajint     upstream   = 0;
+	ajint     downstream = 0;
+	AjPStr    accid      = NULL;
+	char*     result; 
 
-  AjBool   plot = 0;
-  AjPFile  outf = NULL;
-  AjPGraph mult = NULL;
+	AjBool   plot = 0;
+	AjPFile  outf = NULL;
+	AjPGraph mult = NULL;
 
-  gPlotParams gpp;
+	gPlotParams gpp;
 
-  AjPStr filename = getUniqueFileName();
+	AjPStr filename = getUniqueFileName();
 
-  seqall     = ajAcdGetSeqall("sequence");
-  position   = ajAcdGetString("position");
-  PatLen     = ajAcdGetInt("patlen");
-  upstream   = ajAcdGetInt("upstream");
-  downstream = ajAcdGetInt("downstream");
-  accid      = ajAcdGetString("accid");
+	seqall     = ajAcdGetSeqall("sequence");
+	position   = ajAcdGetString("position");
+	PatLen     = ajAcdGetInt("patlen");
+	upstream   = ajAcdGetInt("upstream");
+	downstream = ajAcdGetInt("downstream");
+	accid      = ajAcdGetString("accid");
 
-  plot = ajAcdGetToggle("plot");
-  outf = ajAcdGetOutfile("outfile");
-  mult = ajAcdGetGraphxy("graph");
+	plot = ajAcdGetToggle("plot");
+	outf = ajAcdGetOutfile("outfile");
+	mult = ajAcdGetGraphxy("graph");
 
-  params.position   = ajCharNewS(position);
-  params.PatLength  = PatLen;
-  params.upstream   = upstream;
-  params.downstream = downstream;
-  params.output     = "f";
-  
-  while(ajSeqallNext(seqall, &seq)){
+	params.position   = ajCharNewS(position);
+	params.PatLength  = PatLen;
+	params.upstream   = upstream;
+	params.downstream = downstream;
+	params.output     = "f";
 
-    soap_init(&soap);
+	while(ajSeqallNext(seqall, &seq)){
 
-    inseq = NULL;
+		soap_init(&soap);
 
-    if(ajSeqGetFeat(seq) && !ajStrGetLen(accid)){
-      inseq = getGenbank(seq);
-      ajStrAssignS(&accid, ajSeqGetAccS(seq));
-    }else{
-      if(!ajStrGetLen(accid)){
-	fprintf(stderr, "Sequence does not have features\n");
-	fprintf(stderr, "Proceeding with sequence accession ID\n");
-	ajStrAssignS(&accid, ajSeqGetAccS(seq));
-      }
-      if(!valID(ajCharNewS(accid))){
-          fprintf(stderr, "Invalid accession ID, exiting");
-          return 1;
-      }
-      ajStrAssignS(&inseq, accid);
-    }
+		inseq = NULL;
 
-    char* in0;
-    in0 = ajCharNewS(inseq);
-    if(soap_call_ns1__base_USCOREinformation_USCOREcontent(
-							   &soap, NULL, NULL,
-							   in0, &params, &result
-							   ) == SOAP_OK){
-      if(get_file(result, ajCharNewS(filename))==0){
-	if(plot){
-	  AjPStr title = NULL;
-	  ajStrAppendC(&title, argv[0]);
-	  ajStrAppendC(&title, " of ");
-	  ajStrAppendS(&title, accid);
-	  gpp.title = ajStrNewS(title);
-	  gpp.xlab = ajStrNewC("position");
-	  gpp.ylab = ajStrNewC("information content");
-	  ajStrDel(&title);
-	  if(gPlotFile(filename, mult, &gpp))
-	    fprintf(stderr, "Error in plotting\n");
-	}else{
-	  ajFmtPrintF(outf, "Sequence: %S\n%S\n",
-                      ajSeqGetNameS(seq), getContentS(filename));
+		if(ajSeqGetFeat(seq) && !ajStrGetLen(accid)){
+			inseq = getGenbank(seq);
+			ajStrAssignS(&accid, ajSeqGetAccS(seq));
+		}else{
+			if(!ajStrGetLen(accid)){
+				fprintf(stderr, "Sequence does not have features\n");
+				fprintf(stderr, "Proceeding with sequence accession ID\n");
+				ajStrAssignS(&accid, ajSeqGetAccS(seq));
+			}
+			if(!valID(ajCharNewS(accid))){
+				fprintf(stderr, "Invalid accession ID, exiting");
+				return 1;
+			}
+			ajStrAssignS(&inseq, accid);
+		}
+
+		char* in0;
+		in0 = ajCharNewS(inseq);
+		if(soap_call_ns1__base_USCOREinformation_USCOREcontent(
+					&soap, NULL, NULL,
+					in0, &params, &result
+					) == SOAP_OK){
+			if(get_file(result, ajCharNewS(filename))==0){
+				if(plot){
+					AjPStr title = NULL;
+					ajStrAppendC(&title, argv[0]);
+					ajStrAppendC(&title, " of ");
+					ajStrAppendS(&title, accid);
+					gpp.title = ajStrNewS(title);
+					gpp.xlab = ajStrNewC("position");
+					gpp.ylab = ajStrNewC("information content");
+					ajStrDel(&title);
+					if(gPlotFile(filename, mult, &gpp))
+						fprintf(stderr, "Error in plotting\n");
+				}else{
+					ajFmtPrintF(outf, "Sequence: %S\n%S\n",
+							accid, getContentS(filename));
+				}
+			}else{
+				fprintf(stderr, "Retrieval unsuccessful\n");
+			}
+		}else{
+			soap_print_fault(&soap, stderr);
+		}
+
+		soap_destroy(&soap);
+		soap_end(&soap);
+		soap_done(&soap);
 	}
-      }else{
-        fprintf(stderr, "Retrieval unsuccessful\n");
-      }
-    }else{
-      soap_print_fault(&soap, stderr);
-    }
-  
-    soap_destroy(&soap);
-    soap_end(&soap);
-    soap_done(&soap);
-  }
 
-  if(outf)
-    ajFileClose(&outf);
+	if(outf)
+		ajFileClose(&outf);
 
-  ajSeqallDel(&seqall);
-  ajSeqDel(&seq);
-  ajStrDel(&inseq);
+	ajSeqallDel(&seqall);
+	ajSeqDel(&seq);
+	ajStrDel(&inseq);
 
-  embExit();
-  return 0;
+	embExit();
+	return 0;
 }

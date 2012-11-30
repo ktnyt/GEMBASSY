@@ -11,107 +11,107 @@
 #include "../include/gembassy.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("gcodon_compiler", argc, argv, "GEMBASSY", "1.0.0");
+	embInitPV("gcodon_compiler", argc, argv, "GEMBASSY", "1.0.0");
 
-  struct soap soap;
-  struct ns1__codon_USCOREcompilerInputParams params;
+	struct soap soap;
+	struct ns1__codon_USCOREcompilerInputParams params;
 
-  AjPSeqall seqall;
-  AjPSeq    seq;
-  AjPStr    inseq      = NULL;
-  AjPStr    id         = NULL;
-  AjBool    translate  = 0;
-  AjBool    startcodon = 0;
-  AjBool    stopcodon  = 0;
-  AjPStr    delkey     = NULL;
-  AjPStr    data       = NULL;
-  AjPStr    accid      = NULL;
-  char*     result;
+	AjPSeqall seqall;
+	AjPSeq    seq;
+	AjPStr    inseq      = NULL;
+	AjPStr    id         = NULL;
+	AjBool    translate  = 0;
+	AjBool    startcodon = 0;
+	AjBool    stopcodon  = 0;
+	AjPStr    delkey     = NULL;
+	AjPStr    data       = NULL;
+	AjPStr    accid      = NULL;
+	char*     result;
 
-  AjPFile outf = NULL;
+	AjPFile outf = NULL;
 
-  AjPStr filename = getUniqueFileName();
+	AjPStr filename = getUniqueFileName();
 
-  seqall     = ajAcdGetSeqall("sequence");
-  id         = ajAcdGetString("id");
-  translate  = ajAcdGetBoolean("translate");
-  startcodon = ajAcdGetBoolean("startcodon");
-  stopcodon  = ajAcdGetBoolean("stopcodon");
-  delkey     = ajAcdGetString("delkey");
-  data       = ajAcdGetString("data");
-  accid      = ajAcdGetString("accid");
+	seqall     = ajAcdGetSeqall("sequence");
+	id         = ajAcdGetString("id");
+	translate  = ajAcdGetBoolean("translate");
+	startcodon = ajAcdGetBoolean("startcodon");
+	stopcodon  = ajAcdGetBoolean("stopcodon");
+	delkey     = ajAcdGetString("delkey");
+	data       = ajAcdGetString("data");
+	accid      = ajAcdGetString("accid");
 
-  outf = ajAcdGetOutfile("outfile");
+	outf = ajAcdGetOutfile("outfile");
 
-  if(translate){
-    params.translate   = 1;
-  }else{
-    params.translate   = 0;
-  }
-  if(startcodon){
-    params.startcodon  = 1;
-  }else{
-    params.startcodon  = 0;
-  }
-  if(stopcodon){
-    params.stopcodon   = 1;
-  }else{
-    params.stopcodon   = 0;
-  }
-  params.del_USCOREkey = ajCharNewS(delkey);
-  params.data          = ajCharNewS(data);
-  params.output        = "f";
+	if(translate){
+		params.translate   = 1;
+	}else{
+		params.translate   = 0;
+	}
+	if(startcodon){
+		params.startcodon  = 1;
+	}else{
+		params.startcodon  = 0;
+	}
+	if(stopcodon){
+		params.stopcodon   = 1;
+	}else{
+		params.stopcodon   = 0;
+	}
+	params.del_USCOREkey = ajCharNewS(delkey);
+	params.data          = ajCharNewS(data);
+	params.output        = "f";
 
-  while(ajSeqallNext(seqall, &seq)){  
+	while(ajSeqallNext(seqall, &seq)){  
 
-    soap_init(&soap);
+		soap_init(&soap);
 
-    inseq = NULL;
+		inseq = NULL;
 
-    if(ajSeqGetFeat(seq) && !ajStrGetLen(accid)){
-      inseq = getGenbank(seq);
-      ajStrAssignS(&accid, ajSeqGetAccS(seq));
-    }else{
-      if(!ajStrGetLen(accid)){
-        fprintf(stderr, "Sequence does not have features\n");
-        fprintf(stderr, "Proceeding with sequence accession ID\n");
-        ajStrAssignS(&accid, ajSeqGetAccS(seq));
-      }
-      if(!valID(ajCharNewS(accid))){
-          fprintf(stderr, "Invalid accession ID, exiting");
-          return 1;
-      }
-      ajStrAssignS(&inseq, accid);
-    }
+		if(ajSeqGetFeat(seq) && !ajStrGetLen(accid)){
+			inseq = getGenbank(seq);
+			ajStrAssignS(&accid, ajSeqGetAccS(seq));
+		}else{
+			if(!ajStrGetLen(accid)){
+				fprintf(stderr, "Sequence does not have features\n");
+				fprintf(stderr, "Proceeding with sequence accession ID\n");
+				ajStrAssignS(&accid, ajSeqGetAccS(seq));
+			}
+			if(!valID(ajCharNewS(accid))){
+				fprintf(stderr, "Invalid accession ID, exiting");
+				return 1;
+			}
+			ajStrAssignS(&inseq, accid);
+		}
 
-    char* in0;
-    in0 = ajCharNewS(inseq);
+		char* in0;
+		in0 = ajCharNewS(inseq);
 
-    if(soap_call_ns1__codon_USCOREcompiler(
-					   &soap, NULL, NULL,
-					   in0, &params, &result
-					   ) == SOAP_OK){
-      if(get_file(result, ajCharNewS(filename))){
-        fprintf(stderr, "Retrieval unsuccessful\n");
-      }
-      ajFmtPrintF(outf, "Sequence: %S\n%S\n",
-		  ajSeqGetNameS(seq), getContentS(filename));
-    }else{
-      soap_print_fault(&soap, stderr);
-    }
-    
-    soap_destroy(&soap);
-    soap_end(&soap);
-    soap_done(&soap);
-  }
+		if(soap_call_ns1__codon_USCOREcompiler(
+					&soap, NULL, NULL,
+					in0, &params, &result
+					) == SOAP_OK){
+			if(get_file(result, ajCharNewS(filename))){
+				fprintf(stderr, "Retrieval unsuccessful\n");
+			}
+			ajFmtPrintF(outf, "Sequence: %S\n%S\n",
+					accid, getContentS(filename));
+		}else{
+			soap_print_fault(&soap, stderr);
+		}
 
-  if(outf)
-    ajFileClose(&outf);
+		soap_destroy(&soap);
+		soap_end(&soap);
+		soap_done(&soap);
+	}
 
-  ajSeqallDel(&seqall);
-  ajSeqDel(&seq);
-  ajStrDel(&inseq);
-  
-  embExit();
-  return 0;
+	if(outf)
+		ajFileClose(&outf);
+
+	ajSeqallDel(&seqall);
+	ajSeqDel(&seq);
+	ajStrDel(&inseq);
+
+	embExit();
+	return 0;
 }

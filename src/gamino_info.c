@@ -11,63 +11,63 @@
 #include "../include/gembassy.h"
 
 int main(int argc, char *argv[]){
-  embInitPV("gamino_info", argc, argv, "GEMBASSY", "1.0.0");
-  
-  struct soap soap;
+	embInitPV("gamino_info", argc, argv, "GEMBASSY", "1.0.0");
 
-  AjPSeqall seqall;
-  AjPSeq    seq;
-  AjPStr    inseq = NULL;
-  char*     result;
+	struct soap soap;
 
-  AjBool  show = 0;
-  AjPFile outf = NULL;
+	AjPSeqall seqall;
+	AjPSeq    seq;
+	AjPStr    inseq = NULL;
+	char*     result;
 
-  seqall = ajAcdGetSeqall("sequence");
+	AjBool  show = 0;
+	AjPFile outf = NULL;
 
-  show = ajAcdGetToggle("show");
-  outf = ajAcdGetOutfile("outfile");
-  
-  while(ajSeqallNext(seqall, &seq)){
+	seqall = ajAcdGetSeqall("sequence");
 
-    soap_init(&soap);
+	show = ajAcdGetToggle("show");
+	outf = ajAcdGetOutfile("outfile");
 
-    inseq = NULL;
+	while(ajSeqallNext(seqall, &seq)){
 
-    ajStrAppendC(&inseq, ">");
-    ajStrAppendS(&inseq, ajSeqGetNameS(seq));
-    ajStrAppendC(&inseq, "\n");
-    ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
-    
-    char* in0;
-    in0 = ajCharNewS(inseq);
+		soap_init(&soap);
 
-    if(soap_call_ns1__amino_USCOREinfo(
-                                       &soap, NULL, NULL,
-                                       in0, &result
-                                       ) == SOAP_OK){
-      if(show)
-	ajFmtPrint("Sequence: %S\n%S\n",
-		   ajSeqGetAccS(seq), ajStrNewC(result));
-      else
-	ajFmtPrintF(outf, "Sequence: %S\n%S\n",
-		    ajSeqGetAccS(seq), ajStrNewC(result));
-    }else{
-      soap_print_fault(&soap, stderr);
-    }
-  
-    soap_destroy(&soap);
-    soap_end(&soap);
-    soap_done(&soap);
-  }
-  
-  if(outf)
-    ajFileClose(&outf);
+		inseq = NULL;
 
-  ajSeqallDel(&seqall);
-  ajSeqDel(&seq);
-  ajStrDel(&inseq);
-  
-  embExit();
-  return 0;
+		ajStrAppendC(&inseq, ">");
+		ajStrAppendS(&inseq, ajSeqGetNameS(seq));
+		ajStrAppendC(&inseq, "\n");
+		ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
+
+		char* in0;
+		in0 = ajCharNewS(inseq);
+
+		if(soap_call_ns1__amino_USCOREinfo(
+					&soap, NULL, NULL,
+					in0, &result
+					) == SOAP_OK){
+			if(show)
+				ajFmtPrint("Sequence: %S\n%S\n",
+						ajSeqGetAccS(seq), ajStrNewC(result));
+			else
+				ajFmtPrintF(outf, "Sequence: %S\n%S\n",
+						ajSeqGetAccS(seq), ajStrNewC(result));
+		}else{
+			soap_print_fault(&soap, stderr);
+		}
+
+		soap_destroy(&soap);
+		soap_end(&soap);
+		soap_done(&soap);
+	}
+
+	if(outf)
+		ajFileClose(&outf);
+
+	ajSeqallDel(&seqall);
+	ajSeqDel(&seq);
+	ajStrDel(&inseq);
+
+	embExit();
+	return 0;
 }
