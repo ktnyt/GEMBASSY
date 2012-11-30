@@ -8,6 +8,7 @@
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
+#include "../include/grest.h"
 #include "../include/gembassy.h"
 
 int main(int argc, char *argv[]){
@@ -20,7 +21,7 @@ int main(int argc, char *argv[]){
   AjPSeq    seq;
   AjPStr    inseq   = NULL;
   ajint     window  = 0;
-  ajint     version = 0;
+  AjBool    _gcsi   = 0;
   AjBool    at      = 0;
   AjBool    purine  = 0;
   AjBool    keto    = 0;
@@ -33,7 +34,7 @@ int main(int argc, char *argv[]){
   
   seqall  = ajAcdGetSeqall("sequence");
   window  = ajAcdGetInt("window");
-  version = ajAcdGetInt("ver");
+  _gcsi   = ajAcdGetBoolean("gcsi");
   at      = ajAcdGetBoolean("at");
   purine  = ajAcdGetBoolean("purine");
   keto    = ajAcdGetBoolean("keto");
@@ -44,7 +45,11 @@ int main(int argc, char *argv[]){
   outf = ajAcdGetOutfile("outfile");
 
   params.window       = window;
-  params.version      = version;
+  if(_gcsi){
+    params.version = 1;
+  }else{
+    params.version = 2;
+  }
   if(at){
     params.at         = 1;
   }else{
@@ -72,21 +77,13 @@ int main(int argc, char *argv[]){
 
     inseq = NULL;
 
-    if(ajSeqGetFeat(seq) && !ajStrGetLen(accid)){
-      inseq = getGenbank(seq);
-      ajStrAssignS(&accid,ajSeqGetAccS(seq));
-    }else{
-      if(!ajStrGetLen(accid)){
-        fprintf(stderr, "Sequence does not have features\n");
-        fprintf(stderr, "Proceeding with sequence accession ID\n");
-        ajStrAssignS(&accid, ajSeqGetAccS(seq));
-      }
-      if(!valID(ajCharNewS(accid))){
-          fprintf(stderr, "Invalid accession ID, exiting");
-          return 1;
-      }
-      ajStrAssignS(&inseq, accid);
-    }
+    ajStrAppendC(&inseq, ">");
+    ajStrAppendS(&inseq, ajSeqGetNameS(seq));
+    ajStrAppendC(&inseq, "\n");
+    ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
+
+    if(!ajStrGetLen(accid))
+      ajStrAssignS(&accid, ajSeqGetAccS(seq));    
 
     char* in0;
     in0 = ajCharNewS(inseq);
@@ -100,6 +97,8 @@ int main(int argc, char *argv[]){
       AjPStr gcsi = NULL;
       AjPStr sa = NULL;
       AjPStr dist = NULL;
+      AjPStr z = NULL;
+      AjPStr p = NULL;
       AjPStrTok handle = NULL;
       ajStrExchangeCC(&tmp, "<", "\n");
       ajStrExchangeCC(&tmp, ">", "\n");
@@ -112,13 +111,19 @@ int main(int argc, char *argv[]){
             sa = ajStrNewS(parse);
 	  else if(!dist)
 	    dist = ajStrNewS(parse);
+	  else if (!z)
+	    z = ajStrNewS(parse);
+	  else if (!p)
+	    p = ajStrNewS(parse);
       }
+      tmp = ajFmtStr("Sequence: %S GCSI: %S SA: %S DIST: %S",
+		     accid, gcsi, sa, dist);
+      if(pval)
+	tmp = ajFmtStr("%S Z: %S P: %S", tmp, z, p);
       if(show)
-        ajFmtPrint("Sequence: %S GCSI: %S SA: %S DIST: %S\n",
-                   ajSeqGetAccS(seq), gcsi, sa, dist);
+        ajFmtPrint("%S\n", tmp);
       else
-        ajFmtPrintF(outf, "Sequence: %S GCSI: %S SA: %S DIST: %S\n",
-		    ajSeqGetAccS(seq), gcsi, sa, dist);
+        ajFmtPrintF(outf, "%S\n", tmp);
     }else{
       soap_print_fault(&soap, stderr);
     }
