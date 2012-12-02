@@ -49,7 +49,6 @@ bin_PROGRAMS = gaaui\
                gbase_information_content\
                gbase_relative_entropy\
                gbase_z_value\
-               gbui\
                gcai\
                gcbi\
                gcgr\
@@ -76,8 +75,6 @@ bin_PROGRAMS = gaaui\
                gkmer_table\
                glda_bias\
                gnucleotide_periodicity\
-               goligomer_counter\
-               goligomer_search\
                gp2\
                gpalindrome\
                gphx\
@@ -102,7 +99,6 @@ gbase_entropy_SOURCES   = gbase_entropy.c
 gbase_information_content_SOURCES = gbase_information_content.c
 gbase_relative_entropy_SOURCES    = gbase_relative_entropy.c
 gbase_z_value_SOURCES   = gbase_z_value.c
-gbui_SOURCES            = gbui.c
 gcai_SOURCES            = gcai.c
 gcbi_SOURCES            = gcbi.c
 gcgr_SOURCES            = gcgr.c
@@ -128,8 +124,6 @@ gicdi_SOURCES           = gicdi.c
 gkmer_table_SOURCES     = gkmer_table.c
 glda_bias_SOURCES       = glda_bias.c
 gnucleotide_periodicity_SOURCES = gnucleotide_periodicity.c
-goligomer_counter_SOURCES       = goligomer_counter.c
-goligomer_search_SOURCES        = goligomer_search.c
 gp2_SOURCES             = gp2.c
 gpalindrome_SOURCES     = gpalindrome.c
 gphx_SOURCES            = gphx.c

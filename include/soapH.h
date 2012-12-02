@@ -64,7 +64,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_int(struct soap*, const int *, const char*, c
 SOAP_FMAC3 int * SOAP_FMAC4 soap_get_int(struct soap*, int *, const char*, const char*);
 
 #ifndef SOAP_TYPE_float
-#define SOAP_TYPE_float (426)
+#define SOAP_TYPE_float (427)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_float(struct soap*, float *);
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_float(struct soap*, const char*, int, const float *, const char*);
@@ -106,7 +106,7 @@ SOAP_FMAC3 double * SOAP_FMAC4 soap_get_double(struct soap*, double *, const cha
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_SOAP_ENV__Fault
-#define SOAP_TYPE_SOAP_ENV__Fault (438)
+#define SOAP_TYPE_SOAP_ENV__Fault (439)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SOAP_ENV__Fault(struct soap*, struct SOAP_ENV__Fault *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SOAP_ENV__Fault(struct soap*, const struct SOAP_ENV__Fault *);
@@ -131,7 +131,7 @@ SOAP_FMAC3 struct SOAP_ENV__Fault * SOAP_FMAC4 soap_get_SOAP_ENV__Fault(struct s
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_SOAP_ENV__Reason
-#define SOAP_TYPE_SOAP_ENV__Reason (437)
+#define SOAP_TYPE_SOAP_ENV__Reason (438)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SOAP_ENV__Reason(struct soap*, struct SOAP_ENV__Reason *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SOAP_ENV__Reason(struct soap*, const struct SOAP_ENV__Reason *);
@@ -156,7 +156,7 @@ SOAP_FMAC3 struct SOAP_ENV__Reason * SOAP_FMAC4 soap_get_SOAP_ENV__Reason(struct
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_SOAP_ENV__Detail
-#define SOAP_TYPE_SOAP_ENV__Detail (434)
+#define SOAP_TYPE_SOAP_ENV__Detail (435)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SOAP_ENV__Detail(struct soap*, struct SOAP_ENV__Detail *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SOAP_ENV__Detail(struct soap*, const struct SOAP_ENV__Detail *);
@@ -181,7 +181,7 @@ SOAP_FMAC3 struct SOAP_ENV__Detail * SOAP_FMAC4 soap_get_SOAP_ENV__Detail(struct
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_SOAP_ENV__Code
-#define SOAP_TYPE_SOAP_ENV__Code (432)
+#define SOAP_TYPE_SOAP_ENV__Code (433)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SOAP_ENV__Code(struct soap*, struct SOAP_ENV__Code *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SOAP_ENV__Code(struct soap*, const struct SOAP_ENV__Code *);
@@ -206,7 +206,7 @@ SOAP_FMAC3 struct SOAP_ENV__Code * SOAP_FMAC4 soap_get_SOAP_ENV__Code(struct soa
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_SOAP_ENV__Header
-#define SOAP_TYPE_SOAP_ENV__Header (431)
+#define SOAP_TYPE_SOAP_ENV__Header (432)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SOAP_ENV__Header(struct soap*, struct SOAP_ENV__Header *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SOAP_ENV__Header(struct soap*, const struct SOAP_ENV__Header *);
@@ -229,7 +229,7 @@ SOAP_FMAC3 struct SOAP_ENV__Header * SOAP_FMAC4 soap_get_SOAP_ENV__Header(struct
 #endif
 
 #ifndef SOAP_TYPE_ns1__hydropathy
-#define SOAP_TYPE_ns1__hydropathy (430)
+#define SOAP_TYPE_ns1__hydropathy (431)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__hydropathy(struct soap*, struct ns1__hydropathy *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__hydropathy(struct soap*, const struct ns1__hydropathy *);
@@ -250,7 +250,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__hydropathy(struct soap*, const struct ns
 SOAP_FMAC3 struct ns1__hydropathy * SOAP_FMAC4 soap_get_ns1__hydropathy(struct soap*, struct ns1__hydropathy *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__hydropathyResponse
-#define SOAP_TYPE_ns1__hydropathyResponse (429)
+#define SOAP_TYPE_ns1__hydropathyResponse (430)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__hydropathyResponse(struct soap*, struct ns1__hydropathyResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__hydropathyResponse(struct soap*, const struct ns1__hydropathyResponse *);
@@ -271,7 +271,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__hydropathyResponse(struct soap*, const s
 SOAP_FMAC3 struct ns1__hydropathyResponse * SOAP_FMAC4 soap_get_ns1__hydropathyResponse(struct soap*, struct ns1__hydropathyResponse *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__help
-#define SOAP_TYPE_ns1__help (425)
+#define SOAP_TYPE_ns1__help (426)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__help(struct soap*, struct ns1__help *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__help(struct soap*, const struct ns1__help *);
@@ -292,7 +292,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__help(struct soap*, const struct ns1__hel
 SOAP_FMAC3 struct ns1__help * SOAP_FMAC4 soap_get_ns1__help(struct soap*, struct ns1__help *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__helpResponse
-#define SOAP_TYPE_ns1__helpResponse (424)
+#define SOAP_TYPE_ns1__helpResponse (425)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__helpResponse(struct soap*, struct ns1__helpResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__helpResponse(struct soap*, const struct ns1__helpResponse *);
@@ -313,7 +313,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__helpResponse(struct soap*, const struct 
 SOAP_FMAC3 struct ns1__helpResponse * SOAP_FMAC4 soap_get_ns1__helpResponse(struct soap*, struct ns1__helpResponse *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__S_USCOREvalue
-#define SOAP_TYPE_ns1__S_USCOREvalue (422)
+#define SOAP_TYPE_ns1__S_USCOREvalue (423)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__S_USCOREvalue(struct soap*, struct ns1__S_USCOREvalue *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__S_USCOREvalue(struct soap*, const struct ns1__S_USCOREvalue *);
@@ -334,7 +334,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__S_USCOREvalue(struct soap*, const struct
 SOAP_FMAC3 struct ns1__S_USCOREvalue * SOAP_FMAC4 soap_get_ns1__S_USCOREvalue(struct soap*, struct ns1__S_USCOREvalue *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__S_USCOREvalueResponse
-#define SOAP_TYPE_ns1__S_USCOREvalueResponse (421)
+#define SOAP_TYPE_ns1__S_USCOREvalueResponse (422)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__S_USCOREvalueResponse(struct soap*, struct ns1__S_USCOREvalueResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__S_USCOREvalueResponse(struct soap*, const struct ns1__S_USCOREvalueResponse *);
@@ -355,7 +355,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__S_USCOREvalueResponse(struct soap*, cons
 SOAP_FMAC3 struct ns1__S_USCOREvalueResponse * SOAP_FMAC4 soap_get_ns1__S_USCOREvalueResponse(struct soap*, struct ns1__S_USCOREvalueResponse *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__leading_USCOREstrand
-#define SOAP_TYPE_ns1__leading_USCOREstrand (418)
+#define SOAP_TYPE_ns1__leading_USCOREstrand (419)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__leading_USCOREstrand(struct soap*, struct ns1__leading_USCOREstrand *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__leading_USCOREstrand(struct soap*, const struct ns1__leading_USCOREstrand *);
@@ -376,7 +376,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__leading_USCOREstrand(struct soap*, const
 SOAP_FMAC3 struct ns1__leading_USCOREstrand * SOAP_FMAC4 soap_get_ns1__leading_USCOREstrand(struct soap*, struct ns1__leading_USCOREstrand *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__leading_USCOREstrandResponse
-#define SOAP_TYPE_ns1__leading_USCOREstrandResponse (415)
+#define SOAP_TYPE_ns1__leading_USCOREstrandResponse (416)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__leading_USCOREstrandResponse(struct soap*, struct ns1__leading_USCOREstrandResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__leading_USCOREstrandResponse(struct soap*, const struct ns1__leading_USCOREstrandResponse *);
@@ -397,7 +397,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__leading_USCOREstrandResponse(struct soap
 SOAP_FMAC3 struct ns1__leading_USCOREstrandResponse * SOAP_FMAC4 soap_get_ns1__leading_USCOREstrandResponse(struct soap*, struct ns1__leading_USCOREstrandResponse *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__scs
-#define SOAP_TYPE_ns1__scs (414)
+#define SOAP_TYPE_ns1__scs (415)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__scs(struct soap*, struct ns1__scs *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__scs(struct soap*, const struct ns1__scs *);
@@ -418,7 +418,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__scs(struct soap*, const struct ns1__scs 
 SOAP_FMAC3 struct ns1__scs * SOAP_FMAC4 soap_get_ns1__scs(struct soap*, struct ns1__scs *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__scsResponse
-#define SOAP_TYPE_ns1__scsResponse (413)
+#define SOAP_TYPE_ns1__scsResponse (414)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__scsResponse(struct soap*, struct ns1__scsResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__scsResponse(struct soap*, const struct ns1__scsResponse *);
@@ -439,7 +439,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__scsResponse(struct soap*, const struct n
 SOAP_FMAC3 struct ns1__scsResponse * SOAP_FMAC4 soap_get_ns1__scsResponse(struct soap*, struct ns1__scsResponse *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__lda_USCOREbias
-#define SOAP_TYPE_ns1__lda_USCOREbias (410)
+#define SOAP_TYPE_ns1__lda_USCOREbias (411)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__lda_USCOREbias(struct soap*, struct ns1__lda_USCOREbias *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__lda_USCOREbias(struct soap*, const struct ns1__lda_USCOREbias *);
@@ -460,7 +460,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__lda_USCOREbias(struct soap*, const struc
 SOAP_FMAC3 struct ns1__lda_USCOREbias * SOAP_FMAC4 soap_get_ns1__lda_USCOREbias(struct soap*, struct ns1__lda_USCOREbias *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__lda_USCOREbiasResponse
-#define SOAP_TYPE_ns1__lda_USCOREbiasResponse (409)
+#define SOAP_TYPE_ns1__lda_USCOREbiasResponse (410)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__lda_USCOREbiasResponse(struct soap*, struct ns1__lda_USCOREbiasResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__lda_USCOREbiasResponse(struct soap*, const struct ns1__lda_USCOREbiasResponse *);
@@ -481,7 +481,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__lda_USCOREbiasResponse(struct soap*, con
 SOAP_FMAC3 struct ns1__lda_USCOREbiasResponse * SOAP_FMAC4 soap_get_ns1__lda_USCOREbiasResponse(struct soap*, struct ns1__lda_USCOREbiasResponse *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__kmer_USCOREtable
-#define SOAP_TYPE_ns1__kmer_USCOREtable (406)
+#define SOAP_TYPE_ns1__kmer_USCOREtable (407)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__kmer_USCOREtable(struct soap*, struct ns1__kmer_USCOREtable *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__kmer_USCOREtable(struct soap*, const struct ns1__kmer_USCOREtable *);
@@ -502,7 +502,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__kmer_USCOREtable(struct soap*, const str
 SOAP_FMAC3 struct ns1__kmer_USCOREtable * SOAP_FMAC4 soap_get_ns1__kmer_USCOREtable(struct soap*, struct ns1__kmer_USCOREtable *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__kmer_USCOREtableResponse
-#define SOAP_TYPE_ns1__kmer_USCOREtableResponse (405)
+#define SOAP_TYPE_ns1__kmer_USCOREtableResponse (406)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__kmer_USCOREtableResponse(struct soap*, struct ns1__kmer_USCOREtableResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__kmer_USCOREtableResponse(struct soap*, const struct ns1__kmer_USCOREtableResponse *);
@@ -523,7 +523,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__kmer_USCOREtableResponse(struct soap*, c
 SOAP_FMAC3 struct ns1__kmer_USCOREtableResponse * SOAP_FMAC4 soap_get_ns1__kmer_USCOREtableResponse(struct soap*, struct ns1__kmer_USCOREtableResponse *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__base_USCOREz_USCOREvalue
-#define SOAP_TYPE_ns1__base_USCOREz_USCOREvalue (402)
+#define SOAP_TYPE_ns1__base_USCOREz_USCOREvalue (403)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__base_USCOREz_USCOREvalue(struct soap*, struct ns1__base_USCOREz_USCOREvalue *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__base_USCOREz_USCOREvalue(struct soap*, const struct ns1__base_USCOREz_USCOREvalue *);
@@ -544,7 +544,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__base_USCOREz_USCOREvalue(struct soap*, c
 SOAP_FMAC3 struct ns1__base_USCOREz_USCOREvalue * SOAP_FMAC4 soap_get_ns1__base_USCOREz_USCOREvalue(struct soap*, struct ns1__base_USCOREz_USCOREvalue *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__base_USCOREz_USCOREvalueResponse
-#define SOAP_TYPE_ns1__base_USCOREz_USCOREvalueResponse (401)
+#define SOAP_TYPE_ns1__base_USCOREz_USCOREvalueResponse (402)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__base_USCOREz_USCOREvalueResponse(struct soap*, struct ns1__base_USCOREz_USCOREvalueResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__base_USCOREz_USCOREvalueResponse(struct soap*, const struct ns1__base_USCOREz_USCOREvalueResponse *);
@@ -565,7 +565,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__base_USCOREz_USCOREvalueResponse(struct 
 SOAP_FMAC3 struct ns1__base_USCOREz_USCOREvalueResponse * SOAP_FMAC4 soap_get_ns1__base_USCOREz_USCOREvalueResponse(struct soap*, struct ns1__base_USCOREz_USCOREvalueResponse *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__base_USCOREcounter
-#define SOAP_TYPE_ns1__base_USCOREcounter (398)
+#define SOAP_TYPE_ns1__base_USCOREcounter (399)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__base_USCOREcounter(struct soap*, struct ns1__base_USCOREcounter *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__base_USCOREcounter(struct soap*, const struct ns1__base_USCOREcounter *);
@@ -586,7 +586,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__base_USCOREcounter(struct soap*, const s
 SOAP_FMAC3 struct ns1__base_USCOREcounter * SOAP_FMAC4 soap_get_ns1__base_USCOREcounter(struct soap*, struct ns1__base_USCOREcounter *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__base_USCOREcounterResponse
-#define SOAP_TYPE_ns1__base_USCOREcounterResponse (397)
+#define SOAP_TYPE_ns1__base_USCOREcounterResponse (398)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__base_USCOREcounterResponse(struct soap*, struct ns1__base_USCOREcounterResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__base_USCOREcounterResponse(struct soap*, const struct ns1__base_USCOREcounterResponse *);
@@ -607,7 +607,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__base_USCOREcounterResponse(struct soap*,
 SOAP_FMAC3 struct ns1__base_USCOREcounterResponse * SOAP_FMAC4 soap_get_ns1__base_USCOREcounterResponse(struct soap*, struct ns1__base_USCOREcounterResponse *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__B2
-#define SOAP_TYPE_ns1__B2 (394)
+#define SOAP_TYPE_ns1__B2 (395)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__B2(struct soap*, struct ns1__B2 *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__B2(struct soap*, const struct ns1__B2 *);
@@ -628,7 +628,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__B2(struct soap*, const struct ns1__B2 *,
 SOAP_FMAC3 struct ns1__B2 * SOAP_FMAC4 soap_get_ns1__B2(struct soap*, struct ns1__B2 *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__B2Response
-#define SOAP_TYPE_ns1__B2Response (393)
+#define SOAP_TYPE_ns1__B2Response (394)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__B2Response(struct soap*, struct ns1__B2Response *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__B2Response(struct soap*, const struct ns1__B2Response *);
@@ -649,7 +649,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__B2Response(struct soap*, const struct ns
 SOAP_FMAC3 struct ns1__B2Response * SOAP_FMAC4 soap_get_ns1__B2Response(struct soap*, struct ns1__B2Response *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__B1
-#define SOAP_TYPE_ns1__B1 (391)
+#define SOAP_TYPE_ns1__B1 (392)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__B1(struct soap*, struct ns1__B1 *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__B1(struct soap*, const struct ns1__B1 *);
@@ -670,7 +670,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__B1(struct soap*, const struct ns1__B1 *,
 SOAP_FMAC3 struct ns1__B1 * SOAP_FMAC4 soap_get_ns1__B1(struct soap*, struct ns1__B1 *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__B1Response
-#define SOAP_TYPE_ns1__B1Response (390)
+#define SOAP_TYPE_ns1__B1Response (391)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__B1Response(struct soap*, struct ns1__B1Response *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__B1Response(struct soap*, const struct ns1__B1Response *);
@@ -691,7 +691,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__B1Response(struct soap*, const struct ns
 SOAP_FMAC3 struct ns1__B1Response * SOAP_FMAC4 soap_get_ns1__B1Response(struct soap*, struct ns1__B1Response *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__cgr
-#define SOAP_TYPE_ns1__cgr (387)
+#define SOAP_TYPE_ns1__cgr (388)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__cgr(struct soap*, struct ns1__cgr *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__cgr(struct soap*, const struct ns1__cgr *);
@@ -712,7 +712,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__cgr(struct soap*, const struct ns1__cgr 
 SOAP_FMAC3 struct ns1__cgr * SOAP_FMAC4 soap_get_ns1__cgr(struct soap*, struct ns1__cgr *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__cgrResponse
-#define SOAP_TYPE_ns1__cgrResponse (386)
+#define SOAP_TYPE_ns1__cgrResponse (387)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__cgrResponse(struct soap*, struct ns1__cgrResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__cgrResponse(struct soap*, const struct ns1__cgrResponse *);
@@ -733,7 +733,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__cgrResponse(struct soap*, const struct n
 SOAP_FMAC3 struct ns1__cgrResponse * SOAP_FMAC4 soap_get_ns1__cgrResponse(struct soap*, struct ns1__cgrResponse *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__dinuc
-#define SOAP_TYPE_ns1__dinuc (383)
+#define SOAP_TYPE_ns1__dinuc (384)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__dinuc(struct soap*, struct ns1__dinuc *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__dinuc(struct soap*, const struct ns1__dinuc *);
@@ -754,7 +754,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__dinuc(struct soap*, const struct ns1__di
 SOAP_FMAC3 struct ns1__dinuc * SOAP_FMAC4 soap_get_ns1__dinuc(struct soap*, struct ns1__dinuc *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__dinucResponse
-#define SOAP_TYPE_ns1__dinucResponse (382)
+#define SOAP_TYPE_ns1__dinucResponse (383)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__dinucResponse(struct soap*, struct ns1__dinucResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__dinucResponse(struct soap*, const struct ns1__dinucResponse *);
@@ -775,7 +775,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__dinucResponse(struct soap*, const struct
 SOAP_FMAC3 struct ns1__dinucResponse * SOAP_FMAC4 soap_get_ns1__dinucResponse(struct soap*, struct ns1__dinucResponse *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__least_USCOREsquares_USCOREfit
-#define SOAP_TYPE_ns1__least_USCOREsquares_USCOREfit (379)
+#define SOAP_TYPE_ns1__least_USCOREsquares_USCOREfit (380)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__least_USCOREsquares_USCOREfit(struct soap*, struct ns1__least_USCOREsquares_USCOREfit *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__least_USCOREsquares_USCOREfit(struct soap*, const struct ns1__least_USCOREsquares_USCOREfit *);
@@ -796,7 +796,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__least_USCOREsquares_USCOREfit(struct soa
 SOAP_FMAC3 struct ns1__least_USCOREsquares_USCOREfit * SOAP_FMAC4 soap_get_ns1__least_USCOREsquares_USCOREfit(struct soap*, struct ns1__least_USCOREsquares_USCOREfit *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__least_USCOREsquares_USCOREfitResponse
-#define SOAP_TYPE_ns1__least_USCOREsquares_USCOREfitResponse (376)
+#define SOAP_TYPE_ns1__least_USCOREsquares_USCOREfitResponse (377)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__least_USCOREsquares_USCOREfitResponse(struct soap*, struct ns1__least_USCOREsquares_USCOREfitResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__least_USCOREsquares_USCOREfitResponse(struct soap*, const struct ns1__least_USCOREsquares_USCOREfitResponse *);
@@ -817,7 +817,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__least_USCOREsquares_USCOREfitResponse(st
 SOAP_FMAC3 struct ns1__least_USCOREsquares_USCOREfitResponse * SOAP_FMAC4 soap_get_ns1__least_USCOREsquares_USCOREfitResponse(struct soap*, struct ns1__least_USCOREsquares_USCOREfitResponse *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__palindrome
-#define SOAP_TYPE_ns1__palindrome (375)
+#define SOAP_TYPE_ns1__palindrome (376)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__palindrome(struct soap*, struct ns1__palindrome *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__palindrome(struct soap*, const struct ns1__palindrome *);
@@ -838,7 +838,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__palindrome(struct soap*, const struct ns
 SOAP_FMAC3 struct ns1__palindrome * SOAP_FMAC4 soap_get_ns1__palindrome(struct soap*, struct ns1__palindrome *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__palindromeResponse
-#define SOAP_TYPE_ns1__palindromeResponse (374)
+#define SOAP_TYPE_ns1__palindromeResponse (375)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__palindromeResponse(struct soap*, struct ns1__palindromeResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__palindromeResponse(struct soap*, const struct ns1__palindromeResponse *);
@@ -859,7 +859,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__palindromeResponse(struct soap*, const s
 SOAP_FMAC3 struct ns1__palindromeResponse * SOAP_FMAC4 soap_get_ns1__palindromeResponse(struct soap*, struct ns1__palindromeResponse *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__entrez
-#define SOAP_TYPE_ns1__entrez (371)
+#define SOAP_TYPE_ns1__entrez (372)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__entrez(struct soap*, struct ns1__entrez *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__entrez(struct soap*, const struct ns1__entrez *);
@@ -880,7 +880,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__entrez(struct soap*, const struct ns1__e
 SOAP_FMAC3 struct ns1__entrez * SOAP_FMAC4 soap_get_ns1__entrez(struct soap*, struct ns1__entrez *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__entrezResponse
-#define SOAP_TYPE_ns1__entrezResponse (370)
+#define SOAP_TYPE_ns1__entrezResponse (371)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__entrezResponse(struct soap*, struct ns1__entrezResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__entrezResponse(struct soap*, const struct ns1__entrezResponse *);
@@ -901,7 +901,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__entrezResponse(struct soap*, const struc
 SOAP_FMAC3 struct ns1__entrezResponse * SOAP_FMAC4 soap_get_ns1__entrezResponse(struct soap*, struct ns1__entrezResponse *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__codon_USCOREcounter
-#define SOAP_TYPE_ns1__codon_USCOREcounter (368)
+#define SOAP_TYPE_ns1__codon_USCOREcounter (369)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__codon_USCOREcounter(struct soap*, struct ns1__codon_USCOREcounter *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__codon_USCOREcounter(struct soap*, const struct ns1__codon_USCOREcounter *);
@@ -922,7 +922,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__codon_USCOREcounter(struct soap*, const 
 SOAP_FMAC3 struct ns1__codon_USCOREcounter * SOAP_FMAC4 soap_get_ns1__codon_USCOREcounter(struct soap*, struct ns1__codon_USCOREcounter *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__codon_USCOREcounterResponse
-#define SOAP_TYPE_ns1__codon_USCOREcounterResponse (367)
+#define SOAP_TYPE_ns1__codon_USCOREcounterResponse (368)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__codon_USCOREcounterResponse(struct soap*, struct ns1__codon_USCOREcounterResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__codon_USCOREcounterResponse(struct soap*, const struct ns1__codon_USCOREcounterResponse *);
@@ -943,7 +943,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__codon_USCOREcounterResponse(struct soap*
 SOAP_FMAC3 struct ns1__codon_USCOREcounterResponse * SOAP_FMAC4 soap_get_ns1__codon_USCOREcounterResponse(struct soap*, struct ns1__codon_USCOREcounterResponse *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__mean
-#define SOAP_TYPE_ns1__mean (364)
+#define SOAP_TYPE_ns1__mean (365)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__mean(struct soap*, struct ns1__mean *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__mean(struct soap*, const struct ns1__mean *);
@@ -964,7 +964,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__mean(struct soap*, const struct ns1__mea
 SOAP_FMAC3 struct ns1__mean * SOAP_FMAC4 soap_get_ns1__mean(struct soap*, struct ns1__mean *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__meanResponse
-#define SOAP_TYPE_ns1__meanResponse (363)
+#define SOAP_TYPE_ns1__meanResponse (364)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__meanResponse(struct soap*, struct ns1__meanResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__meanResponse(struct soap*, const struct ns1__meanResponse *);
@@ -985,7 +985,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__meanResponse(struct soap*, const struct 
 SOAP_FMAC3 struct ns1__meanResponse * SOAP_FMAC4 soap_get_ns1__meanResponse(struct soap*, struct ns1__meanResponse *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__complement
-#define SOAP_TYPE_ns1__complement (361)
+#define SOAP_TYPE_ns1__complement (362)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__complement(struct soap*, struct ns1__complement *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__complement(struct soap*, const struct ns1__complement *);
@@ -1006,7 +1006,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__complement(struct soap*, const struct ns
 SOAP_FMAC3 struct ns1__complement * SOAP_FMAC4 soap_get_ns1__complement(struct soap*, struct ns1__complement *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__complementResponse
-#define SOAP_TYPE_ns1__complementResponse (360)
+#define SOAP_TYPE_ns1__complementResponse (361)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__complementResponse(struct soap*, struct ns1__complementResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__complementResponse(struct soap*, const struct ns1__complementResponse *);
@@ -1027,7 +1027,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__complementResponse(struct soap*, const s
 SOAP_FMAC3 struct ns1__complementResponse * SOAP_FMAC4 soap_get_ns1__complementResponse(struct soap*, struct ns1__complementResponse *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__find_USCOREiteron
-#define SOAP_TYPE_ns1__find_USCOREiteron (358)
+#define SOAP_TYPE_ns1__find_USCOREiteron (359)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__find_USCOREiteron(struct soap*, struct ns1__find_USCOREiteron *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__find_USCOREiteron(struct soap*, const struct ns1__find_USCOREiteron *);
@@ -1048,7 +1048,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__find_USCOREiteron(struct soap*, const st
 SOAP_FMAC3 struct ns1__find_USCOREiteron * SOAP_FMAC4 soap_get_ns1__find_USCOREiteron(struct soap*, struct ns1__find_USCOREiteron *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__find_USCOREiteronResponse
-#define SOAP_TYPE_ns1__find_USCOREiteronResponse (357)
+#define SOAP_TYPE_ns1__find_USCOREiteronResponse (358)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__find_USCOREiteronResponse(struct soap*, struct ns1__find_USCOREiteronResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__find_USCOREiteronResponse(struct soap*, const struct ns1__find_USCOREiteronResponse *);
@@ -1069,7 +1069,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__find_USCOREiteronResponse(struct soap*, 
 SOAP_FMAC3 struct ns1__find_USCOREiteronResponse * SOAP_FMAC4 soap_get_ns1__find_USCOREiteronResponse(struct soap*, struct ns1__find_USCOREiteronResponse *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__min
-#define SOAP_TYPE_ns1__min (354)
+#define SOAP_TYPE_ns1__min (355)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__min(struct soap*, struct ns1__min *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__min(struct soap*, const struct ns1__min *);
@@ -1090,7 +1090,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__min(struct soap*, const struct ns1__min 
 SOAP_FMAC3 struct ns1__min * SOAP_FMAC4 soap_get_ns1__min(struct soap*, struct ns1__min *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__minResponse
-#define SOAP_TYPE_ns1__minResponse (353)
+#define SOAP_TYPE_ns1__minResponse (354)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__minResponse(struct soap*, struct ns1__minResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__minResponse(struct soap*, const struct ns1__minResponse *);
@@ -1111,7 +1111,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__minResponse(struct soap*, const struct n
 SOAP_FMAC3 struct ns1__minResponse * SOAP_FMAC4 soap_get_ns1__minResponse(struct soap*, struct ns1__minResponse *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__codon_USCOREusage
-#define SOAP_TYPE_ns1__codon_USCOREusage (351)
+#define SOAP_TYPE_ns1__codon_USCOREusage (352)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__codon_USCOREusage(struct soap*, struct ns1__codon_USCOREusage *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__codon_USCOREusage(struct soap*, const struct ns1__codon_USCOREusage *);
@@ -1132,7 +1132,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__codon_USCOREusage(struct soap*, const st
 SOAP_FMAC3 struct ns1__codon_USCOREusage * SOAP_FMAC4 soap_get_ns1__codon_USCOREusage(struct soap*, struct ns1__codon_USCOREusage *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__codon_USCOREusageResponse
-#define SOAP_TYPE_ns1__codon_USCOREusageResponse (350)
+#define SOAP_TYPE_ns1__codon_USCOREusageResponse (351)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__codon_USCOREusageResponse(struct soap*, struct ns1__codon_USCOREusageResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__codon_USCOREusageResponse(struct soap*, const struct ns1__codon_USCOREusageResponse *);
@@ -1153,7 +1153,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__codon_USCOREusageResponse(struct soap*, 
 SOAP_FMAC3 struct ns1__codon_USCOREusageResponse * SOAP_FMAC4 soap_get_ns1__codon_USCOREusageResponse(struct soap*, struct ns1__codon_USCOREusageResponse *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__oligomer_USCOREcounter
-#define SOAP_TYPE_ns1__oligomer_USCOREcounter (347)
+#define SOAP_TYPE_ns1__oligomer_USCOREcounter (348)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__oligomer_USCOREcounter(struct soap*, struct ns1__oligomer_USCOREcounter *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__oligomer_USCOREcounter(struct soap*, const struct ns1__oligomer_USCOREcounter *);
@@ -1174,7 +1174,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__oligomer_USCOREcounter(struct soap*, con
 SOAP_FMAC3 struct ns1__oligomer_USCOREcounter * SOAP_FMAC4 soap_get_ns1__oligomer_USCOREcounter(struct soap*, struct ns1__oligomer_USCOREcounter *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__oligomer_USCOREcounterResponse
-#define SOAP_TYPE_ns1__oligomer_USCOREcounterResponse (346)
+#define SOAP_TYPE_ns1__oligomer_USCOREcounterResponse (347)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__oligomer_USCOREcounterResponse(struct soap*, struct ns1__oligomer_USCOREcounterResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__oligomer_USCOREcounterResponse(struct soap*, const struct ns1__oligomer_USCOREcounterResponse *);
@@ -1195,7 +1195,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__oligomer_USCOREcounterResponse(struct so
 SOAP_FMAC3 struct ns1__oligomer_USCOREcounterResponse * SOAP_FMAC4 soap_get_ns1__oligomer_USCOREcounterResponse(struct soap*, struct ns1__oligomer_USCOREcounterResponse *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__gcwin
-#define SOAP_TYPE_ns1__gcwin (343)
+#define SOAP_TYPE_ns1__gcwin (344)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__gcwin(struct soap*, struct ns1__gcwin *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__gcwin(struct soap*, const struct ns1__gcwin *);
@@ -1216,7 +1216,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__gcwin(struct soap*, const struct ns1__gc
 SOAP_FMAC3 struct ns1__gcwin * SOAP_FMAC4 soap_get_ns1__gcwin(struct soap*, struct ns1__gcwin *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__gcwinResponse
-#define SOAP_TYPE_ns1__gcwinResponse (342)
+#define SOAP_TYPE_ns1__gcwinResponse (343)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__gcwinResponse(struct soap*, struct ns1__gcwinResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__gcwinResponse(struct soap*, const struct ns1__gcwinResponse *);
@@ -1237,7 +1237,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__gcwinResponse(struct soap*, const struct
 SOAP_FMAC3 struct ns1__gcwinResponse * SOAP_FMAC4 soap_get_ns1__gcwinResponse(struct soap*, struct ns1__gcwinResponse *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__find_USCOREpattern
-#define SOAP_TYPE_ns1__find_USCOREpattern (339)
+#define SOAP_TYPE_ns1__find_USCOREpattern (340)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__find_USCOREpattern(struct soap*, struct ns1__find_USCOREpattern *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__find_USCOREpattern(struct soap*, const struct ns1__find_USCOREpattern *);
@@ -1258,7 +1258,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__find_USCOREpattern(struct soap*, const s
 SOAP_FMAC3 struct ns1__find_USCOREpattern * SOAP_FMAC4 soap_get_ns1__find_USCOREpattern(struct soap*, struct ns1__find_USCOREpattern *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__find_USCOREpatternResponse
-#define SOAP_TYPE_ns1__find_USCOREpatternResponse (338)
+#define SOAP_TYPE_ns1__find_USCOREpatternResponse (339)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__find_USCOREpatternResponse(struct soap*, struct ns1__find_USCOREpatternResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__find_USCOREpatternResponse(struct soap*, const struct ns1__find_USCOREpatternResponse *);
@@ -1279,7 +1279,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__find_USCOREpatternResponse(struct soap*,
 SOAP_FMAC3 struct ns1__find_USCOREpatternResponse * SOAP_FMAC4 soap_get_ns1__find_USCOREpatternResponse(struct soap*, struct ns1__find_USCOREpatternResponse *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__oligomer_USCOREsearch
-#define SOAP_TYPE_ns1__oligomer_USCOREsearch (335)
+#define SOAP_TYPE_ns1__oligomer_USCOREsearch (336)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__oligomer_USCOREsearch(struct soap*, struct ns1__oligomer_USCOREsearch *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__oligomer_USCOREsearch(struct soap*, const struct ns1__oligomer_USCOREsearch *);
@@ -1300,7 +1300,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns1__oligomer_USCOREsearch(struct soap*, cons
 SOAP_FMAC3 struct ns1__oligomer_USCOREsearch * SOAP_FMAC4 soap_get_ns1__oligomer_USCOREsearch(struct soap*, struct ns1__oligomer_USCOREsearch *, const char*, const char*);
 
 #ifndef SOAP_TYPE_ns1__oligomer_USCOREsearchResponse
-#define SOAP_TYPE_ns1__oligomer_USCOREsearchResponse (334)
+#define SOAP_TYPE_ns1__oligomer_USCOREsearchResponse (332)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__oligomer_USCOREsearchResponse(struct soap*, struct ns1__oligomer_USCOREsearchResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__oligomer_USCOREsearchResponse(struct soap*, const struct ns1__oligomer_USCOREsearchResponse *);
@@ -5523,7 +5523,7 @@ SOAP_FMAC3 struct ns1__Definition * SOAP_FMAC4 soap_get_ns1__Definition(struct s
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_PointerToSOAP_ENV__Reason
-#define SOAP_TYPE_PointerToSOAP_ENV__Reason (440)
+#define SOAP_TYPE_PointerToSOAP_ENV__Reason (441)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSOAP_ENV__Reason(struct soap*, struct SOAP_ENV__Reason *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerToSOAP_ENV__Reason(struct soap*, const char *, int, struct SOAP_ENV__Reason *const*, const char *);
@@ -5546,7 +5546,7 @@ SOAP_FMAC3 struct SOAP_ENV__Reason ** SOAP_FMAC4 soap_get_PointerToSOAP_ENV__Rea
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_PointerToSOAP_ENV__Detail
-#define SOAP_TYPE_PointerToSOAP_ENV__Detail (439)
+#define SOAP_TYPE_PointerToSOAP_ENV__Detail (440)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSOAP_ENV__Detail(struct soap*, struct SOAP_ENV__Detail *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerToSOAP_ENV__Detail(struct soap*, const char *, int, struct SOAP_ENV__Detail *const*, const char *);
@@ -5569,7 +5569,7 @@ SOAP_FMAC3 struct SOAP_ENV__Detail ** SOAP_FMAC4 soap_get_PointerToSOAP_ENV__Det
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_PointerToSOAP_ENV__Code
-#define SOAP_TYPE_PointerToSOAP_ENV__Code (433)
+#define SOAP_TYPE_PointerToSOAP_ENV__Code (434)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSOAP_ENV__Code(struct soap*, struct SOAP_ENV__Code *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerToSOAP_ENV__Code(struct soap*, const char *, int, struct SOAP_ENV__Code *const*, const char *);
@@ -5590,7 +5590,7 @@ SOAP_FMAC3 struct SOAP_ENV__Code ** SOAP_FMAC4 soap_get_PointerToSOAP_ENV__Code(
 #endif
 
 #ifndef SOAP_TYPE_PointerTofloat
-#define SOAP_TYPE_PointerTofloat (427)
+#define SOAP_TYPE_PointerTofloat (428)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTofloat(struct soap*, float *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTofloat(struct soap*, const char *, int, float *const*, const char *);
@@ -5609,7 +5609,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTofloat(struct soap*, float *const*, c
 SOAP_FMAC3 float ** SOAP_FMAC4 soap_get_PointerTofloat(struct soap*, float **, const char*, const char*);
 
 #ifndef SOAP_TYPE_PointerTons1__S_USCOREvalueInputParams
-#define SOAP_TYPE_PointerTons1__S_USCOREvalueInputParams (419)
+#define SOAP_TYPE_PointerTons1__S_USCOREvalueInputParams (420)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons1__S_USCOREvalueInputParams(struct soap*, struct ns1__S_USCOREvalueInputParams *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons1__S_USCOREvalueInputParams(struct soap*, const char *, int, struct ns1__S_USCOREvalueInputParams *const*, const char *);
@@ -5628,7 +5628,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons1__S_USCOREvalueInputParams(struct
 SOAP_FMAC3 struct ns1__S_USCOREvalueInputParams ** SOAP_FMAC4 soap_get_PointerTons1__S_USCOREvalueInputParams(struct soap*, struct ns1__S_USCOREvalueInputParams **, const char*, const char*);
 
 #ifndef SOAP_TYPE_PointerTons1__leading_USCOREstrandResponse
-#define SOAP_TYPE_PointerTons1__leading_USCOREstrandResponse (416)
+#define SOAP_TYPE_PointerTons1__leading_USCOREstrandResponse (417)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons1__leading_USCOREstrandResponse(struct soap*, struct ns1__leading_USCOREstrandResponse *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons1__leading_USCOREstrandResponse(struct soap*, const char *, int, struct ns1__leading_USCOREstrandResponse *const*, const char *);
@@ -5647,7 +5647,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons1__leading_USCOREstrandResponse(st
 SOAP_FMAC3 struct ns1__leading_USCOREstrandResponse ** SOAP_FMAC4 soap_get_PointerTons1__leading_USCOREstrandResponse(struct soap*, struct ns1__leading_USCOREstrandResponse **, const char*, const char*);
 
 #ifndef SOAP_TYPE_PointerTons1__scsInputParams
-#define SOAP_TYPE_PointerTons1__scsInputParams (411)
+#define SOAP_TYPE_PointerTons1__scsInputParams (412)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons1__scsInputParams(struct soap*, struct ns1__scsInputParams *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons1__scsInputParams(struct soap*, const char *, int, struct ns1__scsInputParams *const*, const char *);
@@ -5666,7 +5666,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons1__scsInputParams(struct soap*, st
 SOAP_FMAC3 struct ns1__scsInputParams ** SOAP_FMAC4 soap_get_PointerTons1__scsInputParams(struct soap*, struct ns1__scsInputParams **, const char*, const char*);
 
 #ifndef SOAP_TYPE_PointerTons1__lda_USCOREbiasInputParams
-#define SOAP_TYPE_PointerTons1__lda_USCOREbiasInputParams (407)
+#define SOAP_TYPE_PointerTons1__lda_USCOREbiasInputParams (408)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons1__lda_USCOREbiasInputParams(struct soap*, struct ns1__lda_USCOREbiasInputParams *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons1__lda_USCOREbiasInputParams(struct soap*, const char *, int, struct ns1__lda_USCOREbiasInputParams *const*, const char *);
@@ -5685,7 +5685,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons1__lda_USCOREbiasInputParams(struc
 SOAP_FMAC3 struct ns1__lda_USCOREbiasInputParams ** SOAP_FMAC4 soap_get_PointerTons1__lda_USCOREbiasInputParams(struct soap*, struct ns1__lda_USCOREbiasInputParams **, const char*, const char*);
 
 #ifndef SOAP_TYPE_PointerTons1__kmer_USCOREtableInputParams
-#define SOAP_TYPE_PointerTons1__kmer_USCOREtableInputParams (403)
+#define SOAP_TYPE_PointerTons1__kmer_USCOREtableInputParams (404)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons1__kmer_USCOREtableInputParams(struct soap*, struct ns1__kmer_USCOREtableInputParams *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons1__kmer_USCOREtableInputParams(struct soap*, const char *, int, struct ns1__kmer_USCOREtableInputParams *const*, const char *);
@@ -5704,7 +5704,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons1__kmer_USCOREtableInputParams(str
 SOAP_FMAC3 struct ns1__kmer_USCOREtableInputParams ** SOAP_FMAC4 soap_get_PointerTons1__kmer_USCOREtableInputParams(struct soap*, struct ns1__kmer_USCOREtableInputParams **, const char*, const char*);
 
 #ifndef SOAP_TYPE_PointerTons1__base_USCOREz_USCOREvalueInputParams
-#define SOAP_TYPE_PointerTons1__base_USCOREz_USCOREvalueInputParams (399)
+#define SOAP_TYPE_PointerTons1__base_USCOREz_USCOREvalueInputParams (400)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons1__base_USCOREz_USCOREvalueInputParams(struct soap*, struct ns1__base_USCOREz_USCOREvalueInputParams *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons1__base_USCOREz_USCOREvalueInputParams(struct soap*, const char *, int, struct ns1__base_USCOREz_USCOREvalueInputParams *const*, const char *);
@@ -5723,7 +5723,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons1__base_USCOREz_USCOREvalueInputPa
 SOAP_FMAC3 struct ns1__base_USCOREz_USCOREvalueInputParams ** SOAP_FMAC4 soap_get_PointerTons1__base_USCOREz_USCOREvalueInputParams(struct soap*, struct ns1__base_USCOREz_USCOREvalueInputParams **, const char*, const char*);
 
 #ifndef SOAP_TYPE_PointerTons1__base_USCOREcounterInputParams
-#define SOAP_TYPE_PointerTons1__base_USCOREcounterInputParams (395)
+#define SOAP_TYPE_PointerTons1__base_USCOREcounterInputParams (396)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons1__base_USCOREcounterInputParams(struct soap*, struct ns1__base_USCOREcounterInputParams *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons1__base_USCOREcounterInputParams(struct soap*, const char *, int, struct ns1__base_USCOREcounterInputParams *const*, const char *);
@@ -5742,7 +5742,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons1__base_USCOREcounterInputParams(s
 SOAP_FMAC3 struct ns1__base_USCOREcounterInputParams ** SOAP_FMAC4 soap_get_PointerTons1__base_USCOREcounterInputParams(struct soap*, struct ns1__base_USCOREcounterInputParams **, const char*, const char*);
 
 #ifndef SOAP_TYPE_PointerTons1__B1InputParams
-#define SOAP_TYPE_PointerTons1__B1InputParams (388)
+#define SOAP_TYPE_PointerTons1__B1InputParams (389)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons1__B1InputParams(struct soap*, struct ns1__B1InputParams *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons1__B1InputParams(struct soap*, const char *, int, struct ns1__B1InputParams *const*, const char *);
@@ -5761,7 +5761,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons1__B1InputParams(struct soap*, str
 SOAP_FMAC3 struct ns1__B1InputParams ** SOAP_FMAC4 soap_get_PointerTons1__B1InputParams(struct soap*, struct ns1__B1InputParams **, const char*, const char*);
 
 #ifndef SOAP_TYPE_PointerTons1__cgrInputParams
-#define SOAP_TYPE_PointerTons1__cgrInputParams (384)
+#define SOAP_TYPE_PointerTons1__cgrInputParams (385)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons1__cgrInputParams(struct soap*, struct ns1__cgrInputParams *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons1__cgrInputParams(struct soap*, const char *, int, struct ns1__cgrInputParams *const*, const char *);
@@ -5780,7 +5780,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons1__cgrInputParams(struct soap*, st
 SOAP_FMAC3 struct ns1__cgrInputParams ** SOAP_FMAC4 soap_get_PointerTons1__cgrInputParams(struct soap*, struct ns1__cgrInputParams **, const char*, const char*);
 
 #ifndef SOAP_TYPE_PointerTons1__dinucInputParams
-#define SOAP_TYPE_PointerTons1__dinucInputParams (380)
+#define SOAP_TYPE_PointerTons1__dinucInputParams (381)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons1__dinucInputParams(struct soap*, struct ns1__dinucInputParams *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons1__dinucInputParams(struct soap*, const char *, int, struct ns1__dinucInputParams *const*, const char *);
@@ -5799,7 +5799,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons1__dinucInputParams(struct soap*, 
 SOAP_FMAC3 struct ns1__dinucInputParams ** SOAP_FMAC4 soap_get_PointerTons1__dinucInputParams(struct soap*, struct ns1__dinucInputParams **, const char*, const char*);
 
 #ifndef SOAP_TYPE_PointerTons1__least_USCOREsquares_USCOREfitResponse
-#define SOAP_TYPE_PointerTons1__least_USCOREsquares_USCOREfitResponse (377)
+#define SOAP_TYPE_PointerTons1__least_USCOREsquares_USCOREfitResponse (378)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons1__least_USCOREsquares_USCOREfitResponse(struct soap*, struct ns1__least_USCOREsquares_USCOREfitResponse *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons1__least_USCOREsquares_USCOREfitResponse(struct soap*, const char *, int, struct ns1__least_USCOREsquares_USCOREfitResponse *const*, const char *);
@@ -5818,7 +5818,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons1__least_USCOREsquares_USCOREfitRe
 SOAP_FMAC3 struct ns1__least_USCOREsquares_USCOREfitResponse ** SOAP_FMAC4 soap_get_PointerTons1__least_USCOREsquares_USCOREfitResponse(struct soap*, struct ns1__least_USCOREsquares_USCOREfitResponse **, const char*, const char*);
 
 #ifndef SOAP_TYPE_PointerTons1__palindromeInputParams
-#define SOAP_TYPE_PointerTons1__palindromeInputParams (372)
+#define SOAP_TYPE_PointerTons1__palindromeInputParams (373)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons1__palindromeInputParams(struct soap*, struct ns1__palindromeInputParams *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons1__palindromeInputParams(struct soap*, const char *, int, struct ns1__palindromeInputParams *const*, const char *);
@@ -5837,7 +5837,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons1__palindromeInputParams(struct so
 SOAP_FMAC3 struct ns1__palindromeInputParams ** SOAP_FMAC4 soap_get_PointerTons1__palindromeInputParams(struct soap*, struct ns1__palindromeInputParams **, const char*, const char*);
 
 #ifndef SOAP_TYPE_PointerTons1__codon_USCOREcounterInputParams
-#define SOAP_TYPE_PointerTons1__codon_USCOREcounterInputParams (365)
+#define SOAP_TYPE_PointerTons1__codon_USCOREcounterInputParams (366)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons1__codon_USCOREcounterInputParams(struct soap*, struct ns1__codon_USCOREcounterInputParams *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons1__codon_USCOREcounterInputParams(struct soap*, const char *, int, struct ns1__codon_USCOREcounterInputParams *const*, const char *);
@@ -5856,7 +5856,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons1__codon_USCOREcounterInputParams(
 SOAP_FMAC3 struct ns1__codon_USCOREcounterInputParams ** SOAP_FMAC4 soap_get_PointerTons1__codon_USCOREcounterInputParams(struct soap*, struct ns1__codon_USCOREcounterInputParams **, const char*, const char*);
 
 #ifndef SOAP_TYPE_PointerTons1__find_USCOREiteronInputParams
-#define SOAP_TYPE_PointerTons1__find_USCOREiteronInputParams (355)
+#define SOAP_TYPE_PointerTons1__find_USCOREiteronInputParams (356)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons1__find_USCOREiteronInputParams(struct soap*, struct ns1__find_USCOREiteronInputParams *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons1__find_USCOREiteronInputParams(struct soap*, const char *, int, struct ns1__find_USCOREiteronInputParams *const*, const char *);
@@ -5875,7 +5875,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons1__find_USCOREiteronInputParams(st
 SOAP_FMAC3 struct ns1__find_USCOREiteronInputParams ** SOAP_FMAC4 soap_get_PointerTons1__find_USCOREiteronInputParams(struct soap*, struct ns1__find_USCOREiteronInputParams **, const char*, const char*);
 
 #ifndef SOAP_TYPE_PointerTons1__codon_USCOREusageInputParams
-#define SOAP_TYPE_PointerTons1__codon_USCOREusageInputParams (348)
+#define SOAP_TYPE_PointerTons1__codon_USCOREusageInputParams (349)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons1__codon_USCOREusageInputParams(struct soap*, struct ns1__codon_USCOREusageInputParams *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons1__codon_USCOREusageInputParams(struct soap*, const char *, int, struct ns1__codon_USCOREusageInputParams *const*, const char *);
@@ -5894,7 +5894,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons1__codon_USCOREusageInputParams(st
 SOAP_FMAC3 struct ns1__codon_USCOREusageInputParams ** SOAP_FMAC4 soap_get_PointerTons1__codon_USCOREusageInputParams(struct soap*, struct ns1__codon_USCOREusageInputParams **, const char*, const char*);
 
 #ifndef SOAP_TYPE_PointerTons1__oligomer_USCOREcounterInputParams
-#define SOAP_TYPE_PointerTons1__oligomer_USCOREcounterInputParams (344)
+#define SOAP_TYPE_PointerTons1__oligomer_USCOREcounterInputParams (345)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons1__oligomer_USCOREcounterInputParams(struct soap*, struct ns1__oligomer_USCOREcounterInputParams *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons1__oligomer_USCOREcounterInputParams(struct soap*, const char *, int, struct ns1__oligomer_USCOREcounterInputParams *const*, const char *);
@@ -5913,7 +5913,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons1__oligomer_USCOREcounterInputPara
 SOAP_FMAC3 struct ns1__oligomer_USCOREcounterInputParams ** SOAP_FMAC4 soap_get_PointerTons1__oligomer_USCOREcounterInputParams(struct soap*, struct ns1__oligomer_USCOREcounterInputParams **, const char*, const char*);
 
 #ifndef SOAP_TYPE_PointerTons1__gcwinInputParams
-#define SOAP_TYPE_PointerTons1__gcwinInputParams (340)
+#define SOAP_TYPE_PointerTons1__gcwinInputParams (341)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons1__gcwinInputParams(struct soap*, struct ns1__gcwinInputParams *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons1__gcwinInputParams(struct soap*, const char *, int, struct ns1__gcwinInputParams *const*, const char *);
@@ -5932,7 +5932,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons1__gcwinInputParams(struct soap*, 
 SOAP_FMAC3 struct ns1__gcwinInputParams ** SOAP_FMAC4 soap_get_PointerTons1__gcwinInputParams(struct soap*, struct ns1__gcwinInputParams **, const char*, const char*);
 
 #ifndef SOAP_TYPE_PointerTons1__find_USCOREpatternInputParams
-#define SOAP_TYPE_PointerTons1__find_USCOREpatternInputParams (336)
+#define SOAP_TYPE_PointerTons1__find_USCOREpatternInputParams (337)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons1__find_USCOREpatternInputParams(struct soap*, struct ns1__find_USCOREpatternInputParams *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons1__find_USCOREpatternInputParams(struct soap*, const char *, int, struct ns1__find_USCOREpatternInputParams *const*, const char *);
@@ -5950,8 +5950,27 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons1__find_USCOREpatternInputParams(s
 
 SOAP_FMAC3 struct ns1__find_USCOREpatternInputParams ** SOAP_FMAC4 soap_get_PointerTons1__find_USCOREpatternInputParams(struct soap*, struct ns1__find_USCOREpatternInputParams **, const char*, const char*);
 
+#ifndef SOAP_TYPE_PointerTons1__oligomer_USCOREsearchResponse
+#define SOAP_TYPE_PointerTons1__oligomer_USCOREsearchResponse (334)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons1__oligomer_USCOREsearchResponse(struct soap*, struct ns1__oligomer_USCOREsearchResponse *const*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons1__oligomer_USCOREsearchResponse(struct soap*, const char *, int, struct ns1__oligomer_USCOREsearchResponse *const*, const char *);
+SOAP_FMAC3 struct ns1__oligomer_USCOREsearchResponse ** SOAP_FMAC4 soap_in_PointerTons1__oligomer_USCOREsearchResponse(struct soap*, const char*, struct ns1__oligomer_USCOREsearchResponse **, const char*);
+
+#ifndef soap_write_PointerTons1__oligomer_USCOREsearchResponse
+#define soap_write_PointerTons1__oligomer_USCOREsearchResponse(soap, data) ( soap_begin_send(soap) || (soap_serialize_PointerTons1__oligomer_USCOREsearchResponse(soap, data), 0) || soap_put_PointerTons1__oligomer_USCOREsearchResponse(soap, data, "ns1:oligomer_searchResponse", NULL) || soap_end_send(soap) )
+#endif
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons1__oligomer_USCOREsearchResponse(struct soap*, struct ns1__oligomer_USCOREsearchResponse *const*, const char*, const char*);
+
+#ifndef soap_read_PointerTons1__oligomer_USCOREsearchResponse
+#define soap_read_PointerTons1__oligomer_USCOREsearchResponse(soap, data) ( soap_begin_recv(soap) || !soap_get_PointerTons1__oligomer_USCOREsearchResponse(soap, data, NULL, NULL) || soap_end_recv(soap) )
+#endif
+
+SOAP_FMAC3 struct ns1__oligomer_USCOREsearchResponse ** SOAP_FMAC4 soap_get_PointerTons1__oligomer_USCOREsearchResponse(struct soap*, struct ns1__oligomer_USCOREsearchResponse **, const char*, const char*);
+
 #ifndef SOAP_TYPE_PointerTons1__oligomer_USCOREsearchInputParams
-#define SOAP_TYPE_PointerTons1__oligomer_USCOREsearchInputParams (332)
+#define SOAP_TYPE_PointerTons1__oligomer_USCOREsearchInputParams (333)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons1__oligomer_USCOREsearchInputParams(struct soap*, struct ns1__oligomer_USCOREsearchInputParams *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons1__oligomer_USCOREsearchInputParams(struct soap*, const char *, int, struct ns1__oligomer_USCOREsearchInputParams *const*, const char *);

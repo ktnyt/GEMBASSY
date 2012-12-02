@@ -2033,16 +2033,16 @@ struct ns1__shuffleseq
 #endif
 
 #ifndef SOAP_TYPE_ns1__oligomer_USCOREsearchResponse
-#define SOAP_TYPE_ns1__oligomer_USCOREsearchResponse (334)
+#define SOAP_TYPE_ns1__oligomer_USCOREsearchResponse (332)
 /* ns1:oligomer_searchResponse */
 struct ns1__oligomer_USCOREsearchResponse
 {
-	char **_result;	/* SOAP 1.2 RPC return element (when namespace qualified) */	/* optional element of type xsd:string */
+	struct arrayOut *_result;	/* SOAP 1.2 RPC return element (when namespace qualified) */	/* optional element of type ArrayOfstring */
 };
 #endif
 
 #ifndef SOAP_TYPE_ns1__oligomer_USCOREsearch
-#define SOAP_TYPE_ns1__oligomer_USCOREsearch (335)
+#define SOAP_TYPE_ns1__oligomer_USCOREsearch (336)
 /* ns1:oligomer_search */
 struct ns1__oligomer_USCOREsearch
 {
@@ -2053,7 +2053,7 @@ struct ns1__oligomer_USCOREsearch
 #endif
 
 #ifndef SOAP_TYPE_ns1__find_USCOREpatternResponse
-#define SOAP_TYPE_ns1__find_USCOREpatternResponse (338)
+#define SOAP_TYPE_ns1__find_USCOREpatternResponse (339)
 /* ns1:find_patternResponse */
 struct ns1__find_USCOREpatternResponse
 {
@@ -2062,7 +2062,7 @@ struct ns1__find_USCOREpatternResponse
 #endif
 
 #ifndef SOAP_TYPE_ns1__find_USCOREpattern
-#define SOAP_TYPE_ns1__find_USCOREpattern (339)
+#define SOAP_TYPE_ns1__find_USCOREpattern (340)
 /* ns1:find_pattern */
 struct ns1__find_USCOREpattern
 {
@@ -2073,7 +2073,7 @@ struct ns1__find_USCOREpattern
 #endif
 
 #ifndef SOAP_TYPE_ns1__gcwinResponse
-#define SOAP_TYPE_ns1__gcwinResponse (342)
+#define SOAP_TYPE_ns1__gcwinResponse (343)
 /* ns1:gcwinResponse */
 struct ns1__gcwinResponse
 {
@@ -2082,7 +2082,7 @@ struct ns1__gcwinResponse
 #endif
 
 #ifndef SOAP_TYPE_ns1__gcwin
-#define SOAP_TYPE_ns1__gcwin (343)
+#define SOAP_TYPE_ns1__gcwin (344)
 /* ns1:gcwin */
 struct ns1__gcwin
 {
@@ -2092,7 +2092,7 @@ struct ns1__gcwin
 #endif
 
 #ifndef SOAP_TYPE_ns1__oligomer_USCOREcounterResponse
-#define SOAP_TYPE_ns1__oligomer_USCOREcounterResponse (346)
+#define SOAP_TYPE_ns1__oligomer_USCOREcounterResponse (347)
 /* ns1:oligomer_counterResponse */
 struct ns1__oligomer_USCOREcounterResponse
 {
@@ -2101,7 +2101,7 @@ struct ns1__oligomer_USCOREcounterResponse
 #endif
 
 #ifndef SOAP_TYPE_ns1__oligomer_USCOREcounter
-#define SOAP_TYPE_ns1__oligomer_USCOREcounter (347)
+#define SOAP_TYPE_ns1__oligomer_USCOREcounter (348)
 /* ns1:oligomer_counter */
 struct ns1__oligomer_USCOREcounter
 {
@@ -2112,7 +2112,7 @@ struct ns1__oligomer_USCOREcounter
 #endif
 
 #ifndef SOAP_TYPE_ns1__codon_USCOREusageResponse
-#define SOAP_TYPE_ns1__codon_USCOREusageResponse (350)
+#define SOAP_TYPE_ns1__codon_USCOREusageResponse (351)
 /* ns1:codon_usageResponse */
 struct ns1__codon_USCOREusageResponse
 {
@@ -2121,7 +2121,7 @@ struct ns1__codon_USCOREusageResponse
 #endif
 
 #ifndef SOAP_TYPE_ns1__codon_USCOREusage
-#define SOAP_TYPE_ns1__codon_USCOREusage (351)
+#define SOAP_TYPE_ns1__codon_USCOREusage (352)
 /* ns1:codon_usage */
 struct ns1__codon_USCOREusage
 {
@@ -2131,7 +2131,7 @@ struct ns1__codon_USCOREusage
 #endif
 
 #ifndef SOAP_TYPE_ns1__minResponse
-#define SOAP_TYPE_ns1__minResponse (353)
+#define SOAP_TYPE_ns1__minResponse (354)
 /* ns1:minResponse */
 struct ns1__minResponse
 {
@@ -2140,7 +2140,7 @@ struct ns1__minResponse
 #endif
 
 #ifndef SOAP_TYPE_ns1__min
-#define SOAP_TYPE_ns1__min (354)
+#define SOAP_TYPE_ns1__min (355)
 /* ns1:min */
 struct ns1__min
 {
@@ -2149,7 +2149,7 @@ struct ns1__min
 #endif
 
 #ifndef SOAP_TYPE_ns1__find_USCOREiteronResponse
-#define SOAP_TYPE_ns1__find_USCOREiteronResponse (357)
+#define SOAP_TYPE_ns1__find_USCOREiteronResponse (358)
 /* ns1:find_iteronResponse */
 struct ns1__find_USCOREiteronResponse
 {
@@ -2158,7 +2158,7 @@ struct ns1__find_USCOREiteronResponse
 #endif
 
 #ifndef SOAP_TYPE_ns1__find_USCOREiteron
-#define SOAP_TYPE_ns1__find_USCOREiteron (358)
+#define SOAP_TYPE_ns1__find_USCOREiteron (359)
 /* ns1:find_iteron */
 struct ns1__find_USCOREiteron
 {
@@ -2168,7 +2168,7 @@ struct ns1__find_USCOREiteron
 #endif
 
 #ifndef SOAP_TYPE_ns1__complementResponse
-#define SOAP_TYPE_ns1__complementResponse (360)
+#define SOAP_TYPE_ns1__complementResponse (361)
 /* ns1:complementResponse */
 struct ns1__complementResponse
 {
@@ -2177,7 +2177,7 @@ struct ns1__complementResponse
 #endif
 
 #ifndef SOAP_TYPE_ns1__complement
-#define SOAP_TYPE_ns1__complement (361)
+#define SOAP_TYPE_ns1__complement (362)
 /* ns1:complement */
 struct ns1__complement
 {
@@ -2186,7 +2186,7 @@ struct ns1__complement
 #endif
 
 #ifndef SOAP_TYPE_ns1__meanResponse
-#define SOAP_TYPE_ns1__meanResponse (363)
+#define SOAP_TYPE_ns1__meanResponse (364)
 /* ns1:meanResponse */
 struct ns1__meanResponse
 {
@@ -2195,7 +2195,7 @@ struct ns1__meanResponse
 #endif
 
 #ifndef SOAP_TYPE_ns1__mean
-#define SOAP_TYPE_ns1__mean (364)
+#define SOAP_TYPE_ns1__mean (365)
 /* ns1:mean */
 struct ns1__mean
 {
@@ -2204,7 +2204,7 @@ struct ns1__mean
 #endif
 
 #ifndef SOAP_TYPE_ns1__codon_USCOREcounterResponse
-#define SOAP_TYPE_ns1__codon_USCOREcounterResponse (367)
+#define SOAP_TYPE_ns1__codon_USCOREcounterResponse (368)
 /* ns1:codon_counterResponse */
 struct ns1__codon_USCOREcounterResponse
 {
@@ -2213,7 +2213,7 @@ struct ns1__codon_USCOREcounterResponse
 #endif
 
 #ifndef SOAP_TYPE_ns1__codon_USCOREcounter
-#define SOAP_TYPE_ns1__codon_USCOREcounter (368)
+#define SOAP_TYPE_ns1__codon_USCOREcounter (369)
 /* ns1:codon_counter */
 struct ns1__codon_USCOREcounter
 {
@@ -2223,7 +2223,7 @@ struct ns1__codon_USCOREcounter
 #endif
 
 #ifndef SOAP_TYPE_ns1__entrezResponse
-#define SOAP_TYPE_ns1__entrezResponse (370)
+#define SOAP_TYPE_ns1__entrezResponse (371)
 /* ns1:entrezResponse */
 struct ns1__entrezResponse
 {
@@ -2232,7 +2232,7 @@ struct ns1__entrezResponse
 #endif
 
 #ifndef SOAP_TYPE_ns1__entrez
-#define SOAP_TYPE_ns1__entrez (371)
+#define SOAP_TYPE_ns1__entrez (372)
 /* ns1:entrez */
 struct ns1__entrez
 {
@@ -2242,7 +2242,7 @@ struct ns1__entrez
 #endif
 
 #ifndef SOAP_TYPE_ns1__palindromeResponse
-#define SOAP_TYPE_ns1__palindromeResponse (374)
+#define SOAP_TYPE_ns1__palindromeResponse (375)
 /* ns1:palindromeResponse */
 struct ns1__palindromeResponse
 {
@@ -2251,7 +2251,7 @@ struct ns1__palindromeResponse
 #endif
 
 #ifndef SOAP_TYPE_ns1__palindrome
-#define SOAP_TYPE_ns1__palindrome (375)
+#define SOAP_TYPE_ns1__palindrome (376)
 /* ns1:palindrome */
 struct ns1__palindrome
 {
@@ -2261,7 +2261,7 @@ struct ns1__palindrome
 #endif
 
 #ifndef SOAP_TYPE_ns1__least_USCOREsquares_USCOREfitResponse
-#define SOAP_TYPE_ns1__least_USCOREsquares_USCOREfitResponse (376)
+#define SOAP_TYPE_ns1__least_USCOREsquares_USCOREfitResponse (377)
 /* ns1:least_squares_fitResponse */
 struct ns1__least_USCOREsquares_USCOREfitResponse
 {
@@ -2270,7 +2270,7 @@ struct ns1__least_USCOREsquares_USCOREfitResponse
 #endif
 
 #ifndef SOAP_TYPE_ns1__least_USCOREsquares_USCOREfit
-#define SOAP_TYPE_ns1__least_USCOREsquares_USCOREfit (379)
+#define SOAP_TYPE_ns1__least_USCOREsquares_USCOREfit (380)
 /* ns1:least_squares_fit */
 struct ns1__least_USCOREsquares_USCOREfit
 {
@@ -2279,7 +2279,7 @@ struct ns1__least_USCOREsquares_USCOREfit
 #endif
 
 #ifndef SOAP_TYPE_ns1__dinucResponse
-#define SOAP_TYPE_ns1__dinucResponse (382)
+#define SOAP_TYPE_ns1__dinucResponse (383)
 /* ns1:dinucResponse */
 struct ns1__dinucResponse
 {
@@ -2288,7 +2288,7 @@ struct ns1__dinucResponse
 #endif
 
 #ifndef SOAP_TYPE_ns1__dinuc
-#define SOAP_TYPE_ns1__dinuc (383)
+#define SOAP_TYPE_ns1__dinuc (384)
 /* ns1:dinuc */
 struct ns1__dinuc
 {
@@ -2298,7 +2298,7 @@ struct ns1__dinuc
 #endif
 
 #ifndef SOAP_TYPE_ns1__cgrResponse
-#define SOAP_TYPE_ns1__cgrResponse (386)
+#define SOAP_TYPE_ns1__cgrResponse (387)
 /* ns1:cgrResponse */
 struct ns1__cgrResponse
 {
@@ -2307,7 +2307,7 @@ struct ns1__cgrResponse
 #endif
 
 #ifndef SOAP_TYPE_ns1__cgr
-#define SOAP_TYPE_ns1__cgr (387)
+#define SOAP_TYPE_ns1__cgr (388)
 /* ns1:cgr */
 struct ns1__cgr
 {
@@ -2317,7 +2317,7 @@ struct ns1__cgr
 #endif
 
 #ifndef SOAP_TYPE_ns1__B1Response
-#define SOAP_TYPE_ns1__B1Response (390)
+#define SOAP_TYPE_ns1__B1Response (391)
 /* ns1:B1Response */
 struct ns1__B1Response
 {
@@ -2326,7 +2326,7 @@ struct ns1__B1Response
 #endif
 
 #ifndef SOAP_TYPE_ns1__B1
-#define SOAP_TYPE_ns1__B1 (391)
+#define SOAP_TYPE_ns1__B1 (392)
 /* ns1:B1 */
 struct ns1__B1
 {
@@ -2336,7 +2336,7 @@ struct ns1__B1
 #endif
 
 #ifndef SOAP_TYPE_ns1__B2Response
-#define SOAP_TYPE_ns1__B2Response (393)
+#define SOAP_TYPE_ns1__B2Response (394)
 /* ns1:B2Response */
 struct ns1__B2Response
 {
@@ -2345,7 +2345,7 @@ struct ns1__B2Response
 #endif
 
 #ifndef SOAP_TYPE_ns1__B2
-#define SOAP_TYPE_ns1__B2 (394)
+#define SOAP_TYPE_ns1__B2 (395)
 /* ns1:B2 */
 struct ns1__B2
 {
@@ -2354,7 +2354,7 @@ struct ns1__B2
 #endif
 
 #ifndef SOAP_TYPE_ns1__base_USCOREcounterResponse
-#define SOAP_TYPE_ns1__base_USCOREcounterResponse (397)
+#define SOAP_TYPE_ns1__base_USCOREcounterResponse (398)
 /* ns1:base_counterResponse */
 struct ns1__base_USCOREcounterResponse
 {
@@ -2363,7 +2363,7 @@ struct ns1__base_USCOREcounterResponse
 #endif
 
 #ifndef SOAP_TYPE_ns1__base_USCOREcounter
-#define SOAP_TYPE_ns1__base_USCOREcounter (398)
+#define SOAP_TYPE_ns1__base_USCOREcounter (399)
 /* ns1:base_counter */
 struct ns1__base_USCOREcounter
 {
@@ -2373,7 +2373,7 @@ struct ns1__base_USCOREcounter
 #endif
 
 #ifndef SOAP_TYPE_ns1__base_USCOREz_USCOREvalueResponse
-#define SOAP_TYPE_ns1__base_USCOREz_USCOREvalueResponse (401)
+#define SOAP_TYPE_ns1__base_USCOREz_USCOREvalueResponse (402)
 /* ns1:base_z_valueResponse */
 struct ns1__base_USCOREz_USCOREvalueResponse
 {
@@ -2382,7 +2382,7 @@ struct ns1__base_USCOREz_USCOREvalueResponse
 #endif
 
 #ifndef SOAP_TYPE_ns1__base_USCOREz_USCOREvalue
-#define SOAP_TYPE_ns1__base_USCOREz_USCOREvalue (402)
+#define SOAP_TYPE_ns1__base_USCOREz_USCOREvalue (403)
 /* ns1:base_z_value */
 struct ns1__base_USCOREz_USCOREvalue
 {
@@ -2392,7 +2392,7 @@ struct ns1__base_USCOREz_USCOREvalue
 #endif
 
 #ifndef SOAP_TYPE_ns1__kmer_USCOREtableResponse
-#define SOAP_TYPE_ns1__kmer_USCOREtableResponse (405)
+#define SOAP_TYPE_ns1__kmer_USCOREtableResponse (406)
 /* ns1:kmer_tableResponse */
 struct ns1__kmer_USCOREtableResponse
 {
@@ -2401,7 +2401,7 @@ struct ns1__kmer_USCOREtableResponse
 #endif
 
 #ifndef SOAP_TYPE_ns1__kmer_USCOREtable
-#define SOAP_TYPE_ns1__kmer_USCOREtable (406)
+#define SOAP_TYPE_ns1__kmer_USCOREtable (407)
 /* ns1:kmer_table */
 struct ns1__kmer_USCOREtable
 {
@@ -2411,7 +2411,7 @@ struct ns1__kmer_USCOREtable
 #endif
 
 #ifndef SOAP_TYPE_ns1__lda_USCOREbiasResponse
-#define SOAP_TYPE_ns1__lda_USCOREbiasResponse (409)
+#define SOAP_TYPE_ns1__lda_USCOREbiasResponse (410)
 /* ns1:lda_biasResponse */
 struct ns1__lda_USCOREbiasResponse
 {
@@ -2420,7 +2420,7 @@ struct ns1__lda_USCOREbiasResponse
 #endif
 
 #ifndef SOAP_TYPE_ns1__lda_USCOREbias
-#define SOAP_TYPE_ns1__lda_USCOREbias (410)
+#define SOAP_TYPE_ns1__lda_USCOREbias (411)
 /* ns1:lda_bias */
 struct ns1__lda_USCOREbias
 {
@@ -2430,7 +2430,7 @@ struct ns1__lda_USCOREbias
 #endif
 
 #ifndef SOAP_TYPE_ns1__scsResponse
-#define SOAP_TYPE_ns1__scsResponse (413)
+#define SOAP_TYPE_ns1__scsResponse (414)
 /* ns1:scsResponse */
 struct ns1__scsResponse
 {
@@ -2439,7 +2439,7 @@ struct ns1__scsResponse
 #endif
 
 #ifndef SOAP_TYPE_ns1__scs
-#define SOAP_TYPE_ns1__scs (414)
+#define SOAP_TYPE_ns1__scs (415)
 /* ns1:scs */
 struct ns1__scs
 {
@@ -2449,7 +2449,7 @@ struct ns1__scs
 #endif
 
 #ifndef SOAP_TYPE_ns1__leading_USCOREstrandResponse
-#define SOAP_TYPE_ns1__leading_USCOREstrandResponse (415)
+#define SOAP_TYPE_ns1__leading_USCOREstrandResponse (416)
 /* ns1:leading_strandResponse */
 struct ns1__leading_USCOREstrandResponse
 {
@@ -2458,7 +2458,7 @@ struct ns1__leading_USCOREstrandResponse
 #endif
 
 #ifndef SOAP_TYPE_ns1__leading_USCOREstrand
-#define SOAP_TYPE_ns1__leading_USCOREstrand (418)
+#define SOAP_TYPE_ns1__leading_USCOREstrand (419)
 /* ns1:leading_strand */
 struct ns1__leading_USCOREstrand
 {
@@ -2467,7 +2467,7 @@ struct ns1__leading_USCOREstrand
 #endif
 
 #ifndef SOAP_TYPE_ns1__S_USCOREvalueResponse
-#define SOAP_TYPE_ns1__S_USCOREvalueResponse (421)
+#define SOAP_TYPE_ns1__S_USCOREvalueResponse (422)
 /* ns1:S_valueResponse */
 struct ns1__S_USCOREvalueResponse
 {
@@ -2476,7 +2476,7 @@ struct ns1__S_USCOREvalueResponse
 #endif
 
 #ifndef SOAP_TYPE_ns1__S_USCOREvalue
-#define SOAP_TYPE_ns1__S_USCOREvalue (422)
+#define SOAP_TYPE_ns1__S_USCOREvalue (423)
 /* ns1:S_value */
 struct ns1__S_USCOREvalue
 {
@@ -2486,7 +2486,7 @@ struct ns1__S_USCOREvalue
 #endif
 
 #ifndef SOAP_TYPE_ns1__helpResponse
-#define SOAP_TYPE_ns1__helpResponse (424)
+#define SOAP_TYPE_ns1__helpResponse (425)
 /* ns1:helpResponse */
 struct ns1__helpResponse
 {
@@ -2495,7 +2495,7 @@ struct ns1__helpResponse
 #endif
 
 #ifndef SOAP_TYPE_ns1__help
-#define SOAP_TYPE_ns1__help (425)
+#define SOAP_TYPE_ns1__help (426)
 /* ns1:help */
 struct ns1__help
 {
@@ -2504,7 +2504,7 @@ struct ns1__help
 #endif
 
 #ifndef SOAP_TYPE_ns1__hydropathyResponse
-#define SOAP_TYPE_ns1__hydropathyResponse (429)
+#define SOAP_TYPE_ns1__hydropathyResponse (430)
 /* ns1:hydropathyResponse */
 struct ns1__hydropathyResponse
 {
@@ -2513,7 +2513,7 @@ struct ns1__hydropathyResponse
 #endif
 
 #ifndef SOAP_TYPE_ns1__hydropathy
-#define SOAP_TYPE_ns1__hydropathy (430)
+#define SOAP_TYPE_ns1__hydropathy (431)
 /* ns1:hydropathy */
 struct ns1__hydropathy
 {
@@ -2524,7 +2524,7 @@ struct ns1__hydropathy
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_SOAP_ENV__Header
-#define SOAP_TYPE_SOAP_ENV__Header (431)
+#define SOAP_TYPE_SOAP_ENV__Header (432)
 /* SOAP Header: */
 struct SOAP_ENV__Header
 {
@@ -2539,7 +2539,7 @@ struct SOAP_ENV__Header
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_SOAP_ENV__Code
-#define SOAP_TYPE_SOAP_ENV__Code (432)
+#define SOAP_TYPE_SOAP_ENV__Code (433)
 /* SOAP Fault Code: */
 struct SOAP_ENV__Code
 {
@@ -2553,7 +2553,7 @@ struct SOAP_ENV__Code
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_SOAP_ENV__Detail
-#define SOAP_TYPE_SOAP_ENV__Detail (434)
+#define SOAP_TYPE_SOAP_ENV__Detail (435)
 /* SOAP-ENV:Detail */
 struct SOAP_ENV__Detail
 {
@@ -2568,7 +2568,7 @@ struct SOAP_ENV__Detail
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_SOAP_ENV__Reason
-#define SOAP_TYPE_SOAP_ENV__Reason (437)
+#define SOAP_TYPE_SOAP_ENV__Reason (438)
 /* SOAP-ENV:Reason */
 struct SOAP_ENV__Reason
 {
@@ -2581,7 +2581,7 @@ struct SOAP_ENV__Reason
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_SOAP_ENV__Fault
-#define SOAP_TYPE_SOAP_ENV__Fault (438)
+#define SOAP_TYPE_SOAP_ENV__Fault (439)
 /* SOAP Fault: */
 struct SOAP_ENV__Fault
 {
@@ -2762,7 +2762,7 @@ SOAP_FMAC5 int SOAP_FMAC6 ns1__find_USCOREter(struct soap*, char *_sequence, str
 
 SOAP_FMAC5 int SOAP_FMAC6 ns1__shuffleseq(struct soap*, char *_sequence, struct ns1__shuffleseqInputParams *_params, char **_result);
 
-SOAP_FMAC5 int SOAP_FMAC6 ns1__oligomer_USCOREsearch(struct soap*, char *_sequence, char *_oligomer, struct ns1__oligomer_USCOREsearchInputParams *_params, char **_result);
+SOAP_FMAC5 int SOAP_FMAC6 ns1__oligomer_USCOREsearch(struct soap*, char *_sequence, char *_oligomer, struct ns1__oligomer_USCOREsearchInputParams *_params, struct ns1__oligomer_USCOREsearchResponse *_param_8);
 
 SOAP_FMAC5 int SOAP_FMAC6 ns1__find_USCOREpattern(struct soap*, char *_sequence, char *_pattern, struct ns1__find_USCOREpatternInputParams *_params, char **_result);
 
@@ -2786,7 +2786,7 @@ SOAP_FMAC5 int SOAP_FMAC6 ns1__entrez(struct soap*, char *_database, char *_quer
 
 SOAP_FMAC5 int SOAP_FMAC6 ns1__palindrome(struct soap*, char *_sequence, struct ns1__palindromeInputParams *_params, char **_result);
 
-SOAP_FMAC5 int SOAP_FMAC6 ns1__least_USCOREsquares_USCOREfit(struct soap*, struct arrayIn *_array, struct ns1__least_USCOREsquares_USCOREfitResponse *_param_8);
+SOAP_FMAC5 int SOAP_FMAC6 ns1__least_USCOREsquares_USCOREfit(struct soap*, struct arrayIn *_array, struct ns1__least_USCOREsquares_USCOREfitResponse *_param_9);
 
 SOAP_FMAC5 int SOAP_FMAC6 ns1__dinuc(struct soap*, char *_sequence, struct ns1__dinucInputParams *_params, char **_result);
 
@@ -2806,7 +2806,7 @@ SOAP_FMAC5 int SOAP_FMAC6 ns1__lda_USCOREbias(struct soap*, char *_sequence, str
 
 SOAP_FMAC5 int SOAP_FMAC6 ns1__scs(struct soap*, char *_sequence, struct ns1__scsInputParams *_params, char **_result);
 
-SOAP_FMAC5 int SOAP_FMAC6 ns1__leading_USCOREstrand(struct soap*, char *_sequence, struct ns1__leading_USCOREstrandResponse *_param_9);
+SOAP_FMAC5 int SOAP_FMAC6 ns1__leading_USCOREstrand(struct soap*, char *_sequence, struct ns1__leading_USCOREstrandResponse *_param_10);
 
 SOAP_FMAC5 int SOAP_FMAC6 ns1__S_USCOREvalue(struct soap*, char *_sequence, struct ns1__S_USCOREvalueInputParams *_params, char **_result);
 
@@ -3147,7 +3147,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__find_USCOREter(struct soap *soap, const
 
 SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__shuffleseq(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, struct ns1__shuffleseqInputParams *_params, char **_result);
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__oligomer_USCOREsearch(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, char *_oligomer, struct ns1__oligomer_USCOREsearchInputParams *_params, char **_result);
+SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__oligomer_USCOREsearch(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, char *_oligomer, struct ns1__oligomer_USCOREsearchInputParams *_params, struct ns1__oligomer_USCOREsearchResponse *_param_8);
 
 SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__find_USCOREpattern(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, char *_pattern, struct ns1__find_USCOREpatternInputParams *_params, char **_result);
 
@@ -3171,7 +3171,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__entrez(struct soap *soap, const char *s
 
 SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__palindrome(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, struct ns1__palindromeInputParams *_params, char **_result);
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__least_USCOREsquares_USCOREfit(struct soap *soap, const char *soap_endpoint, const char *soap_action, struct arrayIn *_array, struct ns1__least_USCOREsquares_USCOREfitResponse *_param_8);
+SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__least_USCOREsquares_USCOREfit(struct soap *soap, const char *soap_endpoint, const char *soap_action, struct arrayIn *_array, struct ns1__least_USCOREsquares_USCOREfitResponse *_param_9);
 
 SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__dinuc(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, struct ns1__dinucInputParams *_params, char **_result);
 
@@ -3191,7 +3191,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__lda_USCOREbias(struct soap *soap, const
 
 SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__scs(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, struct ns1__scsInputParams *_params, char **_result);
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__leading_USCOREstrand(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, struct ns1__leading_USCOREstrandResponse *_param_9);
+SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__leading_USCOREstrand(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, struct ns1__leading_USCOREstrandResponse *_param_10);
 
 SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__S_USCOREvalue(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, struct ns1__S_USCOREvalueInputParams *_params, char **_result);
 

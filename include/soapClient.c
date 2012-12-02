@@ -17,7 +17,7 @@ compiling, linking, and/or using OpenSSL is allowed.
 extern "C" {
 #endif
 
-SOAP_SOURCE_STAMP("@(#) soapClient.c ver 2.8.6 2012-11-18 13:16:56 GMT")
+SOAP_SOURCE_STAMP("@(#) soapClient.c ver 2.8.6 2012-11-21 06:35:00 GMT")
 
 
 SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__codon_USCOREmva(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, struct ns1__codon_USCOREmvaInputParams *_params, char **_result)
@@ -3750,9 +3750,8 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__shuffleseq(struct soap *soap, const cha
 	return soap_closesock(soap);
 }
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__oligomer_USCOREsearch(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, char *_oligomer, struct ns1__oligomer_USCOREsearchInputParams *_params, char **_result)
+SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__oligomer_USCOREsearch(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, char *_oligomer, struct ns1__oligomer_USCOREsearchInputParams *_params, struct ns1__oligomer_USCOREsearchResponse *_param_8)
 {	struct ns1__oligomer_USCOREsearch soap_tmp_ns1__oligomer_USCOREsearch;
-	struct ns1__oligomer_USCOREsearchResponse *soap_tmp_ns1__oligomer_USCOREsearchResponse;
 	if (!soap_endpoint)
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
 	if (!soap_action)
@@ -3786,9 +3785,9 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__oligomer_USCOREsearch(struct soap *soap
 	 || soap_envelope_end_out(soap)
 	 || soap_end_send(soap))
 		return soap_closesock(soap);
-	if (!_result)
+	if (!_param_8)
 		return soap_closesock(soap);
-	*_result = NULL;
+	soap_default_ns1__oligomer_USCOREsearchResponse(soap, _param_8);
 	if (soap_begin_recv(soap)
 	 || soap_envelope_begin_in(soap)
 	 || soap_recv_header(soap)
@@ -3796,15 +3795,13 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__oligomer_USCOREsearch(struct soap *soap
 		return soap_closesock(soap);
 	if (soap_recv_fault(soap, 1))
 		return soap->error;
-	soap_tmp_ns1__oligomer_USCOREsearchResponse = soap_get_ns1__oligomer_USCOREsearchResponse(soap, NULL, "", "");
+	soap_get_ns1__oligomer_USCOREsearchResponse(soap, _param_8, "", "");
 	if (soap->error)
 		return soap_recv_fault(soap, 0);
 	if (soap_body_end_in(soap)
 	 || soap_envelope_end_in(soap)
 	 || soap_end_recv(soap))
 		return soap_closesock(soap);
-	if (_result && soap_tmp_ns1__oligomer_USCOREsearchResponse->_result)
-		*_result = *soap_tmp_ns1__oligomer_USCOREsearchResponse->_result;
 	return soap_closesock(soap);
 }
 
@@ -4434,7 +4431,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__palindrome(struct soap *soap, const cha
 	return soap_closesock(soap);
 }
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__least_USCOREsquares_USCOREfit(struct soap *soap, const char *soap_endpoint, const char *soap_action, struct arrayIn *_array, struct ns1__least_USCOREsquares_USCOREfitResponse *_param_8)
+SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__least_USCOREsquares_USCOREfit(struct soap *soap, const char *soap_endpoint, const char *soap_action, struct arrayIn *_array, struct ns1__least_USCOREsquares_USCOREfitResponse *_param_9)
 {	struct ns1__least_USCOREsquares_USCOREfit soap_tmp_ns1__least_USCOREsquares_USCOREfit;
 	if (!soap_endpoint)
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
@@ -4467,9 +4464,9 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__least_USCOREsquares_USCOREfit(struct so
 	 || soap_envelope_end_out(soap)
 	 || soap_end_send(soap))
 		return soap_closesock(soap);
-	if (!_param_8)
+	if (!_param_9)
 		return soap_closesock(soap);
-	soap_default_ns1__least_USCOREsquares_USCOREfitResponse(soap, _param_8);
+	soap_default_ns1__least_USCOREsquares_USCOREfitResponse(soap, _param_9);
 	if (soap_begin_recv(soap)
 	 || soap_envelope_begin_in(soap)
 	 || soap_recv_header(soap)
@@ -4477,7 +4474,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__least_USCOREsquares_USCOREfit(struct so
 		return soap_closesock(soap);
 	if (soap_recv_fault(soap, 1))
 		return soap->error;
-	soap_get_ns1__least_USCOREsquares_USCOREfitResponse(soap, _param_8, "", "");
+	soap_get_ns1__least_USCOREsquares_USCOREfitResponse(soap, _param_9, "", "");
 	if (soap->error)
 		return soap_recv_fault(soap, 0);
 	if (soap_body_end_in(soap)
@@ -4999,7 +4996,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__scs(struct soap *soap, const char *soap
 	return soap_closesock(soap);
 }
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__leading_USCOREstrand(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, struct ns1__leading_USCOREstrandResponse *_param_9)
+SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__leading_USCOREstrand(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, struct ns1__leading_USCOREstrandResponse *_param_10)
 {	struct ns1__leading_USCOREstrand soap_tmp_ns1__leading_USCOREstrand;
 	if (!soap_endpoint)
 		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
@@ -5032,9 +5029,9 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__leading_USCOREstrand(struct soap *soap,
 	 || soap_envelope_end_out(soap)
 	 || soap_end_send(soap))
 		return soap_closesock(soap);
-	if (!_param_9)
+	if (!_param_10)
 		return soap_closesock(soap);
-	soap_default_ns1__leading_USCOREstrandResponse(soap, _param_9);
+	soap_default_ns1__leading_USCOREstrandResponse(soap, _param_10);
 	if (soap_begin_recv(soap)
 	 || soap_envelope_begin_in(soap)
 	 || soap_recv_header(soap)
@@ -5042,7 +5039,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__leading_USCOREstrand(struct soap *soap,
 		return soap_closesock(soap);
 	if (soap_recv_fault(soap, 1))
 		return soap->error;
-	soap_get_ns1__leading_USCOREstrandResponse(soap, _param_9, "", "");
+	soap_get_ns1__leading_USCOREstrandResponse(soap, _param_10, "", "");
 	if (soap->error)
 		return soap_recv_fault(soap, 0);
 	if (soap_body_end_in(soap)

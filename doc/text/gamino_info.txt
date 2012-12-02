@@ -1,12 +1,23 @@
+<<<<<<< HEAD
+                                gaminoinfo
+=======
                                  gamino_info
+>>>>>>> 1.0.0-beta
 Function
 
    Prints out basic amino acid sequence statistics
 
 Description
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    This method prints out basic compositional statistics of the 
+    given amino acid sequence in a human readable manner.
+=======
    This method prints out basic compositional statistics of the 
    given amino acid sequence in a human readable manner.
+>>>>>>> devel
 
    Displayed information includes the following:
    Molecular weight, number of residues, average residue weight, charge,
@@ -16,7 +27,24 @@ Description
    Polar (D+E+H+K+N+Q+R+S+T+Z), Charged (B+D+E+H+K+R+Z), Basic (H+K+R),
    Acidic (B+D+E+Z) residues.
 
+=======
+   This method prints out basic compositional statistics of the 
+   given amino acid sequence in a human readable manner.
+=======
+    This method prints out basic compositional statistics of the 
+    given amino acid sequence in a human readable manner.
+>>>>>>> 1.0.0
+
+    Displayed information includes the following:
+      Molecular weight, number of residues, average residue weight, charge,
+      isoelectric point, number/mole/DayhoffStat of each amino acid, and
+      percentage of Tiny (A+C+G+S+T), Small (A+B+C+D+G+N+P+S+T+V), 
+      Aliphatic (I+L+V), Aromatic (F+H+W+Y), Non-polar (A+C+F+G+I+L+M+P+V+W+Y), 
+      Polar (D+E+H+K+N+Q+R+S+T+Z), Charged (B+D+E+H+K+R+Z), Basic (H+K+R),
+      Acidic (B+D+E+Z) residues.
+
   
+>>>>>>> 1.0.0-beta
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -34,6 +62,75 @@ Description
 
 Usage
 
+<<<<<<< HEAD
+   Here is a sample session with gaminoinfo
+
+% gaminoinfo 
+Prints out basic amino acid sequence statistics
+Input protein sequence(s): proteinSample.fna
+AminoInfo of  from 1 to 499
+
+Molecular weight = 64545.83 Residues = 499
+Average Weight = 129.35 Charge = 11
+Isoelectric Point = 7.8079
+Residue         Number          Mole%               DayhoffStat
+
+ =             1               0.200                     0.000
+. =             2               0.401                     0.000
+0 =             1               0.200                     0.000
+1 =             2               0.401                     0.000
+> =             1               0.200                     0.000
+A = Ala         27              5.411                     0.629
+C = Cys         21              4.208                     1.451
+D = Asp         36              7.214                     1.312
+E = Glu         33              6.613                     1.102
+F = Phe         21              4.208                     1.169
+G = Gly         34              6.814                     0.811
+H = His         16              3.206                     1.603
+I = Ile         13              2.605                     0.579
+K = Lys         29              5.812                     0.881
+L = Leu         31              6.212                     0.840
+M = Met         9               1.804                     1.061
+N = Asn         21              4.208                     0.979
+O =             1               0.200                     0.000
+P = Pro         27              5.411                     1.041
+Q = Gln         17              3.407                     0.874
+R = Arg         43              8.617                     1.759
+S = Ser         32              6.413                     0.916
+T = Thr         26              5.210                     0.854
+U = Sec         1               0.200                     0.000
+V = Val         35              7.014                     1.063
+W = Trp         10              2.004                     1.542
+Y = Tyr         9               1.804                     0.530
+
+Property        Residues                Number          Mole%
+Tiny            (A+C+G+S+T)             140             28.056
+Small           (A+B+C+D+G+N+P+S+T+V)   259             51.904
+Aliphatic       (I+L+V)                 79              15.832
+Aromatic        (F+H+W+Y)               56              11.222
+Non-polar       (A+C+F+G+I+L+M+P+V+W+Y) 237             47.495
+Polar           (D+E+H+K+N+Q+R+S+T+Z)   253             50.701
+Charged         (B+D+E+H+K+R+Z)         157             31.463
+Basic           (H+K+R)                 88              17.635
+Acidic          (B+D+E+Z)               69              13.828
+
+Command line argumants
+
+   Standard (Mandatory) qualifiers:
+  [-seqall]            seqall     Protein sequence(s) filename and optional
+                                  format, or reference (input USA)
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers: (none)
+
+Input file format
+
+   gaminoinfo reads protein sequences.
+
+Ouptput file format
+
+   The output from gaminoinfo is to standard output.
+=======
    Here is a sample session with gamino_info
 
 % gamino_info ADH_HUMAN.fasta
@@ -68,7 +165,12 @@ Input file format
 
 Output file format
 
+<<<<<<< HEAD
+   The output from gamino_info is to standard output.
+>>>>>>> 1.0.0-beta
+=======
    The output from gamino_info is to a file or stdout.
+>>>>>>> devel
 
 Data files
 
@@ -78,7 +180,11 @@ Notes
 
    None.
 
+<<<<<<< HEAD
+Refrences
+=======
 References
+>>>>>>> 1.0.0-beta
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -86,7 +192,11 @@ References
 
    Arakawa, K. and Tomita, M. (2006) G-language System as a Platfor for
       large-scale analysis of high-throughput omics data, J. Pest Sci.,
+<<<<<<< HEAD
+      31, 7.                     
+=======
       31, 7.
+>>>>>>> 1.0.0-beta
 
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Wev Service Interfaces,
@@ -110,15 +220,30 @@ Known bugs
 
 See also
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
    gaaui           Calculates various indece of amino acid usage
    gcodon_compiler Calculate various kinds of amino acid and codon usage data
+>>>>>>> 1.0.0
 
+<<<<<<< HEAD
+
+>>>>>>> 1.0.0-beta
+=======
+>>>>>>> devel
 Author(s)
 
    Hidetoshi Itaya (celery@g-language.org)
    Institute for Advanced Biosciences, Keio University
    252-8520 Japan
 
+<<<<<<< HEAD
+   Misa Nakanishi (dora@g-language.org)
+
+=======
+>>>>>>> 1.0.0-beta
    Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
 
 History
@@ -128,7 +253,11 @@ History
 Target users
 
    This program is intended to be used by everyone and everything, from
+<<<<<<< HEAD
+   naive users to embedded scrips.
+=======
    naive users to embedded scripts.
+>>>>>>> 1.0.0-beta
 
 Comments
 

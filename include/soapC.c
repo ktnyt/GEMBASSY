@@ -19,7 +19,7 @@ compiling, linking, and/or using OpenSSL is allowed.
 extern "C" {
 #endif
 
-SOAP_SOURCE_STAMP("@(#) soapC.c ver 2.8.6 2012-11-18 13:16:56 GMT")
+SOAP_SOURCE_STAMP("@(#) soapC.c ver 2.8.6 2012-11-21 06:35:00 GMT")
 
 
 #ifndef WITH_NOGLOBAL
@@ -738,6 +738,8 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		return soap_in_PointerTons1__gcwinInputParams(soap, NULL, NULL, "ns1:gcwinInputParams");
 	case SOAP_TYPE_PointerTons1__find_USCOREpatternInputParams:
 		return soap_in_PointerTons1__find_USCOREpatternInputParams(soap, NULL, NULL, "ns1:find_patternInputParams");
+	case SOAP_TYPE_PointerTons1__oligomer_USCOREsearchResponse:
+		return soap_in_PointerTons1__oligomer_USCOREsearchResponse(soap, NULL, NULL, "ns1:oligomer_searchResponse");
 	case SOAP_TYPE_PointerTons1__oligomer_USCOREsearchInputParams:
 		return soap_in_PointerTons1__oligomer_USCOREsearchInputParams(soap, NULL, NULL, "ns1:oligomer_searchInputParams");
 	case SOAP_TYPE_PointerTons1__shuffleseqInputParams:
@@ -2514,6 +2516,8 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_putelement(struct soap *soap, const void *ptr, co
 		return soap_out_PointerTons1__gcwinInputParams(soap, tag, id, (struct ns1__gcwinInputParams *const*)ptr, "ns1:gcwinInputParams");
 	case SOAP_TYPE_PointerTons1__find_USCOREpatternInputParams:
 		return soap_out_PointerTons1__find_USCOREpatternInputParams(soap, tag, id, (struct ns1__find_USCOREpatternInputParams *const*)ptr, "ns1:find_patternInputParams");
+	case SOAP_TYPE_PointerTons1__oligomer_USCOREsearchResponse:
+		return soap_out_PointerTons1__oligomer_USCOREsearchResponse(soap, tag, id, (struct ns1__oligomer_USCOREsearchResponse *const*)ptr, "ns1:oligomer_searchResponse");
 	case SOAP_TYPE_PointerTons1__oligomer_USCOREsearchInputParams:
 		return soap_out_PointerTons1__oligomer_USCOREsearchInputParams(soap, tag, id, (struct ns1__oligomer_USCOREsearchInputParams *const*)ptr, "ns1:oligomer_searchInputParams");
 	case SOAP_TYPE_PointerTons1__shuffleseqInputParams:
@@ -3459,6 +3463,9 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_markelement(struct soap *soap, const void *ptr, 
 		break;
 	case SOAP_TYPE_PointerTons1__find_USCOREpatternInputParams:
 		soap_serialize_PointerTons1__find_USCOREpatternInputParams(soap, (struct ns1__find_USCOREpatternInputParams *const*)ptr);
+		break;
+	case SOAP_TYPE_PointerTons1__oligomer_USCOREsearchResponse:
+		soap_serialize_PointerTons1__oligomer_USCOREsearchResponse(soap, (struct ns1__oligomer_USCOREsearchResponse *const*)ptr);
 		break;
 	case SOAP_TYPE_PointerTons1__oligomer_USCOREsearchInputParams:
 		soap_serialize_PointerTons1__oligomer_USCOREsearchInputParams(soap, (struct ns1__oligomer_USCOREsearchInputParams *const*)ptr);
@@ -8271,7 +8278,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns1__oligomer_USCOREsearchResponse(struc
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns1__oligomer_USCOREsearchResponse(struct soap *soap, const struct ns1__oligomer_USCOREsearchResponse *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
-	soap_serialize_PointerTostring(soap, &a->_result);
+	soap_serialize_PointerToarrayOut(soap, &a->_result);
 }
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__oligomer_USCOREsearchResponse(struct soap *soap, const char *tag, int id, const struct ns1__oligomer_USCOREsearchResponse *a, const char *type)
@@ -8279,7 +8286,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns1__oligomer_USCOREsearchResponse(struct soa
 	(void)soap; (void)tag; (void)id; (void)type;
 	if (soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_ns1__oligomer_USCOREsearchResponse), type))
 		return soap->error;
-	if (soap_out_PointerTostring(soap, "result", -1, &a->_result, ""))
+	if (soap_out_PointerToarrayOut(soap, "result", -1, &a->_result, ""))
 		return soap->error;
 	return soap_element_end_out(soap, tag);
 }
@@ -8298,7 +8305,7 @@ SOAP_FMAC3 struct ns1__oligomer_USCOREsearchResponse * SOAP_FMAC4 soap_in_ns1__o
 		for (;;)
 		{	soap->error = SOAP_TAG_MISMATCH;
 			if (soap_flag__result && soap->error == SOAP_TAG_MISMATCH)
-				if (soap_in_PointerTostring(soap, NULL, &a->_result, "xsd:string"))
+				if (soap_in_PointerToarrayOut(soap, NULL, &a->_result, "xsd:string"))
 				{	soap_flag__result--;
 					continue;
 				}
@@ -26783,6 +26790,57 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons1__find_USCOREpatternInputParams(s
 SOAP_FMAC3 struct ns1__find_USCOREpatternInputParams ** SOAP_FMAC4 soap_get_PointerTons1__find_USCOREpatternInputParams(struct soap *soap, struct ns1__find_USCOREpatternInputParams **p, const char *tag, const char *type)
 {
 	if ((p = soap_in_PointerTons1__find_USCOREpatternInputParams(soap, tag, p, type)))
+		if (soap_getindependent(soap))
+			return NULL;
+	return p;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons1__oligomer_USCOREsearchResponse(struct soap *soap, struct ns1__oligomer_USCOREsearchResponse *const*a)
+{
+	if (!soap_reference(soap, *a, SOAP_TYPE_ns1__oligomer_USCOREsearchResponse))
+		soap_serialize_ns1__oligomer_USCOREsearchResponse(soap, *a);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons1__oligomer_USCOREsearchResponse(struct soap *soap, const char *tag, int id, struct ns1__oligomer_USCOREsearchResponse *const*a, const char *type)
+{
+	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE_ns1__oligomer_USCOREsearchResponse);
+	if (id < 0)
+		return soap->error;
+	return soap_out_ns1__oligomer_USCOREsearchResponse(soap, tag, id, *a, type);
+}
+
+SOAP_FMAC3 struct ns1__oligomer_USCOREsearchResponse ** SOAP_FMAC4 soap_in_PointerTons1__oligomer_USCOREsearchResponse(struct soap *soap, const char *tag, struct ns1__oligomer_USCOREsearchResponse **a, const char *type)
+{
+	if (soap_element_begin_in(soap, tag, 1, NULL))
+		return NULL;
+	if (!a)
+		if (!(a = (struct ns1__oligomer_USCOREsearchResponse **)soap_malloc(soap, sizeof(struct ns1__oligomer_USCOREsearchResponse *))))
+			return NULL;
+	*a = NULL;
+	if (!soap->null && *soap->href != '#')
+	{	soap_revert(soap);
+		if (!(*a = soap_in_ns1__oligomer_USCOREsearchResponse(soap, tag, *a, type)))
+			return NULL;
+	}
+	else
+	{	a = (struct ns1__oligomer_USCOREsearchResponse **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE_ns1__oligomer_USCOREsearchResponse, sizeof(struct ns1__oligomer_USCOREsearchResponse), 0);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons1__oligomer_USCOREsearchResponse(struct soap *soap, struct ns1__oligomer_USCOREsearchResponse *const*a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerTons1__oligomer_USCOREsearchResponse);
+	if (soap_out_PointerTons1__oligomer_USCOREsearchResponse(soap, tag?tag:"ns1:oligomer_searchResponse", id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 struct ns1__oligomer_USCOREsearchResponse ** SOAP_FMAC4 soap_get_PointerTons1__oligomer_USCOREsearchResponse(struct soap *soap, struct ns1__oligomer_USCOREsearchResponse **p, const char *tag, const char *type)
+{
+	if ((p = soap_in_PointerTons1__oligomer_USCOREsearchResponse(soap, tag, p, type)))
 		if (soap_getindependent(soap))
 			return NULL;
 	return p;

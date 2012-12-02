@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+                                 gqueryarm
+=======
                                  gquery_arm
+>>>>>>> 1.0.0-beta
 Function
 
    Get the replication arm name (left or right) from the given position
@@ -8,7 +12,10 @@ Description
    Given a position, returns whether the specified position is in the 
    left or right arm of the circular chromosome.
 
+<<<<<<< HEAD
+=======
   
+>>>>>>> 1.0.0-beta
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -26,6 +33,20 @@ Description
 
 Usage
 
+<<<<<<< HEAD
+   Here is a sample session with gqueryarm
+
+% gqueryarm 
+Get the replication arm name (left or right) from the given position
+Input nucleotide sequence: nucleotideSample.fna
+Position to query [0]: 1234
+right
+
+Command line argumants
+
+   Standard (Mandatory) qualifiers:
+  [-sequence]          sequence   Nucleotide sequence filename and optional
+=======
    Here is a sample session with gquery_arm
 
 % gquery_arm NC_000913.gbk 1234
@@ -38,11 +59,23 @@ Command line arguments
 
    Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
+>>>>>>> 1.0.0-beta
                                   format, or reference (input USA)
   [-position]          integer    [0] Position to query (Any integer value)
 *  -outfile            outfile    [*.gquery_arm] Output file name
 
    Additional (Optional) qualifiers: (none)
+<<<<<<< HEAD
+   Advanced (Unprompted) qualifiers: (none)
+
+Input file format
+
+   gqueryarm reads a genome sequence as input.
+
+Ouptput file format
+
+   The output from gqueryarm is to standard output.
+=======
    Advanced (Unprompted) qualifiers:
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
@@ -60,7 +93,12 @@ Input file format
 
 Output file format
 
+<<<<<<< HEAD
+   The output from gquery_arm is to standard output.
+>>>>>>> 1.0.0-beta
+=======
    The output from gquery_arm is to a file or stdout.
+>>>>>>> devel
 
 Data files
 
@@ -70,7 +108,11 @@ Notes
 
    None.
 
+<<<<<<< HEAD
+Refrences
+=======
 References
+>>>>>>> 1.0.0-beta
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -78,7 +120,11 @@ References
 
    Arakawa, K. and Tomita, M. (2006) G-language System as a Platfor for
       large-scale analysis of high-throughput omics data, J. Pest Sci.,
+<<<<<<< HEAD
+      31, 7.                     
+=======
       31, 7.
+>>>>>>> 1.0.0-beta
 
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Wev Service Interfaces,
@@ -102,9 +148,31 @@ Known bugs
 
 See also
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+   gfindoriter  - Predict the replication origin and terminus in bacterial
+                  genomes
+   ggcsi        - GC Skew Index: an index for strand-specific mutational bias
+   ggcskew      - Calculate the GC skew of the given genome
+   ggcwin       - Calculate the GC content along the given genome
+   ggeneskew    - Calculate the gene strand bias of the given genome
+   ggenomicskew - Calculate the GC skew in different regions of the given
+                  genome
+   gquerystrand - Get the strand name (leading or lagging) from the given
+                  position
+   greporiter   - Get the positions of replication origin and terminus
+=======
+
+>>>>>>> 1.0.0-beta
+=======
    gquery_strand Get the strand name (leading or lagging) from the given
                  position
 
+<<<<<<< HEAD
+>>>>>>> 1.0.0
+
+=======
+>>>>>>> devel
 Author(s)
 
    Hidetoshi Itaya (celery@g-language.org)
@@ -120,7 +188,11 @@ History
 Target users
 
    This program is intended to be used by everyone and everything, from
+<<<<<<< HEAD
+   naive users to embedded scrips.
+=======
    naive users to embedded scripts.
+>>>>>>> 1.0.0-beta
 
 Comments
 
