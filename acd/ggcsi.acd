@@ -21,9 +21,9 @@ section: advanced [
   type: "page"
 ]
 
-  integer: ver [
-    information: "Version of GCSI. Generalized GCSI is selected by default"
-    default: "2"
+  boolean: gcsi [
+    information: "Include to use GCSI version 1"
+    default: "N"
   ]
 
   integer: window [
