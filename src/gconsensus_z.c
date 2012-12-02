@@ -80,7 +80,7 @@ int main(int argc, char *argv[]){
 					fprintf(stderr, "Error allocating\n");
 			}else{
 				ajFmtPrintF(outf, "Sequence: %S\n%S\n",
-						accid, getContentS(filename));
+						ajAcdGetSeqAccS(seq), getContentS(filename));
 			}
 		}else{ 
 			fprintf(stderr, "Retrieval unsuccessful\n");
