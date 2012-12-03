@@ -8,7 +8,6 @@
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
-#include "../include/grest.h"
 #include "../include/gembassy.h"
 
 int 
