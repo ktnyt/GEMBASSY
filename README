@@ -47,7 +47,7 @@ INSTALLATION
        % wget ftp://emboss.open-bio.org/pub/EMBOSS/EMBOSS-latest.tar.gz
        (or "curl -O ftp://emboss.open-bio.org/pub/EMBOSS/EMBOSS-latest.tar.gz")
        % tar zxf EMBOSS-latest.tar.gz
-       % cd EMBOSS-6.4.0
+       % cd EMBOSS-6.5.7
        % ./configure
        % make
        % sudo make install
@@ -97,7 +97,7 @@ NOTE
 
   Non-root users
     On steps 1. and 3. do
-    % ./configure --prefix=/PATH/TO/DIR/
+    % ./configure --prefix=/PATH/TO/DIR/ (ex. $HOME/usr/local)
     % make
     % make install
     Then rewrite the "emboss_acdroot" and "emboss_data" value in ~/.embossrc
