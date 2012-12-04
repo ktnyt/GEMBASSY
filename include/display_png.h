@@ -59,12 +59,16 @@ int png_init(FILE *fp, unsigned long *pWidth, unsigned long *pHeight){
   
   if(!(info_ptr = png_create_info_struct(png_ptr)))
     return 4;
-
+/*
+#if (PNG_LIBPNG_VER < 10400 || PNG_LIBPNG_VER > 10500)
   if(setjmp(png_jmpbuf(png_ptr))){
+#else
+  if(setjmp(png_ptr)->jmpbuf){
+#endif
     png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
     return 2;
   }
-
+*/
   png_init_io(png_ptr, fp);
   png_set_sig_bytes(png_ptr, 8);
 
@@ -82,12 +86,16 @@ unsigned char* get_image(int *pChannels, unsigned long *pRowbytes){
   double gamma;
   png_uint_32 i, rowbytes;
   png_bytepp row_pointers = NULL;
-
+/*
+#if (PNG_LIBPNG_VER < 10400 || PNG_LIBPNG_VER > 10500)
   if(setjmp(png_jmpbuf(png_ptr))){
+#else
+  if(setjmp(png_ptr)->jmpbuf){
+#endif
     png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
     return NULL;
   }
-
+*/
   if (color_type == PNG_COLOR_TYPE_PALETTE)
     png_set_expand(png_ptr);
   if (color_type == PNG_COLOR_TYPE_GRAY && bit_depth < 8)
