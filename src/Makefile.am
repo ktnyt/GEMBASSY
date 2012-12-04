@@ -49,6 +49,7 @@ bin_PROGRAMS = gaaui\
                gbase_information_content\
                gbase_relative_entropy\
                gbase_z_value\
+	       gbui\
                gcai\
                gcbi\
                gcgr\
@@ -99,6 +100,7 @@ gbase_entropy_SOURCES   = gbase_entropy.c
 gbase_information_content_SOURCES = gbase_information_content.c
 gbase_relative_entropy_SOURCES    = gbase_relative_entropy.c
 gbase_z_value_SOURCES   = gbase_z_value.c
+gbui_SOURCES            = gbui.c
 gcai_SOURCES            = gcai.c
 gcbi_SOURCES            = gcbi.c
 gcgr_SOURCES            = gcgr.c
