@@ -11,7 +11,7 @@
 #include "../include/gembassy.h"
 #include "../include/gplot.h"
 
-int 
+int
 main(int argc, char *argv[])
 {
   embInitPV("gbase_entropy", argc, argv, "GEMBASSY", "1.0.0");
