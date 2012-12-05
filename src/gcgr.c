@@ -57,7 +57,6 @@ main(int argc, char *argv[])
 
     char           *in0;
     in0 = ajCharNewS(inseq);
-    puts(in0);
     if (soap_call_ns1__cgr(
 			   &soap, NULL, NULL,
 			   in0, &params, &result
