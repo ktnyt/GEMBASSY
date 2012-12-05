@@ -11,7 +11,7 @@
 #include "../include/gembassy.h"
 #include "../include/gplot.h"
 
-int 
+int
 main(int argc, char *argv[])
 {
   embInitPV("ggcskew", argc, argv, "GEMBASSY", "1.0.0");
@@ -89,6 +89,8 @@ main(int argc, char *argv[])
 
     if (!ajStrGetLen(accid))
       ajStrAssignS(&accid, ajSeqGetAccS(seq));
+    else
+      ajStrAssignS(&inseq, accid);
 
     char           *in0;
     in0 = ajCharNewS(inseq);

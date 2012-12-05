@@ -10,7 +10,7 @@
 #include "../gsoap/stdsoap2.c"
 #include "../include/gembassy.h"
 
-int 
+int
 main(int argc, char *argv[])
 {
   embInitPV("gdist_in_cc", argc, argv, "GEMBASSY", "1.0.0");

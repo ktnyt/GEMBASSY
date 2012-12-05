@@ -11,7 +11,7 @@
 #include "../include/gembassy.h"
 #include "../include/display_png.h"
 
-int 
+int
 main(int argc, char *argv[])
 {
   embInitPV("gcgr", argc, argv, "GEMBASSY", "1.0.0");
@@ -52,10 +52,12 @@ main(int argc, char *argv[])
 
     if (!ajStrGetLen(accid))
       ajStrAssignS(&accid, ajSeqGetAccS(seq));
+    else
+      ajStrAssignS(&inseq, accid);
 
     char           *in0;
     in0 = ajCharNewS(inseq);
-
+    puts(in0);
     if (soap_call_ns1__cgr(
 			   &soap, NULL, NULL,
 			   in0, &params, &result
