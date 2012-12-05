@@ -9,7 +9,7 @@
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
 
-int 
+int
 main(int argc, char *argv[])
 {
   embInitPV("gentrez", argc, argv, "GEMBASSY", "1.0.0");

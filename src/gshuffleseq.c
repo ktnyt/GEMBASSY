@@ -19,7 +19,7 @@ _upper(char *s)
   return (s);
 }
 
-int 
+int
 main(int argc, char *argv[])
 {
   embInitPV("gshuffleseq", argc, argv, "GEMBASSY", "1.0.0");

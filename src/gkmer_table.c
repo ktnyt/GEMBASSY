@@ -11,7 +11,7 @@
 #include "../include/gembassy.h"
 #include "../include/display_png.h"
 
-int 
+int
 main(int argc, char *argv[])
 {
   embInitPV("gkmer_table", argc, argv, "GEMBASSY", "1.0.0");
