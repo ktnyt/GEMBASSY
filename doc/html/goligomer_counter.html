@@ -69,11 +69,10 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with goligomer_counter
 
-% goligomer_counter NC_000913.gbk atgcatgc
+% goligomer_counter -show refseqn:NC_000913
 Counts the number of given oligomers in a sequence
 Output filename [nc_000913.goligomer_counter]:
-
-   Creates nc_000913.goligomer_counter
+Can't exec "goligomer_counter": No such file or directory at maketxt.pl line 90.
 
 </pre></td></tr></table>
 
@@ -166,35 +165,6 @@ Output filename [nc_000913.goligomer_counter]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates nc_000913.goligomer_counter
-
-Command line arguments
-
-   Standard (Mandatory) qualifiers (* if not always prompted):
-  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
-                                  format, or reference (input USA)
-  [-oligomer]          string     Oligomer to count (Any string)
-*  -outfile            outfile    [*.goligomer_counter] Output file name
-
-   Additional (Optional) qualifiers: (none)
-   Advanced (Unprompted) qualifiers:
-   -window             integer    [0] Int window size (Any integer value)
-   -accid              string     Include to use sequence accession ID as
-                                  query (Any string)
-   -show               toggle     [N] Include to dump result to stdout
-
-   General qualifiers:
-   -help               boolean    Report command line options and exit. More
-                                  information on associated and general
-                                  qualifiers can be found with -help -verbose
-
-
-Input file format
-
-   goligomer_counter reads nucleotide sequences.
-
-Output file format
-
    The output from goligomer_counter is to a file or stdout.
 </p>
 
@@ -229,7 +199,7 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   None.
+
 </p>
 
 <h2>Diagnostic Error Messages</h2>
@@ -256,13 +226,18 @@ None.
 <th>Description</th></tr>
 
 <tr>
+<td><a href="gkmer_table.html">gkmer_table</a></td>
+<td>Create an image showing all k-mer abundance within a sequence</td>
+</tr>
+
+<tr>
 <td><a href="gnucleotide_periodicity.html">gnucleotide_periodicity</a></td>
 <td>Checks the periodicity of certain oligonucleotides</td>
 </tr>
 
 <tr>
 <td><a href="goligomer_search.html">goligomer_search</a></td>
-<td>Searches oligomers in given sequence</td>
+<td></td>
 </tr>
 
 <tr>

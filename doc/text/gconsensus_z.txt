@@ -1,4 +1,4 @@
-                                gconsensus_z
+                                  gconsensus_z
 Function
 
    Calculate consensus in given array of sequences
@@ -6,6 +6,9 @@ Function
 Description
 
    Calculates the consensus of given list of sequences, using Z-score.
+   Consensus with Z value greater than int high_z (default is 1) is 
+   capitalized, and consensus with Z value less than int low_z 
+   (default is 0.2) is shown as '-'.
 
   
    G-language SOAP service is provided by the
@@ -29,6 +32,7 @@ Usage
 
 % gconsensus_z -plot consensus.fasta
 Calculate consensus in given array of sequences
+Output filename [rs_000000.gconsensus_z]:
 Created gconsensus_z.ps
 
 Command line arguments
@@ -55,7 +59,6 @@ Command line arguments
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
-
 
 Input file format
 
@@ -89,8 +92,7 @@ References
 
 Warnings
 
-   None.
-
+None.
 Diagnostic Error Messages
 
    None.
@@ -116,6 +118,8 @@ Author(s)
    252-8520 Japan
 
    Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
 
 History
 

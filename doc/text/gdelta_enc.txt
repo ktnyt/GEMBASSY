@@ -1,19 +1,23 @@
-                                 gdelta_enc
+                                   gdelta_enc
 Function
 
-   Calculate the codon usage bias related to translation optimization
-   (delta ENC)
+   Calculate the codon usage bias related to translation optimization (delta ENC)
 
 Description
 
-   This method calculates the codon usage bias related to translation
-   optimization (delta ENC) described in Reference 1. The basic idea is to
-   calculate the Effective Number of Codons (ENC) for highly-expressed genes
-   (ribosomal genes) and weakly-expressed genes (all genes), and taking the
-   relative difference between them.
+   This method calculates the codon usage bias related to translation optimization 
+   (delta ENC) described in Reference 1. The basic idea is to calculate the Effective
+   Number of Codons (ENC) for highly-expressed genes (ribosomal genes) and weakly-
+   expressed genes (all genes), and taking the relative difference between them.
 
+Usage: 
+    $delta_enc = delta_enc($genome);
 
-   G-language SOAP service is provided by the
+  Options:
+    None.
+
+  References:
+   1. Rocha EPC (2004) "Codon    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
 
@@ -24,7 +28,7 @@ Description
    http://soap.g-language.org/g-language.wsdl
 
    Documentation on G-language Genome Analysis Environment methods are
-   provided at the Document Center
+   provided at the Document Center:
 
    http://ws.g-language.org/gdoc/
 
@@ -32,11 +36,10 @@ Usage
 
    Here is a sample session with gdelta_enc
 
-% gdelta_enc NC_000913.gbk
+% gdelta_enc -show refseqn:NC_000913
 Calculate the codon usage bias related to translation optimization (delta ENC)
 Output filename [nc_000913.gdelta_enc]:
-
-   Creates nc_000913.gdelta_enc
+Sequence: NC_000913 delta ENC: 0.23826860841424
 
 Command line arguments
 
@@ -55,7 +58,6 @@ Command line arguments
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
-
 
 Input file format
 
@@ -93,7 +95,8 @@ References
 
 Warnings
 
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 
 Diagnostic Error Messages
 
@@ -120,6 +123,8 @@ Author(s)
    252-8520 Japan
 
    Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
 
 History
 

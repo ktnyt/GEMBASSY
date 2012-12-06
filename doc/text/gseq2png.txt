@@ -1,4 +1,4 @@
-                                  gseq2png
+                                    gseq2png
 Function
 
    Converts a sequence to PNG image
@@ -30,11 +30,15 @@ Usage
 
    Here is a sample session with gseq2png
 
-% gseq2png NC_000913.gbk
+% gseq2png refseqn:NC_000913
 Converts a sequence to PNG image
-Output filename [gseq2png.1.png]:
-
-   Creates gseq2png.1.png
+Output filename [nc_000913.gseq2png]:
+SOAP 1.1 fault: SOAP-ENV:Server [no subcode]
+"Error 3 in SubOpt::opt_as_gb():
+  Given value is not a valid sequence.
+ at /usr/lib/perl5/site_perl/5.8.8/G/Seq/GenomeMap.pm line 1986
+"
+Detail: [no detail]
 
 Command line arguments
 
@@ -56,7 +60,6 @@ Command line arguments
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
-
 
 Input file format
 
@@ -90,8 +93,7 @@ References
 
 Warnings
 
-   None.
-
+None.
 Diagnostic Error Messages
 
    None.
@@ -106,8 +108,7 @@ Known bugs
 
 See also
 
-   gcgr        Create a Chaos Game Representation of a given sequence
-   gkmer_table Create an image showing all k-mer abundance within a sequence
+   gcgr Create a Chaos Game Representation of a given sequence
 
 Author(s)
 
@@ -116,6 +117,8 @@ Author(s)
    252-8520 Japan
 
    Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
 
 History
 

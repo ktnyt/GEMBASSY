@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-                               gbaseinfocontent
-=======
-                          gbase_information_content
->>>>>>> 1.0.0-beta
+                            gbase_information_content
 Function
 
    Calculates and graphs the sequence conservation using information content
@@ -12,10 +8,7 @@ Description
    This function calculates and graphs the sequence conservation in regions 
    around the start/stop codons using information content.
 
-<<<<<<< HEAD
-=======
   
->>>>>>> 1.0.0-beta
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -33,91 +26,17 @@ Description
 
 Usage
 
-<<<<<<< HEAD
-   Here is a sample session with gbaseinfocontent
-
-% gbaseinfocontent 
-Calculates and graphs the sequence conservation using information content
-Input nucleotide sequence: nucleotideSample.fna
--30	2.46682
--29	2.46974
--28	2.47447
--27	2.47456
--26	2.48113
--25	2.47919
--24	2.48432
--23	2.49833
--22	2.50999
--21	2.51332
--20	2.51344
--19	2.51057
--18	2.51365
--17	2.52460
--16	2.52559
--15	2.52502
--14	2.54766
--13	2.64310
--12	2.80771
--11	3.01463
--10	2.78745
--9	2.90541
--8	2.68756
--7	2.56350
--6	2.53270
--5	2.56253
--4	2.56363
--3	2.56254
--2	1.98481
--1	1.04509
-0	1.66340
-1	0.91749
-2	0.90700
-3	2.60109
-4	2.61916
-5	2.63561
-6	2.44869
-7	2.53325
-8	2.54410
-9	2.36641
-10	2.53615
-11	2.55475
-12	2.35462
-13	2.52858
-14	2.52296
-15	2.49355
-16	2.51738
-17	2.50030
-18	2.32022
-19	2.50154
-20	2.50607
-21	2.30714
-22	2.50378
-23	2.50487
-24	2.32515
-25	2.50308
-26	2.49580
-27	2.31593
-28	2.49287
-29	2.50863
-30	2.42663
-
-Command line argumants
-
-      Standard (Mandatory) qualifiers:
-  [-sequence]          sequence   Nucleotide sequence filename and optional
-=======
    Here is a sample session with gbase_information_content
 
-% gbase_information_content -plot NC_000913.gbk
+% gbase_information_content -plot refseqn:NC_000913
 Calculates and graphs the sequence conservation using information content
+Output filename [gbase_information_content.nc_000913.csv]:
 Created gbase_information_content.ps
-
 
 Command line arguments
 
    Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
->>>>>>> 1.0.0-beta
                                   format, or reference (input USA)
 *  -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
                                   (ps, hpgl, hp7470, hp7580, meta, cps, x11,
@@ -136,39 +55,14 @@ Command line arguments
                                   to create PWM (Any integer value)
    -patlen             integer    [3] Length of oligomer to count (Any integer
                                   value)
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-Input file format
-
-   gbaseinfocontent reads a genome sequence as input.
-
-Ouptput file format
-
-   The output from gbaseinfocontent is to standard output.
-=======
-   -output             string     [g] Input 'g' for graph output, 'f' for CSV
-                                  file output (Any string)
-   -accid              boolean    [0] Include to use sequence accession ID as
-                                  query
-=======
    -accid              string     Include to use sequence accession ID as
                                   query (Any string)
-<<<<<<< HEAD
-   -output             boolean    [N] Include to create CSV file
-   -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
-                                  (ps, hpgl, hp7470, hp7580, meta, cps, x11,
-                                  tek, tekt, none, data, xterm, png, gif, svg)
->>>>>>> 1.0.0
-=======
    -plot               toggle     [N] Include to plot result
->>>>>>> devel
 
    General qualifiers:
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
-
 
 Input file format
 
@@ -176,12 +70,7 @@ Input file format
 
 Output file format
 
-<<<<<<< HEAD
-   The output from gbase_information_content is to raw CSV of PNG format.
->>>>>>> 1.0.0-beta
-=======
    The output from gbase_information_content is to the specified graphics device.
->>>>>>> 1.0.0
 
 Data files
 
@@ -191,11 +80,7 @@ Notes
 
    None.
 
-<<<<<<< HEAD
-Refrences
-=======
 References
->>>>>>> 1.0.0-beta
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -203,11 +88,7 @@ References
 
    Arakawa, K. and Tomita, M. (2006) G-language System as a Platfor for
       large-scale analysis of high-throughput omics data, J. Pest Sci.,
-<<<<<<< HEAD
-      31, 7.                     
-=======
       31, 7.
->>>>>>> 1.0.0-beta
 
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Wev Service Interfaces,
@@ -215,7 +96,8 @@ References
 
 Warnings
 
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 
 Diagnostic Error Messages
 
@@ -231,23 +113,11 @@ Known bugs
 
 See also
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-Author(s)
-
-   Hidetoshi Itaya (celery @ g-language.org)
-   Institute for Advanced Biosciences, Keio University
-   252-8520 Japan
-
-   Koya Mori(mory@g-language.org)
-=======
-=======
    gbase_entropy             Calculates and graphs the sequence conservation
                              using Shanon uncertainty (entropy)
    gbase_relative_entropy    Calculates and graphs the sequence conservation
                              using Kullback-Leibler divergence (relative
                              entropy)
->>>>>>> 1.0.0
 
 Author(s)
 
@@ -256,7 +126,8 @@ Author(s)
    252-8520 Japan
 
    Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
->>>>>>> 1.0.0-beta
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
 
 History
 
@@ -265,11 +136,7 @@ History
 Target users
 
    This program is intended to be used by everyone and everything, from
-<<<<<<< HEAD
-   naive users to embedded scrips.
-=======
    naive users to embedded scripts.
->>>>>>> 1.0.0-beta
 
 Comments
 

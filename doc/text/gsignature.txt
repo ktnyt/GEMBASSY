@@ -1,4 +1,4 @@
-                                 gsignature
+                                   gsignature
 Function
 
    Calculate oligonucleotide usage (genomic signature)
@@ -6,9 +6,9 @@ Function
 Description
 
    This program calculates short oligonucleotide usage (genomic signature),
-   defined as the ratio of observed (O) to expected (E) oligonucleotide
-   frequencies.
-
+   defined as the ratio of observed (O) to expected (E) oligonucleotide frequencies.
+   O/E value of dinucleotide CG will be accessible at 
+   $gb->{signature}->{'cg'}.
    
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
@@ -29,11 +29,9 @@ Usage
 
    Here is a sample session with gsignature
 
-% gsignature NC_000913.gbk
+% gsignature refseqn:NC_000913
 Calculate oligonucleotide usage (genomic signature)
 Output filename [gsignature.nc_000913.csv]:
-
-   Creates gsignature.nc_000913.csv
 
 Command line arguments
 
@@ -56,7 +54,6 @@ Command line arguments
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
 
-
 Input file format
 
    gsignature reads nucleotide sequences.
@@ -75,9 +72,8 @@ Notes
 
 References
 
-   Campbell A et al. (1999) Proc Natl Acad Sci U S A. 96(16):9184-9.
-
-   Karlin S. (2001) Trends Microbiol. 9(7):335-43.
+      Campbell A et al. (1999) Proc Natl Acad Sci U S A. 96(16):9184-9.
+      Karlin S. (2001) Trends Microbiol. 9(7):335-43.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -93,7 +89,8 @@ References
 
 Warnings
 
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 
 Diagnostic Error Messages
 
@@ -109,6 +106,7 @@ Known bugs
 
 See also
 
+   gkmer_table             Create an image showing all k-mer abundance within a                            sequence
    gnucleotide_periodicity Checks the periodicity of certain oligonucleotides
    goligomer_counter       Counts the number of given oligomers in a sequence
    goligomer_search        Searches oligomers in given sequence
@@ -120,6 +118,8 @@ Author(s)
    252-8520 Japan
 
    Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
 
 History
 

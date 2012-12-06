@@ -1,4 +1,4 @@
-                                 gpalindrome
+                                   gpalindrome
 Function
 
    Searches palindrome sequences
@@ -27,11 +27,9 @@ Usage
 
    Here is a sample session with gpalindrome
 
-% gpalindrome NC_000913.gbk
+% gpalindrome refseqn:NC_000913
 Searches palindrome sequences
 Output filename [gpalindrome.nc_000913.csv]:
-
-   Creates gpalindrome.nc_000913.csv
 
 Command line arguments
 
@@ -55,7 +53,6 @@ Command line arguments
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
-
 
 Input file format
 
@@ -89,8 +86,7 @@ References
 
 Warnings
 
-   None.
-
+None.
 Diagnostic Error Messages
 
    None.
@@ -116,6 +112,8 @@ Author(s)
    252-8520 Japan
 
    Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
 
 History
 

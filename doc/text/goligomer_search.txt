@@ -1,4 +1,4 @@
-                              goligomer_search
+                                goligomer_search
 Function
 
    Searches oligomers in given sequence
@@ -31,40 +31,14 @@ Usage
 
    Here is a sample session with goligomer_search
 
-% goligomer_search NC_000913.gbk atgcatgc
+% goligomer_search -show refseqn:NC_000913
 Searches oligomers in given sequence
 Output filename [nc_000913.goligomer_search]:
-
-   Creates nc_000913.goligomer_search
+Can't exec "goligomer_search": No such file or directory at maketxt.pl line 90.
 
 Command line arguments
 
-   Standard (Mandatory) qualifiers (* if not always prompted):
-  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
-                                  format, or reference (input USA)
-  [-oligomer]          string     Oligomer to search (Any string)
-*  -outfile            outfile    [*.goligomer_search] Output file name
-
-   Additional (Optional) qualifiers: (none)
-   Advanced (Unprompted) qualifiers:
-   -return             string     [position] 'position"' to return list of
-                                  positions where oligomers are found, 'oligo'
-                                  to return list of oligomers found ordered
-                                  by positions, 'both' to return a hash with
-                                  positions as keys and oligomers as values,
-                                  'distribution' to return four values (see
-                                  above) about the distribution of given
-                                  oligomer (Any string)
-   -accid              string     Include to use sequence accession ID as
-                                  query (Any string)
-   -show               toggle     [N] Include to dump result to stdout
-
-   General qualifiers:
-   -help               boolean    Report command line options and exit. More
-                                  information on associated and general
-                                  qualifiers can be found with -help -verbose
-
-
+   Can't exec "goligomer_search": No such file or directory at maketxt.pl line 103.
 Input file format
 
    goligomer_search reads nucleotide sequences.
@@ -97,8 +71,7 @@ References
 
 Warnings
 
-   None.
-
+None.
 Diagnostic Error Messages
 
    None.
@@ -113,6 +86,7 @@ Known bugs
 
 See also
 
+   gkmer_table             Create an image showing all k-mer abundance within a                            sequence
    gnucleotide_periodicity Checks the periodicity of certain oligonucleotides
    goligomer_counter       Counts the number of given oligomers in a sequence
    gsignature              Calculate oligonucleotide usage (genomic signature)
@@ -124,6 +98,8 @@ Author(s)
    252-8520 Japan
 
    Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
 
 History
 

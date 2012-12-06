@@ -43,12 +43,12 @@ IT IS DONE FOR YOU.
 <H2>Description</H2>
 <p>
    This method calculate strand bias of bacterial genome using B2 index,<br>
-   proposed by Lobry and Sueoka (2002). Basic idea of B2 index is to calculate<br>
-   the distance from neutral parity state (0.5, 0.5), when the bias of the<br>
-   coding regions is plotted in a coordinate system with axes representing <br>
-   G/(G+C) and A/(A+T), using the third codon position of genes. This index<br>
-   measure  the degree of transcription- and translation-associated effects of<br>
-   bias from Chargaff's second parity rule.<br>
+   proposed by Lobry and Sueoka in Reference 1. Basic idea of B2 index is <br>
+   to calculate the distance from neutral parity state (0.5, 0.5), when the bias of<br>
+   the coding regions is plotted in a coordinate system with axes representing <br>
+   G/(G+C) and A/(A+T), using the third codon position of genes. This index measures <br>
+   the degree of transcription- and translation-associated effects of bias from <br>
+   Chargaff's second parity rule.<br>
 <br>
  <br>
    G-language SOAP service is provided by the<br>
@@ -73,11 +73,10 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gb2
 
-% gb2 NC_000913.gbk
+% gb2 -show refseqn:NC_000913
 Calculate strand bias of bacterial genome using B2 index
 Output filename [nc_000913.gb2]:
-
-   Creates nc_000913.gb2
+Sequence: NC_000913 B1: 0.0920067301798418
 
 </pre></td></tr></table>
 
@@ -154,15 +153,6 @@ Output filename [nc_000913.gb2]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates nc_000913.gb2
-
-Command line arguments
-
-   Standard (Mandatory) qualifiers:
-  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
-                                  format, or reference (input USA)
-   -outfile            outfile    [*.gb2] Output file name
-
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -accid              string     Include to use sequence accession ID as
@@ -173,7 +163,6 @@ Command line arguments
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
-
 
 Input file format
 
@@ -199,8 +188,8 @@ None.
 <h2>Refrences</h2>
 
 <pre>
-   Lobry JR and Sueoka N (2002) "Asymmetric directional mutation pressures in
-      bacteria", Genome Biology, 3(10):0058
+   Lobry JR and Sueoka N (2002) "Asymmetric directional mutation pressures in bacteria",
+      Genome Biology, 3(10):0058
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -218,7 +207,8 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 </p>
 
 <h2>Diagnostic Error Messages</h2>

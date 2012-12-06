@@ -68,11 +68,10 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gquery_strand
 
-% gquery_strand NC_000913.gbk 1234
+% gquery_strand -show refseqn:NC_000913
 Get the strand name (leading or lagging) from the given position
 Output filename [nc_000913.gquery_strand]:
-
-   Creates nc_000913.gquery_strand
+Sequence: NC_000913 Strand: leading
 
 </pre></td></tr></table>
 
@@ -165,16 +164,6 @@ Output filename [nc_000913.gquery_strand]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates nc_000913.gquery_strand
-
-Command line arguments
-
-   Standard (Mandatory) qualifiers (* if not always prompted):
-  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
-                                  format, or reference (input USA)
-  [-position]          string     [0] Position to query (Any string)
-*  -outfile            outfile    [*.gquery_strand] Output file name
-
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -direction          string     [direct] Strand of the querying position
@@ -187,7 +176,6 @@ Command line arguments
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
-
 
 Input file format
 
@@ -229,7 +217,8 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 </p>
 
 <h2>Diagnostic Error Messages</h2>

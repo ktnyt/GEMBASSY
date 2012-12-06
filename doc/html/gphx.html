@@ -44,22 +44,8 @@ IT IS DONE FOR YOU.
 <p>
    This program calculates codon usage differences between gene classes for<br>
    identifying Predicted Highly eXpressed (PHX) and Putative Alien (PA) genes.<br>
-<br>
-<br>
-   G-language SOAP service is provided by the<br>
-   Institute for Advanced Biosciences, Keio University.<br>
-   The original web service is located at the following URL:<br>
-<br>
-   http://www.g-language.org/wiki/soap<br>
-<br>
-   WSDL(RPC/Encoded) file is located at:<br>
-<br>
-   http://soap.g-language.org/g-language.wsdl<br>
-<br>
-   Documentation on G-language Genome Analysis Environment methods are<br>
-   provided at the Document Center<br>
-<br>
-   http://ws.g-language.org/gdoc/
+   The "expression measure" of a gene, E_g, will be accessible at<br>
+   $gb->{"FEATURE$i"}->{E_g}.
 </p>
 
 <H2>Usage</H2>
@@ -68,11 +54,9 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gphx
 
-% gphx NC_000913.gbk
+% gphx refseqn:NC_000913
 Identify predicted highly expressed gene
 Output filename [gphx.nc_000913.csv]:
-
-   Creates gphx.nc_000913.csv
 
 </pre></td></tr></table>
 
@@ -165,15 +149,6 @@ Output filename [gphx.nc_000913.csv]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates gphx.nc_000913.csv
-
-Command line arguments
-
-   Standard (Mandatory) qualifiers:
-  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
-                                  format, or reference (input USA)
-   -outfile            outfile    [gphx.$(sequence.name).csv] Output file name
-
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -translate          boolean    [0] Include when translating using standard
@@ -190,7 +165,6 @@ Command line arguments
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
-
 
 Input file format
 
@@ -216,11 +190,9 @@ None.
 <h2>Refrences</h2>
 
 <pre>
-   CMBL- PHX/PA user guide http://www.cmbl.uga.edu/software/PHX-PA-guide.htm
-
-   Henry I, Sharp PM. 2007 Mol Biol Evol. 24(1):10-2.
-
-   Karlin and Mrazek (2000) J.Bacteriol. 182(18):5238-5250.
+      CMBL- PHX/PA user guide http://www.cmbl.uga.edu/software/PHX-PA-guide.htm
+      Henry I, Sharp PM. 2007 Mol Biol Evol. 24(1):10-2.
+      Karlin and Mrazek (2000) J.Bacteriol. 182(18):5238-5250.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -238,7 +210,8 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 </p>
 
 <h2>Diagnostic Error Messages</h2>

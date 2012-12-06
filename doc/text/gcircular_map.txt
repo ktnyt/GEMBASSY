@@ -1,4 +1,4 @@
-                                gcircular_map
+                                  gcircular_map
 Function
 
    Draws circular map of the genome 
@@ -39,9 +39,6 @@ Usage
 Draws circular map of the genome 
 Output filename [gcircular_map.1.svg]:
 
-
-   Creates gcircular_map.1.svg
-
 Command line arguments
 
    Standard (Mandatory) qualifiers:
@@ -60,14 +57,13 @@ Command line arguments
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
 
-
 Input file format
 
    gcircular_map reads nucleotide sequences.
 
 Output file format
 
-   The output from gcircular_map is to svg file.
+   The output from gcircular_map is to .
 
 Data files
 
@@ -93,7 +89,8 @@ References
 
 Warnings
 
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 
 Diagnostic Error Messages
 
@@ -119,6 +116,8 @@ Author(s)
    252-8520 Japan
 
    Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
 
 History
 

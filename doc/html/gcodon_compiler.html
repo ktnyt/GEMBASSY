@@ -43,21 +43,7 @@ IT IS DONE FOR YOU.
 <H2>Description</H2>
 <p>
    This program calculates various kinds of amino acid and codon usage data.<br>
-<br>
-   G-language SOAP service is provided by the<br>
-   Institute for Advanced Biosciences, Keio University.<br>
-   The original web service is located at the following URL:<br>
-<br>
-   http://www.g-language.org/wiki/soap<br>
-<br>
-   WSDL(RPC/Encoded) file is located at:<br>
-<br>
-   http://soap.g-language.org/g-language.wsdl<br>
-<br>
-   Documentation on G-language Genome Analysis Environment methods are<br>
-   provided at the Document Center<br>
-<br>
-   http://ws.g-language.org/gdoc/
+   Value of Met codon ATG will be accessible at $gb->{$id}->{$data}->{'Matg'};
 </p>
 
 <H2>Usage</H2>
@@ -66,11 +52,9 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gcodon_compiler
 
-% gcodon_compiler NC_000913.gbk
+% gcodon_compiler refseqn:NC_000913
 Calculate various kinds of amino acid and codon usage data
 Output filename [gcodon_compiler.nc_000913.csv]:
-
-   Creates gcodon_compiler.nc_000913.csv
 
 </pre></td></tr></table>
 
@@ -187,16 +171,6 @@ Output filename [gcodon_compiler.nc_000913.csv]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates gcodon_compiler.nc_000913.csv
-
-Command line arguments
-
-   Standard (Mandatory) qualifiers:
-  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
-                                  format, or reference (input USA)
-   -outfile            outfile    [gcodon_compiler.$(sequence.name).csv]
-                                  Output file name
-
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -id                 string     [All] ID of a group (Any string)
@@ -226,7 +200,6 @@ Command line arguments
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
 
-
 Input file format
 
    gcodon_compiler reads nucleotide sequences.
@@ -251,9 +224,8 @@ None.
 <h2>Refrences</h2>
 
 <pre>
-   Arakawa K. et al. (2008) Genes, Genomes and Genomics.
-
-   Suzuki H. et al. (2005) FEBS Lett. 579(28):6499-6504.
+      Arakawa K. et al. (2008) Genes, Genomes and Genomics.
+      Suzuki H. et al. (2005) FEBS Lett. 579(28):6499-6504.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -271,7 +243,8 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 </p>
 
 <h2>Diagnostic Error Messages</h2>

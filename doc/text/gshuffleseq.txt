@@ -1,4 +1,4 @@
-                                 gshuffleseq
+                                   gshuffleseq
 Function
 
    Create randomized sequence with conserved k-mer composition
@@ -15,10 +15,8 @@ Description
    k=3 preserves all triplet, doublet, and single nucleotide composition. 
    Algorithm for k-mer preserved shuffling is non-trivial, which is solved
    by graph theoretical approach with Eulerian random walks in the graph of 
-   k-1-mers. See Jiang et al. (2008), Kandel et al. (1996), and
-   Propp and Wilson (1998) for details of this algorithm. 
+   k-1-mers. See references 3-5 for details of this algorithm. 
    
-
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -38,11 +36,10 @@ Usage
 
    Here is a sample session with gshuffleseq
 
-% gshuffleseq NC_000913.gbk
+% gshuffleseq refseqn:NC_000913
 Create randomized sequence with conserved k-mer composition
-Output sequence [nc_000913.fasta]:
-
-   Creates nc_000913.fasta
+Output filename [gshuffleseq.nc_000913.csv]:
+Died: Unknown qualifier -accid
 
 Command line arguments
 
@@ -62,14 +59,13 @@ Command line arguments
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
 
-
 Input file format
 
    gshuffleseq reads nucleotide sequences.
 
 Output file format
 
-   The output from gshuffleseq is to fasta format.
+   The output from gshuffleseq is to .
 
 Data files
 
@@ -86,8 +82,8 @@ References
    Durstenfeld R. (1964) "Algorithm 235: Random permutation", CACM 7(7):420
 
    Jiang M., Anderson J., Gillespie J., and Mayne M. (2008) "uShuffle: 
-      a useful tool for shuffling biological sequences while preserving the
-      k-let counts", BMC Bioinformatics 9:192
+      a useful tool for shuffling biological sequences while preserving the k-let
+      counts", BMC Bioinformatics 9:192
 
    Kandel D., Matias Y., Unver R., and Winker P. (1996) "Shuffling biological 
       sequences", Discrete Applied Mathematics 71(1-3):171-185  
@@ -110,8 +106,7 @@ References
 
 Warnings
 
-   None.
-
+None.
 Diagnostic Error Messages
 
    None.
@@ -135,6 +130,8 @@ Author(s)
    252-8520 Japan
 
    Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
 
 History
 

@@ -1,12 +1,11 @@
-                           gnucleotide_periodicity
+                             gnucleotide_periodicity
 Function
 
    Checks the periodicity of certain oligonucleotides
 
 Description
 
-   Checks the periodicity of certain nucleotide (best known with AA
-   dinucleotide)
+   Checks the periodicity of certain nucleotide (best known with AA dinucleotide)
    
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
@@ -27,11 +26,12 @@ Usage
 
    Here is a sample session with gnucleotide_periodicity
 
-% gnucleotide_periodicity -plot NC_000913.gbk
+% gnucleotide_periodicity -plot refseqn:NC_000913
 Checks the periodicity of certain oligonucleotides
 Output filename [gnucleotide_periodicity.nc_000913.csv]:
-
-   Creates gnucleotide_periodicity.nc_000913.csv
+Error 502 fault: SOAP-ENV:Server [no subcode]
+"HTTP/1.1 502 Proxy Error"
+Detail: [no detail]
 
 Command line arguments
 
@@ -57,7 +57,6 @@ Command line arguments
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
-
 
 Input file format
 
@@ -91,7 +90,8 @@ References
 
 Warnings
 
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 
 Diagnostic Error Messages
 
@@ -107,6 +107,7 @@ Known bugs
 
 See also
 
+   gkmer_table             Create an image showing all k-mer abundance within a                            sequence
    goligomer_counter       Counts the number of given oligomers in a sequence
    goligomer_search        Searches oligomers in given sequence
    gsignature              Calculate oligonucleotide usage (genomic signature)
@@ -118,6 +119,8 @@ Author(s)
    252-8520 Japan
 
    Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
 
 History
 

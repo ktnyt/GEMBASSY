@@ -1,4 +1,4 @@
-                                    gaaui
+                                      gaaui
 Function
 
    Calculates various indece of amino acid usage
@@ -28,11 +28,9 @@ Usage
 
    Here is a sample session with gaaui
 
-% gaaui NC_000913.gbk
+% gaaui refseqn:NC_000913
 Calculates various indece of amino acid usage
 Output filename [gaaui.nc_000913.csv]:
-
-   Creates gaaui.nc_000913.csv
 
 Command line arguments
 
@@ -52,7 +50,6 @@ Command line arguments
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
-
 
 Input file format
 
@@ -90,7 +87,8 @@ References
 
 Warnings
 
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 
 Diagnostic Error Messages
 
@@ -116,6 +114,8 @@ Author(s)
    252-8520 Japan
 
    Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
 
 History
 

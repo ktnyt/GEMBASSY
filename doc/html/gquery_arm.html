@@ -68,11 +68,10 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gquery_arm
 
-% gquery_arm NC_000913.gbk 1234
+% gquery_arm -show refseqn:NC_000913
 Get the replication arm name (left or right) from the given position
 Output filename [nc_000913.gquery_arm]:
-
-   Creates nc_000913.gquery_arm
+Sequence: NC_000913 Arm: right
 
 </pre></td></tr></table>
 
@@ -157,16 +156,6 @@ Output filename [nc_000913.gquery_arm]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates nc_000913.gquery_arm
-
-Command line arguments
-
-   Standard (Mandatory) qualifiers (* if not always prompted):
-  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
-                                  format, or reference (input USA)
-  [-position]          integer    [0] Position to query (Any integer value)
-*  -outfile            outfile    [*.gquery_arm] Output file name
-
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -accid              string     Include to use sequence accession ID as
@@ -177,7 +166,6 @@ Command line arguments
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
-
 
 Input file format
 
@@ -219,7 +207,8 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 </p>
 
 <h2>Diagnostic Error Messages</h2>

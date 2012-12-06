@@ -71,11 +71,10 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with goligomer_search
 
-% goligomer_search NC_000913.gbk atgcatgc
+% goligomer_search -show refseqn:NC_000913
 Searches oligomers in given sequence
 Output filename [nc_000913.goligomer_search]:
-
-   Creates nc_000913.goligomer_search
+Can't exec "goligomer_search": No such file or directory at maketxt.pl line 90.
 
 </pre></td></tr></table>
 
@@ -168,42 +167,6 @@ Output filename [nc_000913.goligomer_search]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates nc_000913.goligomer_search
-
-Command line arguments
-
-   Standard (Mandatory) qualifiers (* if not always prompted):
-  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
-                                  format, or reference (input USA)
-  [-oligomer]          string     Oligomer to search (Any string)
-*  -outfile            outfile    [*.goligomer_search] Output file name
-
-   Additional (Optional) qualifiers: (none)
-   Advanced (Unprompted) qualifiers:
-   -return             string     [position] 'position"' to return list of
-                                  positions where oligomers are found, 'oligo'
-                                  to return list of oligomers found ordered
-                                  by positions, 'both' to return a hash with
-                                  positions as keys and oligomers as values,
-                                  'distribution' to return four values (see
-                                  above) about the distribution of given
-                                  oligomer (Any string)
-   -accid              string     Include to use sequence accession ID as
-                                  query (Any string)
-   -show               toggle     [N] Include to dump result to stdout
-
-   General qualifiers:
-   -help               boolean    Report command line options and exit. More
-                                  information on associated and general
-                                  qualifiers can be found with -help -verbose
-
-
-Input file format
-
-   goligomer_search reads nucleotide sequences.
-
-Output file format
-
    The output from goligomer_search is to a file or stdout.
 </p>
 
@@ -238,7 +201,7 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   None.
+
 </p>
 
 <h2>Diagnostic Error Messages</h2>
@@ -265,13 +228,18 @@ None.
 <th>Description</th></tr>
 
 <tr>
+<td><a href="gkmer_table.html">gkmer_table</a></td>
+<td>Create an image showing all k-mer abundance within a sequence</td>
+</tr>
+
+<tr>
 <td><a href="gnucleotide_periodicity.html">gnucleotide_periodicity</a></td>
 <td>Checks the periodicity of certain oligonucleotides</td>
 </tr>
 
 <tr>
 <td><a href="goligomer_counter.html">goligomer_counter</a></td>
-<td>Counts the number of given oligomers in a sequence</td>
+<td></td>
 </tr>
 
 <tr>

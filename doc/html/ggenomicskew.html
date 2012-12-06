@@ -68,8 +68,9 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with ggenomicskew
 
-% ggenomicskew -plot NC_000913.gbk
+% ggenomicskew -plot refseqn:NC_000913
 Calculates the GC skew in different regions of the given genome
+Output filename [ggenomicskew.nc_000913.csv]:
 Created ggenomicskew.ps
 
 </pre></td></tr></table>
@@ -184,7 +185,6 @@ Created ggenomicskew.ps
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
 
-
 Input file format
 
    ggenomicskew reads nucleotide sequences.
@@ -227,7 +227,8 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 </p>
 
 <h2>Diagnostic Error Messages</h2>

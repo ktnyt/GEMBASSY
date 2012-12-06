@@ -1,4 +1,4 @@
-                                ggenome_map3
+                                  ggenome_map3
 Function
 
    Draws the map of the genome (version 3)
@@ -34,8 +34,6 @@ Usage
 Draws the map of the genome (version 3)
 Output filename [ggenome_map3.1.png]:
 
-   Creates ggenome_map3.1.png
-
 Command line arguments
 
    Standard (Mandatory) qualifiers:
@@ -56,14 +54,13 @@ Command line arguments
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
 
-
 Input file format
 
    ggenome_map3 reads nucleotide sequences.
 
 Output file format
 
-   The output from ggenome_map3 is to .
+   The output from ggenome_map3 is to png file.
 
 Data files
 
@@ -89,7 +86,8 @@ References
 
 Warnings
 
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 
 Diagnostic Error Messages
 
@@ -115,6 +113,8 @@ Author(s)
    252-8520 Japan
 
    Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
 
 History
 

@@ -68,11 +68,9 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gbui
 
-% gbui NC_000913.gbk
+% gbui refseqn:NC_000913
 Calculates base usage indices for protein-coding sequences
 Output filename [gbui.nc_000913.csv]:
-
-   Creates gbui.nc_000913.csv
 
 </pre></td></tr></table>
 
@@ -173,15 +171,6 @@ Output filename [gbui.nc_000913.csv]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates gbui.nc_000913.csv
-
-Command line arguments
-
-   Standard (Mandatory) qualifiers:
-  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
-                                  format, or reference (input USA)
-   -outfile            outfile    [gbui.$(sequence.name).csv] Output file name
-
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -translate          boolean    [0] Include when translating using standard
@@ -198,7 +187,6 @@ Command line arguments
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
-
 
 Input file format
 
@@ -240,7 +228,8 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 </p>
 
 <h2>Diagnostic Error Messages</h2>

@@ -44,13 +44,12 @@ IT IS DONE FOR YOU.
 <p>
    Predicts the replicational origin and terminus in circular bacterial genomes,<br>
    by taking the vertices of cumulative skew graphs (GC, keto, or purine). See<br>
-   Frank and Lobry (2000) for the basic idea behind thid algorithm (but also<br>
-   note that this algorithm is different from that of Oriloc, which uses GC3<br>
-   of genes). <br>
+   Reference 1 for the basic idea behind thid algorithm (but also note that this<br>
+   algorithm is different from that of Oriloc, which uses GC3 of genes). <br>
 <br>
    Terminus of replication can be more accurate by using noise-reduction <br>
    filtering using Fourier spectrum of the GC skew. This low-pass filtering<br>
-   can be applied using -filter option. See Arakawa et al. (2003) for details.<br>
+   can be applied using -filter option. See Reference 2 for details.<br>
 <br>
  <br>
    G-language SOAP service is provided by the<br>
@@ -75,11 +74,10 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gfind_ori_ter
 
-% gfind_ori_ter NC_000913.gbk
+% gfind_ori_ter -show refseqn:NC_000913
 Predict the replication origin and terminus in bacterial genomes
 Output filename [nc_000913.gfind_ori_ter]:
-
-   Creates nc_000913.gfind_ori_ter
+Sequence: NC_000913 Origin: 3922946 Terminus: 1550274
 
 </pre></td></tr></table>
 
@@ -188,15 +186,6 @@ Output filename [nc_000913.gfind_ori_ter]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates nc_000913.gfind_ori_ter
-
-Command line arguments
-
-   Standard (Mandatory) qualifiers (* if not always prompted):
-  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
-                                  format, or reference (input USA)
-*  -outfile            outfile    [*.gfind_ori_ter] Output file name
-
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -window             integer    [4096] Number of windows to use for Fat
@@ -216,7 +205,6 @@ Command line arguments
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
-
 
 Input file format
 
@@ -242,12 +230,11 @@ None.
 <h2>Refrences</h2>
 
 <pre>
-   Frank AC, Lobry JR (2000) "Oriloc: prediction of replication boundaries in
-      unannotated bacterial chromosomes", Bioinformatics, 16:566-567.
+   Frank AC, Lobry JR (2000) "Oriloc: prediction of replication boundaries in unannotated 
+      bacterial chromosomes", Bioinformatics, 16:566-567.
 
-   Arakawa K, Saito R, Tomita M (2007) "Noise-reduction filtering for accurate
-      detection of replication termini in bacterial genomes", FEBS Letters,
-      581(2):253-258.
+   Arakawa K, Saito R, Tomita M (2007) "Noise-reduction filtering for accurate detection 
+      of replication termini in bacterial genomes", FEBS Letters, 581(2):253-258.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -265,7 +252,8 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 </p>
 
 <h2>Diagnostic Error Messages</h2>

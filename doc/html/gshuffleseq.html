@@ -52,10 +52,8 @@ IT IS DONE FOR YOU.
    k=3 preserves all triplet, doublet, and single nucleotide composition. <br>
    Algorithm for k-mer preserved shuffling is non-trivial, which is solved<br>
    by graph theoretical approach with Eulerian random walks in the graph of <br>
-   k-1-mers. See Jiang et al. (2008), Kandel et al. (1996), and<br>
-   Propp and Wilson (1998) for details of this algorithm. <br>
+   k-1-mers. See references 3-5 for details of this algorithm. <br>
    <br>
-<br>
    G-language SOAP service is provided by the<br>
    Institute for Advanced Biosciences, Keio University.<br>
    The original web service is located at the following URL:<br>
@@ -78,11 +76,10 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gshuffleseq
 
-% gshuffleseq NC_000913.gbk
+% gshuffleseq refseqn:NC_000913
 Create randomized sequence with conserved k-mer composition
-Output sequence [nc_000913.fasta]:
-
-   Creates nc_000913.fasta
+Output filename [gshuffleseq.nc_000913.csv]:
+Died: Unknown qualifier -accid
 
 </pre></td></tr></table>
 
@@ -151,34 +148,7 @@ Output sequence [nc_000913.fasta]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates nc_000913.fasta
-
-Command line arguments
-
-   Standard (Mandatory) qualifiers:
-  [-sequence]          seqall     Sequence(s) filename and optional format, or
-                                  reference (input USA)
-
-   Additional (Optional) qualifiers: (none)
-   Advanced (Unprompted) qualifiers:
-   -k                  integer    [1] k-mer to preserve composition (Any
-                                  integer value)
-   -outseq             seqout     [<sequence>.<format>] Sequence filename and
-                                  optional format (output USA)
-
-   General qualifiers:
-   -help               boolean    Report command line options and exit. More
-                                  information on associated and general
-                                  qualifiers can be found with -help -verbose
-
-
-Input file format
-
-   gshuffleseq reads nucleotide sequences.
-
-Output file format
-
-   The output from gshuffleseq is to fasta format.
+   The output from gshuffleseq is to .
 </p>
 
 <h2>Data files</h2>
@@ -201,8 +171,8 @@ None.
    Durstenfeld R. (1964) "Algorithm 235: Random permutation", CACM 7(7):420
 
    Jiang M., Anderson J., Gillespie J., and Mayne M. (2008) "uShuffle: 
-      a useful tool for shuffling biological sequences while preserving the
-      k-let counts", BMC Bioinformatics 9:192
+      a useful tool for shuffling biological sequences while preserving the k-let
+      counts", BMC Bioinformatics 9:192
 
    Kandel D., Matias Y., Unver R., and Winker P. (1996) "Shuffling biological 
       sequences", Discrete Applied Mathematics 71(1-3):171-185  
@@ -227,7 +197,7 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   None.
+
 </p>
 
 <h2>Diagnostic Error Messages</h2>

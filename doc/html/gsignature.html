@@ -43,9 +43,9 @@ IT IS DONE FOR YOU.
 <H2>Description</H2>
 <p>
    This program calculates short oligonucleotide usage (genomic signature),<br>
-   defined as the ratio of observed (O) to expected (E) oligonucleotide<br>
-   frequencies.<br>
-<br>
+   defined as the ratio of observed (O) to expected (E) oligonucleotide frequencies.<br>
+   O/E value of dinucleotide CG will be accessible at <br>
+   $gb->{signature}->{'cg'}.<br>
    <br>
    G-language SOAP service is provided by the<br>
    Institute for Advanced Biosciences, Keio University.<br>
@@ -69,11 +69,9 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gsignature
 
-% gsignature NC_000913.gbk
+% gsignature refseqn:NC_000913
 Calculate oligonucleotide usage (genomic signature)
 Output filename [gsignature.nc_000913.csv]:
-
-   Creates gsignature.nc_000913.csv
 
 </pre></td></tr></table>
 
@@ -166,36 +164,6 @@ Output filename [gsignature.nc_000913.csv]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates gsignature.nc_000913.csv
-
-Command line arguments
-
-   Standard (Mandatory) qualifiers:
-  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
-                                  format, or reference (input USA)
-   -outfile            outfile    [gsignature.$(sequence.name).csv] Output
-                                  file name
-
-   Additional (Optional) qualifiers: (none)
-   Advanced (Unprompted) qualifiers:
-   -wordlength         integer    [2] Word length (Any integer value)
-   -[no]bothstrand     boolean    [1] Use direct (0) or both (1) strand
-   -[no]oe             boolean    [1] Use observed (0) or O/E (1) value
-   -accid              string     Include to use sequence accession ID as
-                                  query (Any string)
-
-   General qualifiers:
-   -help               boolean    Report command line options and exit. More
-                                  information on associated and general
-                                  qualifiers can be found with -help -verbose
-
-
-Input file format
-
-   gsignature reads nucleotide sequences.
-
-Output file format
-
    The output from gsignature is to a raw CSV file.
 </p>
 
@@ -214,9 +182,8 @@ None.
 <h2>Refrences</h2>
 
 <pre>
-   Campbell A et al. (1999) Proc Natl Acad Sci U S A. 96(16):9184-9.
-
-   Karlin S. (2001) Trends Microbiol. 9(7):335-43.
+      Campbell A et al. (1999) Proc Natl Acad Sci U S A. 96(16):9184-9.
+      Karlin S. (2001) Trends Microbiol. 9(7):335-43.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -234,7 +201,8 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 </p>
 
 <h2>Diagnostic Error Messages</h2>
@@ -261,18 +229,23 @@ None.
 <th>Description</th></tr>
 
 <tr>
+<td><a href="gkmer_table.html">gkmer_table</a></td>
+<td>Create an image showing all k-mer abundance within a sequence</td>
+</tr>
+
+<tr>
 <td><a href="gnucleotide_periodicity.html">gnucleotide_periodicity</a></td>
 <td>Checks the periodicity of certain oligonucleotides</td>
 </tr>
 
 <tr>
 <td><a href="goligomer_counter.html">goligomer_counter</a></td>
-<td>Counts the number of given oligomers in a sequence</td>
+<td></td>
 </tr>
 
 <tr>
 <td><a href="goligomer_search.html">goligomer_search</a></td>
-<td>Searches oligomers in given sequence</td>
+<td></td>
 </tr>
 
 </table>

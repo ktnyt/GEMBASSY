@@ -69,11 +69,9 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gbase_counter
 
-% gbase_counter NC_000913.gbk
+% gbase_counter refseqn:NC_000913
 Creates a position weight matrix of oligomers around start codon
 Output filename [gbase_counter.nc_000913.csv]:
-
-   Creates gbase_counter.nc_000913.csv
 
 </pre></td></tr></table>
 
@@ -174,42 +172,6 @@ Output filename [gbase_counter.nc_000913.csv]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates gbase_counter.nc_000913.csv
-
-Command line arguments
-
-   Standard (Mandatory) qualifiers:
-  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
-                                  format, or reference (input USA)
-   -outfile            outfile    [gbase_counter.$(sequence.name).csv] Output
-                                  file name
-
-   Additional (Optional) qualifiers: (none)
-   Advanced (Unprompted) qualifiers:
-   -position           string     [start] Either 'start' (around start codon)
-                                  or 'end' (around stop codon) to create the
-                                  PWM (Any string)
-   -patlen             integer    [3] Length of oligomer to count (Any integer
-                                  value)
-   -upstream           integer    [30] Length upstream of specified position
-                                  to create PWM (Any integer value)
-   -downstream         integer    [30] Length downstream of specified position
-                                  to create PWM (Any integer value)
-   -accid              string     Include to use sequence accession ID as
-                                  query (Any string)
-
-   General qualifiers:
-   -help               boolean    Report command line options and exit. More
-                                  information on associated and general
-                                  qualifiers can be found with -help -verbose
-
-
-Input file format
-
-   gbase_counter reads nucleotide sequences.
-
-Output file format
-
    The output from gbase_counter is to a raw CSV file.
 </p>
 
@@ -244,7 +206,8 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 </p>
 
 <h2>Diagnostic Error Messages</h2>

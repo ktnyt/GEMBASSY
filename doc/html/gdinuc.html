@@ -42,11 +42,12 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This program calculates dinucleotide usage indices for protein-coding<br>
-   sequences (excluding start and stop codons).<br>
-<br>
+   This program calculates dinucleotide usage indices for protein-coding sequences<br>
+   (excluding start and stop codons), and inputs in the G instance. e.g. CG dinucleotide <br>
+   usage at the reading frame 1-2 will be accessible at $gb->{"FEATURE$i"}->{cg12}<br>
    Dinucleotide usage was computed as the ratio of observed (O) to expected (E) <br>
    dinucleotide frequencies.<br>
+   Informations stored in the G instance are: $gb->{header_dinuc}<br>
 <br>
  <br>
    G-language SOAP service is provided by the<br>
@@ -71,11 +72,9 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gdinuc
 
-% gdinuc NC_000913.gbk
+% gdinuc refseqn:NC_000913
 Calculates dinucleotide usage 
 Output filename [gdinuc.nc_000913.csv]:
-
-   Creates gdinuc.nc_000913.csv
 
 </pre></td></tr></table>
 
@@ -176,14 +175,6 @@ Output filename [gdinuc.nc_000913.csv]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates gdinuc.nc_000913.csv
-
-Command line arguments
-
-   Standard (Mandatory) qualifiers:
-  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
-                                  format, or reference (input USA)
-   -outfile            outfile    [gdinuc.$(sequence.name).csv] Output file
                                   name
 
    Additional (Optional) qualifiers: (none)
@@ -207,7 +198,6 @@ Command line arguments
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
-
 
 Input file format
 
@@ -233,7 +223,7 @@ None.
 <h2>Refrences</h2>
 
 <pre>
-   Yew et al. (2004) Virus Genes 28:1,41-53.
+      Yew et al. (2004) Virus Genes 28:1,41-53.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -251,7 +241,8 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 </p>
 
 <h2>Diagnostic Error Messages</h2>

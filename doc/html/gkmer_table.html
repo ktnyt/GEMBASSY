@@ -42,26 +42,26 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This program creates an image showing the abundance of all k-mers<br>
-   (oligonucleotides of length k) in a given sequence. For example, for<br>
-   tetramers (k=4), resulting image is composed of 4^4 = 256 boxes, each<br>
-   representing an oligomer. Oligomer name and abundance is written within<br>
-   these boxes, and abundance is also visualized with the box color, from<br>
-   white (none) to black (highly frequent).<br>
+   This program creates an image showing the abundance of all k-mers (oligonucleotides<br>
+   of length k) in a given sequence. For example, for tetramers (k=4), resulting image<br>
+   is composed of 4^4 = 256 boxes, each representing an oligomer. Oligomer name and <br>
+   abundance is written within these boxes, and abundance is also visualized with <br>
+   the box color, from white (none) to black (highly frequent).<br>
 <br>
-   This k-mer table is alternatively known as the FCGR (frequency matrices<br>
-   extracted from Chaos Game Representation).<br>
+   This k-mer table is alternatively known as the FCGR (frequency matrices extracted<br>
+   from Chaos Game Representation).<br>
 <br>
    Position of the oligomers can be recursively located as follows:<br>
    For each letter in an oligomer, a box is subdivided into four quadrants, <br>
-   where A is upper left, T is lower right, G is upper right, and C is lower<br>
-   left.<br>
+   where A is upper left, T is lower right, G is upper right, and C is lower left.<br>
    Therefore, oligomer ATGC is in the <br>
    A = upper left quadrant<br>
    T = lower right within the above quadrant<br>
    G = upper right within the above quadrant<br>
    C = lower left within the above quadrant<br>
 <br>
+   With Google Maps representation using -gmap=>1 option, oligomers can be searched<br>
+   incrementally from the top search box.<br>
 <br>
    More detailed documentation is available at <br>
    http://www.g-language.org/wiki/cgr<br>
@@ -89,11 +89,9 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gkmer_table
 
-% gkmer_table NC_000913.gbk
+% gkmer_table refseqn:NC_000913
 Create an image showing all k-mer abundance within a sequence
-Output filename [gkmer_table.1.png]:
-
-   Creates gkmer_table.1.png
+Output filename [nc_000913.gkmer_table]:
 
 </pre></td></tr></table>
 
@@ -178,14 +176,6 @@ Output filename [gkmer_table.1.png]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates gkmer_table.1.png
-
-Command line arguments
-
-   Standard (Mandatory) qualifiers (* if not always prompted):
-  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
-                                  format, or reference (input USA)
-*  -filename           string     [gkmer_table.png] Output filename (Any
                                   string)
 
    Additional (Optional) qualifiers: (none)
@@ -199,7 +189,6 @@ Command line arguments
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
-
 
 Input file format
 
@@ -226,12 +215,17 @@ None.
 
 <pre>
    Arakawa K, Oshita K, Tomita M (2009) "A web server for interactive and
-      zoomable Chaos Game Representation images", Source Code for Biol Med.,
-      4:6.
+      zoomable Chaos Game Representation images", Source Code for Biol Med., 4:6.
 
    Almeida JS, Carrico JA, Maretzek A, Noble PA, Fletcher M (2001) 
       "Analysis of genomic sequences by Chaos Game Representation." 
       Bioinformatics. 17(5):429-437.
+      
+      Author: 
+      Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+      
+      History:
+      20090716-01 initial posting
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -249,7 +243,8 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 </p>
 
 <h2>Diagnostic Error Messages</h2>
@@ -276,13 +271,28 @@ None.
 <th>Description</th></tr>
 
 <tr>
-<td><a href="gcgr.html">gcgr</a></td>
-<td>Create a Chaos Game Representation of a given sequence</td>
+<td><a href="gkmer_table.html">gkmer_table</a></td>
+<td>Create an image showing all k-mer abundance within a sequence</td>
 </tr>
 
 <tr>
-<td><a href="gseq2png.html">gseq2png</a></td>
-<td>Converts a sequence to PNG image</td>
+<td><a href="gnucleotide_periodicity.html">gnucleotide_periodicity</a></td>
+<td>Checks the periodicity of certain oligonucleotides</td>
+</tr>
+
+<tr>
+<td><a href="goligomer_counter.html">goligomer_counter</a></td>
+<td></td>
+</tr>
+
+<tr>
+<td><a href="goligomer_search.html">goligomer_search</a></td>
+<td></td>
+</tr>
+
+<tr>
+<td><a href="gsignature.html">gsignature</a></td>
+<td>Calculate oligonucleotide usage (genomic signature)</td>
 </tr>
 
 </table>
