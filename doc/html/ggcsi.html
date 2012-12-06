@@ -53,16 +53,15 @@ IT IS DONE FOR YOU.
    and dist is the normalized Euclidean distance between the vertices of <br>
    cumulative GC skew.<br>
 <br>
-   GCSI ranges from 0 (no observable skew) to 1 (strong skew), and Archaeal<br>
-   genomes that have multiple replication origins and therefore have no<br>
-   observable skew mostly have GCSI below 0.05. Escherichia coli genome has<br>
-   values around 0.10.<br>
+   GCSI ranges from 0 (no observable skew) to 1 (strong skew), and Archaeal genomes<br>
+   that have multiple replication origins and therefore have no observable skew<br>
+   mostly have GCSI below 0.05. Escherichia coli genome has values around 0.10.<br>
 <br>
    Version 1 of GCSI required fixed number of windows (4096), but the new GCSI<br>
    version 2 (also known as generalized GCSI: gGCSI) is invariant of the number<br>
-   of windows. GCSI version 1 is calculated as an arithmetic mean (as opposed<br>
-   to the geometric mean of gGCSI) of SR (spectral ratio, the signal-to-noise<br>
-   ratio of 1Hz power spectrum) and dist. <br>
+   of windows. GCSI version 1 is calculated as an arithmetic mean (as opposed to <br>
+   the geometric mean of gGCSI) of SR (spectral ratio, the signal-to-noise ratio<br>
+   of 1Hz power spectrum) and dist. <br>
 <br>
   <br>
    G-language SOAP service is provided by the<br>
@@ -87,11 +86,10 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with ggcsi
 
-% ggcsi NC_000913.gbk
+% ggcsi -show refseqn:NC_000913
 GC Skew Index: an index for strand-specefic mutational bias
 Output filename [nc_000913.ggcsi]:
-
-   Creates nc_000913.ggcsi
+Sequence: NC_000913 GCSI: 0.0966615833014818 SA: 487.218569030757 DIST: 69.037726
 
 </pre></td></tr></table>
 
@@ -99,9 +97,6 @@ Output filename [nc_000913.ggcsi]:
 
 <h2>Command line arguments</h2>
 
-Warning: File /Users/kotone/usr/emblocal/share/EMBOSS/acd/ggcsi.acd line 24: Qualifier 'v' matches start of known 'verbose'
-Warning: File /Users/kotone/usr/emblocal/share/EMBOSS/acd/ggcsi.acd line 24: Qualifier 'v' matches start of known 'version'
-Warning: File /Users/kotone/usr/emblocal/share/EMBOSS/acd/ggcsi.acd line 49: Qualifier 'p' matches start of known 'purine'
 <table border cellspacing=0 cellpadding=3 bgcolor="#ccccff">
 <tr bgcolor="#FFFFCC">
 <th align="left">Qualifier</th>
@@ -144,11 +139,11 @@ Warning: File /Users/kotone/usr/emblocal/share/EMBOSS/acd/ggcsi.acd line 49: Qua
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-v</td>
-<td>integer</td>
-<td>Version of GCSI. Generalized GCSI is selected by default</td>
-<td>Any integer value</td>
-<td>2</td>
+<td>-gcsi</td>
+<td>boolean</td>
+<td>Include to use GCSI version 1</td>
+<td>Boolean value Yes/No</td>
+<td>No</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -184,7 +179,7 @@ Warning: File /Users/kotone/usr/emblocal/share/EMBOSS/acd/ggcsi.acd line 49: Qua
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-p</td>
+<td>-pval</td>
 <td>boolean</td>
 <td>Calculate p-value when GCSI version 2 is selected</td>
 <td>Boolean value Yes/No</td>
@@ -219,19 +214,9 @@ Warning: File /Users/kotone/usr/emblocal/share/EMBOSS/acd/ggcsi.acd line 49: Qua
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates nc_000913.ggcsi
-
-Command line arguments
-
-   Standard (Mandatory) qualifiers (* if not always prompted):
-  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
-                                  format, or reference (input USA)
-*  -outfile            outfile    [*.ggcsi] Output file name
-
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
-   -version            integer    [2] Version of GCSI. Generalized GCSI is
-                                  selected by default (Any integer value)
+   -gcsi               boolean    [N] Include to use GCSI version 1
    -window             integer    [4096] Number of windows. Must be a power of
                                   2 (Any integer value)
    -purine             boolean    [0] Use purine skew for calculation
@@ -247,7 +232,6 @@ Command line arguments
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
-
 
 Input file format
 
@@ -273,9 +257,8 @@ None.
 <h2>Refrences</h2>
 
 <pre>
-   Arakawa K, Tomita M (2007) "The GC skew index: a measure of genomic
-      compositional asymmetry and the degree of replicational selection",
-      Evolutionary Bioinformatics, 3:145-154.
+   Arakawa K, Tomita M (2007) "The GC skew index: a measure of genomic compositional 
+      asymmetry and the degree of replicational selection", Evolutionary Bioinformatics, 3:145-154.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -293,7 +276,7 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   None.
+
 </p>
 
 <h2>Diagnostic Error Messages</h2>

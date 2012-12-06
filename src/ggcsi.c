@@ -85,6 +85,8 @@ main(int argc, char *argv[])
 
     if (!ajStrGetLen(accid))
       ajStrAssignS(&accid, ajSeqGetAccS(seq));
+    else
+      ajStrAssignS(&inseq, accid);
 
     char           *in0;
     in0 = ajCharNewS(inseq);

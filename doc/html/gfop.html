@@ -42,7 +42,9 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This program calculates the frequency of optimal codons (Fop).<br>
+   This program calculates the frequency of optimal codons (Fop), and<br>
+   inputs in the G instance; i.e. Fop values will be accessible at<br>
+   $gb->{"FEATURE$i"}->{fop};<br>
 <br>
   <br>
    G-language SOAP service is provided by the<br>
@@ -67,11 +69,9 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gfop
 
-% gfop NC_000913.gbk
+% gfop refseqn:NC_000913
 Calculate the frequency of optimal codons (Fop)
 Output filename [gfop.nc_000913.csv]:
-
-   Creates gfop.nc_000913.csv
 
 </pre></td></tr></table>
 
@@ -148,15 +148,6 @@ Output filename [gfop.nc_000913.csv]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates gfop.nc_000913.csv
-
-Command line arguments
-
-   Standard (Mandatory) qualifiers:
-  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
-                                  format, or reference (input USA)
-   -outfile            outfile    [gfop.$(sequence.name).csv] Output file name
-
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -translate          boolean    [0] Include when translates using standard
@@ -168,7 +159,6 @@ Command line arguments
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
-
 
 Input file format
 
@@ -194,9 +184,8 @@ None.
 <h2>Refrences</h2>
 
 <pre>
-   Ikemura (1981) J.Mol.Biol. 151:389-409.
-
-   Ikemura (1985) Mol.Biol.Evol. 2(1):13-34.
+      Ikemura (1981) J.Mol.Biol. 151:389-409.
+      Ikemura (1985) Mol.Biol.Evol. 2(1):13-34.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -214,7 +203,8 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 </p>
 
 <h2>Diagnostic Error Messages</h2>

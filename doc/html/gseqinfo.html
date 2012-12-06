@@ -43,7 +43,8 @@ IT IS DONE FOR YOU.
 <H2>Description</H2>
 <p>
    This method prints out basic compositional statistics of the <br>
-   given nucleotide sequence. Returns the number of A, T, G, and C bases.<br>
+   given nucleotide sequence, in a format similar to the one printed<br>
+   right after calling load(). Returns the number of A, T, G, and C bases.<br>
 <br>
  <br>
    G-language SOAP service is provided by the<br>
@@ -68,11 +69,10 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gseqinfo
 
-% gseqinfo NC_000913.gbk
+% gseqinfo -show refseqn:NC_000913
 Prints out basic nucleotide sequence statistics
 Output filename [nc_000913.gseqinfo]:
-
-   Creates nc_000913.gseqinfo
+Sequence: NC_000913 A: 1142228 T: 1140970 G: 1176923 C: 1179554
 
 </pre></td></tr></table>
 
@@ -149,15 +149,6 @@ Output filename [nc_000913.gseqinfo]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates nc_000913.gseqinfo
-
-Command line arguments
-
-   Standard (Mandatory) qualifiers (* if not always prompted):
-  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
-                                  format, or reference (input USA)
-*  -outfile            outfile    [*.gseqinfo] Output file name
-
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -accid              string     Include to use sequence accession ID as
@@ -168,7 +159,6 @@ Command line arguments
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
-
 
 Input file format
 
@@ -210,7 +200,7 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   None.
+
 </p>
 
 <h2>Diagnostic Error Messages</h2>

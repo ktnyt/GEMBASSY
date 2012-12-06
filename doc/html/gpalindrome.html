@@ -67,11 +67,9 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gpalindrome
 
-% gpalindrome NC_000913.gbk
+% gpalindrome refseqn:NC_000913
 Searches palindrome sequences
 Output filename [gpalindrome.nc_000913.csv]:
-
-   Creates gpalindrome.nc_000913.csv
 
 </pre></td></tr></table>
 
@@ -164,38 +162,6 @@ Output filename [gpalindrome.nc_000913.csv]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates gpalindrome.nc_000913.csv
-
-Command line arguments
-
-   Standard (Mandatory) qualifiers:
-  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
-                                  format, or reference (input USA)
-   -outfile            outfile    [gpalindrome.$(sequence.name).csv] Output
-                                  file name
-
-   Additional (Optional) qualifiers: (none)
-   Advanced (Unprompted) qualifiers:
-   -shortest           integer    [4] Shortest palindrome to search (Any
-                                  integer value)
-   -loop               integer    [0] Longest stem loop to allow (Any integer
-                                  value)
-   -gtmatch            boolean    [0] If 1, allows g-t match
-   -accid              string     Include to use sequence accession ID as
-                                  query (Any string)
-
-   General qualifiers:
-   -help               boolean    Report command line options and exit. More
-                                  information on associated and general
-                                  qualifiers can be found with -help -verbose
-
-
-Input file format
-
-   gpalindrome reads nucleotide sequences.
-
-Output file format
-
    The output from gpalindrome is to a raw CSV file.
 </p>
 
@@ -230,7 +196,7 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   None.
+
 </p>
 
 <h2>Diagnostic Error Messages</h2>

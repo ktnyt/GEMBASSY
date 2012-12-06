@@ -42,7 +42,9 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This program calculates codon adaptation index (CAI) for each gene.<br>
+   This program calculates codon adaptation index (CAI) for each gene,<br>
+   and inputs in the G instance. i.e. CAI values will be accessible at<br>
+   $gb->{"FEATURE$i"}->{cai};<br>
 <br>
   <br>
    G-language SOAP service is provided by the<br>
@@ -67,11 +69,9 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gcai
 
-% gcai NC_000913.gbk
+% gcai refseqn:NC_000913
 Calculate codon adaptation index for each gene
 Output filename [gcai.nc_000913.csv]:
-
-   Creates gcai.nc_000913.csv
 
 </pre></td></tr></table>
 
@@ -156,15 +156,6 @@ Output filename [gcai.nc_000913.csv]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates gcai.nc_000913.csv
-
-Command line arguments
-
-   Standard (Mandatory) qualifiers:
-  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
-                                  format, or reference (input USA)
-   -outfile            outfile    [gcai.$(sequence.name).csv] Output file name
-
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -translate          boolean    [0] Include when translating using standard
@@ -179,7 +170,6 @@ Command line arguments
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
-
 
 Input file format
 
@@ -205,7 +195,7 @@ None.
 <h2>Refrences</h2>
 
 <pre>
-   Sharp PM, Li WH. 1987 Nucleic Acids Res. 15(3):1281-95.
+      Sharp PM, Li WH. 1987 Nucleic Acids Res. 15(3):1281-95.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -223,7 +213,8 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 </p>
 
 <h2>Diagnostic Error Messages</h2>

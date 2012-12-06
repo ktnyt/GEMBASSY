@@ -1,4 +1,4 @@
-                                 gdist_in_cc
+                                   gdist_in_cc
 Function
 
    Calculates the distance between two loci in circular chromosomes
@@ -29,11 +29,10 @@ Usage
 
    Here is a sample session with gdist_in_cc
 
-% gdist_in_cc NC_000913.gbk 1234
+% gdist_in_cc -show refseqn:NC_000913
 Calculates the distance between two loci in circular chromosomes
 Output filename [nc_000913.gdist_in_cc]:
-
-   Creates nc_000913.gdist_in_cc
+Sequence: NC_000913 Distance: 1234
 
 Command line arguments
 
@@ -57,7 +56,6 @@ Command line arguments
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
-
 
 Input file format
 
@@ -91,7 +89,8 @@ References
 
 Warnings
 
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 
 Diagnostic Error Messages
 
@@ -118,6 +117,8 @@ Author(s)
    252-8520 Japan
 
    Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
 
 History
 

@@ -1,17 +1,14 @@
-                                  ggeneskew
+                                    ggeneskew
 Function
 
    Calculate the gene strand bias of the given genome
 
 Description
 
-   This program calculates and graphs the strand bias of genes
-   (or the GC skew within them).
-
-   By default, this program visualizes the gene strand preference (1 for
-   direct, -1 for complement strand) but by specifying -base option,
-   GC/AT/Purine/Keto skews of the coding regions or more specifically in the
-   GC3 (third codon position) with -gc3 option can be calculated.
+   This program calculates and graphs the strand bias of genes (or the GC skew within them).
+   By default, this program visualizes the gene strand preference (1 for direct, -1 for complement strand),
+   but by specifying -base option  option, GC/AT/Purine/Keto skews of the coding regions
+   or more specifically in the GC3 (third codon position) with -gc3 option can be calculated.
 
  
    G-language SOAP service is provided by the
@@ -33,8 +30,9 @@ Usage
 
    Here is a sample session with ggeneskew
 
-% ggeneskew -plot NC_000913.gbk
+% ggeneskew -plot refseqn:NC_000913
 Calculate the gene strand bias of the given genome
+Output filename [ggeneskew.nc_000913.csv]:
 Created ggeneskew.ps
 
 Command line arguments
@@ -70,7 +68,6 @@ Command line arguments
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
 
-
 Input file format
 
    ggeneskew reads nucleotide sequences.
@@ -103,7 +100,8 @@ References
 
 Warnings
 
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 
 Diagnostic Error Messages
 
@@ -130,6 +128,8 @@ Author(s)
    252-8520 Japan
 
    Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
 
 History
 

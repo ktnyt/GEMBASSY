@@ -68,11 +68,9 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gw_value
 
-% gw_value NC_000913.gbk
+% gw_value refseqn:NC_000913
 Calculate the 'relative adaptiveness of each codon' (W)
 Output filename [gw_value.nc_000913.csv]:
-
-   Creates gw_value.nc_000913.csv
 
 </pre></td></tr></table>
 
@@ -157,14 +155,6 @@ Output filename [gw_value.nc_000913.csv]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates gw_value.nc_000913.csv
-
-Command line arguments
-
-   Standard (Mandatory) qualifiers:
-  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
-                                  format, or reference (input USA)
-   -outfile            outfile    [gw_value.$(sequence.name).csv] Output file
                                   name
 
    Additional (Optional) qualifiers: (none)
@@ -184,7 +174,6 @@ Command line arguments
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
-
 
 Input file format
 
@@ -210,13 +199,10 @@ None.
 <h2>Refrences</h2>
 
 <pre>
-   Sharp PM et al. (2005) Nucleic Acids Res. 33(4):1141-1153
-
-   Sakai et al. (2001) J.Mol.Evol. 52:164-170.
-
-   Nakamura and Tabata (1997) Microb.Comp.Genomics 2:299-312.
-
-   Sharp and Li (1987) Nucleic Acids Res. 15:1281-1295.
+      Sharp PM et al. (2005) Nucleic Acids Res. 33(4):1141-1153
+      Sakai et al. (2001) J.Mol.Evol. 52:164-170.
+      Nakamura and Tabata (1997) Microb.Comp.Genomics 2:299-312.
+      Sharp and Li (1987) Nucleic Acids Res. 15:1281-1295.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -234,7 +220,8 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 </p>
 
 <h2>Diagnostic Error Messages</h2>

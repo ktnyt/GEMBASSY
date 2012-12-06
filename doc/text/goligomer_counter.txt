@@ -1,4 +1,4 @@
-                              goligomer_counter
+                                goligomer_counter
 Function
 
    Counts the number of given oligomers in a sequence
@@ -29,33 +29,14 @@ Usage
 
    Here is a sample session with goligomer_counter
 
-% goligomer_counter NC_000913.gbk atgcatgc
+% goligomer_counter -show refseqn:NC_000913
 Counts the number of given oligomers in a sequence
 Output filename [nc_000913.goligomer_counter]:
-
-   Creates nc_000913.goligomer_counter
+Can't exec "goligomer_counter": No such file or directory at maketxt.pl line 90.
 
 Command line arguments
 
-   Standard (Mandatory) qualifiers (* if not always prompted):
-  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
-                                  format, or reference (input USA)
-  [-oligomer]          string     Oligomer to count (Any string)
-*  -outfile            outfile    [*.goligomer_counter] Output file name
-
-   Additional (Optional) qualifiers: (none)
-   Advanced (Unprompted) qualifiers:
-   -window             integer    [0] Int window size (Any integer value)
-   -accid              string     Include to use sequence accession ID as
-                                  query (Any string)
-   -show               toggle     [N] Include to dump result to stdout
-
-   General qualifiers:
-   -help               boolean    Report command line options and exit. More
-                                  information on associated and general
-                                  qualifiers can be found with -help -verbose
-
-
+   Can't exec "goligomer_counter": No such file or directory at maketxt.pl line 103.
 Input file format
 
    goligomer_counter reads nucleotide sequences.
@@ -88,8 +69,7 @@ References
 
 Warnings
 
-   None.
-
+None.
 Diagnostic Error Messages
 
    None.
@@ -104,6 +84,7 @@ Known bugs
 
 See also
 
+   gkmer_table             Create an image showing all k-mer abundance within a                            sequence
    gnucleotide_periodicity Checks the periodicity of certain oligonucleotides
    goligomer_search        Searches oligomers in given sequence
    gsignature              Calculate oligonucleotide usage (genomic signature)
@@ -115,6 +96,8 @@ Author(s)
    252-8520 Japan
 
    Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
 
 History
 

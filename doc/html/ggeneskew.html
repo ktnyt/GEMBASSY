@@ -42,13 +42,10 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This program calculates and graphs the strand bias of genes<br>
-   (or the GC skew within them).<br>
-<br>
-   By default, this program visualizes the gene strand preference (1 for<br>
-   direct, -1 for complement strand) but by specifying -base option,<br>
-   GC/AT/Purine/Keto skews of the coding regions or more specifically in the<br>
-   GC3 (third codon position) with -gc3 option can be calculated.<br>
+   This program calculates and graphs the strand bias of genes (or the GC skew within them).<br>
+   By default, this program visualizes the gene strand preference (1 for direct, -1 for complement strand),<br>
+   but by specifying -base option  option, GC/AT/Purine/Keto skews of the coding regions<br>
+   or more specifically in the GC3 (third codon position) with -gc3 option can be calculated.<br>
 <br>
  <br>
    G-language SOAP service is provided by the<br>
@@ -73,8 +70,9 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with ggeneskew
 
-% ggeneskew -plot NC_000913.gbk
+% ggeneskew -plot refseqn:NC_000913
 Calculate the gene strand bias of the given genome
+Output filename [ggeneskew.nc_000913.csv]:
 Created ggeneskew.ps
 
 </pre></td></tr></table>
@@ -217,7 +215,6 @@ Created ggeneskew.ps
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
 
-
 Input file format
 
    ggeneskew reads nucleotide sequences.
@@ -249,7 +246,6 @@ Input file format
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
-
 
 Input file format
 
@@ -291,7 +287,8 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 </p>
 
 <h2>Diagnostic Error Messages</h2>

@@ -31,8 +31,7 @@ gbase_entropy
 
 
 <H2> Function </H2>
-   Calculates and graphs the sequence conservation using Shanon uncertainty
-   (entropy)
+   Calculates and graphs the sequence conservation using Shanon uncertainty (entropy)
 <!--
 DON'T WRITE ANYTHING HERE.
 IT IS DONE FOR YOU.
@@ -69,8 +68,9 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gbase_entropy
 
-% gbase_entropy -plot NC_000913.gbk
+% gbase_entropy -plot refseqn:NC_000913
 Calculates and graphs the sequence conservation using Shanon uncertainty (entropy)
+Output filename [gbase_entropy.nc_000913.csv]:
 Created gbase_entropy.ps
 
 </pre></td></tr></table>
@@ -222,7 +222,8 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 </p>
 
 <h2>Diagnostic Error Messages</h2>

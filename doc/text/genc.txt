@@ -1,4 +1,4 @@
-                                    genc
+                                      genc
 Function
 
    Calculate the effective number of codons (Nc)
@@ -27,11 +27,10 @@ Usage
 
    Here is a sample session with genc
 
-% genc NC_000913.gbk
+% genc -show refseqn:NC_000913
 Calculate the effective number of codons (Nc)
 Output filename [nc_000913.genc]:
-
-   Creates nc_000913.genc
+Sequence: NC_000913 ENC: 49.44
 
 Command line arguments
 
@@ -58,7 +57,6 @@ Command line arguments
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
 
-
 Input file format
 
    genc reads nucleotide sequences.
@@ -77,9 +75,8 @@ Notes
 
 References
 
-   Comeron JM, Aguade M. (1998) J Mol Evol. 47(3):268-74.
-
-   Wright F. (1990) Gene 87:23-29.
+      Comeron JM, Aguade M. (1998) J Mol Evol. 47(3):268-74.
+      Wright F. (1990) Gene 87:23-29.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -95,7 +92,8 @@ References
 
 Warnings
 
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 
 Diagnostic Error Messages
 
@@ -123,6 +121,8 @@ Author(s)
    252-8520 Japan
 
    Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
 
 History
 

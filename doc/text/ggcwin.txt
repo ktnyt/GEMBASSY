@@ -1,4 +1,4 @@
-                                   ggcwin
+                                     ggcwin
 Function
 
    Calculates the GC content along the given genome
@@ -27,8 +27,9 @@ Usage
 
    Here is a sample session with ggcwin
 
-% ggcwin -plot NC_000913.gbk
+% ggcwin -plot refseqn:NC_000913
 Calculates the GC content along the given genome
+Output filename [ggcwin.nc_000913.csv]:
 Created ggcwin.ps
 
 Command line arguments
@@ -60,7 +61,6 @@ Command line arguments
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
-
 
 Input file format
 
@@ -94,8 +94,7 @@ References
 
 Warnings
 
-   None.
-
+None.
 Diagnostic Error Messages
 
    None.
@@ -121,6 +120,8 @@ Author(s)
    252-8520 Japan
 
    Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
 
 History
 

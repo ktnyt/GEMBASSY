@@ -70,11 +70,15 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gseq2png
 
-% gseq2png NC_000913.gbk
+% gseq2png refseqn:NC_000913
 Converts a sequence to PNG image
-Output filename [gseq2png.1.png]:
-
-   Creates gseq2png.1.png
+Output filename [nc_000913.gseq2png]:
+SOAP 1.1 fault: SOAP-ENV:Server [no subcode]
+"Error 3 in SubOpt::opt_as_gb():
+  Given value is not a valid sequence.
+ at /usr/lib/perl5/site_perl/5.8.8/G/Seq/GenomeMap.pm line 1986
+"
+Detail: [no detail]
 
 </pre></td></tr></table>
 
@@ -167,15 +171,6 @@ Output filename [gseq2png.1.png]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates gseq2png.1.png
-
-Command line arguments
-
-   Standard (Mandatory) qualifiers (* if not always prompted):
-  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
-                                  format, or reference (input USA)
-*  -filename           string     [gseq2png.png] Output filename (Any string)
-
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -width              integer    [640] Width of the image (Any integer value)
@@ -189,7 +184,6 @@ Command line arguments
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
-
 
 Input file format
 
@@ -231,7 +225,7 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   None.
+
 </p>
 
 <h2>Diagnostic Error Messages</h2>
@@ -260,11 +254,6 @@ None.
 <tr>
 <td><a href="gcgr.html">gcgr</a></td>
 <td>Create a Chaos Game Representation of a given sequence</td>
-</tr>
-
-<tr>
-<td><a href="gkmer_table.html">gkmer_table</a></td>
-<td>Create an image showing all k-mer abundance within a sequence</td>
 </tr>
 
 </table>

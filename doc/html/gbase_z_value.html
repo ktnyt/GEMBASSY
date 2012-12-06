@@ -42,24 +42,8 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This function calculates and extracts conserved oligomers per position using<br>
-   Z-score, in regions around the start/stop codons using Z-score<br>
-<br>
-<br>
-   G-language SOAP service is provided by the<br>
-   Institute for Advanced Biosciences, Keio University.<br>
-   The original web service is located at the following URL:<br>
-<br>
-   http://www.g-language.org/wiki/soap<br>
-<br>
-   WSDL(RPC/Encoded) file is located at:<br>
-<br>
-   http://soap.g-language.org/g-language.wsdl<br>
-<br>
-   Documentation on G-language Genome Analysis Environment methods are<br>
-   provided at the Document Center<br>
-<br>
-   http://ws.g-language.org/gdoc/
+   This function calculates and extracts conserved oligomers per position using Z-score,<br>
+   in regions around the start/stop codons using Z-score
 </p>
 
 <H2>Usage</H2>
@@ -68,12 +52,9 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gbase_z_value
 
-% gbase_z_value NC_000913.gbk
+% gbase_z_value refseqn:NC_000913
 Extracts conserved oligomers per position using Z-score
 Output filename [nc_000913.gbase_z_value]:
-
-
-   Creates nc_000913.gbase_z_value
 
 </pre></td></tr></table>
 
@@ -182,44 +163,6 @@ Output filename [nc_000913.gbase_z_value]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates nc_000913.gbase_z_value
-
-Command line arguments
-
-   Standard (Mandatory) qualifiers:
-  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
-                                  format, or reference (input USA)
-   -outfile            outfile    [gbase_z_value.$(sequence.name).csv] Output
-                                  file name
-
-   Additional (Optional) qualifiers: (none)
-   Advanced (Unprompted) qualifiers:
-   -limit              integer    [5] Rank threshold for showing the conserved
-                                  oligomer (Any integer value)
-   -position           string     [start] Either 'start' (around start codon)
-                                  or 'end' (around stop codon) to create the
-                                  PWM (Any string)
-   -patlen             integer    [3] Length of oligomer to count (Any integer
-                                  value)
-   -upstream           integer    [30] Length upstream of specified position
-                                  to create PWM (Any integer value)
-   -downstream         integer    [30] Length downstream of specified position
-                                  to create PWM (Any integer value)
-   -accid              string     Include to use sequence accession ID as
-                                  query (Any string)
-
-   General qualifiers:
-   -help               boolean    Report command line options and exit. More
-                                  information on associated and general
-                                  qualifiers can be found with -help -verbose
-
-
-Input file format
-
-   gbase_z_value reads nucleotide sequences.
-
-Output file format
-
    The output from gbase_z_value is to a raw CSV file.
 </p>
 
@@ -254,7 +197,8 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 </p>
 
 <h2>Diagnostic Error Messages</h2>

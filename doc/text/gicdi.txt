@@ -1,4 +1,4 @@
-                                    gicdi
+                                      gicdi
 Function
 
    Calculates the intrinsic codon deviation index (ICDI)
@@ -27,11 +27,10 @@ Usage
 
    Here is a sample session with gicdi
 
-% gicdi NC_000913.gbk
+% gicdi -show refseqn:NC_000913
 Calculates the intrinsic codon deviation index (ICDI)
 Output filename [nc_000913.gicdi]:
-
-   Creates nc_000913.gicdi
+Sequence: NC_000913 ICDI: 0.0880
 
 Command line arguments
 
@@ -57,7 +56,6 @@ Command line arguments
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
 
-
 Input file format
 
    gicdi reads nucleotide sequences.
@@ -76,9 +74,8 @@ Notes
 
 References
 
-   Comeron JM, Aguade M. (1998) J Mol Evol. 47(3):268-74.
-
-   Freire-Picos MA et al. (1994) Gene 139:43-49.
+      Comeron JM, Aguade M. (1998) J Mol Evol. 47(3):268-74.
+      Freire-Picos MA et al. (1994) Gene 139:43-49.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -94,7 +91,8 @@ References
 
 Warnings
 
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 
 Diagnostic Error Messages
 
@@ -121,6 +119,8 @@ Author(s)
    252-8520 Japan
 
    Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
 
 History
 

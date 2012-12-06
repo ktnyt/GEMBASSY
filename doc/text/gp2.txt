@@ -1,4 +1,4 @@
-                                     gp2
+                                       gp2
 Function
 
    Calculate the P2 index of each gene
@@ -6,12 +6,12 @@ Function
 Description
 
    This program calculates the P2 index for each gene. This index describes the 
-   proportion of codons conforming to the intermediate strength of
-   codon-anticodon interaction energy rule of Grosjean and Fiers:
-   P2 = (WWC+SSU)/(WWY+SSY) 
+   proportion of codons conforming to the intermediate strength of codon-anticodon 
+   interaction energy rule of Grosjean and Fiers: P2 = (WWC+SSU)/(WWY+SSY) 
    where W = A or U, S = C or G, and Y = C or U.
-  
+   P2 values will be accessible at $gb->{"FEATURE$i"}->{P2};
 
+  
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -31,11 +31,9 @@ Usage
 
    Here is a sample session with gp2
 
-% gp2 NC_000913.gbk
+% gp2 refseqn:NC_000913
 Calculate the P2 index of each gene
 Output filename [gp2.nc_000913.csv]:
-
-   Creates gp2.nc_000913.csv
 
 Command line arguments
 
@@ -53,7 +51,6 @@ Command line arguments
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
-
 
 Input file format
 
@@ -73,7 +70,7 @@ Notes
 
 References
 
-   Gouy M, Gautier C. (1982) Nucleic Acids Res. 10(22):7055-74.
+      Gouy M, Gautier C. (1982) Nucleic Acids Res. 10(22):7055-74.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -89,7 +86,8 @@ References
 
 Warnings
 
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 
 Diagnostic Error Messages
 
@@ -115,6 +113,8 @@ Author(s)
    252-8520 Japan
 
    Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
 
 History
 

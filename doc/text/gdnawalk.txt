@@ -1,4 +1,4 @@
-                                  gdnawalk
+                                    gdnawalk
 Function
 
    Draws DNA Walk map of the genome
@@ -36,9 +36,6 @@ Usage
 Draws DNA Walk map of the genome
 Output filename [gdnawalk.1.png]:
 
-
-   Creates gdnawalk.1.png
-
 Command line arguments
 
    Standard (Mandatory) qualifiers (* if not always prompted):
@@ -56,7 +53,6 @@ Command line arguments
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
-
 
 Input file format
 
@@ -90,7 +86,8 @@ References
 
 Warnings
 
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 
 Diagnostic Error Messages
 
@@ -116,6 +113,8 @@ Author(s)
    252-8520 Japan
 
    Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
 
 History
 

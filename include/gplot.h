@@ -247,7 +247,7 @@ int gPlotData(AjPGraph graphs, gPlotParams *gpp)
   ajGraphxySetYstartF(graphs, min - ((max - min) / 10));
   ajGraphxySetYendF(graphs, max + ((max - min) / 10));
 
-  ajGraphSetTitleS(graphs, title);
+  //ajGraphSetTitleS(graphs, title);
   ajGraphSetXlabelS(graphs, xlab);
   ajGraphSetYlabelS(graphs, ylab);
   ajGraphxySetflagOverlay(graphs, ajTrue);

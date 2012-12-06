@@ -68,11 +68,10 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gscs
 
-% gscs NC_000913.gbk
+% gscs -show refseqn:NC_000913
 Calculates the scaled chi-square
 Output filename [nc_000913.gscs]:
-
-   Creates nc_000913.gscs
+Sequence: NC_000913 SCS: 0.2651
 
 </pre></td></tr></table>
 
@@ -182,7 +181,6 @@ Output filename [nc_000913.gscs]:
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
 
-
 Input file format
 
    gscs reads nucleotide sequences.
@@ -191,15 +189,6 @@ Input file format
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates nc_000913.gscs
-
-Command line arguments
-
-   Standard (Mandatory) qualifiers (* if not always prompted):
-  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
-                                  format, or reference (input USA)
-*  -outfile            outfile    [*.gscs] Output file name
-
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -translate          boolean    [0] Input '1' when translates using standard
@@ -217,7 +206,6 @@ Command line arguments
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
-
 
 Input file format
 
@@ -243,9 +231,8 @@ None.
 <h2>Refrences</h2>
 
 <pre>
-   Comeron JM, Aguade M. (1998) J Mol Evol. 47(3):268-74.
-
-   Shields DC, Sharp PM. (1987) Nucleic Acids Res. 15(19):8023-40.
+      Comeron JM, Aguade M. (1998) J Mol Evol. 47(3):268-74.
+      Shields DC, Sharp PM. (1987) Nucleic Acids Res. 15(19):8023-40.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -263,7 +250,8 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 </p>
 
 <h2>Diagnostic Error Messages</h2>

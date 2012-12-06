@@ -69,11 +69,10 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gdist_in_cc
 
-% gdist_in_cc NC_000913.gbk 1234
+% gdist_in_cc -show refseqn:NC_000913
 Calculates the distance between two loci in circular chromosomes
 Output filename [nc_000913.gdist_in_cc]:
-
-   Creates nc_000913.gdist_in_cc
+Sequence: NC_000913 Distance: 1234
 
 </pre></td></tr></table>
 
@@ -166,17 +165,6 @@ Output filename [nc_000913.gdist_in_cc]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates nc_000913.gdist_in_cc
-
-Command line arguments
-
-   Standard (Mandatory) qualifiers (* if not always prompted):
-  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
-                                  format, or reference (input USA)
-  [-position]          integer    [0] (no help text) integer value (Any
-                                  integer value)
-*  -outfile            outfile    [*.gdist_in_cc] Output file name
-
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -secondposition     integer    [0] If the second position is not given,
@@ -190,7 +178,6 @@ Command line arguments
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
-
 
 Input file format
 
@@ -232,7 +219,8 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 </p>
 
 <h2>Diagnostic Error Messages</h2>

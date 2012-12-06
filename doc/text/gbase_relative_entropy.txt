@@ -1,14 +1,12 @@
-                           gbase_relative_entropy
+                             gbase_relative_entropy
 Function
 
-   Calculates and graphs the sequence conservation using Kullback-Leibler
-   divergence (relative entropy)
+   Calculates and graphs the sequence conservation using Kullback-Leibler divergence (relative entropy)
 
 Description
 
    This function calculates and graphs the sequence conservation in regions 
-   around the start/stop codons using Kullback-Leibler divergence
-   (relative entropy).
+   around the start/stop codons using Kullback-Leibler divergence (relative entropy).
 
   
    G-language SOAP service is provided by the
@@ -30,10 +28,10 @@ Usage
 
    Here is a sample session with gbase_relative_entropy
 
-% gbase_relative_entropy -plot NC_000913.gbk
+% gbase_relative_entropy -plot refseqn:NC_000913
 Calculates and graphs the sequence conservation using Kullback-Leibler divergence (relative entropy)
+Output filename [gbase_relative_entropy.nc_000913.csv]:
 Created gbase_relative_entropy.ps
-
 
 Command line arguments
 
@@ -67,7 +65,6 @@ Command line arguments
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
 
-
 Input file format
 
    gbase_relative_entropy reads nucleotide sequences.
@@ -100,7 +97,8 @@ References
 
 Warnings
 
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 
 Diagnostic Error Messages
 
@@ -128,6 +126,8 @@ Author(s)
    252-8520 Japan
 
    Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
 
 History
 

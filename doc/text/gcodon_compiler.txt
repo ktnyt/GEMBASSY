@@ -1,4 +1,4 @@
-                               gcodon_compiler
+                                 gcodon_compiler
 Function
 
    Calculate various kinds of amino acid and codon usage data
@@ -6,8 +6,34 @@ Function
 Description
 
    This program calculates various kinds of amino acid and codon usage data.
+   Value of Met codon ATG will be accessible at $gb->{$id}->{$data}->{'Matg'};
 
-   G-language SOAP service is provided by the
+Usage: 
+   pointer HASH = &codon_compiler(G instance);
+
+  Options:
+   -output      output option (default: 'show')
+                'stdout' for standard output
+                'f' for file output in directory "data", 
+                'g' for graph output in directory "graph",
+                'show' for graph output and display
+   -filename    output filename (default: 'codon_compiler.png' for -output=>'g',
+                                          'codon_compiler.csv' for -output=>'f')
+   -id          feature ID or gene group ID (default: 'All')
+   -translate   1 when translates using standard codon table (default: 0)
+   -startcodon  1 when includes start codon (default: 0)
+   -stopcodon   1 when includes stop codon (default: 0)
+   -del_key     regular expression to delete key (i.e. amino acids and nucleotides)
+                (default: '[^ACDEFGHIKLMNPQRSTVWYacgtU\/]')
+   -tag         feature tag accessible at $gb->{"FEATURE$i"}->{$tag} (default: 'locus_tag')
+   -header      include (1) or exclude (0) variable names (default: 1)
+   -data        kinds of codon usage data (default: 'R0')
+                'A0': Absolute amino acid frequency ('AA')
+                'A1': Relative amino acid frequency ('RAAU')
+                'C0' or 'R0': Absolute codon frequency ('AF')
+                'C1' or 'R1': Relative codon frequency in a complete sequence
+                'C2' or 'R2': Relative codon frequency in each amino acid ('RF')
+                'C3' or 'R3': Relative synonymous codon    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
 
@@ -18,7 +44,7 @@ Description
    http://soap.g-language.org/g-language.wsdl
 
    Documentation on G-language Genome Analysis Environment methods are
-   provided at the Document Center
+   provided at the Document Center:
 
    http://ws.g-language.org/gdoc/
 
@@ -26,11 +52,9 @@ Usage
 
    Here is a sample session with gcodon_compiler
 
-% gcodon_compiler NC_000913.gbk
+% gcodon_compiler refseqn:NC_000913
 Calculate various kinds of amino acid and codon usage data
 Output filename [gcodon_compiler.nc_000913.csv]:
-
-   Creates gcodon_compiler.nc_000913.csv
 
 Command line arguments
 
@@ -69,7 +93,6 @@ Command line arguments
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
 
-
 Input file format
 
    gcodon_compiler reads nucleotide sequences.
@@ -88,9 +111,8 @@ Notes
 
 References
 
-   Arakawa K. et al. (2008) Genes, Genomes and Genomics.
-
-   Suzuki H. et al. (2005) FEBS Lett. 579(28):6499-6504.
+      Arakawa K. et al. (2008) Genes, Genomes and Genomics.
+      Suzuki H. et al. (2005) FEBS Lett. 579(28):6499-6504.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -106,7 +128,8 @@ References
 
 Warnings
 
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 
 Diagnostic Error Messages
 
@@ -132,6 +155,8 @@ Author(s)
    252-8520 Japan
 
    Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
 
 History
 

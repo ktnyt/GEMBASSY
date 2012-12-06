@@ -44,9 +44,9 @@ IT IS DONE FOR YOU.
 <p>
    This method calculate strand bias of bacterial genome using B1 index,<br>
    first proposed by Lobry and Sueoka (2002), and further extended by <br>
-   Rocha et al. (2006). Basic idea of B1 index is to calculate the distance <br>
-   between the two strands, when the leading and lagging strands are plotted<br>
-   in a coordinate system with axes representing G/(G+C) and A/(A+T),<br>
+   Rocha et al. (2006). Basic idea of B1 index is to calculate the <br>
+   distance between the two strands, when the leading and lagging strands<br>
+   are plotted in a coordinate system with axes representing G/(G+C) and A/(A+T),<br>
    using the third codon position of genes. This index measures the degree of <br>
    replication-induced bias from Chargaff's second parity rule.<br>
 <br>
@@ -76,11 +76,10 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gb1
 
-% gb1 NC_000913.gbk
+% gb1 -show refseqn:NC_000913
 Calculate strand bias of bacterial genome using B1 index
 Output filename [nc_000913.gb1]:
-
-   Creates nc_000913.gb1
+Sequence: NC_000913 B1: 0.063080624778723
 
 </pre></td></tr></table>
 
@@ -165,15 +164,6 @@ Output filename [nc_000913.gb1]:
 <h2>Ouptut file format</h2>
 
 <p>
-   Creates nc_000913.gb1
-
-Command line arguments
-
-   Standard (Mandatory) qualifiers:
-  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
-                                  format, or reference (input USA)
-   -outfile            outfile    [*.gb1] Output file name
-
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -method             string     [rocha] Choose method of 'lobry' or 'rocha'
@@ -186,7 +176,6 @@ Command line arguments
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
-
 
 Input file format
 
@@ -234,7 +223,8 @@ None.
 <h2>Warnings</h2>
 
 <p>
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 </p>
 
 <h2>Diagnostic Error Messages</h2>

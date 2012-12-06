@@ -1,15 +1,18 @@
-                                gbase_z_value
+                                  gbase_z_value
 Function
 
    Extracts conserved oligomers per position using Z-score
 
 Description
 
-   This function calculates and extracts conserved oligomers per position using
-   Z-score, in regions around the start/stop codons using Z-score
+   This function calculates and extracts conserved oligomers per position using Z-score,
+   in regions around the start/stop codons using Z-score
 
+Usage:
+    $structure = base_z_value($genome);
 
-   G-language SOAP service is provided by the
+    Here the $structure is a reference to the array of hashes, intended for 
+    internal    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
 
@@ -20,7 +23,7 @@ Description
    http://soap.g-language.org/g-language.wsdl
 
    Documentation on G-language Genome Analysis Environment methods are
-   provided at the Document Center
+   provided at the Document Center:
 
    http://ws.g-language.org/gdoc/
 
@@ -28,12 +31,9 @@ Usage
 
    Here is a sample session with gbase_z_value
 
-% gbase_z_value NC_000913.gbk
+% gbase_z_value refseqn:NC_000913
 Extracts conserved oligomers per position using Z-score
 Output filename [nc_000913.gbase_z_value]:
-
-
-   Creates nc_000913.gbase_z_value
 
 Command line arguments
 
@@ -63,7 +63,6 @@ Command line arguments
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
-
 
 Input file format
 
@@ -97,7 +96,8 @@ References
 
 Warnings
 
-   None.
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
 
 Diagnostic Error Messages
 
@@ -123,6 +123,8 @@ Author(s)
    252-8520 Japan
 
    Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
 
 History
 
