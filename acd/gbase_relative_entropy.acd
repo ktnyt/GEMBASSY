@@ -1,7 +1,7 @@
 application: gbase_relative_entropy [
   documentation: "Calculates and graphs the sequence conservation using Kullback-Leibler divergence (relative entropy)"
   groups: "Nucleic:Composition"
-  embassy: "GEMBASSY"
+  embassy: "gembassy"
 ]
 
 section: input [
@@ -65,6 +65,7 @@ section: output [
 
   xygraph: graph [
     standard: "$(plot)"
+    gtitle: "ggenomicskew of $(sequence.usa)"
     relations: "EDAM:0002968 data Image or plot"
   ]
 

@@ -1,7 +1,7 @@
 application: ggcsi [
   documentation: "GC Skew Index: an index for strand-specefic mutational bias"
   groups: "Nucleic:Composition"
-  embassy: "GEMBASSY"
+  embassy: "gembassy"
 ]
 
 section: input [

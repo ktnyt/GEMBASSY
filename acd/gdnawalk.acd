@@ -1,7 +1,7 @@
 application: gdnawalk [
   documentation: "Draws DNA Walk map of the genome"
   groups: "Display"
-  embassy: "GEMBASSY"
+  embassy: "gembassy"
 ]
 
 section: input [

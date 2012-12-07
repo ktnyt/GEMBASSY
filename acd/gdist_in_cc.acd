@@ -1,7 +1,7 @@
 application: gdist_in_cc [
   documentation: "Calculates the distance between two loci in circular chromosomes"
   groups: "Nucleic:Composition"
-  embassy: "GEMBASSY"
+  embassy: "gembassy"
 ]
 
 section: input [

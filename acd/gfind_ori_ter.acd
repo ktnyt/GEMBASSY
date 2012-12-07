@@ -1,7 +1,7 @@
 application: gfind_ori_ter [
   documentation: "Predict the replication origin and terminus in bacterial genomes"
   groups: "Nucleic:Composition"
-  embassy: "GEMBASSY"
+  embassy: "gembassy"
 ]
 
 section: input [

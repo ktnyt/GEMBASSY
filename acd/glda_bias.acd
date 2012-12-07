@@ -1,7 +1,7 @@
 application: glda_bias [
   documentation: "Calculate strand bias of bacterial genome using linear discriminant analysis (LDA)"
   groups: "Nucleic:Composition"
-  embassy: "GEMBASSY"
+  embassy: "gembassy"
 ]
 
 section: input [

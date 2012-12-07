@@ -1,7 +1,7 @@
 application: gkmer_table [
   documentation: "Create an image showing all k-mer abundance within a sequence"
   groups: "Nucleic:Composition"
-  embassy: "GEMBASSY"
+  embassy: "gembassy"
 ]
 
 section: input [

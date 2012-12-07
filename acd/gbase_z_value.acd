@@ -1,7 +1,7 @@
 application: gbase_z_value [
   documentation: "Extracts conserved oligomers per position using Z-score"
   groups: "Nucleic:Composition"
-  embassy: "GEMBASSY"
+  embassy: "gembassy"
 ]
 
 section: input [

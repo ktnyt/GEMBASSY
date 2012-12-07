@@ -1,7 +1,7 @@
 application: gw_value [
   documentation: "Calculate the 'relative adaptiveness of each codon' (W)"
   groups: "Nucleic:Codon Usage"
-  embassy: "GEMBASSY"
+  embassy: "gembassy"
 ]
 
 section: input [

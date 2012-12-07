@@ -1,7 +1,7 @@
 application: gp2 [
   documentation: "Calculate the P2 index of each gene"
   groups: "Nucleic:Codon usage"
-  embassy: "GEMBASSY"
+  embassy: "gembassy"
 ]
 
 section: input [

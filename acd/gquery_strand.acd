@@ -1,7 +1,7 @@
 application: gquery_strand [
   documentation: "Get the strand name (leading or lagging) from the given position"
   groups: "Nucleic:Composition"
-  embassy: "GEMBASSY"
+  embassy: "gembassy"
 ]
 
 section: input [

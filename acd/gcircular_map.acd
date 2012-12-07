@@ -1,7 +1,7 @@
 application: gcircular_map [
   documentation: "Draws circular map of the genome "
   groups: "Display"
-  embassy: "GEMBASSY"
+  embassy: "gembassy"
 ]
 
 section: input [

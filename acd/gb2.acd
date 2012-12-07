@@ -1,7 +1,7 @@
 application: gb2 [
   documentation: "Calculate strand bias of bacterial genome using B2 index"
   groups: "Nucleic:Composition"
-  embassy: "GEMBASSY"
+  embassy: "gembassy"
 ]
 
 section: input [

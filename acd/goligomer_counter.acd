@@ -1,7 +1,7 @@
 application: goligomer_counter [
   documentation: "Counts the number of given oligomers in a sequence"
   groups: "Nucleic:Composition"
-  embassy: "GEMBASSY"
+  embassy: "gembassy"
 ]
 
 section: input [

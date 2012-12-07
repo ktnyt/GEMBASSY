@@ -1,7 +1,7 @@
 application: ggenome_map3 [
   documentation: "Draws the map of the genome (version 3)"
   groups: "Display"
-  embassy: "GEMBASSY"
+  embassy: "gembassy"
 ]
 
 section: input [

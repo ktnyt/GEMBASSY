@@ -1,7 +1,7 @@
 application: gdelta_gcskew [
   documentation: "Calculate strand bias of bacterial genome using delta GC skew index"
   groups: "Nucleic:Composition"
-  embassy: "GEMBASSY"
+  embassy: "gembassy"
 ]
 
 section: input [

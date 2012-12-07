@@ -1,7 +1,7 @@
 application: gbui [
   documentation: "Calculates base usage indices for protein-coding sequences"
   groups: "Nucleic:Codon usage"
-  embassy: "GEMBASSY"
+  embassy: "gembassy"
 ]
 
 section: input [

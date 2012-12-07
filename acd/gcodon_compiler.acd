@@ -1,7 +1,7 @@
 application: gcodon_compiler [
   documentation: "Calculate various kinds of amino acid and codon usage data"
   groups: "Nucleic:Codon usage"
-  embassy: "GEMBASSY"
+  embassy: "gembassy"
 ]
 
 section: input [

@@ -1,7 +1,7 @@
 application: ggcwin [
   documentation: "Calculates the GC content along the given genome"
   groups: "Nucleic:Composition"
-  embassy: "GEMBASSY"
+  embassy: "gembassy"
 ]
 
 section: input [
@@ -60,6 +60,7 @@ section: output [
 
   xygraph: graph [
     standard: "$(plot)"
+    gtitle: "ggenomicskew of $(sequence.usa)"
     relations: "EDAM:0002968 data Image or plot"
   ]
 

@@ -1,7 +1,7 @@
 application: gview_cds [
   documentation: "Displays a graph of nucleotide contents around start and stop codons"
   groups: "Nucleic:Composition"
-  embassy: "GEMBASSY"
+  embassy: "gembassy"
 ]
 
 section: input [
@@ -56,6 +56,7 @@ section: output [
 
   xygraph: graph [
     standard: "$(plot)"
+    gtitle: "ggenomicskew of $(sequence.usa)"
     multiple: "4"
     relations: "EDAM:0002968 data Image or plot"
   ]

@@ -1,7 +1,7 @@
 application: goligomer_search [
   documentation: "Searches oligomers in given sequence"
   groups: "Nucleic:Composition"
-  embassy: "GEMBASSY"
+  embassy: "gembassy"
 ]
 
 section: input [

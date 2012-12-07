@@ -1,7 +1,7 @@
 application: gfop [
   documentation: "Calculate the frequency of optimal codons (Fop)"
   groups: "Nucleic:Codon Usage"
-  embassy: "GEMBASSY"
+  embassy: "gembassy"
 ]
 
 section: input [
