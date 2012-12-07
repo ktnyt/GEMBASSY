@@ -1,24 +1,22 @@
                                     glda_bias
 Function
 
-   Calculate strand bias of bacterial genome using linear discriminant analysis (LDA)
+   Calculate strand bias of bacterial genome using linear discriminant analysis
+   (LDA)
 
 Description
 
-   This method calculate strand bias of bacterial genome using linear discriminant 
-   analysis (LDA), as proposed in Reference 1. The basic idea is to use composition
-   data of genes to train and predict the strand of genes residing either on the 
-   leading or the lagging strand. For computational efficiency, this method trans
-   and predicts the strands at putative replication origin as reported by the 
-   rep_ori_ter() method. This usually results in maximum predictability of LDA
-   within bacterial genomes.
+   This method calculate strand bias of bacterial genome using linear
+   discriminant analysis (LDA), as proposed in Reference 1. The basic idea is to
+   use composition data of genes to train and predict the strand of genes
+   residing either on the leading or the lagging strand. For computational
+   efficiency, this method trans and predicts the strands at putative
+   replication origin as reported by the rep_ori_ter() method. This usually
+   results in maximum predictability of LDA within bacterial genomes.
 
-   Data to use for LDA can be chosen from "base", "codonbase", "codon", and "amino",
-   with -variable option.
+   Data to use for LDA can be chosen from "base", "codonbase", "codon", and
+   "amino", with -variable option.
 
-   Installation of R statistics package is required.
-
- 
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -38,9 +36,11 @@ Usage
 
    Here is a sample session with glda_bias
 
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
+
 % glda_bias -show refseqn:NC_000913
 Calculate strand bias of bacterial genome using linear discriminant analysis (LDA)
-Output filename [nc_000913.glda_bias]:
 Sequence: NC_000913 LDA bias: 0.7421296
 
 Command line arguments

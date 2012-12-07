@@ -8,11 +8,6 @@ Description
    This function calculates and extracts conserved oligomers per position using Z-score,
    in regions around the start/stop codons using Z-score
 
-Usage:
-    $structure = base_z_value($genome);
-
-    Here the $structure is a reference to the array of hashes, intended for 
-    internal    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
 
@@ -30,6 +25,9 @@ Usage:
 Usage
 
    Here is a sample session with gbase_z_value
+
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
 
 % gbase_z_value refseqn:NC_000913
 Extracts conserved oligomers per position using Z-score

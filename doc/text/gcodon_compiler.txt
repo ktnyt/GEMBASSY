@@ -8,32 +8,6 @@ Description
    This program calculates various kinds of amino acid and codon usage data.
    Value of Met codon ATG will be accessible at $gb->{$id}->{$data}->{'Matg'};
 
-Usage: 
-   pointer HASH = &codon_compiler(G instance);
-
-  Options:
-   -output      output option (default: 'show')
-                'stdout' for standard output
-                'f' for file output in directory "data", 
-                'g' for graph output in directory "graph",
-                'show' for graph output and display
-   -filename    output filename (default: 'codon_compiler.png' for -output=>'g',
-                                          'codon_compiler.csv' for -output=>'f')
-   -id          feature ID or gene group ID (default: 'All')
-   -translate   1 when translates using standard codon table (default: 0)
-   -startcodon  1 when includes start codon (default: 0)
-   -stopcodon   1 when includes stop codon (default: 0)
-   -del_key     regular expression to delete key (i.e. amino acids and nucleotides)
-                (default: '[^ACDEFGHIKLMNPQRSTVWYacgtU\/]')
-   -tag         feature tag accessible at $gb->{"FEATURE$i"}->{$tag} (default: 'locus_tag')
-   -header      include (1) or exclude (0) variable names (default: 1)
-   -data        kinds of codon usage data (default: 'R0')
-                'A0': Absolute amino acid frequency ('AA')
-                'A1': Relative amino acid frequency ('RAAU')
-                'C0' or 'R0': Absolute codon frequency ('AF')
-                'C1' or 'R1': Relative codon frequency in a complete sequence
-                'C2' or 'R2': Relative codon frequency in each amino acid ('RF')
-                'C3' or 'R3': Relative synonymous codon    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
 
@@ -51,6 +25,9 @@ Usage:
 Usage
 
    Here is a sample session with gcodon_compiler
+
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
 
 % gcodon_compiler refseqn:NC_000913
 Calculate various kinds of amino acid and codon usage data

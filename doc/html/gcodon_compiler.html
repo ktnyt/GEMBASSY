@@ -43,7 +43,21 @@ IT IS DONE FOR YOU.
 <H2>Description</H2>
 <p>
    This program calculates various kinds of amino acid and codon usage data.<br>
-   Value of Met codon ATG will be accessible at $gb->{$id}->{$data}->{'Matg'};
+   Value of Met codon ATG will be accessible at $gb->{$id}->{$data}->{'Matg'};<br>
+<br>
+   Institute for Advanced Biosciences, Keio University.<br>
+   The original web service is located at the following URL:<br>
+<br>
+   http://www.g-language.org/wiki/soap<br>
+<br>
+   WSDL(RPC/Encoded) file is located at:<br>
+<br>
+   http://soap.g-language.org/g-language.wsdl<br>
+<br>
+   Documentation on G-language Genome Analysis Environment methods are<br>
+   provided at the Document Center:<br>
+<br>
+   http://ws.g-language.org/gdoc/
 </p>
 
 <H2>Usage</H2>
@@ -51,6 +65,9 @@ IT IS DONE FOR YOU.
 <table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
 
    Here is a sample session with gcodon_compiler
+
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
 
 % gcodon_compiler refseqn:NC_000913
 Calculate various kinds of amino acid and codon usage data

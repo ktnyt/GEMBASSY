@@ -9,38 +9,26 @@ Description
    in bacterial genomes by several means. 
 
    1. Use of databases
-   By default, rep_ori_ter() tries to retrieve the position of replication
-   origin in DoriC (Reference 1) database, and the position of replication
-   terminus from the supplemental data provided in Reference 2.
+   By default, grep_ori_ter tries to retrieve the position of replication
+   origin in DoriC Gao and Zhang (2007) database, and the position of
+   replication terminus from the supplemental data provided in
+   Kono et al. (2011).
 
    If the position of origin cannot be found in the database, but "rep_origin" 
    feature is available, center position within this feature is used for origin. 
-
    2. Oriloc
-   Using -oriloc=>1 option, you can predict the replication origin and 
+   Using -orilocoption, you can predict the replication origin and 
    terminus using the popular Oriloc program developed by Lobry et al. 
-   available as part of the SeqinR package (Reference 3).
-
-   Installation of SeqinR package is required to use this feature.
-   Type: install.packages('seqinr', dep=T)
-   in R statistics package to install SeqinR.
+   available as part of the SeqinR package Frank and Lobry (2000).
 
    3. Setting custom origin and terminus
-   Use -ori=>$position1, -ter=>$position2 to set your own positions.
+   Use -ori position1, -ter position2 to set your own positions.
 
    4. Use GC skew shift-point
    If the positions of origin or terminus cannot be found in the databases,
-   rep_ori_ter() automatically calls find_ori_ter() method to predict the 
+   grep_ori_ter automatically calls find_ori_ter() method to predict the 
    positions using GC skew shift-points at one-base-pair resolution.
 
-   After calling this function, positions of origin and terminus are stored 
-   as follows:
-   $genome->{FEATURE0}->{origin}
-   $genome->{FEATURE0}->{terminus}
-
-   You can always use -clear=>1 option to disable the use of above cache.
-
- 
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -60,9 +48,11 @@ Usage
 
    Here is a sample session with grep_ori_ter
 
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
+
 % grep_ori_ter -show refseqn:NC_000913
 Get the positions of replication origin and terminus
-Output filename [nc_000913.grep_ori_ter]:
 Sequence: NC_000913 Origin: 3923881 Terminus: 1550412
 
 Command line arguments

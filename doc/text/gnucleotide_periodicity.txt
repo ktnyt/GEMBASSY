@@ -5,7 +5,8 @@ Function
 
 Description
 
-   Checks the periodicity of certain nucleotide (best known with AA dinucleotide)
+   Checks the periodicity of certain nucleotide (best known with AA
+   dinucleotide)
    
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
@@ -26,12 +27,12 @@ Usage
 
    Here is a sample session with gnucleotide_periodicity
 
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
+
 % gnucleotide_periodicity -plot refseqn:NC_000913
 Checks the periodicity of certain oligonucleotides
 Output filename [gnucleotide_periodicity.nc_000913.csv]:
-Error 502 fault: SOAP-ENV:Server [no subcode]
-"HTTP/1.1 502 Proxy Error"
-Detail: [no detail]
 
 Command line arguments
 

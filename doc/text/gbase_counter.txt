@@ -9,7 +9,6 @@ Description
    oligomers of specified length around the start codon of all 
    genes in the given genome.
 
-
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -25,28 +24,12 @@ Description
 
    http://ws.g-language.org/gdoc/
 
-Usage:
-    $structure = base_counter($genome);
-
-    Here the $structure is a reference to the array of hashes, intended for 
-    internal    G-language SOAP service is provided by the
-   Institute for Advanced Biosciences, Keio University.
-   The original web service is located at the following URL:
-
-   http://www.g-language.org/wiki/soap
-
-   WSDL(RPC/Encoded) file is located at:
-
-   http://soap.g-language.org/g-language.wsdl
-
-   Documentation on G-language Genome Analysis Environment methods are
-   provided at the Document Center:
-
-   http://ws.g-language.org/gdoc/
-
 Usage
 
    Here is a sample session with gbase_counter
+
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
 
 % gbase_counter refseqn:NC_000913
 Creates a position weight matrix of oligomers around start codon

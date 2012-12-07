@@ -6,8 +6,7 @@ Function
 Description
 
    This program calculates the 'relative adaptiveness of each codon' (W value)
-   necessary for CAI analysis. Returned value is a pointer HASH of W values.
-
+   necessary for CAI analysis.
   
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
@@ -27,6 +26,9 @@ Description
 Usage
 
    Here is a sample session with gw_value
+
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
 
 % gw_value refseqn:NC_000913
 Calculate the 'relative adaptiveness of each codon' (W)

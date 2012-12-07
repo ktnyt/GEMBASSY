@@ -38,8 +38,7 @@ Usage
 
 % gshuffleseq refseqn:NC_000913
 Create randomized sequence with conserved k-mer composition
-Output filename [gshuffleseq.nc_000913.csv]:
-Died: Unknown qualifier -accid
+Output filename [nc_000913.fasta]:
 
 Command line arguments
 

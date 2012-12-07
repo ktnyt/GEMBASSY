@@ -29,6 +29,9 @@ Usage
 
    Here is a sample session with gdist_in_cc
 
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
+
 % gdist_in_cc -show refseqn:NC_000913
 Calculates the distance between two loci in circular chromosomes
 Output filename [nc_000913.gdist_in_cc]:

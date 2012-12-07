@@ -7,7 +7,6 @@ Description
 
    This function calculates and graphs the sequence conservation in regions 
    around the start/stop codons using Kullback-Leibler divergence (relative entropy).
-
   
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
@@ -28,9 +27,11 @@ Usage
 
    Here is a sample session with gbase_relative_entropy
 
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
+
 % gbase_relative_entropy -plot refseqn:NC_000913
 Calculates and graphs the sequence conservation using Kullback-Leibler divergence (relative entropy)
-Output filename [gbase_relative_entropy.nc_000913.csv]:
 Created gbase_relative_entropy.ps
 
 Command line arguments

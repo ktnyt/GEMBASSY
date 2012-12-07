@@ -6,9 +6,8 @@ Function
 Description
 
    This program calculates short oligonucleotide usage (genomic signature),
-   defined as the ratio of observed (O) to expected (E) oligonucleotide frequencies.
-   O/E value of dinucleotide CG will be accessible at 
-   $gb->{signature}->{'cg'}.
+   defined as the ratio of observed (O) to expected (E) oligonucleotide
+   frequencies.
    
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
@@ -28,6 +27,9 @@ Description
 Usage
 
    Here is a sample session with gsignature
+
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
 
 % gsignature refseqn:NC_000913
 Calculate oligonucleotide usage (genomic signature)

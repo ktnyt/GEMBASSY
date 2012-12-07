@@ -42,12 +42,13 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This method calculate strand bias of bacterial genome using delta GC skew index,<br>
-   first proposed by Rocha et al in Reference 1, and further extended   in Reference 2. Basic idea of delta GC skew index is to calculate the <br>
-   difference of GC skew in coding regions residing in leading and lagging strands.<br>
-   Reference 1 calculates delta GC skew index using the third codon position of genes,<br>
-   and Reference 2  modified to only use >fourfold degenerate codons.<br>
-<br>
+   This method calculate strand bias of bacterial genome using delta GC skew<br>
+   index, first proposed by Rocha et al. (2001), and further extended in 2006.<br>
+   Basic idea of delta GC skew index is to calculate the difference of GC skew<br>
+   in coding regions residing in leading and lagging strands. Rocha et al.<br>
+   (2001) calculates delta GC skew index using the third codon position of<br>
+   genes, and Rocha et al. (2006)  modified to only use >fourfold degenerate<br>
+   codons.<br>
  <br>
    G-language SOAP service is provided by the<br>
    Institute for Advanced Biosciences, Keio University.<br>
@@ -71,9 +72,11 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with gdelta_gcskew
 
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
+
 % gdelta_gcskew -show refseqn:NC_000913
 Calculate strand bias of bacterial genome using delta GC skew index
-Output filename [nc_000913.gdelta_gcskew]:
 Sequence: NC_000913 delta GC skew: -0.108913
 
 </pre></td></tr></table>
@@ -224,11 +227,11 @@ None.
 <h2>Refrences</h2>
 
 <pre>
-   Rocha EPC et al. (2001) "Ongoing Evolution of Strand Composition in Bacterial Genomes",
-      Molecular Biology and Evolution, 18(9):1789-1799
+   Rocha EPC et al. (2001) "Ongoing Evolution of Strand Composition in Bacterial
+      Genomes", Molecular Biology and Evolution, 18(9):1789-1799
 
-   Rocha EPC et al. (2006) "Similar compositional biases are caused by very different
-      mutational effects", Genome Research, 16:1537-1547
+   Rocha EPC et al. (2006) "Similar compositional biases are caused by very
+      different mutational effects", Genome Research, 16:1537-1547
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench

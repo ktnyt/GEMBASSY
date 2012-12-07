@@ -5,10 +5,7 @@ Function
 
 Description
 
-   This program calculates the frequency of optimal codons (Fop), and
-   inputs in the G instance; i.e. Fop values will be accessible at
-   $gb->{"FEATURE$i"}->{fop};
-
+   This program calculates the frequency of optimal codons (Fop).
   
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
@@ -28,6 +25,9 @@ Description
 Usage
 
    Here is a sample session with gfop
+
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
 
 % gfop refseqn:NC_000913
 Calculate the frequency of optimal codons (Fop)
@@ -70,8 +70,9 @@ Notes
 
 References
 
-      Ikemura (1981) J.Mol.Biol. 151:389-409.
-      Ikemura (1985) Mol.Biol.Evol. 2(1):13-34.
+   Ikemura (1981) J.Mol.Biol. 151:389-409.
+
+   Ikemura (1985) Mol.Biol.Evol. 2(1):13-34.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench

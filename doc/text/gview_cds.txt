@@ -28,9 +28,11 @@ Usage
 
    Here is a sample session with gview_cds
 
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
+
 % gview_cds -plot refseqn:NC_000913
 Displays a graph of nucleotide contents around start and stop codons
-Output filename [nc_000913.gview_cds]:
 Created gview_cds.ps
 
 Command line arguments

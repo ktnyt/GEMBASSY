@@ -29,6 +29,9 @@ Usage
 
    Here is a sample session with goligomer_counter
 
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
+
 % goligomer_counter -show refseqn:NC_000913
 Counts the number of given oligomers in a sequence
 Output filename [nc_000913.goligomer_counter]:

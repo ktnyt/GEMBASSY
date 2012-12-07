@@ -7,7 +7,6 @@ Description
 
    This function calculates and graphs the sequence conservation in regions 
    around the start/stop codons using information content.
-
   
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
@@ -28,9 +27,11 @@ Usage
 
    Here is a sample session with gbase_information_content
 
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
+
 % gbase_information_content -plot refseqn:NC_000913
 Calculates and graphs the sequence conservation using information content
-Output filename [gbase_information_content.nc_000913.csv]:
 Created gbase_information_content.ps
 
 Command line arguments

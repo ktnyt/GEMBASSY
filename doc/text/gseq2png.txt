@@ -9,7 +9,6 @@ Description
    sequences with representative pixels. 
    A is shown in red, T is shown in green, 
    G is shown in yellow, and C is shown in blue. 
-
   
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
@@ -30,15 +29,9 @@ Usage
 
    Here is a sample session with gseq2png
 
-% gseq2png refseqn:NC_000913
+% gseq2png accid.fasta
 Converts a sequence to PNG image
 Output filename [nc_000913.gseq2png]:
-SOAP 1.1 fault: SOAP-ENV:Server [no subcode]
-"Error 3 in SubOpt::opt_as_gb():
-  Given value is not a valid sequence.
- at /usr/lib/perl5/site_perl/5.8.8/G/Seq/GenomeMap.pm line 1986
-"
-Detail: [no detail]
 
 Command line arguments
 

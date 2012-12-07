@@ -15,7 +15,6 @@ Description
 
    Rocha et al. modified B1 index to only use >fourfold degenerate codons,
    and to use T/(A+T) in place of A/(A+T).
-
  
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
@@ -35,6 +34,9 @@ Description
 Usage
 
    Here is a sample session with gb1
+
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
 
 % gb1 -show refseqn:NC_000913
 Calculate strand bias of bacterial genome using B1 index

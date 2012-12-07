@@ -7,21 +7,7 @@ Description
 
    This program calculates codon usage differences between gene classes for
    identifying Predicted Highly eXpressed (PHX) and Putative Alien (PA) genes.
-   The "expression measure" of a gene, E_g, will be accessible at
-   $gb->{"FEATURE$i"}->{E_g}.
 
-Usage:
-    NULL = &phx(G instance);
-
-  Options:
-   -output      output option (default: 'show')
-                'stdout' for standard output,
-                'f' for file output in directory "data",
-                'g' for graph output in directory "graph",
-                'show' for graph output and display (default: "show")
-   -filename    output filename (default: "phx.png" for -output=>"g",
-                                          "phx.csv" for -output=>"f")
-   -usage       pointer HASH of vectors of amino acid and codon    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
 
@@ -39,6 +25,9 @@ Usage:
 Usage
 
    Here is a sample session with gphx
+
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
 
 % gphx refseqn:NC_000913
 Identify predicted highly expressed gene

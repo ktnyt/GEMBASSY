@@ -8,7 +8,6 @@ Description
    This method prints out basic compositional statistics of the 
    given nucleotide sequence, in a format similar to the one printed
    right after calling load(). Returns the number of A, T, G, and C bases.
-
  
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
@@ -29,9 +28,11 @@ Usage
 
    Here is a sample session with gseqinfo
 
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
+
 % gseqinfo -show refseqn:NC_000913
 Prints out basic nucleotide sequence statistics
-Output filename [nc_000913.gseqinfo]:
 Sequence: NC_000913 A: 1142228 T: 1140970 G: 1176923 C: 1179554
 
 Command line arguments

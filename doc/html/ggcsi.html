@@ -53,9 +53,10 @@ IT IS DONE FOR YOU.
    and dist is the normalized Euclidean distance between the vertices of <br>
    cumulative GC skew.<br>
 <br>
-   GCSI ranges from 0 (no observable skew) to 1 (strong skew), and Archaeal genomes<br>
-   that have multiple replication origins and therefore have no observable skew<br>
-   mostly have GCSI below 0.05. Escherichia coli genome has values around 0.10.<br>
+   GCSI ranges from 0 (no observable skew) to 1 (strong skew), and Archaeal<br>
+   genomes that have multiple replication origins and therefore have no<br>
+   observable skew mostly have GCSI below 0.05. Escherichia coli genome has<br>
+   values around 0.10.<br>
 <br>
    Version 1 of GCSI required fixed number of windows (4096), but the new GCSI<br>
    version 2 (also known as generalized GCSI: gGCSI) is invariant of the number<br>
@@ -63,7 +64,6 @@ IT IS DONE FOR YOU.
    the geometric mean of gGCSI) of SR (spectral ratio, the signal-to-noise ratio<br>
    of 1Hz power spectrum) and dist. <br>
 <br>
-  <br>
    G-language SOAP service is provided by the<br>
    Institute for Advanced Biosciences, Keio University.<br>
    The original web service is located at the following URL:<br>
@@ -86,9 +86,11 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with ggcsi
 
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
+
 % ggcsi -show refseqn:NC_000913
 GC Skew Index: an index for strand-specefic mutational bias
-Output filename [nc_000913.ggcsi]:
 Sequence: NC_000913 GCSI: 0.0966615833014818 SA: 487.218569030757 DIST: 69.037726
 
 </pre></td></tr></table>

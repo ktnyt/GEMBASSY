@@ -31,7 +31,8 @@ glda_bias
 
 
 <H2> Function </H2>
-   Calculate strand bias of bacterial genome using linear discriminant analysis (LDA)
+   Calculate strand bias of bacterial genome using linear discriminant analysis
+   (LDA)
 <!--
 DON'T WRITE ANYTHING HERE.
 IT IS DONE FOR YOU.
@@ -42,20 +43,17 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This method calculate strand bias of bacterial genome using linear discriminant <br>
-   analysis (LDA), as proposed in Reference 1. The basic idea is to use composition<br>
-   data of genes to train and predict the strand of genes residing either on the <br>
-   leading or the lagging strand. For computational efficiency, this method trans<br>
-   and predicts the strands at putative replication origin as reported by the <br>
-   rep_ori_ter() method. This usually results in maximum predictability of LDA<br>
-   within bacterial genomes.<br>
+   This method calculate strand bias of bacterial genome using linear<br>
+   discriminant analysis (LDA), as proposed in Reference 1. The basic idea is to<br>
+   use composition data of genes to train and predict the strand of genes<br>
+   residing either on the leading or the lagging strand. For computational<br>
+   efficiency, this method trans and predicts the strands at putative<br>
+   replication origin as reported by the rep_ori_ter() method. This usually<br>
+   results in maximum predictability of LDA within bacterial genomes.<br>
 <br>
-   Data to use for LDA can be chosen from "base", "codonbase", "codon", and "amino",<br>
-   with -variable option.<br>
+   Data to use for LDA can be chosen from "base", "codonbase", "codon", and<br>
+   "amino", with -variable option.<br>
 <br>
-   Installation of R statistics package is required.<br>
-<br>
- <br>
    G-language SOAP service is provided by the<br>
    Institute for Advanced Biosciences, Keio University.<br>
    The original web service is located at the following URL:<br>
@@ -78,9 +76,11 @@ IT IS DONE FOR YOU.
 
    Here is a sample session with glda_bias
 
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
+
 % glda_bias -show refseqn:NC_000913
 Calculate strand bias of bacterial genome using linear discriminant analysis (LDA)
-Output filename [nc_000913.glda_bias]:
 Sequence: NC_000913 LDA bias: 0.7421296
 
 </pre></td></tr></table>

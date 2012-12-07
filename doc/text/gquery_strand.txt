@@ -7,7 +7,6 @@ Description
 
    Given a position and strand information (direct or complement), 
    returns whether the specified position is in the leading or lagging strand.
-
   
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
@@ -27,6 +26,9 @@ Description
 Usage
 
    Here is a sample session with gquery_strand
+
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
 
 % gquery_strand -show refseqn:NC_000913
 Get the strand name (leading or lagging) from the given position

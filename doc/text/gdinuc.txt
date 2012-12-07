@@ -5,14 +5,11 @@ Function
 
 Description
 
-   This program calculates dinucleotide usage indices for protein-coding sequences
-   (excluding start and stop codons), and inputs in the G instance. e.g. CG dinucleotide 
-   usage at the reading frame 1-2 will be accessible at $gb->{"FEATURE$i"}->{cg12}
+   This program calculates dinucleotide usage indices for protein-coding
+   sequences (excluding start and stop codons).
    Dinucleotide usage was computed as the ratio of observed (O) to expected (E) 
    dinucleotide frequencies.
-   Informations stored in the G instance are: $gb->{header_dinuc}
 
- 
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -31,6 +28,9 @@ Description
 Usage
 
    Here is a sample session with gdinuc
+
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
 
 % gdinuc refseqn:NC_000913
 Calculates dinucleotide usage 

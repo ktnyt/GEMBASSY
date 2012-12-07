@@ -42,26 +42,26 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This program creates an image showing the abundance of all k-mers (oligonucleotides<br>
-   of length k) in a given sequence. For example, for tetramers (k=4), resulting image<br>
-   is composed of 4^4 = 256 boxes, each representing an oligomer. Oligomer name and <br>
-   abundance is written within these boxes, and abundance is also visualized with <br>
-   the box color, from white (none) to black (highly frequent).<br>
+   This program creates an image showing the abundance of all k-mers<br>
+   (oligonucleotides of length k) in a given sequence. For example, for<br>
+   tetramers (k=4), resulting image is composed of 4^4 = 256 boxes, each<br>
+   representing an oligomer. Oligomer name and abundance is written within these<br>
+   boxes, and abundance is also visualized with the box color, from white (none)<br>
+   to black (highly frequent).<br>
 <br>
-   This k-mer table is alternatively known as the FCGR (frequency matrices extracted<br>
-   from Chaos Game Representation).<br>
+   This k-mer table is alternatively known as the FCGR (frequency matrices<br>
+   extracted from Chaos Game Representation).<br>
 <br>
    Position of the oligomers can be recursively located as follows:<br>
    For each letter in an oligomer, a box is subdivided into four quadrants, <br>
-   where A is upper left, T is lower right, G is upper right, and C is lower left.<br>
+   where A is upper left, T is lower right, G is upper right, and C is lower<br>
+   left.<br>
+<br>
    Therefore, oligomer ATGC is in the <br>
    A = upper left quadrant<br>
    T = lower right within the above quadrant<br>
    G = upper right within the above quadrant<br>
    C = lower left within the above quadrant<br>
-<br>
-   With Google Maps representation using -gmap=>1 option, oligomers can be searched<br>
-   incrementally from the top search box.<br>
 <br>
    More detailed documentation is available at <br>
    http://www.g-language.org/wiki/cgr<br>
@@ -88,6 +88,9 @@ IT IS DONE FOR YOU.
 <table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
 
    Here is a sample session with gkmer_table
+
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
 
 % gkmer_table refseqn:NC_000913
 Create an image showing all k-mer abundance within a sequence
@@ -282,12 +285,12 @@ None.
 
 <tr>
 <td><a href="goligomer_counter.html">goligomer_counter</a></td>
-<td></td>
+<td>Counts the number of given oligomers in a sequence</td>
 </tr>
 
 <tr>
 <td><a href="goligomer_search.html">goligomer_search</a></td>
-<td></td>
+<td>Searches oligomers in given sequence</td>
 </tr>
 
 <tr>

@@ -9,7 +9,6 @@ Description
    nucleotide contents and positions of genes.
    A is shown in red, T is shown in green, 
    G is shown in yellow, and C is shown in blue. 
-
   
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
@@ -29,6 +28,9 @@ Description
 Usage
 
    Here is a sample session with ggenome_map3
+
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
 
 % ggenome_map3 refseqn:NC_000908
 Draws the map of the genome (version 3)

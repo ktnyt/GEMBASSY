@@ -5,10 +5,7 @@ Function
 
 Description
 
-   This program calculates codon adaptation index (CAI) for each gene,
-   and inputs in the G instance. i.e. CAI values will be accessible at
-   $gb->{"FEATURE$i"}->{cai};
-
+   This program calculates codon adaptation index (CAI) for each gene.
   
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
@@ -28,6 +25,9 @@ Description
 Usage
 
    Here is a sample session with gcai
+
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
 
 % gcai refseqn:NC_000913
 Calculate codon adaptation index for each gene

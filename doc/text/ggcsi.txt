@@ -16,9 +16,10 @@ Description
    and dist is the normalized Euclidean distance between the vertices of 
    cumulative GC skew.
 
-   GCSI ranges from 0 (no observable skew) to 1 (strong skew), and Archaeal genomes
-   that have multiple replication origins and therefore have no observable skew
-   mostly have GCSI below 0.05. Escherichia coli genome has values around 0.10.
+   GCSI ranges from 0 (no observable skew) to 1 (strong skew), and Archaeal
+   genomes that have multiple replication origins and therefore have no
+   observable skew mostly have GCSI below 0.05. Escherichia coli genome has
+   values around 0.10.
 
    Version 1 of GCSI required fixed number of windows (4096), but the new GCSI
    version 2 (also known as generalized GCSI: gGCSI) is invariant of the number
@@ -26,7 +27,6 @@ Description
    the geometric mean of gGCSI) of SR (spectral ratio, the signal-to-noise ratio
    of 1Hz power spectrum) and dist. 
 
-  
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -46,9 +46,11 @@ Usage
 
    Here is a sample session with ggcsi
 
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
+
 % ggcsi -show refseqn:NC_000913
 GC Skew Index: an index for strand-specefic mutational bias
-Output filename [nc_000913.ggcsi]:
 Sequence: NC_000913 GCSI: 0.0966615833014818 SA: 487.218569030757 DIST: 69.037726
 
 Command line arguments

@@ -7,7 +7,6 @@ Description
 
    This program calculates and graphs the GC content.
 
- 
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -27,9 +26,11 @@ Usage
 
    Here is a sample session with ggcwin
 
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
+
 % ggcwin -plot refseqn:NC_000913
 Calculates the GC content along the given genome
-Output filename [ggcwin.nc_000913.csv]:
 Created ggcwin.ps
 
 Command line arguments

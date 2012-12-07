@@ -5,26 +5,26 @@ Function
 
 Description
 
-   This program creates an image showing the abundance of all k-mers (oligonucleotides
-   of length k) in a given sequence. For example, for tetramers (k=4), resulting image
-   is composed of 4^4 = 256 boxes, each representing an oligomer. Oligomer name and 
-   abundance is written within these boxes, and abundance is also visualized with 
-   the box color, from white (none) to black (highly frequent).
+   This program creates an image showing the abundance of all k-mers
+   (oligonucleotides of length k) in a given sequence. For example, for
+   tetramers (k=4), resulting image is composed of 4^4 = 256 boxes, each
+   representing an oligomer. Oligomer name and abundance is written within these
+   boxes, and abundance is also visualized with the box color, from white (none)
+   to black (highly frequent).
 
-   This k-mer table is alternatively known as the FCGR (frequency matrices extracted
-   from Chaos Game Representation).
+   This k-mer table is alternatively known as the FCGR (frequency matrices
+   extracted from Chaos Game Representation).
 
    Position of the oligomers can be recursively located as follows:
    For each letter in an oligomer, a box is subdivided into four quadrants, 
-   where A is upper left, T is lower right, G is upper right, and C is lower left.
+   where A is upper left, T is lower right, G is upper right, and C is lower
+   left.
+
    Therefore, oligomer ATGC is in the 
    A = upper left quadrant
    T = lower right within the above quadrant
    G = upper right within the above quadrant
    C = lower left within the above quadrant
-
-   With Google Maps representation using -gmap=>1 option, oligomers can be searched
-   incrementally from the top search box.
 
    More detailed documentation is available at 
    http://www.g-language.org/wiki/cgr
@@ -48,6 +48,9 @@ Description
 Usage
 
    Here is a sample session with gkmer_table
+
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
 
 % gkmer_table refseqn:NC_000913
 Create an image showing all k-mer abundance within a sequence

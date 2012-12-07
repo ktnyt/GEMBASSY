@@ -6,10 +6,6 @@ Function
 Description
 
    Calculates the consensus of given list of sequences, using Z-score.
-   Consensus with Z value greater than int high_z (default is 1) is 
-   capitalized, and consensus with Z value less than int low_z 
-   (default is 0.2) is shown as '-'.
-
   
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.

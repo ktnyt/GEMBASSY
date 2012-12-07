@@ -7,7 +7,6 @@ Description
 
    This program calculates the codon bias index (CBI).
 
-  
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -26,6 +25,9 @@ Description
 Usage
 
    Here is a sample session with gcbi
+
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
 
 % gcbi -show refseqn:NC_000913
 Calculates the codon bias index (CBI)
