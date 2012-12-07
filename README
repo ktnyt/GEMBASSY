@@ -58,8 +58,8 @@ INSTALLATION
       % cd embassy
 
     3. Download and compile the GEMBASSY source code
-      % wget http://web.sfc.keio.ac.jp/~t11080hi/GEMBASSY-1.0.0.tar.gz
-      (or "curl -O http://web.sfc.keio.ac.jp/~t11080hi/GEMBASSY-1.0.0.tar.gz")
+      % wget http://soap.g-language.org/gembassy/source/GEMBASSSY-1.0.0.tar.gz
+      (or "curl -O http://soap.g-language.org/gembassy/source/GEMBASSY-1.0.0.tar.gz")
       % tar zxf GEMBASSY-1.0.0.tar.gz
       % cd GEMBASSY-1.0.0
       ( EMBOSS-6.5.7/embassy/GEMBASSY-1.0.0 )
