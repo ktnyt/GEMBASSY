@@ -21,11 +21,11 @@
   This is an EMBASSY package for the utilization of G-language SOAP service.
 
   All of the tools included in this package are wrapper programs to
-  utilize G-language SOAP services, which are web APIs to access the methods
-  of G-language Genome Analysis Environment (GAE); a powerful workbench for
-  genome analysis. The web services use SOAP 1.1.
+  utilize G-language SOAP service, which are web APIs to access the methods
+  of G-language Genome Analysis Environment (G-language GAE); a powerful
+  workbench for genome analysis.
 
-  Detailed documentation on G-language GAE methods are availabe at
+  Detailed documentation on G-language GAE methods are availabe at:
   http://www.g-language.org/wiki/soap
 
 *****************************************************************************/
@@ -44,28 +44,28 @@ INSTALLATION
     is EMBOSS-latest.tar.gz
 
     1. Download and compile EMBOSS source code
-       % wget ftp://emboss.open-bio.org/pub/EMBOSS/EMBOSS-latest.tar.gz
-       (or "curl -O ftp://emboss.open-bio.org/pub/EMBOSS/EMBOSS-latest.tar.gz")
-       % tar zxf EMBOSS-latest.tar.gz
-       % cd EMBOSS-6.5.7
-       % ./configure
-       % make
-       % sudo make install
+      % wget ftp://emboss.open-bio.org/pub/EMBOSS/EMBOSS-latest.tar.gz
+      (or "curl -O ftp://emboss.open-bio.org/pub/EMBOSS/EMBOSS-latest.tar.gz")
+      % tar zxf EMBOSS-latest.tar.gz
+      % cd EMBOSS-6.5.7
+      % ./configure
+      % make
+      % sudo make install
 
-    2. Make "embassy" directory in the EMBOSS-6.4.0/ directory if it does not
+    2. Make "embassy" directory in the EMBOSS-6.5.7/ directory if it does not
        exist and go into the directory.
-       % mkdir embassy
-       % cd embassy
+      % mkdir embassy
+      % cd embassy
 
     3. Download and compile the GEMBASSY source code
-       % wget http://web.sfc.keio.ac.jp/~t11080hi/GEMBASSY-1.0.0.tar.gz
-       (or "curl -O http://web.sfc.keio.ac.jp/~t11080hi/GEMBASSY-1.0.0.tar.gz")
-       % tar zxf GEMBASSY-1.0.0.tar.gz
-       % cd GEMBASSY-1.0.0
-       ( EMBOSS-6.4.0/embassy/GEMBASSY-1.0.0 )
-       % ./configure (use the same options as in step 1.)
-       % make
-       % sudo make install
+      % wget http://web.sfc.keio.ac.jp/~t11080hi/GEMBASSY-1.0.0.tar.gz
+      (or "curl -O http://web.sfc.keio.ac.jp/~t11080hi/GEMBASSY-1.0.0.tar.gz")
+      % tar zxf GEMBASSY-1.0.0.tar.gz
+      % cd GEMBASSY-1.0.0
+      ( EMBOSS-6.5.7/embassy/GEMBASSY-1.0.0 )
+      % ./configure
+      % make
+      % sudo make install
 
 NOTE
   libtool problem
@@ -92,12 +92,19 @@ NOTE
     may cause errors.
 
   EMBOSS is already installed
-    When EMBOSS is already installed in your system, please install GEMBASSY at
-    the same PATH as existed EMBOSS by '--prefix' option.
+    When EMBOSS is already installed, you can install GEMBASSY directly.
+      % wget http://web.sfc.keio.ac.jp/~t11080hi/GEMBASSY-1.0.0.tar.gz
+      (or "curl -O http://web.sfc.keio.ac.jp/~t11080hi/GEMBASSY-1.0.0.tar.gz")
+      % tar zxf GEMBASSY-1.0.0.tar.gz
+      % cd GEMBASSY-1.0.0
+      % ./configure --prefix=/PATH/TO/INSTALL/
+      % make
+      % sudo make install
+
 
   Non-root users
     On steps 1. and 3. do
-    % ./configure --prefix=/PATH/TO/DIR/ (ex. $HOME/usr/local)
+    % ./configure --prefix=/PATH/TO/DIR/ (ex. $HOME/opt)
     % make
     % make install
     Then rewrite the "emboss_acdroot" and "emboss_data" value in ~/.embossrc
@@ -125,26 +132,24 @@ INFORMATION OF GEMBASSY TOOLS
       % tfm gamino_info
 
 USAGE EXAMPLE
-   Sample files used in the following examples are included in this package.
-      ( GEMBASSY-1.0.0/data/* )
-
+   The following examples show basic usages of three GEMBASSY tools and the
+   different ways of passing input. Example 1. uses database definition, 2.
+   uses the accid option, and 3. uses the sequence accession ID as input.
    1. ggcskew (GC skew)
-      % ggcskew NC_000913.gbk -graph cps
+      % ggcskew refseqn:NC_000913 -graph cps
       Calculates the GC skew of the input sequence
       Created ggcskew.ps
 
    2. ggcsi (GC Skew Index)
-      % ggcsi 
+      % ggcsi -show accid.fasta -accid NC_000964
       GC Skew Index: an index for strand-specefic mutational bias
-      Input nucleotide sequence: NC_000913.gbk
-      Output file [nc_000913.ggcsi]:
+      Input nucleotide sequence: refseqn:NC_000964
+      Sequence: NC_000964 GCSI: 0.214855185905019 SA: 976.152832384745 DIST: 170.245783
 
-         Creates nc_000913.ggcsi
-
-   3. grep_ori_ter
+   3. grep_ori_ter (Replication Origin and Terminus)
       % greporiter -show
       Get the positions of replication origin and terminus
-      Input nucleotide sequence: refseqn:NC_000913
+      Input nucleotide sequence: accid.fasta
       Sequence: NC_000913 Origin: 3923881 Terminus: 1550412
 
 *****************************************************************************/
