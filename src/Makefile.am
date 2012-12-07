@@ -76,6 +76,8 @@ bin_PROGRAMS = gaaui\
                gkmer_table\
                glda_bias\
                gnucleotide_periodicity\
+	       goligomer_counter\
+	       goligomer_search\
                gp2\
                gpalindrome\
                gphx\
@@ -126,6 +128,8 @@ gicdi_SOURCES           = gicdi.c
 gkmer_table_SOURCES     = gkmer_table.c
 glda_bias_SOURCES       = glda_bias.c
 gnucleotide_periodicity_SOURCES = gnucleotide_periodicity.c
+goligomer_counter_SOURCES       = goligomer_counter.c
+goligomer_search_SOURCES        = goligomer_search.c
 gp2_SOURCES             = gp2.c
 gpalindrome_SOURCES     = gpalindrome.c
 gphx_SOURCES            = gphx.c

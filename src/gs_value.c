@@ -33,7 +33,7 @@ main(int argc, char *argv[])
   accid = ajAcdGetString("accid");
 
   show = ajAcdGetToggle("show");
-  outf = ajAcdGetOutfile("outf");
+  outf = ajAcdGetOutfile("outfile");
 
   params.sharp = sharp;
 
