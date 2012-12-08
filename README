@@ -138,7 +138,7 @@ USAGE EXAMPLE
    different ways of passing input. Example 1. uses database definition, 2.
    uses the accid option, and 3. uses the sequence accession ID as input.
    1. ggcskew (GC skew)
-      % ggcskew refseqn:NC_000913 -graph cps
+      % ggcskew -plot -graph cps refseqn:NC_000913
       Calculates the GC skew of the input sequence
       Created ggcskew.ps
 
