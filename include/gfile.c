@@ -22,6 +22,7 @@
 ******************************************************************************/
 
 
+#include "gfile.h"
 
 
 /* @func gValID ***************************************************************
@@ -37,15 +38,17 @@ AjBool gValID(AjPStr id){
   AjPStr url      = NULL;
   AjPStr filename = NULL;
   AjPStr content  = NULL;
+  char   first[1];
 
   url = ajStrNewC("http://web.sfc.keio.ac.jp/~t11080hi/valID/valID.cgi?id=");
 
-  filename = gGetUniqueFilename;
+  filename = gGetUniqueFileName();
 
-  ajFmtStr(&url, "%S%S", url, id);
+  url = ajFmtStr("%S%S", url, id);
   gGetFileFromURL(url, filename);
   gGetFileContent(&content, filename);
-  if(ajStrToInt(ajStrNewC(ajStrGetCharFirst(content))))
+  first[0] = ajStrGetCharFirst(content);
+  if(atoi(first))
     return ajTrue;
   else
     return ajFalse;
@@ -196,7 +199,7 @@ AjBool gGetFileContent(AjPStr* content, AjPStr filename){
     return ajFalse;
 
   while(ajReadline(file, &line))
-    ajStrAppendS(&content, line);
+    ajStrAppendS(content, line);
 
   if(file)
     ajFileClose(&file);

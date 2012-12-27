@@ -1,6 +1,8 @@
 #ifndef gfile_h
 #define gfile_h
 
+#include "emboss.h"
+
 /*
 ** Prototype definitions
 */
