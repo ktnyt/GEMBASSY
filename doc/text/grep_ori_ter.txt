@@ -21,10 +21,7 @@ Description
    terminus using the popular Oriloc program developed by Lobry et al. 
    available as part of the SeqinR package Frank and Lobry (2000).
 
-   3. Setting custom origin and terminus
-   Use -ori position1, -ter position2 to set your own positions.
-
-   4. Use GC skew shift-point
+   3. Use GC skew shift-point
    If the positions of origin or terminus cannot be found in the databases,
    grep_ori_ter automatically calls find_ori_ter() method to predict the 
    positions using GC skew shift-points at one-base-pair resolution.
