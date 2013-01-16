@@ -57,7 +57,7 @@ AjBool gValID(AjPStr id){
 
 
 
-/* @func gGetFileFromURL*******************************************************
+/* @func gGetFileFromURL******************************************************
 **
 ** Downloads file from a specified URL
 **
@@ -71,16 +71,20 @@ AjBool gGetFileFromURL(AjPStr url, AjPStr filename){
   AjPFilebuff buff = NULL;
   AjPFile     outf = NULL;
   AjPStr      line = NULL;
+  AjPStr      cont = NULL;
   AjPStr      host = NULL;
   AjPStr      path = NULL;
   ajint       port = 80;
 
   ajHttpUrlDeconstruct(url, &port, &host, &path);
   buff = ajHttpRead(NULL, NULL, NULL, host, port, path);
-  outf = ajFilebuffGetFile(buff);
-  if(!ajFileReopenName(outf, filename))
-    embExitBad();
-
+  outf = ajFileNewInNameS(filename);
+  ajFilebuffHtmlNoheader(buff);
+  while(ajBuffreadLine(buff, &line)){
+    ajStrAppendS(&cont, line);
+  }
+  ajFmtPrint("%S", cont);
+  
   ajFileClose(&outf);
 
   return 0;
@@ -101,7 +105,7 @@ AjPStr gGetUniqueFileName(void) {
   static char ext[2] = "A";
   AjPStr filename    = NULL;
 
-  ajFmtPrintS(&filename, "%08d%s",getpid(), ext);
+  ajFmtPrintS(&filename, "%08d%s", getpid(), ext);
 
   if( ++ext[0] > 'Z' ) {
     ext[0] = 'A';

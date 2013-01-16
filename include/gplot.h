@@ -1,6 +1,8 @@
 #ifndef GPLOT_H
 #define GPLOT_H
 
+#include "emboss.h"
+
 /* @datastatic gPlotParams*****************************************************
 **
 ** gPlot plotting parameters
@@ -18,7 +20,7 @@
 ** @@
 ******************************************************************************/
 
-typedef struct gPlotParams
+typedef struct gPlotStruct
 {
   float **data;
   size_t  setNum;
@@ -30,7 +32,7 @@ typedef struct gPlotParams
   AjPStr  xlab;
   AjPStr  ylab;
   AjPPStr names;
-} gPlotObject;
+} gPlotParams;
 
 /*
 ** Prototype Definitions
