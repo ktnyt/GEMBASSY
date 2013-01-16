@@ -554,6 +554,7 @@ AC_CONFIG_FILES([
 Makefile
 src/Makefile
 acd/Makefile
+include/Makefile
 doc/Makefile
 doc/html/Makefile
 doc/text/Makefile
