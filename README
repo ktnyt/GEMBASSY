@@ -100,8 +100,8 @@ NOTE
 
   EMBOSS is already installed
     When EMBOSS is already installed, you can install GEMBASSY directly.
-      % wget http://web.sfc.keio.ac.jp/~t11080hi/GEMBASSY-1.0.0.tar.gz
-      (or "curl -O http://web.sfc.keio.ac.jp/~t11080hi/GEMBASSY-1.0.0.tar.gz")
+      % wget http://soap.g-language.org/gembassy/source/GEMBASSY-1.0.0.tar.gz
+      (or "curl -O http://soap.g-language.org/gembassy/source/GEMBASSY-1.0.0.tar.gz")
       % tar zxf GEMBASSY-1.0.0.tar.gz
       % cd GEMBASSY-1.0.0
       % ./configure --prefix=/PATH/TO/INSTALL/
