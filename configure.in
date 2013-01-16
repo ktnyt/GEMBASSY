@@ -10,7 +10,7 @@ AC_INIT([GEMBASSY], [1.0.0], [celery@g-language.org],
     [GEMBASSY], [http://web.sfc.keio.ac.jp/~t11080hi/gembassy/GEMBASSY.tar.gz])
 AC_REVISION([$Revision: 1.36 $])
 AC_CONFIG_HEADERS([src/config.h])
-#AC_CONFIG_SRCDIR(src/kglimmer.c)
+AC_CONFIG_SRCDIR(src/ggcskew.c)
 AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE
 
@@ -552,9 +552,9 @@ CHECK_THREADS
 
 AC_CONFIG_FILES([
 Makefile
+include/Makefile
 src/Makefile
 acd/Makefile
-include/Makefile
 doc/Makefile
 doc/html/Makefile
 doc/text/Makefile

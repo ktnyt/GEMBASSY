@@ -292,5 +292,3 @@ int gPlotFlip(gPlotParams *gpp)
 
   return 0;
 }
-
-#endif /* GPLOT_H */

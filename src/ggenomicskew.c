@@ -8,48 +8,46 @@
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
-#include "../include/gembassy.h"
+#include "../include/gfile.h"
 #include "../include/gplot.h"
 
-int
-main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
   embInitPV("ggenomicskew", argc, argv, "GEMBASSY", "1.0.0");
 
   struct soap	  soap;
   struct ns1__genomicskewInputParams params;
 
-  AjPSeqall	  seqall;
-  AjPSeq	  seq;
-  AjPStr	  inseq = NULL;
-  ajint		  divide = 0;
-  AjBool	  at = 0;
-  AjPStr	  accid = NULL;
-  char           *result;
+  AjPSeqall seqall;
+  AjPSeq    seq;
+  AjPStr    inseq = NULL;
+  ajint	    divide = 0;
+  AjBool    at = 0;
+  AjPStr    accid = NULL;
+  char     *result;
 
-  AjBool	  plot = 0;
-  AjPFile	  outf = NULL;
-  AjPGraph	  mult = NULL;
+  AjBool    plot = 0;
+  AjPFile   outf = NULL;
+  AjPGraph  mult = NULL;
 
-  AjPStr	  filename = getUniqueFileName();
+  AjPStr filename = gGetUniqueFileName();
 
-  gPlotParams	  gpp;
+  gPlotParams gpp;
 
   seqall = ajAcdGetSeqall("sequence");
   divide = ajAcdGetInt("divide");
-  at = ajAcdGetBoolean("at");
-  accid = ajAcdGetString("accid");
+  at     = ajAcdGetBoolean("at");
+  accid  = ajAcdGetString("accid");
 
   plot = ajAcdGetToggle("plot");
   outf = ajAcdGetOutfile("outfile");
   mult = ajAcdGetGraphxy("graph");
 
   params.divide = divide;
-  if (at) {
+  if (at)
     params.at = 1;
-  } else {
+  else
     params.at = 0;
-  }
   params.output = "f";
 
   while (ajSeqallNext(seqall, &seq)) {
@@ -59,7 +57,7 @@ main(int argc, char *argv[])
     inseq = NULL;
 
     if (ajSeqGetFeat(seq) && !ajStrGetLen(accid)) {
-      inseq = getGenbank(seq);
+      inseq = gFormatGenbank(seq);
       ajStrAssignS(&accid, ajSeqGetAccS(seq));
     } else {
       if (!ajStrGetLen(accid)) {
@@ -67,7 +65,7 @@ main(int argc, char *argv[])
 	fprintf(stderr, "Proceeding with sequence accession ID\n");
 	ajStrAssignS(&accid, ajSeqGetAccS(seq));
       }
-      if (!valID(ajCharNewS(accid))) {
+      if (!gValID(accid)) {
 	fprintf(stderr, "Invalid accession ID, exiting");
 	return 1;
       } else {
@@ -82,7 +80,9 @@ main(int argc, char *argv[])
 				   &soap, NULL, NULL,
 				   in0, &params, &result
 				   ) == SOAP_OK) {
-      if (get_file(result, ajCharNewS(filename)) == 0) {
+      gGetFileFromURL(ajStrNewC(result), filename);
+      return 0;
+      if (gGetFileFromURL(ajStrNewC(result), filename) == 0) {
 	if (plot) {
 	  AjPStr	  title = NULL;
 	  AjPPStr	  names = NULL;
@@ -106,8 +106,10 @@ main(int argc, char *argv[])
 	  if (gPlotFile(filename, mult, &gpp) == 1)
 	    fprintf(stderr, "Error in plotting\n");
 	} else {
+	  AjPStr content;
+	  gGetFileContent(&content, filename);
 	  ajFmtPrintF(outf, "Sequence: %S\n%S\n",
-		      accid, getContentS(filename));
+		      accid, content);
 	}
       } else {
 	fprintf(stderr, "Retrieval unsuccessful\n");
