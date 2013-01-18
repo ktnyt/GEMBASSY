@@ -141,7 +141,7 @@ Output filename [nc_000913.gcbi]:
 <td>string</td>
 <td>Regular expression to delete key</td>
 <td>Any string</td>
-<td>[^ACDEFGHIKLMNPQRSTVWYacgtU\/]</td>
+<td>[^ACDEFGHIKLMNPQRSTVWYacgtU]</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -169,32 +169,9 @@ Output filename [nc_000913.gcbi]:
    gcbi reads nucleotide sequences.
 </p>
 
-<h2>Ouptut file format</h2>
+<h2>Output file format</h2>
 
 <p>
-   Additional (Optional) qualifiers: (none)
-   Advanced (Unprompted) qualifiers:
-   -translate          boolean    [0] Include when translating using standard
-                                  codon table
-   -id                 string     [All] ID of a group of genes or a single
-                                  gene (Any string)
-   -delkey             string     [[^ACDEFGHIKLMNPQRSTVWYacgtU]] Regular
-                                  expression to delete key (Any string)
-   -accid              string     Include to use sequence accession ID as
-                                  query (Any string)
-   -show               toggle     [N] Include to dump result to stdout
-
-   General qualifiers:
-   -help               boolean    Report command line options and exit. More
-                                  information on associated and general
-                                  qualifiers can be found with -help -verbose
-
-Input file format
-
-   gcbi reads nucleotide sequences.
-
-Output file format
-
    The output from gcbi is to a file or stdout.
 </p>
 
@@ -225,7 +202,7 @@ None.
       31, 7.
 
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
-      Analysis Environment with REST and SOAP Wev Service Interfaces,
+      Analysis Environment with REST and SOAP Web Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
 </pre>
 

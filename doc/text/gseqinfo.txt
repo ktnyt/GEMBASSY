@@ -80,7 +80,7 @@ References
       31, 7.
 
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
-      Analysis Environment with REST and SOAP Wev Service Interfaces,
+      Analysis Environment with REST and SOAP Web Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
 
 Warnings
