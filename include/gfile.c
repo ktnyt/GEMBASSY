@@ -70,23 +70,27 @@ AjBool gValID(AjPStr id){
 AjBool gGetFileFromURL(AjPStr url, AjPStr filename){
   AjPFilebuff buff = NULL;
   AjPFile     outf = NULL;
-  AjPStr      line = NULL;
-  AjPStr      cont = NULL;
   AjPStr      host = NULL;
   AjPStr      path = NULL;
   ajint       port = 80;
 
-  ajHttpUrlDeconstruct(url, &port, &host, &path);
-  buff = ajHttpRead(NULL, NULL, NULL, host, port, path);
-  outf = ajFileNewInNameS(filename);
-  ajFilebuffHtmlNoheader(buff);
-  while(ajBuffreadLine(buff, &line)){
-    ajStrAppendS(&cont, line);
-  }
-  ajFmtPrint("%S", cont);
-  
-  ajFileClose(&outf);
+  AjPStr file = NULL;
+  AjPStr line = NULL;
 
+  ajHttpUrlDeconstruct(url, &port, &host, &path);
+
+  buff = ajHttpRead(NULL, NULL, NULL, host, port, path);
+
+  outf = ajFileNewOutNameS(filename);
+
+  ajFilebuffHtmlNoheader(buff);
+
+  while(ajBuffreadLine(buff, &line)){
+    ajWriteline(outf, line);
+  }
+
+  ajFileClose(&outf);
+  ajFilebuffDel(&buff);
   return 0;
 }
 
