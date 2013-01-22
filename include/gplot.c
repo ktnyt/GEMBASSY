@@ -24,22 +24,27 @@
 
 #include "gplot.h"
 
-/* @funclist gPlotFile ********************************************************
+
+
+
+/* @funclist gPlotFilebuff ****************************************************
 **
-** Retrieves data from CSV file and plots the data using gPlotData
+** Retrieves data from file buffer and plots the data using gPlotData
 **
 ******************************************************************************/
 
-int gPlotFile(AjPStr filename, AjPGraph graphs, gPlotParams *gpp)
+AjBool gPlotFilebuff(AjPFilebuff buff, AjPGraph graphs, gPlotParams *gpp)
 {
-  AjPFile file = ajFileNewInNameS(filename);
   AjPStr  line = NULL;
   AjPPStr temp = NULL;
   AjPPStr name = NULL;
-  ajint   i=0, j=0, col=0, flag=0;
+  ajint   i    = 0;
+  ajint   j    = 0;
+  ajint   col  = 0;
+  ajint   flag = 0;
   float **data = NULL;
 
-  while(ajReadline(file, &line))
+  while(ajBuffreadLine(buff, &line))
     {
 
     /*
@@ -52,33 +57,33 @@ int gPlotFile(AjPStr filename, AjPGraph graphs, gPlotParams *gpp)
 
       if((temp = (AjPPStr)malloc(sizeof(AjPStr) * col)) == NULL)
 	{
-	return 1;
+	return ajFalse;
       }
 
       if((name = (AjPPStr)malloc(sizeof(AjPStr) * col)) == NULL)
 	{
-	free(temp);
-	return 1;
-      }
+	  AJFREE(temp);
+	  return ajFalse;
+	}
 
       if((data = (float**)malloc(sizeof(float*) * col)) == NULL)
 	{
-	free(temp);
-	free(name);
-	return 1;
-      }
+	  AJFREE(temp);
+	  AJFREE(name);
+	  return ajFalse;
+	}
       for(i = 0; i < col; ++i)
 	{
 	  if((data[i] = (float*)malloc(sizeof(float))) == NULL){
 	    {
-	      free(temp);
-	      free(name);
+	      AJFREE(temp);
+	      AJFREE(name);
 	      for(j = 0; j < i; ++j)
 		{
-		  free(data[j]);
+		  AJFREE(data[j]);
 		}
-	      free(data);
-	      return 1;
+	      AJFREE(data);
+	      return ajFalse;
 	    }
 	  }
 	}
@@ -91,15 +96,15 @@ int gPlotFile(AjPStr filename, AjPGraph graphs, gPlotParams *gpp)
       {
       if((data[i] = (float*)realloc(data[i], sizeof(float) * (j + 1))) == NULL)
 	{
-	free(temp);
-	free(name);
-	for(j = 0; j < i; ++j)
-	  {
-	  free(data[j]);
+	  AJFREE(temp);
+	  AJFREE(name);
+	  for(j = 0; j < i; ++j)
+	    {
+	      AJFREE(data[j]);
+	    }
+	  AJFREE(data);
+	  return ajFalse;
 	}
-	free(data);
-	return 1;
-      }
 
       ajStrRemoveLastNewline(&(temp[i]));
       if(ajStrIsFloat(temp[i]))
@@ -123,22 +128,21 @@ int gPlotFile(AjPStr filename, AjPGraph graphs, gPlotParams *gpp)
   if(!(*gpp).names)
     (*gpp).names = name;
 
-  ajSysFileUnlinkS(filename);
-
   if(j < 2)
     gPlotFlip(gpp);
 
   gPlotData(graphs, gpp);
 
   for(i = 0; i < (*gpp).typeNum; ++i)
-    free((*gpp).data[i]);
-  free((*gpp).data);
+    AJFREE((*gpp).data[i]);
+  AJFREE((*gpp).data);
+
   data = NULL;
 
-  ajFileClose(&file);
+  ajFilebuffDel(&buff);
   ajStrDel(&line);
 
-  return 0;
+  return ajTrue;
 }
 
 
@@ -150,14 +154,15 @@ int gPlotFile(AjPStr filename, AjPGraph graphs, gPlotParams *gpp)
 **
 ******************************************************************************/
 
-int gPlotData(AjPGraph graphs, gPlotParams *gpp)
+AjBool gPlotData(AjPGraph graphs, gPlotParams *gpp)
 {
   AjPGraphdata gd = NULL;
 
   float min = 0.0;
   float max = 0.0;
   float dif = 0.0;
-  ajint i, j;
+  ajint i;
+  ajint j;
 
   ajint   setNum  = (*gpp).setNum;
   ajint   dataNum = (*gpp).dataNum;
@@ -242,7 +247,7 @@ int gPlotData(AjPGraph graphs, gPlotParams *gpp)
   ajGraphxyDisplay(graphs, AJFALSE);
   ajGraphicsClose();
 
-  return 0;
+  return ajTrue;
 }
 
 
@@ -254,7 +259,7 @@ int gPlotData(AjPGraph graphs, gPlotParams *gpp)
 **
 ******************************************************************************/
 
-int gPlotFlip(gPlotParams *gpp)
+AjBool gPlotFlip(gPlotParams *gpp)
 {
   ajint   setNum  = (*gpp).setNum;
   ajint   dataNum = (*gpp).typeNum;
@@ -265,17 +270,17 @@ int gPlotFlip(gPlotParams *gpp)
   ajint i;
 
   if((tmp = (float**)malloc(sizeof(float*) * typeNum)) == NULL)
-    return 1;
+    return ajFalse;
   else
     for(i = 0; i < typeNum; ++i)
       if((tmp[i] = (float*)malloc(sizeof(float))) == NULL)
-	return 1;
+	return ajFalse;
 
   for(i = 0; i < dataNum; ++i){
     if((tmp[0] = (float*)realloc(tmp[0], sizeof(float) * (i + 1))) == NULL)
-      return 1;
+      return ajFalse;
     if((tmp[1] = (float*)realloc(tmp[1], sizeof(float) * (i + 1))) == NULL)
-      return 1;
+      return ajFalse;
     tmp[0][i] = i;
     tmp[1][i] = data[i][0];
   }
@@ -290,5 +295,5 @@ int gPlotFlip(gPlotParams *gpp)
   (*gpp).typeNum = 2;
   (*gpp).data    = tmp;
 
-  return 0;
+  return ajTrue;
 }

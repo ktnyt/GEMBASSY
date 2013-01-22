@@ -8,9 +8,13 @@
 */
 
 AjBool gValID(AjPStr id);
-AjBool gGetFileFromURL(AjPStr url, AjPStr filename);
+AjBool gStrAppendURLS(AjPStr url, AjPStr* string);
+AjBool gStrAppendURLC(char* url, AjPStr* string);
+AjBool gFileOutURLS(AjPStr url, AjPFile* outf);
+AjBool gFileOutURLC(char* url, AjPFile* outf);
+AjBool gFilebuffURLS(AjPStr url, AjPFilebuff* buff);
+AjBool gFilebuffURLC(char* url, AjPFilebuff* buff);
+AjBool gFormatGenbank(AjPSeq seq, AjPStr *str);
 AjPStr gGetUniqueFileName(void);
-AjPStr gFormatGenbank(AjPSeq seq);
-AjBool gGetFileContent(AjPStr* content, AjPStr filename);
 
 #endif

@@ -21,8 +21,9 @@
 ** Boston, MA  02111-1307, USA.
 ******************************************************************************/
 
-
 #include "gfile.h"
+
+
 
 
 /* @func gValID ***************************************************************
@@ -34,64 +35,183 @@
 ** @@
 ******************************************************************************/
 
-AjBool gValID(AjPStr id){
-  AjPStr url      = NULL;
-  AjPStr filename = NULL;
-  AjPStr content  = NULL;
-  char   first[1];
+ajint gValID(AjPStr id){
+  AjPFilebuff buff = NULL;
+  AjPStr      url  = NULL;
+  AjPStr      line = NULL;
+  AjPRegexp   pval = NULL;
 
   url = ajStrNewC("http://web.sfc.keio.ac.jp/~t11080hi/valID/valID.cgi?id=");
 
-  filename = gGetUniqueFileName();
+  ajStrAppendS(&url, id);
 
-  url = ajFmtStr("%S%S", url, id);
-  gGetFileFromURL(url, filename);
-  gGetFileContent(&content, filename);
-  first[0] = ajStrGetCharFirst(content);
-  if(atoi(first))
-    return ajTrue;
-  else
+  gFilebuffURLS(url, &buff);
+
+  ajBuffreadLine(buff, &line);
+
+  pval = ajRegCompC("^0");
+
+  if(ajRegExec(pval, line))
     return ajFalse;
+
+  return ajTrue;
 }
 
 
 
 
-/* @func gGetFileFromURL******************************************************
+/* @func gStrAppendURLS *******************************************************
 **
-** Downloads file from a specified URL
+** Downloads file from a specified URL and writes to given output file
 **
 ** @param [r] url [AjPStr] URL to download file from
-** @param [r] filename [AjPStr] Filename to output to
+** @param [r] outf [AjPFile] File object to write into
 ** @return [AjBool] 
 ** @@
 ******************************************************************************/
 
-AjBool gGetFileFromURL(AjPStr url, AjPStr filename){
+AjBool gStrAppendURLS(AjPStr url, AjPStr* string){
   AjPFilebuff buff = NULL;
-  AjPFile     outf = NULL;
-  AjPStr      host = NULL;
-  AjPStr      path = NULL;
-  ajint       port = 80;
+  AjPStr      file = NULL;
+  AjPStr      line = NULL;
 
-  AjPStr file = NULL;
+  if(!*string)
+    *string = ajStrNew();
+
+  if(!gFilebuffURLS(url, &buff))
+    return ajFalse;
+
+  while(ajBuffreadLine(buff, &line)){
+    ajStrAppendS(string, line);
+  }
+
+  ajFilebuffDel(&buff);
+
+  return ajTrue;
+}
+
+
+
+
+/* @func gStrAppendURLC *******************************************************
+**
+** Downloads file from a specified URL and writes to given output file
+**
+** @param [r] url [char*] URL to download file from
+** @param [r] outf [AjPFile] File object to write into
+** @return [AjBool] 
+** @@
+******************************************************************************/
+
+AjBool gStrAppendURLC(char* url, AjPStr* string){
+  if(!gStrAppendURLS(ajStrNewC(url), string))
+    {
+      return ajFalse;
+    }
+
+  return ajTrue;
+}
+
+
+
+
+/* @func gFileOutURLS *********************************************************
+**
+** Downloads file from a specified URL and writes to given output file
+**
+** @param [r] url [AjPStr] URL to download file from
+** @param [r] outf [AjPFile] File object to write into
+** @return [AjBool] 
+** @@
+******************************************************************************/
+
+AjBool gFileOutURLS(AjPStr url, AjPFile* outf){
+  AjPFilebuff buff = NULL;
+  AjPStr      file = NULL;
+  AjPStr      line = NULL;
+
+  if(!gFilebuffURLS(url, &buff))
+    return ajFalse;
+
+  while(ajBuffreadLine(buff, &line)){
+    ajWriteline(*outf, line);
+  }
+
+  ajFilebuffDel(&buff);
+
+  return ajTrue;
+}
+
+
+
+
+/* @func gFileOutURLC *********************************************************
+**
+** Downloads file from a specified URL and writes to given output file
+**
+** @param [r] url [char*] URL to download file from
+** @param [r] outf [AjPFile] File object to write into
+** @return [AjBool] 
+** @@
+******************************************************************************/
+
+AjBool gFileOutURLC(char* url, AjPFile* outf){
+  if(!gFileOutURLS(ajStrNewC(url), outf))
+    {
+      return ajFalse;
+    }
+
+  return ajTrue;
+}
+
+
+
+
+/* @func gFilebuffURLS ********************************************************
+**
+** Downloads file from a specified URL and inputs in file buffer
+**
+** @param [r] url [AjPStr] URL to download file from
+** @return [AjPFilebuff] 
+** @@
+******************************************************************************/
+
+AjBool gFilebuffURLS(AjPStr url, AjPFilebuff* buff){
   AjPStr line = NULL;
+  AjPStr host = NULL;
+  AjPStr path = NULL;
+  ajint  port = 80;
 
   ajHttpUrlDeconstruct(url, &port, &host, &path);
 
-  buff = ajHttpRead(NULL, NULL, NULL, host, port, path);
+  *buff = ajHttpRead(NULL, NULL, NULL, host, port, path);
 
-  outf = ajFileNewOutNameS(filename);
+  if(!*buff)
+    return ajFalse;
 
-  ajFilebuffHtmlNoheader(buff);
+  ajFilebuffHtmlNoheader(*buff);
 
-  while(ajBuffreadLine(buff, &line)){
-    ajWriteline(outf, line);
-  }
+  return ajTrue;
+}
 
-  ajFileClose(&outf);
-  ajFilebuffDel(&buff);
-  return 0;
+
+
+/* @func gFilebuffURLC ********************************************************
+**
+** Downloads file from a specified URL and inputs in file buffer
+**
+** @param [r] url [char*] URL to download file from
+** @return [AjPFilebuff] 
+** @@
+******************************************************************************/
+
+AjBool gFilebuffURLC(char* url, AjPFilebuff* buff){
+  gFilebuffURLS(ajStrNewC(url), buff);
+
+  if(!*buff)
+    return ajFalse;
+
+  return ajTrue;
 }
 
 
@@ -130,19 +250,21 @@ AjPStr gGetUniqueFileName(void) {
 ** @@
 ******************************************************************************/
 
-AjPStr gFormatGenbank(AjPSeq seq){
+AjBool gFormatGenbank(AjPSeq seq, AjPStr *inseq){
   AjPSeqout     seqout   = NULL;
   AjPFeattabOut featout  = NULL;
-  AjPFeattable  feat      = NULL;
+  AjPFeattable  feat     = NULL;
   AjPStr        seqline  = NULL;
   AjPStr        featline = NULL;
   AjPFile       seqfile  = NULL;
   AjPFile       featfile = NULL;
-  AjPStr        inseq    = NULL;
   AjPStr        filename = NULL;
 
   filename = gGetUniqueFileName();
   feat = ajSeqGetFeatCopy(seq);
+
+  if(!feat)
+    return ajFalse;
 
   seqout = ajSeqoutNew();
 
@@ -160,7 +282,7 @@ AjPStr gFormatGenbank(AjPSeq seq){
   featout = ajFeattabOutNew();
 
   if(!ajFeattabOutOpen(featout,filename))
-    embExitBad();
+    return ajFalse;
 
   ajFeattableWriteGenbank(featout,feat);
   ajFeattabOutDel(&featout);
@@ -171,10 +293,10 @@ AjPStr gFormatGenbank(AjPSeq seq){
   while(ajReadline(seqfile,&seqline)){
     if(ajStrCmpC(seqline,"ORIGIN\n") == 0){
       while(ajReadline(featfile,&featline)){
-	ajStrAppendS(&inseq,featline);
+	ajStrAppendS(inseq, featline);
       }
     }
-    ajStrAppendS(&inseq,seqline);
+    ajStrAppendS(inseq, seqline);
   }
 
   ajStrDel(&seqline);
@@ -183,7 +305,7 @@ AjPStr gFormatGenbank(AjPSeq seq){
   ajFileClose(&seqfile);
   ajFileClose(&featfile);
 
-  return inseq;
+  return ajTrue;
 }
 
 

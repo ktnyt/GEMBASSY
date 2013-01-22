@@ -38,8 +38,8 @@ typedef struct gPlotStruct
 ** Prototype Definitions
 */
 
-int gPlotFile(AjPStr filename, AjPGraph graphs, gPlotParams *gpp);
-int gPlotData(AjPGraph graphs, gPlotParams *gpp);
-int gPlotFlip(gPlotParams *gpp);
+AjBool gPlotFilebuff(AjPFilebuff buff, AjPGraph graphs, gPlotParams *gpp);
+AjBool gPlotData(AjPGraph graphs, gPlotParams *gpp);
+AjBool gPlotFlip(gPlotParams *gpp);
 
 #endif
