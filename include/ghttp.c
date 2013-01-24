@@ -26,7 +26,7 @@
 
 
 
-/* @func gHttpWriteBinaryS ****************************************************
+/* @func gHttpGetBinS *********************************************************
 **
 ** Writes out remote binary file to AjPFile
 **
@@ -35,7 +35,7 @@
 ** @@
 ******************************************************************************/
 
-AjBool gHttpWriteBinaryS(AjPStr url, AjPFile* outf)
+AjBool gHttpGetBinS(AjPStr url, AjPFile* outf)
 {
   AjPFile file = NULL;
   AjPStr  line = NULL;
@@ -94,7 +94,7 @@ AjBool gHttpWriteBinaryS(AjPStr url, AjPFile* outf)
 
 
 
-/* @func gHttpWriteBinaryC ****************************************************
+/* @func gHttpGetBinC *********************************************************
 **
 ** Retrives the C file pointer from a given URL
 **
@@ -103,9 +103,99 @@ AjBool gHttpWriteBinaryS(AjPStr url, AjPFile* outf)
 ** @@
 ******************************************************************************/
 
-AjBool gHttpWriteBinaryC(char* url, AjPFile* outf)
+AjBool gHttpGetBinC(char* url, AjPFile* outf)
 {
-  if(!gHttpWriteBinaryS(ajStrNewC(url), outf))
+  if(!gHttpGetBinS(ajStrNewC(url), outf))
+    return ajFalse;
+
+  return ajTrue;
+}
+
+
+
+
+/* @func gHttpPostBinS ********************************************************
+**
+** Writes out remote binary file to AjPFile
+**
+** @param [r] [char*] URL to lookup
+** @return [AjPFile]
+** @@
+******************************************************************************/
+
+AjBool gHttpPostBinS(AjPStr url, AjPStr params, AjPFile* outf)
+{
+  AjPFile file = NULL;
+  AjPStr  line = NULL;
+  AjPStr  host = NULL;
+  AjPStr  path = NULL;
+  AjPStr  post = NULL;
+  ajint   port = 80;
+  FILE   *fp;
+
+  AjPRegexp crlf = NULL;
+
+  char buf[8];
+
+  struct AJSOCKET sock;
+
+  post = ajStrNew();
+
+  ajHttpUrlDeconstruct(url, &port, &host, &path);
+
+  while(file==NULL || gHttpRedirect(file, &host, &port, &path))
+    {
+      if(ajStrGetCharFirst(path) != '/')
+	ajStrInsertK(&path, 0, '/');
+
+      ajFmtPrintS(&post,
+		  "POST %S HTTP/1.1\nHost:%S\n$SContent-Length: %d\n%S\r\n",
+		  path, host, ajStrGetLen(params), params);
+
+      fp = ajHttpOpen(NULL, host, port, post, &sock);
+
+      file = ajFileNewFromCfile(fp);
+
+      if(!file)
+	return ajFalse;
+    }
+
+  ajStrDel(&post);
+
+  crlf = ajRegCompC("^\r?\n$");
+
+  while(ajReadline(file, &line))
+    {
+      if(ajRegExec(crlf, line))
+	break;
+    }
+
+  while(ajReadbinBinary(file, 1, 1, buf))
+    {
+      ajWritebinBinary(*outf, 1, 1, buf);
+    }
+
+  ajFileClose(outf);
+  ajFileClose(&file);
+
+  return ajTrue;
+}
+
+
+
+
+/* @func gHttpPostBinC *********************************************************
+**
+** Retrives the C file pointer from a given URL
+**
+** @param [r] [char*] URL to lookup
+** @return [FILE*]
+** @@
+******************************************************************************/
+
+AjBool gHttpPostBinC(char* url, AjPStr params, AjPFile* outf)
+{
+  if(!gHttpPostBinS(ajStrNewC(url), params, outf))
     return ajFalse;
 
   return ajTrue;

@@ -57,6 +57,7 @@ LDADD = ../../../nucleus/libnucleus.la ../../../ajax/acd/libacd.la \
   $(XLIB)
 else
 LDADD = -L${embprefix}/lib -L../include -lpng -lnucleus -lacd -lajaxdb -lensembl \
-        -lajaxg -lajax -leexpat -lepcre -lezlib -leplplot -lgplot -lgfile $(XLIB)
+        -lajaxg -lajax -leexpat -lepcre -lezlib -leplplot -lgplot -lgfile -lghttp \
+        $(XLIB)
 endif
 

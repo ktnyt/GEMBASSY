@@ -322,7 +322,8 @@ top_srcdir = @top_srcdir@
 AM_CFLAGS = $(AIX_CFLAGS) $(WARN_CFLAGS) $(DEVWARN_CFLAGS)
 ggenomicskew_SOURCES = ggenomicskew.c
 @LOCALLINK_FALSE@LDADD = -L${embprefix}/lib -L../include -lpng -lnucleus -lacd -lajaxdb -lensembl \
-@LOCALLINK_FALSE@        -lajaxg -lajax -leexpat -lepcre -lezlib -leplplot -lgplot -lgfile $(XLIB)
+@LOCALLINK_FALSE@        -lajaxg -lajax -leexpat -lepcre -lezlib -leplplot -lgplot -lgfile -lghttp \
+@LOCALLINK_FALSE@        $(XLIB)
 
 @LOCALLINK_TRUE@LDADD = ../../../nucleus/libnucleus.la ../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \

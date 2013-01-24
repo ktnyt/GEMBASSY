@@ -30,8 +30,9 @@ endif
 
 AM_CFLAGS =  $(AIX_CFLAGS) $(WARN_CFLAGS) $(DEVWARN_CFLAGS)
 
-noinst_LIBRARIES = libgfile.a libgplot.a
+noinst_LIBRARIES = libgfile.a libghttp.a libgplot.a
 libgfile_a_SOURCES = gfile.c
+libghttp_a_SOURCES = ghttp.c
 libgplot_a_SOURCES = gplot.c
 
 if LOCALLINK

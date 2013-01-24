@@ -78,6 +78,10 @@ libgfile_a_AR = $(AR) $(ARFLAGS)
 libgfile_a_LIBADD =
 am_libgfile_a_OBJECTS = gfile.$(OBJEXT)
 libgfile_a_OBJECTS = $(am_libgfile_a_OBJECTS)
+libghttp_a_AR = $(AR) $(ARFLAGS)
+libghttp_a_LIBADD =
+am_libghttp_a_OBJECTS = ghttp.$(OBJEXT)
+libghttp_a_OBJECTS = $(am_libghttp_a_OBJECTS)
 libgplot_a_AR = $(AR) $(ARFLAGS)
 libgplot_a_LIBADD =
 am_libgplot_a_OBJECTS = gplot.$(OBJEXT)
@@ -120,8 +124,10 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(libgfile_a_SOURCES) $(libgplot_a_SOURCES)
-DIST_SOURCES = $(libgfile_a_SOURCES) $(libgplot_a_SOURCES)
+SOURCES = $(libgfile_a_SOURCES) $(libghttp_a_SOURCES) \
+	$(libgplot_a_SOURCES)
+DIST_SOURCES = $(libgfile_a_SOURCES) $(libghttp_a_SOURCES) \
+	$(libgplot_a_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -313,8 +319,9 @@ top_srcdir = @top_srcdir@
 @ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_TRUE@-lezlib -leplplot
 
 AM_CFLAGS = $(AIX_CFLAGS) $(WARN_CFLAGS) $(DEVWARN_CFLAGS)
-noinst_LIBRARIES = libgfile.a libgplot.a
+noinst_LIBRARIES = libgfile.a libghttp.a libgplot.a
 libgfile_a_SOURCES = gfile.c
+libghttp_a_SOURCES = ghttp.c
 libgplot_a_SOURCES = gplot.c
 @LOCALLINK_FALSE@LDADD = -L${embprefix}/lib -lpng -lnucleus -lacd -lajaxdb -lensembl \
 @LOCALLINK_FALSE@        -lajaxg -lajax -leexpat -lepcre -lezlib -leplplot -lcurl \
@@ -372,6 +379,10 @@ libgfile.a: $(libgfile_a_OBJECTS) $(libgfile_a_DEPENDENCIES) $(EXTRA_libgfile_a_
 	$(AM_V_at)-rm -f libgfile.a
 	$(AM_V_AR)$(libgfile_a_AR) libgfile.a $(libgfile_a_OBJECTS) $(libgfile_a_LIBADD)
 	$(AM_V_at)$(RANLIB) libgfile.a
+libghttp.a: $(libghttp_a_OBJECTS) $(libghttp_a_DEPENDENCIES) $(EXTRA_libghttp_a_DEPENDENCIES) 
+	$(AM_V_at)-rm -f libghttp.a
+	$(AM_V_AR)$(libghttp_a_AR) libghttp.a $(libghttp_a_OBJECTS) $(libghttp_a_LIBADD)
+	$(AM_V_at)$(RANLIB) libghttp.a
 libgplot.a: $(libgplot_a_OBJECTS) $(libgplot_a_DEPENDENCIES) $(EXTRA_libgplot_a_DEPENDENCIES) 
 	$(AM_V_at)-rm -f libgplot.a
 	$(AM_V_AR)$(libgplot_a_AR) libgplot.a $(libgplot_a_OBJECTS) $(libgplot_a_LIBADD)
@@ -384,6 +395,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfile.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ghttp.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gplot.Po@am__quote@
 
 .c.o:

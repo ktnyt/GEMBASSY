@@ -7,8 +7,10 @@
 ** Prototype definitions
 */
 
-AjBool gHttpWriteBinaryS(AjPStr url, AjPFile* outf);
-AjBool gHttpWriteBinaryC(char* url, AjPFile* outf);
+AjBool gHttpGetBinS(AjPStr url, AjPFile* outf);
+AjBool gHttpGetBinC(char* url, AjPFile* outf);
+AjBool gHttpPostBinS(AjPStr url, AjPStr params, AjPFile* outf);
+AjBool gHttpPostBinC(char* url, AjPStr params, AjPFile* outf);
 AjBool gHttpRedirect(AjPFile file, AjPStr* host, ajint* port, AjPStr* path);
 
 #endif
