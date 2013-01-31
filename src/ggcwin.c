@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "emboss.h"
 
 #include "soapH.h"
@@ -8,121 +6,147 @@
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
-#include "../include/gembassy.h"
+#include "../include/gfile.h"
 #include "../include/gplot.h"
 
-int
-main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
   embInitPV("ggcwin", argc, argv, "GEMBASSY", "1.0.0");
 
-  struct soap	  soap;
+  struct soap soap;
   struct ns1__gcwinInputParams params;
 
-  AjPSeqall	  seqall;
-  AjPSeq	  seq;
-  AjPStr	  inseq = NULL;
-  ajint		  window = 0;
-  AjBool	  at = 0;
-  AjBool	  purine = 0;
-  AjBool	  keto = 0;
-  AjPStr	  accid = NULL;
-  char           *result;
+  AjPSeqall seqall;
+  AjPSeq    seq;
+  AjPStr    inseq  = NULL;
+  ajint	    window = 0;
+  AjBool    at     = 0;
+  AjBool    purine = 0;
+  AjBool    keto   = 0;
+  AjPStr    accid  = NULL;
 
-  AjBool	  plot = 0;
-  AjPFile	  outf = NULL;
-  AjPGraph	  mult = NULL;
+  char *in0;
+  char *result;
 
-  AjPStr	  filename = getUniqueFileName();
+  AjBool      plot = 0;
+  AjPFile     outf = NULL;
+  AjPFilebuff buff = NULL;
+  AjPGraph    mult = NULL;
 
-  gPlotParams	  gpp;
+  gPlotParams gpp;
+  AjPStr      title = NULL;
 
   seqall = ajAcdGetSeqall("sequence");
   window = ajAcdGetInt("window");
-  at = ajAcdGetBoolean("at");
+  at     = ajAcdGetBoolean("at");
   purine = ajAcdGetBoolean("purine");
-  keto = ajAcdGetBoolean("keto");
-  accid = ajAcdGetString("accid");
+  keto   = ajAcdGetBoolean("keto");
+  accid  = ajAcdGetString("accid");
 
   plot = ajAcdGetToggle("plot");
-  outf = ajAcdGetOutfile("outfile");
-  mult = ajAcdGetGraphxy("graph");
+
+  if(!plot)
+    outf = ajAcdGetOutfile("outfile");
+  else
+    mult = ajAcdGetGraphxy("graph");
 
   params.window = window;
-  if (at) {
-    params.at = 1;
-  } else {
-    params.at = 0;
-  }
-  if (purine) {
-    params.purine = 1;
-  } else {
-    params.purine = 0;
-  }
-  if (keto) {
-    params.keto = 1;
-  } else {
-    params.keto = 0;
-  }
+  params.at     = 0;
+  params.purine = 0;
+  params.keto   = 0;
   params.output = "f";
 
-  while (ajSeqallNext(seqall, &seq)) {
+  if(at)
+    params.at = 1;
+  if(purine)
+    params.purine = 1;
+  if(keto)
+    params.keto = 1;
 
-    soap_init(&soap);
+  while(ajSeqallNext(seqall, &seq))
+    {
 
-    inseq = NULL;
+      soap_init(&soap);
 
-    ajStrAppendC(&inseq, ">");
-    ajStrAppendS(&inseq, ajSeqGetNameS(seq));
-    ajStrAppendC(&inseq, "\n");
-    ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
+      inseq = NULL;
 
-    if (!ajStrGetLen(accid))
+      ajStrAppendC(&inseq, ">");
+      ajStrAppendS(&inseq, ajSeqGetNameS(seq));
+      ajStrAppendC(&inseq, "\n");
+      ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
+
       ajStrAssignS(&accid, ajSeqGetAccS(seq));
-    else
-      ajStrAssignS(&inseq, accid);
 
-    char           *in0;
-    in0 = ajCharNewS(inseq);
+      in0 = ajCharNewS(inseq);
 
-    if (soap_call_ns1__gcwin(
-			     &soap, NULL, NULL,
-			     in0, &params, &result
-			     ) == SOAP_OK) {
-      if (get_file(result, ajCharNewS(filename)) == 0) {
-	if (plot) {
-	  AjPStr	  title = NULL;
-	  ajStrAppendC(&title, argv[0]);
-	  ajStrAppendC(&title, " of ");
-	  ajStrAppendS(&title, accid);
-	  gpp.title = ajStrNewS(title);
-	  gpp.xlab = ajStrNewC("location");
-	  gpp.ylab = ajStrNewC("GC skew");
-	  ajStrDel(&title);
-	  if (gPlotFile(filename, mult, &gpp) == 1)
-	    fprintf(stderr, "Error allocating\n");
-	} else {
-	  ajFmtPrintF(outf, "Sequence: %S\n%S\n",
-		      accid, getContentS(filename));
+      if(soap_call_ns1__gcwin(
+			     &soap,
+			      NULL,
+			      NULL,
+			      in0,
+			     &params,
+			     &result
+			     ) == SOAP_OK)
+	{
+	  if(plot)
+	    {
+	      title = ajStrNew();
+
+	      ajStrAppendC(&title, argv[0]);
+	      ajStrAppendC(&title, " of ");
+	      ajStrAppendS(&title, accid);
+
+	      gpp.title = ajStrNewS(title);
+	      gpp.xlab = ajStrNewC("location");
+	      gpp.ylab = ajStrNewC("GC skew");
+
+	      if(!gFilebuffURLC(result, &buff))
+		{
+		  ajFmtError("File downloading error\n");
+		  embExitBad();
+		}
+
+	      if(!gPlotFilebuff(filename, mult, &gpp))
+		{
+		  ajFmtError("Error in plotting\n");
+		  embExitBad();
+		}
+
+	      AJFREE(gpp.title);
+	      AJFREE(gpp.xlab);
+	      AJFREE(gpp.ylab);
+
+	      ajStrDel(&title);
+	    }
+	  else
+	    {
+	      ajFmtPrint(outf, "Sequence: %S\n", accid);
+	      if(!gFileOutURLC(result, &outf))
+		{
+		  ajFmtError("File downloading error\n");
+		  embExitBad();
+		}
+<	    }
 	}
-      } else {
-	fprintf(stderr, "Retrieval unsuccessful\n");
-      }
-    } else {
+      else
+	{
       soap_print_fault(&soap, stderr);
     }
 
     soap_destroy(&soap);
     soap_end(&soap);
     soap_done(&soap);
+
+    AJFREE(in0);
+
+    ajStrDel(&inseq);
   }
 
-  if (outf)
+  if(outf)
     ajFileClose(&outf);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
-  ajStrDel(&inseq);
 
   embExit();
   return 0;

@@ -1,5 +1,28 @@
-#include <stdio.h>
-#include <stdlib.h>
+/******************************************************************************
+** @source gicdi
+**
+** Calculates the intrinsic codon deviation index
+**
+** @author Copyright (C) 2012 Hidetoshi Itaya
+** @version 1.0.0   First release
+** @modified 2012/1/20  Hidetoshi Itaya  Created!
+** @@
+**
+** This program is free software; you can redistribute it and/or
+** modify it under the terms of the GNU General Public License
+** as published by the Free Software Foundation; either version 2
+** of the License, or (at your option) any later version.
+**
+** This program is distributed in the hope that it will be useful,
+** but WITHOUT ANY WARRANTY; without even the implied warranty of
+** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+** GNU General Public License for more details.
+**
+** You should have received a copy of the GNU General Public License
+** along with this program; if not, write to the Free Software
+** Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+******************************************************************************/
+
 #include "emboss.h"
 
 #include "soapH.h"
@@ -8,96 +31,124 @@
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
-#include "../include/gembassy.h"
+#include "../include/gfile.h"
 
-int
-main(int argc, char *argv[])
+
+
+
+/* @prog gcbi *****************************************************************
+**
+** Calculates the intrinsic codon deviation index
+**
+******************************************************************************/
+
+int main(int argc, char *argv[])
 {
   embInitPV("gicdi", argc, argv, "GEMBASSY", "1.0.0");
 
-  struct soap	  soap;
+  struct soap soap;
   struct ns1__icdiInputParams params;
 
-  AjPSeqall	  seqall;
-  AjPSeq	  seq;
-  AjPStr	  inseq = NULL;
-  AjBool	  translate = 0;
-  AjPStr	  id = NULL;
-  AjPStr	  delkey = NULL;
-  AjPStr	  accid = NULL;
-  char           *result;
+  AjPSeqall seqall;
+  AjPSeq    seq;
+  AjPStr    inseq     = NULL;
+  AjBool    translate = 0;
+  AjPStr    id        = NULL;
+  AjPStr    delkey    = NULL;
+  AjPStr    accid     = NULL;
 
-  AjBool	  show = 0;
-  AjPFile	  outf = NULL;
+  char *in0;
+  char *result;
 
-  seqall = ajAcdGetSeqall("sequence");
+  AjBool  show = 0;
+  AjPFile outf = NULL;
+
+  seqall    = ajAcdGetSeqall("sequence");
   translate = ajAcdGetBoolean("translate");
-  id = ajAcdGetString("id");
-  delkey = ajAcdGetString("delkey");
-  accid = ajAcdGetString("accid");
+  id        = ajAcdGetString("id");
+  delkey    = ajAcdGetString("delkey");
+  accid     = ajAcdGetString("accid");
+  outf      = ajAcdGetOutfile("outfile");
 
-  show = ajAcdGetToggle("show");
-  outf = ajAcdGetOutfile("outfile");
-
-  if (translate) {
-    params.translate = 1;
-  } else {
-    params.translate = 0;
-  }
-  params.id = ajCharNewS(id);
+  params.translate     = 0;
+  params.id            = ajCharNewS(id);
   params.del_USCOREkey = ajCharNewS(delkey);
 
-  while (ajSeqallNext(seqall, &seq)) {
+  if(translate)
+    params.translate = 1;
 
-    soap_init(&soap);
+  while(ajSeqallNext(seqall, &seq))
+    {
 
-    inseq = NULL;
+      soap_init(&soap);
 
-    if (ajSeqGetFeat(seq) && !ajStrGetLen(accid)) {
-      inseq = getGenbank(seq);
-      ajStrAssignS(&accid, ajSeqGetAccS(seq));
-    } else {
-      if (!ajStrGetLen(accid)) {
-	fprintf(stderr, "Sequence does not have features\n");
-	fprintf(stderr, "Proceeding with sequence accession ID\n");
+      inseq = NULL;
+
+      if(!gFormatGenbank(seq, &inseq) && !ajStrGetLen(accid))
+	{
+	  ajFmtError("Sequence does not have features\n");
+	  ajFmtError("Proceeding with sequence accession ID\n");
+	  ajStrAssignS(&accid, ajSeqGetAccS(seq));
+	}
+
+      if(ajStrGetLen(accid))
+	{
+	  if(!gValID(accid))
+	    {
+	      ajFmtError("Invalid accession ID, exiting\n");
+	      embExitBad();
+	    }
+	  ajStrAssignS(&inseq, accid);
+	}
+
+      if(!ajStrGetLen(accid))
 	ajStrAssignS(&accid, ajSeqGetAccS(seq));
-      }
-      if (!valID(ajCharNewS(accid))) {
-	fprintf(stderr, "Invalid accession ID, exiting");
-	return 1;
-      }
-      ajStrAssignS(&inseq, accid);
-    }
 
-    char           *in0;
-    in0 = ajCharNewS(inseq);
+      in0 = ajCharNewS(inseq);
 
-    if (soap_call_ns1__icdi(
-			    &soap, NULL, NULL,
-			    in0, &params, &result
-			    ) == SOAP_OK) {
-      if (show)
-	ajFmtPrint("Sequence: %S ICDI: %S\n",
-		   accid, ajStrNewC(result));
+      if(soap_call_ns1__icdi(
+	                    &soap,
+			     NULL,
+			     NULL,
+			     in0,
+			    &params,
+			    &result
+                            ) == SOAP_OK)
+	{
+	  ajFmtPrintF(outf, "Sequence: %S\n", accid);
+	  if(!gFileOutURLC(result, &outf))
+	    {
+	      ajFmtError("File downloading error\n");
+	      embExitBad();
+	    }
+	}
       else
-	ajFmtPrintF(outf, "Sequence: %S ICDI: %S\n",
-		    accid, ajStrNewC(result));
-    } else {
-      soap_print_fault(&soap, stderr);
+	{
+	  soap_print_fault(&soap, stderr);
+	}
+
+      soap_destroy(&soap);
+      soap_end(&soap);
+      soap_done(&soap);
+
+      AJFREE(in0);
+
+      ajStrDel(&inseq);
     }
 
-    soap_destroy(&soap);
-    soap_end(&soap);
-    soap_done(&soap);
-  }
-
-  if (outf)
+  if(outf)
     ajFileClose(&outf);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
-  ajStrDel(&inseq);
+
+  AJFREE(params.id);
+  AJFREE(params.del_USCOREkey);
+
+  ajStrDel(&id);
+  ajStrDel(&delkey);
 
   embExit();
+
   return 0;
 }

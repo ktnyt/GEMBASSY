@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "emboss.h"
 
 #include "soapH.h"
@@ -15,78 +13,87 @@ main(int argc, char *argv[])
 {
   embInitPV("gpalindrome", argc, argv, "GEMBASSY", "1.0.0");
 
-  struct soap	  soap;
+  struct soap soap;
   struct ns1__palindromeInputParams params;
 
-  AjPSeqall	  seqall;
-  AjPSeq	  seq;
-  AjPStr	  inseq = NULL;
-  ajint		  shortest = 0;
-  ajint		  loop = 0;
-  AjBool	  gtmatch = 0;
-  AjPStr	  accid = NULL;
-  char           *result;
+  AjPSeqall seqall;
+  AjPSeq    seq;
+  AjPStr    inseq = NULL;
+  ajint	    shortest = 0;
+  ajint	    loop = 0;
+  AjBool    gtmatch = 0;
+  AjPStr    accid = NULL;
 
-  AjPFile	  outf = NULL;
+  char *in0;
+  char *result;
 
-  AjPStr	  filename = getUniqueFileName();
+  AjPFile outf = NULL;
 
-  seqall = ajAcdGetSeqall("sequence");
+  seqall   = ajAcdGetSeqall("sequence");
   shortest = ajAcdGetInt("shortest");
-  loop = ajAcdGetInt("loop");
-  gtmatch = ajAcdGetBoolean("gtmatch");
-  accid = ajAcdGetString("accid");
-  outf = ajAcdGetOutfile("outfile");
+  loop     = ajAcdGetInt("loop");
+  gtmatch  = ajAcdGetBoolean("gtmatch");
+  accid    = ajAcdGetString("accid");
+  outf     = ajAcdGetOutfile("outfile");
 
   params.shortest = shortest;
-  params.loop = loop;
-  params.gtmatch = gtmatch;
-  params.output = "f";
+  params.loop     = loop;
+  params.gtmatch  = gtmatch;
+  params.output   = "f";
 
-  while (ajSeqallNext(seqall, &seq)) {
+  while(ajSeqallNext(seqall, &seq))
+    {
 
-    soap_init(&soap);
+      soap_init(&soap);
 
-    inseq = NULL;
+      inseq = NULL;
 
-    ajStrAppendC(&inseq, ">");
-    ajStrAppendS(&inseq, ajSeqGetNameS(seq));
-    ajStrAppendC(&inseq, "\n");
-    ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
+      ajStrAppendC(&inseq, ">");
+      ajStrAppendS(&inseq, ajSeqGetNameS(seq));
+      ajStrAppendC(&inseq, "\n");
+      ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
 
-    if (!ajStrGetLen(accid))
       ajStrAssignS(&accid, ajSeqGetAccS(seq));
-    else
-      ajStrAssignS(&inseq, accid);
 
-    char           *in0;
-    in0 = ajCharNewS(inseq);
+      in0 = ajCharNewS(inseq);
 
-    if (soap_call_ns1__palindrome(
-				  &soap, NULL, NULL,
-				  in0, &params, &result
-				  ) == SOAP_OK) {
-      if (get_file(result, ajCharNewS(filename))) {
-	fprintf(stderr, "Retrieval unsuccessful\n");
-      }
-      ajFmtPrintF(outf, "Sequence: %S\n%S\n",
-		  accid, getContentS(filename));
-    } else {
-      soap_print_fault(&soap, stderr);
+      if(soap_call_ns1__palindrome(
+				  &soap,
+                                   NULL,
+                                   NULL,
+				   in0,
+                                  &params,
+                                  &result
+				  ) == SOAP_OK)
+        {
+          ajFmtPrintF(outf, "Sequence: %S\n", accid);
+          if(!gFileOutUrlC(result, &outf))
+            {
+              ajFmtError("File downloading error\n");
+              embExitBad();
+            }
+        }
+      else
+        {
+          soap_print_fault(&soap, stderr);
+        }
+
+      soap_destroy(&soap);
+      soap_end(&soap);
+      soap_done(&soap);
+
+      AJFREE(in0);
+
+      ajStrDel(&inseq);
     }
 
-    soap_destroy(&soap);
-    soap_end(&soap);
-    soap_done(&soap);
-  }
-
-  if (outf)
+  if(outf)
     ajFileClose(&outf);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
-  ajStrDel(&inseq);
 
   embExit();
+
   return 0;
 }

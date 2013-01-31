@@ -51,16 +51,15 @@ int main(int argc, char *argv[])
 
   AjPSeqall seqall;
   AjPSeq    seq;
-  AjPStr    inseq = NULL;
+  AjPStr    inseq     = NULL;
   AjBool    translate = 0;
-  AjPStr    id = NULL;
-  AjPStr    delkey = NULL;
-  AjPStr    accid = NULL;
+  AjPStr    id        = NULL;
+  AjPStr    delkey    = NULL;
+  AjPStr    accid     = NULL;
 
   char *in0;
   char *result;
 
-  AjBool  show = 0;
   AjPFile outf = NULL;
 
   seqall    = ajAcdGetSeqall("sequence");

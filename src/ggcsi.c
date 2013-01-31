@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
   if(pval)
     params.p = 1;
 
-  while (ajSeqallNext(seqall, &seq))
+  while(ajSeqallNext(seqall, &seq))
     {
 
       soap_init(&soap);
@@ -124,8 +124,8 @@ int main(int argc, char *argv[])
 	    {
 	      ajFmtError("Invalid accession ID, exiting\n");
 	      embExitBad();
-	      ajStrAssignS(&inseq, accid);
-	    }
+            }
+          ajStrAssignS(&inseq, accid);
 	}
 
       if(!ajStrGetLen(accid))

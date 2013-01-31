@@ -116,7 +116,7 @@ int main(int argc, char *argv[])
 	  ajStrDel(&outfname);
 	  ajStrDel(&tempname);
 
-	  if(gHttpWriteBinaryC(result, &outf))
+	  if(gHttpGetBinC(result, &outf))
 	    {
 	      if(show)
 		{

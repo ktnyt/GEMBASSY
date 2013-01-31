@@ -1,7 +1,7 @@
 /******************************************************************************
-** @source gphx
+** @source garound_startcodon
 **
-** Identify predict highly expressed gene
+** Get the sequence around the startcodon of the given CDS
 **
 ** @author Copyright (C) 2012 Hidetoshi Itaya
 ** @version 1.0.0   First release
@@ -31,50 +31,36 @@
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
-#include "../include/gfile.h"
+#include "../include/gfile.c"
 
 
 
 
-/* @prog gphx *****************************************************************
+/* @prog garound_startcodon ***************************************************
 **
-** Identify predict highly expressed gene
+** Get the sequence around the startcodon of the given CDS
 **
 ******************************************************************************/
 
 int main(int argc, char *argv[])
 {
-  embInitPV("gphx", argc, argv, "GEMBASSY", "1.0.0");
-
-  struct soap soap;
-  struct ns1__phxInputParams params;
+  embInitPV("garound_startcodon", argc, argv, "GEMBASSY", "1.0.0");
 
   AjPSeqall seqall;
   AjPSeq    seq;
-  AjPStr    inseq     = NULL;
-  AjBool    translate = 0;
-  AjPStr    id        = NULL;
-  AjPStr    delkey    = NULL;
-  AjPStr    accid     = NULL;
+  AjPStr    inseq  = NULL;
+  ajint	    before = 0;
+  ajint	    after  = 0;
+  AjPStr    accid  = NULL;
 
   char *in0;
-  char *result;
 
-  AjPFile outf = NULL;
+  AjPFilebuff buff;
 
-  seqall    = ajAcdGetSeqall("sequence");
-  translate = ajAcdGetBoolean("translate");
-  usage     = ajAcdGetString("usage");
-  delkey    = ajAcdGetString("delkey");
-  accid     = ajAcdGetString("accid");
-  outf      = ajAcdGetOutfile("outfile");
-
-  params.translate     = 0;
-  params.usage         = ajCharNewS(usage);
-  params.del_USCOREkey = ajCharNewS(delkey);
-
-  if(translate)
-    params.translate = 1;
+  seqall = ajAcdGetSeqall("sequence");
+  before = ajAcdGetInt("upstream");
+  after  = ajAcdGetInt("downstream");
+  accid  = ajAcdGetString("accid");
 
   while(ajSeqallNext(seqall, &seq))
     {
@@ -105,30 +91,6 @@ int main(int argc, char *argv[])
 
       in0 = ajCharNewS(inseq);
 
-      if(soap_call_ns1__phx(
-	                   &soap,
-			    NULL,
-			    NULL,
-			    in0,
-			   &params,
-			   &result
-                           ) == SOAP_OK)
-	{
-	  ajFmtPrintF(outf, "Sequence: %S\n", accid);
-	  if(!gFileOutURLC(result, &outf))
-	    {
-	      ajFmtError("File downloading error\n");
-	      embExitBad();
-	    }
-	}
-      else
-	{
-	  soap_print_fault(&soap, stderr);
-	}
-
-      soap_destroy(&soap);
-      soap_end(&soap);
-      soap_done(&soap);
 
       AJFREE(in0);
 
@@ -140,12 +102,11 @@ int main(int argc, char *argv[])
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
+  ajStrDel(&accid);
 
-  AJFREE(params.id);
-  AJFREE(params.del_USCOREkey);
+  AJFREE(params.position);
 
-  ajStrDel(&usage);
-  ajStrDel(&delkey);
+  ajStrDel(&position);
 
   embExit();
 

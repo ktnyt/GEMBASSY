@@ -1,7 +1,7 @@
 /******************************************************************************
-** @source gphx
+** @source gbefore_startcodon
 **
-** Identify predict highly expressed gene
+** Get the upstream sequence of the given CDS
 **
 ** @author Copyright (C) 2012 Hidetoshi Itaya
 ** @version 1.0.0   First release
@@ -25,61 +25,43 @@
 
 #include "emboss.h"
 
-#include "soapH.h"
-#include "GLANGSoapBinding.nsmap"
-
-#include "soapClient.c"
-#include "soapC.c"
-#include "../gsoap/stdsoap2.c"
 #include "../include/gfile.h"
+#include "../include/ghttp.h"
 
 
 
 
-/* @prog gphx *****************************************************************
+/* @prog gbefore_startcodon ***************************************************
 **
-** Identify predict highly expressed gene
+** Get the upstream sequence of the given CDS
 **
 ******************************************************************************/
 
 int main(int argc, char *argv[])
 {
-  embInitPV("gphx", argc, argv, "GEMBASSY", "1.0.0");
-
-  struct soap soap;
-  struct ns1__phxInputParams params;
+  embInitPV("gbefore_startcodon", argc, argv, "GEMBASSY", "1.0.0");
 
   AjPSeqall seqall;
   AjPSeq    seq;
-  AjPStr    inseq     = NULL;
-  AjBool    translate = 0;
-  AjPStr    id        = NULL;
-  AjPStr    delkey    = NULL;
-  AjPStr    accid     = NULL;
+  AjPStr    inseq = NULL;
+  AjPStr    cds   = NULL;
+  ajint     length;
+  AjPStr    accid = NULL;
 
   char *in0;
   char *result;
 
   AjPFile outf = NULL;
 
-  seqall    = ajAcdGetSeqall("sequence");
-  translate = ajAcdGetBoolean("translate");
-  usage     = ajAcdGetString("usage");
-  delkey    = ajAcdGetString("delkey");
-  accid     = ajAcdGetString("accid");
-  outf      = ajAcdGetOutfile("outfile");
+  AjPFilebuff buff = NULL;
 
-  params.translate     = 0;
-  params.usage         = ajCharNewS(usage);
-  params.del_USCOREkey = ajCharNewS(delkey);
-
-  if(translate)
-    params.translate = 1;
+  seqall = ajAcdGetSeqall("sequence");
+  cds    = ajAcdGetString("cds");
+  length = ajAcdGetInt("length");
+  accid  = ajAcdGetString("accid");
 
   while(ajSeqallNext(seqall, &seq))
     {
-
-      soap_init(&soap);
 
       inseq = NULL;
 
@@ -96,43 +78,19 @@ int main(int argc, char *argv[])
 	    {
 	      ajFmtError("Invalid accession ID, exiting\n");
 	      embExitBad();
+	      ajStrAssignS(&inseq, accid);
 	    }
-	  ajStrAssignS(&inseq, accid);
 	}
 
-      if(!ajStrGetLen(accid))
-	ajStrAssignS(&accid, ajSeqGetAccS(seq));
+      const AjPStr filename;
+
+      filename = ajSeqallGetFilename(seqall);
+
+      gFilePostCS("http://localhost/~kotone/dev/upload.cgi",
+                 filename, &accid);
 
       in0 = ajCharNewS(inseq);
 
-      if(soap_call_ns1__phx(
-	                   &soap,
-			    NULL,
-			    NULL,
-			    in0,
-			   &params,
-			   &result
-                           ) == SOAP_OK)
-	{
-	  ajFmtPrintF(outf, "Sequence: %S\n", accid);
-	  if(!gFileOutURLC(result, &outf))
-	    {
-	      ajFmtError("File downloading error\n");
-	      embExitBad();
-	    }
-	}
-      else
-	{
-	  soap_print_fault(&soap, stderr);
-	}
-
-      soap_destroy(&soap);
-      soap_end(&soap);
-      soap_done(&soap);
-
-      AJFREE(in0);
-
-      ajStrDel(&inseq);
     }
 
   if(outf)
@@ -140,14 +98,7 @@ int main(int argc, char *argv[])
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
-
-  AJFREE(params.id);
-  AJFREE(params.del_USCOREkey);
-
-  ajStrDel(&usage);
-  ajStrDel(&delkey);
+  ajStrDel(&inseq);
 
   embExit();
-
-  return 0;
 }

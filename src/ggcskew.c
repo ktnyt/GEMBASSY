@@ -18,14 +18,14 @@ int main(int argc, char *argv[])
 
   AjPSeqall seqall;
   AjPSeq    seq;
-  AjPStr    inseq = NULL;
-  ajint	    window = 0;
-  ajint	    slide = 0;
+  AjPStr    inseq      = NULL;
+  ajint	    window     = 0;
+  ajint	    slide      = 0;
   AjBool    cumulative = 0;
-  AjBool    at = 0;
-  AjBool    purine = 0;
-  AjBool    keto = 0;
-  AjPStr    accid = NULL;
+  AjBool    at         = 0;
+  AjBool    purine     = 0;
+  AjBool    keto       = 0;
+  AjPStr    accid      = NULL;
 
   char *in0;
   char *result;
@@ -108,15 +108,32 @@ int main(int argc, char *argv[])
 	      gpp.xlab = ajStrNewC("location");
 	      gpp.ylab = ajStrNewC("GC skew");
 
-	      ajStrDel(&title);
+	      if(!gFilebuffURLC(result, &buff))
+		{
+		  ajFmtError("File downloading error\n");
+		  embExitBad();
+		}
 
-	      if(gPlotFilebuff(filename, mult, &gpp) == 1)
-		fprintf(stderr, "Error allocating\n");
+	      if(!gPlotFilebuff(filename, mult, &gpp))
+		{
+		  ajFmtError("Error in plotting\n");
+		  embExitBad();
+		}
+
+	      AJFREE(gpp.title);
+	      AJFREE(gpp.xlab);
+	      AJFREE(gpp.ylab);
+
+	      ajStrDel(&title);
 	    }
 	  else
 	    {
-	      ajFmtPrintF(outf, "Sequence: %S\n%S\n",
-			  accid, getContentS(filename));
+	      ajFmtPrint(outf, "Sequence: %S\n", accid);
+	      if(!gFileOutURLC(result, &outf))
+		{
+		  ajFmtError("File downloading error\n");
+		  embExitBad();
+		}
 	    }
 	}
       else
@@ -127,14 +144,17 @@ int main(int argc, char *argv[])
     soap_destroy(&soap);
     soap_end(&soap);
     soap_done(&soap);
+
+    AJFREE(in0);
+
+    ajStrDel(&inseq);
   }
 
-  if (outf)
+  if(outf)
     ajFileClose(&outf);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
-  ajStrDel(&inseq);
 
   embExit();
   return 0;
