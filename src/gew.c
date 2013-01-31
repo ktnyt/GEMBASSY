@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "emboss.h"
 
 #include "soapH.h"
@@ -8,92 +6,110 @@
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
-#include "../include/gembassy.h"
+#include "../include/gfile.h"
 
-int
-main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
   embInitPV("gew", argc, argv, "GEMBASSY", "1.0.0");
 
-  struct soap	  soap;
+  struct soap soap;
   struct ns1__EwInputParams params;
 
-  AjPSeqall	  seqall;
-  AjPSeq	  seq;
-  AjPStr	  inseq = NULL;
-  AjBool	  translate = 0;
-  AjPStr	  delkey = NULL;
-  AjPStr	  accid = NULL;
-  char           *result;
+  AjPSeqall seqall;
+  AjPSeq    seq;
+  AjPStr    inseq = NULL;
+  AjBool    translate = 0;
+  AjPStr    delkey = NULL;
+  AjPStr    accid = NULL;
 
-  AjPFile	  outf = NULL;
+  char *in0;
+  char *result;
 
-  AjPStr	  filename = getUniqueFileName();
+  AjPFile outf = NULL;
 
-  seqall = ajAcdGetSeqall("sequence");
+  seqall    = ajAcdGetSeqall("sequence");
   translate = ajAcdGetBoolean("translate");
-  delkey = ajAcdGetString("delkey");
-  accid = ajAcdGetString("accid");
+  delkey    = ajAcdGetString("delkey");
+  accid     = ajAcdGetString("accid");
+  outf      = ajAcdGetOutfile("outfile");
 
-  outf = ajAcdGetOutfile("outfile");
-
-  if (translate) {
-    params.translate = 1;
-  } else {
-    params.translate = 0;
-  }
+  params.translate = 0;
   params.del_USCOREkey = ajCharNewS(delkey);
   params.output = "f";
 
-  while (ajSeqallNext(seqall, &seq)) {
+  if(translate)
+    params.translate = 1;
 
-    soap_init(&soap);
+  while(ajSeqallNext(seqall, &seq))
+    {
 
-    inseq = NULL;
+      soap_init(&soap);
 
-    if (ajSeqGetFeat(seq) && !ajStrGetLen(accid)) {
-      inseq = getGenbank(seq);
-    } else {
-      if (!ajStrGetLen(accid)) {
-	fprintf(stderr, "Sequence does not have features\n");
-	fprintf(stderr, "Proceeding with sequence accession ID\n");
-	ajStrAssignS(&inseq, ajSeqGetAccS(seq));
-      }
-      if (!valID(ajCharNewS(accid))) {
-	fprintf(stderr, "Invalid accession ID, exiting");
-	return 1;
-      }
-      ajStrAssignS(&inseq, accid);
+      inseq = NULL;
+
+      if(!gFormatGenbank(seq, &inseq) && !ajStrGetLen(accid))
+        {
+          ajFmtError("Sequence does not have features\n");
+          ajFmtError("Proceeding with sequence accession ID\n");
+          ajStrAssignS(&accid, ajSeqGetAccS(seq));
+        }
+
+      if(ajStrGetLen(accid))
+        {
+          if(!gValID(accid))
+            {
+              ajFmtError("Invalid accession ID, exiting\n");
+              embExitBad();
+            }
+          ajStrAssignS(&inseq, accid);
+        }
+
+      if(!ajStrGetLen(accid))
+        ajStrAssignS(&accid, ajSeqGetAccS(seq));
+
+      in0 = ajCharNewS(inseq);
+
+      if (soap_call_ns1__Ew(
+	                   &soap,
+			    NULL,
+			    NULL,
+			    in0,
+			   &params,
+			   &result
+			   ) == SOAP_OK)
+	{
+	  ajFmtPrintF(outf, "Sequence: %S\n", accid);
+	  if(!gFileOutURLC(result, &outf))
+	    {
+	      ajFmtError("File downloading error\n");
+	      embExitBad();
+	    }
+	}
+      else
+	{
+	  soap_print_fault(&soap, stderr);
+	}
+
+      soap_destroy(&soap);
+      soap_end(&soap);
+      soap_done(&soap);
+
+      AJFREE(in0);
+
+      ajStrDel(&inseq);
     }
 
-    char           *in0;
-    in0 = ajCharNewS(inseq);
-
-    if (soap_call_ns1__Ew(
-			  &soap, NULL, NULL,
-			  in0, &params, &result
-			  ) == SOAP_OK) {
-      if (get_file(result, ajCharNewS(filename))) {
-	fprintf(stderr, "Retrieval unsuccessful\n");
-      }
-      ajFmtPrintF(outf, "Sequence: %S\n%S\n",
-		  accid, getContentS(filename));
-    } else {
-      soap_print_fault(&soap, stderr);
-    }
-
-    soap_destroy(&soap);
-    soap_end(&soap);
-    soap_done(&soap);
-  }
-
-  if (outf)
+  if(outf)
     ajFileClose(&outf);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
-  ajStrDel(&inseq);
+
+  AJFREE(params.del_USCOREkey);
+
+  ajStrDel(&delkey);
 
   embExit();
+
   return 0;
 }

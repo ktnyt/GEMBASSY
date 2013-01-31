@@ -29,7 +29,7 @@ section: advanced [
 
   string: id [
     information: "ID of a group of genes or a single gene"
-    default: "All"
+    default: ""
   ]
 
   string: delkey [

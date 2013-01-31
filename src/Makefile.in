@@ -50,7 +50,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-bin_PROGRAMS = ggenomicskew$(EXEEXT)
+bin_PROGRAMS = ggcsi$(EXEEXT) gbefore_startcodon$(EXEEXT)
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(srcdir)/config.h.in $(top_srcdir)/depcomp
@@ -71,12 +71,13 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_ggenomicskew_OBJECTS = ggenomicskew.$(OBJEXT)
-ggenomicskew_OBJECTS = $(am_ggenomicskew_OBJECTS)
-ggenomicskew_LDADD = $(LDADD)
+am_gbefore_startcodon_OBJECTS = gbefore_startcodon.$(OBJEXT)
+gbefore_startcodon_OBJECTS = $(am_gbefore_startcodon_OBJECTS)
+gbefore_startcodon_LDADD = $(LDADD)
 am__DEPENDENCIES_1 =
-@LOCALLINK_FALSE@ggenomicskew_DEPENDENCIES = $(am__DEPENDENCIES_1)
-@LOCALLINK_TRUE@ggenomicskew_DEPENDENCIES =  \
+@LOCALLINK_FALSE@gbefore_startcodon_DEPENDENCIES =  \
+@LOCALLINK_FALSE@	$(am__DEPENDENCIES_1)
+@LOCALLINK_TRUE@gbefore_startcodon_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
@@ -92,6 +93,21 @@ AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
+am_ggcsi_OBJECTS = ggcsi.$(OBJEXT)
+ggcsi_OBJECTS = $(am_ggcsi_OBJECTS)
+ggcsi_LDADD = $(LDADD)
+@LOCALLINK_FALSE@ggcsi_DEPENDENCIES = $(am__DEPENDENCIES_1)
+@LOCALLINK_TRUE@ggcsi_DEPENDENCIES = ../../../nucleus/libnucleus.la \
+@LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
+@LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
+@LOCALLINK_TRUE@	../../../ajax/ensembl/libensembl.la \
+@LOCALLINK_TRUE@	../../../ajax/graphics/libajaxg.la \
+@LOCALLINK_TRUE@	../../../ajax/core/libajax.la \
+@LOCALLINK_TRUE@	../../../ajax/zlib/libezlib.la \
+@LOCALLINK_TRUE@	../../../ajax/expat/libeexpat.la \
+@LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
+@LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -126,8 +142,8 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(ggenomicskew_SOURCES)
-DIST_SOURCES = $(ggenomicskew_SOURCES)
+SOURCES = $(gbefore_startcodon_SOURCES) $(ggcsi_SOURCES)
+DIST_SOURCES = $(gbefore_startcodon_SOURCES) $(ggcsi_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -308,7 +324,7 @@ top_srcdir = @top_srcdir@
 @LOCALLINK_TRUE@	-I../../../ajax/acd -I../../../plplot -I../gsoap
 
 @ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_FALSE@AIX_CFLAGS = -Wl,-bdynamic -Wl,-brtl -L${embprefix}/lib -lnucleus -lacd \
-@ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_FALSE@-lajaxdb -lensembl -lajaxg -lajax -leexpat -lepcre -lezlib -leplplot -lcurl
+@ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_FALSE@-lajaxdb -lensembl -lajaxg -lajax -leexpat -lepcre -lezlib -leplplot
 
 @ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_TRUE@AIX_CFLAGS = -Wl,-bdynamic -Wl,-brtl -L../../../plplot/.libs \
 @ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_TRUE@-L../../../ajax/pcre/.libs -L../../../ajax/expat/.libs \
@@ -317,12 +333,14 @@ top_srcdir = @top_srcdir@
 @ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_TRUE@-L../../../ajax/ajaxdb/.libs -L../../../ajax/acd/.libs \
 @ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_TRUE@-L../../../nucleus/.libs \
 @ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_TRUE@-lnucleus -lacd -lajaxdb -lensembl -lajaxg -lajax -leexpat -lepcre \
-@ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_TRUE@-lezlib -leplplot -lcurl
+@ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_TRUE@-lezlib -leplplot
 
 AM_CFLAGS = $(AIX_CFLAGS) $(WARN_CFLAGS) $(DEVWARN_CFLAGS)
-ggenomicskew_SOURCES = ggenomicskew.c
-@LOCALLINK_FALSE@LDADD = -L${embprefix}/lib -L../include -lpng -lnucleus -lacd -lajaxdb -lensembl \
-@LOCALLINK_FALSE@        -lajaxg -lajax -leexpat -lepcre -lezlib -leplplot -lgplot -lgfile -lghttp \
+ggcsi_SOURCES = ggcsi.c
+gbefore_startcodon_SOURCES = gbefore_startcodon.c
+@LOCALLINK_FALSE@LDADD = -L${embprefix}/lib -L../include -L../curl/lib/ \
+@LOCALLINK_FALSE@        -lpng -lnucleus -lacd -lajaxdb -lensembl -lajaxg -lajax -leexpat \
+@LOCALLINK_FALSE@        -lepcre -lezlib -leplplot -lgfile -lghttp -lgplot -lgpost -lcurl \
 @LOCALLINK_FALSE@        $(XLIB)
 
 @LOCALLINK_TRUE@LDADD = ../../../nucleus/libnucleus.la ../../../ajax/acd/libacd.la \
@@ -435,9 +453,12 @@ clean-binPROGRAMS:
 	list=`for p in $$list; do echo "$$p"; done | sed 's/$(EXEEXT)$$//'`; \
 	echo " rm -f" $$list; \
 	rm -f $$list
-ggenomicskew$(EXEEXT): $(ggenomicskew_OBJECTS) $(ggenomicskew_DEPENDENCIES) $(EXTRA_ggenomicskew_DEPENDENCIES) 
-	@rm -f ggenomicskew$(EXEEXT)
-	$(AM_V_CCLD)$(LINK) $(ggenomicskew_OBJECTS) $(ggenomicskew_LDADD) $(LIBS)
+gbefore_startcodon$(EXEEXT): $(gbefore_startcodon_OBJECTS) $(gbefore_startcodon_DEPENDENCIES) $(EXTRA_gbefore_startcodon_DEPENDENCIES) 
+	@rm -f gbefore_startcodon$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(gbefore_startcodon_OBJECTS) $(gbefore_startcodon_LDADD) $(LIBS)
+ggcsi$(EXEEXT): $(ggcsi_OBJECTS) $(ggcsi_DEPENDENCIES) $(EXTRA_ggcsi_DEPENDENCIES) 
+	@rm -f ggcsi$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(ggcsi_OBJECTS) $(ggcsi_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -445,7 +466,8 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ggenomicskew.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gbefore_startcodon.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ggcsi.Po@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

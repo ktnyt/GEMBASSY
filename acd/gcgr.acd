@@ -31,11 +31,6 @@ section: advanced [
     default: "5"
   ]
 
-  string: accid [
-    information: "Include to use sequence accession ID as query"
-    default: ""
-  ]
-
 endsection: advanced
 
 section: output [
@@ -50,6 +45,7 @@ section: output [
 
   string: filename [
     standard: "@(!$(show))"
+    information: "Output filename"
     default: "gcgr.png"
   ]
 

@@ -42,8 +42,6 @@ REQUIREMENTS
    above.
    libpng (> 1.5.13) - (Recommended) Some older versions of libpng have a
    problem with the setjmp.h inclusion.
-   libcurl (> 7.24.0) - (Required) Needs libcurl for downloading files.
-   Planning to switch to EMBOSS functions on official release.
 
 INSTALLATION
   Root users

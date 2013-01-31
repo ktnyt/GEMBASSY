@@ -31,11 +31,6 @@ section: advanced [
     default: "0.2"
   ]
 
-  boolean: csv [
-    information: "Include to create CSV file"
-    default: "N"
-  ]
-
 endsection: advanced
 
 section: output [

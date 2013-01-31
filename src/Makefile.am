@@ -20,10 +20,10 @@ AIX_CFLAGS = -Wl,-bdynamic -Wl,-brtl -L../../../plplot/.libs \
 -L../../../ajax/ajaxdb/.libs -L../../../ajax/acd/.libs \
 -L../../../nucleus/.libs \
 -lnucleus -lacd -lajaxdb -lensembl -lajaxg -lajax -leexpat -lepcre \
--lezlib -leplplot -lcurl
+-lezlib -leplplot
 else
 AIX_CFLAGS = -Wl,-bdynamic -Wl,-brtl -L${embprefix}/lib -lnucleus -lacd \
--lajaxdb -lensembl -lajaxg -lajax -leexpat -lepcre -lezlib -leplplot -lcurl
+-lajaxdb -lensembl -lajaxg -lajax -leexpat -lepcre -lezlib -leplplot
 endif
 endif
 endif
@@ -40,9 +40,11 @@ AM_CFLAGS =  $(AIX_CFLAGS) $(WARN_CFLAGS) $(DEVWARN_CFLAGS)
 ## make will compile and link the program
 ## make install will copy the program to the install directory
 
-bin_PROGRAMS = ggenomicskew
+bin_PROGRAMS = ggcsi \
+               gbefore_startcodon
 
-ggenomicskew_SOURCES    = ggenomicskew.c
+ggcsi_SOURCES = ggcsi.c
+gbefore_startcodon_SOURCES = gbefore_startcodon.c
 
 if LOCALLINK
 LDADD = ../../../nucleus/libnucleus.la ../../../ajax/acd/libacd.la \
@@ -56,8 +58,9 @@ LDADD = ../../../nucleus/libnucleus.la ../../../ajax/acd/libacd.la \
 	../../../plplot/libeplplot.la \
   $(XLIB)
 else
-LDADD = -L${embprefix}/lib -L../include -lpng -lnucleus -lacd -lajaxdb -lensembl \
-        -lajaxg -lajax -leexpat -lepcre -lezlib -leplplot -lgplot -lgfile -lghttp \
+LDADD = -L${embprefix}/lib -L../include -L../curl/lib/ \
+        -lpng -lnucleus -lacd -lajaxdb -lensembl -lajaxg -lajax -leexpat \
+        -lepcre -lezlib -leplplot -lgfile -lghttp -lgplot -lgpost -lcurl \
         $(XLIB)
 endif
 

@@ -9,7 +9,7 @@ section: input [
   type: "page"
 ]
 
-  string: db [
+  string: database [
     parameter: "Y"
     information: "NCBI database to search"
     default: "pubmed"

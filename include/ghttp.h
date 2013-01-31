@@ -9,8 +9,8 @@
 
 AjBool gHttpGetBinS(AjPStr url, AjPFile* outf);
 AjBool gHttpGetBinC(char* url, AjPFile* outf);
-AjBool gHttpPostBinS(AjPStr url, AjPStr params, AjPFile* outf);
-AjBool gHttpPostBinC(char* url, AjPStr params, AjPFile* outf);
+AjPFilebuff gHttpPostFileSS(AjPStr url, AjPStr filename);
+AjPFilebuff gHttpPostFileCS(char* url, AjPStr filename);
 AjBool gHttpRedirect(AjPFile file, AjPStr* host, ajint* port, AjPStr* path);
 
 #endif

@@ -266,34 +266,50 @@ AjBool gPlotFlip(gPlotParams *gpp)
   ajint   typeNum = (*gpp).dataNum;
   float **data    = (*gpp).data;
 
-  float **tmp;
+  float **newdata;
   ajint i;
+  ajint j;
 
-  if((tmp = (float**)malloc(sizeof(float*) * typeNum)) == NULL)
+  if((newdata = (float**)malloc(sizeof(float*) * typeNum)) == NULL)
     return ajFalse;
   else
-    for(i = 0; i < typeNum; ++i)
-      if((tmp[i] = (float*)malloc(sizeof(float))) == NULL)
-	return ajFalse;
+    for(i = 0; i < typeNum + 1; ++i)
+      if((newdata[i] = (float*)malloc(sizeof(float))) == NULL)
+	{
+	  AJFREE(newdata);
+	  return ajFalse;
+	}
 
   for(i = 0; i < dataNum; ++i){
-    if((tmp[0] = (float*)realloc(tmp[0], sizeof(float) * (i + 1))) == NULL)
-      return ajFalse;
-    if((tmp[1] = (float*)realloc(tmp[1], sizeof(float) * (i + 1))) == NULL)
-      return ajFalse;
-    tmp[0][i] = i;
-    tmp[1][i] = data[i][0];
+    if((newdata[0] = (float*)realloc(newdata[0],
+				     sizeof(float) * (i + 1))) == NULL)
+      {
+	for(j = 0; j < i; ++j)
+	    AJFREE(newdata[j]);
+	AJFREE(newdata);
+	return ajFalse;
+      }
+    if((newdata[1] = (float*)realloc(newdata[1],
+				     sizeof(float) * (i + 1))) == NULL)
+      {
+	for(j = 0; j < i; ++j)
+	    AJFREE(newdata[j]);
+	AJFREE(newdata);
+	return ajFalse;
+      }
+    newdata[0][i] = i;
+    newdata[1][i] = data[i][0];
   }
 
   for(i = 0; i < dataNum; ++i)
     {
-      free((*gpp).data[i]);
-  }
-  free((*gpp).data);
+      AJFREE((*gpp).data[i]);
+    }
+  AJFREE((*gpp).data);
 
   (*gpp).dataNum = dataNum;
   (*gpp).typeNum = 2;
-  (*gpp).data    = tmp;
+  (*gpp).data    = newdata;
 
   return ajTrue;
 }

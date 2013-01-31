@@ -1,5 +1,5 @@
 application: ggcsi [
-  documentation: "GC Skew Index: an index for strand-specefic mutational bias"
+  documentation: "GC Skew Index: an index for strand-specific mutational bias"
   groups: "Nucleic:Composition"
   embassy: "gembassy"
 ]
@@ -21,9 +21,10 @@ section: advanced [
   type: "page"
 ]
 
-  boolean: gcsi [
-    information: "Include to use GCSI version 1"
-    default: "N"
+  list: gcsi [
+    information: "GCSI version to use"
+    values:  "1:1;2:2"
+    default: "2"
   ]
 
   integer: window [

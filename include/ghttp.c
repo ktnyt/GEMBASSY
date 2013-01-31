@@ -114,77 +114,97 @@ AjBool gHttpGetBinC(char* url, AjPFile* outf)
 
 
 
-/* @func gHttpPostBinS ********************************************************
+/* @func gHttpPostSS **********************************************************
 **
 ** Writes out remote binary file to AjPFile
 **
-** @param [r] [char*] URL to lookup
-** @return [AjPFile]
+** @param [r] [AjPStr] URL to lookup
+** @param [r] [AjPStr] content to send
+** @return [AjPFilebuff]
 ** @@
 ******************************************************************************/
 
-AjBool gHttpPostBinS(AjPStr url, AjPStr params, AjPFile* outf)
+AjPFilebuff gHttpPostFileSS(AjPStr url, AjPStr filename)
 {
-  AjPFile file = NULL;
-  AjPStr  line = NULL;
-  AjPStr  host = NULL;
-  AjPStr  path = NULL;
-  AjPStr  post = NULL;
-  ajint   port = 80;
-  FILE   *fp;
+  AjPFilebuff buff = NULL;
+  AjPFile     file = NULL;
+  AjPStr      line = NULL;
+  AjPStr      cont = NULL;
+  AjPStr      host = NULL;
+  AjPStr      path = NULL;
+  AjPStr      post = NULL;
+  AjPStr      body = NULL;
+  ajint       port = 80;
+  FILE       *fp;
 
-  AjPRegexp crlf = NULL;
-
-  char buf[8];
+  char crlf[] = "\015\021";
 
   struct AJSOCKET sock;
+  struct AJTIMEOUT timo;
 
   post = ajStrNew();
+  body = ajStrNew();
+  cont = ajStrNew();
+
+  file = ajFileNewInNameS(filename);
+
+  while(ajReadline(file, &line))
+    {
+      ajStrAppendS(&cont, line);
+    }
 
   ajHttpUrlDeconstruct(url, &port, &host, &path);
 
-  while(file==NULL || gHttpRedirect(file, &host, &port, &path))
+  while(buff==NULL || ajHttpRedirect(buff, &host, &port, &path))
     {
       if(ajStrGetCharFirst(path) != '/')
 	ajStrInsertK(&path, 0, '/');
 
-      ajFmtPrintS(&post,
-		  "POST %S HTTP/1.1\nHost:%S\n$SContent-Length: %d\n%S\r\n",
-		  path, host, ajStrGetLen(params), params);
+      ajFmtPrintS(
+        &body,
+        "--xYzZY\015\012"
+        "Content-Disposition: form-data; name=\"file\";"
+        " filename=\"%S\"\015\012"
+        "Content-Type: text/plain\015\012"
+        "%S\015\012"
+        "\015\012--xYzZY--\015\012",
+        filename, cont
+      );
+
+      ajFmtPrintS(
+        &post,
+        "POST http://%S%S\n"
+        "Content-Length: %d\n"
+        "Content-Type: multipart/form-data; boundary=xYzZY\n\n"
+        "%S",
+        host, path,
+        ajStrGetLen(body), body
+      );
+
+      ajFmtPrint("%S", post);
 
       fp = ajHttpOpen(NULL, host, port, post, &sock);
 
-      file = ajFileNewFromCfile(fp);
+      buff = ajFilebuffNewFromCfile(fp);
 
-      if(!file)
-	return ajFalse;
+      if(!buff)
+	return NULL;
     }
 
   ajStrDel(&post);
 
-  crlf = ajRegCompC("^\r?\n$");
+  timo.seconds = 180;
+  ajSysTimeoutSet(&timo);
+  ajFilebuffLoadAll(buff);
+  ajSysTimeoutUnset(&timo);
 
-  while(ajReadline(file, &line))
-    {
-      if(ajRegExec(crlf, line))
-	break;
-    }
-
-  while(ajReadbinBinary(file, 1, 1, buf))
-    {
-      ajWritebinBinary(*outf, 1, 1, buf);
-    }
-
-  ajFileClose(outf);
-  ajFileClose(&file);
-
-  return ajTrue;
+  return buff;
 }
 
 
 
 
-/* @func gHttpPostBinC *********************************************************
+/* @func gHttpPostCS **********************************************************
 **
 ** Retrives the C file pointer from a given URL
 **
@@ -193,12 +213,16 @@ AjBool gHttpPostBinS(AjPStr url, AjPStr params, AjPFile* outf)
 ** @@
 ******************************************************************************/
 
-AjBool gHttpPostBinC(char* url, AjPStr params, AjPFile* outf)
+AjPFilebuff gHttpPostFileCS(char* url, AjPStr filename)
 {
-  if(!gHttpPostBinS(ajStrNewC(url), params, outf))
-    return ajFalse;
+  AjPFilebuff buff = NULL;
 
-  return ajTrue;
+  buff = gHttpPostFileSS(ajStrNewC(url), filename);
+
+  if(!buff)
+    return NULL;
+
+  return buff;
 }
 
 

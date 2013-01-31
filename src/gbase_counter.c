@@ -1,5 +1,28 @@
-#include <stdio.h>
-#include <stdlib.h>
+/******************************************************************************
+** @source gbase_counter
+**
+** Creates a position weight matrix of oligomers around start codon
+**
+** @author Copyright (C) 2012 Hidetoshi Itaya
+** @version 1.0.0   First release
+** @modified 2012/1/20  Hidetoshi Itaya  Created!
+** @@
+**
+** This program is free software; you can redistribute it and/or
+** modify it under the terms of the GNU General Public License
+** as published by the Free Software Foundation; either version 2
+** of the License, or (at your option) any later version.
+**
+** This program is distributed in the hope that it will be useful,
+** but WITHOUT ANY WARRANTY; without even the implied warranty of
+** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+** GNU General Public License for more details.
+**
+** You should have received a copy of the GNU General Public License
+** along with this program; if not, write to the Free Software
+** Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+******************************************************************************/
+
 #include "emboss.h"
 
 #include "soapH.h"
@@ -8,93 +31,123 @@
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
-#include "../include/gembassy.h"
+#include "../include/gfile.c"
 
-int
-main(int argc, char *argv[])
+
+
+
+/* @prog gbase_counter ********************************************************
+**
+** Creates a position weight matrix of oligomers around start codon
+**
+******************************************************************************/
+
+int main(int argc, char *argv[])
 {
   embInitPV("gbase_counter", argc, argv, "GEMBASSY", "1.0.0");
 
-  struct soap	  soap;
+  struct soap soap;
   struct ns1__base_USCOREcounterInputParams params;
 
-  AjPSeqall	  seqall;
-  AjPSeq	  seq;
-  AjPStr	  inseq = NULL;
-  AjPStr	  position = NULL;
-  ajint		  PatLen = 0;
-  ajint		  upstream = 0;
-  ajint		  downstream = 0;
-  AjPStr	  accid = NULL;
-  char           *jobid;
+  AjPSeqall seqall;
+  AjPSeq    seq;
+  AjPStr    inseq      = NULL;
+  AjPStr    position   = NULL;
+  ajint	    PatLen     = 0;
+  ajint	    upstream   = 0;
+  ajint	    downstream = 0;
+  AjPStr    accid      = NULL;
 
-  AjPStr	  tmp = NULL;
-  AjPFile	  outf = NULL;
+  char *in0;
+  char *result;
 
-  seqall = ajAcdGetSeqall("sequence");
-  position = ajAcdGetString("position");
-  PatLen = ajAcdGetInt("patlen");
-  upstream = ajAcdGetInt("upstream");
+  AjPFile outf = NULL;
+
+  seqall     = ajAcdGetSeqall("sequence");
+  position   = ajAcdGetString("position");
+  PatLen     = ajAcdGetInt("patlen");
+  upstream   = ajAcdGetInt("upstream");
   downstream = ajAcdGetInt("downstream");
-  accid = ajAcdGetString("accid");
-  outf = ajAcdGetOutfile("outfile");
+  accid      = ajAcdGetString("accid");
+  outf       = ajAcdGetOutfile("outfile");
 
-  params.position = ajCharNewS(position);
-  params.PatLen = PatLen;
-  params.upstream = upstream;
+  params.position   = ajCharNewS(position);
+  params.PatLen     = PatLen;
+  params.upstream   = upstream;
   params.downstream = downstream;
 
-  while (ajSeqallNext(seqall, &seq)) {
+  while(ajSeqallNext(seqall, &seq))
+    {
 
-    soap_init(&soap);
+      soap_init(&soap);
 
-    inseq = NULL;
+      inseq = NULL;
 
-    if (ajSeqGetFeat(seq) && !ajStrGetLen(accid)) {
-      inseq = getGenbank(seq);
-      ajStrAssignS(&accid, ajSeqGetAccS(seq));
-    } else {
-      if (!valID(ajCharNewS(accid))) {
-	fprintf(stderr, "Invalid accession ID, exiting\n");
-	return 1;
-      }
-      if (!ajStrGetLen(accid)) {
-	fprintf(stderr, "Sequence does not have features\n");
-	fprintf(stderr, "Proceeding with sequence accession ID\n");
+      if(!gFormatGenbank(seq, &inseq) && !ajStrGetLen(accid))
+	{
+	  ajFmtError("Sequence does not have features\n");
+	  ajFmtError("Proceeding with sequence accession ID\n");
+	  ajStrAssignS(&accid, ajSeqGetAccS(seq));
+	}
+
+      if(ajStrGetLen(accid))
+	{
+	  if(!gValID(accid))
+	    {
+	      ajFmtError("Invalid accession ID, exiting\n");
+	      embExitBad();
+	    }
+	  ajStrAssignS(&inseq, accid);
+	}
+
+      if(!ajStrGetLen(accid))
 	ajStrAssignS(&accid, ajSeqGetAccS(seq));
-      }
-      ajStrAssignS(&inseq, accid);
+
+      in0 = ajCharNewS(inseq);
+
+      if(soap_call_ns1__base_USCOREcounter(
+	                                  &soap,
+					   NULL,
+					   NULL,
+					   in0,
+					  &params,
+					  &result
+                                          ) == SOAP_OK)
+	{
+	  ajFmtPrintF(outf, "Sequence: %S\n", accid);
+
+	  if(!gFileOutURLC(result, &outf))
+	    {
+	      ajFmtError("File downloading error\n");
+	      embExitBad();
+	    }
+	}
+      else
+	{
+	  soap_print_fault(&soap, stderr);
+	}
+
+      soap_destroy(&soap);
+      soap_end(&soap);
+      soap_done(&soap);
+
+      AJFREE(in0);
+
+      ajStrDel(&inseq);
     }
 
-    char           *in0;
-    in0 = ajCharNewS(inseq);
-    tmp = getUniqueFileName();
-    if (soap_call_ns1__base_USCOREcounter(
-					  &soap, NULL, NULL,
-					  in0, &params, &jobid
-					  ) == SOAP_OK) {
-      if (get_file(jobid, ajCharNewS(tmp))) {
-	fprintf(stderr, "Retrieval unsuccessful\n");
-      }
-      ajFmtPrintF(outf, "Sequence: %S\n%S\n",
-		  accid, getContentS(tmp));
-    } else {
-      soap_print_fault(&soap, stderr);
-    }
-
-    soap_destroy(&soap);
-    soap_end(&soap);
-    soap_done(&soap);
-  }
-
-  if (outf)
+  if(outf)
     ajFileClose(&outf);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
-  ajStrDel(&inseq);
+  ajStrDel(&accid);
+
+  AJFREE(params.position);
+
   ajStrDel(&position);
 
   embExit();
+
   return 0;
 }
