@@ -6,7 +6,7 @@
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
-#include "../include/gembassy.h"
+#include "../include/gfile.h"
 #include "../include/gplot.h"
 
 int main(int argc, char *argv[])
@@ -27,11 +27,13 @@ int main(int argc, char *argv[])
   char *in0;
   char *result;
 
-  AjBool   plot = 0;
-  AjPFile  outf = NULL;
-  AjPGraph mult = NULL;
+  AjBool      plot = 0;
+  AjPFile     outf = NULL;
+  AjPFilebuff buff = NULL;
+  AjPGraph    mult = NULL;
 
   gPlotParams gpp;
+  AjPStr      title = NULL;
 
   seqall     = ajAcdGetSeqall("sequence");
   window     = ajAcdGetInt("window");
@@ -105,7 +107,7 @@ int main(int argc, char *argv[])
                   embExitBad();
                 }
 
-              if(!gPlotFilebuff(filename, mult, &gpp))
+              if(!gPlotFilebuff(buff, mult, &gpp))
                 {
                   ajFmtError("Error in plotting\n");
                   embExitBad();
@@ -119,7 +121,7 @@ int main(int argc, char *argv[])
             }
           else
             {
-              ajFmtPrint(outf, "Sequence: %S\n", accid);
+              ajFmtPrintF(outf, "Sequence: %S\n", accid);
               if(!gFileOutURLC(result, &outf))
                 {
                   ajFmtError("File downloading error\n");
@@ -127,25 +129,25 @@ int main(int argc, char *argv[])
                 }
             }
         }
-    } else {
-      soap_print_fault(&soap, stderr);
+      else
+        {
+          soap_print_fault(&soap, stderr);
+        }
+
+      soap_destroy(&soap);
+      soap_end(&soap);
+      soap_done(&soap);
+
+      AJFREE(in0);
+
+      ajStrDel(&inseq);
     }
-
-    soap_destroy(&soap);
-    soap_end(&soap);
-    soap_done(&soap);
-
-    AJFREE(in0);
-
-    ajStrDel(&inseq);
-  }
 
   if(outf)
     ajFileClose(&outf);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
-  ajStrDel(&inseq);
 
   embExit();
 

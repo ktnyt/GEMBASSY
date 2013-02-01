@@ -6,10 +6,9 @@
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
-#include "../include/gembassy.h"
+#include "../include/gfile.h"
 
-int
-main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
   embInitPV("gpalindrome", argc, argv, "GEMBASSY", "1.0.0");
 
@@ -67,7 +66,7 @@ main(int argc, char *argv[])
 				  ) == SOAP_OK)
         {
           ajFmtPrintF(outf, "Sequence: %S\n", accid);
-          if(!gFileOutUrlC(result, &outf))
+          if(!gFileOutURLC(result, &outf))
             {
               ajFmtError("File downloading error\n");
               embExitBad();

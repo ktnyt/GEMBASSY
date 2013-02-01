@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "emboss.h"
 
 #include "soapH.h"
@@ -8,89 +6,120 @@
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
-#include "../include/gembassy.h"
+#include "../include/gfile.h"
 #include "../include/display_png.h"
 
-int
-main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
   embInitPV("gseq2png", argc, argv, "GEMBASSY", "1.0.0");
 
-  struct soap	  soap;
+  struct soap soap;
   struct ns1__seq2pngInputParams params;
 
-  AjPSeqall	  seqall;
-  AjPSeq	  seq;
-  AjPStr	  inseq = NULL;
-  ajint		  width = 0;
-  ajint		  window = 0;
-  AjPStr	  accid = NULL;
-  AjPStr	  filename = NULL;
-  AjBool	  show = 0;
-  char           *result;
+  AjPSeqall seqall;
+  AjPSeq    seq;
+  AjPStr    inseq    = NULL;
+  ajint	    width    = 0;
+  ajint	    window   = 0;
+  AjBool    show     = 0;
+  AjPStr    accid    = NULL;
+  AjPFile   outf     = NULL;
+  AjPStr    filename = NULL;
+  AjPStr    outfname = NULL;
+  AjPStr    tempname = NULL;
 
-  seqall = ajAcdGetSeqall("sequence");
-  window = ajAcdGetInt("window");
-  width = ajAcdGetInt("width");
+  char *in0;
+  char *result;
+
+  seqall   = ajAcdGetSeqall("sequence");
+  window   = ajAcdGetInt("window");
+  width    = ajAcdGetInt("width");
   filename = ajAcdGetString("filename");
-  show = ajAcdGetToggle("show");
-  accid = ajAcdGetString("accid");
+  show     = ajAcdGetToggle("show");
+  accid    = ajAcdGetString("accid");
 
   params.window = window;
-  params.width = width;
+  params.width  = width;
   params.output = "g";
 
-  while (ajSeqallNext(seqall, &seq)) {
+  while(ajSeqallNext(seqall, &seq))
+    {
 
-    soap_init(&soap);
+      soap_init(&soap);
 
-    inseq = NULL;
+      inseq = NULL;
 
-    ajStrAppendC(&inseq, ">");
-    ajStrAppendS(&inseq, ajSeqGetNameS(seq));
-    ajStrAppendC(&inseq, "\n");
-    ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
+      ajStrAppendC(&inseq, ">");
+      ajStrAppendS(&inseq, ajSeqGetNameS(seq));
+      ajStrAppendC(&inseq, "\n");
+      ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
 
-    if (!ajStrGetLen(accid))
       ajStrAssignS(&accid, ajSeqGetAccS(seq));
-    else
-      ajStrAssignS(&inseq, accid);
 
-    char           *in0;
-    in0 = ajCharNewS(inseq);
+      in0 = ajCharNewS(inseq);
 
-    if (soap_call_ns1__seq2png(
-			       &soap, NULL, NULL,
-			       in0, &params, &result
-			       ) == SOAP_OK) {
-      AjPStr	      tmp = ajStrNew();
-      ajStrFromLong(&tmp, ajSeqallGetCount(seqall));
-      ajStrInsertC(&tmp, 0, ".");
-      ajStrAppendC(&tmp, ".png");
-      if (!ajStrExchangeCS(&filename, ".png", tmp)) {
-	ajStrAppendC(&filename, ".");
-      }
-      if (get_file(result, ajCharNewS(filename)) == 0) {
-	if (show)
-	  if (display_png(ajCharNewS(filename), argv[0], ajCharNewS(accid)))
-	    fprintf(stderr, "Error in X11 displaying\n");
-      } else {
-	fprintf(stderr, "Retrieval unsuccessful\n");
-      }
-    } else {
-      soap_print_fault(&soap, stderr);
+      if(soap_call_ns1__seq2png(
+			       &soap,
+                                NULL,
+                                NULL,
+			        in0,
+                               &params,
+                               &result
+			       ) == SOAP_OK)
+        {
+          outfname = ajStrNew();
+          tempname = ajStrNew();
+
+          ajStrFromLong(&tempname, ajSeqallGetCount(seqall));
+          ajStrInsertC(&tempname, 0, ".");
+          ajStrAppendC(&tempname, ".png");
+
+          if(!ajStrExchangeCS(&outfname, ".png", tempname))
+            {
+              ajStrAppendS(&outfname, tempname);
+            }
+
+          outf = ajFileNewOutNameS(outfname);
+
+          ajStrDel(&outfname);
+          ajStrDel(&tempname);
+
+          if(gHttpGetBinC(result, &outf))
+            {
+              if(show)
+                {
+                  if(display_png(ajCharNewS(outfname), argv[0], ajCharNewS(accid)))
+                    {
+                      ajFmtError("Error in X11 displaying\n");
+                      embExitBad();
+                    }
+                }
+            }
+          else
+            {
+              ajFmtError("File downloading error\n");
+              embExitBad();
+            }
+        }
+      else
+        {
+          soap_print_fault(&soap, stderr);
+        }
+
+      soap_destroy(&soap);
+      soap_end(&soap);
+      soap_done(&soap);
+
+      AJFREE(in0);
+
+      ajStrDel(&inseq);
     }
-
-    soap_destroy(&soap);
-    soap_end(&soap);
-    soap_done(&soap);
-  }
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
-  ajStrDel(&inseq);
   ajStrDel(&filename);
 
   embExit();
+
   return 0;
 }

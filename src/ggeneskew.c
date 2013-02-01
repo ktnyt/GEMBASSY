@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
   ajint	    slide      = 0;
   AjBool    cumulative = 0;
   AjBool    gc3        = 0;
-  AjBool    base       = 0;
+  AjPStr    base       = 0;
   AjPStr    accid      = NULL;
 
   char *in0;
@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
   window = ajAcdGetInt("window");
   slide  = ajAcdGetInt("slide");
   gc3    = ajAcdGetBoolean("gctri");
-  base   = ajAcdGetBoolean("base");
+  base   = ajAcdGetListSingle("base");
   accid  = ajAcdGetString("accid");
 
   plot = ajAcdGetToggle("plot");
@@ -53,19 +53,15 @@ int main(int argc, char *argv[])
 
   params.window = window;
   params.slide  = slide;
-  params.at     = 0;
-  params.purine = 0;
-  params.keto   = 0;
+  params.cumulative = 0;
+  params.gc3    = 0;
+  params.base   = ajCharNewS(base);
   params.output = "f";
 
   if(cumulative)
     params.cumulative = 1;
-  if(at)
-    params.at = 1;
-  if(purine)
-    params.purine = 1;
-  if(keto)
-    params.keto = 1;
+  if(gc3)
+    params.gc3 = 1;
 
   while(ajSeqallNext(seqall, &seq))
     {
@@ -83,14 +79,14 @@ int main(int argc, char *argv[])
 
       in0 = ajCharNewS(inseq);
 
-      if(soap_call_ns1__gcskew(
-			      &soap,
-			       NULL,
-			       NULL,
-			       in0,
-			      &params,
-			      &result
-			      ) == SOAP_OK)
+      if(soap_call_ns1__geneskew(
+			        &soap,
+                                 NULL,
+                                 NULL,
+                                 in0,
+                                &params,
+                                &result
+			        ) == SOAP_OK)
 	{
 	  if(plot)
 	    {
@@ -110,7 +106,7 @@ int main(int argc, char *argv[])
 		  embExitBad();
 		}
 
-	      if(!gPlotFilebuff(filename, mult, &gpp))
+	      if(!gPlotFilebuff(buff, mult, &gpp))
 		{
 		  ajFmtError("Error in plotting\n");
 		  embExitBad();
@@ -124,7 +120,7 @@ int main(int argc, char *argv[])
 	    }
 	  else
 	    {
-	      ajFmtPrint(outf, "Sequence: %S\n", accid);
+	      ajFmtPrintF(outf, "Sequence: %S\n", accid);
 	      if(!gFileOutURLC(result, &outf))
 		{
 		  ajFmtError("File downloading error\n");

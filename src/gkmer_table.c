@@ -100,7 +100,7 @@ int main(int argc, char *argv[])
 
 	  if(!ajStrExchangeCS(&outfname, ".png", tempname))
 	    {
-	      ajStrAppendC(&outfname, tempname);
+	      ajStrAppendS(&outfname, tempname);
 	    }
 
 	  outf = ajFileNewOutNameS(outfname);

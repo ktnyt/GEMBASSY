@@ -56,6 +56,7 @@ int main(int argc, char *argv[])
   AjPStr    inseq    = NULL;
   AjBool    show     = 0;
   AjPStr    accid    = NULL;
+  AjPFile   outf     = NULL;
   AjPStr    filename = NULL;
   AjPStr    outfname = NULL;
   AjPStr    tempname = NULL;
@@ -111,7 +112,7 @@ int main(int argc, char *argv[])
 	      ajStrAppendS(&outfname, tempname);
 	    }
 
-	  outf = ajFileNewOutNameS(basename);
+	  outf = ajFileNewOutNameS(outfname);
 
 	  ajStrDel(&outfname);
 	  ajStrDel(&tempname);
@@ -132,25 +133,27 @@ int main(int argc, char *argv[])
 		  embExitBad();
 		}
 	    }
-	  else
-	    {
-	      soap_print_fault(&soap, stderr);
-	    }
+        }
+      else
+        {
+          soap_print_fault(&soap, stderr);
+        }
 
-	soap_destroy(&soap);
-	soap_end(&soap);
-	soap_done(&soap);
+      soap_destroy(&soap);
+      soap_end(&soap);
+      soap_done(&soap);
 
-	AJFREE(in0);
+      AJFREE(in0);
 
-	ajStrDel(&inseq;);
-      }
-
-      ajSeqallDel(&seqall);
-      ajSeqDel(&seq);
-
-      ajStrDel(&filename);
-
-      embExit();
-      return 0;
+      ajStrDel(&inseq);
     }
+
+  ajSeqallDel(&seqall);
+  ajSeqDel(&seq);
+
+  ajStrDel(&filename);
+
+  embExit();
+
+  return 0;
+}

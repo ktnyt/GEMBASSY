@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
   AjBool  show = 0;
   AjPFile outf = NULL;
 
-  database = ajAcdGetList("database");
+  database = ajAcdGetListSingle("database");
   query    = ajAcdGetString("query");
 
   show = ajAcdGetToggle("show");

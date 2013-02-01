@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
   AjPSeq    seq;
   AjPStr    inseq     = NULL;
   AjBool    translate = 0;
-  AjPStr    id        = NULL;
+  AjPStr    usage     = NULL;
   AjPStr    delkey    = NULL;
   AjPStr    accid     = NULL;
 
@@ -141,7 +141,7 @@ int main(int argc, char *argv[])
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
 
-  AJFREE(params.id);
+  AJFREE(params.usage);
   AJFREE(params.del_USCOREkey);
 
   ajStrDel(&usage);

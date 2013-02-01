@@ -47,13 +47,13 @@ int main(int argc, char *argv[])
   embInitPV("gphx", argc, argv, "GEMBASSY", "1.0.0");
 
   struct soap soap;
-  struct ns1__phxInputParams params;
+  struct ns1__P2InputParams params;
 
   AjPSeqall seqall;
   AjPSeq    seq;
-  AjPStr    inseq = NULL;
-  AjPBool   translate = 0;
-  AjPStr    accid = NULL;
+  AjPStr    inseq     = NULL;
+  AjBool    translate = 0;
+  AjPStr    accid     = NULL;
 
   char *in0;
   char *result;
@@ -106,7 +106,7 @@ int main(int argc, char *argv[])
                            ) == SOAP_OK)
 	{
           ajFmtPrintF(outf, "Sequence: %S\n", accid);
-          if(!gFileGetURLC(result, &outf))
+          if(!gFileOutURLC(result, &outf))
             {
               ajFmtError("File downloading error\n");
               embExitBad();
@@ -132,10 +132,6 @@ int main(int argc, char *argv[])
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
   ajStrDel(&accid);
-
-  AJFREE(params.method);
-
-  ajStrDel(&method);
 
   embExit();
 

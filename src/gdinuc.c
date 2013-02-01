@@ -31,7 +31,7 @@
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
-#include "../include/gembassy.h"
+#include "../include/gfile.h"
 
 
 
@@ -117,8 +117,7 @@ int main(int argc, char *argv[])
 			     &result
                              ) == SOAP_OK)
 	{
-	  ajFmtPrintF(outf, "Sequence: %S\n%S\n",
-		      accid, getContentS(filename));
+	  ajFmtPrintF(outf, "Sequence: %S\n", accid);
 	  if(!gFileOutURLC(result, &outf))
 	    {
 	      ajFmtError("File downloading error\n");
@@ -148,7 +147,7 @@ int main(int argc, char *argv[])
   AJFREE(params.del_USCOREkey);
   AJFREE(params.position);
 
-  ajStrDel(position);
+  ajStrDel(&position);
   ajStrDel(&delkey);
 
   embExit();

@@ -6,7 +6,7 @@
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
-#include "../include/gembassy.h"
+#include "../include/gfile.h"
 
 int main(int argc, char *argv[])
 {
@@ -14,6 +14,8 @@ int main(int argc, char *argv[])
 
   struct soap soap;
   struct ns1__oligomer_USCOREsearchInputParams params;
+  struct ns1__oligomer_USCOREsearchResponse result;
+  struct arrayOut *arrayOut;
 
   AjPSeqall seqall;
   AjPSeq    seq;
@@ -25,9 +27,10 @@ int main(int argc, char *argv[])
   AjPStr    parse    = NULL;
   AjPStrTok handle   = NULL;
 
+  ajint i = 0;
+
   char *in0;
   char *in1;
-  char *result;
 
   AjBool  show = 0;
   AjPFile outf = NULL;
@@ -64,37 +67,31 @@ int main(int argc, char *argv[])
       in0 = ajCharNewS(inseq);
       in1 = ajCharNewS(oligomer);
 
-      if(soap_call_ns1__oligomer_USCOREcounter(
-					      &soap,
-                                               NULL,
-                                               NULL,
-					       in0,
-                                               in1,
-                                              &params,
-                                              &result
-					      ) == SOAP_OK)
+      if(soap_call_ns1__oligomer_USCOREsearch(
+					     &soap,
+                                              NULL,
+                                              NULL,
+					      in0,
+                                              in1,
+                                             &params,
+                                             &result
+					     ) == SOAP_OK)
         {
-          tmp = ajStrNew();
-
-          ajStrAssignC(tmp, result);
-
-          ajStrExchangeCC(&tmp, "<", "\n");
-          ajStrExchangeCC(&tmp, ">", "\n");
-
-          handle = ajStrTokenNewC(tmp, "\n");
-
+          
           if(show)
             ajFmtPrint("Sequence: %S Oligomer: %S\n", accid, oligomer);
           else
             ajFmtPrintF(outf, "Sequence: %S Oligomer: %S\n", accid, oligomer);
 
-          while(ajStrTokenNextParse(&handle, &parse))
+          arrayOut = result._result;
+
+          while(i < (*arrayOut).__size)
             {
-              if(ajStrIsInt(parse))
-                if(show)
-                  ajFmtPrint("%s\n", parse);
-                else
-                  ajFmtPrintF(outf, "%s\n", parse);
+              if(show)
+                ajFmtPrint("%s\n",(* arrayOut).__ptr[i]);
+              else
+                ajFmtPrintF(outf, "%s\n", (*arrayOut).__ptr[i]);
+              ++i;
             }
         }
       else
@@ -109,7 +106,7 @@ int main(int argc, char *argv[])
       AJFREE(in0);
       AJFREE(in1);
 
-      ajStrDel(inseq);
+      ajStrDel(&inseq);
     }
 
   if(outf)
@@ -121,7 +118,7 @@ int main(int argc, char *argv[])
 
   AJFREE(params.return_);
 
-  ajStrDel(&result);
+  ajStrDel(&return_);
 
   embExit();
 

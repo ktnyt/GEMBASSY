@@ -106,7 +106,7 @@ int main(int argc, char *argv[])
 		  embExitBad();
 		}
 
-	      if(!gPlotFilebuff(filename, mult, &gpp))
+	      if(!gPlotFilebuff(buff, mult, &gpp))
 		{
 		  ajFmtError("Error in plotting\n");
 		  embExitBad();
@@ -120,13 +120,13 @@ int main(int argc, char *argv[])
 	    }
 	  else
 	    {
-	      ajFmtPrint(outf, "Sequence: %S\n", accid);
+	      ajFmtPrintF(outf, "Sequence: %S\n", accid);
 	      if(!gFileOutURLC(result, &outf))
 		{
 		  ajFmtError("File downloading error\n");
 		  embExitBad();
 		}
-<	    }
+	    }
 	}
       else
 	{

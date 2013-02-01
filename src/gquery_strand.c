@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "emboss.h"
 
 #include "soapH.h"
@@ -8,88 +6,99 @@
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
-#include "../include/gembassy.h"
+#include "../include/gfile.h"
 
-int
-main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
   embInitPV("gquery_strand", argc, argv, "GEMBASSY", "1.0.0");
 
-  struct soap	  soap;
-  struct ns1__query_USCOREstrandInputParams params;
+  struct soap soap;
 
-  AjPSeqall	  seqall;
-  AjPSeq	  seq;
-  AjPStr	  inseq = NULL;
-  char           *position = NULL;
-  AjPStr	  direction = NULL;
-  AjPStr	  accid = NULL;
-  char           *result;
+  AjPSeqall seqall;
+  AjPSeq    seq;
+  AjPStr    inseq    = NULL;
+  ajint	    position = 0;
+  AjPStr    accid    = NULL;
 
-  AjBool	  show = 0;
-  AjPFile	  outf = NULL;
+  char *in0;
+  char *result;
 
-  seqall = ajAcdGetSeqall("sequence");
-  direction = ajAcdGetString("direction");
-  position = ajCharNewS(ajAcdGetString("position"));
-  accid = ajAcdGetString("accid");
+  AjBool  show = 0;
+  AjPFile outf = NULL;
+
+  seqall   = ajAcdGetSeqall("sequence");
+  position = ajAcdGetInt("position");
+  accid    = ajAcdGetString("accid");
 
   show = ajAcdGetToggle("show");
-  outf = ajAcdGetOutfile("outfile");
 
-  params.direction = ajCharNewS(direction);
+  if(!show)
+    outf = ajAcdGetOutfile("outfile");
 
-  while (ajSeqallNext(seqall, &seq)) {
+  while(ajSeqallNext(seqall, &seq))
+    {
 
-    soap_init(&soap);
+      soap_init(&soap);
 
-    inseq = NULL;
+      inseq = NULL;
 
-    if (ajSeqGetFeat(seq) && !ajStrGetLen(accid)) {
-      inseq = getGenbank(seq);
-      ajStrAssignS(&accid, ajSeqGetAccS(seq));
-    } else {
-      if (!ajStrGetLen(accid)) {
-	fprintf(stderr, "Sequence does not have features\n");
-	fprintf(stderr, "Proceeding with sequence accession ID\n");
-	ajStrAssignS(&accid, ajSeqGetAccS(seq));
-      }
-      if (!valID(ajCharNewS(accid))) {
-	fprintf(stderr, "Invalid accession ID, exiting");
-	return 1;
-      }
-      ajStrAssignS(&inseq, accid);
-    }
+      if(!gFormatGenbank(seq, &inseq) && !ajStrGetLen(accid))
+        {
+          ajFmtError("Sequence does not have features\n");
+          ajFmtError("Proceeding with sequence accession ID\n");
+          ajStrAssignS(&accid, ajSeqGetAccS(seq));
+        }
 
-    char           *in0;
-    in0 = ajCharNewS(inseq);
+      if(ajStrGetLen(accid))
+        {
+          if(!gValID(accid))
+            {
+              ajFmtError("Invalid accession ID, exiting\n");
+              embExitBad();
+            }
+          ajStrAssignS(&inseq, accid);
+        }
 
-    if (soap_call_ns1__query_USCOREstrand(
-					  &soap, NULL, NULL,
-					  in0, position, &params, &result
-					  ) == SOAP_OK) {
-      if (show)
-	ajFmtPrint("Sequence: %S Strand: %S\n",
-		   accid, ajStrNewC(result));
+      if(!ajStrGetLen(accid))
+        ajStrAssignS(&accid, ajSeqGetAccS(seq));
+
+      in0 = ajCharNewS(inseq);
+
+      if(soap_call_ns1__query_USCOREarm(
+				       &soap,
+                                        NULL,
+                                        NULL,
+				        in0,
+                                        position,
+                                       &result
+				       ) == SOAP_OK)
+        {
+          if(show)
+            ajFmtPrint("Sequence: %S Strand: %s\n", accid, result);
+          else
+            ajFmtPrintF(outf, "Sequence: %S Strand: %s\n", accid, result);
+        }
       else
-	ajFmtPrintF(outf, "Sequence: %S Strand: %S\n",
-		    accid, ajStrNewC(result));
-    } else {
-      soap_print_fault(&soap, stderr);
-    }
+        {
+          soap_print_fault(&soap, stderr);
+        }
 
-    soap_destroy(&soap);
-    soap_end(&soap);
-    soap_done(&soap);
+      soap_destroy(&soap);
+      soap_end(&soap);
+      soap_done(&soap);
+
+      AJFREE(in0);
+
+      ajStrDel(&inseq);
   }
 
-  if (outf)
+  if(outf)
     ajFileClose(&outf);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
-  ajStrDel(&inseq);
 
   embExit();
+
   return 0;
 }

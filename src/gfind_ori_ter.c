@@ -97,7 +97,6 @@ int main(int argc, char *argv[])
 	{
 	  tmp    = ajStrNew();
 	  parse  = ajStrNew();
-	  handle = ajStrNew();
 	  ori    = ajStrNew();
 	  ter    = ajStrNew();
 
