@@ -86,6 +86,10 @@ libgplot_a_AR = $(AR) $(ARFLAGS)
 libgplot_a_LIBADD =
 am_libgplot_a_OBJECTS = gplot.$(OBJEXT)
 libgplot_a_OBJECTS = $(am_libgplot_a_OBJECTS)
+libgpost_a_AR = $(AR) $(ARFLAGS)
+libgpost_a_LIBADD =
+am_libgpost_a_OBJECTS = gpost.$(OBJEXT)
+libgpost_a_OBJECTS = $(am_libgpost_a_OBJECTS)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -125,9 +129,9 @@ am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
 SOURCES = $(libgfile_a_SOURCES) $(libghttp_a_SOURCES) \
-	$(libgplot_a_SOURCES)
+	$(libgplot_a_SOURCES) $(libgpost_a_SOURCES)
 DIST_SOURCES = $(libgfile_a_SOURCES) $(libghttp_a_SOURCES) \
-	$(libgplot_a_SOURCES)
+	$(libgplot_a_SOURCES) $(libgpost_a_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -319,10 +323,11 @@ top_srcdir = @top_srcdir@
 @ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_TRUE@-lezlib -leplplot
 
 AM_CFLAGS = $(AIX_CFLAGS) $(WARN_CFLAGS) $(DEVWARN_CFLAGS)
-noinst_LIBRARIES = libgfile.a libghttp.a libgplot.a
+noinst_LIBRARIES = libgfile.a libghttp.a libgplot.a libgpost.a
 libgfile_a_SOURCES = gfile.c
 libghttp_a_SOURCES = ghttp.c
 libgplot_a_SOURCES = gplot.c
+libgpost_a_SOURCES = gpost.c
 @LOCALLINK_FALSE@LDADD = -L${embprefix}/lib -lpng -lnucleus -lacd -lajaxdb -lensembl \
 @LOCALLINK_FALSE@        -lajaxg -lajax -leexpat -lepcre -lezlib -leplplot -lcurl \
 @LOCALLINK_FALSE@        $(XLIB)
@@ -387,6 +392,10 @@ libgplot.a: $(libgplot_a_OBJECTS) $(libgplot_a_DEPENDENCIES) $(EXTRA_libgplot_a_
 	$(AM_V_at)-rm -f libgplot.a
 	$(AM_V_AR)$(libgplot_a_AR) libgplot.a $(libgplot_a_OBJECTS) $(libgplot_a_LIBADD)
 	$(AM_V_at)$(RANLIB) libgplot.a
+libgpost.a: $(libgpost_a_OBJECTS) $(libgpost_a_DEPENDENCIES) $(EXTRA_libgpost_a_DEPENDENCIES) 
+	$(AM_V_at)-rm -f libgpost.a
+	$(AM_V_AR)$(libgpost_a_AR) libgpost.a $(libgpost_a_OBJECTS) $(libgpost_a_LIBADD)
+	$(AM_V_at)$(RANLIB) libgpost.a
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -397,6 +406,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfile.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ghttp.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gplot.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gpost.Po@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

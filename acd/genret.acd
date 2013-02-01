@@ -1,0 +1,62 @@
+application: genret [
+  documentation: "Retrieves various gene related infomration from genome flatfile"
+  groups: "Data retreival, Edit"
+  embassy: "gembassy"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+
+  seqall: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+    features: "Y"
+  ]
+
+  string: method [
+    parameter: "Y"
+    information: "G-language REST method to call"
+  ]
+
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+
+  string: cds [
+    information: "CDS to lookup. Give comma delimeted for multiple values and '*' for all"
+    default: "*"
+  ]
+
+  string: option [
+    information: "Option to give to method. See the manual for more information"
+    default: ""
+  ]
+
+  boolean: translate [
+    information: "Include to translate from nucleotide to protein sequence"
+    default: "0"
+  ]
+
+  string: accid [
+    information: "Include to use sequence accession ID as query"
+    default: ""
+  ]
+
+endsection: advanced
+
+section: output [
+  information: "Output section"
+  type: "page"
+]
+
+  outfile: outfile [
+    parameter: "Y"
+    information: "File for reporting output"
+  ]
+
+endsection: output

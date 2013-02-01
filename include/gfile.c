@@ -217,7 +217,7 @@ AjBool gFilebuffURLC(char* url, AjPFilebuff* buff){
 
 
 
-/* @func gGetUniqueFileName ***************************************************
+/* @func gAssignUniqueName ****************************************************
 **
 ** Creates a unique filename
 **
@@ -225,17 +225,14 @@ AjBool gFilebuffURLC(char* url, AjPFilebuff* buff){
 ** @@
 ******************************************************************************/
 
-AjPStr gGetUniqueFileName(void) {
+void gAssignUniqueName(AjPStr *string) {
   static char ext[2] = "A";
-  AjPStr filename    = NULL;
 
-  ajFmtPrintS(&filename, "%08d%s", getpid(), ext);
+  ajFmtPrintS(string, "%08d%s", getpid(), ext);
 
   if( ++ext[0] > 'Z' ) {
     ext[0] = 'A';
   }
-
-  return filename;
 }
 
 
@@ -260,7 +257,7 @@ AjBool gFormatGenbank(AjPSeq seq, AjPStr *inseq){
   AjPFile       featfile = NULL;
   AjPStr        filename = NULL;
 
-  filename = gGetUniqueFileName();
+  gAssignUniqueName(&filename);
   feat = ajSeqGetFeatCopy(seq);
 
   if(!feat)

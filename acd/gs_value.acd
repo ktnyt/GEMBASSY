@@ -22,8 +22,8 @@ section: advanced [
   type: "page"
 ]
 
-  integer: sharp [
-    information: "Set to 1 to use the 40 genes used by Sharp instead of ribosomal proteins"
+  boolean: sharp [
+    information: "Include to use the 40 genes used by Sharp instead of ribosomal proteins"
     default: "0"
   ]
 

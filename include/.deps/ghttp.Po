@@ -1,0 +1,773 @@
+ghttp.o ghttp.o: ghttp.c ghttp.h \
+  /Users/kotone/usr/emblocal/include/emboss.h \
+  /Users/kotone/usr/emblocal/include/ajax.h /usr/include/stdio.h \
+  /usr/include/sys/cdefs.h /usr/include/sys/_symbol_aliasing.h \
+  /usr/include/sys/_posix_availability.h /usr/include/Availability.h \
+  /usr/include/AvailabilityInternal.h /usr/include/_types.h \
+  /usr/include/sys/_types.h /usr/include/machine/_types.h \
+  /usr/include/i386/_types.h /usr/include/secure/_stdio.h \
+  /usr/include/secure/_common.h \
+  /Users/kotone/usr/emblocal/include/ajarch.h /usr/include/sys/types.h \
+  /usr/include/sys/appleapiopts.h /usr/include/machine/types.h \
+  /usr/include/i386/types.h /usr/include/i386/_types.h \
+  /usr/include/machine/endian.h /usr/include/i386/endian.h \
+  /usr/include/sys/_endian.h /usr/include/libkern/_OSByteOrder.h \
+  /usr/include/libkern/i386/_OSByteOrder.h /usr/include/sys/_structs.h \
+  /usr/llvm-gcc-4.2/bin/../lib/gcc/i686-apple-darwin11/4.2.1/include/stdarg.h \
+  /usr/include/stdlib.h /usr/include/sys/wait.h /usr/include/sys/signal.h \
+  /usr/include/machine/signal.h /usr/include/i386/signal.h \
+  /usr/include/i386/_structs.h /usr/include/machine/_structs.h \
+  /usr/include/mach/i386/_structs.h /usr/include/sys/resource.h \
+  /usr/include/alloca.h /usr/include/string.h /usr/include/strings.h \
+  /usr/include/secure/_string.h \
+  /Users/kotone/usr/emblocal/include/ajassert.h \
+  /Users/kotone/usr/emblocal/include/ajexcept.h /usr/include/setjmp.h \
+  /Users/kotone/usr/emblocal/include/ajdefine.h ../src/config.h \
+  /Users/kotone/usr/emblocal/include/ajstr.h \
+  /Users/kotone/usr/emblocal/include/ajfile.h \
+  /Users/kotone/usr/emblocal/include/ajlist.h /usr/include/sys/stat.h \
+  /Users/kotone/usr/emblocal/include/ajfiledata.h \
+  /Users/kotone/usr/emblocal/include/ajfileio.h \
+  /Users/kotone/usr/emblocal/include/ajfmt.h \
+  /Users/kotone/usr/emblocal/include/ajmath.h \
+  /Users/kotone/usr/emblocal/include/ajmem.h \
+  /Users/kotone/usr/emblocal/include/ajtime.h /usr/include/time.h \
+  /usr/include/_structs.h /Users/kotone/usr/emblocal/include/ajutil.h \
+  /Users/kotone/usr/emblocal/include/ajmess.h \
+  /Users/kotone/usr/emblocal/include/ajreg.h \
+  /Users/kotone/usr/emblocal/include/epcre/pcre_config.h \
+  /Users/kotone/usr/emblocal/include/epcre/pcre_internal.h \
+  /usr/include/ctype.h /usr/include/runetype.h \
+  /usr/llvm-gcc-4.2/bin/../lib/gcc/i686-apple-darwin11/4.2.1/include/limits.h \
+  /usr/llvm-gcc-4.2/bin/../lib/gcc/i686-apple-darwin11/4.2.1/include/syslimits.h \
+  /Applications/Xcode.app/Contents/Developer/usr/llvm-gcc-4.2/lib/gcc/i686-apple-darwin11/4.2.1/include/limits.h \
+  /Applications/Xcode.app/Contents/Developer/usr/llvm-gcc-4.2/lib/gcc/i686-apple-darwin11/4.2.1/include/syslimits.h \
+  /usr/include/limits.h /usr/include/machine/limits.h \
+  /usr/include/i386/limits.h /usr/include/i386/_limits.h \
+  /usr/include/sys/syslimits.h \
+  /usr/llvm-gcc-4.2/bin/../lib/gcc/i686-apple-darwin11/4.2.1/include/stddef.h \
+  /Users/kotone/usr/emblocal/include/epcre/pcreemboss.h \
+  /Users/kotone/usr/emblocal/include/epcre/pcre.h \
+  /Users/kotone/usr/emblocal/include/epcre/ucp.h \
+  /Users/kotone/usr/emblocal/include/epcre/pcreposix.h \
+  /Users/kotone/usr/emblocal/include/ajsys.h /usr/include/unistd.h \
+  /usr/include/sys/unistd.h /usr/include/sys/select.h \
+  /usr/include/sys/_select.h /usr/include/sys/param.h \
+  /usr/include/machine/param.h /usr/include/i386/param.h \
+  /usr/include/i386/_param.h /usr/include/sys/socket.h \
+  /usr/include/machine/_param.h /usr/include/netinet/in.h \
+  /usr/include/stdint.h /usr/include/netinet6/in6.h \
+  /usr/include/arpa/inet.h /usr/include/netdb.h /usr/include/dirent.h \
+  /usr/include/sys/dirent.h /usr/include/signal.h \
+  /Users/kotone/usr/emblocal/include/ajtable.h \
+  /Users/kotone/usr/emblocal/include/ajarr.h \
+  /Users/kotone/usr/emblocal/include/ajsort.h \
+  /Users/kotone/usr/emblocal/include/ajquerydata.h \
+  /Users/kotone/usr/emblocal/include/ajnam.h \
+  /Users/kotone/usr/emblocal/include/ajtextdata.h \
+  /Users/kotone/usr/emblocal/include/ajfeatdata.h \
+  /Users/kotone/usr/emblocal/include/ajseqdata.h \
+  /Users/kotone/usr/emblocal/include/ajobodata.h \
+  /Users/kotone/usr/emblocal/include/ajassemdata.h \
+  /Users/kotone/usr/emblocal/include/ajtaxdata.h \
+  /Users/kotone/usr/emblocal/include/ajresourcedata.h \
+  /Users/kotone/usr/emblocal/include/ajurldata.h \
+  /Users/kotone/usr/emblocal/include/ajvardata.h \
+  /Users/kotone/usr/emblocal/include/ajquery.h \
+  /Users/kotone/usr/emblocal/include/ajtextread.h \
+  /Users/kotone/usr/emblocal/include/ajtextwrite.h \
+  /Users/kotone/usr/emblocal/include/ajtext.h \
+  /Users/kotone/usr/emblocal/include/ajfeat.h \
+  /Users/kotone/usr/emblocal/include/ajfeatread.h \
+  /Users/kotone/usr/emblocal/include/ajfeatwrite.h \
+  /Users/kotone/usr/emblocal/include/ajseq.h \
+  /Users/kotone/usr/emblocal/include/ajseqtype.h \
+  /Users/kotone/usr/emblocal/include/ajseqread.h \
+  /Users/kotone/usr/emblocal/include/ajseqwrite.h \
+  /Users/kotone/usr/emblocal/include/ajseqabi.h \
+  /Users/kotone/usr/emblocal/include/ajmatrices.h \
+  /Users/kotone/usr/emblocal/include/ajobo.h \
+  /Users/kotone/usr/emblocal/include/ajoboread.h \
+  /Users/kotone/usr/emblocal/include/ajobowrite.h \
+  /Users/kotone/usr/emblocal/include/ajassem.h \
+  /Users/kotone/usr/emblocal/include/ajassemread.h \
+  /Users/kotone/usr/emblocal/include/ajassemwrite.h \
+  /Users/kotone/usr/emblocal/include/ajtax.h \
+  /Users/kotone/usr/emblocal/include/ajtaxread.h \
+  /Users/kotone/usr/emblocal/include/ajtaxwrite.h \
+  /Users/kotone/usr/emblocal/include/ajresource.h \
+  /Users/kotone/usr/emblocal/include/ajresourceread.h \
+  /Users/kotone/usr/emblocal/include/ajresourcewrite.h \
+  /Users/kotone/usr/emblocal/include/ajurl.h \
+  /Users/kotone/usr/emblocal/include/ajurlread.h \
+  /Users/kotone/usr/emblocal/include/ajurlwrite.h \
+  /Users/kotone/usr/emblocal/include/ajvar.h \
+  /Users/kotone/usr/emblocal/include/ajvarread.h \
+  /Users/kotone/usr/emblocal/include/ajvarwrite.h \
+  /Users/kotone/usr/emblocal/include/ajalign.h \
+  /Users/kotone/usr/emblocal/include/ajnexus.h \
+  /Users/kotone/usr/emblocal/include/ajreport.h \
+  /Users/kotone/usr/emblocal/include/ajindex.h \
+  /Users/kotone/usr/emblocal/include/ajtranslate.h \
+  /Users/kotone/usr/emblocal/include/ajrange.h \
+  /Users/kotone/usr/emblocal/include/ajcod.h \
+  /Users/kotone/usr/emblocal/include/ajtree.h \
+  /Users/kotone/usr/emblocal/include/ajphylo.h \
+  /Users/kotone/usr/emblocal/include/ajbase.h \
+  /Users/kotone/usr/emblocal/include/ajdan.h \
+  /Users/kotone/usr/emblocal/include/ajpdb.h \
+  /Users/kotone/usr/emblocal/include/ajdomain.h \
+  /Users/kotone/usr/emblocal/include/ajpdbio.h \
+  /Users/kotone/usr/emblocal/include/ajdmx.h \
+  /Users/kotone/usr/emblocal/include/ajpat.h \
+  /Users/kotone/usr/emblocal/include/ajcall.h \
+  /Users/kotone/usr/emblocal/include/ajjava.h \
+  /Users/kotone/usr/emblocal/include/ajvector.h \
+  /Users/kotone/usr/emblocal/include/ajdom.h \
+  /Users/kotone/usr/emblocal/include/ajsql.h \
+  /Users/kotone/usr/emblocal/include/ajhttp.h \
+  /Users/kotone/usr/emblocal/include/ajgraph.h \
+  /Users/kotone/usr/emblocal/include/eplplot/plplot.h \
+  /Users/kotone/usr/emblocal/include/eplplot/plConfig.h \
+  /Users/kotone/usr/emblocal/include/eplplot/pldll.h \
+  /Users/kotone/usr/emblocal/include/ajgraphstruct.h \
+  /Users/kotone/usr/emblocal/include/ajhist.h \
+  /Users/kotone/usr/emblocal/include/ensembl.h \
+  /Users/kotone/usr/emblocal/include/ensalign.h \
+  /Users/kotone/usr/emblocal/include/ensfeature.h \
+  /Users/kotone/usr/emblocal/include/ensanalysis.h \
+  /Users/kotone/usr/emblocal/include/ensbaseadaptor.h \
+  /Users/kotone/usr/emblocal/include/ensassemblymapper.h \
+  /Users/kotone/usr/emblocal/include/ensdata.h \
+  /Users/kotone/usr/emblocal/include/enscache.h \
+  /Users/kotone/usr/emblocal/include/enscoordsystem.h \
+  /Users/kotone/usr/emblocal/include/ensdatabaseadaptor.h \
+  /Users/kotone/usr/emblocal/include/ensdatabaseconnection.h \
+  /Users/kotone/usr/emblocal/include/ensmapper.h \
+  /Users/kotone/usr/emblocal/include/ensassemblyexception.h \
+  /Users/kotone/usr/emblocal/include/ensslice.h \
+  /Users/kotone/usr/emblocal/include/ensseqregion.h \
+  /Users/kotone/usr/emblocal/include/ensassembly.h \
+  /Users/kotone/usr/emblocal/include/ensattribute.h \
+  /Users/kotone/usr/emblocal/include/ensdatabaseentry.h \
+  /Users/kotone/usr/emblocal/include/ensexternaldatabase.h \
+  /Users/kotone/usr/emblocal/include/ensdensity.h \
+  /Users/kotone/usr/emblocal/include/ensditag.h \
+  /Users/kotone/usr/emblocal/include/ensexon.h \
+  /Users/kotone/usr/emblocal/include/ensgene.h \
+  /Users/kotone/usr/emblocal/include/ensgvallele.h \
+  /Users/kotone/usr/emblocal/include/ensgvdata.h \
+  /Users/kotone/usr/emblocal/include/ensgvattribute.h \
+  /Users/kotone/usr/emblocal/include/ensgvbaseadaptor.h \
+  /Users/kotone/usr/emblocal/include/ensgvdatabaseadaptor.h \
+  /Users/kotone/usr/emblocal/include/ensgvgenotype.h \
+  /Users/kotone/usr/emblocal/include/ensgvindividual.h \
+  /Users/kotone/usr/emblocal/include/ensgvsample.h \
+  /Users/kotone/usr/emblocal/include/ensgvpopulation.h \
+  /Users/kotone/usr/emblocal/include/ensgvsource.h \
+  /Users/kotone/usr/emblocal/include/ensgvsynonym.h \
+  /Users/kotone/usr/emblocal/include/ensgvvariation.h \
+  /Users/kotone/usr/emblocal/include/ensintron.h \
+  /Users/kotone/usr/emblocal/include/enskaryotype.h \
+  /Users/kotone/usr/emblocal/include/ensmarker.h \
+  /Users/kotone/usr/emblocal/include/ensmetacoordinate.h \
+  /Users/kotone/usr/emblocal/include/ensmetainformation.h \
+  /Users/kotone/usr/emblocal/include/ensmiscellaneous.h \
+  /Users/kotone/usr/emblocal/include/ensprediction.h \
+  /Users/kotone/usr/emblocal/include/ensprojectionsegment.h \
+  /Users/kotone/usr/emblocal/include/ensprotein.h \
+  /Users/kotone/usr/emblocal/include/ensqc.h \
+  /Users/kotone/usr/emblocal/include/ensqcalignment.h \
+  /Users/kotone/usr/emblocal/include/ensqcsequence.h \
+  /Users/kotone/usr/emblocal/include/ensqcdatabase.h \
+  /Users/kotone/usr/emblocal/include/ensqcdasfeature.h \
+  /Users/kotone/usr/emblocal/include/ensqcsubmission.h \
+  /Users/kotone/usr/emblocal/include/ensqcvariation.h \
+  /Users/kotone/usr/emblocal/include/ensregistry.h \
+  /Users/kotone/usr/emblocal/include/ensrepeat.h \
+  /Users/kotone/usr/emblocal/include/enssequence.h \
+  /Users/kotone/usr/emblocal/include/enssequenceedit.h \
+  /Users/kotone/usr/emblocal/include/enssimple.h \
+  /Users/kotone/usr/emblocal/include/enssoftware.h \
+  /Users/kotone/usr/emblocal/include/ensstorable.h \
+  /Users/kotone/usr/emblocal/include/enstable.h \
+  /Users/kotone/usr/emblocal/include/enstranscript.h \
+  /Users/kotone/usr/emblocal/include/enstranslation.h \
+  /Users/kotone/usr/emblocal/include/ensutility.h \
+  /Users/kotone/usr/emblocal/include/ensvariation.h \
+  /Users/kotone/usr/emblocal/include/ajtextdb.h \
+  /Users/kotone/usr/emblocal/include/ajseqdb.h \
+  /Users/kotone/usr/emblocal/include/ajfeatdb.h \
+  /Users/kotone/usr/emblocal/include/ajobodb.h \
+  /Users/kotone/usr/emblocal/include/ajassemdb.h \
+  /Users/kotone/usr/emblocal/include/ajtaxdb.h \
+  /Users/kotone/usr/emblocal/include/ajurldb.h \
+  /Users/kotone/usr/emblocal/include/ajvardb.h \
+  /Users/kotone/usr/emblocal/include/ajresourcedb.h \
+  /Users/kotone/usr/emblocal/include/ajmart.h \
+  /Users/kotone/usr/emblocal/include/ajacd.h \
+  /Users/kotone/usr/emblocal/include/embaln.h \
+  /Users/kotone/usr/emblocal/include/embcom.h \
+  /Users/kotone/usr/emblocal/include/embcons.h \
+  /Users/kotone/usr/emblocal/include/embdbi.h \
+  /Users/kotone/usr/emblocal/include/embread.h \
+  /Users/kotone/usr/emblocal/include/embiep.h \
+  /Users/kotone/usr/emblocal/include/embprop.h \
+  /Users/kotone/usr/emblocal/include/embinit.h \
+  /Users/kotone/usr/emblocal/include/embword.h \
+  /Users/kotone/usr/emblocal/include/embpat.h \
+  /Users/kotone/usr/emblocal/include/embpatlist.h \
+  /Users/kotone/usr/emblocal/include/embmat.h \
+  /Users/kotone/usr/emblocal/include/embdata.h \
+  /Users/kotone/usr/emblocal/include/embnmer.h \
+  /Users/kotone/usr/emblocal/include/embgroup.h \
+  /Users/kotone/usr/emblocal/include/embshow.h \
+  /Users/kotone/usr/emblocal/include/embmisc.h \
+  /Users/kotone/usr/emblocal/include/embmol.h \
+  /Users/kotone/usr/emblocal/include/embpdb.h \
+  /Users/kotone/usr/emblocal/include/embdomain.h \
+  /Users/kotone/usr/emblocal/include/embsig.h \
+  /Users/kotone/usr/emblocal/include/embdmx.h \
+  /Users/kotone/usr/emblocal/include/embexit.h \
+  /Users/kotone/usr/emblocal/include/embindex.h \
+  /Users/kotone/usr/emblocal/include/embest.h
+
+ghttp.h:
+
+/Users/kotone/usr/emblocal/include/emboss.h:
+
+/Users/kotone/usr/emblocal/include/ajax.h:
+
+/usr/include/stdio.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/sys/_symbol_aliasing.h:
+
+/usr/include/sys/_posix_availability.h:
+
+/usr/include/Availability.h:
+
+/usr/include/AvailabilityInternal.h:
+
+/usr/include/_types.h:
+
+/usr/include/sys/_types.h:
+
+/usr/include/machine/_types.h:
+
+/usr/include/i386/_types.h:
+
+/usr/include/secure/_stdio.h:
+
+/usr/include/secure/_common.h:
+
+/Users/kotone/usr/emblocal/include/ajarch.h:
+
+/usr/include/sys/types.h:
+
+/usr/include/sys/appleapiopts.h:
+
+/usr/include/machine/types.h:
+
+/usr/include/i386/types.h:
+
+/usr/include/i386/_types.h:
+
+/usr/include/machine/endian.h:
+
+/usr/include/i386/endian.h:
+
+/usr/include/sys/_endian.h:
+
+/usr/include/libkern/_OSByteOrder.h:
+
+/usr/include/libkern/i386/_OSByteOrder.h:
+
+/usr/include/sys/_structs.h:
+
+/usr/llvm-gcc-4.2/bin/../lib/gcc/i686-apple-darwin11/4.2.1/include/stdarg.h:
+
+/usr/include/stdlib.h:
+
+/usr/include/sys/wait.h:
+
+/usr/include/sys/signal.h:
+
+/usr/include/machine/signal.h:
+
+/usr/include/i386/signal.h:
+
+/usr/include/i386/_structs.h:
+
+/usr/include/machine/_structs.h:
+
+/usr/include/mach/i386/_structs.h:
+
+/usr/include/sys/resource.h:
+
+/usr/include/alloca.h:
+
+/usr/include/string.h:
+
+/usr/include/strings.h:
+
+/usr/include/secure/_string.h:
+
+/Users/kotone/usr/emblocal/include/ajassert.h:
+
+/Users/kotone/usr/emblocal/include/ajexcept.h:
+
+/usr/include/setjmp.h:
+
+/Users/kotone/usr/emblocal/include/ajdefine.h:
+
+../src/config.h:
+
+/Users/kotone/usr/emblocal/include/ajstr.h:
+
+/Users/kotone/usr/emblocal/include/ajfile.h:
+
+/Users/kotone/usr/emblocal/include/ajlist.h:
+
+/usr/include/sys/stat.h:
+
+/Users/kotone/usr/emblocal/include/ajfiledata.h:
+
+/Users/kotone/usr/emblocal/include/ajfileio.h:
+
+/Users/kotone/usr/emblocal/include/ajfmt.h:
+
+/Users/kotone/usr/emblocal/include/ajmath.h:
+
+/Users/kotone/usr/emblocal/include/ajmem.h:
+
+/Users/kotone/usr/emblocal/include/ajtime.h:
+
+/usr/include/time.h:
+
+/usr/include/_structs.h:
+
+/Users/kotone/usr/emblocal/include/ajutil.h:
+
+/Users/kotone/usr/emblocal/include/ajmess.h:
+
+/Users/kotone/usr/emblocal/include/ajreg.h:
+
+/Users/kotone/usr/emblocal/include/epcre/pcre_config.h:
+
+/Users/kotone/usr/emblocal/include/epcre/pcre_internal.h:
+
+/usr/include/ctype.h:
+
+/usr/include/runetype.h:
+
+/usr/llvm-gcc-4.2/bin/../lib/gcc/i686-apple-darwin11/4.2.1/include/limits.h:
+
+/usr/llvm-gcc-4.2/bin/../lib/gcc/i686-apple-darwin11/4.2.1/include/syslimits.h:
+
+/Applications/Xcode.app/Contents/Developer/usr/llvm-gcc-4.2/lib/gcc/i686-apple-darwin11/4.2.1/include/limits.h:
+
+/Applications/Xcode.app/Contents/Developer/usr/llvm-gcc-4.2/lib/gcc/i686-apple-darwin11/4.2.1/include/syslimits.h:
+
+/usr/include/limits.h:
+
+/usr/include/machine/limits.h:
+
+/usr/include/i386/limits.h:
+
+/usr/include/i386/_limits.h:
+
+/usr/include/sys/syslimits.h:
+
+/usr/llvm-gcc-4.2/bin/../lib/gcc/i686-apple-darwin11/4.2.1/include/stddef.h:
+
+/Users/kotone/usr/emblocal/include/epcre/pcreemboss.h:
+
+/Users/kotone/usr/emblocal/include/epcre/pcre.h:
+
+/Users/kotone/usr/emblocal/include/epcre/ucp.h:
+
+/Users/kotone/usr/emblocal/include/epcre/pcreposix.h:
+
+/Users/kotone/usr/emblocal/include/ajsys.h:
+
+/usr/include/unistd.h:
+
+/usr/include/sys/unistd.h:
+
+/usr/include/sys/select.h:
+
+/usr/include/sys/_select.h:
+
+/usr/include/sys/param.h:
+
+/usr/include/machine/param.h:
+
+/usr/include/i386/param.h:
+
+/usr/include/i386/_param.h:
+
+/usr/include/sys/socket.h:
+
+/usr/include/machine/_param.h:
+
+/usr/include/netinet/in.h:
+
+/usr/include/stdint.h:
+
+/usr/include/netinet6/in6.h:
+
+/usr/include/arpa/inet.h:
+
+/usr/include/netdb.h:
+
+/usr/include/dirent.h:
+
+/usr/include/sys/dirent.h:
+
+/usr/include/signal.h:
+
+/Users/kotone/usr/emblocal/include/ajtable.h:
+
+/Users/kotone/usr/emblocal/include/ajarr.h:
+
+/Users/kotone/usr/emblocal/include/ajsort.h:
+
+/Users/kotone/usr/emblocal/include/ajquerydata.h:
+
+/Users/kotone/usr/emblocal/include/ajnam.h:
+
+/Users/kotone/usr/emblocal/include/ajtextdata.h:
+
+/Users/kotone/usr/emblocal/include/ajfeatdata.h:
+
+/Users/kotone/usr/emblocal/include/ajseqdata.h:
+
+/Users/kotone/usr/emblocal/include/ajobodata.h:
+
+/Users/kotone/usr/emblocal/include/ajassemdata.h:
+
+/Users/kotone/usr/emblocal/include/ajtaxdata.h:
+
+/Users/kotone/usr/emblocal/include/ajresourcedata.h:
+
+/Users/kotone/usr/emblocal/include/ajurldata.h:
+
+/Users/kotone/usr/emblocal/include/ajvardata.h:
+
+/Users/kotone/usr/emblocal/include/ajquery.h:
+
+/Users/kotone/usr/emblocal/include/ajtextread.h:
+
+/Users/kotone/usr/emblocal/include/ajtextwrite.h:
+
+/Users/kotone/usr/emblocal/include/ajtext.h:
+
+/Users/kotone/usr/emblocal/include/ajfeat.h:
+
+/Users/kotone/usr/emblocal/include/ajfeatread.h:
+
+/Users/kotone/usr/emblocal/include/ajfeatwrite.h:
+
+/Users/kotone/usr/emblocal/include/ajseq.h:
+
+/Users/kotone/usr/emblocal/include/ajseqtype.h:
+
+/Users/kotone/usr/emblocal/include/ajseqread.h:
+
+/Users/kotone/usr/emblocal/include/ajseqwrite.h:
+
+/Users/kotone/usr/emblocal/include/ajseqabi.h:
+
+/Users/kotone/usr/emblocal/include/ajmatrices.h:
+
+/Users/kotone/usr/emblocal/include/ajobo.h:
+
+/Users/kotone/usr/emblocal/include/ajoboread.h:
+
+/Users/kotone/usr/emblocal/include/ajobowrite.h:
+
+/Users/kotone/usr/emblocal/include/ajassem.h:
+
+/Users/kotone/usr/emblocal/include/ajassemread.h:
+
+/Users/kotone/usr/emblocal/include/ajassemwrite.h:
+
+/Users/kotone/usr/emblocal/include/ajtax.h:
+
+/Users/kotone/usr/emblocal/include/ajtaxread.h:
+
+/Users/kotone/usr/emblocal/include/ajtaxwrite.h:
+
+/Users/kotone/usr/emblocal/include/ajresource.h:
+
+/Users/kotone/usr/emblocal/include/ajresourceread.h:
+
+/Users/kotone/usr/emblocal/include/ajresourcewrite.h:
+
+/Users/kotone/usr/emblocal/include/ajurl.h:
+
+/Users/kotone/usr/emblocal/include/ajurlread.h:
+
+/Users/kotone/usr/emblocal/include/ajurlwrite.h:
+
+/Users/kotone/usr/emblocal/include/ajvar.h:
+
+/Users/kotone/usr/emblocal/include/ajvarread.h:
+
+/Users/kotone/usr/emblocal/include/ajvarwrite.h:
+
+/Users/kotone/usr/emblocal/include/ajalign.h:
+
+/Users/kotone/usr/emblocal/include/ajnexus.h:
+
+/Users/kotone/usr/emblocal/include/ajreport.h:
+
+/Users/kotone/usr/emblocal/include/ajindex.h:
+
+/Users/kotone/usr/emblocal/include/ajtranslate.h:
+
+/Users/kotone/usr/emblocal/include/ajrange.h:
+
+/Users/kotone/usr/emblocal/include/ajcod.h:
+
+/Users/kotone/usr/emblocal/include/ajtree.h:
+
+/Users/kotone/usr/emblocal/include/ajphylo.h:
+
+/Users/kotone/usr/emblocal/include/ajbase.h:
+
+/Users/kotone/usr/emblocal/include/ajdan.h:
+
+/Users/kotone/usr/emblocal/include/ajpdb.h:
+
+/Users/kotone/usr/emblocal/include/ajdomain.h:
+
+/Users/kotone/usr/emblocal/include/ajpdbio.h:
+
+/Users/kotone/usr/emblocal/include/ajdmx.h:
+
+/Users/kotone/usr/emblocal/include/ajpat.h:
+
+/Users/kotone/usr/emblocal/include/ajcall.h:
+
+/Users/kotone/usr/emblocal/include/ajjava.h:
+
+/Users/kotone/usr/emblocal/include/ajvector.h:
+
+/Users/kotone/usr/emblocal/include/ajdom.h:
+
+/Users/kotone/usr/emblocal/include/ajsql.h:
+
+/Users/kotone/usr/emblocal/include/ajhttp.h:
+
+/Users/kotone/usr/emblocal/include/ajgraph.h:
+
+/Users/kotone/usr/emblocal/include/eplplot/plplot.h:
+
+/Users/kotone/usr/emblocal/include/eplplot/plConfig.h:
+
+/Users/kotone/usr/emblocal/include/eplplot/pldll.h:
+
+/Users/kotone/usr/emblocal/include/ajgraphstruct.h:
+
+/Users/kotone/usr/emblocal/include/ajhist.h:
+
+/Users/kotone/usr/emblocal/include/ensembl.h:
+
+/Users/kotone/usr/emblocal/include/ensalign.h:
+
+/Users/kotone/usr/emblocal/include/ensfeature.h:
+
+/Users/kotone/usr/emblocal/include/ensanalysis.h:
+
+/Users/kotone/usr/emblocal/include/ensbaseadaptor.h:
+
+/Users/kotone/usr/emblocal/include/ensassemblymapper.h:
+
+/Users/kotone/usr/emblocal/include/ensdata.h:
+
+/Users/kotone/usr/emblocal/include/enscache.h:
+
+/Users/kotone/usr/emblocal/include/enscoordsystem.h:
+
+/Users/kotone/usr/emblocal/include/ensdatabaseadaptor.h:
+
+/Users/kotone/usr/emblocal/include/ensdatabaseconnection.h:
+
+/Users/kotone/usr/emblocal/include/ensmapper.h:
+
+/Users/kotone/usr/emblocal/include/ensassemblyexception.h:
+
+/Users/kotone/usr/emblocal/include/ensslice.h:
+
+/Users/kotone/usr/emblocal/include/ensseqregion.h:
+
+/Users/kotone/usr/emblocal/include/ensassembly.h:
+
+/Users/kotone/usr/emblocal/include/ensattribute.h:
+
+/Users/kotone/usr/emblocal/include/ensdatabaseentry.h:
+
+/Users/kotone/usr/emblocal/include/ensexternaldatabase.h:
+
+/Users/kotone/usr/emblocal/include/ensdensity.h:
+
+/Users/kotone/usr/emblocal/include/ensditag.h:
+
+/Users/kotone/usr/emblocal/include/ensexon.h:
+
+/Users/kotone/usr/emblocal/include/ensgene.h:
+
+/Users/kotone/usr/emblocal/include/ensgvallele.h:
+
+/Users/kotone/usr/emblocal/include/ensgvdata.h:
+
+/Users/kotone/usr/emblocal/include/ensgvattribute.h:
+
+/Users/kotone/usr/emblocal/include/ensgvbaseadaptor.h:
+
+/Users/kotone/usr/emblocal/include/ensgvdatabaseadaptor.h:
+
+/Users/kotone/usr/emblocal/include/ensgvgenotype.h:
+
+/Users/kotone/usr/emblocal/include/ensgvindividual.h:
+
+/Users/kotone/usr/emblocal/include/ensgvsample.h:
+
+/Users/kotone/usr/emblocal/include/ensgvpopulation.h:
+
+/Users/kotone/usr/emblocal/include/ensgvsource.h:
+
+/Users/kotone/usr/emblocal/include/ensgvsynonym.h:
+
+/Users/kotone/usr/emblocal/include/ensgvvariation.h:
+
+/Users/kotone/usr/emblocal/include/ensintron.h:
+
+/Users/kotone/usr/emblocal/include/enskaryotype.h:
+
+/Users/kotone/usr/emblocal/include/ensmarker.h:
+
+/Users/kotone/usr/emblocal/include/ensmetacoordinate.h:
+
+/Users/kotone/usr/emblocal/include/ensmetainformation.h:
+
+/Users/kotone/usr/emblocal/include/ensmiscellaneous.h:
+
+/Users/kotone/usr/emblocal/include/ensprediction.h:
+
+/Users/kotone/usr/emblocal/include/ensprojectionsegment.h:
+
+/Users/kotone/usr/emblocal/include/ensprotein.h:
+
+/Users/kotone/usr/emblocal/include/ensqc.h:
+
+/Users/kotone/usr/emblocal/include/ensqcalignment.h:
+
+/Users/kotone/usr/emblocal/include/ensqcsequence.h:
+
+/Users/kotone/usr/emblocal/include/ensqcdatabase.h:
+
+/Users/kotone/usr/emblocal/include/ensqcdasfeature.h:
+
+/Users/kotone/usr/emblocal/include/ensqcsubmission.h:
+
+/Users/kotone/usr/emblocal/include/ensqcvariation.h:
+
+/Users/kotone/usr/emblocal/include/ensregistry.h:
+
+/Users/kotone/usr/emblocal/include/ensrepeat.h:
+
+/Users/kotone/usr/emblocal/include/enssequence.h:
+
+/Users/kotone/usr/emblocal/include/enssequenceedit.h:
+
+/Users/kotone/usr/emblocal/include/enssimple.h:
+
+/Users/kotone/usr/emblocal/include/enssoftware.h:
+
+/Users/kotone/usr/emblocal/include/ensstorable.h:
+
+/Users/kotone/usr/emblocal/include/enstable.h:
+
+/Users/kotone/usr/emblocal/include/enstranscript.h:
+
+/Users/kotone/usr/emblocal/include/enstranslation.h:
+
+/Users/kotone/usr/emblocal/include/ensutility.h:
+
+/Users/kotone/usr/emblocal/include/ensvariation.h:
+
+/Users/kotone/usr/emblocal/include/ajtextdb.h:
+
+/Users/kotone/usr/emblocal/include/ajseqdb.h:
+
+/Users/kotone/usr/emblocal/include/ajfeatdb.h:
+
+/Users/kotone/usr/emblocal/include/ajobodb.h:
+
+/Users/kotone/usr/emblocal/include/ajassemdb.h:
+
+/Users/kotone/usr/emblocal/include/ajtaxdb.h:
+
+/Users/kotone/usr/emblocal/include/ajurldb.h:
+
+/Users/kotone/usr/emblocal/include/ajvardb.h:
+
+/Users/kotone/usr/emblocal/include/ajresourcedb.h:
+
+/Users/kotone/usr/emblocal/include/ajmart.h:
+
+/Users/kotone/usr/emblocal/include/ajacd.h:
+
+/Users/kotone/usr/emblocal/include/embaln.h:
+
+/Users/kotone/usr/emblocal/include/embcom.h:
+
+/Users/kotone/usr/emblocal/include/embcons.h:
+
+/Users/kotone/usr/emblocal/include/embdbi.h:
+
+/Users/kotone/usr/emblocal/include/embread.h:
+
+/Users/kotone/usr/emblocal/include/embiep.h:
+
+/Users/kotone/usr/emblocal/include/embprop.h:
+
+/Users/kotone/usr/emblocal/include/embinit.h:
+
+/Users/kotone/usr/emblocal/include/embword.h:
+
+/Users/kotone/usr/emblocal/include/embpat.h:
+
+/Users/kotone/usr/emblocal/include/embpatlist.h:
+
+/Users/kotone/usr/emblocal/include/embmat.h:
+
+/Users/kotone/usr/emblocal/include/embdata.h:
+
+/Users/kotone/usr/emblocal/include/embnmer.h:
+
+/Users/kotone/usr/emblocal/include/embgroup.h:
+
+/Users/kotone/usr/emblocal/include/embshow.h:
+
+/Users/kotone/usr/emblocal/include/embmisc.h:
+
+/Users/kotone/usr/emblocal/include/embmol.h:
+
+/Users/kotone/usr/emblocal/include/embpdb.h:
+
+/Users/kotone/usr/emblocal/include/embdomain.h:
+
+/Users/kotone/usr/emblocal/include/embsig.h:
+
+/Users/kotone/usr/emblocal/include/embdmx.h:
+
+/Users/kotone/usr/emblocal/include/embexit.h:
+
+/Users/kotone/usr/emblocal/include/embindex.h:
+
+/Users/kotone/usr/emblocal/include/embest.h:
