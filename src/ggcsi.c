@@ -71,7 +71,6 @@ int main(int argc, char *argv[])
   char *in0;
   char *result;
 
-  AjBool  show = 0;
   AjPFile outf = NULL;
 
   seqall  = ajAcdGetSeqall("sequence");
@@ -82,11 +81,7 @@ int main(int argc, char *argv[])
   pval    = ajAcdGetBoolean("pval");
   version = ajAcdGetListSingle("gcsi");
   accid   = ajAcdGetString("accid");
-
-  show = ajAcdGetToggle("show");
-
-  if(show)
-    outf = ajAcdGetOutfile("outfile");
+  outf    = ajAcdGetOutfile("outfile");
 
   params.window = window;
   params.at     = 0;
@@ -116,6 +111,17 @@ int main(int argc, char *argv[])
 	  ajFmtError("Sequence does not have features\n");
 	  ajFmtError("Proceeding with sequence accession ID\n");
 	  ajStrAssignS(&accid, ajSeqGetAccS(seq));
+
+          if(!ajStrGetLen(accid))
+            {
+              ajStrAssignS(&accid, ajSeqGetNameS(seq));
+
+              if(!ajStrGetLen(accid))
+                {
+                  ajFmtError("No header information\n");
+                  embExitBad();
+                }
+            }
 	}
 
       if(ajStrGetLen(accid))
@@ -180,10 +186,7 @@ int main(int argc, char *argv[])
 	  if(pval)
 	    tmp = ajFmtStr("%S Z: %S P: %S", tmp, z, p);
 
-	  if(show)
-	    ajFmtPrint("%S\n", tmp);
-	  else
-	    ajFmtPrintF(outf, "%S\n", tmp);
+          ajFmtPrintF(outf, "%S\n", tmp);
 
 	  ajStrDel(&tmp);
 	  ajStrDel(&parse);
@@ -203,8 +206,7 @@ int main(int argc, char *argv[])
       soap_done(&soap);
     }
 
-  if(outf)
-    ajFileClose(&outf);
+  ajFileClose(&outf);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);

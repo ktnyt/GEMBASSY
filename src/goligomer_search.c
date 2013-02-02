@@ -1,3 +1,28 @@
+/******************************************************************************
+** @source goligomer_search
+**
+** Searches oligomers in given sequence
+**
+** @author Copyright (C) 2012 Hidetoshi Itaya
+** @version 1.0.0   First release
+** @modified 2012/1/20  Hidetoshi Itaya  Created!
+** @@
+**
+** This program is free software; you can redistribute it and/or
+** modify it under the terms of the GNU General Public License
+** as published by the Free Software Foundation; either version 2
+** of the License, or (at your option) any later version.
+**
+** This program is distributed in the hope that it will be useful,
+** but WITHOUT ANY WARRANTY; without even the implied warranty of
+** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+** GNU General Public License for more details.
+**
+** You should have received a copy of the GNU General Public License
+** along with this program; if not, write to the Free Software
+** Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+******************************************************************************/
+
 #include "emboss.h"
 
 #include "soapH.h"
@@ -7,6 +32,15 @@
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
 #include "../include/gfile.h"
+
+
+
+
+/* @prog goligomer_search *****************************************************
+**
+** Searches oligomers in given sequence
+**
+******************************************************************************/
 
 int main(int argc, char *argv[])
 {
@@ -32,18 +66,13 @@ int main(int argc, char *argv[])
   char *in0;
   char *in1;
 
-  AjBool  show = 0;
   AjPFile outf = NULL;
 
   seqall   = ajAcdGetSeqall("sequence");
   oligomer = ajAcdGetString("oligomer");
   return_  = ajAcdGetString("return");
   accid    = ajAcdGetString("accid");
-
-  show = ajAcdGetToggle("show");
-
-  if(!show)
-    outf = ajAcdGetOutfile("outfile");
+  outf     = ajAcdGetOutfile("outfile");
 
   params.return_ = ajCharNewS(return_);
 
@@ -78,19 +107,13 @@ int main(int argc, char *argv[])
 					     ) == SOAP_OK)
         {
           
-          if(show)
-            ajFmtPrint("Sequence: %S Oligomer: %S\n", accid, oligomer);
-          else
-            ajFmtPrintF(outf, "Sequence: %S Oligomer: %S\n", accid, oligomer);
+          ajFmtPrintF(outf, "Sequence: %S Oligomer: %S\n", accid, oligomer);
 
           arrayOut = result._result;
 
           while(i < (*arrayOut).__size)
             {
-              if(show)
-                ajFmtPrint("%s\n",(* arrayOut).__ptr[i]);
-              else
-                ajFmtPrintF(outf, "%s\n", (*arrayOut).__ptr[i]);
+              ajFmtPrintF(outf, "%s\n", (*arrayOut).__ptr[i]);
               ++i;
             }
         }
@@ -109,8 +132,7 @@ int main(int argc, char *argv[])
       ajStrDel(&inseq);
     }
 
-  if(outf)
-    ajFileClose(&outf);
+  ajFileClose(&outf);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);

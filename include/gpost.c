@@ -111,7 +111,7 @@ size_t curl_write(void* ptr, size_t size, size_t nmemb, void* data)
 
 AjBool gFilePostCS(char* url, AjPStr filename, AjPStr* string)
 {
-  if(!gFilePostCC(url, ajStrGetPtr(filename), string))
+  if(!gFilePostCC(url, ajCharNewS(filename), string))
     return ajFalse;
 
   return ajTrue;

@@ -44,15 +44,9 @@ section: output [
 	type: "page"
 ]
 
-  toggle: show [
-    information: "Inclue to show PNG through X11 window"
-    default: "N"
-  ]
-
   string: filename [
-    standard: "@(!$(show))"
-    information: "Output filename"
-    default: "gseq2png.png"
+    standard: "Y"
+    default: "$(sequence.name).png"
   ]
 
 endsection: output

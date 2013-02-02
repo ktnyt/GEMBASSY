@@ -43,7 +43,8 @@ section: advanced [
     values: "gc:gc;
              at:at;
              purine:purine;
-             keto:keto"    
+             keto:keto;
+             none:none"
     default: "none"
   ]
 
@@ -76,7 +77,7 @@ section: output [
 
   xygraph: graph [
     standard: "$(plot)"
-    gtitle: "ggenomicskew of $(sequence.usa)"
+    gtitle: "ggeneskew of $(sequence.usa)"
     relations: "EDAM:0002968 data Image or plot"
   ]
 
@@ -84,7 +85,6 @@ section: output [
     standard: "@(!$(plot))"
     nullok: "Y"
     nulldefault: "$(plot)"
-    default: "ggeneskew.$(sequence.name).csv"
   ]
 
 endsection: output

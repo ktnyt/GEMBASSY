@@ -77,9 +77,21 @@ int main(int argc, char *argv[])
 
       if(!gFormatGenbank(seq, &inseq) && !ajStrGetLen(accid))
 	{
-	  ajFmtError("Sequence does not have features\n");
-	  ajFmtError("Proceeding with sequence accession ID\n");
+	  ajFmtError("Sequence does not have features\n"
+                     "Proceeding with sequence accession ID\n");
+
 	  ajStrAssignS(&accid, ajSeqGetAccS(seq));
+
+          if(!ajStrGetLen(accid))
+            {
+              ajStrAssignS(&accid, ajSeqGetNameS(seq));
+
+              if(!ajStrGetLen(accid))
+                {
+                  ajFmtError("No header information\n");
+                  embExitBad();
+                }
+            }
 	}
 
       if(ajStrGetLen(accid))
@@ -126,8 +138,7 @@ int main(int argc, char *argv[])
       ajStrDel(&inseq);
     }
 
-  if(outf)
-    ajFileClose(&outf);
+  ajFileClose(&outf);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);

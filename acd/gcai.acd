@@ -45,8 +45,7 @@ section: output [
 ]
 
   outfile: outfile [
-    standard: "Y"
-    default: "gcai.$(sequence.name).csv"
+    parameter: "Y"
   ]
 
 endsection: output

@@ -58,13 +58,8 @@ section: output [
         type: "page"
 ]
 
-  toggle: show [
-    information: "Include to show png with X11 window"
-    default: "N"
-  ]
-
   outfile: outfile [
-    standard: "@(!$(show))"
+    parameter: "Y"
     default: "$(database).$(query).gentrez"
   ]
 

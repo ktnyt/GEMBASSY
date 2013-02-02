@@ -24,6 +24,7 @@
 ******************************************************************************/
 
 #include "emboss.h"
+#include <sys/ioctl.h>
 
 
 
@@ -43,15 +44,25 @@ int main(int argc, char *argv[])
   AjPSeq seq;
   AjPStr inseq  = NULL;
   AjPStr method = NULL;
-  AjPStr cds    = NULL;
   AjPStr option = 0;
   AjBool trans  = 0;
   AjPStr accid  = NULL;
+  AjPStr restid = NULL;
+
+  ajuint count  = 0;
+  AjBool multi  = ajFalse;
+  AjBool isflat = ajFalse;
+
+  AjPStr select = NULL;
+  AjPStr parse  = NULL;
+  ajuint total  = 0;
+  ajuint iter   = 0;
+  float percent = 0;
+  AjPStrTok tok = NULL;
 
   AjPStr content = NULL;
-  ajuint width   = 80;
 
-  AjPStr  filename = NULL;
+  AjPStr  tmpfname = NULL;
   AjPFile outfile  = NULL;
   AjPFile tmpfile  = NULL;
   AjPFilebuff buff = NULL;
@@ -59,76 +70,185 @@ int main(int argc, char *argv[])
   AjPStr url  = NULL;
   AjPStr line = NULL;
 
-  seqall  = ajAcdGetSeqall("sequence");
+  struct winsize w;
+  struct AJTIMEOUT timo;
+
+  seqall  = ajAcdGetSeqall("genome");
   method  = ajAcdGetString("method");
-  cds     = ajAcdGetString("cds");
+  select  = ajAcdGetString("selector");
   option  = ajAcdGetString("option");
   trans   = ajAcdGetBoolean("translate");
   accid   = ajAcdGetString("accid");
   outfile = ajAcdGetOutfile("outfile");
 
+  tmpfname = ajStrNew();
+  gAssignUniqueName(&tmpfname);
 
-  filename = ajStrNew();
+  ajStrRemoveWhite(&select);
+  tok = ajStrTokenNewC(select, ",");
+  total = ajStrCalcCountK(select, ',');
 
-  gAssignUniqueName(&filename);
+  if(ajStrMatchCaseC(method, "feature") ||
+     ajStrMatchCaseC(method, "cds") ||
+     ajStrMatchCaseC(method, "gene") ||
+     ajStrMatchCaseC(method, "intergenic"))
+    {
+      isflat = ajTrue;
+    }
 
   while(ajSeqallNext(seqall, &seq))
     {
-
-      inseq   = ajStrNew();
-      url     = ajStrNew();
-      line    = ajStrNew();
-      content = ajStrNew();
+      inseq  = ajStrNew();
+      restid = ajStrNew();
 
       if(!gFormatGenbank(seq, &inseq) || ajStrGetLen(accid))
 	{
-          if(!ajStrGetLen(accid))
+          if(ajStrMatchC(method, "load"))
             {
-              ajFmtError("Sequence does not have features\n");
-              ajFmtError("Proceeding with sequence accession ID\n");
-              ajStrAssignS(&accid, ajSeqGetAccS(seq));
-            }
-
-          if(!gValID(accid))
-            {
-              ajFmtError("Invalid accession ID, exiting\n");
+              ajFmtError("Cannot load sequence without features\n");
               embExitBad();
             }
+
+          if(!ajStrGetLen(accid))
+            {
+              ajStrAssignS(&accid, ajSeqGetNameS(seq));
+            }
+
+          ajStrAssignS(&restid, ajSeqGetAccS(seq));
+
+          if(!ajStrGetLen(restid))
+            ajStrAssignS(&restid, accid);
         }
       else
         {
-          tmpfile = ajFileNewOutNameS(filename);
-
+          tmpfile = ajFileNewOutNameS(tmpfname);
           ajFmtPrintF(tmpfile, "%S", inseq);
-
           ajFileClose(&tmpfile);
 
           gFilePostCS("http://rest.g-language.org/upload/upl.pl",
-                      filename, &accid);
+                      tmpfname, &restid);
 
-          ajSysFileUnlinkS(filename);
+          ajSysFileUnlinkS(tmpfname);
+
+          if(!ajStrGetLen(accid))
+            ajStrAssignS(&accid, ajSeqGetAccS(seq));
+
+          ajStrAssignS(&inseq, ajSeqGetSeqS(seq));
+
+          if(ajStrMatchC(method, "load"))
+            {
+              sleep(2);
+
+              ajStrFmtWrap(&inseq, 60);
+
+              ajFmtPrintF(outfile, ">%S|%S\n%S\n", restid, accid, inseq);
+
+              continue;
+            }
         }
 
-      ajFmtPrintS(&url, "http://rest.g-language.org/%S/%S/%S/%S",
-                  accid, method, cds, option);
+      multi = ajStrTokenNextParse(&tok, &parse);
 
-      gFilebuffURLS(url, &buff);
+      count = 0;
 
-      while(ajBuffreadLine(buff, &line))
+      do
         {
-          ajStrAppendS(&content, line);
+          ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+
+          url     = ajStrNew();
+          line    = ajStrNew();
+          content = ajStrNew();
+
+          if(!multi)
+            ajStrAssignS(&parse, select);
+
+          if(isflat)
+            ajStrAssignC(&parse, "");
+
+          if(total)
+            {
+              ajFmtError("\r[");
+              percent = (float) count / (float) total;
+              for(iter = 0; (float)iter < percent * (w.ws_col - 10); ++iter)
+                {
+                  ajFmtError("=");
+                }
+              ajFmtError(">");
+              for(; iter < (w.ws_col - 10); ++iter)
+                {
+                  ajFmtError(" ");
+                }
+              ajFmtError("]");
+              ajFmtError(" %3.0f %%", percent * 100);
+            }
+
+          timo.seconds = 180;
+          ajSysTimeoutSet(&timo);
+          ajFmtPrintS(&url, "http://rest.g-language.org/%S/%S/%S/%S",
+                      restid, method, parse, option);
+          ajSysTimeoutUnset(&timo);
+
+          gFilebuffURLS(url, &buff);
+
+          while(ajBuffreadLine(buff, &line))
+            {
+              ajStrAppendS(&content, line);
+            }
+
+          ajStrFmtWrap(&content, 60);
+
+          if(!ajStrMatchC(parse, "*") && !isflat)
+            ajFmtPrintF(outfile, ">%S\n", parse);
+
+          ajFmtPrintF(outfile, "%S", content);
+
+          ajStrDel(&url);
+          ajStrDel(&line);
+          ajStrDel(&content);
+
+          if(count)
+            sleep(2);
+
+          if(isflat)
+            continue;
+
+          ++count;
         }
-
-      ajStrFmtWrap(&content, 60);
-
-      ajFmtPrintF(outfile, "%S", content);
+      while(ajStrTokenNextParse(&tok, &parse));
 
       ajStrDel(&inseq);
-      ajStrDel(&url);
-      ajStrDel(&line);
-      ajStrDel(&content);
     }
 
+  ajFileClose(&outfile);
+
+  if(total)
+    {
+      ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+      ajFmtError("\r");
+      for(iter = 0; (float)iter < w.ws_col; ++iter)
+        {
+          ajFmtError(" ");
+        }
+      ajFmtError("\r[");
+      percent = (float) count / (float) total;
+      for(iter = 0; (float)iter < percent * (w.ws_col - 10); ++iter)
+        {
+          ajFmtError("=");
+        }
+      ajFmtError("=");
+      for(; iter < (w.ws_col - 10); ++iter)
+        {
+          ajFmtError(" ");
+        }
+      ajFmtError("]");
+      ajFmtError(" %3.0f %%", percent * 100);
+      ajFmtError("\n");
+    }
+
+  if(ajStrMatchC(method, "load"))
+    {
+      ajFmtError("Use the output sequence to query genret\n");
+    }
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);

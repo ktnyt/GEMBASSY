@@ -50,8 +50,7 @@ section: output [
 ]
 
   outfile: outfile [
-    standard: "Y"
-    default: "gpalindrome.$(sequence.name).csv"
+    parameter: "Y"
   ]
 
 endsection: output

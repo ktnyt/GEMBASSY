@@ -42,13 +42,8 @@ section: output [
 	type: "page"
 ]
 
-  toggle: show [
-    information: "Include to dump result to stdout"
-    default: "N"
-  ]
-
   outfile: outfile [
-    standard: "@(!$(show))"
+    parameter: "Y"
   ]
 
 endsection: output

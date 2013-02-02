@@ -60,7 +60,7 @@ section: output [
 
   xygraph: graph [
     standard: "$(plot)"
-    gtitle: "ggenomicskew of $(sequence.usa)"
+    gtitle: "ggcwin of $(sequence.usa)"
     relations: "EDAM:0002968 data Image or plot"
   ]
 
@@ -68,7 +68,6 @@ section: output [
     standard: "@(!$(plot))"
     nullok: "Y"
     nulldefault: "$(plot)"
-    default: "ggcwin.$(sequence.name).csv"
   ]
 
 endsection: output

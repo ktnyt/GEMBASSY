@@ -46,8 +46,9 @@ section: output [
 
   string: filename [
     standard: "@(!$(show))"
+    nullok: "Y"
+    nulldefault: "$(show)"
     information: "Output filename"
-    default: "gkmer_table.png"
   ]
 
 endsection: output

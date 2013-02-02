@@ -55,16 +55,11 @@ int main(int argc, char *argv[])
   char *in1;
   char *result;
 
-  AjBool  show = 0;
   AjPFile outf = NULL;
 
   database = ajAcdGetListSingle("database");
   query    = ajAcdGetString("query");
-
-  show = ajAcdGetToggle("show");
-
-  if(!show)
-    outf = ajAcdGetOutfile("outfile");
+  outf     = ajAcdGetOutfile("outfile");
 
   in0 = ajCharNewS(database);
   in1 = ajCharNewS(query);
@@ -80,10 +75,7 @@ int main(int argc, char *argv[])
 			  &result
 			  ) == SOAP_OK)
     {
-      if (show)
-	ajFmtPrint("%s", result);
-      else
-	ajFmtPrintF(outf, "%s", result);
+      ajFmtPrintF(outf, "%s", result);
     }
   else
     {
@@ -94,8 +86,7 @@ int main(int argc, char *argv[])
   soap_end(&soap);
   soap_done(&soap);
 
-  if(outf)
-    ajFileClose(&outf);
+  ajFileClose(&outf);
 
   AJFREE(in0);
   AJFREE(in1);

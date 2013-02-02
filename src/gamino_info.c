@@ -54,15 +54,10 @@ int main(int argc, char *argv[])
   char *in0;
   char *result;
 
-  AjBool  show = 0;
   AjPFile outf = NULL;
 
   seqall = ajAcdGetSeqall("sequence");
-
-  show = ajAcdGetToggle("show");
-
-  if(!show)
-    outf = ajAcdGetOutfile("outfile");
+  outf   = ajAcdGetOutfile("outfile");
 
   while(ajSeqallNext(seqall, &seq))
     {
@@ -86,12 +81,7 @@ int main(int argc, char *argv[])
 					&result
                                         ) == SOAP_OK)
 	{
-	  if(show)
-	    ajFmtPrint("Sequence: %S\n%S\n",
-		       ajSeqGetAccS(seq), ajStrNewC(result));
-	  else
-	    ajFmtPrintF(outf, "Sequence: %S\n%S\n",
-			ajSeqGetAccS(seq), ajStrNewC(result));
+          ajFmtPrintF(outf, "Sequence: %S\n%s\n", ajSeqGetAccS(seq), result);
 	}
       else
 	{
@@ -107,8 +97,7 @@ int main(int argc, char *argv[])
       ajStrDel(&inseq);
     }
 
-  if(outf)
-    ajFileClose(&outf);
+  ajFileClose(&outf);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);

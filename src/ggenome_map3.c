@@ -90,6 +90,17 @@ int main(int argc, char *argv[])
 	  ajFmtError("Sequence does not have features\n");
 	  ajFmtError("Proceeding with sequence accession ID\n");
 	  ajStrAssignS(&accid, ajSeqGetAccS(seq));
+
+          if(!ajStrGetLen(accid))
+            {
+              ajStrAssignS(&accid, ajSeqGetNameS(seq));
+
+              if(!ajStrGetLen(accid))
+                {
+                  ajFmtError("No header information\n");
+                  embExitBad();
+                }
+            }
 	}
 
       if(ajStrGetLen(accid))
@@ -118,6 +129,8 @@ int main(int argc, char *argv[])
 	{
 	  outfname = ajStrNew();
 	  tempname = ajStrNew();
+
+          ajStrAssignS(&outfname, filename);
 
 	  ajStrFromLong(&tempname, ajSeqallGetCount(seqall));
 	  ajStrInsertC(&tempname, 0, ".");

@@ -88,13 +88,12 @@ bin_PROGRAMS = genret \
                gs_value\
                gscs\
                gseq2png\
-               gseqinfo\
                gshuffleseq\
                gsignature\
                gview_cds\
                gw_value
 
-genret_SOURCS = genret.c
+genret_SOURCES = genret.c
 gaaui_SOURCES           = gaaui.c
 gamino_info_SOURCES     = gamino_info.c
 gb1_SOURCES             = gb1.c
@@ -140,7 +139,6 @@ gquery_strand_SOURCES   = gquery_strand.c
 grep_ori_ter_SOURCES    = grep_ori_ter.c
 gs_value_SOURCES        = gs_value.c
 gscs_SOURCES            = gscs.c
-gseqinfo_SOURCES        = gseqinfo.c
 gseq2png_SOURCES        = gseq2png.c
 gshuffleseq_SOURCES     = gshuffleseq.c
 gsignature_SOURCES      = gsignature.c

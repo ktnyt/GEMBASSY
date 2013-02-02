@@ -54,8 +54,7 @@ section: output [
 ]
 
   outfile: outfile [
-    standard: "Y"
-    default: "gbui.$(sequence.name).csv"
+    parameter: "Y"
   ]
 
 endsection: output

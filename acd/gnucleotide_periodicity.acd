@@ -59,7 +59,6 @@ section: output [
     standard: "@(!$(plot))"
     nullok: "Y"
     nulldefault: "$(plot)"
-    default: "gnucleotide_periodicity.$(sequence.name).csv"
   ]
 
 endsection: output

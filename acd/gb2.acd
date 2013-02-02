@@ -40,7 +40,7 @@ section: output [
   ]
 
   outfile: outfile [
-    standard: "Y"
+    parameter: "Y"
   ]
 
 endsection: output

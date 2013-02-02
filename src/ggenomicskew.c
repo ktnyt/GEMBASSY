@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
 {
   embInitPV("ggenomicskew", argc, argv, "GEMBASSY", "1.0.0");
 
-  struct soap	  soap;
+  struct soap soap;
   struct ns1__genomicskewInputParams params;
 
   AjPSeqall seqall;
@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
   ajint	    divide = 0;
   AjBool    at     = 0;
   AjPStr    accid  = NULL;
-  AjPStr    string  = NULL;
+  AjPStr    string = NULL;
 
   char *in0;
   char *result;
@@ -103,6 +103,17 @@ int main(int argc, char *argv[])
 	  ajFmtError("Sequence does not have features\n");
 	  ajFmtError("Proceeding with sequence accession ID\n");
 	  ajStrAssignS(&accid, ajSeqGetAccS(seq));
+
+          if(!ajStrGetLen(accid))
+            {
+              ajStrAssignS(&accid, ajSeqGetNameS(seq));
+
+              if(!ajStrGetLen(accid))
+                {
+                  ajFmtError("No header information\n");
+                  embExitBad();
+                }
+            }
 	}
 
       if(ajStrGetLen(accid))
@@ -197,12 +208,13 @@ int main(int argc, char *argv[])
     ajStrDel(&inseq);
   }
 
-  if(outf)
+  if(!plot)
     ajFileClose(&outf);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
 
   embExit();
+
   return 0;
 }

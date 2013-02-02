@@ -45,8 +45,7 @@ section: output [
 ]
 
   outfile: outfile [
-    standard: "Y"
-    default: "gw_value.$(sequence.name).csv"
+    parameter: "Y"
   ]
 
 endsection: output

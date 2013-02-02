@@ -1,5 +1,5 @@
 application: genret [
-  documentation: "Retrieves various gene related infomration from genome flatfile"
+  documentation: "Retrieves various gene related information from genome flatfile"
   groups: "Data retreival, Edit"
   embassy: "gembassy"
 ]
@@ -9,7 +9,7 @@ section: input [
   type: "page"
 ]
 
-  seqall: sequence [
+  seqall: genome [
     parameter: "Y"
     type: "nucleotide"
     features: "Y"
@@ -17,7 +17,8 @@ section: input [
 
   string: method [
     parameter: "Y"
-    information: "G-language REST method to call"
+    information: "Method to call"
+    default: "load"
   ]
 
 endsection: input
@@ -27,8 +28,15 @@ section: advanced [
   type: "page"
 ]
 
-  string: cds [
-    information: "CDS to lookup. Give comma delimeted for multiple values and '*' for all"
+  string: selector [
+    standard: "@($(method) =
+                  load: N
+                  feature: N
+                  cds: N
+                  gene: N
+                  intergenic: N
+                  else: Y)"
+    information: "Feature ID or gene name to look up"
     default: "*"
   ]
 
@@ -56,7 +64,8 @@ section: output [
 
   outfile: outfile [
     parameter: "Y"
-    information: "File for reporting output"
+    information: "Full text output file"
+    default: "$(genome.name).$(method)"
   ]
 
 endsection: output

@@ -60,7 +60,6 @@ int main(int argc, char *argv[])
   char *in0;
   char *result;
 
-  AjBool  show = 0;
   AjPFile outf = NULL;
 
   seqall    = ajAcdGetSeqall("sequence");
@@ -89,6 +88,17 @@ int main(int argc, char *argv[])
 	  ajFmtError("Sequence does not have features\n");
 	  ajFmtError("Proceeding with sequence accession ID\n");
 	  ajStrAssignS(&accid, ajSeqGetAccS(seq));
+
+          if(!ajStrGetLen(accid))
+            {
+              ajStrAssignS(&accid, ajSeqGetNameS(seq));
+
+              if(!ajStrGetLen(accid))
+                {
+                  ajFmtError("No header information\n");
+                  embExitBad();
+                }
+            }
 	}
 
       if(ajStrGetLen(accid))
@@ -115,12 +125,7 @@ int main(int argc, char *argv[])
 			    &result
                             ) == SOAP_OK)
 	{
-	  ajFmtPrintF(outf, "Sequence: %S\n", accid);
-	  if(!gFileOutURLC(result, &outf))
-	    {
-	      ajFmtError("File downloading error\n");
-	      embExitBad();
-	    }
+	  ajFmtPrintF(outf, "Sequence: %S ICDI: %s\n", accid, result);
 	}
       else
 	{
@@ -136,8 +141,7 @@ int main(int argc, char *argv[])
       ajStrDel(&inseq);
     }
 
-  if(outf)
-    ajFileClose(&outf);
+  ajFileClose(&outf);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);

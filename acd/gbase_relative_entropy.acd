@@ -73,7 +73,6 @@ section: output [
     standard: "@(!$(plot))"
     nullok: "Y"
     nulldefault: "$(plot)"
-    default: "gbase_relative_entropy.$(sequence.name).csv"
   ]
 
 endsection: output

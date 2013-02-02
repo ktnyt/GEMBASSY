@@ -46,15 +46,16 @@ section: advanced [
     default: "[^ACDEFGHIKLMNPQRSTVWYacgtU]"
   ]
 
-  string: data [
-    information: "kinds of codon usage data
-'A0': Absolute amino acid frequency ('AA')
-'A1': Relative amino acid frequency ('RAAU')
-'C0' or 'R0': Absolute codon frequency ('AF')
-'C1' or 'R1': Relative codon frequency in a complete sequence
-'C2' or 'R2': Relative codon frequency in each amino acid ('RF')
-'C3' or 'R3': Relative synonymous codon usage ('RSCU') 
-'C4' or 'R4': Relative adaptiveness; i.e., ratio to maximum of minor codon ('W')"
+  list: data [
+    information: "kinds of codon usage data"
+    values: "A0: Absolute amino acid frequency ('AA');
+             A1: Relative amino acid frequency ('RAAU');
+             C0: Absolute codon frequency ('AF');
+             C1: Relative codon frequency in a complete sequence;
+             C2: Relative codon frequency in each amino acid ('RF');
+             C3: Relative synonymous codon usage ('RSCU') ;
+             C4: Relative adaptiveness; i.e., ratio to maximum of minor codon ('W')"
+    default: "C0"
   ]
 
   string: accid [
@@ -70,8 +71,7 @@ section: output [
 ]
 
   outfile: outfile [
-    standard: "Y"
-    default: "gcodon_compiler.$(sequence.name).csv"
+    parameter: "Y"
   ]
 
 endsection: output

@@ -32,7 +32,6 @@ int main(int argc, char *argv[])
   char *in0;
   char *result;
 
-  AjBool  show = 0;
   AjPFile outf = NULL;
 
   seqall = ajAcdGetSeqall("sequence");
@@ -41,11 +40,7 @@ int main(int argc, char *argv[])
   purine = ajAcdGetBoolean("purine");
   keto   = ajAcdGetBoolean("keto");
   accid  = ajAcdGetString("accid");
-
-  show = ajAcdGetToggle("show");
-
-  if(!show)
-    outf = ajAcdGetOutfile("outfile");
+  outf   = ajAcdGetOutfile("outfile");
 
   params.window = window;
   params.filter = filter;
@@ -69,6 +64,17 @@ int main(int argc, char *argv[])
           ajFmtError("Sequence does not have features\n");
           ajFmtError("Proceeding with sequence accession ID\n");
           ajStrAssignS(&accid, ajSeqGetAccS(seq));
+
+          if(!ajStrGetLen(accid))
+            {
+              ajStrAssignS(&accid, ajSeqGetNameS(seq));
+
+              if(!ajStrGetLen(accid))
+                {
+                  ajFmtError("No header information\n");
+                  embExitBad();
+                }
+            }
         }
 
       if(ajStrGetLen(accid))
@@ -95,10 +101,10 @@ int main(int argc, char *argv[])
 						&result
 						) == SOAP_OK)
 	{
-	  tmp    = ajStrNew();
-	  parse  = ajStrNew();
-	  ori    = ajStrNew();
-	  ter    = ajStrNew();
+	  tmp   = ajStrNew();
+	  parse = ajStrNew();
+	  ori   = ajStrNew();
+	  ter   = ajStrNew();
 
 	  ajStrAssignC(&tmp, result);
 
@@ -110,18 +116,14 @@ int main(int argc, char *argv[])
 	  while(ajStrTokenNextParse(&handle, &parse))
 	    {
 	      if(ajStrIsInt(parse))
-		if(!ori)
+		if(!ajStrGetLen(ori))
 		  ori = ajStrNewS(parse);
-		else if(!ter)
+		else if(!ajStrGetLen(ter))
 		  ter = ajStrNewS(parse);
 	    }
 
-	  if(show)
-	    ajFmtPrint("Sequence: %S Origin: %S Terminus: %S\n",
-		       accid, ori, ter);
-	  else
-	    ajFmtPrintF(outf, "Sequence: %S Origin: %S Terminus: %S\n",
-			accid, ori, ter);
+          ajFmtPrintF(outf, "Sequence: %S Origin: %S Terminus: %S\n",
+                      accid, ori, ter);
 
 	  ajStrDel(&tmp);
 	  ajStrDel(&parse);
@@ -142,8 +144,7 @@ int main(int argc, char *argv[])
       ajStrDel(&inseq);
     }
 
-  if(outf)
-    ajFileClose(&outf);
+  ajFileClose(&outf);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);

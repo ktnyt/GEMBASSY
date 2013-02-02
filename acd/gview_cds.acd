@@ -65,7 +65,6 @@ section: output [
     standard: "@(!$(plot))"
     nullok: "Y"
     nulldefault: "$(plot)"
-    default: "gview_cds.$(sequence.name).csv"
   ]
 
 endsection: output

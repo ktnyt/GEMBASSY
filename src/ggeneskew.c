@@ -88,6 +88,7 @@ int main(int argc, char *argv[])
                                 &result
 			        ) == SOAP_OK)
 	{
+          puts(result);
 	  if(plot)
 	    {
 	      title = ajStrNew();
@@ -97,8 +98,8 @@ int main(int argc, char *argv[])
 	      ajStrAppendS(&title, accid);
 
 	      gpp.title = ajStrNewS(title);
-	      gpp.xlab = ajStrNewC("location");
-	      gpp.ylab = ajStrNewC("GC skew");
+	      gpp.xlab = ajStrNewC("bp");
+	      gpp.ylab = ajStrNewC("gene skew");
 
 	      if(!gFilebuffURLC(result, &buff))
 		{

@@ -94,32 +94,32 @@ AjBool gPlotFilebuff(AjPFilebuff buff, AjPGraph graphs, gPlotParams *gpp)
 
     for(i = 0; i < col; ++i)
       {
-      if((data[i] = (float*)realloc(data[i], sizeof(float) * (j + 1))) == NULL)
-	{
-	  AJFREE(temp);
-	  AJFREE(name);
-	  for(j = 0; j < i; ++j)
-	    {
-	      AJFREE(data[j]);
-	    }
-	  AJFREE(data);
-	  return ajFalse;
-	}
+        if((data[i] = (float*)realloc(data[i], sizeof(float) * (j + 1))) == NULL)
+          {
+            AJFREE(temp);
+            AJFREE(name);
+            for(j = 0; j < i; ++j)
+              {
+                AJFREE(data[j]);
+              }
+            AJFREE(data);
+            return ajFalse;
+          }
 
-      ajStrRemoveLastNewline(&(temp[i]));
-      if(ajStrIsFloat(temp[i]))
-	{
-	ajStrToFloat(temp[i], &(data[i][j]));
-	++flag;
+        ajStrRemoveLastNewline(&(temp[i]));
+        if(ajStrIsFloat(temp[i]))
+          {
+            ajStrToFloat(temp[i], &(data[i][j]));
+            ++flag;
+          }
+        else
+          {
+            name[i] = ajStrNewS(temp[i]);
+          }
       }
-      else
-	{
-	name[i] = ajStrNewS(temp[i]);
-      }
-    }
     j = flag ? j + 1 : j;
     flag = 0;
-  }
+    }
 
   (*gpp).data    = data;
   (*gpp).setNum  = 0;

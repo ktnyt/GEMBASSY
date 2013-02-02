@@ -22,8 +22,9 @@ section: advanced [
   type: "page"
 ]
 
-  string: method [
+  list: method [
     information: "Choose method of 'lobry' or 'rocha'"
+    values: "lobry: lobry;rocha: rocha"
     default: "rocha"
   ]
 
@@ -45,7 +46,7 @@ section: output [
   ]
 
   outfile: outfile [
-    standard: "Y"
+    parameter: "Y"
   ]
 
 endsection: output

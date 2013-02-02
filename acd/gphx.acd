@@ -43,8 +43,7 @@ section: output [
 ]
 
   outfile: outfile [
-    standard: "Y"
-    default: "gphx.$(sequence.name).csv"
+    parameter: "Y"
   ]
 
 endsection: output

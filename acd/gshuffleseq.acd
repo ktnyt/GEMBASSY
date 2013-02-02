@@ -32,6 +32,7 @@ section: output [
   type: "page"
 ]
   seqout: outseq [
+    parameter: "Y"
   ]
 
 endsection: output

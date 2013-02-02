@@ -94,6 +94,8 @@ int main(int argc, char *argv[])
 	  outfname = ajStrNew();
 	  tempname = ajStrNew();
 
+          ajStrAssignS(&outfname, filename);
+
 	  ajStrFromLong(&tempname, ajSeqallGetCount(seqall));
 	  ajStrInsertC(&tempname, 0, ".");
 	  ajStrAppendC(&tempname, ".png");
@@ -104,6 +106,12 @@ int main(int argc, char *argv[])
 	    }
 
 	  outf = ajFileNewOutNameS(outfname);
+
+          if(!outf)
+            {
+              ajFmtError("File open error\n");
+              embExitBad();
+            }
 
 	  ajStrDel(&outfname);
 	  ajStrDel(&tempname);

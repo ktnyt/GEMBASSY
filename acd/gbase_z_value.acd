@@ -60,8 +60,7 @@ section: output [
 ]
 
   outfile: outfile [
-    standard: "Y"
-    default: "gbase_z_value.$(sequence.name).csv"
+    parameter: "Y"
   ]
 
 endsection: output

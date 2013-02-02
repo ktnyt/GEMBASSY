@@ -127,12 +127,12 @@ int main(int argc, char *argv[])
 		      embExitBad();
 		    }
 		}
-	      else
-		{
-		  ajFmtError("File downloading error\n");
-		  embExitBad();
-		}
 	    }
+          else
+            {
+              ajFmtError("File downloading error\n");
+              embExitBad();
+            }
         }
       else
         {

@@ -55,8 +55,6 @@ section: output [
 ]
 
   outfile: outfile [
-    standard: "Y"
-    default: "gbase_counter.$(sequence.name).csv"
   ]
 
 endsection: output

@@ -67,8 +67,8 @@ bin_PROGRAMS = genret$(EXEEXT) gaaui$(EXEEXT) gamino_info$(EXEEXT) \
 	goligomer_search$(EXEEXT) gp2$(EXEEXT) gpalindrome$(EXEEXT) \
 	gphx$(EXEEXT) gquery_arm$(EXEEXT) gquery_strand$(EXEEXT) \
 	grep_ori_ter$(EXEEXT) gs_value$(EXEEXT) gscs$(EXEEXT) \
-	gseq2png$(EXEEXT) gseqinfo$(EXEEXT) gshuffleseq$(EXEEXT) \
-	gsignature$(EXEEXT) gview_cds$(EXEEXT) gw_value$(EXEEXT)
+	gseq2png$(EXEEXT) gshuffleseq$(EXEEXT) gsignature$(EXEEXT) \
+	gview_cds$(EXEEXT) gw_value$(EXEEXT)
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(srcdir)/config.h.in $(top_srcdir)/depcomp
@@ -441,8 +441,8 @@ genc_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
-genret_SOURCES = genret.c
-genret_OBJECTS = genret.$(OBJEXT)
+am_genret_OBJECTS = genret.$(OBJEXT)
+genret_OBJECTS = $(am_genret_OBJECTS)
 genret_LDADD = $(LDADD)
 @LOCALLINK_FALSE@genret_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@genret_DEPENDENCIES = ../../../nucleus/libnucleus.la \
@@ -851,22 +851,6 @@ gseq2png_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
-am_gseqinfo_OBJECTS = gseqinfo.$(OBJEXT)
-gseqinfo_OBJECTS = $(am_gseqinfo_OBJECTS)
-gseqinfo_LDADD = $(LDADD)
-@LOCALLINK_FALSE@gseqinfo_DEPENDENCIES = $(am__DEPENDENCIES_1)
-@LOCALLINK_TRUE@gseqinfo_DEPENDENCIES =  \
-@LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
-@LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
-@LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
-@LOCALLINK_TRUE@	../../../ajax/ensembl/libensembl.la \
-@LOCALLINK_TRUE@	../../../ajax/graphics/libajaxg.la \
-@LOCALLINK_TRUE@	../../../ajax/core/libajax.la \
-@LOCALLINK_TRUE@	../../../ajax/zlib/libezlib.la \
-@LOCALLINK_TRUE@	../../../ajax/expat/libeexpat.la \
-@LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
-@LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
-@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gshuffleseq_OBJECTS = gshuffleseq.$(OBJEXT)
 gshuffleseq_OBJECTS = $(am_gshuffleseq_OBJECTS)
 gshuffleseq_LDADD = $(LDADD)
@@ -974,17 +958,18 @@ SOURCES = $(gaaui_SOURCES) $(gamino_info_SOURCES) $(gb1_SOURCES) \
 	$(gcodon_compiler_SOURCES) $(gconsensus_z_SOURCES) \
 	$(gdelta_enc_SOURCES) $(gdelta_gcskew_SOURCES) \
 	$(gdinuc_SOURCES) $(gdist_in_cc_SOURCES) $(gdnawalk_SOURCES) \
-	$(genc_SOURCES) genret.c $(gentrez_SOURCES) $(gew_SOURCES) \
-	$(gfind_ori_ter_SOURCES) $(gfop_SOURCES) $(ggcsi_SOURCES) \
-	ggcskew.c $(ggcwin_SOURCES) $(ggeneskew_SOURCES) \
-	$(ggenome_map3_SOURCES) $(ggenomicskew_SOURCES) \
-	$(gicdi_SOURCES) $(gkmer_table_SOURCES) $(glda_bias_SOURCES) \
+	$(genc_SOURCES) $(genret_SOURCES) $(gentrez_SOURCES) \
+	$(gew_SOURCES) $(gfind_ori_ter_SOURCES) $(gfop_SOURCES) \
+	$(ggcsi_SOURCES) ggcskew.c $(ggcwin_SOURCES) \
+	$(ggeneskew_SOURCES) $(ggenome_map3_SOURCES) \
+	$(ggenomicskew_SOURCES) $(gicdi_SOURCES) \
+	$(gkmer_table_SOURCES) $(glda_bias_SOURCES) \
 	$(gnucleotide_periodicity_SOURCES) \
 	$(goligomer_counter_SOURCES) $(goligomer_search_SOURCES) \
 	$(gp2_SOURCES) $(gpalindrome_SOURCES) $(gphx_SOURCES) \
 	$(gquery_arm_SOURCES) $(gquery_strand_SOURCES) \
 	$(grep_ori_ter_SOURCES) $(gs_value_SOURCES) $(gscs_SOURCES) \
-	$(gseq2png_SOURCES) $(gseqinfo_SOURCES) $(gshuffleseq_SOURCES) \
+	$(gseq2png_SOURCES) $(gshuffleseq_SOURCES) \
 	$(gsignature_SOURCES) $(gview_cds_SOURCES) $(gw_value_SOURCES)
 DIST_SOURCES = $(gaaui_SOURCES) $(gamino_info_SOURCES) $(gb1_SOURCES) \
 	$(gb2_SOURCES) $(gbase_counter_SOURCES) \
@@ -995,17 +980,18 @@ DIST_SOURCES = $(gaaui_SOURCES) $(gamino_info_SOURCES) $(gb1_SOURCES) \
 	$(gcodon_compiler_SOURCES) $(gconsensus_z_SOURCES) \
 	$(gdelta_enc_SOURCES) $(gdelta_gcskew_SOURCES) \
 	$(gdinuc_SOURCES) $(gdist_in_cc_SOURCES) $(gdnawalk_SOURCES) \
-	$(genc_SOURCES) genret.c $(gentrez_SOURCES) $(gew_SOURCES) \
-	$(gfind_ori_ter_SOURCES) $(gfop_SOURCES) $(ggcsi_SOURCES) \
-	ggcskew.c $(ggcwin_SOURCES) $(ggeneskew_SOURCES) \
-	$(ggenome_map3_SOURCES) $(ggenomicskew_SOURCES) \
-	$(gicdi_SOURCES) $(gkmer_table_SOURCES) $(glda_bias_SOURCES) \
+	$(genc_SOURCES) $(genret_SOURCES) $(gentrez_SOURCES) \
+	$(gew_SOURCES) $(gfind_ori_ter_SOURCES) $(gfop_SOURCES) \
+	$(ggcsi_SOURCES) ggcskew.c $(ggcwin_SOURCES) \
+	$(ggeneskew_SOURCES) $(ggenome_map3_SOURCES) \
+	$(ggenomicskew_SOURCES) $(gicdi_SOURCES) \
+	$(gkmer_table_SOURCES) $(glda_bias_SOURCES) \
 	$(gnucleotide_periodicity_SOURCES) \
 	$(goligomer_counter_SOURCES) $(goligomer_search_SOURCES) \
 	$(gp2_SOURCES) $(gpalindrome_SOURCES) $(gphx_SOURCES) \
 	$(gquery_arm_SOURCES) $(gquery_strand_SOURCES) \
 	$(grep_ori_ter_SOURCES) $(gs_value_SOURCES) $(gscs_SOURCES) \
-	$(gseq2png_SOURCES) $(gseqinfo_SOURCES) $(gshuffleseq_SOURCES) \
+	$(gseq2png_SOURCES) $(gshuffleseq_SOURCES) \
 	$(gsignature_SOURCES) $(gview_cds_SOURCES) $(gw_value_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
@@ -1199,7 +1185,7 @@ top_srcdir = @top_srcdir@
 @ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_TRUE@-lezlib -leplplot
 
 AM_CFLAGS = $(AIX_CFLAGS) $(WARN_CFLAGS) $(DEVWARN_CFLAGS)
-genret_SOURCS = genret.c
+genret_SOURCES = genret.c
 gaaui_SOURCES = gaaui.c
 gamino_info_SOURCES = gamino_info.c
 gb1_SOURCES = gb1.c
@@ -1245,7 +1231,6 @@ gquery_strand_SOURCES = gquery_strand.c
 grep_ori_ter_SOURCES = grep_ori_ter.c
 gs_value_SOURCES = gs_value.c
 gscs_SOURCES = gscs.c
-gseqinfo_SOURCES = gseqinfo.c
 gseq2png_SOURCES = gseq2png.c
 gshuffleseq_SOURCES = gshuffleseq.c
 gsignature_SOURCES = gsignature.c
@@ -1509,9 +1494,6 @@ gscs$(EXEEXT): $(gscs_OBJECTS) $(gscs_DEPENDENCIES) $(EXTRA_gscs_DEPENDENCIES)
 gseq2png$(EXEEXT): $(gseq2png_OBJECTS) $(gseq2png_DEPENDENCIES) $(EXTRA_gseq2png_DEPENDENCIES) 
 	@rm -f gseq2png$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(gseq2png_OBJECTS) $(gseq2png_LDADD) $(LIBS)
-gseqinfo$(EXEEXT): $(gseqinfo_OBJECTS) $(gseqinfo_DEPENDENCIES) $(EXTRA_gseqinfo_DEPENDENCIES) 
-	@rm -f gseqinfo$(EXEEXT)
-	$(AM_V_CCLD)$(LINK) $(gseqinfo_OBJECTS) $(gseqinfo_LDADD) $(LIBS)
 gshuffleseq$(EXEEXT): $(gshuffleseq_OBJECTS) $(gshuffleseq_DEPENDENCIES) $(EXTRA_gshuffleseq_DEPENDENCIES) 
 	@rm -f gshuffleseq$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(gshuffleseq_OBJECTS) $(gshuffleseq_LDADD) $(LIBS)
@@ -1579,7 +1561,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gs_value.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gscs.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gseq2png.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gseqinfo.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gshuffleseq.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gsignature.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gview_cds.Po@am__quote@

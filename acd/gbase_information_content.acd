@@ -68,7 +68,6 @@ section: output [
     standard: "@(!$(plot))"
     nullok: "Y"
     nulldefault: "$(plot)"
-    default: "gbase_information_content.$(sequence.name).csv"
   ]
 
 endsection: output
