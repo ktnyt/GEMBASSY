@@ -29,12 +29,10 @@ section: advanced [
 ]
 
   string: selector [
-    standard: "@(@($(method) != load)
-               & @($(method) != feature))
-               & @($(method) != cds))
-               & @($(method) != gene))
-               & @($(method) != intergenic))
-               & @($(method) != organism_list))"
+    standard: "@(@(@(@(@($(method) != load) & @($(method) != feature))
+               & @(@($(method) != cds) & @($(method) != gene)))
+               & @(@($(method) != intergenic) & @($(method) != organism_list)))
+               & @($(method) != method_list))"
     information: "Feature ID or gene name to look up"
     default: "*"
   ]

@@ -88,6 +88,39 @@ int main(int argc, char *argv[])
   tok = ajStrTokenNewC(select, ",");
   total = ajStrCalcCountK(select, ',');
 
+  if(ajStrMatchC(method, "organism_list") ||
+     ajStrMatchC(method, "method_list"))
+    {
+      content = ajStrNew();
+      line    = ajStrNew();
+      url     = ajStrNew();
+
+      ajFmtPrintS(&url, "http://rest.g-language.org/%S/gb", method);
+
+      timo.seconds = 180;
+      ajSysTimeoutSet(&timo);
+      gFilebuffURLS(url, &buff);
+      ajSysTimeoutUnset(&timo);
+
+
+      while(ajBuffreadLine(buff, &line))
+        {
+          ajStrAppendS(&content, line);
+        }
+
+      ajStrFmtWrap(&content, 60);
+
+      ajFmtPrintF(outfile, "%S", content);
+
+      ajFileClose(&outfile);
+
+      ajStrDel(&url);
+      ajStrDel(&line);
+      ajStrDel(&content);
+
+      embExit();
+    }
+
   if(ajStrMatchCaseC(method, "feature") ||
      ajStrMatchCaseC(method, "cds") ||
      ajStrMatchCaseC(method, "gene") ||
@@ -141,7 +174,7 @@ int main(int argc, char *argv[])
 
               ajStrFmtWrap(&inseq, 60);
 
-              ajFmtPrintF(outfile, ">%S|%S\n%S\n", restid, accid, inseq);
+              ajFmtPrintF(outfile, ">%S|%S\natgc\n", restid, accid);
 
               continue;
             }
@@ -182,13 +215,13 @@ int main(int argc, char *argv[])
               ajFmtError(" %3.0f %%", percent * 100);
             }
 
-          timo.seconds = 180;
-          ajSysTimeoutSet(&timo);
           ajFmtPrintS(&url, "http://rest.g-language.org/%S/%S/%S/%S",
                       restid, method, parse, option);
-          ajSysTimeoutUnset(&timo);
 
+          timo.seconds = 180;
+          ajSysTimeoutSet(&timo);
           gFilebuffURLS(url, &buff);
+          ajSysTimeoutUnset(&timo);
 
           while(ajBuffreadLine(buff, &line))
             {
@@ -197,7 +230,7 @@ int main(int argc, char *argv[])
 
           ajStrFmtWrap(&content, 60);
 
-          if(!ajStrMatchC(parse, "*") && !isflat)
+          if(!ajStrMatchC(parse, "*") && !isflat && multi)
             ajFmtPrintF(outfile, ">%S\n", parse);
 
           ajFmtPrintF(outfile, "%S", content);
