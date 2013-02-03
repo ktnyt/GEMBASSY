@@ -24,7 +24,7 @@
 ******************************************************************************/
 
 #include "emboss.h"
-#include <sys/ioctl.h>
+#include "../include/gpost.h"
 
 
 
@@ -86,7 +86,6 @@ int main(int argc, char *argv[])
 
   ajStrRemoveWhite(&select);
   tok = ajStrTokenNewC(select, ",");
-  total = ajStrCalcCountK(select, ',');
 
   if(ajStrMatchC(method, "organism_list") ||
      ajStrMatchC(method, "method_list"))
@@ -99,18 +98,8 @@ int main(int argc, char *argv[])
 
       timo.seconds = 180;
       ajSysTimeoutSet(&timo);
-      gFilebuffURLS(url, &buff);
+      gFileOutURLS(url, &buff);
       ajSysTimeoutUnset(&timo);
-
-
-      while(ajBuffreadLine(buff, &line))
-        {
-          ajStrAppendS(&content, line);
-        }
-
-      ajStrFmtWrap(&content, 60);
-
-      ajFmtPrintF(outfile, "%S", content);
 
       ajFileClose(&outfile);
 
@@ -182,41 +171,15 @@ int main(int argc, char *argv[])
 
       multi = ajStrTokenNextParse(&tok, &parse);
 
-      count = 0;
+      url     = ajStrNew();
+      line    = ajStrNew();
+      content = ajStrNew();
 
-      do
-        {
-          ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+      if(isflat)
+        ajStrAssignC(&parse, "");
 
-          url     = ajStrNew();
-          line    = ajStrNew();
-          content = ajStrNew();
-
-          if(!multi)
-            ajStrAssignS(&parse, select);
-
-          if(isflat)
-            ajStrAssignC(&parse, "");
-
-          if(total)
-            {
-              ajFmtError("\r[");
-              percent = (float) count / (float) total;
-              for(iter = 0; (float)iter < percent * (w.ws_col - 10); ++iter)
-                {
-                  ajFmtError("=");
-                }
-              ajFmtError(">");
-              for(; iter < (w.ws_col - 10); ++iter)
-                {
-                  ajFmtError(" ");
-                }
-              ajFmtError("]");
-              ajFmtError(" %3.0f %%", percent * 100);
-            }
-
-          ajFmtPrintS(&url, "http://rest.g-language.org/%S/%S/%S/%S",
-                      restid, method, parse, option);
+      ajFmtPrintS(&url, "http://rest.g-language.org/%S/%S/%S/%S",
+                  restid, parse, method, option);
 
           timo.seconds = 180;
           ajSysTimeoutSet(&timo);
