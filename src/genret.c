@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
   AjPStr inseq    = NULL;
   AjPStr method   = NULL;
   AjPStr selector = NULL;
-  AjPStr option   = NULL;
+  AjPStr argument = NULL;
   AjBool accid    = ajTrue;
   AjPFile outfile = NULL;
   AjPFile tmpfile = NULL;
@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
   seqall   = ajAcdGetSeqall("sequence");
   method   = ajAcdGetString("method");
   selector = ajAcdGetString("selector");
-  option   = ajAcdGetString("option");
+  argument = ajAcdGetString("argument");
   accid    = ajAcdGetBoolean("accid");
   outfile  = ajAcdGetOutfile("outfile");
 
@@ -83,7 +83,7 @@ int main(int argc, char *argv[])
               ajFmtPrintF(tmpfile, "%S", inseq);
               ajFileClose(&tmpfile);
 
-              gPostFileCS("http://rest.g-language.org/upload/upl",
+              gFilePostCS("http://rest.g-language.org/upload/upl",
                           tmpname, &restid);
 
               ajSysFileUnlinkS(tmpname);

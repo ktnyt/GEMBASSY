@@ -37,7 +37,7 @@ section: advanced [
     default: "*"
   ]
 
-  string: option [
+  string: argument [
     information: "Option to give to method. See the manual for more information"
     default: ""
   ]
@@ -47,9 +47,9 @@ section: advanced [
     default: "0"
   ]
 
-  string: accid [
+  boolean: accid [
     information: "Include to use sequence accession ID as query"
-    default: ""
+    default: "1"
   ]
 
 endsection: advanced
