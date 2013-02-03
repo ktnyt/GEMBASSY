@@ -40,18 +40,32 @@ int main(int argc, char *argv[])
   embInitPV("genret", argc, argv, "GEMBASSY", "1.0.0");
 
   AjPSeqall seqall;
-  AjPSeq seq      = NULL;
-  AjPStr inseq    = NULL;
-  AjPStr method   = NULL;
-  AjPStr selector = NULL;
+  AjPSeq seq    = NULL;
+  AjPStr inseq  = NULL;
+  AjPStr method = NULL;
+
+  AjBool accid  = ajTrue;
+  AjPStr restid = NULL;
+
+  AjPFilebuff buff = NULL;
+  AjPFile outfile  = NULL;
+  AjPFile tmpfile  = NULL;
+  AjPStr  tmpname  = NULL;
+
   AjPStr argument = NULL;
-  AjBool accid    = ajTrue;
-  AjPFile outfile = NULL;
-  AjPFile tmpfile = NULL;
-  AjPStr tmpname  = NULL;
-  AjPStr restid   = NULL;
+  AjPStr selector = NULL;
+  AjPStr regstr   = NULL;
   AjPStrTok token = NULL;
-  AjPStr regex    = NULL;
+  AjPRegexp regex = NULL;
+
+  AjPStr url  = NULL;
+  AjPStr base = NULL;
+
+  AjPStr head = NULL;
+  AjPStr line = NULL;
+
+  AjBool valid = ajFalse;
+  AjBool isseq = ajFalse;
 
   seqall   = ajAcdGetSeqall("sequence");
   method   = ajAcdGetString("method");
@@ -63,7 +77,93 @@ int main(int argc, char *argv[])
   tmpname = ajStrNew();
   gAssignUniqueName(&tmpname);
 
-  token = ajStrTokenNewC(selector, " ,\t\r\n");
+  ajStrExchangeCC(&selector, "*", ".*");
+
+  base = ajStrNewC("rest.g-language.org");
+
+  if(ajStrMatchC(method, "method_list") || ajStrMatchC(method, "organism_list"))
+    {
+      ajFmtPrintS(&url, "http://%S/%S/%S", base, method, argument);
+
+      if(!gFileOutURLS(url, &outfile))
+        {
+          ajFmtError("GET error from %S\n", url);
+          embExitBad();
+        }
+
+      ajFileClose(&outfile);
+
+      embExit();
+    }
+    
+
+  if(ajStrMatchC(method, "feature") ||
+     ajStrMatchC(method, "cds") ||
+     ajStrMatchC(method, "intergenic") ||
+     ajStrMatchC(method, "load"))
+    {
+      isseq = ajTrue;
+    }
+
+
+
+  /*
+  ** Validate the input method
+  */
+
+  url = ajStrNew();
+
+  ajFmtPrintS(&url, "http://%S/method_list", base);
+
+  gFilebuffURLS(url, &buff);
+
+  if(!gFilebuffURLS(url, &buff))
+    {
+      ajFmtError("GET error from %S\n", url);
+      embExitBad();
+    }
+
+  while(ajBuffreadLine(buff, &line))
+    {
+      ajStrRemoveLastNewline(&line);
+
+      if(ajStrMatchS(method, line))
+        valid = ajTrue;
+    }
+
+  ajStrAppendC(&url, "/gb");
+
+  gFilebuffURLS(url, &buff);
+
+  if(!gFilebuffURLS(url, &buff))
+    {
+      ajFmtError("GET error from %S\n", url);
+      embExitBad();
+    }
+
+  while(ajBuffreadLine(buff, &line))
+    {
+      ajStrRemoveLastNewline(&line);
+
+      if(ajStrMatchS(method, line))
+        valid = ajTrue;
+    }
+
+  if(!valid)
+    {
+      ajFmtError("%S is not a valid method\n", method);
+      embExitBad();
+    }
+
+  ajStrDel(&url);
+  ajFilebuffDel(&buff);
+
+
+
+
+  /*
+  ** Read each sequence
+  */
 
   while(ajSeqallNext(seqall, &seq))
     {
@@ -74,6 +174,7 @@ int main(int argc, char *argv[])
           if(gFormatGenbank(seq, &inseq))
             {
               tmpfile = ajFileNewOutNameS(tmpname);
+
               if(!tmpfile)
                 {
                   ajFmtError("Output file (%S) open error\n", tmpname);
@@ -81,6 +182,7 @@ int main(int argc, char *argv[])
                 }
 
               ajFmtPrintF(tmpfile, "%S", inseq);
+
               ajFileClose(&tmpfile);
 
               gFilePostCS("http://rest.g-language.org/upload/upl",
@@ -110,10 +212,64 @@ int main(int argc, char *argv[])
             }
         }
 
-      while(ajStrTokenNextParse(&token, &regex))
+      url = ajStrNew();
+
+      ajFmtPrintS(&url, "http://%S/%S/*/%S/%S", base, restid, method, argument);
+
+      if(!isseq)
         {
-          puts(ajStrGetPtr(regex));
+          if(!gFileOutURLS(url, &outfile))
+            {
+              ajFmtError("GET error from %S\n", url);
+              embExitBad();
+            }
+
+          continue;
         }
+
+      if(!gFilebuffURLS(url, &buff))
+        {
+          ajFmtError("GET error from %S\n", url);
+          embExitBad();
+        }
+
+      while(ajBuffreadLine(buff, &line))
+        {
+          ajStrRemoveLastNewline(&line);
+
+          regex = ajRegCompC("^>");
+
+          if(ajRegExec(regex, line))
+            {
+              head = ajStrNew();
+
+              ajStrAssignS(&head, line);
+
+              valid = ajFalse;
+
+              token = ajStrTokenNewC(selector, " ,\t\r\n");
+
+              while(ajStrTokenNextParse(&token, &regstr))
+                {
+                  regex = ajRegComp(regstr);
+                  valid = ajRegExec(regex, line);
+                  ajRegFree(&regex);
+                }
+            }
+          else
+            {
+              if(!ajStrIsAlnum(line))
+                continue;
+
+              if(valid)
+                {
+                  ajStrFmtWrap(&line, 60);
+                  ajFmtPrintF(outfile, "%S\n%S\n", head, line);
+                }
+            }
+        }
+
+      ajFileClose(&outfile);
 
       ajStrDel(&inseq);
     }

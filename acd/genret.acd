@@ -9,7 +9,7 @@ section: input [
   type: "page"
 ]
 
-  seqall: genome [
+  seqall: sequence [
     parameter: "Y"
     type: "nucleotide"
     features: "Y"
@@ -18,7 +18,6 @@ section: input [
   string: method [
     parameter: "Y"
     information: "Method to call"
-    default: "load"
   ]
 
 endsection: input
@@ -62,7 +61,7 @@ section: output [
   outfile: outfile [
     parameter: "Y"
     information: "Full text output file"
-    default: "$(genome.name).$(method)"
+    default: "$(sequence.name).$(method)"
   ]
 
 endsection: output
