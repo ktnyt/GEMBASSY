@@ -2,8 +2,8 @@
 #define gpost_h
 
 #include "emboss.h"
-#include "../curl/include/curl/curl.h"
-#include "../curl/include/curl/easy.h"
+#include <curl/curl.h>
+#include <curl/easy.h>
 
 typedef struct{
   char* memory;

@@ -43,13 +43,14 @@ AjBool gHttpGetBinS(AjPStr url, AjPFile* outf)
   AjPStr  path = NULL;
   AjPStr  get  = NULL;
   ajint   port = 80;
+  ajuint  http = 0;
   FILE   *fp;
 
   AjPRegexp crlf = NULL;
 
   char buf[8];
 
-  struct AJSOCKET sock;
+  AjOSysSocket sock;
 
   get = ajStrNew();
 
@@ -135,12 +136,13 @@ AjPFilebuff gHttpPostFileSS(AjPStr url, AjPStr filename)
   AjPStr      post = NULL;
   AjPStr      body = NULL;
   ajint       port = 80;
+  ajuint      http = 0;
   FILE       *fp;
 
   char crlf[] = "\015\021";
 
-  struct AJSOCKET sock;
-  struct AJTIMEOUT timo;
+  AjOSysSocket sock;
+  AjOSysTimeout timo;
 
   post = ajStrNew();
   body = ajStrNew();
@@ -155,7 +157,7 @@ AjPFilebuff gHttpPostFileSS(AjPStr url, AjPStr filename)
 
   ajHttpUrlDeconstruct(url, &port, &host, &path);
 
-  while(buff==NULL || ajHttpRedirect(buff, &host, &port, &path))
+  while(buff==NULL || ajHttpRedirect(buff, &host, &port, &path, &http))
     {
       if(ajStrGetCharFirst(path) != '/')
 	ajStrInsertK(&path, 0, '/');
