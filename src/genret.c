@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
   AjPStr line = NULL;
 
   AjBool valid = ajFalse;
-  AjBool isseq = ajFalse;
+  AjBool flat  = ajFalse;
 
   seqall   = ajAcdGetSeqall("sequence");
   method   = ajAcdGetString("method");
@@ -103,7 +103,7 @@ int main(int argc, char *argv[])
      ajStrMatchC(method, "intergenic") ||
      ajStrMatchC(method, "load"))
     {
-      isseq = ajTrue;
+      flat = ajTrue;
     }
 
 
@@ -217,7 +217,7 @@ int main(int argc, char *argv[])
 
       ajFmtPrintS(&url, "http://%S/%S/*/%S/%S", base, restid, method, argument);
 
-      if(!isseq)
+      if(flat)
         {
           if(!gFileOutURLS(url, &outfile))
             {
