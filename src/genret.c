@@ -40,6 +40,7 @@ int main(int argc, char *argv[])
   embInitPV("genret", argc, argv, "GEMBASSY", "1.0.0");
 
   AjPSeqall seqall;
+
   AjPSeq seq    = NULL;
   AjPStr inseq  = NULL;
   AjPStr method = NULL;
@@ -54,7 +55,7 @@ int main(int argc, char *argv[])
 
   AjPStr argument = NULL;
   AjPStr selector = NULL;
-  AjPStr regstr   = NULL;
+  AjPStr regexstr = NULL;
   AjPStrTok token = NULL;
   AjPRegexp regex = NULL;
 
@@ -249,9 +250,9 @@ int main(int argc, char *argv[])
 
               token = ajStrTokenNewC(selector, " ,\t\r\n");
 
-              while(ajStrTokenNextParse(&token, &regstr))
+              while(ajStrTokenNextParse(&token, &regexstr))
                 {
-                  regex = ajRegComp(regstr);
+                  regex = ajRegComp(regexstr);
                   valid = ajRegExec(regex, line);
                   ajRegFree(&regex);
                 }
