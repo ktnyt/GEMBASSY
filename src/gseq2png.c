@@ -19,10 +19,10 @@ int main(int argc, char *argv[])
   AjPSeqall seqall;
   AjPSeq    seq;
   AjPStr    inseq    = NULL;
+  AjPStr    seqid    = NULL;
   ajint	    width    = 0;
   ajint	    window   = 0;
   AjBool    show     = 0;
-  AjPStr    accid    = NULL;
   AjPFile   outf     = NULL;
   AjPStr    filename = NULL;
   AjPStr    outfname = NULL;
@@ -36,7 +36,6 @@ int main(int argc, char *argv[])
   width    = ajAcdGetInt("width");
   filename = ajAcdGetString("filename");
   show     = ajAcdGetToggle("show");
-  accid    = ajAcdGetString("accid");
 
   params.window = window;
   params.width  = width;
@@ -44,7 +43,6 @@ int main(int argc, char *argv[])
 
   while(ajSeqallNext(seqall, &seq))
     {
-
       soap_init(&soap);
 
       inseq = NULL;
@@ -54,7 +52,7 @@ int main(int argc, char *argv[])
       ajStrAppendC(&inseq, "\n");
       ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
 
-      ajStrAssignS(&accid, ajSeqGetAccS(seq));
+      ajStrAssignS(&seqid, ajSeqGetAccS(seq));
 
       in0 = ajCharNewS(inseq);
 
@@ -69,6 +67,8 @@ int main(int argc, char *argv[])
         {
           outfname = ajStrNew();
           tempname = ajStrNew();
+
+          ajStrAssignS(&outfname, filename);
 
           ajStrFromLong(&tempname, ajSeqallGetCount(seqall));
           ajStrInsertC(&tempname, 0, ".");
@@ -88,7 +88,7 @@ int main(int argc, char *argv[])
             {
               if(show)
                 {
-                  if(display_png(ajCharNewS(outfname), argv[0], ajCharNewS(accid)))
+                  if(display_png(ajCharNewS(outfname), argv[0], ajCharNewS(seqid)))
                     {
                       ajFmtError("Error in X11 displaying\n");
                       embExitBad();
@@ -117,6 +117,8 @@ int main(int argc, char *argv[])
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
+  ajStrDel(&seqid);
+
   ajStrDel(&filename);
 
   embExit();

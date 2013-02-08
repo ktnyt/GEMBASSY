@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
   AjPSeqall seqall;
   AjPSeq    seq;
   AjPStr    inseq  = NULL;
-  AjPStr    accid  = NULL;
+  AjPStr    seqid  = NULL;
   AjPStr    tmp    = NULL;
   AjPStr    parse  = NULL;
   AjPStr    numA   = NULL;
@@ -35,12 +35,8 @@ int main(int argc, char *argv[])
   AjPFile outf = NULL;
 
   seqall = ajAcdGetSeqall("sequence");
-  accid  = ajAcdGetString("accid");
 
-  show = ajAcdGetToggle("show");
-
-  if(!show)
-    outf = ajAcdGetOutfile("outfile");
+  outf = ajAcdGetOutfile("outfile");
 
   while(ajSeqallNext(seqall, &seq))
     {
@@ -54,7 +50,7 @@ int main(int argc, char *argv[])
       ajStrAppendC(&inseq, "\n");
       ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
 
-      ajStrAssignS(&accid, ajSeqGetAccS(seq));
+      ajStrAssignS(&seqid, ajSeqGetAccS(seq));
 
       in0 = ajCharNewS(inseq);
 
@@ -87,10 +83,10 @@ int main(int argc, char *argv[])
             }
           if(show)
             ajFmtPrint("Sequence: %S A: %S T: %S G: %S C: %S\n",
-                       accid, numA, numT, numG, numC);
+                       seqid, numA, numT, numG, numC);
           else
             ajFmtPrintF(outf, "Sequence: %S A: %S T: %S G: %S C: %S\n",
-                        accid, numA, numT, numG, numC);
+                        seqid, numA, numT, numG, numC);
         }
       else
         {
@@ -108,6 +104,7 @@ int main(int argc, char *argv[])
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
+  ajStrDel(&seqid);
 
   embExit();
 

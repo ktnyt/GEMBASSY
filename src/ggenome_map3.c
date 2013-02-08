@@ -54,9 +54,10 @@ int main(int argc, char *argv[])
   AjPSeqall seqall;
   AjPSeq    seq;
   AjPStr    inseq    = NULL;
+  AjPStr    seqid    = NULL;
   ajint     width;
   ajint     height;
-  AjPStr    accid    = NULL;
+  AjBool    accid    = ajFalse;
   AjPFile   outf     = NULL;
   AjPStr    filename = NULL;
   AjPStr    outfname = NULL;
@@ -69,7 +70,7 @@ int main(int argc, char *argv[])
   width    = ajAcdGetInt("width");
   height   = ajAcdGetInt("height");
   filename = ajAcdGetString("filename");
-  accid    = ajAcdGetString("accid");
+  accid    = ajAcdGetBoolean("accid");
 
   params.width  = width;
   params.height = height;
@@ -85,36 +86,31 @@ int main(int argc, char *argv[])
 
       inseq = NULL;
 
-      if(!gFormatGenbank(seq, &inseq) && !ajStrGetLen(accid))
-	{
-	  ajFmtError("Sequence does not have features\n");
-	  ajFmtError("Proceeding with sequence accession ID\n");
-	  ajStrAssignS(&accid, ajSeqGetAccS(seq));
+      ajStrAssignS(&seqid, ajSeqGetAccS(seq));
 
-          if(!ajStrGetLen(accid))
+      if(!ajStrGetLen(seqid))
+        ajStrAssignS(&seqid, ajSeqGetNameS(seq));
+
+      if(!ajStrGetLen(seqid))
+        {
+          ajFmtError("No header information\n");
+          embExitBad();
+        }
+
+      if(accid || !gFormatGenbank(seq, &inseq))
+        {
+          if(!accid)
+            ajFmtError("Sequence does not have features\n"
+                       "Proceeding with sequence accession ID\n");
+
+          if(!gValID(seqid))
             {
-              ajStrAssignS(&accid, ajSeqGetNameS(seq));
-
-              if(!ajStrGetLen(accid))
-                {
-                  ajFmtError("No header information\n");
-                  embExitBad();
-                }
+              ajFmtError("Invalid accession ID, exiting\n");
+              embExitBad();
             }
-	}
 
-      if(ajStrGetLen(accid))
-	{
-	  if(!gValID(accid))
-	    {
-	      ajFmtError("Invalid accession ID, exiting\n");
-	      embExitBad();
-	    }
-	  ajStrAssignS(&inseq, accid);
-	}
-
-      if(!ajStrGetLen(accid))
-	ajStrAssignS(&accid, ajSeqGetAccS(seq));
+          ajStrAssignS(&inseq, seqid);
+        }
 
       in0 = ajCharNewS(inseq);
 
@@ -168,6 +164,7 @@ int main(int argc, char *argv[])
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
+  ajStrDel(&seqid);
 
   ajStrDel(&filename);
 

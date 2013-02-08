@@ -54,9 +54,9 @@ int main(int argc, char *argv[])
   AjPSeqall seqall;
   AjPSeq    seq;
   AjPStr    inseq    = NULL;
+  AjPStr    seqid    = NULL;
   AjPStr    oligomer = NULL;
   AjPStr    return_  = NULL;
-  AjPStr    accid    = NULL;
   AjPStr    tmp      = NULL;
   AjPStr    parse    = NULL;
   AjPStrTok handle   = NULL;
@@ -71,14 +71,12 @@ int main(int argc, char *argv[])
   seqall   = ajAcdGetSeqall("sequence");
   oligomer = ajAcdGetString("oligomer");
   return_  = ajAcdGetString("return");
-  accid    = ajAcdGetString("accid");
   outf     = ajAcdGetOutfile("outfile");
 
   params.return_ = ajCharNewS(return_);
 
   while(ajSeqallNext(seqall, &seq))
     {
-
       soap_init(&soap);
 
       soap.send_timeout = 0;
@@ -91,7 +89,7 @@ int main(int argc, char *argv[])
       ajStrAppendC(&inseq, "\n");
       ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
 
-      ajStrAssignS(&accid, ajSeqGetAccS(seq));
+      ajStrAssignS(&seqid, ajSeqGetAccS(seq));
 
       in0 = ajCharNewS(inseq);
       in1 = ajCharNewS(oligomer);
@@ -107,7 +105,7 @@ int main(int argc, char *argv[])
 					     ) == SOAP_OK)
         {
           
-          ajFmtPrintF(outf, "Sequence: %S Oligomer: %S\n", accid, oligomer);
+          ajFmtPrintF(outf, "Sequence: %S Oligomer: %S\n", seqid, oligomer);
 
           arrayOut = result._result;
 
@@ -136,6 +134,7 @@ int main(int argc, char *argv[])
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
+  ajStrDel(&seqid);
   ajStrDel(&oligomer);
 
   AJFREE(params.return_);

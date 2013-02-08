@@ -46,7 +46,6 @@ section: output [
   xygraph: graph [
     standard: "$(plot)"
     gtitle: "ggenomicskew of $(sequence.usa)"
-    relations: "EDAM:0002968 data Image or plot"
   ]
 
   outfile: outfile [

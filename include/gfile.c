@@ -282,13 +282,16 @@ AjBool gFormatGenbank(AjPSeq seq, AjPStr *inseq){
     return ajFalse;
 
   ajFeattableWriteGenbank(featout,feat);
-  ajFeattabOutDel(&featout);
+
+  ajFeattableDel(&feat);
+  //ajFeattabOutDel(&featout);
+  ajFileClose(&(featout->Handle));
 
   featfile = ajFileNewInNameS(filename);
   ajSysFileUnlinkS(filename);
 
   while(ajReadline(seqfile,&seqline)){
-    if(ajStrCmpC(seqline,"ORIGIN\n") == 0){
+    if(ajStrMatchC(seqline,"ORIGIN\n")){
       while(ajReadline(featfile,&featline)){
 	ajStrAppendS(inseq, featline);
       }

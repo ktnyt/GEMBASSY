@@ -38,10 +38,11 @@
 /* Installation **************************************************************
 
 REQUIREMENTS
-   EMBOSS (> 6.4.0) - This EMBASSY package requires EMBOSS version 6.4.0 or
+   EMBOSS (> 6.5.7) - This EMBASSY package requires EMBOSS version 6.5.7 or
    above.
    libpng (> 1.5.13) - (Recommended) Some older versions of libpng have a
    problem with the setjmp.h inclusion.
+   libcurl (> 7.28.1) - Required for file POST
 
 INSTALLATION
   Root users

@@ -52,8 +52,9 @@ int main(int argc, char *argv[])
   AjPSeqall seqall;
   AjPSeq    seq;
   AjPStr    inseq  = NULL;
+  AjPStr    seqid  = NULL;
   AjPStr    method = NULL;
-  AjPStr    accid  = NULL;
+  AjBool    accid  = ajFalse;
 
   char *in0;
   char *result;
@@ -62,48 +63,42 @@ int main(int argc, char *argv[])
 
   seqall = ajAcdGetSeqall("sequence");
   method = ajAcdGetListSingle("method");
-  accid  = ajAcdGetString("accid");
+  accid  = ajAcdGetBoolean("accid");
   outf   = ajAcdGetOutfile("outfile");
 
   params.method = ajCharNewS(method);
 
   while(ajSeqallNext(seqall, &seq))
     {
-
       soap_init(&soap);
 
       inseq = NULL;
 
-      if(!gFormatGenbank(seq, &inseq) && !ajStrGetLen(accid))
-	{
-	  ajFmtError("Sequence does not have features\n");
-	  ajFmtError("Proceeding with sequence accession ID\n");
-	  ajStrAssignS(&accid, ajSeqGetAccS(seq));
+      ajStrAssignS(&seqid, ajSeqGetAccS(seq));
 
-          if(!ajStrGetLen(accid))
+      if(!ajStrGetLen(seqid))
+        ajStrAssignS(&seqid, ajSeqGetNameS(seq));
+
+      if(!ajStrGetLen(seqid))
+        {
+          ajFmtError("No header information\n");
+          embExitBad();
+        }
+
+      if(accid || !gFormatGenbank(seq, &inseq))
+        {
+          if(!accid)
+            ajFmtError("Sequence does not have features\n"
+                       "Proceeding with sequence accession ID\n");
+
+          if(!gValID(seqid))
             {
-              ajStrAssignS(&accid, ajSeqGetNameS(seq));
-
-              if(!ajStrGetLen(accid))
-                {
-                  ajFmtError("No header information\n");
-                  embExitBad();
-                }
+              ajFmtError("Invalid accession ID, exiting\n");
+              embExitBad();
             }
-	}
 
-      if(ajStrGetLen(accid))
-	{
-	  if(!gValID(accid))
-	    {
-	      ajFmtError("Invalid accession ID, exiting\n");
-	      embExitBad();
-	    }
-	  ajStrAssignS(&inseq, accid);
-	}
-
-      if(!ajStrGetLen(accid))
-	ajStrAssignS(&accid, ajSeqGetAccS(seq));
+          ajStrAssignS(&inseq, seqid);
+        }
 
       in0 = ajCharNewS(inseq);
 
@@ -116,7 +111,7 @@ int main(int argc, char *argv[])
 			  &result
                            ) == SOAP_OK)
 	{
-          ajFmtPrintF(outf, "Sequence: %S B1: %s\n", accid, result);
+          ajFmtPrintF(outf, "Sequence: %S B1: %s\n", seqid, result);
 	}
       else
 	{
@@ -136,7 +131,7 @@ int main(int argc, char *argv[])
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
-  ajStrDel(&accid);
+  ajStrDel(&seqid);
 
   AJFREE(params.method);
 

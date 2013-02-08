@@ -32,9 +32,9 @@ section: advanced [
     default: "20"
   ]
 
-  string: accid [
-    information: "Include to use sequence accession ID as query"
-    default: ""
+  toggle: show [
+    information: "Include to show result through X11 window system"
+    default: "N"
   ]
 
 endsection: advanced

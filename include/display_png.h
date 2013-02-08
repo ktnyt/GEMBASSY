@@ -59,7 +59,7 @@ int png_init(FILE *fp, unsigned long *pWidth, unsigned long *pHeight){
   
   if(!(info_ptr = png_create_info_struct(png_ptr)))
     return 4;
-/*
+
 #if (PNG_LIBPNG_VER < 10400 || PNG_LIBPNG_VER > 10500)
   if(setjmp(png_jmpbuf(png_ptr))){
 #else
@@ -68,7 +68,7 @@ int png_init(FILE *fp, unsigned long *pWidth, unsigned long *pHeight){
     png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
     return 2;
   }
-*/
+
   png_init_io(png_ptr, fp);
   png_set_sig_bytes(png_ptr, 8);
 

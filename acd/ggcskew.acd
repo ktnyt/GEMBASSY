@@ -52,11 +52,6 @@ section: advanced [
     default: "0"
   ]
 
-  string: accid [
-    information: "Include to use sequence accession ID as query"
-    default: ""
-  ]
-
 endsection: advanced
 
 section: output [
@@ -72,7 +67,6 @@ section: output [
   xygraph: graph [
     standard: "$(plot)"
     gtitle: "ggcskew of $(sequence.usa)"
-    relations: "EDAM:0002968 data Image or plot"
   ]
 
   outfile: outfile [

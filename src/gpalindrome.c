@@ -18,10 +18,10 @@ int main(int argc, char *argv[])
   AjPSeqall seqall;
   AjPSeq    seq;
   AjPStr    inseq = NULL;
+  AjPStr    seqid = NULL;
   ajint	    shortest = 0;
   ajint	    loop = 0;
   AjBool    gtmatch = 0;
-  AjPStr    accid = NULL;
 
   char *in0;
   char *result;
@@ -32,7 +32,6 @@ int main(int argc, char *argv[])
   shortest = ajAcdGetInt("shortest");
   loop     = ajAcdGetInt("loop");
   gtmatch  = ajAcdGetBoolean("gtmatch");
-  accid    = ajAcdGetString("accid");
   outf     = ajAcdGetOutfile("outfile");
 
   params.shortest = shortest;
@@ -42,7 +41,6 @@ int main(int argc, char *argv[])
 
   while(ajSeqallNext(seqall, &seq))
     {
-
       soap_init(&soap);
 
       inseq = NULL;
@@ -52,7 +50,7 @@ int main(int argc, char *argv[])
       ajStrAppendC(&inseq, "\n");
       ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
 
-      ajStrAssignS(&accid, ajSeqGetAccS(seq));
+      ajStrAssignS(&seqid, ajSeqGetAccS(seq));
 
       in0 = ajCharNewS(inseq);
 
@@ -65,7 +63,8 @@ int main(int argc, char *argv[])
                                   &result
 				  ) == SOAP_OK)
         {
-          ajFmtPrintF(outf, "Sequence: %S\n", accid);
+          ajFmtPrintF(outf, "Sequence: %S\n", seqid);
+
           if(!gFileOutURLC(result, &outf))
             {
               ajFmtError("File downloading error\n");
@@ -86,11 +85,11 @@ int main(int argc, char *argv[])
       ajStrDel(&inseq);
     }
 
-  if(outf)
-    ajFileClose(&outf);
+  ajFileClose(&outf);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
+  ajStrDel(&seqid);
 
   embExit();
 

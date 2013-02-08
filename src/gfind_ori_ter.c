@@ -18,11 +18,12 @@ int main(int argc, char *argv[])
   AjPSeqall seqall;
   AjPSeq    seq;
   AjPStr    inseq  = NULL;
+  AjPStr    seqid  = NULL;
   ajint	    window = 0;
   AjBool    purine = 0;
   AjBool    keto   = 0;
   ajint	    filter = 0;
-  AjPStr    accid  = NULL;
+  AjBool    accid  = ajFalse;
   AjPStr    tmp    = NULL;
   AjPStr    parse  = NULL;
   AjPStrTok handle = NULL;
@@ -39,7 +40,7 @@ int main(int argc, char *argv[])
   filter = ajAcdGetInt("filt");
   purine = ajAcdGetBoolean("purine");
   keto   = ajAcdGetBoolean("keto");
-  accid  = ajAcdGetString("accid");
+  accid  = ajAcdGetBoolean("accid");
   outf   = ajAcdGetOutfile("outfile");
 
   params.window = window;
@@ -54,41 +55,35 @@ int main(int argc, char *argv[])
 
   while(ajSeqallNext(seqall, &seq))
     {
-
       soap_init(&soap);
 
       inseq = NULL;
 
-      if(!gFormatGenbank(seq, &inseq) && !ajStrGetLen(accid))
+      ajStrAssignS(&seqid, ajSeqGetAccS(seq));
+
+      if(!ajStrGetLen(seqid))
+        ajStrAssignS(&seqid, ajSeqGetNameS(seq));
+
+      if(!ajStrGetLen(seqid))
         {
-          ajFmtError("Sequence does not have features\n");
-          ajFmtError("Proceeding with sequence accession ID\n");
-          ajStrAssignS(&accid, ajSeqGetAccS(seq));
-
-          if(!ajStrGetLen(accid))
-            {
-              ajStrAssignS(&accid, ajSeqGetNameS(seq));
-
-              if(!ajStrGetLen(accid))
-                {
-                  ajFmtError("No header information\n");
-                  embExitBad();
-                }
-            }
+          ajFmtError("No header information\n");
+          embExitBad();
         }
 
-      if(ajStrGetLen(accid))
+      if(accid || !gFormatGenbank(seq, &inseq))
         {
-          if(!gValID(accid))
+          if(!accid)
+            ajFmtError("Sequence does not have features\n"
+                       "Proceeding with sequence accession ID\n");
+
+          if(!gValID(seqid))
             {
               ajFmtError("Invalid accession ID, exiting\n");
               embExitBad();
             }
-          ajStrAssignS(&inseq, accid);
-        }
 
-      if(!ajStrGetLen(accid))
-        ajStrAssignS(&accid, ajSeqGetAccS(seq));
+          ajStrAssignS(&inseq, seqid);
+        }
 
       in0 = ajCharNewS(inseq);
 
@@ -123,7 +118,7 @@ int main(int argc, char *argv[])
 	    }
 
           ajFmtPrintF(outf, "Sequence: %S Origin: %S Terminus: %S\n",
-                      accid, ori, ter);
+                      seqid, ori, ter);
 
 	  ajStrDel(&tmp);
 	  ajStrDel(&parse);
@@ -148,6 +143,7 @@ int main(int argc, char *argv[])
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
+  ajStrDel(&seqid);
 
   embExit();
 

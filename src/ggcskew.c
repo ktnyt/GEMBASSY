@@ -19,13 +19,13 @@ int main(int argc, char *argv[])
   AjPSeqall seqall;
   AjPSeq    seq;
   AjPStr    inseq      = NULL;
+  AjPStr    seqid      = NULL;
   ajint	    window     = 0;
   ajint	    slide      = 0;
   AjBool    cumulative = 0;
   AjBool    at         = 0;
   AjBool    purine     = 0;
   AjBool    keto       = 0;
-  AjPStr    accid      = NULL;
 
   char *in0;
   char *result;
@@ -45,14 +45,10 @@ int main(int argc, char *argv[])
   at         = ajAcdGetBoolean("at");
   purine     = ajAcdGetBoolean("purine");
   keto       = ajAcdGetBoolean("keto");
-  accid      = ajAcdGetString("accid");
 
   plot = ajAcdGetToggle("plot");
-
-  if(!plot)
-    outf = ajAcdGetOutfile("outfile");
-  else
-    mult = ajAcdGetGraphxy("graph");
+  outf = ajAcdGetOutfile("outfile");
+  mult = ajAcdGetGraphxy("graph");
 
   params.window     = window;
   params.slide      = slide;
@@ -73,7 +69,6 @@ int main(int argc, char *argv[])
 
   while(ajSeqallNext(seqall, &seq))
     {
-
       soap_init(&soap);
 
       inseq = NULL;
@@ -83,7 +78,7 @@ int main(int argc, char *argv[])
       ajStrAppendC(&inseq, "\n");
       ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
 
-      ajStrAssignS(&accid, ajSeqGetAccS(seq));
+      ajStrAssignS(&seqid, ajSeqGetAccS(seq));
 
       in0 = ajCharNewS(inseq);
 
@@ -102,7 +97,7 @@ int main(int argc, char *argv[])
 
 	      ajStrAppendC(&title, argv[0]);
 	      ajStrAppendC(&title, " of ");
-	      ajStrAppendS(&title, accid);
+	      ajStrAppendS(&title, seqid);
 
 	      gpp.title = ajStrNewS(title);
 	      gpp.xlab = ajStrNewC("location");
@@ -128,7 +123,7 @@ int main(int argc, char *argv[])
 	    }
 	  else
 	    {
-	      ajFmtPrintF(outf, "Sequence: %S\n", accid);
+	      ajFmtPrintF(outf, "Sequence: %S\n", seqid);
 	      if(!gFileOutURLC(result, &outf))
 		{
 		  ajFmtError("File downloading error\n");
@@ -150,12 +145,13 @@ int main(int argc, char *argv[])
     ajStrDel(&inseq);
   }
 
-  if(outf)
-    ajFileClose(&outf);
+  ajFileClose(&outf);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
+  ajStrDel(&seqid);
 
   embExit();
+
   return 0;
 }

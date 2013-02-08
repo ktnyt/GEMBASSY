@@ -20,7 +20,7 @@ section: advanced [
   information: "Advanced section"
   type: "page"
 ]
-  string: accid [
+  boolean: accid [
     information: "Include to use sequence accession ID as query"
     default: ""
   ]

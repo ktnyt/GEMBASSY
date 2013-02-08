@@ -41,14 +41,9 @@ section: advanced [
     default: ""
   ]
 
-  boolean: translate [
-    information: "Include to translate from nucleotide to protein sequence"
-    default: "0"
-  ]
-
   boolean: accid [
     information: "Include to use sequence accession ID as query"
-    default: "1"
+    default: "Y"
   ]
 
 endsection: advanced

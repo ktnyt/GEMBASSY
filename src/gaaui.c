@@ -50,11 +50,12 @@ int main(int argc, char *argv[])
   struct soap soap;
   struct ns1__aauiInputParams params;
 
-  AjPSeqall  seqall;
-  AjPSeq     seq;
-  AjPStr     inseq = NULL;
-  AjPStr     id    = NULL;
-  AjPStr     accid = NULL;
+  AjPSeqall seqall;
+  AjPSeq    seq;
+  AjPStr    inseq = NULL;
+  AjPStr    seqid = NULL;
+  AjPStr    id    = NULL;
+  AjBool    accid = ajFalse;
 
   char *in0;
   char *result;
@@ -63,49 +64,43 @@ int main(int argc, char *argv[])
 
   seqall = ajAcdGetSeqall("sequence");
   id     = ajAcdGetString("id");
-  accid  = ajAcdGetString("accid");
+  accid  = ajAcdGetBoolean("accid");
   outf   = ajAcdGetOutfile("outfile");
 
-  params.id = ajCharNewS(id);
+  params.id  = ajCharNewS(id);
+  params.tag = "gene";
 
   while(ajSeqallNext(seqall, &seq))
     {
-
       soap_init(&soap);
 
       inseq = NULL;
 
-      if(!gFormatGenbank(seq, &inseq) && !ajStrGetLen(accid))
-	{
-	  ajFmtError("Sequence does not have features\n"
-                     "Proceeding with sequence accession ID\n");
+      ajStrAssignS(&seqid, ajSeqGetAccS(seq));
 
-	  ajStrAssignS(&accid, ajSeqGetAccS(seq));
+      if(!ajStrGetLen(seqid))
+        ajStrAssignS(&seqid, ajSeqGetNameS(seq));
 
-          if(!ajStrGetLen(accid))
-            {
-              ajStrAssignS(&accid, ajSeqGetNameS(seq));
+      if(!ajStrGetLen(seqid))
+        {
+          ajFmtError("No header information\n");
+          embExitBad();
+        }
 
-              if(!ajStrGetLen(accid))
-                {
-                  ajFmtError("No header information\n");
-                  embExitBad();
-                }
-            }
-	}
+      if(accid || !gFormatGenbank(seq, &inseq))
+        {
+          if(!accid)
+            ajFmtError("Sequence does not have features\n"
+                       "Proceeding with sequence accession ID\n");
 
-      if(ajStrGetLen(accid))
-	{
-	  if(!gValID(accid))
+	  if(!gValID(seqid))
 	    {
 	      ajFmtError("Invalid accession ID, exiting\n");
 	      embExitBad();
 	    }
-	  ajStrAssignS(&inseq, accid);
-	}
 
-      if(!ajStrGetLen(accid))
-	ajStrAssignS(&accid, ajSeqGetAccS(seq));
+          ajStrAssignS(&inseq, seqid);
+        }
 
       in0 = ajCharNewS(inseq);
 
@@ -117,7 +112,7 @@ int main(int argc, char *argv[])
 			      &result
                              ) == SOAP_OK)
 	{
-	  ajFmtPrintF(outf, "Sequence: %S\n", accid);
+	  ajFmtPrintF(outf, "Sequence: %S\n", seqid);
 	  if(!gFileOutURLC(result, &outf))
 	    {
 	      ajFmtError("File downloading error\n");
@@ -142,7 +137,7 @@ int main(int argc, char *argv[])
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
-  ajStrDel(&accid);
+  ajStrDel(&seqid);
 
   AJFREE(params.id);
 

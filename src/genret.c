@@ -82,9 +82,10 @@ int main(int argc, char *argv[])
 
   base = ajStrNewC("rest.g-language.org");
 
-  if(ajStrMatchC(method, "method_list") || ajStrMatchC(method, "organism_list"))
+  if(ajStrMatchC(method, "method_list") ||
+     ajStrMatchC(method, "organism_list"))
     {
-      ajFmtPrintS(&url, "http://%S/%S/%S", base, method, argument);
+      ajFmtPrintS(&url, "http://%S/%S/gb", base, method);
 
       if(!gFileOutURLS(url, &outfile))
         {
@@ -105,12 +106,6 @@ int main(int argc, char *argv[])
     {
       flat = ajTrue;
     }
-
-
-
-  /*
-  ** Validate the input method
-  */
 
   url = ajStrNew();
 
@@ -159,13 +154,6 @@ int main(int argc, char *argv[])
   ajStrDel(&url);
   ajFilebuffDel(&buff);
 
-
-
-
-  /*
-  ** Read each sequence
-  */
-
   while(ajSeqallNext(seqall, &seq))
     {
       inseq = ajStrNew();
@@ -186,7 +174,7 @@ int main(int argc, char *argv[])
 
               ajFileClose(&tmpfile);
 
-              gFilePostCS("http://rest.g-language.org/upload/upl",
+              gFilePostCS("http://rest.g-language.org/upload/upl.pl",
                           tmpname, &restid);
 
               ajSysFileUnlinkS(tmpname);
@@ -215,7 +203,8 @@ int main(int argc, char *argv[])
 
       url = ajStrNew();
 
-      ajFmtPrintS(&url, "http://%S/%S/*/%S/%S", base, restid, method, argument);
+      ajFmtPrintS(&url, "http://%S/%S/*/%S/%S",
+                  base, restid, method, argument);
 
       if(flat)
         {
@@ -248,12 +237,13 @@ int main(int argc, char *argv[])
 
               valid = ajFalse;
 
-              token = ajStrTokenNewC(selector, " ,\t\r\n");
+              token = ajStrTokenNewC(ajStrNewS(selector), " ,\t\r\n");
 
               while(ajStrTokenNextParse(&token, &regexstr))
                 {
                   regex = ajRegComp(regexstr);
-                  valid = ajRegExec(regex, line);
+                  if(ajRegExec(regex, line))
+                    valid = ajTrue;
                   ajRegFree(&regex);
                 }
             }

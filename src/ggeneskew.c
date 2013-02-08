@@ -19,12 +19,13 @@ int main(int argc, char *argv[])
   AjPSeqall seqall;
   AjPSeq    seq;
   AjPStr    inseq      = NULL;
+  AjPStr    seqid      = NULL;
   ajint	    window     = 0;
   ajint	    slide      = 0;
   AjBool    cumulative = 0;
   AjBool    gc3        = 0;
   AjPStr    base       = 0;
-  AjPStr    accid      = NULL;
+  AjBool    accid      = ajFalse;
 
   char *in0;
   char *result;
@@ -42,14 +43,11 @@ int main(int argc, char *argv[])
   slide  = ajAcdGetInt("slide");
   gc3    = ajAcdGetBoolean("gctri");
   base   = ajAcdGetListSingle("base");
-  accid  = ajAcdGetString("accid");
+  accid  = ajAcdGetBoolean("accid");
 
   plot = ajAcdGetToggle("plot");
-
-  if(!plot)
-    outf = ajAcdGetOutfile("outfile");
-  else
-    mult = ajAcdGetGraphxy("graph");
+  outf = ajAcdGetOutfile("outfile");
+  mult = ajAcdGetGraphxy("graph");
 
   params.window = window;
   params.slide  = slide;
@@ -75,7 +73,7 @@ int main(int argc, char *argv[])
       ajStrAppendC(&inseq, "\n");
       ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
 
-      ajStrAssignS(&accid, ajSeqGetAccS(seq));
+      ajStrAssignS(&seqid, ajSeqGetAccS(seq));
 
       in0 = ajCharNewS(inseq);
 
@@ -95,7 +93,7 @@ int main(int argc, char *argv[])
 
 	      ajStrAppendC(&title, argv[0]);
 	      ajStrAppendC(&title, " of ");
-	      ajStrAppendS(&title, accid);
+	      ajStrAppendS(&title, seqid);
 
 	      gpp.title = ajStrNewS(title);
 	      gpp.xlab = ajStrNewC("bp");
@@ -121,7 +119,7 @@ int main(int argc, char *argv[])
 	    }
 	  else
 	    {
-	      ajFmtPrintF(outf, "Sequence: %S\n", accid);
+	      ajFmtPrintF(outf, "Sequence: %S\n", seqid);
 	      if(!gFileOutURLC(result, &outf))
 		{
 		  ajFmtError("File downloading error\n");
@@ -143,12 +141,13 @@ int main(int argc, char *argv[])
     ajStrDel(&inseq);
   }
 
-  if(outf)
-    ajFileClose(&outf);
+  ajFileClose(&outf);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
+  ajStrDel(&seqid);
 
   embExit();
+
   return 0;
 }

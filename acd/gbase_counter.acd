@@ -42,7 +42,7 @@ section: advanced [
     default: "30"
   ]
 
-  string: accid [
+  boolean: accid [
     information: "Include to use sequence accession ID as query"
     default: ""
   ]
@@ -55,6 +55,7 @@ section: output [
 ]
 
   outfile: outfile [
+    parameter: "Y"
   ]
 
 endsection: output

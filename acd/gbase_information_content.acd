@@ -41,7 +41,7 @@ section: advanced [
     default: "3"
   ]
 
-  string: accid [
+  boolean: accid [
     information: "Include to use sequence accession ID as query"
     default: ""
   ]
@@ -61,7 +61,6 @@ section: output [
   xygraph: graph [
     standard: "$(plot)"
     gtitle: "ggenomicskew of $(sequence.usa)"
-    relations: "EDAM:0002968 data Image or plot"
   ]
 
   outfile: outfile [

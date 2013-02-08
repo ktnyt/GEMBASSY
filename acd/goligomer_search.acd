@@ -32,11 +32,6 @@ section: advanced [
     default: "position"
   ]
 
-  string: accid [
-    information: "Include to use sequence accession ID as query"
-    default: ""
-  ]
-
 endsection: advanced
 
 section: output [

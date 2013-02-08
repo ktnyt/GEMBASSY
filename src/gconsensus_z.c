@@ -67,43 +67,58 @@ int main(int argc, char *argv[])
   AjPStr      title = NULL;
 
   ajint i;
+  ajint size = 0;
+  char **ptr = NULL;
 
   seqall = ajAcdGetSeqall("sequence");
   high   = ajAcdGetInt("high");
   low    = ajAcdGetFloat("low");
 
   plot = ajAcdGetToggle("plot");
-
-  if(!plot)
-    outf = ajAcdGetOutfile("outfile");
-  else
-    mult = ajAcdGetGraphxy("graph");
+  outf = ajAcdGetOutfile("outfile");
+  mult = ajAcdGetGraphxy("graph");
 
   params.high   = high;
   params.low    = low;
   params.output = "f";
 
-  array_seq.__ptr = (char**)malloc(sizeof(char));
+  array_seq.__ptr = NULL;
   array_seq.__size = 0;
+
+  ptr = (char**)malloc(sizeof(char*));
+
+  if(!ptr)
+    {
+      ajFmtError("Error in allocation\n");
+      embExitBad();
+    }
 
   while(ajSeqallNext(seqall, &seq))
     {
-      array_seq.__ptr = (char**)realloc(array_seq.__ptr,
-					sizeof(char*) * array_seq.__size + 1);
-      if(!array_seq.__ptr)
+      ptr = (char**)realloc(ptr, sizeof(char*) * (size + 1));
+
+      if(!ptr)
 	{
 	  ajFmtError("Error in allocation\n");
 	  embExitBad();
 	}
-      array_seq.__ptr[array_seq.__size] = ajCharNewS(ajSeqGetSeqS(seq));
-      ++array_seq.__size;
+
+      *(ptr + size) = ajCharNewS(ajSeqGetSeqS(seq));
+
+      ++size;
     }
 
-  if(array_seq.__size < 2)
+  if(size < 2)
     {
+      AJFREE(*ptr);
+      AJFREE(ptr);
+
       ajFmtError("File only has one sequence. Please input more than two.\n");
       embExitBad();
     }
+
+  array_seq.__ptr = ptr;
+  array_seq.__size = size;
 
   soap_init(&soap);
 
@@ -158,20 +173,20 @@ int main(int argc, char *argv[])
   soap_end(&soap);
   soap_done(&soap);
   
-  if(outf)
-    ajFileClose(&outf);
+  ajFileClose(&outf);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
 
   i = 0;
 
-  while(array_seq.__ptr[i])
+  while(i < size)
     {
-      AJFREE(array_seq.__ptr[i]);
+      AJFREE(*(ptr + i));
+      ++i;
     }
 
-  AJFREE(array_seq.__ptr);
+  AJFREE(ptr);
 
   embExit();
 

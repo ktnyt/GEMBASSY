@@ -18,11 +18,12 @@ int main(int argc, char *argv[])
 
   AjPSeqall seqall;
   AjPSeq    seq;
-  AjPStr    inseq = NULL;
-  ajint	    window = 0;
+  AjPStr    inseq      = NULL;
+  AjPStr    seqid      = NULL;
+  ajint	    window     = 0;
   AjPStr    nucleotide = 0;
-  AjPStr    accid = NULL;
-  AjBool    output = 0;
+  AjBool    accid      = ajFalse;
+  AjBool    output     = 0;
 
   char *in0;
   char *result;
@@ -38,14 +39,11 @@ int main(int argc, char *argv[])
   seqall     = ajAcdGetSeqall("sequence");
   window     = ajAcdGetInt("window");
   nucleotide = ajAcdGetString("nucleotide");
-  accid      = ajAcdGetString("accid");
+  accid      = ajAcdGetBoolean("accid");
 
   plot = ajAcdGetToggle("plot");
-
-  if(!plot)
-    outf = ajAcdGetOutfile("outfile");
-  else
-    mult = ajAcdGetGraphxy("graph");
+  outf = ajAcdGetOutfile("outfile");
+  mult = ajAcdGetGraphxy("graph");
 
   params.window     = window;
   params.nucleotide = ajCharNewS(nucleotide);
@@ -58,36 +56,31 @@ int main(int argc, char *argv[])
 
       inseq = NULL;
 
-      if(!gFormatGenbank(seq, &inseq) && !ajStrGetLen(accid))
+      ajStrAssignS(&seqid, ajSeqGetAccS(seq));
+
+      if(!ajStrGetLen(seqid))
+        ajStrAssignS(&seqid, ajSeqGetNameS(seq));
+
+      if(!ajStrGetLen(seqid))
         {
-          ajFmtError("Sequence does not have features\n");
-          ajFmtError("Proceeding with sequence accession ID\n");
-          ajStrAssignS(&accid, ajSeqGetAccS(seq));
-
-          if(!ajStrGetLen(accid))
-            {
-              ajStrAssignS(&accid, ajSeqGetNameS(seq));
-
-              if(!ajStrGetLen(accid))
-                {
-                  ajFmtError("No header information\n");
-                  embExitBad();
-                }
-            }
+          ajFmtError("No header information\n");
+          embExitBad();
         }
 
-      if(ajStrGetLen(accid))
+      if(accid || !gFormatGenbank(seq, &inseq))
         {
-          if(!gValID(accid))
+          if(!accid)
+            ajFmtError("Sequence does not have features\n"
+                       "Proceeding with sequence accession ID\n");
+
+          if(!gValID(seqid))
             {
               ajFmtError("Invalid accession ID, exiting\n");
               embExitBad();
             }
-          ajStrAssignS(&inseq, accid);
-        }
 
-      if(!ajStrGetLen(accid))
-        ajStrAssignS(&accid, ajSeqGetAccS(seq));
+          ajStrAssignS(&inseq, seqid);
+        }
 
       in0 = ajCharNewS(inseq);
 
@@ -106,7 +99,7 @@ int main(int argc, char *argv[])
 
               ajStrAppendC(&title, argv[0]);
               ajStrAppendC(&title, " of ");
-              ajStrAppendS(&title, accid);
+              ajStrAppendS(&title, seqid);
 
               gpp.title = ajStrNewS(title);
               gpp.xlab = ajStrNewC("position");
@@ -132,7 +125,7 @@ int main(int argc, char *argv[])
             }
           else
             {
-              ajFmtPrintF(outf, "Sequence: %S\n", accid);
+              ajFmtPrintF(outf, "Sequence: %S\n", seqid);
               if(!gFileOutURLC(result, &outf))
                 {
                   ajFmtError("File downloading error\n");
@@ -154,11 +147,11 @@ int main(int argc, char *argv[])
       ajStrDel(&inseq);
     }
 
-  if(outf)
-    ajFileClose(&outf);
+  ajFileClose(&outf);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
+  ajSeqDel(&seqid);
 
   embExit();
 
