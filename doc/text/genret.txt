@@ -1,0 +1,250 @@
+                                     genret
+Function
+
+   Retrieves various gene related information from genome flatfile
+
+Description
+
+   genret reads in one or more genome flatfiles and retrieves various data from
+   the input file. It is a wrapper program to the G-language REST service,
+   where a method is specified by giving a string to the "method" qualifier. By
+   default, genret will parse the input file to retrieve the accession ID
+   (or name) of the genome to query G-language REST service. By setting the
+   "accid" qualifier to false (or 0), genret will instead parse the sequence
+   and features of the genome to create a GenBank formatted flatfile and upload
+   the file to the G-language web server. Using the file uploaded, genret will
+   execute the method provided.
+
+   genret is able to perform a variety of tasks, incluing the retrieval of
+   sequence upstream, downstream, or around the start or stop codon,
+   translated gene sequences search of gene data by keyword.
+
+   Details on G-language REST service is available from the wiki page
+
+   http://www.g-language.org/wiki/rest
+
+   Documentation on G-language Genome Analysis Environment methods are
+   provided at the Document Center
+
+   http://ws.g-language.org/gdoc/
+
+Usage
+
+   Here is a sample session with genret
+
+   Example 1
+
+   Get the sequence upstream of the start codon of each genes
+
+% genret
+Retrieves various gene related information from genome flatfile
+Input nucleotide sequence(s): refseqn:NC_000913
+Method to call: before_startcodon
+Feature ID or gene name to look up [*]:
+Full text output file [NC_000913.before_startcodon]:
+
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+   Example 2
+
+   Retrieve and print the nucleotide sequence of the "recA" gene
+
+% genret
+Retrieves various gene related information from genome flatfile
+Input nucleotide sequence(s): refseqn:NC_000913
+Method to call: get_geneseq
+Feature ID or gene name to look up [*]: recA
+Full text output file [NC_000913.get_geneseq]: stdout
+>recA
+atggctatcgacgaaaacaaacagaaagcgttggcggcagcactgggccagattgagaaac
+aatttggtaaaggctccatcatgcgcctgggtgaagaccgttccatggatgtggaaaccat
+ctctaccggttcgctttcactggatatcgcgcttggggcaggtggtctgccgatgggccgt
+atcgtcgaaatctacggaccggaatcttccggtaaaaccacgctgacgctgcaggtgatcg
+ccgcagcgcagcgtgaaggtaaaacctgtgcgtttatcgatgctgaacacgcgctggaccc
+aatctacgcacgtaaactgggcgtcgatatcgacaacctgctgtgctcccagccggacacc
+ggcgagcaggcactggaaatctgtgacgccctggcgcgttctggcgcagtagacgttatcg
+tcgttgactccgtggcggcactgacgccgaaagcggaaatcgaaggcgaaatcggcgactc
+tcacatgggccttgcggcacgtatgatgagccaggcgatgcgtaagctggcgggtaacctg
+aagcagtccaacacgctgctgatcttcatcaaccagatccgtatgaaaattggtgtgatgt
+tcggtaacccggaaaccactaccggtggtaacgcgctgaaattctacgcctctgttcgtct
+cgacatccgtcgtatcggcgcggtgaaagagggcgaaaacgtggtgggtagcgaaacccgc
+gtgaaagtggtgaagaacaaaatcgctgcgccgtttaaacaggctgaattccagatcctct
+acggcgaaggtatcaacttctacggcgaactggttgacctgggcgtaaaagagaagctgat
+cgagaaagcaggcgcgtggtacagctacaaaggtgagaagatcggtcagggtaaagcgaat
+gcgactgcctggctgaaagataacccggaaaccgcgaaagagatcgagaagaaagtacgtg
+agttgctgctgagcaacccgaactcaacgccggatttctctgtagatgatagcgaaggcgt
+agcagaaactaacgaagatttttaa
+
+   Example 3
+
+   Get a list of available methods
+
+% genret
+Retrieves various gene related information from genome flatfile
+Input nucleotide sequence(s): refseqn:NC_000913
+Method to call: method_list
+Full text output file [NC_000913.method_list]: stdout
+after_startcodon
+after_stopcodon
+around_startcodon
+around_stopcodon
+before_startcodon
+before_stopcodon
+cds
+clone
+del_key
+disable_pseudogenes
+disclose
+feature
+find
+gene
+gene2id
+get_cdsseq
+get_exon
+get_exons
+get_gbkseq
+get_geneseq
+get_intron
+getseq
+intergenic
+next_cds
+next_feature
+next_locus
+output
+pos2feature
+pos2gene
+previous_cds
+previous_feature
+rRNA
+relocate_origin
+reverse_strand
+seq
+seq_info
+set_essentiality
+startcodon
+stopcodon
+tRNA
+
+Command line arguments
+
+   Standard (Mandatory) qualifiers (* if not always prompted):
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
+                                  format, or reference (input USA)
+  [-method]            string     Method to call (Any string)
+*  -selector           string     [*] Feature ID or gene name to look up (Any
+                                  string)
+  [-outfile]           outfile    [$(sequence.name).$(method)] Full text
+                                  output file
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -argument           string     Option to give to method. See the manual for
+                                  more information (Any string)
+   -[no]accid          boolean    [Y] Include to use sequence accession ID as
+                                  query
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+Input file format
+
+   genret reads nucleotide sequences.
+
+Output file format
+
+   Output files for usage example 1
+
+   File: NC_000913.before_startcodon
+
+>thrL
+cgtgagtaaattaaaattttattgacttaggtcactaaatactttaaccaatataggcatagcgcacagacagataaaaat
+tacagagtacacaacatcc
+>thrA
+aggtaacggtgcgggctgacgcgtacaggaaacacagaaaaaagcccgcacctgacagtgcgggctttttttttcgaccaa
+aggtaacgaggtaacaacc
+>thrB
+ccgttggtactgcgcggatatggtgcgggcaatgacgttacagctgccggtgtctttgctgatctgctacgtaccctctca
+tggaagttaggagtctgac
+
+   [Part of this file has been deleted for brevity]
+
+>arcA
+gtcatgttacgccgatcatgttaatttgcagcatgcatcaggcaggtcagggacttttgtacttcctgtttcgatttagtt
+ggcaatttaggtagcaaac
+>yjjY
+tgcatgtttgctacctaaattgccaactaaatcgaaacaggaagtacaaaagtccctgacctgcctgatgcatgctgcaaa
+ttaacatgatcggcgtaac
+>yjtD
+tttttctgcgacttacgttaagaatttgtaaattcgcaccgcgtaataagttgacagtgatcacccggttcgcggttattt
+gatcaagaagagtggcaat
+
+Data files
+
+   None.
+
+Notes
+
+   None.
+
+References
+
+   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
+      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
+      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
+
+   Arakawa, K. and Tomita, M. (2006) G-language System as a Platform for
+      large-scale analysis of high-throughput omics data, J. Pest Sci.,
+      31, 7.
+
+   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
+      Analysis Environment with REST and SOAP Web Service Interfaces,
+      Nucleic Acids Res., 38, W700-W705.
+
+Warnings
+
+   None.
+
+Diagnostic Error Messages
+
+   None.
+
+Exit status
+
+   It always exits with a status of 0.
+
+Known bugs
+
+   None.
+
+See also
+
+   entret Retrieve sequence entries from flatfile databases and files
+   seqret Read and write (return) sequences
+
+Author(s)
+
+   Hidetoshi Itaya (celery@g-language.org)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
+
+   Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
+
+History
+
+   2012 - Written by Hidetoshi Itaya
+
+Target users
+
+   This program is intended to be used by everyone and everything, from
+   naive users to embedded scripts.
+
+Comments
+
+   None.
+

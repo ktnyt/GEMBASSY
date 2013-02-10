@@ -1,0 +1,370 @@
+<!--START OF HEADER - DON'T ALTER -->
+
+<HTML>
+<HEAD>
+  <TITLE> EMBOSS: genret </TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" text="#000000">
+
+
+
+<table align=center border=0 cellspacing=0 cellpadding=0>
+<tr><td valign=top>
+<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="emb
+oss_icon.jpg" alt="" width=150 height=48></a>
+</td>
+<td align=left valign=middle>
+<b><font size="+6">
+genret
+</font></b>
+</td></tr>
+</table>
+<br>&nbsp;
+<p>
+
+
+<!--END OF HEADER-->
+
+
+
+
+
+
+<H2> Function </H2>
+   Retrieves various gene related information from genome flatfile
+<!--
+DON'T WRITE ANYTHING HERE.
+IT IS DONE FOR YOU.
+-->
+
+
+
+
+<H2>Description</H2>
+<p>
+   genret reads in one or more genome flatfiles and retrieves various data from<br>
+   the input file. It is a wrapper program to the G-language REST service,<br>
+   where a method is specified by giving a string to the "method" qualifier. By<br>
+   default, genret will parse the input file to retrieve the accession ID<br>
+   (or name) of the genome to query G-language REST service. By setting the<br>
+   "accid" qualifier to false (or 0), genret will instead parse the sequence<br>
+   and features of the genome to create a GenBank formatted flatfile and upload<br>
+   the file to the G-language web server. Using the file uploaded, genret will<br>
+   execute the method provided.<br>
+<br>
+   genret is able to perform a variety of tasks, incluing the retrieval of<br>
+   sequence upstream, downstream, or around the start or stop codon,<br>
+   translated gene sequences search of gene data by keyword.<br>
+<br>
+   Details on G-language REST service is available from the wiki page<br>
+<br>
+   http://www.g-language.org/wiki/rest<br>
+<br>
+   Documentation on G-language Genome Analysis Environment methods are<br>
+   provided at the Document Center<br>
+<br>
+   http://ws.g-language.org/gdoc/
+</p>
+
+<H2>Usage</H2>
+
+<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
+
+   Here is a sample session with genret
+
+   Example 1
+
+   Get the sequence upstream of the start codon of each genes
+
+% genret
+Retrieves various gene related information from genome flatfile
+Input nucleotide sequence(s): refseqn:NC_000913
+Method to call: before_startcodon
+Feature ID or gene name to look up [*]:
+Full text output file [NC_000913.before_startcodon]:
+
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+   Example 2
+
+   Retrieve and print the nucleotide sequence of the "recA" gene
+
+% genret
+Retrieves various gene related information from genome flatfile
+Input nucleotide sequence(s): refseqn:NC_000913
+Method to call: get_geneseq
+Feature ID or gene name to look up [*]: recA
+Full text output file [NC_000913.get_geneseq]: stdout
+>recA
+atggctatcgacgaaaacaaacagaaagcgttggcggcagcactgggccagattgagaaac
+aatttggtaaaggctccatcatgcgcctgggtgaagaccgttccatggatgtggaaaccat
+ctctaccggttcgctttcactggatatcgcgcttggggcaggtggtctgccgatgggccgt
+atcgtcgaaatctacggaccggaatcttccggtaaaaccacgctgacgctgcaggtgatcg
+ccgcagcgcagcgtgaaggtaaaacctgtgcgtttatcgatgctgaacacgcgctggaccc
+aatctacgcacgtaaactgggcgtcgatatcgacaacctgctgtgctcccagccggacacc
+ggcgagcaggcactggaaatctgtgacgccctggcgcgttctggcgcagtagacgttatcg
+tcgttgactccgtggcggcactgacgccgaaagcggaaatcgaaggcgaaatcggcgactc
+tcacatgggccttgcggcacgtatgatgagccaggcgatgcgtaagctggcgggtaacctg
+aagcagtccaacacgctgctgatcttcatcaaccagatccgtatgaaaattggtgtgatgt
+tcggtaacccggaaaccactaccggtggtaacgcgctgaaattctacgcctctgttcgtct
+cgacatccgtcgtatcggcgcggtgaaagagggcgaaaacgtggtgggtagcgaaacccgc
+gtgaaagtggtgaagaacaaaatcgctgcgccgtttaaacaggctgaattccagatcctct
+acggcgaaggtatcaacttctacggcgaactggttgacctgggcgtaaaagagaagctgat
+cgagaaagcaggcgcgtggtacagctacaaaggtgagaagatcggtcagggtaaagcgaat
+gcgactgcctggctgaaagataacccggaaaccgcgaaagagatcgagaagaaagtacgtg
+agttgctgctgagcaacccgaactcaacgccggatttctctgtagatgatagcgaaggcgt
+agcagaaactaacgaagatttttaa
+
+   Example 3
+
+   Get a list of available methods
+
+% genret
+Retrieves various gene related information from genome flatfile
+Input nucleotide sequence(s): refseqn:NC_000913
+Method to call: method_list
+Full text output file [NC_000913.method_list]: stdout
+after_startcodon
+after_stopcodon
+around_startcodon
+around_stopcodon
+before_startcodon
+before_stopcodon
+cds
+clone
+del_key
+disable_pseudogenes
+disclose
+feature
+find
+gene
+gene2id
+get_cdsseq
+get_exon
+get_exons
+get_gbkseq
+get_geneseq
+get_intron
+getseq
+intergenic
+next_cds
+next_feature
+next_locus
+output
+pos2feature
+pos2gene
+previous_cds
+previous_feature
+rRNA
+relocate_origin
+reverse_strand
+seq
+seq_info
+set_essentiality
+startcodon
+stopcodon
+tRNA
+
+</pre></td></tr></table>
+
+
+
+<h2>Command line arguments</h2>
+
+<table border cellspacing=0 cellpadding=3 bgcolor="#ccccff">
+<tr bgcolor="#FFFFCC">
+<th align="left">Qualifier</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+<th align="left">Allowed values</th>
+<th align="left">Default</th>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<th align="left" colspan=5>Standard (Mandatory) qualifiers</th>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>[-sequence]<br>(Parameter 1)</td>
+<td>seqall</td>
+<td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
+<td>Readable sequence(s)</td>
+<td><b>Required</b></td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>[-method]<br>(Parameter 2)</td>
+<td>string</td>
+<td>Method to call</td>
+<td>Any string</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-selector</td>
+<td>string</td>
+<td>Feature ID or gene name to look up</td>
+<td>Any string</td>
+<td>*</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>[-outfile]<br>(Parameter 3)</td>
+<td>outfile</td>
+<td>Full text output file</td>
+<td>Output file</td>
+<td>$(sequence.name).$(method)</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<th align="left" colspan=5>Additional (Optional) qualifiers</th>
+</tr>
+
+<tr>
+<td colspan=5>(none)</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<th align="left" colspan=5>Advanced (Unprompted) qualifiers</th>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-argument</td>
+<td>string</td>
+<td>Option to give to method. See the manual for more information</td>
+<td>Any string</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-[no]accid</td>
+<td>boolean</td>
+<td>Include to use sequence accession ID as query</td>
+<td>Boolean value Yes/No</td>
+<td>Yes</td>
+</tr>
+
+</table>
+
+
+<h2>Input file format</h2>
+
+<p>
+   genret reads nucleotide sequences.
+</p>
+
+<h2>Output file format</h2>
+
+<p>
+   Output files for usage example 1<br />
+
+   File: NC_000913.before_startcodon<br />
+<pre>
+>thrL
+cgtgagtaaattaaaattttattgacttaggtcactaaatactttaaccaatataggcatagcgcacagacagataaaaat
+tacagagtacacaacatcc
+>thrA
+aggtaacggtgcgggctgacgcgtacaggaaacacagaaaaaagcccgcacctgacagtgcgggctttttttttcgaccaa
+aggtaacgaggtaacaacc
+>thrB
+ccgttggtactgcgcggatatggtgcgggcaatgacgttacagctgccggtgtctttgctgatctgctacgtaccctctca
+tggaagttaggagtctgac
+
+   [Part of this file has been deleted for brevity]
+
+>arcA
+gtcatgttacgccgatcatgttaatttgcagcatgcatcaggcaggtcagggacttttgtacttcctgtttcgatttagtt
+ggcaatttaggtagcaaac
+>yjjY
+tgcatgtttgctacctaaattgccaactaaatcgaaacaggaagtacaaaagtccctgacctgcctgatgcatgctgcaaa
+ttaacatgatcggcgtaac
+>yjtD
+tttttctgcgacttacgttaagaatttgtaaattcgcaccgcgtaataagttgacagtgatcacccggttcgcggttattt
+gatcaagaagagtggcaat
+</pre>
+</p>
+
+<h2>Data files</h2>
+
+<p>
+None.
+</p>
+
+<h2>Notes</h2>
+
+<p>
+None.
+</p>
+
+<h2>Refrences</h2>
+
+<pre>
+   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
+      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
+      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
+
+   Arakawa, K. and Tomita, M. (2006) G-language System as a Platform for
+      large-scale analysis of high-throughput omics data, J. Pest Sci.,
+      31, 7.
+
+   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
+      Analysis Environment with REST and SOAP Web Service Interfaces,
+      Nucleic Acids Res., 38, W700-W705.
+</pre>
+
+<h2>Warnings</h2>
+
+<p>
+   None.
+</p>
+
+<h2>Diagnostic Error Messages</h2>
+
+<p>
+None.
+</p>
+
+<h2>Exit status</h2>
+
+<p>
+It always exits with a status of 0.
+</p>
+
+<h2>Known bugs</h2>
+
+<p>
+None.
+</p>
+
+<h2>See also</h2>
+
+<table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th>
+<th>Description</th></tr>
+
+</table>
+
+<h2>Author(s)</h2>
+
+<pre>
+   Hidetoshi Itaya (celery@g-language.org)
+   Institute for Advanced Biosciences, Keio University
+   252-8520 Japan
+
+   Kazuharu Arakawa(gaou@g-language.org) 
+</pre>
+
+<h2>History</h2>
+
+   2012 - Written by Hidetoshi Itaya
+
+<h2>Target users</h2>
+
+   This program is intended to be used by everyone and everything, from
+   naive users to embedded scrips.
+
+<h2>Comments</h2>
+
+   None.
+
