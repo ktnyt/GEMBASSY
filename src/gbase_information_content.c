@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
   ajint	    PatLen     = 0;
   ajint	    upstream   = 0;
   ajint	    downstream = 0;
-  AjPStr    accid      = ajFalse;
+  AjBool    accid      = ajFalse;
 
   char *in0;
   char *result;

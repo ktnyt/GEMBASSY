@@ -47,7 +47,6 @@ int main(int argc, char *argv[])
 
   while(ajSeqallNext(seqall, &seq))
     {
-
       soap_init(&soap);
 
       inseq = NULL;

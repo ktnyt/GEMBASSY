@@ -119,6 +119,8 @@ int main(int argc, char *argv[])
 	  outfname = ajStrNew();
 	  tempname = ajStrNew();
 
+          ajStrAssignS(&outfname, filename);
+
 	  ajStrFromLong(&tempname, ajSeqallGetCount(seqall));
 	  ajStrInsertC(&tempname, 0, ".");
 	  ajStrAppendC(&tempname, ".svg");

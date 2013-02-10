@@ -95,6 +95,8 @@ int main(int argc, char *argv[])
 	  outfname = ajStrNew();
 	  tempname = ajStrNew();
 
+          ajStrAssignS(&outfname, filename);
+
 	  ajStrFromLong(&tempname, ajSeqallGetCount(seqall));
 	  ajStrInsertC(&tempname, 0, ".");
 	  ajStrAppendC(&tempname, ".png");
@@ -113,7 +115,8 @@ int main(int argc, char *argv[])
 	    {
 	      if(show)
 		{
-		  if(display_png(ajCharNewS(outfname), argv[0], ajCharNewS(seqid)))
+		  if(display_png(ajCharNewS(outfname), argv[0],
+                                 ajCharNewS(seqid)))
 		    {
 		      ajFmtError("Error in X11 displaying\n");
 		      embExitBad();

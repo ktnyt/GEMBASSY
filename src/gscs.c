@@ -80,7 +80,6 @@ int main(int argc, char *argv[])
 
   while(ajSeqallNext(seqall, &seq))
     {
-
       soap_init(&soap);
 
       inseq = NULL;
@@ -110,6 +109,8 @@ int main(int argc, char *argv[])
 
           ajStrAssignS(&inseq, seqid);
         }
+
+      in0 = ajCharNewS(inseq);
 
       if(soap_call_ns1__scs(
 	                   &soap,

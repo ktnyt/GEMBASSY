@@ -65,7 +65,7 @@ ajint gValID(AjPStr id){
 ** Downloads file from a specified URL and writes to given output file
 **
 ** @param [r] url [AjPStr] URL to download file from
-** @param [r] outf [AjPFile] File object to write into
+** @param [r] string [AjPStr] String to write into
 ** @return [AjBool] 
 ** @@
 ******************************************************************************/
@@ -98,7 +98,7 @@ AjBool gStrAppendURLS(AjPStr url, AjPStr* string){
 ** Downloads file from a specified URL and writes to given output file
 **
 ** @param [r] url [char*] URL to download file from
-** @param [r] outf [AjPFile] File object to write into
+** @param [r] string [AjPStr] String to write into
 ** @return [AjBool] 
 ** @@
 ******************************************************************************/
@@ -172,7 +172,8 @@ AjBool gFileOutURLC(char* url, AjPFile* outf){
 ** Downloads file from a specified URL and inputs in file buffer
 **
 ** @param [r] url [AjPStr] URL to download file from
-** @return [AjPFilebuff] 
+** @param [r] buff [AjPFilebuff] File buffer to set
+** @return [AjBool]
 ** @@
 ******************************************************************************/
 
@@ -201,7 +202,8 @@ AjBool gFilebuffURLS(AjPStr url, AjPFilebuff* buff){
 ** Downloads file from a specified URL and inputs in file buffer
 **
 ** @param [r] url [char*] URL to download file from
-** @return [AjPFilebuff] 
+** @param [r] buff [AjPFilebuff] File buffer to set
+** @return [AjBool]
 ** @@
 ******************************************************************************/
 
@@ -243,7 +245,8 @@ void gAssignUniqueName(AjPStr *string) {
 ** Creates a genbank format string with sequence and features
 **
 ** @param [r] seq [AjPSeq] Sequence object to write
-** @return [AjPStr] Sequence output
+** @param [r] inseq [AjPStr] String to write to
+** @return [AjBool]
 ** @@
 ******************************************************************************/
 

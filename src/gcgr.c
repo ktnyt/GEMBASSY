@@ -119,9 +119,9 @@ int main(int argc, char *argv[])
 	    {
 	      if(show)
 		{
-		  if(display_png(ajCharNewS(outfname), argv[0],
+                  if(display_png(ajCharNewS(outfname), argv[0],
                                  ajCharNewS(seqid)))
-		    {
+                    {
 		      ajFmtError("Error in X11 displaying\n");
 		      embExitBad();
 		    }

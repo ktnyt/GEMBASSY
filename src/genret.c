@@ -241,6 +241,9 @@ int main(int argc, char *argv[])
 
               while(ajStrTokenNextParse(&token, &regexstr))
                 {
+                  ajStrInsertK(&regexstr, 0, '>');
+                  ajStrInsertK(&regexstr, 0, '^');
+                  ajStrInsertK(&regexstr, -1, '$');
                   regex = ajRegComp(regexstr);
                   if(ajRegExec(regex, line))
                     valid = ajTrue;

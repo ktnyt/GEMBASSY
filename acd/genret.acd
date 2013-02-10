@@ -32,7 +32,7 @@ section: advanced [
                & @(@($(method) != cds) & @($(method) != gene)))
                & @(@($(method) != intergenic) & @($(method) != organism_list)))
                & @($(method) != method_list))"
-    information: "Feature ID or gene name to look up"
+    information: "Gene name to look up"
     default: "*"
   ]
 

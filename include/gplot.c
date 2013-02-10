@@ -139,7 +139,6 @@ AjBool gPlotFilebuff(AjPFilebuff buff, AjPGraph graphs, gPlotParams *gpp)
 
   data = NULL;
 
-  ajFilebuffDel(&buff);
   ajStrDel(&line);
 
   return ajTrue;

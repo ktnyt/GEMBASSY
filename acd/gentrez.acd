@@ -1,5 +1,5 @@
 application: gentrez [
-  documentation: "Search NCBI Entrez in G-language Shell"
+  documentation: "Search NCBI Entrez"
   groups: "Data:Retrieval"
   embassy: "gembassy"
 ]

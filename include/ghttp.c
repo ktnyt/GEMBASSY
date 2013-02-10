@@ -30,8 +30,9 @@
 **
 ** Writes out remote binary file to AjPFile
 **
-** @param [r] [char*] URL to lookup
-** @return [AjPFile]
+** @param [r] url [AjPStr] URL to lookup
+** @param [r] outf [AjPFile*] File to write to
+** @return [AjBool]
 ** @@
 ******************************************************************************/
 
@@ -99,8 +100,9 @@ AjBool gHttpGetBinS(AjPStr url, AjPFile* outf)
 **
 ** Retrives the C file pointer from a given URL
 **
-** @param [r] [char*] URL to lookup
-** @return [FILE*]
+** @param [r] url [char*] URL to lookup
+** @param [r] outf [AjPFile*] File to write to
+** @return [AjBool]
 ** @@
 ******************************************************************************/
 
@@ -117,9 +119,9 @@ AjBool gHttpGetBinC(char* url, AjPFile* outf)
 
 /* @func gHttpPostSS **********************************************************
 **
-** Writes out remote binary file to AjPFile
+** Post a file to url
 **
-** @param [r] [AjPStr] URL to lookup
+** @param [r] [AjPStr] URL to POST to
 ** @param [r] [AjPStr] content to send
 ** @return [AjPFilebuff]
 ** @@
@@ -314,5 +316,3 @@ AjBool gHttpRedirect(AjPFile file, AjPStr* host, ajint* port, AjPStr* path)
 
   return ret;
 }
-
-

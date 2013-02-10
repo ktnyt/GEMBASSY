@@ -23,7 +23,7 @@ section: advanced [
 ]
 
   integer: window [
-    information: "Number of windows to use for Fat Fourier Transform. Only active when -filter option is specified. Value must be the power of two"
+    information: "Number of windows to use for Fat Fourier Transform. Only active when -lowpass option is specified. Value must be the power of two"
     default: "4096"
   ]
 
@@ -37,7 +37,7 @@ section: advanced [
     default: "0"
   ]
 
-  integer: filt [
+  integer: lowpass [
     information: "Lowpass filter strength in percent. Typically 95 or 99 works best"
     default: ""
   ]

@@ -460,7 +460,7 @@ int display_png(char* filename, char* gtool, char* accession){
 
   appname = gtool;
   icon_name = accession;
-  puts("foo");
+
   sprintf(titlebar, "%s: %s", gtool, accession);
 
   if(!(fp = fopen(filename,"rb")))

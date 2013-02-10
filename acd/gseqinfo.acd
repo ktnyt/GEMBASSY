@@ -23,7 +23,7 @@ section: output [
 ]
 
   outfile: outfile [
-    standard: "@(!$(show))"
+    parameter: "Y"
   ]
 
 endsection: output
