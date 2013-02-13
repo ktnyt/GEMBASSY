@@ -42,18 +42,18 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   genret reads in one or more genome flatfiles and retrieves various data from<br>
-   the input file. It is a wrapper program to the G-language REST service,<br>
-   where a method is specified by giving a string to the "method" qualifier. By<br>
-   default, genret will parse the input file to retrieve the accession ID<br>
-   (or name) of the genome to query G-language REST service. By setting the<br>
-   "accid" qualifier to false (or 0), genret will instead parse the sequence<br>
-   and features of the genome to create a GenBank formatted flatfile and upload<br>
-   the file to the G-language web server. Using the file uploaded, genret will<br>
+   genret reads in one or more genome flatfiles and retrieves various data from
+   the input file. It is a wrapper program to the G-language REST service,
+   where a method is specified by giving a string to the "method" qualifier. By
+   default, genret will parse the input file to retrieve the accession ID
+   (or name) of the genome to query G-language REST service. By setting the
+   "accid" qualifier to false (or 0), genret will instead parse the sequence
+   and features of the genome to create a GenBank formatted flatfile and upload
+   the file to the G-language web server. Using the file uploaded, genret will
    execute the method provided.<br>
 <br>
-   genret is able to perform a variety of tasks, incluing the retrieval of<br>
-   sequence upstream, downstream, or around the start or stop codon,<br>
+   genret is able to perform a variety of tasks, incluing the retrieval of
+   sequence upstream, downstream, or around the start or stop codon,
    translated gene sequences search of gene data by keyword.<br>
 <br>
    Details on G-language REST service is available from the wiki page<br>
@@ -68,29 +68,23 @@ IT IS DONE FOR YOU.
 
 <H2>Usage</H2>
 
+   Here is a sample session with <b>genret</b><br><br>
+   Get the sequence upstream of the start codon of each gene:<br>
+
 <table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
-
-   Here is a sample session with genret
-
-   Example 1
-
-   Get the sequence upstream of the start codon of each genes
-
 % genret
 Retrieves various gene related information from genome flatfile
 Input nucleotide sequence(s): refseqn:NC_000913
 Method to call: before_startcodon
 Feature ID or gene name to look up [*]:
 Full text output file [NC_000913.before_startcodon]:
+</pre></td></tr></table><br>
 
+   <b>Example 2</b><br><br>
 
-   Go to the input files for this example
-   Go to the output files for this example
+   Retrieve and print the nucleotide sequence of the "recA" gene<br><br>
 
-   Example 2
-
-   Retrieve and print the nucleotide sequence of the "recA" gene
-
+<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
 % genret
 Retrieves various gene related information from genome flatfile
 Input nucleotide sequence(s): refseqn:NC_000913
@@ -116,11 +110,33 @@ cgagaaagcaggcgcgtggtacagctacaaaggtgagaagatcggtcagggtaaagcgaat
 gcgactgcctggctgaaagataacccggaaaccgcgaaagagatcgagaagaaagtacgtg
 agttgctgctgagcaacccgaactcaacgccggatttctctgtagatgatagcgaaggcgt
 agcagaaactaacgaagatttttaa
+</pre></td></tr></table><br>
 
-   Example 3
+   <b>Example 3</b><br><br>
 
-   Get a list of available methods
+   Retrieve and print the protein sequence of the "recA" gene:<br><br>
 
+<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
+% genret
+Retrieves various gene related information from genome flatfile
+Input nucleotide sequence(s): refseqn:NC_000913
+Method to call: translation
+Gene name to look up [*]: recA
+Full text output file [NC_000913.translation]: stdout
+>recA
+MAIDENKQKALAAALGQIEKQFGKGSIMRLGEDRSMDVETISTGSLSLDIALGAGGLPMGR
+IVEIYGPESSGKTTLTLQVIAAAQREGKTCAFIDAEHALDPIYARKLGVDIDNLLCSQPDT
+GEQALEICDALARSGAVDVIVVDSVAALTPKAEIEGEIGDSHMGLAARMMSQAMRKLAGNL
+KQSNTLLIFINQIRMKIGVMFGNPETTTGGNALKFYASVRLDIRRIGAVKEGENVVGSETR
+VKVVKNKIAAPFKQAEFQILYGEGINFYGELVDLGVKEKLIEKAGAWYSYKGEKIGQGKAN
+ATAWLKDNPETAKEIEKKVRELLLSNPNSTPDFSVDDSEGVAETNEDF
+</pre></td></tr></table><br>
+
+   <b>Example 4</b><br><br>
+
+   Get a list of available methods:<br><br>
+
+<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
 % genret
 Retrieves various gene related information from genome flatfile
 Input nucleotide sequence(s): refseqn:NC_000913
@@ -166,7 +182,6 @@ set_essentiality
 startcodon
 stopcodon
 tRNA
-
 </pre></td></tr></table>
 
 
@@ -205,7 +220,7 @@ tRNA
 <tr bgcolor="#FFFFCC">
 <td>-selector</td>
 <td>string</td>
-<td>Feature ID or gene name to look up</td>
+<td>Gene name to look up</td>
 <td>Any string</td>
 <td>*</td>
 </tr>
@@ -258,31 +273,32 @@ tRNA
 <h2>Output file format</h2>
 
 <p>
-   Output files for usage example 1<br />
+   Output files for usage example 1
 
-   File: NC_000913.before_startcodon<br />
+   File: NC_000913.before_startcodon
+
 <pre>
 >thrL
-cgtgagtaaattaaaattttattgacttaggtcactaaatactttaaccaatataggcatagcgcacagacagataaaaat
-tacagagtacacaacatcc
+cgtgagtaaattaaaattttattgacttaggtcactaaatactttaaccaatataggcata
+gcgcacagacagataaaaattacagagtacacaacatcc
 >thrA
-aggtaacggtgcgggctgacgcgtacaggaaacacagaaaaaagcccgcacctgacagtgcgggctttttttttcgaccaa
-aggtaacgaggtaacaacc
+aggtaacggtgcgggctgacgcgtacaggaaacacagaaaaaagcccgcacctgacagtgc
+gggctttttttttcgaccaaaggtaacgaggtaacaacc
 >thrB
-ccgttggtactgcgcggatatggtgcgggcaatgacgttacagctgccggtgtctttgctgatctgctacgtaccctctca
-tggaagttaggagtctgac
+ccgttggtactgcgcggatatggtgcgggcaatgacgttacagctgccggtgtctttgctg
+atctgctacgtaccctctcatggaagttaggagtctgac
 
    [Part of this file has been deleted for brevity]
 
 >arcA
-gtcatgttacgccgatcatgttaatttgcagcatgcatcaggcaggtcagggacttttgtacttcctgtttcgatttagtt
-ggcaatttaggtagcaaac
+gtcatgttacgccgatcatgttaatttgcagcatgcatcaggcaggtcagggacttttgta
+cttcctgtttcgatttagttggcaatttaggtagcaaac
 >yjjY
-tgcatgtttgctacctaaattgccaactaaatcgaaacaggaagtacaaaagtccctgacctgcctgatgcatgctgcaaa
-ttaacatgatcggcgtaac
+tgcatgtttgctacctaaattgccaactaaatcgaaacaggaagtacaaaagtccctgacc
+tgcctgatgcatgctgcaaattaacatgatcggcgtaac
 >yjtD
-tttttctgcgacttacgttaagaatttgtaaattcgcaccgcgtaataagttgacagtgatcacccggttcgcggttattt
-gatcaagaagagtggcaat
+tttttctgcgacttacgttaagaatttgtaaattcgcaccgcgtaataagttgacagtgat
+cacccggttcgcggttatttgatcaagaagagtggcaat
 </pre>
 </p>
 

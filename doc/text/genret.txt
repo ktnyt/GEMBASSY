@@ -32,9 +32,7 @@ Usage
 
    Here is a sample session with genret
 
-   Example 1
-
-   Get the sequence upstream of the start codon of each genes
+   Get the sequence upstream of the start codon of each genes:
 
 % genret
 Retrieves various gene related information from genome flatfile
@@ -49,7 +47,7 @@ Full text output file [NC_000913.before_startcodon]:
 
    Example 2
 
-   Retrieve and print the nucleotide sequence of the "recA" gene
+   Retrieve and print the nucleotide sequence of the "recA" gene:
 
 % genret
 Retrieves various gene related information from genome flatfile
@@ -79,7 +77,25 @@ agcagaaactaacgaagatttttaa
 
    Example 3
 
-   Get a list of available methods
+   Retrieve and print the protein sequence of the "recA" gene:
+
+% genret
+Retrieves various gene related information from genome flatfile
+Input nucleotide sequence(s): refseqn:NC_000913
+Method to call: translation
+Gene name to look up [*]: recA
+Full text output file [NC_000913.translation]: stdout
+>recA
+MAIDENKQKALAAALGQIEKQFGKGSIMRLGEDRSMDVETISTGSLSLDIALGAGGLPMGR
+IVEIYGPESSGKTTLTLQVIAAAQREGKTCAFIDAEHALDPIYARKLGVDIDNLLCSQPDT
+GEQALEICDALARSGAVDVIVVDSVAALTPKAEIEGEIGDSHMGLAARMMSQAMRKLAGNL
+KQSNTLLIFINQIRMKIGVMFGNPETTTGGNALKFYASVRLDIRRIGAVKEGENVVGSETR
+VKVVKNKIAAPFKQAEFQILYGEGINFYGELVDLGVKEKLIEKAGAWYSYKGEKIGQGKAN
+ATAWLKDNPETAKEIEKKVRELLLSNPNSTPDFSVDDSEGVAETNEDF
+
+   Example 4
+
+   Get a list of available methods:
 
 % genret
 Retrieves various gene related information from genome flatfile
@@ -159,28 +175,27 @@ Output file format
    Output files for usage example 1
 
    File: NC_000913.before_startcodon
-
 >thrL
-cgtgagtaaattaaaattttattgacttaggtcactaaatactttaaccaatataggcatagcgcacagacagataaaaat
-tacagagtacacaacatcc
+cgtgagtaaattaaaattttattgacttaggtcactaaatactttaaccaatataggcata
+gcgcacagacagataaaaattacagagtacacaacatcc
 >thrA
-aggtaacggtgcgggctgacgcgtacaggaaacacagaaaaaagcccgcacctgacagtgcgggctttttttttcgaccaa
-aggtaacgaggtaacaacc
+aggtaacggtgcgggctgacgcgtacaggaaacacagaaaaaagcccgcacctgacagtgc
+gggctttttttttcgaccaaaggtaacgaggtaacaacc
 >thrB
-ccgttggtactgcgcggatatggtgcgggcaatgacgttacagctgccggtgtctttgctgatctgctacgtaccctctca
-tggaagttaggagtctgac
+ccgttggtactgcgcggatatggtgcgggcaatgacgttacagctgccggtgtctttgctg
+atctgctacgtaccctctcatggaagttaggagtctgac
 
    [Part of this file has been deleted for brevity]
 
 >arcA
-gtcatgttacgccgatcatgttaatttgcagcatgcatcaggcaggtcagggacttttgtacttcctgtttcgatttagtt
-ggcaatttaggtagcaaac
+gtcatgttacgccgatcatgttaatttgcagcatgcatcaggcaggtcagggacttttgta
+cttcctgtttcgatttagttggcaatttaggtagcaaac
 >yjjY
-tgcatgtttgctacctaaattgccaactaaatcgaaacaggaagtacaaaagtccctgacctgcctgatgcatgctgcaaa
-ttaacatgatcggcgtaac
+tgcatgtttgctacctaaattgccaactaaatcgaaacaggaagtacaaaagtccctgacc
+tgcctgatgcatgctgcaaattaacatgatcggcgtaac
 >yjtD
-tttttctgcgacttacgttaagaatttgtaaattcgcaccgcgtaataagttgacagtgatcacccggttcgcggttattt
-gatcaagaagagtggcaat
+tttttctgcgacttacgttaagaatttgtaaattcgcaccgcgtaataagttgacagtgat
+cacccggttcgcggttatttgatcaagaagagtggcaat
 
 Data files
 
