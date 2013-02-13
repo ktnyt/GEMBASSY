@@ -107,53 +107,6 @@ int main(int argc, char *argv[])
       flat = ajTrue;
     }
 
-  url = ajStrNew();
-
-  ajFmtPrintS(&url, "http://%S/method_list", base);
-
-  gFilebuffURLS(url, &buff);
-
-  if(!gFilebuffURLS(url, &buff))
-    {
-      ajFmtError("GET error from %S\n", url);
-      embExitBad();
-    }
-
-  while(ajBuffreadLine(buff, &line))
-    {
-      ajStrRemoveLastNewline(&line);
-
-      if(ajStrMatchS(method, line))
-        valid = ajTrue;
-    }
-
-  ajStrAppendC(&url, "/gb");
-
-  gFilebuffURLS(url, &buff);
-
-  if(!gFilebuffURLS(url, &buff))
-    {
-      ajFmtError("GET error from %S\n", url);
-      embExitBad();
-    }
-
-  while(ajBuffreadLine(buff, &line))
-    {
-      ajStrRemoveLastNewline(&line);
-
-      if(ajStrMatchS(method, line))
-        valid = ajTrue;
-    }
-
-  if(!valid)
-    {
-      ajFmtError("%S is not a valid method\n", method);
-      embExitBad();
-    }
-
-  ajStrDel(&url);
-  ajFilebuffDel(&buff);
-
   while(ajSeqallNext(seqall, &seq))
     {
       inseq = ajStrNew();
