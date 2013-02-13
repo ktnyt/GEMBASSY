@@ -66,7 +66,7 @@ section: output [
 
   xygraph: graph [
     standard: "$(plot)"
-    gtitle: "ggcskew of $(sequence.usa)"
+    gtitle: "ggcskew of $(sequence.name)"
   ]
 
   outfile: outfile [

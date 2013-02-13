@@ -45,7 +45,7 @@ section: output [
 
   xygraph: graph [
     standard: "$(plot)"
-    gtitle: "ggenomicskew of $(sequence.usa)"
+    gtitle: "gconsensus_z of $(sequence.name)"
   ]
 
   outfile: outfile [

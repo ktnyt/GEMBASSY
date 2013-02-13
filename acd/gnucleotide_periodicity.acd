@@ -51,7 +51,7 @@ section: output [
 
   xygraph: graph [
     standard: "$(plot)"
-    gtitle: "ggenomicskew of $(sequence.usa)"
+    gtitle: "gnucleotide_periodicity of $(sequence.name)"
   ]
 
   outfile: outfile [

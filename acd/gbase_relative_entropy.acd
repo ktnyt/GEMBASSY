@@ -65,7 +65,7 @@ section: output [
 
   xygraph: graph [
     standard: "$(plot)"
-    gtitle: "ggenomicskew of $(sequence.usa)"
+    gtitle: "gbase_relative_entropy of $(sequence.name)"
   ]
 
   outfile: outfile [

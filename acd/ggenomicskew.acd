@@ -56,7 +56,7 @@ section: output [
 
   xygraph: graph [
     standard: "$(plot)"
-    gtitle: "ggenomicskew of $(sequence.usa)"
+    gtitle: "ggenomicskew of $(sequence.name)"
     multiple: "4"
   ]
 

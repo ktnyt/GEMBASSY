@@ -60,7 +60,7 @@ section: output [
 
   xygraph: graph [
     standard: "$(plot)"
-    gtitle: "ggenomicskew of $(sequence.usa)"
+    gtitle: "gbase_information_content of $(sequence.name)"
   ]
 
   outfile: outfile [

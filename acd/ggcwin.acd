@@ -55,7 +55,7 @@ section: output [
 
   xygraph: graph [
     standard: "$(plot)"
-    gtitle: "ggcwin of $(sequence.usa)"
+    gtitle: "ggcwin of $(sequence.name)"
   ]
 
   outfile: outfile [

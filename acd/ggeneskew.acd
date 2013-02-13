@@ -77,7 +77,7 @@ section: output [
 
   xygraph: graph [
     standard: "$(plot)"
-    gtitle: "ggeneskew of $(sequence.usa)"
+    gtitle: "ggeneskew of $(sequence.name)"
   ]
 
   outfile: outfile [
