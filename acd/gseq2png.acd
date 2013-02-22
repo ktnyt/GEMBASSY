@@ -44,9 +44,10 @@ section: output [
 	type: "page"
 ]
 
-  string: filename [
-    standard: "Y"
-    default: "$(sequence.name).png"
+  string: goutfile [
+    parameter: "Y"
+    information: "Output filename"
+    default: "gseq2png.png"
   ]
 
 endsection: output

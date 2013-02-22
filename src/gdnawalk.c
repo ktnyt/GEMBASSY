@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
 
   seqall   = ajAcdGetSeqall("sequence");
   show     = ajAcdGetToggle("show");
-  filename = ajAcdGetString("filename");
+  filename = ajAcdGetString("goutfile");
 
   params.gmap = 0;
 

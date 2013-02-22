@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
   width    = ajAcdGetInt("width");
   level    = ajAcdGetInt("level");
   show     = ajAcdGetToggle("show");
-  filename = ajAcdGetString("filename");
+  filename = ajAcdGetString("goutfile");
 
   params.width = width;
   params.level = level;

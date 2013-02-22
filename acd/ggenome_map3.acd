@@ -44,8 +44,8 @@ section: output [
 	type: "page"
 ]
 
-  string: filename [
-    standard: "Y"
+  string: goutfile [
+    parameter: "Y"
     information: "Output filename"
     default: "ggenome_map3.png"
   ]

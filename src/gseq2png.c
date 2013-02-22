@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
   seqall   = ajAcdGetSeqall("sequence");
   window   = ajAcdGetInt("window");
   width    = ajAcdGetInt("width");
-  filename = ajAcdGetString("filename");
+  filename = ajAcdGetString("goutfile");
   show     = ajAcdGetToggle("show");
 
   params.window = window;

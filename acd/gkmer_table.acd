@@ -1,6 +1,6 @@
 application: gkmer_table [
   documentation: "Create an image showing all k-mer abundance within a sequence"
-  groups: "Nucleic:Composition"
+  groups: "Display"
   embassy: "gembassy"
 ]
 
@@ -39,10 +39,10 @@ section: output [
     default: "N"
   ]
 
-  string: filename [
-    standard: "@(!$(show))"
+  string: goutfile [
+    parameter: "Y"
     information: "Output filename"
-    default: "gkmer_table.png"
+    default: "gkmer_table.acd"
   ]
 
 endsection: output

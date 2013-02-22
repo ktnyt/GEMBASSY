@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
   seqall   = ajAcdGetSeqall("sequence");
   width    = ajAcdGetInt("width");
   height   = ajAcdGetInt("height");
-  filename = ajAcdGetString("filename");
+  filename = ajAcdGetString("goutfile");
   accid    = ajAcdGetBoolean("accid");
 
   params.width  = width;

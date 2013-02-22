@@ -8,6 +8,7 @@ section: input [
   information: "Input section"
   type: "page"
 ]
+
   seqall: sequence [
     parameter: "Y"
     type: "nucleotide"
@@ -38,13 +39,8 @@ section: output [
 	type: "page"
 ]
 
-  toggle: show [
-    information: "Include to show png with X11 window"
-    default: "N"
-  ]
-
-  string: filename [
-    standard: "@(!$(show))"
+  string: goutfile [
+    parameter: "Y"
     information: "Output filename"
     default: "gcgr.png"
   ]

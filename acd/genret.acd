@@ -1,6 +1,6 @@
 application: genret [
   documentation: "Retrieves various gene related information from genome flatfile"
-  groups: "Data retreival, Edit"
+  groups: "Data retrieval, Edit"
   embassy: "gembassy"
 ]
 

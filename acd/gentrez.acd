@@ -1,6 +1,6 @@
 application: gentrez [
   documentation: "Search NCBI Entrez"
-  groups: "Data:Retrieval"
+  groups: "Data Retrieval:Text data"
   embassy: "gembassy"
 ]
 
