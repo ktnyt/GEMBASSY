@@ -41,7 +41,7 @@ Command line arguments
    Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-   -filename           string     [ggenome_map3.png] Output filename (Any
+  [-goutfile]          string     [ggenome_map3.png] Output filename (Any
                                   string)
 
    Additional (Optional) qualifiers: (none)

@@ -61,7 +61,7 @@ Command line arguments
    Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-*  -filename           string     [gkmer_table.png] Output filename (Any
+  [-goutfile]          string     [gkmer_table.png] Output filename (Any
                                   string)
 
    Additional (Optional) qualifiers: (none)

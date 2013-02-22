@@ -117,7 +117,7 @@ Created ggeneskew.ps
 <td>outfile</td>
 <td>Output file name</td>
 <td>Output file</td>
-<td>ggeneskew.$(sequence.name).csv</td>
+<td><i>&lt;*&gt;</i>.ggeneskew</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -158,9 +158,9 @@ Created ggeneskew.ps
 
 <tr bgcolor="#FFFFCC">
 <td>-base</td>
-<td>string</td>
-<td>Input 'gc', 'at', 'purine', or keto' for observing GC/AT/Purine/Keto skews</td>
-<td>Any string</td>
+<td>list</td>
+<td>Input 'gc', 'at', 'purine', or 'keto' for observing GC/AT/Purine/Keto skews</td>
+<td><table><tr><td>gc</td> <td><i>(gc)</i></td></tr><tr><td>at</td> <td><i>(at)</i></td></tr><tr><td>purine</td> <td><i>(purine)</i></td></tr><tr><td>keto</td> <td><i>(keto)</i></td></tr><tr><td>none</td> <td><i>(none)</i></td></tr></table></td>
 <td>none</td>
 </tr>
 
@@ -182,10 +182,10 @@ Created ggeneskew.ps
 
 <tr bgcolor="#FFFFCC">
 <td>-accid</td>
-<td>string</td>
+<td>boolean</td>
 <td>Include to use sequence accession ID as query</td>
-<td>Any string</td>
-<td>&nbsp;</td>
+<td>Boolean value Yes/No</td>
+<td>No</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">

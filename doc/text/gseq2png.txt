@@ -38,7 +38,7 @@ Command line arguments
    Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-*  -filename           string     [gseq2png.png] Output filename (Any string)
+  [-goutfile]          string     [gseq2png.png] Output filename (Any string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:

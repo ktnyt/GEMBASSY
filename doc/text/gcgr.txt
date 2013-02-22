@@ -56,7 +56,7 @@ Command line arguments
    Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-*  -filename           string     [gcgr.png] (no help text) string value (Any
+  [-goutfile]          string     [gcgr.png] (no help text) string value (Any
                                   string)
 
    Additional (Optional) qualifiers: (none)

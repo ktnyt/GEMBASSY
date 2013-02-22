@@ -100,11 +100,11 @@ Output filename [gcodon_compiler.nc_000913.csv]:
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-outfile</td>
+<td>[-outfile]<br>(Parameter 2)</td>
 <td>outfile</td>
 <td>Output file name</td>
 <td>Output file</td>
-<td>gcodon_compiler.$(sequence.name).csv</td>
+<td><i>&lt;*&gt;</i>.gcodon_compiler</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -161,18 +161,18 @@ Output filename [gcodon_compiler.nc_000913.csv]:
 
 <tr bgcolor="#FFFFCC">
 <td>-data</td>
-<td>string</td>
-<td>kinds of codon usage data 'A0': Absolute amino acid frequency ('AA') 'A1': Relative amino acid frequency ('RAAU') 'C0' or 'R0': Absolute codon frequency ('AF') 'C1' or 'R1': Relative codon frequency in a complete sequence 'C2' or 'R2': Relative codon frequency in each amino acid ('RF') 'C3' or 'R3': Relative synonymous codon usage ('RSCU') 'C4' or 'R4': Relative adaptiveness; i.e., ratio to maximum of minor codon ('W')</td>
-<td>Any string</td>
-<td>&nbsp;</td>
+<td>list</td>
+<td>kinds of codon usage data</td>
+<td><table><tr><td>A0</td> <td><i>(Absolute amino acid frequency ('AA'))</i></td></tr><tr><td>A1</td> <td><i>(Relative amino acid frequency ('RAAU'))</i></td></tr><tr><td>C0</td> <td><i>(Absolute codon frequency ('AF'))</i></td></tr><tr><td>C1</td> <td><i>(Relative codon frequency in a complete sequence)</i></td></tr><tr><td>C2</td> <td><i>(Relative codon frequency in each amino acid ('RF'))</i></td></tr><tr><td>C3</td> <td><i>(Relative synonymous codon usage ('RSCU'))</i></td></tr><tr><td>C4</td> <td><i>(Relative adaptiveness)</i></td></tr><tr><td>i.e., ratio to maximum of minor codon ('W')</td> <td><i>()</i></td></tr></table></td>
+<td>C0</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
 <td>-accid</td>
-<td>string</td>
+<td>boolean</td>
 <td>Include to use sequence accession ID as query</td>
-<td>Any string</td>
-<td>&nbsp;</td>
+<td>Boolean value Yes/No</td>
+<td>No</td>
 </tr>
 
 </table>

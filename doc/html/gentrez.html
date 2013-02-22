@@ -134,10 +134,10 @@ Output filename [pubmed.Venter C.gentrez]:
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>[-db]<br>(Parameter 1)</td>
-<td>string</td>
+<td>[-database]<br>(Parameter 1)</td>
+<td>list</td>
 <td>NCBI database to search</td>
-<td>Any string</td>
+<td><table><tr><td>pubmed</td> <td><i>(pubmed)</i></td></tr><tr><td>nucleotide</td> <td><i>(nuccore)</i></td></tr><tr><td>est</td> <td><i>(nucest)</i></td></tr><tr><td>gss</td> <td><i>(nucgss)</i></td></tr><tr><td>protein</td> <td><i>(protein)</i></td></tr><tr><td>genome</td> <td><i>(genome)</i></td></tr><tr><td>structure</td> <td><i>(structure)</i></td></tr><tr><td>taxonomy</td> <td><i>(taxonomy)</i></td></tr><tr><td>snp</td> <td><i>(snp)</i></td></tr><tr><td>dbvar</td> <td><i>(dbvar)</i></td></tr><tr><td>gene</td> <td><i>(gene)</i></td></tr><tr><td>sra</td> <td><i>(sra)</i></td></tr><tr><td>biosystems</td> <td><i>(biosystems)</i></td></tr><tr><td>homologene</td> <td><i>(homologene)</i></td></tr><tr><td>probe</td> <td><i>(brobe)</i></td></tr><tr><td>bioproject</td> <td><i>(bioproject)</i></td></tr><tr><td>gap</td> <td><i>(gap)</i></td></tr><tr><td>cdd</td> <td><i>(cdd)</i></td></tr><tr><td>clone</td> <td><i>(clone)</i></td></tr><tr><td>unists</td> <td><i>(unists)</i></td></tr><tr><td>popset</td> <td><i>(popset)</i></td></tr><tr><td>geoprofiles</td> <td><i>(geoprofiles)</i></td></tr><tr><td>geodatasets</td> <td><i>(gds)</i></td></tr><tr><td>epigenomics</td> <td><i>(epigenomics)</i></td></tr><tr><td>bioassay</td> <td><i>(pcassay)</i></td></tr><tr><td>compound</td> <td><i>(pccompound)</i></td></tr><tr><td>substance</td> <td><i>(pcsubstance)</i></td></tr><tr><td>proteinclusters</td> <td><i>(proteinclusters)</i></td></tr><tr><td>omia</td> <td><i>(omia)</i></td></tr><tr><td>biosample</td> <td><i>(biosample)</i></td></tr></table></td>
 <td>pubmed</td>
 </tr>
 
@@ -150,11 +150,11 @@ Output filename [pubmed.Venter C.gentrez]:
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-outfile</td>
+<td>[-outfile]<br>(Parameter 3)</td>
 <td>outfile</td>
 <td>Output file name</td>
 <td>Output file</td>
-<td>$(db).$(query).gentrez</td>
+<td>$(database).$(query).gentrez</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -169,12 +169,8 @@ Output filename [pubmed.Venter C.gentrez]:
 <th align="left" colspan=5>Advanced (Unprompted) qualifiers</th>
 </tr>
 
-<tr bgcolor="#FFFFCC">
-<td>-show</td>
-<td>toggle</td>
-<td>Include to show png with X11 window</td>
-<td>Toggle value Yes/No</td>
-<td>No</td>
+<tr>
+<td colspan=5>(none)</td>
 </tr>
 
 </table>
