@@ -73,11 +73,37 @@ INSTALLATION
       % make
       % sudo make install
 
-NOTE
-  libtool problem
+    If you have 'autoreconf' in your system
+      % autoreconf -fi
+
+    will do the trick.
+
+  Update of EMBOSS
+    When users are upgrading EMBOSS, please be sure to uninstall old version
+    of EMBOSS and GEMBASSY. If you override them, some older versions of files
+    may cause errors.
+
+  EMBOSS is already installed
+    When EMBOSS is already installed, do as the following.
+      % wget http://soap.g-language.org/gembassy/source/GEMBASSY-1.0.0.tar.gz
+      (or "curl -O http://soap.g-language.org/gembassy/source/GEMBASSY-1.0.0.tar.gz")
+      % tar zxf GEMBASSY-1.0.0.tar.gz
+      % cd GEMBASSY-1.0.0
+      % ./configure --prefix=/PATH/TO/EMBOSS/ (ex. --prefix=/usr/local)
+      % make
+      % sudo make install
+
+  Non-root users
+    When running the './configure' command do the following instead:
+      % ./configure --prefix=/PATH/TO/DIR/ (ex. --prefix=$HOME/opt)
+
+    Then rewrite the "emboss_acdroot" and "emboss_data" value in ~/.embossrc
+    file to the corresponding directories.
+
+  NOTE - libtool problem
     On some systems there may be compatibility problems with different
     automake, autoconf or libtool versions. If a libtool problem
-    arises you can try deleting the following files:
+    arises you can try deleting the following files if they exist:
 
       config.cache
       ltmain.sh
@@ -85,36 +111,11 @@ NOTE
       libtool
 
     and then type
-
       % aclocal -I m4
       % autoconf
       % automake -a
 
     and then retry make.
-
-  Update of EMBOSS
-    When users are upgrading EMBOSS, please be sure to uninstall old version
-    of EMBOSS and GEMBASSY. If you override them, some older version of files
-    may cause errors.
-
-  EMBOSS is already installed
-    When EMBOSS is already installed, you can install GEMBASSY directly.
-      % wget http://soap.g-language.org/gembassy/source/GEMBASSY-1.0.0.tar.gz
-      (or "curl -O http://soap.g-language.org/gembassy/source/GEMBASSY-1.0.0.tar.gz")
-      % tar zxf GEMBASSY-1.0.0.tar.gz
-      % cd GEMBASSY-1.0.0
-      % ./configure --prefix=/PATH/TO/INSTALL/
-      % make
-      % sudo make install
-
-
-  Non-root users
-    On steps 1. and 3. do
-    % ./configure --prefix=/PATH/TO/DIR/ (ex. $HOME/opt)
-    % make
-    % make install
-    Then rewrite the "emboss_acdroot" and "emboss_data" value in ~/.embossrc
-    file.
 
 *****************************************************************************/
 
@@ -147,7 +148,7 @@ USAGE EXAMPLE
       Created ggcskew.ps
 
    2. ggcsi (GC Skew Index)
-      % ggcsi -show accid.fasta -accid NC_000964
+      % ggcsi -show accid.fasta -accid
       GC Skew Index: an index for strand-specefic mutational bias
       Input nucleotide sequence: refseqn:NC_000964
       Sequence: NC_000964 GCSI: 0.214855185905019 SA: 976.152832384745 DIST: 170.245783
@@ -175,7 +176,7 @@ gSOAP Toolkit
 
 /* Contact *******************************************************************
 
-Hidetoshi Itaya (celery@g-language.org)
+Hidetoshi Itaya (celery @ g-language.org)
    Institute for Advanced Biosciences, Keio University.
 
 *****************************************************************************/
