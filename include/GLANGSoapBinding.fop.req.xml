@@ -11,6 +11,7 @@
    <params>
     <translate>0</translate>
     <output></output>
+    <tag></tag>
    </params>
   </ns1:fop>
  </SOAP-ENV:Body>
