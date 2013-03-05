@@ -185,7 +185,7 @@ int main(int argc, char *argv[])
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
-  ajSeqDel(&seqid);
+  ajStrDel(&seqid);
 
   embExit();
 
