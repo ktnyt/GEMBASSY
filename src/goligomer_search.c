@@ -1,7 +1,7 @@
 /******************************************************************************
-** @source goligomer_search
+** @source goligomer_counter
 **
-** Searches oligomers in given sequence
+** Counts the number of given oligomers in a sequence
 **
 ** @author Copyright (C) 2012 Hidetoshi Itaya
 ** @version 1.0.0   First release
@@ -24,21 +24,15 @@
 ******************************************************************************/
 
 #include "emboss.h"
-
-#include "soapH.h"
-#include "GLANGSoapBinding.nsmap"
-
-#include "soapClient.c"
-#include "soapC.c"
-#include "../gsoap/stdsoap2.c"
 #include "../include/gfile.h"
+#include "../include/gpost.h"
 
 
 
 
-/* @prog goligomer_search *****************************************************
+/* @prog goligomer_counter ****************************************************
 **
-** Searches oligomers in given sequence
+** Counts the number of given oligomers in a sequence
 **
 ******************************************************************************/
 
@@ -46,100 +40,90 @@ int main(int argc, char *argv[])
 {
   embInitPV("goligomer_search", argc, argv, "GEMBASSY", "1.0.0");
 
-  struct soap soap;
-  struct ns1__oligomer_USCOREsearchInputParams params;
-  struct ns1__oligomer_USCOREsearchResponse result;
-  struct arrayOut *arrayOut;
-
   AjPSeqall seqall;
   AjPSeq    seq;
   AjPStr    inseq    = NULL;
-  AjPStr    seqid    = NULL;
   AjPStr    oligomer = NULL;
-  AjPStr    return_  = NULL;
-  AjPStr    tmp      = NULL;
-  AjPStr    parse    = NULL;
-  AjPStrTok handle   = NULL;
 
-  ajint i = 0;
+  AjBool accid  = ajFalse;
+  AjPStr restid = NULL;
+  AjPStr seqid  = NULL;
 
-  char *in0;
-  char *in1;
+  AjPStr base = NULL;
+  AjPStr url  = NULL;
 
-  AjPFile outf = NULL;
+  AjPStr _return = NULL;
+
+  AjPFile outfile = NULL;
+  AjPFile tmpfile = NULL;
+  AjPStr  tmpname = NULL;
+  AjPFilebuff tmp = NULL;
+  AjPStr line     = NULL;
 
   seqall   = ajAcdGetSeqall("sequence");
   oligomer = ajAcdGetString("oligomer");
-  return_  = ajAcdGetString("return");
-  outf     = ajAcdGetOutfile("outfile");
+  _return  = ajAcdGetString("return");
+  accid    = ajAcdGetBoolean("accid");
+  outfile  = ajAcdGetOutfile("outfile");
 
-  params.return_ = ajCharNewS(return_);
+  base = ajStrNewC("rest.g-language.org");
 
   while(ajSeqallNext(seqall, &seq))
     {
-      soap_init(&soap);
-
-      soap.send_timeout = 0;
-      soap.recv_timeout = 0;
-
       inseq = NULL;
 
-      ajStrAppendC(&inseq, ">");
-      ajStrAppendS(&inseq, ajSeqGetNameS(seq));
-      ajStrAppendC(&inseq, "\n");
-      ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
-
-      ajStrAssignS(&seqid, ajSeqGetAccS(seq));
-
-      in0 = ajCharNewS(inseq);
-      in1 = ajCharNewS(oligomer);
-
-      if(soap_call_ns1__oligomer_USCOREsearch(
-					     &soap,
-                                              NULL,
-                                              NULL,
-					      in0,
-                                              in1,
-                                             &params,
-                                             &result
-					     ) == SOAP_OK)
+      if(!accid)
         {
-          
-          ajFmtPrintF(outf, "Sequence: %S Oligomer: %S\n", seqid, oligomer);
+          gAssignUniqueName(&tmpname);
 
-          arrayOut = result._result;
+          tmpfile = ajFileNewOutNameS(tmpname);
 
-          while(i < (*arrayOut).__size)
-            {
-              ajFmtPrintF(outf, "%s\n", (*arrayOut).__ptr[i]);
-              ++i;
-            }
+          ajStrAppendC(&inseq, ">");
+          ajStrAppendS(&inseq, ajSeqGetNameS(seq));
+          ajStrAppendC(&inseq, "\n");
+          ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
+          ajStrAssignS(&restid, ajSeqGetAccS(seq));
+
+          ajFmtPrintF(tmpfile, ">%S\n%S\n", restid, inseq);
+
+          ajFileClose(&tmpfile);
+
+          gFilePostCS("http://rest.g-language.org/upload/upl.pl",
+                      tmpname, &restid);
+
+          ajSysFileUnlinkS(tmpname);
         }
       else
         {
-          soap_print_fault(&soap, stderr);
+          ajStrAssignS(&restid, ajSeqGetAccS(seq));
         }
 
-      soap_destroy(&soap);
-      soap_end(&soap);
-      soap_done(&soap);
+      ajStrAssignS(&seqid, ajSeqGetAccS(seq));
 
-      AJFREE(in0);
-      AJFREE(in1);
+      url = ajStrNew();
 
+      ajFmtPrintS(&url, "http://%S/%S/oligomer_search/%S/return=%S",
+                  base, restid, oligomer, _return);
+
+      gFilebuffURLS(url, &tmp);
+
+      ajBuffreadLine(tmp, &line);
+
+      ajStrRemoveSetC(&line, "\n");
+
+      ajFmtPrintF(outfile, "Sequence: %S Oligomer: %S Return: %S\n",
+                  seqid, oligomer, line);
+
+      ajStrDel(&url);
       ajStrDel(&inseq);
     }
 
-  ajFileClose(&outf);
+  ajFileClose(&outfile);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
-  ajStrDel(&seqid);
+  ajStrDel(&restid);
   ajStrDel(&oligomer);
-
-  AJFREE(params.return_);
-
-  ajStrDel(&return_);
 
   embExit();
 
