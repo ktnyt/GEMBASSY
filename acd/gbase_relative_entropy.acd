@@ -43,11 +43,6 @@ section: advanced [
 
   boolean: accid [
     information: "Include to use sequence accession ID as query"
-    default: ""
-  ]
-
-  boolean: csv [
-    information: "Include to create CSV file"
     default: "N"
   ]
 

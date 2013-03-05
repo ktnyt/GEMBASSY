@@ -32,6 +32,11 @@ section: advanced [
     default: ""
   ]
 
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "N"
+  ]
+
 endsection: advanced
 
 section: output [
