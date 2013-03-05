@@ -24,6 +24,7 @@
 ******************************************************************************/
 
 #include "emboss.h"
+#include "../include/gfile.h"
 #include "../include/gpost.h"
 
 
@@ -40,72 +41,96 @@ int main(int argc, char *argv[])
   embInitPV("genret", argc, argv, "GEMBASSY", "1.0.0");
 
   AjPSeqall seqall;
+  AjPSeq seq      = NULL;
+  AjPStr inseq    = NULL;
+  AjPStr gene     = NULL;
+  AjPStr access   = NULL;
+  AjBool accid    = ajTrue;
+  AjPStr argument = NULL;
+  AjPFile outfile = NULL;
 
-  AjPSeq seq    = NULL;
-  AjPStr inseq  = NULL;
-  AjPStr method = NULL;
-
-  AjBool accid  = ajTrue;
-  AjPStr restid = NULL;
+  AjPStr seqid = NULL;
+  AjBool valid = ajFalse;
+  AjBool isseq = ajFalse;
 
   AjPFilebuff buff = NULL;
-  AjPFile outfile  = NULL;
-  AjPFile tmpfile  = NULL;
-  AjPStr  tmpname  = NULL;
+  AjPFile tmp_file = NULL;
+  AjPStr  tmp_name = NULL;
 
-  AjPStr argument = NULL;
-  AjPStr selector = NULL;
   AjPStr regexstr = NULL;
   AjPStrTok token = NULL;
   AjPRegexp regex = NULL;
 
   AjPStr url  = NULL;
   AjPStr base = NULL;
-
   AjPStr head = NULL;
   AjPStr line = NULL;
 
-  AjBool valid = ajFalse;
-  AjBool flat  = ajFalse;
-
   seqall   = ajAcdGetSeqall("sequence");
-  method   = ajAcdGetString("method");
-  selector = ajAcdGetString("selector");
+  access   = ajAcdGetString("access");
+  gene     = ajAcdGetString("gene");
   argument = ajAcdGetString("argument");
   accid    = ajAcdGetBoolean("accid");
   outfile  = ajAcdGetOutfile("outfile");
 
-  tmpname = ajStrNew();
-  gAssignUniqueName(&tmpname);
-
-  ajStrExchangeCC(&selector, "*", ".*");
+  if(
+     ajStrMatchC(access, "translation") ||
+     ajStrMatchC(access, "around_startcodon") ||
+     ajStrMatchC(access, "around_stopcodon") ||
+     ajStrMatchC(access, "before_startcodon") ||
+     ajStrMatchC(access, "before_stopcodon") ||
+     ajStrMatchC(access, "after_startcodon") ||
+     ajStrMatchC(access, "after_stopcodon")
+     )
+    {
+      isseq = ajTrue;
+    }
+  else
+    {
+      ajFmtPrintF(outfile, "gene,%S\n", access);
+    }
 
   base = ajStrNewC("rest.g-language.org");
 
-  if(ajStrMatchC(method, "method_list") ||
-     ajStrMatchC(method, "organism_list"))
-    {
-      ajFmtPrintS(&url, "http://%S/%S/gb", base, method);
+  ajStrExchangeCC(&argument, " ", "/");
+  ajStrExchangeCC(&argument, ",", "/");
+  ajStrExchangeCC(&argument, "\t", "/");
+  ajStrExchangeCC(&argument, "\r", "/");
+  ajStrExchangeCC(&argument, "\n", "/");
 
-      if(!gFileOutURLS(url, &outfile))
+  if(ajStrMatchC(gene, "*"))
+    {
+      ajStrInsertK(&gene, 0, '.');
+    }
+
+  if(ajStrPrefixC(gene, "@") || ajStrPrefixC(gene, "list::"))
+    {
+      ajStrExchangeCC(&gene, "@", "");
+      ajStrExchangeCC(&gene, "list::", "");
+      ajStrAssignS(&tmp_name, gene);
+
+      tmp_file = ajFileNewInNameS(tmp_name);
+
+      if(!tmp_file)
         {
-          ajFmtError("GET error from %S\n", url);
+          ajFmtError("List file (%S) open error\n", tmp_name);
           embExitBad();
         }
 
-      ajFileClose(&outfile);
+      gene = ajStrNew();
 
-      embExit();
-    }
-    
+      while(ajReadline(tmp_file, &line))
+        {
+          ajStrAppendS(&gene, line);
+        }
 
-  if(ajStrMatchC(method, "feature") ||
-     ajStrMatchC(method, "cds") ||
-     ajStrMatchC(method, "intergenic") ||
-     ajStrMatchC(method, "load"))
-    {
-      flat = ajTrue;
+      ajFileClose(&tmp_file);
+      ajStrDel(&tmp_name);
+      ajStrDel(&line);
     }
+
+  tmp_name = ajStrNew();
+  gAssignUniqueName(&tmp_name);
 
   while(ajSeqallNext(seqall, &seq))
     {
@@ -115,22 +140,25 @@ int main(int argc, char *argv[])
         {
           if(gFormatGenbank(seq, &inseq))
             {
-              tmpfile = ajFileNewOutNameS(tmpname);
+              tmp_file = ajFileNewOutNameS(tmp_name);
 
-              if(!tmpfile)
+              if(!tmp_file)
                 {
-                  ajFmtError("Output file (%S) open error\n", tmpname);
+                  ajFmtError("Output file (%S) open error\n", tmp_name);
                   embExitBad();
                 }
 
-              ajFmtPrintF(tmpfile, "%S", inseq);
+              ajFmtPrintF(tmp_file, "%S", inseq);
 
-              ajFileClose(&tmpfile);
+              ajFileClose(&tmp_file);
 
-              gFilePostCS("http://rest.g-language.org/upload/upl.pl",
-                          tmpname, &restid);
+              ajFmtPrintS(&url, "http://%S/upload/upl.pl", base);
 
-              ajSysFileUnlinkS(tmpname);
+              gFilePostSS(url, tmp_name, &seqid);
+
+              ajStrDel(&url);
+
+              ajSysFileUnlinkS(tmp_name);
             }
           else
             {
@@ -142,33 +170,24 @@ int main(int argc, char *argv[])
 
       if(accid)
         {
-          ajStrAssignS(&restid, ajSeqGetAccS(seq));
+          ajStrAssignS(&seqid, ajSeqGetAccS(seq));
 
-          if(!ajStrGetLen(restid))
-            ajStrAssignS(&restid, ajSeqGetNameS(seq));
+          if(!ajStrGetLen(seqid))
+            {
+              ajStrAssignS(&seqid, ajSeqGetNameS(seq));
+            }
 
-          if(!ajStrGetLen(restid))
+          if(!ajStrGetLen(seqid))
             {
               ajFmtError("No valid header information\n");
               embExitBad();
             }
         }
 
+
       url = ajStrNew();
 
-      ajFmtPrintS(&url, "http://%S/%S/*/%S/%S",
-                  base, restid, method, argument);
-
-      if(flat)
-        {
-          if(!gFileOutURLS(url, &outfile))
-            {
-              ajFmtError("GET error from %S\n", url);
-              embExitBad();
-            }
-
-          continue;
-        }
+      ajFmtPrintS(&url, "http://%S/%S/*/%S/%S", base, seqid, access, argument);
 
       if(!gFilebuffURLS(url, &buff))
         {
@@ -187,20 +206,29 @@ int main(int argc, char *argv[])
               head = ajStrNew();
 
               ajStrAssignS(&head, line);
+              ajStrTrimStartC(&head, ">");
 
               valid = ajFalse;
 
-              token = ajStrTokenNewC(ajStrNewS(selector), " ,\t\r\n");
+              token = ajStrTokenNewC(ajStrNewS(gene), " ,\t\r\n");
 
               while(ajStrTokenNextParse(&token, &regexstr))
                 {
-                  ajStrInsertK(&regexstr, 0, '>');
-                  ajStrInsertK(&regexstr, 0, '^');
-                  ajStrInsertK(&regexstr, -1, '$');
-                  regex = ajRegComp(regexstr);
-                  if(ajRegExec(regex, line))
-                    valid = ajTrue;
-                  ajRegFree(&regex);
+                  if(ajStrGetLen(regexstr))
+                    {
+                      regex = ajRegComp(regexstr);
+
+                      if(ajRegExec(regex, line))
+                        {
+                          valid = ajTrue;
+                          if(!ajStrIsWild(regexstr))
+                            {
+                              ajStrExchangeSC(&gene, regexstr, "");
+                            }
+                        }
+
+                      ajRegFree(&regex);
+                    }
                 }
             }
           else
@@ -210,8 +238,17 @@ int main(int argc, char *argv[])
 
               if(valid)
                 {
-                  ajStrFmtWrap(&line, 60);
-                  ajFmtPrintF(outfile, "%S\n%S\n", head, line);
+                  if(isseq)
+                    {
+                      ajStrFmtWrap(&line, 60);
+                      ajFmtPrintF(outfile, ">%S\n%S\n", head, line);
+                    }
+                  else
+                    {
+                      ajFmtPrintF(outfile, "%S,%S\n", head, line);
+                    }
+
+                  valid = ajFalse;
                 }
             }
         }
@@ -223,8 +260,8 @@ int main(int argc, char *argv[])
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
-  ajStrDel(&method);
-  ajStrDel(&selector);
+  ajStrDel(&access);
+  ajStrDel(&gene);
 
   embExit();
 }

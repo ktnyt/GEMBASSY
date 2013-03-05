@@ -1,5 +1,5 @@
 application: genret [
-  documentation: "Retrieves various gene related information from genome flatfile"
+  documentation: "Retrieves various gene features from genome flatfile"
   groups: "Data retrieval, Edit"
   embassy: "gembassy"
 ]
@@ -15,9 +15,16 @@ section: input [
     features: "Y"
   ]
 
-  string: method [
+  string: gene [
     parameter: "Y"
-    information: "Method to call"
+    information: "List of gene name(s) to report"
+    default: "*"
+  ]
+
+  string: access [
+    parameter: "Y"
+    information: "Name of gene feature to access"
+    word: "Y"
   ]
 
 endsection: input
@@ -27,17 +34,8 @@ section: advanced [
   type: "page"
 ]
 
-  string: selector [
-    standard: "@(@(@(@(@($(method) != load) & @($(method) != feature))
-               & @(@($(method) != cds) & @($(method) != gene)))
-               & @(@($(method) != intergenic) & @($(method) != organism_list)))
-               & @($(method) != method_list))"
-    information: "Gene name to look up"
-    default: "*"
-  ]
-
   string: argument [
-    information: "Option to give to method. See the manual for more information"
+    information: "Extra arguments to pass to method"
     default: ""
   ]
 
@@ -56,7 +54,7 @@ section: output [
   outfile: outfile [
     parameter: "Y"
     information: "Full text output file"
-    default: "$(sequence.name).$(method)"
+    extension: "$(access)"
   ]
 
 endsection: output

@@ -69,60 +69,40 @@ IT IS DONE FOR YOU.
 <H2>Usage</H2>
 
    Here is a sample session with <b>genret</b><br><br>
-   Get the sequence upstream of the start codon of each gene:<br>
+   Retrieving sequences upstream, downstream, or around the start/stop codons.
+   <br>
+   The following example shows the retrieval of sequence around the start
+   codons of all genes.<br><br>
+   Available methods are:<br>
+      after_startcodon<br>
+      after_stopcodon<br>
+      around_startcodon<br>
+      around_stopcodon<br>
+      before_startcodon<br>
+      before_stopcodon<br><br>
 
 <table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
 % genret
 Retrieves various gene related information from genome flatfile
 Input nucleotide sequence(s): refseqn:NC_000913
-Method to call: before_startcodon
-Feature ID or gene name to look up [*]:
-Full text output file [NC_000913.before_startcodon]:
+Gene name(s) to lookup [*]:
+Feature to access: around_startcodon
+Full text output file [nc_000913.around_startcodon]:
 </pre></td></tr></table><br>
 
    <b>Example 2</b><br><br>
 
-   Retrieve and print the nucleotide sequence of the "recA" gene<br><br>
+   Retrieving translations of coding sequences.<br>
+   The following example will retrieve the translated protein sequence of
+   the "recA" gene.<br><br>
 
 <table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
 % genret
 Retrieves various gene related information from genome flatfile
 Input nucleotide sequence(s): refseqn:NC_000913
-Method to call: get_geneseq
-Feature ID or gene name to look up [*]: recA
-Full text output file [NC_000913.get_geneseq]: stdout
->recA
-atggctatcgacgaaaacaaacagaaagcgttggcggcagcactgggccagattgagaaac
-aatttggtaaaggctccatcatgcgcctgggtgaagaccgttccatggatgtggaaaccat
-ctctaccggttcgctttcactggatatcgcgcttggggcaggtggtctgccgatgggccgt
-atcgtcgaaatctacggaccggaatcttccggtaaaaccacgctgacgctgcaggtgatcg
-ccgcagcgcagcgtgaaggtaaaacctgtgcgtttatcgatgctgaacacgcgctggaccc
-aatctacgcacgtaaactgggcgtcgatatcgacaacctgctgtgctcccagccggacacc
-ggcgagcaggcactggaaatctgtgacgccctggcgcgttctggcgcagtagacgttatcg
-tcgttgactccgtggcggcactgacgccgaaagcggaaatcgaaggcgaaatcggcgactc
-tcacatgggccttgcggcacgtatgatgagccaggcgatgcgtaagctggcgggtaacctg
-aagcagtccaacacgctgctgatcttcatcaaccagatccgtatgaaaattggtgtgatgt
-tcggtaacccggaaaccactaccggtggtaacgcgctgaaattctacgcctctgttcgtct
-cgacatccgtcgtatcggcgcggtgaaagagggcgaaaacgtggtgggtagcgaaacccgc
-gtgaaagtggtgaagaacaaaatcgctgcgccgtttaaacaggctgaattccagatcctct
-acggcgaaggtatcaacttctacggcgaactggttgacctgggcgtaaaagagaagctgat
-cgagaaagcaggcgcgtggtacagctacaaaggtgagaagatcggtcagggtaaagcgaat
-gcgactgcctggctgaaagataacccggaaaccgcgaaagagatcgagaagaaagtacgtg
-agttgctgctgagcaacccgaactcaacgccggatttctctgtagatgatagcgaaggcgt
-agcagaaactaacgaagatttttaa
-</pre></td></tr></table><br>
-
-   <b>Example 3</b><br><br>
-
-   Retrieve and print the protein sequence of the "recA" gene:<br><br>
-
-<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
-% genret
-Retrieves various gene related information from genome flatfile
-Input nucleotide sequence(s): refseqn:NC_000913
-Method to call: translation
-Gene name to look up [*]: recA
-Full text output file [NC_000913.translation]: stdout
+Gene name(s) to lookup [*]: recA
+Feature to access: translation
+Full text output file [nc_000913.translation]: stdout
 >recA
 MAIDENKQKALAAALGQIEKQFGKGSIMRLGEDRSMDVETISTGSLSLDIALGAGGLPMGR
 IVEIYGPESSGKTTLTLQVIAAAQREGKTCAFIDAEHALDPIYARKLGVDIDNLLCSQPDT
@@ -132,59 +112,57 @@ VKVVKNKIAAPFKQAEFQILYGEGINFYGELVDLGVKEKLIEKAGAWYSYKGEKIGQGKAN
 ATAWLKDNPETAKEIEKKVRELLLSNPNSTPDFSVDDSEGVAETNEDF
 </pre></td></tr></table><br>
 
-   <b>Example 4</b><br><br>
+   <b>Example 3</b><br><br>
 
-   Get a list of available methods:<br><br>
+   Retrieving feature information of the genes.<br>
+   The following example shows the retrieval of start positions for each gene.
+   The values for the keys in GenBank format is available for retrieval.
+   (ex. start end direction GO* etc.)<br><br>
 
 <table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
 % genret
 Retrieves various gene related information from genome flatfile
 Input nucleotide sequence(s): refseqn:NC_000913
-Method to call: method_list
-Full text output file [NC_000913.method_list]: stdout
-after_startcodon
-after_stopcodon
-around_startcodon
-around_stopcodon
-before_startcodon
-before_stopcodon
-cds
-clone
-del_key
-disable_pseudogenes
-disclose
-feature
-find
-gene
-gene2id
-get_cdsseq
-get_exon
-get_exons
-get_gbkseq
-get_geneseq
-get_intron
-getseq
-intergenic
-next_cds
-next_feature
-next_locus
-output
-pos2feature
-pos2gene
-previous_cds
-previous_feature
-rRNA
-relocate_origin
-reverse_strand
-seq
-seq_info
-set_essentiality
-startcodon
-stopcodon
-tRNA
-</pre></td></tr></table>
+Gene name(s) to lookup [*]:
+Feature to access: start
+Full text output file [nc_000913.start]:
+</pre></td></tr></table><br>
 
+   <b>Example 4</b><br><br>
 
+   Using a file with a list of gene names.<br>
+   The following example will retrieve the strand direction for each gene
+   listed in the "gene_list.txt" file. String prefixed with an "@" or "list::"
+   will be interpreted as file names.<br><br>
+
+<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
+% genret
+Retrieves various gene features from genome flatfile
+Input nucleotide sequence(s): refseqn:NC_000913
+List of gene name(s) to report [*]: @gene_list.txt
+Name of gene feature to access: direction
+Full text output file [nc_000913.direction]: stdout
+gene,direction
+thrA,direct
+thrB,direct
+thrC,direct
+</pre></td></tr></table><br>
+
+   <b>Example 5</b><br><br>
+
+   Passing extra arguments to the methods.<br>
+   The following example shows the retrieval of 30 base pairs around the
+   start codon of the "recA" gene. By default, the "around_startcodon" method
+   returns 200 base pairs around the start codon. Using the "-argument"
+   qualifier allows the user to change this value.<br><br>
+
+<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
+% genret refseqn:NC_000913 recA around_startcodon -argument 30,30 stdout
+Retrieves various gene features from genome flatfile
+>recA
+ccggtattacccggcatgacaggagtaaaaatggctatcgacgaaaacaaacagaaagcgt
+tg
+</pre></td></tr></table><br>
 
 <h2>Command line arguments</h2>
 
@@ -210,27 +188,27 @@ tRNA
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>[-method]<br>(Parameter 2)</td>
+<td>[-gene]<br>(Parameter 2)</td>
 <td>string</td>
-<td>Method to call</td>
-<td>Any string</td>
-<td>&nbsp;</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-selector</td>
-<td>string</td>
-<td>Gene name to look up</td>
+<td>Gene name(s) to lookup</td>
 <td>Any string</td>
 <td>*</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>[-outfile]<br>(Parameter 3)</td>
+<td>[-access]<br>(Parameter 3)</td>
+<td>string</td>
+<td>Feature to access</td>
+<td>Any string</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>[-outfile]<br>(Parameter 4)</td>
 <td>outfile</td>
 <td>Full text output file</td>
 <td>Output file</td>
-<td>$(sequence.name).$(method)</td>
+<td><i>&lt;*&gt;</i>.genret</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -248,7 +226,7 @@ tRNA
 <tr bgcolor="#FFFFCC">
 <td>-argument</td>
 <td>string</td>
-<td>Option to give to method. See the manual for more information</td>
+<td>Option to give to method</td>
 <td>Any string</td>
 <td>&nbsp;</td>
 </tr>
@@ -267,38 +245,82 @@ tRNA
 <h2>Input file format</h2>
 
 <p>
-   genret reads nucleotide sequences.
+   Database definitions for the examples are included in the embossrc_template
+   file of the Keio Bioinformatcs Web Service (KBWS) package.<br><br>
+
+   Input files for usage example 4<br><br>
+
+   File: gene_list.txt<br><br>
+<pre>
+thrA
+thrB
+thrC
+</pre>
 </p>
 
 <h2>Output file format</h2>
 
 <p>
-   Output files for usage example 1
+   Output files for usage example 1<br><br>
 
-   File: NC_000913.before_startcodon
+   File: nc_000913.around_startcodon<br><br>
 
 <pre>
 >thrL
 cgtgagtaaattaaaattttattgacttaggtcactaaatactttaaccaatataggcata
-gcgcacagacagataaaaattacagagtacacaacatcc
+gcgcacagacagataaaaattacagagtacacaacatccatgaaacgcattagcaccacca
+ttaccaccaccatcaccattaccacaggtaacggtgcgggctgacgcgtacaggaaacaca
+gaaaaaagcccgcacctgac
 >thrA
 aggtaacggtgcgggctgacgcgtacaggaaacacagaaaaaagcccgcacctgacagtgc
-gggctttttttttcgaccaaaggtaacgaggtaacaacc
->thrB
-ccgttggtactgcgcggatatggtgcgggcaatgacgttacagctgccggtgtctttgctg
-atctgctacgtaccctctcatggaagttaggagtctgac
+gggctttttttttcgaccaaaggtaacgaggtaacaaccatgcgagtgttgaagttcggcg
+gtacatcagtggcaaatgcagaacgttttctgcgtgttgccgatattctggaaagcaatgc
+caggcaggggcaggtggcca
 
    [Part of this file has been deleted for brevity]
 
->arcA
-gtcatgttacgccgatcatgttaatttgcagcatgcatcaggcaggtcagggacttttgta
-cttcctgtttcgatttagttggcaatttaggtagcaaac
 >yjjY
 tgcatgtttgctacctaaattgccaactaaatcgaaacaggaagtacaaaagtccctgacc
-tgcctgatgcatgctgcaaattaacatgatcggcgtaac
+tgcctgatgcatgctgcaaattaacatgatcggcgtaacatgactaaagtacgtaattgcg
+ttcttgatgcactttccatcaacgtcaacaacatcattagcttggtcgtgggtactttccc
+tcaggacccgacagtgtcaa
 >yjtD
 tttttctgcgacttacgttaagaatttgtaaattcgcaccgcgtaataagttgacagtgat
-cacccggttcgcggttatttgatcaagaagagtggcaat
+cacccggttcgcggttatttgatcaagaagagtggcaatatgcgtataacgattattctgg
+tcgcacccgccagagcagaaaatattggggcagcggcgcgggcaatgaaaacgatggggtt
+tagcgatctgcggattgtcg
+</pre>
+</p>
+
+<p>
+   Output files for usage example 1<br><br>
+
+   File: nc_000913.start<br><br>
+
+<pre>
+gene,start
+thrL,190
+thrA,337
+thrB,2801
+thrC,3734
+yaaX,5234
+yaaA,5683
+yaaJ,6529
+talB,8238
+mog,9306
+
+   [Part of this file has been deleted for brevity]
+
+yjjX,4631256
+ytjC,4631820
+rob,4632464
+creA,4633544
+creB,4634030
+creC,4634719
+creD,4636201
+arcA,4637613
+yjjY,4638425
+yjtD,4638965
 </pre>
 </p>
 
