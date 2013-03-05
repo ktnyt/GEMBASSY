@@ -1,5 +1,5 @@
 /******************************************************************************
-** @source The last resort for the retarded POSTing routine
+** @source The last resort for POSTing
 **
 ** @version 1.0
 ** @modified December 27 2012 Hidetoshi Itaya Created this file
@@ -28,7 +28,7 @@
 
 /* @func gFilePostCC **********************************************************
 **
-** Post the file already
+** Posts the file to given url
 **
 ** @param [r] [char*] URL to lookup
 ** @return [AjPFile]
@@ -102,7 +102,7 @@ size_t curl_write(void* ptr, size_t size, size_t nmemb, void* data)
 
 /* @func gFilePostCS **********************************************************
 **
-** Post the file already
+** Posts the file to given url
 **
 ** @param [r] [char*] URL to lookup
 ** @return [AjPFile]
@@ -112,6 +112,25 @@ size_t curl_write(void* ptr, size_t size, size_t nmemb, void* data)
 AjBool gFilePostCS(char* url, AjPStr filename, AjPStr* string)
 {
   if(!gFilePostCC(url, ajCharNewS(filename), string))
+    return ajFalse;
+
+  return ajTrue;
+}
+
+
+
+/* @func gFilePostSS **********************************************************
+**
+** Posts the file to given url
+**
+** @param [r] [char*] URL to lookup
+** @return [AjPFile]
+** @@
+******************************************************************************/
+
+AjBool gFilePostSS(AjPStr url, AjPStr filename, AjPStr* string)
+{
+  if(!gFilePostCC(ajCharNewS(url), ajCharNewS(filename), string))
     return ajFalse;
 
   return ajTrue;
