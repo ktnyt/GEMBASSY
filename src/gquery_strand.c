@@ -47,23 +47,28 @@ int main(int argc, char *argv[])
   embInitPV("gquery_strand", argc, argv, "GEMBASSY", "1.0.0");
 
   struct soap soap;
+  struct ns1__query_USCOREstrandInputParams params;
 
   AjPSeqall seqall;
   AjPSeq    seq;
-  AjPStr    inseq    = NULL;
-  AjPStr    seqid    = NULL;
-  ajint	    position = 0;
-  AjBool    accid    = ajFalse;
+  AjPStr    inseq     = NULL;
+  AjPStr    seqid     = NULL;
+  ajint	    position  = 0;
+  AjPStr    direction = NULL;
+  AjBool    accid     = ajFalse;
 
   char *in0;
   char *result;
 
   AjPFile outf = NULL;
 
-  seqall   = ajAcdGetSeqall("sequence");
-  position = ajAcdGetInt("position");
-  accid    = ajAcdGetBoolean("accid");
-  outf     = ajAcdGetOutfile("outfile");
+  seqall    = ajAcdGetSeqall("sequence");
+  position  = ajAcdGetInt("position");
+  direction = ajAcdGetString("direction");
+  accid     = ajAcdGetBoolean("accid");
+  outf      = ajAcdGetOutfile("outfile");
+
+  params.direction = ajCharNewS(direction);
 
   while(ajSeqallNext(seqall, &seq))
     {
@@ -98,12 +103,15 @@ int main(int argc, char *argv[])
           ajStrAssignS(&inseq, seqid);
         }
 
-      if(soap_call_ns1__query_USCOREarm(
+      in0 = ajCharNewS(inseq);
+
+      if(soap_call_ns1__query_USCOREstrand(
 				       &soap,
                                         NULL,
                                         NULL,
-				        in0,
+                                        in0,
                                         position,
+                                       &params,
                                        &result
 				       ) == SOAP_OK)
         {
