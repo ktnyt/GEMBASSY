@@ -17,7 +17,7 @@ compiling, linking, and/or using OpenSSL is allowed.
 extern "C" {
 #endif
 
-SOAP_SOURCE_STAMP("@(#) soapServer.c ver 2.8.6 2013-02-08 04:57:32 GMT")
+SOAP_SOURCE_STAMP("@(#) soapServer.c ver 2.8.6 2013-03-12 13:20:32 GMT")
 
 
 SOAP_FMAC5 int SOAP_FMAC6 soap_serve(struct soap *soap)
@@ -137,6 +137,8 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_serve_request(struct soap *soap)
 		return soap_serve_ns1__query_USCOREarm(soap);
 	if (!soap_match_tag(soap, soap->tag, "ns1:mindex"))
 		return soap_serve_ns1__mindex(soap);
+	if (!soap_match_tag(soap, soap->tag, "ns1:peptide_mass"))
+		return soap_serve_ns1__peptide_USCOREmass(soap);
 	if (!soap_match_tag(soap, soap->tag, "ns1:consensus_z"))
 		return soap_serve_ns1__consensus_USCOREz(soap);
 	if (!soap_match_tag(soap, soap->tag, "ns1:genome_map"))
@@ -1948,6 +1950,50 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns1__mindex(struct soap *soap)
 	 || soap_putheader(soap)
 	 || soap_body_begin_out(soap)
 	 || soap_put_ns1__mindexResponse(soap, &soap_tmp_ns1__mindexResponse, "ns1:mindexResponse", NULL)
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap->error;
+	return soap_closesock(soap);
+}
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns1__peptide_USCOREmass(struct soap *soap)
+{	struct ns1__peptide_USCOREmass soap_tmp_ns1__peptide_USCOREmass;
+	struct ns1__peptide_USCOREmassResponse soap_tmp_ns1__peptide_USCOREmassResponse;
+	char * soap_tmp_string;
+	soap_default_ns1__peptide_USCOREmassResponse(soap, &soap_tmp_ns1__peptide_USCOREmassResponse);
+	soap_tmp_string = NULL;
+	soap_tmp_ns1__peptide_USCOREmassResponse._result = &soap_tmp_string;
+	soap_default_ns1__peptide_USCOREmass(soap, &soap_tmp_ns1__peptide_USCOREmass);
+	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
+	if (!soap_get_ns1__peptide_USCOREmass(soap, &soap_tmp_ns1__peptide_USCOREmass, "ns1:peptide_mass", NULL))
+		return soap->error;
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap->error;
+	soap->error = ns1__peptide_USCOREmass(soap, soap_tmp_ns1__peptide_USCOREmass._sequence, soap_tmp_ns1__peptide_USCOREmassResponse._result);
+	if (soap->error)
+		return soap->error;
+	soap_serializeheader(soap);
+	soap_serialize_ns1__peptide_USCOREmassResponse(soap, &soap_tmp_ns1__peptide_USCOREmassResponse);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if (soap->mode & SOAP_IO_LENGTH)
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put_ns1__peptide_USCOREmassResponse(soap, &soap_tmp_ns1__peptide_USCOREmassResponse, "ns1:peptide_massResponse", NULL)
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	};
+	if (soap_end_count(soap)
+	 || soap_response(soap, SOAP_OK)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put_ns1__peptide_USCOREmassResponse(soap, &soap_tmp_ns1__peptide_USCOREmassResponse, "ns1:peptide_massResponse", NULL)
 	 || soap_body_end_out(soap)
 	 || soap_envelope_end_out(soap)
 	 || soap_end_send(soap))
