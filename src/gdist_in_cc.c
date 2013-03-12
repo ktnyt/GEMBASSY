@@ -25,13 +25,8 @@
 
 #include "emboss.h"
 
-#include "soapH.h"
-#include "GLANGSoapBinding.nsmap"
-
-#include "soapClient.c"
-#include "soapC.c"
-#include "../gsoap/stdsoap2.c"
 #include "../include/gfile.h"
+#include "../include/gpost.h"
 
 
 
@@ -46,88 +41,105 @@ int main(int argc, char *argv[])
 {
   embInitPV("gdist_in_cc", argc, argv, "GEMBASSY", "1.0.0");
 
-  struct soap soap;
-
   AjPSeqall seqall;
   AjPSeq    seq;
   AjPStr    inseq = NULL;
-  AjPStr    seqid = NULL;
-  ajint	    position1 = 0;
-  ajint	    position2 = 0;
-  AjBool    accid = ajFalse;
+
+  AjBool accid = ajFalse;
+  AjPStr seqid  = NULL;
+  AjPStr restid = NULL;
+
+  ajint first;
+  ajint second;
 
   char *in0;
   char *result;
 
-  AjPFile outf = NULL;
+  AjPFile outfile = NULL;
+  AjPFile tmpfile = NULL;
+  AjPStr  tmpname = NULL;
+  AjPFilebuff tmp = NULL;
+  AjPStr     line = NULL;
 
-  seqall    = ajAcdGetSeqall("sequence");
-  position1 = ajAcdGetInt("position");
-  position2 = ajAcdGetInt("secondposition");
-  accid     = ajAcdGetBoolean("accid");
-  outf      = ajAcdGetOutfile("outfile");
+  AjPStr base = NULL;
+  AjPStr url  = NULL;
+
+  seqall  = ajAcdGetSeqall("sequence");
+  first   = ajAcdGetInt("first");
+  second  = ajAcdGetInt("second");
+  accid   = ajAcdGetBoolean("accid");
+  outfile = ajAcdGetOutfile("outfile");
+
+  base = ajStrNewC("rest.g-language.org");
 
   while(ajSeqallNext(seqall, &seq))
     {
-      soap_init(&soap);
-
       inseq = NULL;
 
-      ajStrAssignS(&seqid, ajSeqGetAccS(seq));
-
-      if(!ajStrGetLen(seqid))
-        ajStrAssignS(&seqid, ajSeqGetNameS(seq));
-
-      if(!ajStrGetLen(seqid))
+      if(!accid)
         {
-          ajFmtError("No header information\n");
-          embExitBad();
-        }
+          gAssignUniqueName(&tmpname);
 
-      if(accid || !gFormatGenbank(seq, &inseq))
-        {
-          if(!accid)
-            ajFmtError("Sequence does not have features\n"
-                       "Proceeding with sequence accession ID\n");
+          tmpfile = ajFileNewOutNameS(tmpname);
 
-          if(!gValID(seqid))
-            {
-              ajFmtError("Invalid accession ID, exiting\n");
-              embExitBad();
-            }
+          ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
+          ajStrAssignS(&restid, ajSeqGetAccS(seq));
 
-          ajStrAssignS(&inseq, seqid);
-        }
+          ajFmtPrintF(tmpfile, ">%S\n%S\n", restid, inseq);
 
-      in0 = ajCharNewS(inseq);
+          ajFileClose(&tmpfile);
 
-      if(soap_call_ns1__dist_USCOREin_USCOREcc(
-					      &soap,
-                                               NULL,
-                                               NULL,
-                                               in0,
-                                               position1,
-                                               position2,
-                                              &result
-					      ) == SOAP_OK)
-        {
-          ajFmtPrintF(outf, "Sequence: %S Distance: %s\n", seqid, result);
+          gFilePostCS("http://rest.g-language.org/upload/upl.pl",
+                      tmpname, &restid);
+
+          ajSysFileUnlinkS(tmpname);
         }
       else
         {
-          soap_print_fault(&soap, stderr);
+          ajStrAssignS(&restid, ajSeqGetAccS(seq));
         }
 
-      soap_destroy(&soap);
-      soap_end(&soap);
-      soap_done(&soap);
+      ajStrAssignS(&seqid, ajSeqGetAccS(seq));
 
-      AJFREE(in0);
+      url = ajStrNew();
 
+      if(second >= 0)
+        {
+          ajFmtPrintS(&url, "http://%S/%S/dist_in_cc/%d/%d",
+                      base, restid, first, second);
+        }
+      else
+        {
+          ajFmtPrintS(&url, "http://%S/%S/dist_in_cc/%d",
+                      base, restid, first);
+        }
+
+      if(!gFilebuffURLS(url, &tmp))
+        {
+          ajFmtError("Failed to download result from:\n%S\n", url);
+          embExitBad();
+        }
+
+      ajBuffreadLine(tmp, &line);
+
+      ajStrRemoveSetC(&line, "\n");
+
+      if(second >= 0)
+        {
+          ajFmtPrintF(outfile, "Sequence: %S Position1: %d Position2: %d "
+                      "Distance %d\n", seqid, first, line);
+        }
+      else
+        {
+          ajFmtPrintF(outfile, "Sequence: %S Position1: %d Distance %d\n",
+                      seqid, first, line);
+        }
+
+      ajStrDel(&url);
       ajStrDel(&inseq);
     }
 
-  ajFileClose(&outf);
+  ajFileClose(&outfile);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);

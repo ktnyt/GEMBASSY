@@ -15,10 +15,10 @@ section: input [
     features: "Y"
   ]
 
-  string: position [
+  integer: position [
     parameter: "Y"
     information: "Position to query"
-		default: "0"
+    default: "0"
   ]
 
 endsection: input

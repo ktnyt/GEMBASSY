@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
   AjPSeq    seq;
   AjPStr    inseq    = NULL;
   AjPStr    seqid    = NULL;
-  AjBool    show     = 0;
+  //AjBool    show     = 0;
   AjPFile   outf     = NULL;
   AjPStr    filename = NULL;
   AjPStr    outfname = NULL;
@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
   char *result;
 
   seqall   = ajAcdGetSeqall("sequence");
-  show     = ajAcdGetToggle("show");
+  //show     = ajAcdGetToggle("show");
   filename = ajAcdGetString("goutfile");
 
   params.gmap = 0;
@@ -118,7 +118,7 @@ int main(int argc, char *argv[])
 
 	  if(gHttpGetBinC(result, &outf))
 	    {
-	      if(show)
+	      /*if(show)
 		{
 		  if(display_png(ajCharNewS(outfname), argv[0], ajCharNewS(seqid)))
 		    {
@@ -126,6 +126,7 @@ int main(int argc, char *argv[])
 		      embExitBad();
 		    }
 		}
+              */
 	    }
           else
             {

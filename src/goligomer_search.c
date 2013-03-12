@@ -105,7 +105,11 @@ int main(int argc, char *argv[])
       ajFmtPrintS(&url, "http://%S/%S/oligomer_search/%S/return=%S",
                   base, restid, oligomer, _return);
 
-      gFilebuffURLS(url, &tmp);
+      if(!gFilebuffURLS(url, &tmp))
+        {
+          ajFmtError("Failed to download result from:\n%S\n", url);
+          embExitBad();
+        }
 
       ajBuffreadLine(tmp, &line);
 

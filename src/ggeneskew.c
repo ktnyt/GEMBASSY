@@ -120,7 +120,6 @@ int main(int argc, char *argv[])
                                 &result
 			        ) == SOAP_OK)
 	{
-          puts(result);
 	  if(plot)
 	    {
 	      title = ajStrNew();

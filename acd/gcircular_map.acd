@@ -8,6 +8,7 @@ section: input [
   information: "Input section"
   type: "page"
 ]
+
   seqall: sequence [
     parameter: "Y"
     type: "nucleotide"
@@ -35,7 +36,7 @@ section: output
 ]
 
   string: filename [
-    standard: "Y"
+    parameter: "Y"
     information: "Output filename"
     default: "gcircular_map.svg"
   ]

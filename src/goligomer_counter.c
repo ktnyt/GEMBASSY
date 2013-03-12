@@ -78,9 +78,6 @@ int main(int argc, char *argv[])
 
           tmpfile = ajFileNewOutNameS(tmpname);
 
-          ajStrAppendC(&inseq, ">");
-          ajStrAppendS(&inseq, ajSeqGetNameS(seq));
-          ajStrAppendC(&inseq, "\n");
           ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
           ajStrAssignS(&restid, ajSeqGetAccS(seq));
 
@@ -105,7 +102,11 @@ int main(int argc, char *argv[])
       ajFmtPrintS(&url, "http://%S/%S/oligomer_counter/%S",
                   base, restid, oligomer);
 
-      gFilebuffURLS(url, &tmp);
+      if(!gFilebuffURLS(url, &tmp))
+        {
+          ajFmtError("Failed to download result from:\n%S\n", url);
+          embExitBad();
+        }
 
       ajBuffreadLine(tmp, &line);
 
