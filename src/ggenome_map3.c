@@ -144,7 +144,7 @@ int main(int argc, char *argv[])
 
 	  if(!gHttpGetBinC(result, &outf))
 	    {
-	      ajFmtError("File downloading error\n");
+              ajFmtError("File downloading error from:\n%s\n", result);
 	      embExitBad();
 	    }
 	}

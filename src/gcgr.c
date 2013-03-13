@@ -129,7 +129,7 @@ int main(int argc, char *argv[])
 	    }
 	  else
 	    {
-	      ajFmtError("File downloading error\n");
+              ajFmtError("File downloading error from:\n%s\n", result);
 	      embExitBad();
 	    }
 	}

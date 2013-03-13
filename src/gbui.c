@@ -126,7 +126,7 @@ int main(int argc, char *argv[])
 	  ajFmtPrintF(outf, "Sequence: %S\n", seqid);
 	  if(!gFileOutURLC(result, &outf))
 	    {
-	      ajFmtError("File downloading error");
+              ajFmtError("File downloading error from:\n%s\n", result);
 	      embExitBad();
 	    }
 	}
