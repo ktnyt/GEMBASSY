@@ -17,7 +17,7 @@ compiling, linking, and/or using OpenSSL is allowed.
 extern "C" {
 #endif
 
-SOAP_SOURCE_STAMP("@(#) soapServer.c ver 2.8.6 2013-03-12 13:20:32 GMT")
+SOAP_SOURCE_STAMP("@(#) soapServer.c ver 2.8.6 2013-03-13 03:19:39 GMT")
 
 
 SOAP_FMAC5 int SOAP_FMAC6 soap_serve(struct soap *soap)

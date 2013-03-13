@@ -10,7 +10,7 @@ compiling, linking, and/or using OpenSSL is allowed.
 
 #ifndef soapStub_H
 #define soapStub_H
-#define SOAP_NAMESPACE_OF_ns1	"http://localhost/GLANG"
+#define SOAP_NAMESPACE_OF_ns1	"http://soap.g-language.org/GLANG"
 #include "stdsoap2.h"
 #ifdef __cplusplus
 extern "C" {
