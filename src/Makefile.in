@@ -1295,7 +1295,7 @@ top_srcdir = @top_srcdir@
 @LOCALLINK_TRUE@	-I../../../ajax/acd -I../../../plplot -I../gsoap
 
 @ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_FALSE@AIX_CFLAGS = -Wl,-bdynamic -Wl,-brtl -L${embprefix}/lib -lnucleus -lacd \
-@ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_FALSE@-lajaxdb -lensembl -lajaxg -lajax -leexpat -lepcre -lezlib -leplplot -lcurl
+@ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_FALSE@-lajaxdb -lensembl -lajaxg -lajax -leexpat -lepcre -lezlib -leplplot
 
 @ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_TRUE@AIX_CFLAGS = -Wl,-bdynamic -Wl,-brtl -L../../../plplot/.libs \
 @ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_TRUE@-L../../../ajax/pcre/.libs -L../../../ajax/expat/.libs \
@@ -1304,7 +1304,7 @@ top_srcdir = @top_srcdir@
 @ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_TRUE@-L../../../ajax/ajaxdb/.libs -L../../../ajax/acd/.libs \
 @ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_TRUE@-L../../../nucleus/.libs \
 @ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_TRUE@-lnucleus -lacd -lajaxdb -lensembl -lajaxg -lajax -leexpat -lepcre \
-@ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_TRUE@-lezlib -leplplot -lcurl
+@ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_TRUE@-lezlib -leplplot
 
 AM_CFLAGS = $(AIX_CFLAGS) $(WARN_CFLAGS) $(DEVWARN_CFLAGS)
 genret_SOURCES = genret.c
@@ -1359,9 +1359,9 @@ gshuffleseq_SOURCES = gshuffleseq.c
 gsignature_SOURCES = gsignature.c
 gview_cds_SOURCES = gview_cds.c
 gw_value_SOURCES = gw_value.c
-@LOCALLINK_FALSE@LDADD = -L${embprefix}/lib -L../include -lpng -lnucleus -lacd -lajaxdb \
+@LOCALLINK_FALSE@LDADD = -L${embprefix}/lib -L../include -lnucleus -lacd -lajaxdb \
 @LOCALLINK_FALSE@        -lensembl -lajaxg -lajax -leexpat -lepcre -lezlib -leplplot \
-@LOCALLINK_FALSE@        -lgfile -lghttp -lgplot -lgpost -lcurl $(XLIB)
+@LOCALLINK_FALSE@        -lgfile -lghttp -lgplot -lgpost $(XLIB)
 
 @LOCALLINK_TRUE@LDADD = ../../../nucleus/libnucleus.la ../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \

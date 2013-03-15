@@ -328,7 +328,7 @@ libgfile_a_SOURCES = gfile.c
 libghttp_a_SOURCES = ghttp.c
 libgplot_a_SOURCES = gplot.c
 libgpost_a_SOURCES = gpost.c
-@LOCALLINK_FALSE@LDADD = -L${embprefix}/lib -lpng -lnucleus -lacd -lajaxdb -lensembl \
+@LOCALLINK_FALSE@LDADD = -L${embprefix}/lib -lnucleus -lacd -lajaxdb -lensembl \
 @LOCALLINK_FALSE@        -lajaxg -lajax -leexpat -lepcre -lezlib -leplplot -lcurl \
 @LOCALLINK_FALSE@        $(XLIB)
 

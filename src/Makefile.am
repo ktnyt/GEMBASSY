@@ -20,10 +20,10 @@ AIX_CFLAGS = -Wl,-bdynamic -Wl,-brtl -L../../../plplot/.libs \
 -L../../../ajax/ajaxdb/.libs -L../../../ajax/acd/.libs \
 -L../../../nucleus/.libs \
 -lnucleus -lacd -lajaxdb -lensembl -lajaxg -lajax -leexpat -lepcre \
--lezlib -leplplot -lcurl
+-lezlib -leplplot
 else
 AIX_CFLAGS = -Wl,-bdynamic -Wl,-brtl -L${embprefix}/lib -lnucleus -lacd \
--lajaxdb -lensembl -lajaxg -lajax -leexpat -lepcre -lezlib -leplplot -lcurl
+-lajaxdb -lensembl -lajaxg -lajax -leexpat -lepcre -lezlib -leplplot
 endif
 endif
 endif
@@ -164,8 +164,7 @@ LDADD = ../../../nucleus/libnucleus.la ../../../ajax/acd/libacd.la \
         -lcurl \
         $(XLIB)
 else
-LDADD = -L${embprefix}/lib -L../include -lpng -lnucleus -lacd -lajaxdb \
+LDADD = -L${embprefix}/lib -L../include -lnucleus -lacd -lajaxdb \
         -lensembl -lajaxg -lajax -leexpat -lepcre -lezlib -leplplot \
-        -lgfile -lghttp -lgplot -lgpost -lcurl $(XLIB)
+        -lgfile -lghttp -lgplot -lgpost $(XLIB)
 endif
-
