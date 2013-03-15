@@ -12,6 +12,7 @@ AC_REVISION([$Revision: 1.36 $])
 AC_CONFIG_HEADERS([src/config.h])
 AC_CONFIG_SRCDIR(src/ggcskew.c)
 AC_CONFIG_MACRO_DIR([m4])
+AC_CONFIG_SUBDIRS([curl])
 AM_INIT_AUTOMAKE
 
 dnl Make sure CFLAGS is defined to stop LT_INIT adding -g

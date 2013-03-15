@@ -33,7 +33,6 @@
 #include "../gsoap/stdsoap2.c"
 #include "../include/gfile.h"
 #include "../include/ghttp.h"
-#include "../include/display_png.h"
 
 
 

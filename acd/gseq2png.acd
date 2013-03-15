@@ -32,11 +32,6 @@ section: advanced [
     default: "20"
   ]
 
-  toggle: show [
-    information: "Include to show result through X11 window system"
-    default: "N"
-  ]
-
 endsection: advanced
 
 section: output [

@@ -32,7 +32,6 @@
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
 #include "../include/gfile.h"
-#include "../include/display_png.h"
 
 
 
@@ -56,7 +55,6 @@ int main(int argc, char *argv[])
   AjPStr    seqid    = NULL;
   ajint	    width    = 0;
   ajint	    window   = 0;
-  AjBool    show     = 0;
   AjPFile   outf     = NULL;
   AjPStr    filename = NULL;
   AjPStr    outfname = NULL;
@@ -69,7 +67,6 @@ int main(int argc, char *argv[])
   window   = ajAcdGetInt("window");
   width    = ajAcdGetInt("width");
   filename = ajAcdGetString("goutfile");
-  show     = ajAcdGetToggle("show");
 
   params.window = window;
   params.width  = width;
@@ -118,18 +115,7 @@ int main(int argc, char *argv[])
           ajStrDel(&outfname);
           ajStrDel(&tempname);
 
-          if(gHttpGetBinC(result, &outf))
-            {
-              if(show)
-                {
-                  if(display_png(ajCharNewS(outfname), argv[0], ajCharNewS(seqid)))
-                    {
-                      ajFmtError("Error in X11 displaying\n");
-                      embExitBad();
-                    }
-                }
-            }
-          else
+          if(!gHttpGetBinC(result, &outf))
             {
               ajFmtError("File downloading error from:\n%s\n", result);
               embExitBad();

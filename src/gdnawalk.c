@@ -33,7 +33,6 @@
 #include "../gsoap/stdsoap2.c"
 #include "../include/gfile.h"
 #include "../include/ghttp.h"
-#include "../include/display_png.h"
 
 
 
@@ -55,7 +54,6 @@ int main(int argc, char *argv[])
   AjPSeq    seq;
   AjPStr    inseq    = NULL;
   AjPStr    seqid    = NULL;
-  //AjBool    show     = 0;
   AjPFile   outf     = NULL;
   AjPStr    filename = NULL;
   AjPStr    outfname = NULL;
@@ -65,7 +63,6 @@ int main(int argc, char *argv[])
   char *result;
 
   seqall   = ajAcdGetSeqall("sequence");
-  //show     = ajAcdGetToggle("show");
   filename = ajAcdGetString("goutfile");
 
   params.gmap = 0;
@@ -116,19 +113,7 @@ int main(int argc, char *argv[])
 	  ajStrDel(&outfname);
 	  ajStrDel(&tempname);
 
-	  if(gHttpGetBinC(result, &outf))
-	    {
-	      /*if(show)
-		{
-		  if(display_png(ajCharNewS(outfname), argv[0], ajCharNewS(seqid)))
-		    {
-		      ajFmtError("Error in X11 displaying\n");
-		      embExitBad();
-		    }
-		}
-              */
-	    }
-          else
+	  if(!gHttpGetBinC(result, &outf))
             {
               ajFmtError("File downloading error from:\n%s\n", result);
               embExitBad();
