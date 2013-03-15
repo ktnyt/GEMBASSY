@@ -341,7 +341,7 @@ libgpost_a_SOURCES = gpost.c
 @LOCALLINK_TRUE@	../../../ajax/expat/libeexpat.la \
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
-@LOCALLINK_TRUE@        -lcurl \
+@LOCALLINK_TRUE@        ../curl/libcurl.la \
 @LOCALLINK_TRUE@  $(XLIB)
 
 all: all-am

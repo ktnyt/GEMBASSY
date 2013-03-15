@@ -1,6 +1,6 @@
 #
 
-SUBDIRS = include src acd doc
+SUBDIRS = curl include src acd doc
 
 EXTRA_DIST = gsoap depcomp ltmain.sh config.sub config.guess data
 

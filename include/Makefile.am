@@ -46,7 +46,7 @@ LDADD = ../../../nucleus/libnucleus.la ../../../ajax/acd/libacd.la \
 	../../../ajax/expat/libeexpat.la \
 	../../../ajax/pcre/libepcre.la \
 	../../../plplot/libeplplot.la \
-        -lcurl \
+        ../curl/libcurl.la \
   $(XLIB)
 else
 LDADD = -L${embprefix}/lib -lnucleus -lacd -lajaxdb -lensembl \
