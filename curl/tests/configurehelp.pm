@@ -18,6 +18,6 @@ use vars qw(
     $Cpreprocessor
     );
 
-$Cpreprocessor = 'gcc -E -I/usr/kerberos/include';
+$Cpreprocessor = 'gcc -E';
 
 1;
