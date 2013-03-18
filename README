@@ -42,7 +42,7 @@ REQUIREMENTS
    above.
    libpng (> 1.5.13) - (Recommended) Some older versions of libpng have a
    problem with the setjmp.h inclusion.
-   libcurl (> 7.28.1) - Required for file POST
+   libcurl (Included in distribution) - Required for file POST
 
 INSTALLATION
   Root users
@@ -73,11 +73,6 @@ INSTALLATION
       % make
       % sudo make install
 
-    If you have 'autoreconf' in your system
-      % autoreconf -fi
-
-    will do the trick.
-
   Update of EMBOSS
     When users are upgrading EMBOSS, please be sure to uninstall old version
     of EMBOSS and GEMBASSY. If you override them, some older versions of files
@@ -100,6 +95,12 @@ INSTALLATION
     Then rewrite the "emboss_acdroot" and "emboss_data" value in ~/.embossrc
     file to the corresponding directories.
 
+  NOTE - automake problem
+    If the source code is cloned from the GitHub Repository, there are
+    known problems with automake version mismatches which stop the compilation
+    of the source. Follow the steps below in (NOTE - libtool problem) to
+    solve this problem.
+
   NOTE - libtool problem
     On some systems there may be compatibility problems with different
     automake, autoconf or libtool versions. If a libtool problem
@@ -116,6 +117,11 @@ INSTALLATION
       % automake -a
 
     and then retry make.
+
+    If you have 'autoreconf' in your system
+      % autoreconf -fi
+
+    will do the trick.
 
 *****************************************************************************/
 
