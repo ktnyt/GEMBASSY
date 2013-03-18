@@ -162,7 +162,7 @@ LDADD = ../../../nucleus/libnucleus.la ../../../ajax/acd/libacd.la \
         ../include/libghttp.a \
         ../include/libgplot.a \
         ../include/libgpost.a \
-	../include/libcurl.la \
+	../curl/lib/libcurl.la \
         $(XLIB)
 else
 LDADD = -L${embprefix}/lib -L../include -L../curl/lib -lnucleus -lacd \
