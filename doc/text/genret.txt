@@ -80,6 +80,7 @@ ATAWLKDNPETAKEIEKKVRELLLSNPNSTPDFSVDDSEGVAETNEDF
    The following example will retrieve the start positions for each gene.
    The values for the keys in GenBank format is available for retrieval.
    (ex. start end direction GO* etc.)
+   Positions will be returned with a 1 start value.
 
 % genret
 Retrieves various gene related information from genome flatfile
