@@ -40,8 +40,8 @@ AjBool gFilePostCC(char* url, char* filename, AjPStr* string)
   CURL *curl;
   CURLcode res;
 
-  struct HttpPost *post = NULL;
-  struct HttpPost *last = NULL;
+  struct curl_httppost *post = NULL;
+  struct curl_httppost *last = NULL;
 
   Memory *mem = malloc(sizeof(Memory*));
 
