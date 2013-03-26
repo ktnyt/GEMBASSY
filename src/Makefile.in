@@ -1359,8 +1359,8 @@ gshuffleseq_SOURCES = gshuffleseq.c
 gsignature_SOURCES = gsignature.c
 gview_cds_SOURCES = gview_cds.c
 gw_value_SOURCES = gw_value.c
-@LOCALLINK_FALSE@LDADD = -L${embprefix}/lib -L../include -lnucleus -lacd -lajaxdb -lensembl \
-@LOCALLINK_FALSE@        -lajaxg -lajax -leexpat -lepcre -lezlib -leplplot \
+@LOCALLINK_FALSE@LDADD = -L${embprefix}/lib -L../include -lnucleus -lacd \
+@LOCALLINK_FALSE@        -lajaxdb -lensembl -lajaxg -lajax -leexpat -lepcre -lezlib -leplplot \
 @LOCALLINK_FALSE@        -lgfile -lghttp -lgplot -lgpost -lcurl $(XLIB)
 
 @LOCALLINK_TRUE@LDADD = ../../../nucleus/libnucleus.la ../../../ajax/acd/libacd.la \

@@ -594,7 +594,7 @@ PACKAGE_TARNAME='GEMBASSY'
 PACKAGE_VERSION='1.0.0'
 PACKAGE_STRING='GEMBASSY 1.0.0'
 PACKAGE_BUGREPORT='celery@g-language.org'
-PACKAGE_URL='http://web.sfc.keio.ac.jp/~t11080hi/gembassy/GEMBASSY.tar.gz'
+PACKAGE_URL='http://www.g-language.org/gembassy/'
 
 ac_unique_file="src/ggcskew.c"
 # Factoring default headers for most tests.
@@ -1528,7 +1528,7 @@ Use these variables to override the choices made by `configure' or to help
 it to find libraries and programs with nonstandard names/locations.
 
 Report bugs to <celery@g-language.org>.
-GEMBASSY home page: <http://web.sfc.keio.ac.jp/~t11080hi/gembassy/GEMBASSY.tar.gz>.
+GEMBASSY home page: <http://www.g-language.org/gembassy/>.
 _ACEOF
 ac_status=$?
 fi
@@ -16637,7 +16637,7 @@ Configuration commands:
 $config_commands
 
 Report bugs to <celery@g-language.org>.
-GEMBASSY home page: <http://web.sfc.keio.ac.jp/~t11080hi/gembassy/GEMBASSY.tar.gz>."
+GEMBASSY home page: <http://www.g-language.org/gembassy/>."
 
 _ACEOF
 cat >>$CONFIG_STATUS <<_ACEOF || ac_write_fail=1
