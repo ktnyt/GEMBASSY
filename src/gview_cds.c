@@ -68,6 +68,7 @@ int main(int argc, char *argv[])
 
   gPlotParams gpp;
   AjPStr      title = NULL;    
+  AjPPStr     names = NULL;
 
   seqall = ajAcdGetSeqall("sequence");
   length = ajAcdGetInt("length");
@@ -128,6 +129,17 @@ int main(int argc, char *argv[])
         {
           if(plot)
             {
+              if((names = (AjPPStr)malloc(sizeof(AjPStr) * 5)) == NULL) {
+                ajFmtError("Error in memory allocation, exiting\n");
+                embExitBad();
+              }
+
+              names[0] = NULL;
+              names[1] = ajStrNewC("A");
+              names[2] = ajStrNewC("T");
+              names[3] = ajStrNewC("G";
+              names[4] = ajStrNewC("C");
+
               title = ajStrNew();
 
               ajStrAppendC(&title, argv[0]);
@@ -137,6 +149,7 @@ int main(int argc, char *argv[])
               gpp.title = ajStrNewS(title);
               gpp.xlab = ajStrNewC("position");
               gpp.ylab = ajStrNewC("percentage");
+              gpp.names = names;
 
               if(!gFilebuffURLC(result, &buff))
                 {
@@ -149,6 +162,15 @@ int main(int argc, char *argv[])
                   ajFmtError("Error in plotting\n");
                   embExitBad();
                 }
+
+              i = 0;
+              while(names[i])
+                {
+                  AJFREE(names[i]);
+                  ++i;
+                }
+
+              AJFREE(names);
 
               AJFREE(gpp.title);
               AJFREE(gpp.xlab);
