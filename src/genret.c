@@ -75,6 +75,14 @@ int main(int argc, char *argv[])
 
   if(
      ajStrMatchC(access, "translation") ||
+     ajStrMatchC(access, "get_exon") ||
+     ajStrMatchC(access, "get_exons") ||
+     ajStrMatchC(access, "get_cdsseq") ||
+     ajStrMatchC(access, "get_gbkseq") ||
+     ajStrMatchC(access, "get_geneseq") ||
+     ajStrMatchC(access, "get_intron") ||
+     ajStrMatchC(access, "getseq") ||
+     ajStrMatchC(access, "seq") ||
      ajStrMatchC(access, "around_startcodon") ||
      ajStrMatchC(access, "around_stopcodon") ||
      ajStrMatchC(access, "before_startcodon") ||
