@@ -298,7 +298,6 @@ psdir = @psdir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
-subdirs = @subdirs@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
@@ -320,7 +319,6 @@ top_srcdir = @top_srcdir@
 @ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_TRUE@-L../../../ajax/graphics/.libs -L../../../ajax/ensembl/.libs \
 @ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_TRUE@-L../../../ajax/ajaxdb/.libs -L../../../ajax/acd/.libs \
 @ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_TRUE@-L../../../nucleus/.libs \
-@ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_TRUE@-L../curl/lib \
 @ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_TRUE@-lnucleus -lacd -lajaxdb -lensembl -lajaxg -lajax -leexpat -lepcre \
 @ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_TRUE@-lezlib -leplplot -lcurl
 
@@ -330,7 +328,7 @@ libgfile_a_SOURCES = gfile.c
 libghttp_a_SOURCES = ghttp.c
 libgplot_a_SOURCES = gplot.c
 libgpost_a_SOURCES = gpost.c
-@LOCALLINK_FALSE@LDADD = -L${embprefix}/lib -L../curl/lib -lnucleus -lacd -lajaxdb -lensembl \
+@LOCALLINK_FALSE@LDADD = -L${embprefix}/lib -lnucleus -lacd -lajaxdb -lensembl \
 @LOCALLINK_FALSE@        -lajaxg -lajax -leexpat -lepcre -lezlib -leplplot -lcurl \
 @LOCALLINK_FALSE@        $(XLIB)
 
@@ -343,7 +341,7 @@ libgpost_a_SOURCES = gpost.c
 @LOCALLINK_TRUE@	../../../ajax/expat/libeexpat.la \
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
-@LOCALLINK_TRUE@        ../curl/lib/libcurl.la \
+@LOCALLINK_TRUE@        -lcurl \
 @LOCALLINK_TRUE@  $(XLIB)
 
 all: all-am
