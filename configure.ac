@@ -7,7 +7,7 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.59])
 AC_INIT([GEMBASSY], [1.0.0], [celery@g-language.org],
-    [GEMBASSY], [http://web.sfc.keio.ac.jp/~t11080hi/gembassy/GEMBASSY.tar.gz])
+    [GEMBASSY], [http://www.g-language.org/gembassy/])
 AC_REVISION([$Revision: 1.36 $])
 AC_CONFIG_HEADERS([src/config.h])
 AC_CONFIG_SRCDIR(src/ggcskew.c)
