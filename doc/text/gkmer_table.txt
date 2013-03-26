@@ -149,11 +149,11 @@ Author(s)
 
    Hidetoshi Itaya (celery@g-language.org)
    Institute for Advanced Biosciences, Keio University
-   252-8520 Japan
+   252-0882 Japan
 
    Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
    Institute for Advanced Biosciences, Keio University
-   252-8520 Japan
+   252-0882 Japan
 
 History
 
