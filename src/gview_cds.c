@@ -60,6 +60,7 @@ int main(int argc, char *argv[])
 
   char *in0;
   char *result;
+  int   i;
 
   AjBool      plot = 0;
   AjPFile     outf = NULL;
@@ -137,7 +138,7 @@ int main(int argc, char *argv[])
               names[0] = NULL;
               names[1] = ajStrNewC("A");
               names[2] = ajStrNewC("T");
-              names[3] = ajStrNewC("G";
+              names[3] = ajStrNewC("G");
               names[4] = ajStrNewC("C");
 
               title = ajStrNew();
