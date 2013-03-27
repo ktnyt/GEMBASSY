@@ -42,9 +42,14 @@ REQUIREMENTS
    above.
    libpng (> 1.5.13) - (Recommended) Some older versions of libpng have a
    problem with the setjmp.h inclusion.
-   libcurl (Included in distribution) - Required for file POST
+   libcurl (> 7.29.0) - Required for file POST
 
 INSTALLATION
+  Is EMBOSS already installed in your system?
+    Yes: Go to "EMBOSS is already installed" section.
+    No: Go to "Install from EMBOSS" section.
+
+  Install from EMBOSS:
   Root users
     In the following examples we assume the downloaded EMBOSS archive filename
     is EMBOSS-latest.tar.gz
@@ -73,27 +78,36 @@ INSTALLATION
       % make
       % sudo make install
 
-  Update of EMBOSS
-    When users are upgrading EMBOSS, please be sure to uninstall old version
-    of EMBOSS and GEMBASSY. If you override them, some older versions of files
-    may cause errors.
-
-  EMBOSS is already installed
-    When EMBOSS is already installed, do as the following.
-      % wget http://soap.g-language.org/gembassy/source/GEMBASSY-1.0.0.tar.gz
-      (or "curl -O http://soap.g-language.org/gembassy/source/GEMBASSY-1.0.0.tar.gz")
-      % tar zxf GEMBASSY-1.0.0.tar.gz
-      % cd GEMBASSY-1.0.0
-      % ./configure --prefix=/PATH/TO/EMBOSS/ (ex. --prefix=/usr/local)
-      % make
-      % sudo make install
-
   Non-root users
     When running the './configure' command do the following instead:
       % ./configure --prefix=/PATH/TO/DIR/ (ex. --prefix=$HOME/opt)
 
     Then rewrite the "emboss_acdroot" and "emboss_data" value in ~/.embossrc
     file to the corresponding directories.
+    (ex. emboss_acdroot = ~/share/EMBOSS/acd)
+    (ex. emboss_data = ~/share/EMBOSS/data)
+
+  EMBOSS is already installed:
+    When EMBOSS is already installed, GEMBASSY must be installed to the exact
+    same directory as the existing EMBOSS.
+
+    If non-root users wish to install GEMBASSY separately, first install the
+    EMBOSS package on top of the home directory.
+
+    The following commands assume you have EMBOSS installed in the
+    /PATH/TO/EMBOSS/ directory.
+      % wget http://soap.g-language.org/gembassy/source/GEMBASSY-1.0.0.tar.gz
+      (or "curl -O http://soap.g-language.org/gembassy/source/GEMBASSY-1.0.0.tar.gz")
+      % tar zxf GEMBASSY-1.0.0.tar.gz
+      % cd GEMBASSY-1.0.0
+      % ./configure --prefix=/PATH/TO/EMBOSS/ (ex. --prefix=/usr/local)
+      % make
+      % make install
+
+  Update of EMBOSS
+    When users are upgrading EMBOSS, please be sure to uninstall old version
+    of EMBOSS and GEMBASSY. If you override them, some older versions of files
+    may cause errors.
 
   NOTE - automake problem
     If the source code is cloned from the GitHub Repository, there are
