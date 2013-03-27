@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
   params.width  = width;
   params.height = height;
   params.gmap   = 0;
-  params.datafilename = "tmp.coord";
+  params.datafilename = "";
 
   while(ajSeqallNext(seqall, &seq))
     {
