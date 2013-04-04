@@ -38,7 +38,10 @@ int main(int argc, char *argv[])
 
   params.wordlength = wordlength;
   params.bothstrand = 0;
-  params.oe = 0;
+  params.oe         = 0;
+  params.memo       = "";
+  params.seq        = "";
+  params.header     = 1;
 
   if(bothstrand)
     params.bothstrand = 1;

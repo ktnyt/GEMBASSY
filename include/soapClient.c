@@ -17,7 +17,7 @@ compiling, linking, and/or using OpenSSL is allowed.
 extern "C" {
 #endif
 
-SOAP_SOURCE_STAMP("@(#) soapClient.c ver 2.8.6 2013-03-13 03:19:39 GMT")
+SOAP_SOURCE_STAMP("@(#) soapClient.c ver 2.8.6 2013-04-04 12:17:14 GMT")
 
 
 SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__codon_USCOREmva(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, struct ns1__codon_USCOREmvaInputParams *_params, char **_result)
@@ -1723,7 +1723,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__view_USCOREcds(struct soap *soap, const
 	return soap_closesock(soap);
 }
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__query_USCOREstrand(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, int _position, struct ns1__query_USCOREstrandInputParams *_params, char **_result)
+SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__query_USCOREstrand(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, char *_position, struct ns1__query_USCOREstrandInputParams *_params, char **_result)
 {	struct ns1__query_USCOREstrand soap_tmp_ns1__query_USCOREstrand;
 	struct ns1__query_USCOREstrandResponse *soap_tmp_ns1__query_USCOREstrandResponse;
 	if (!soap_endpoint)

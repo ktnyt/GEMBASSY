@@ -75,6 +75,7 @@ int main(int argc, char *argv[])
   params.translate     = 0;
   params.del_USCOREkey = ajCharNewS(delkey);
   params.position      = ajCharNewS(position);
+  params.id            = ajCharNewS(id);
   params.output        = "f";
 
   if(translate)

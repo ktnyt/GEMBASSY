@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
 
   seqall   = ajAcdGetSeqall("sequence");
   k        = ajAcdGetInt("k");
-  filename = ajAcdGetString("filename");
+  filename = ajAcdGetString("goutfile");
 
   params.k = k;
 

@@ -76,6 +76,7 @@ int main(int argc, char *argv[])
   params.position      = ajCharNewS(position);
   params.id            = ajCharNewS(id);
   params.del_USCOREkey = ajCharNewS(delkey);
+  params.tag           = "gene";
 
   if(translate)
     params.translate = 1;
