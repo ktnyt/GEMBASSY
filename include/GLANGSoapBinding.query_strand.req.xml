@@ -8,7 +8,7 @@
  <SOAP-ENV:Body SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
   <ns1:query_strand>
    <sequence></sequence>
-   <position></position>
+   <position>0</position>
    <params>
     <direction></direction>
    </params>

@@ -12,6 +12,7 @@
     <include></include>
     <output></output>
     <exclude></exclude>
+    <tag></tag>
    </params>
   </ns1:w_value>
  </SOAP-ENV:Body>

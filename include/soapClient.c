@@ -17,7 +17,7 @@ compiling, linking, and/or using OpenSSL is allowed.
 extern "C" {
 #endif
 
-SOAP_SOURCE_STAMP("@(#) soapClient.c ver 2.8.6 2013-04-04 12:17:14 GMT")
+SOAP_SOURCE_STAMP("@(#) soapClient.c ver 2.8.6 2013-04-04 13:42:58 GMT")
 
 
 SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__codon_USCOREmva(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, struct ns1__codon_USCOREmvaInputParams *_params, char **_result)
@@ -1723,7 +1723,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__view_USCOREcds(struct soap *soap, const
 	return soap_closesock(soap);
 }
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__query_USCOREstrand(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, char *_position, struct ns1__query_USCOREstrandInputParams *_params, char **_result)
+SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__query_USCOREstrand(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, int _position, struct ns1__query_USCOREstrandInputParams *_params, char **_result)
 {	struct ns1__query_USCOREstrand soap_tmp_ns1__query_USCOREstrand;
 	struct ns1__query_USCOREstrandResponse *soap_tmp_ns1__query_USCOREstrandResponse;
 	if (!soap_endpoint)
@@ -2228,62 +2228,6 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__mindex(struct soap *soap, const char *s
 		return soap_closesock(soap);
 	if (_result && soap_tmp_ns1__mindexResponse->_result)
 		*_result = *soap_tmp_ns1__mindexResponse->_result;
-	return soap_closesock(soap);
-}
-
-SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__peptide_USCOREmass(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, char **_result)
-{	struct ns1__peptide_USCOREmass soap_tmp_ns1__peptide_USCOREmass;
-	struct ns1__peptide_USCOREmassResponse *soap_tmp_ns1__peptide_USCOREmassResponse;
-	if (!soap_endpoint)
-		soap_endpoint = "http://soap.g-language.org/WS/g-language.cgi";
-	if (!soap_action)
-		soap_action = "http://soap.g-language.org/GLANG#peptide_mass";
-	soap->encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/";
-	soap_tmp_ns1__peptide_USCOREmass._sequence = _sequence;
-	soap_begin(soap);
-	soap_serializeheader(soap);
-	soap_serialize_ns1__peptide_USCOREmass(soap, &soap_tmp_ns1__peptide_USCOREmass);
-	if (soap_begin_count(soap))
-		return soap->error;
-	if (soap->mode & SOAP_IO_LENGTH)
-	{	if (soap_envelope_begin_out(soap)
-		 || soap_putheader(soap)
-		 || soap_body_begin_out(soap)
-		 || soap_put_ns1__peptide_USCOREmass(soap, &soap_tmp_ns1__peptide_USCOREmass, "ns1:peptide_mass", NULL)
-		 || soap_body_end_out(soap)
-		 || soap_envelope_end_out(soap))
-			 return soap->error;
-	}
-	if (soap_end_count(soap))
-		return soap->error;
-	if (soap_connect(soap, soap_endpoint, soap_action)
-	 || soap_envelope_begin_out(soap)
-	 || soap_putheader(soap)
-	 || soap_body_begin_out(soap)
-	 || soap_put_ns1__peptide_USCOREmass(soap, &soap_tmp_ns1__peptide_USCOREmass, "ns1:peptide_mass", NULL)
-	 || soap_body_end_out(soap)
-	 || soap_envelope_end_out(soap)
-	 || soap_end_send(soap))
-		return soap_closesock(soap);
-	if (!_result)
-		return soap_closesock(soap);
-	*_result = NULL;
-	if (soap_begin_recv(soap)
-	 || soap_envelope_begin_in(soap)
-	 || soap_recv_header(soap)
-	 || soap_body_begin_in(soap))
-		return soap_closesock(soap);
-	if (soap_recv_fault(soap, 1))
-		return soap->error;
-	soap_tmp_ns1__peptide_USCOREmassResponse = soap_get_ns1__peptide_USCOREmassResponse(soap, NULL, "", "");
-	if (soap->error)
-		return soap_recv_fault(soap, 0);
-	if (soap_body_end_in(soap)
-	 || soap_envelope_end_in(soap)
-	 || soap_end_recv(soap))
-		return soap_closesock(soap);
-	if (_result && soap_tmp_ns1__peptide_USCOREmassResponse->_result)
-		*_result = *soap_tmp_ns1__peptide_USCOREmassResponse->_result;
 	return soap_closesock(soap);
 }
 
