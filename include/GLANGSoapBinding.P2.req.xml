@@ -10,7 +10,6 @@
    <sequence></sequence>
    <params>
     <output></output>
-    <tag></tag>
    </params>
   </ns1:P2>
  </SOAP-ENV:Body>

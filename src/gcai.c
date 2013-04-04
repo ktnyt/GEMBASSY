@@ -74,6 +74,7 @@ int main(int argc, char *argv[])
   params.w_USCOREfilename = "w_value.csv";
   params.w_USCOREoutput   = "stdout";
   params.tag              = "gene";
+  params.output           = "f";
 
   if(translate)
     params.translate = 1;

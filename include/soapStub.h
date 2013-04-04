@@ -71,7 +71,6 @@ struct ns1__codon_USCOREmvaInputParams
 struct ns1__P2InputParams
 {
 	char *output;	/* required element of type xsd:string */
-	char *tag;	/* required element of type xsd:string */
 };
 #endif
 
@@ -83,7 +82,6 @@ struct ns1__w_USCOREvalueInputParams
 	char *include;	/* required element of type xsd:string */
 	char *output;	/* required element of type xsd:string */
 	char *exclude;	/* required element of type xsd:string */
-	char *tag;	/* required element of type xsd:string */
 };
 #endif
 
@@ -206,7 +204,6 @@ struct ns1__cbiInputParams
 	int translate;	/* required element of type xsd:int */
 	char *id;	/* required element of type xsd:string */
 	char *del_USCOREkey;	/* required element of type xsd:string */
-	char *tag;	/* required element of type xsd:string */
 };
 #endif
 
@@ -365,7 +362,6 @@ struct ns1__phxInputParams
 	int translate;	/* required element of type xsd:int */
 	char *output;	/* required element of type xsd:string */
 	char *del_USCOREkey;	/* required element of type xsd:string */
-	char *tag;	/* required element of type xsd:string */
 };
 #endif
 
@@ -395,7 +391,6 @@ struct ns1__gcwinInputParams
 	int window;	/* required element of type xsd:int */
 	int at;	/* required element of type xsd:int */
 	int purine;	/* required element of type xsd:int */
-	char *application;	/* required element of type xsd:string */
 	char *output;	/* required element of type xsd:string */
 	int keto;	/* required element of type xsd:int */
 };
@@ -409,7 +404,6 @@ struct ns1__icdiInputParams
 	int translate;	/* required element of type xsd:int */
 	char *id;	/* required element of type xsd:string */
 	char *del_USCOREkey;	/* required element of type xsd:string */
-	char *tag;	/* required element of type xsd:string */
 };
 #endif
 
@@ -421,7 +415,6 @@ struct ns1__encInputParams
 	int translate;	/* required element of type xsd:int */
 	char *id;	/* required element of type xsd:string */
 	char *del_USCOREkey;	/* required element of type xsd:string */
-	char *tag;	/* required element of type xsd:string */
 };
 #endif
 
@@ -441,7 +434,6 @@ struct ns1__fopInputParams
 {
 	int translate;	/* required element of type xsd:int */
 	char *output;	/* required element of type xsd:string */
-	char *tag;	/* required element of type xsd:string */
 };
 #endif
 
@@ -454,7 +446,6 @@ struct ns1__buiInputParams
 	char *position;	/* required element of type xsd:string */
 	char *id;	/* required element of type xsd:string */
 	char *del_USCOREkey;	/* required element of type xsd:string */
-	char *tag;	/* required element of type xsd:string */
 };
 #endif
 
@@ -559,7 +550,6 @@ struct ns1__EwInputParams
 	int translate;	/* required element of type xsd:int */
 	char *output;	/* required element of type xsd:string */
 	char *del_USCOREkey;	/* required element of type xsd:string */
-	char *tag;	/* required element of type xsd:string */
 };
 #endif
 
@@ -664,7 +654,6 @@ struct ns1__caiInputParams
 	char *output;	/* required element of type xsd:string */
 	char *w_USCOREfilename;	/* required element of type xsd:string */
 	char *w_USCOREabsent;	/* required element of type xsd:string */
-	char *tag;	/* required element of type xsd:string */
 };
 #endif
 
@@ -1380,7 +1369,7 @@ struct ns1__query_USCOREstrandResponse
 struct ns1__query_USCOREstrand
 {
 	char *_sequence;	/* optional element of type xsd:string */
-	int _position;	/* required element of type xsd:int */
+	char *_position;	/* optional element of type xsd:string */
 	struct ns1__query_USCOREstrandInputParams *_params;	/* optional element of type ns1:query_strandInputParams */
 };
 #endif
@@ -2700,7 +2689,7 @@ SOAP_FMAC5 int SOAP_FMAC6 ns1__base_USCORErelative_USCOREentropy(struct soap*, c
 
 SOAP_FMAC5 int SOAP_FMAC6 ns1__view_USCOREcds(struct soap*, char *_sequence, struct ns1__view_USCOREcdsInputParams *_params, char **_result);
 
-SOAP_FMAC5 int SOAP_FMAC6 ns1__query_USCOREstrand(struct soap*, char *_sequence, int _position, struct ns1__query_USCOREstrandInputParams *_params, char **_result);
+SOAP_FMAC5 int SOAP_FMAC6 ns1__query_USCOREstrand(struct soap*, char *_sequence, char *_position, struct ns1__query_USCOREstrandInputParams *_params, char **_result);
 
 SOAP_FMAC5 int SOAP_FMAC6 ns1__genomicskew(struct soap*, char *_sequence, struct ns1__genomicskewInputParams *_params, char **_result);
 
@@ -3085,7 +3074,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__base_USCORErelative_USCOREentropy(struc
 
 SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__view_USCOREcds(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, struct ns1__view_USCOREcdsInputParams *_params, char **_result);
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__query_USCOREstrand(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, int _position, struct ns1__query_USCOREstrandInputParams *_params, char **_result);
+SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__query_USCOREstrand(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, char *_position, struct ns1__query_USCOREstrandInputParams *_params, char **_result);
 
 SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns1__genomicskew(struct soap *soap, const char *soap_endpoint, const char *soap_action, char *_sequence, struct ns1__genomicskewInputParams *_params, char **_result);
 
