@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
   window = ajAcdGetInt("window");
   slide  = ajAcdGetInt("slide");
   gc3    = ajAcdGetBoolean("gctri");
-  base   = ajAcdGetListSingle("base");
+  base   = ajAcdGetString("base");
   accid  = ajAcdGetBoolean("accid");
 
   plot = ajAcdGetToggle("plot");

@@ -37,15 +37,10 @@ section: advanced [
     default: "0"
   ]
 
-  list: base [
+  string: base [
     information: "Input 'gc', 'at', 'purine', or 'keto' for observing
                    GC/AT/Purine/Keto skews"
-    values: "gc:gc;
-             at:at;
-             purine:purine;
-             keto:keto;
-             none:none"
-    default: "none"
+    default: ""
   ]
 
   boolean: gctri [
