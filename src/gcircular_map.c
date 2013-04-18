@@ -139,6 +139,10 @@ int main(int argc, char *argv[])
               ajFmtError("File downloading error from:\n%s\n", result);
 	      embExitBad();
 	    }
+          else
+            {
+              ajFmtError("Created %S\n", outfname);
+            }
 	}
       else
 	{

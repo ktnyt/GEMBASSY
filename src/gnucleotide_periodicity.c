@@ -24,15 +24,9 @@
 ******************************************************************************/
 
 #include "emboss.h"
-
-#include "soapH.h"
-#include "GLANGSoapBinding.nsmap"
-
-#include "soapClient.c"
-#include "soapC.c"
-#include "../gsoap/stdsoap2.c"
 #include "../include/gfile.h"
 #include "../include/gplot.h"
+#include "../include/gpost.h"
 
 
 
@@ -47,145 +41,132 @@ int main(int argc, char *argv[])
 {
   embInitPV("gnucleotide_periodicity", argc, argv, "GEMBASSY", "1.0.0");
 
-  struct soap soap;
-  struct ns1__nucleotide_USCOREperiodicityInputParams params;
-
   AjPSeqall seqall;
   AjPSeq    seq;
-  AjPStr    inseq      = NULL;
-  AjPStr    seqid      = NULL;
-  ajint	    window     = 0;
-  AjPStr    nucleotide = 0;
-  AjBool    accid      = ajFalse;
-  AjBool    output     = 0;
+  AjPStr    inseq    = NULL;
 
-  char *in0;
-  char *result;
+  ajint  window     = 0;
+  AjPStr nucleotide = NULL;
 
-  AjBool      plot = 0;
-  AjPFile     outf = NULL;
-  AjPFilebuff buff = NULL;
-  AjPGraph    mult = NULL;
+  AjBool accid  = ajFalse;
+  AjPStr restid = NULL;
+  AjPStr seqid  = NULL;
 
-  gPlotParams gpp;
-  AjPStr      title = NULL;
+  AjPStr base = NULL;
+  AjPStr url  = NULL;
+
+  AjPFile outf     = NULL;
+  AjPFile tempfile = NULL;
+  AjPStr  filename = NULL;
+  AjPStr  outfname = NULL;
+  AjPStr  tempname = NULL;
 
   seqall     = ajAcdGetSeqall("sequence");
   window     = ajAcdGetInt("window");
   nucleotide = ajAcdGetString("nucleotide");
-  accid      = ajAcdGetBoolean("accid");
+  filename   = ajAcdGetString("goutfile");
 
-  plot = ajAcdGetToggle("plot");
-  outf = ajAcdGetOutfile("outfile");
-  mult = ajAcdGetGraphxy("graph");
-
-  params.window     = window;
-  params.nucleotide = ajCharNewS(nucleotide);
-  params.output     = "f";
+  base = ajStrNewC("rest.g-language.org");
 
   while(ajSeqallNext(seqall, &seq))
     {
-
-      soap_init(&soap);
-
       inseq = NULL;
 
-      ajStrAssignS(&seqid, ajSeqGetAccS(seq));
-
-      if(!ajStrGetLen(seqid))
-        ajStrAssignS(&seqid, ajSeqGetNameS(seq));
-
-      if(!ajStrGetLen(seqid))
+      if(!accid)
         {
-          ajFmtError("No header information\n");
-          embExitBad();
-        }
-
-      if(accid || !gFormatGenbank(seq, &inseq))
-        {
-          if(!accid)
-            ajFmtError("Sequence does not have features\n"
-                       "Proceeding with sequence accession ID\n");
-
-          if(!gValID(seqid))
+          if(gFormatGenbank(seq, &inseq))
             {
-              ajFmtError("Invalid accession ID, exiting\n");
-              embExitBad();
-            }
+              gAssignUniqueName(&tempname);
 
-          ajStrAssignS(&inseq, seqid);
-        }
+              tempfile = ajFileNewOutNameS(tempname);
 
-      in0 = ajCharNewS(inseq);
-
-      if(soap_call_ns1__nucleotide_USCOREperiodicity(
-						     &soap,
-                                                      NULL,
-                                                      NULL,
-                                                      in0,
-                                                     &params,
-                                                     &result
-						     ) == SOAP_OK)
-        {
-          if(plot)
-            {
-              title = ajStrNew();
-
-              ajStrAppendC(&title, argv[0]);
-              ajStrAppendC(&title, " of ");
-              ajStrAppendS(&title, seqid);
-
-              gpp.title = ajStrNewS(title);
-              gpp.xlab = ajStrNewC("position");
-              gpp.ylab = ajStrNewC("periodicity");
-
-              if(!gFilebuffURLC(result, &buff))
+              if(!tempfile)
                 {
-                  ajFmtError("File downloading error from:\n%s\n", result);
+                  ajFmtError("Output file (%S) open error\n", tempname);
                   embExitBad();
                 }
 
-              if(!gPlotFilebuff(buff, mult, &gpp))
-                {
-                  ajFmtError("Error in plotting\n");
-                  embExitBad();
-                }
-
-              AJFREE(gpp.title);
-              AJFREE(gpp.xlab);
-              AJFREE(gpp.ylab);
-
-              ajStrDel(&title);
+              ajFmtPrintF(tempfile, "%S", inseq);
+              ajFileClose(&tempfile);
+              ajFmtPrintS(&url, "http://%S/upload/upl.pl", base);
+              gFilePostSS(url, tempname, &restid);
+              ajStrDel(&url);
+              ajSysFileUnlinkS(tempname);
             }
           else
             {
-              ajFmtPrintF(outf, "Sequence: %S\n", seqid);
-              if(!gFileOutURLC(result, &outf))
-                {
-                  ajFmtError("File downloading error from:\n%s\n", result);
-                  embExitBad();
-                }
+              ajFmtError("Sequence does not have features\n"
+                         "Proceeding with sequence accession ID\n");
+              accid = ajTrue;
             }
+        }
+
+      if(accid)
+        {
+          ajStrAssignS(&seqid, ajSeqGetAccS(seq));
+
+          if(!ajStrGetLen(seqid))
+            {
+              ajStrAssignS(&seqid, ajSeqGetNameS(seq));
+            }
+
+          if(!ajStrGetLen(seqid))
+            {
+              ajFmtError("No valid header information\n");
+              embExitBad();
+            }
+
+          ajStrAssignS(&restid, seqid);
+        }
+
+      ajStrAssignS(&seqid, ajSeqGetAccS(seq));
+
+      outfname = ajStrNew();
+      tempname = ajStrNew();
+
+      ajStrAssignS(&outfname, filename);
+
+      ajStrFromLong(&tempname, ajSeqallGetCount(seqall));
+      ajStrInsertC(&tempname, 0, ".");
+      ajStrAppendC(&tempname, ".png");
+
+      if(!ajStrExchangeCS(&outfname, ".png", tempname))
+        {
+          ajStrAppendS(&outfname, tempname);
+        }
+
+      outf = ajFileNewOutNameS(outfname);
+
+      if(!outf)
+        {
+          ajFmtError("File open error\n");
+          embExitBad();
+        }
+
+      url = ajStrNew();
+
+      ajFmtPrintS(&url, "http://%S/%S/nucleotide_periodicity/output=g/gmap=0/"
+                  "nucleotide=%S/window=%d", base, restid, nucleotide, window);
+
+      if(!gHttpGetBinS(url, &outf))
+        {
+          ajFmtError("File downloading error from:\n%S\n", url);
+          embExitBad();
         }
       else
         {
-          soap_print_fault(&soap, stderr);
+          ajFmtError("Created %S\n", outfname);
         }
 
-      soap_destroy(&soap);
-      soap_end(&soap);
-      soap_done(&soap);
-
-      AJFREE(in0);
-
+      ajStrDel(&outfname);
+      ajStrDel(&tempname);
+      ajStrDel(&url);
       ajStrDel(&inseq);
     }
 
-  ajFileClose(&outf);
-
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
-  ajStrDel(&seqid);
+  ajStrDel(&filename);
 
   embExit();
 
