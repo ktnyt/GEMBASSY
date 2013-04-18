@@ -44,20 +44,9 @@ section: output [
 	type: "page"
 ]
 
-  toggle: plot [
-    information: "Include to plot result"
-    default: "N"
-  ]
-
-  xygraph: graph [
-    standard: "$(plot)"
-    gtitle: "gnucleotide_periodicity of $(sequence.name)"
-  ]
-
-  outfile: outfile [
-    standard: "@(!$(plot))"
-    nullok: "Y"
-    nulldefault: "$(plot)"
+  string: goutfile [
+    parameter: "Y"
+    default: "gnucleotide_periodicity.png"
   ]
 
 endsection: output
