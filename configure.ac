@@ -272,21 +272,6 @@ if test "${with_x}" != "no" ; then
 LF_EMBOSS_PATH_XLIB
 
 
-havexawh=1
-AC_CHECK_HEADER(X11/Xaw/Label.h,[],[havexawh=0])
-if test $havexawh == 0; then
-  AC_MSG_NOTICE([You need to install the Xaw development files for your system])
-  exit $?
-fi
-
-havexawlib=1
-AC_CHECK_LIB(Xaw,XawInitializeWidgetSet,XLIB="$XLIB -lXaw",[havexawlib=0],${XLIB})
-if test $havexawlib == 0; then
-  AC_MSG_NOTICE([You need to install the Xaw library files for your system])
-  exit $?
-fi
-
-
 havextlib=1
 AC_CHECK_LIB(Xt,XtToolkitInitialize,XLIB="$XLIB -lXt",[havextlib=0],${XLIB})
 if test $havextlib == 0; then
