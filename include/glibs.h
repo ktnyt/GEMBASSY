@@ -8,4 +8,4 @@
 #include "../include/gplot.c"
 #include "../include/gpost.h"
 #include "../include/gpost.c"
-#endif GLIBS
+#endif
