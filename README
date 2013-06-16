@@ -53,12 +53,12 @@ INSTALLATION
   Install from EMBOSS:
   Root users
     In the following examples we assume the downloaded EMBOSS archive filename
-    is EMBOSS-latest.tar.gz
+    is emboss-latest.tar.gz
 
     1. Download and compile EMBOSS source code
       % wget ftp://emboss.open-bio.org/pub/EMBOSS/emboss-latest.tar.gz
-      (or "curl -O ftp://emboss.open-bio.org/pub/EMBOSS/EMBOSS-latest.tar.gz")
-      % tar zxf EMBOSS-latest.tar.gz
+      (or "curl -O ftp://emboss.open-bio.org/pub/EMBOSS/emboss-latest.tar.gz")
+      % tar zxf emboss-latest.tar.gz
       % cd EMBOSS-6.5.7
       % ./configure
       % make
