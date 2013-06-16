@@ -240,6 +240,25 @@ void gAssignUniqueName(AjPStr *string) {
 
 
 
+/* @func gCreateUniqueName ****************************************************
+**
+** Returns a unique filename
+**
+** @return [AjPStr] the unique filename
+** @@
+******************************************************************************/
+
+AjPStr gCreateUniqueName() {
+  AjPStr string;
+
+  gAssignUniqueName(&string);
+
+  return string;
+}
+
+
+
+
 /* @func gFormatGenbank *******************************************************
 **
 ** Creates a genbank format string with sequence and features

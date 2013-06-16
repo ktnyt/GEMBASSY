@@ -1,0 +1,75 @@
+application: gbasezvalue [
+  documentation: "Extracts conserved oligomers per position using Z-score"
+  groups: "Nucleic:Composition"
+  embassy: "gembassy"
+  relations: "EDAM_topic:0157 Sequence composition analysis"
+  relations: "EDAM_operation:0377 Sequence composition calculation
+              (nucleic acid)"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+
+  seqall: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+    features: "Y"
+    relations: "EDAM_data:0849 Sequence record"
+  ]
+
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+
+  integer: limit [
+    information: "Rank threshold for showing the conserved oligomer"
+    default: "5"
+  ]
+
+  selection: position [
+    information: "Either 'start' (around start codon) or 'end'
+                  (around stop codon) to create the PWM"
+    values: "start;end"
+    default: "start"
+  ]
+
+  integer: patlen [
+    information: "Length of oligomer to count"
+    default: "3"
+  ]
+
+  integer: upstream [
+    information: "Length upstream of specified position to create PWM"
+    default: "30"
+  ]
+
+  integer: downstream [
+    information: "Length downstream of specified position to create PWM"
+    default: "30"
+  ]
+
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "N"
+  ]
+
+endsection: advanced
+
+section: output [
+  information: "Output section"
+  type: "page"
+]
+
+  outfile: outfile [
+    parameter: "Y"
+    information: "Program compseq output file (optional)"
+    knowntype: "compseq output"
+    relations: "EDAM_data:3086 Nucleic acid sequence composition"
+  ]
+
+endsection: output

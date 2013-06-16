@@ -552,7 +552,6 @@ CHECK_THREADS
 
 AC_CONFIG_FILES([
 Makefile
-include/Makefile
 src/Makefile
 acd/Makefile
 doc/Makefile

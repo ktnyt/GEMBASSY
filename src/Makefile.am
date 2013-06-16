@@ -42,110 +42,110 @@ AM_CFLAGS =  $(AIX_CFLAGS) $(WARN_CFLAGS) $(DEVWARN_CFLAGS)
 
 bin_PROGRAMS = genret \
                gaaui\
-               gamino_info\
+               gaminoinfo\
                gb1\
                gb2\
-               gbase_counter\
-               gbase_entropy\
-               gbase_information_content\
-               gbase_relative_entropy\
-               gbase_z_value\
+               gbasecounter\
+               gbaseentropy\
+               gbaseinformationcontent\
+               gbaserelativeentropy\
+               gbasezvalue\
 	       gbui\
                gcai\
                gcbi\
                gcgr\
-               gcircular_map\
-               gcodon_compiler\
-               gconsensus_z\
-               gdelta_enc\
-               gdelta_gcskew\
+               gcircularmap\
+               gcodoncompiler\
+               gconsensusz\
+               gdeltaenc\
+               gdeltagcskew\
                gdinuc\
-               gdist_in_cc\
+               gdistincc\
                gdnawalk\
                genc\
                gentrez\
                gew\
-               gfind_ori_ter\
+               gfindoriter\
                gfop\
                ggcsi\
                ggcskew\
                ggcwin\
                ggeneskew\
                ggenomicskew\
-               ggenome_map3\
+               ggenomemap3\
                gicdi\
-               gkmer_table\
-               glda_bias\
-               gnucleotide_periodicity\
-	       goligomer_counter\
-	       goligomer_search\
+               gkmertable\
+               gldabias\
+               gnucleotideperiodicity\
+	       goligomercounter\
+	       goligomersearch\
                gp2\
                gpalindrome\
                gphx\
-               gquery_arm\
-               gquery_strand\
-               grep_ori_ter\
-               gs_value\
+               gqueryarm\
+               gquerystrand\
+               greporiter\
+               gsvalue\
                gscs\
                gseq2png\
                gseqinfo\
                gshuffleseq\
                gsignature\
-               gview_cds\
-               gw_value
+               gviewcds\
+               gwvalue
 
 genret_SOURCES                    = genret.c
 gaaui_SOURCES                     = gaaui.c
-gamino_info_SOURCES               = gamino_info.c
+gamino_info_SOURCES               = gaminoinfo.c
 gb1_SOURCES                       = gb1.c
 gb2_SOURCES                       = gb2.c
-gbase_counter_SOURCES             = gbase_counter.c
-gbase_entropy_SOURCES             = gbase_entropy.c
-gbase_information_content_SOURCES = gbase_information_content.c
-gbase_relative_entropy_SOURCES    = gbase_relative_entropy.c
-gbase_z_value_SOURCES             = gbase_z_value.c
+gbase_counter_SOURCES             = gbasecounter.c
+gbase_entropy_SOURCES             = gbaseentropy.c
+gbase_information_content_SOURCES = gbaseinformationcontent.c
+gbase_relative_entropy_SOURCES    = gbaserelativeentropy.c
+gbase_z_value_SOURCES             = gbasezvalue.c
 gbui_SOURCES                      = gbui.c
 gcai_SOURCES                      = gcai.c
 gcbi_SOURCES                      = gcbi.c
 gcgr_SOURCES                      = gcgr.c
-gcircular_map_SOURCES             = gcircular_map.c
-gcodon_compiler_SOURCES           = gcodon_compiler.c
-gconsensus_z_SOURCES              = gconsensus_z.c
-gdelta_enc_SOURCES                = gdelta_enc.c
-gdelta_gcskew_SOURCES             = gdelta_gcskew.c
-gdist_in_cc_SOURCES               = gdist_in_cc.c
+gcircular_map_SOURCES             = gcircularmap.c
+gcodon_compiler_SOURCES           = gcodoncompiler.c
+gconsensus_z_SOURCES              = gconsensusz.c
+gdelta_enc_SOURCES                = gdeltaenc.c
+gdelta_gcskew_SOURCES             = gdeltagcskew.c
+gdist_in_cc_SOURCES               = gdistincc.c
 gdinuc_SOURCES                    = gdinuc.c
 gdnawalk_SOURCES                  = gdnawalk.c
 genc_SOURCES                      = genc.c
 gentrez_SOURCES                   = gentrez.c
 gew_SOURCES                       = gew.c
-gfind_ori_ter_SOURCES             = gfind_ori_ter.c
+gfind_ori_ter_SOURCES             = gfindoriter.c
 gfop_SOURCES                      = gfop.c
 ggcsi_SOURCES                     = ggcsi.c
 ggcwin_SOURCES                    = ggcwin.c
 ggeneskew_SOURCES                 = ggeneskew.c
 ggenomicskew_SOURCES              = ggenomicskew.c
-ggenome_map3_SOURCES              = ggenome_map3.c
+ggenome_map3_SOURCES              = ggenomemap3.c
 gicdi_SOURCES                     = gicdi.c
-gkmer_table_SOURCES               = gkmer_table.c
-glda_bias_SOURCES                 = glda_bias.c
-gnucleotide_periodicity_SOURCES   = gnucleotide_periodicity.c
-goligomer_counter_SOURCES         = goligomer_counter.c
-goligomer_search_SOURCES          = goligomer_search.c
+gkmer_table_SOURCES               = gkmertable.c
+glda_bias_SOURCES                 = gldabias.c
+gnucleotide_periodicity_SOURCES   = gnucleotideperiodicity.c
+goligomer_counter_SOURCES         = goligomercounter.c
+goligomer_search_SOURCES          = goligomersearch.c
 gp2_SOURCES                       = gp2.c
 gpalindrome_SOURCES               = gpalindrome.c
 gphx_SOURCES                      = gphx.c
-gquery_arm_SOURCES                = gquery_arm.c
-gquery_strand_SOURCES             = gquery_strand.c
-grep_ori_ter_SOURCES              = grep_ori_ter.c
-gs_value_SOURCES                  = gs_value.c
+gquery_arm_SOURCES                = gqueryarm.c
+gquery_strand_SOURCES             = gquerystrand.c
+grep_ori_ter_SOURCES              = greporiter.c
+gs_value_SOURCES                  = gsvalue.c
 gscs_SOURCES                      = gscs.c
 gseq2png_SOURCES                  = gseq2png.c
 gseqinfo_SOURCES                  = gseqinfo.c
 gshuffleseq_SOURCES               = gshuffleseq.c
 gsignature_SOURCES                = gsignature.c
-gview_cds_SOURCES                 = gview_cds.c
-gw_value_SOURCES                  = gw_value.c
+gview_cds_SOURCES                 = gviewcds.c
+gw_value_SOURCES                  = gwvalue.c
 
 if LOCALLINK
 LDADD = ../../../nucleus/libnucleus.la ../../../ajax/acd/libacd.la \
@@ -166,5 +166,5 @@ LDADD = ../../../nucleus/libnucleus.la ../../../ajax/acd/libacd.la \
 else
 LDADD = -L${embprefix}/lib -L../include -lnucleus -lacd \
         -lajaxdb -lensembl -lajaxg -lajax -leexpat -lepcre -lezlib -leplplot \
-        -lgfile -lghttp -lgplot -lgpost -lcurl $(XLIB)
+        -lcurl $(XLIB)
 endif

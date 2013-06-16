@@ -2,6 +2,9 @@ application: ggcwin [
   documentation: "Calculates the GC content along the given genome"
   groups: "Nucleic:Composition"
   embassy: "gembassy"
+  relations: "EDAM_topic:0157 Sequence composition analysis"
+  relations: "EDAM_operation:0377 Sequence composition calculation
+              (nucleic acid)"
 ]
 
 section: input [
@@ -13,6 +16,7 @@ section: input [
     parameter: "Y"
     type: "nucleotide"
     features: "Y"
+    relations: "EDAM_data:0849 Sequence record"
   ]
 
 endsection: input
@@ -29,16 +33,17 @@ section: advanced [
 
   boolean: at [
     information: "Include for observing AT skew instead of GC skew"
-    default: "0"
-  ]
+    default: "N"
+ ]
 
   boolean: purine [
     information: "Include for observing purine (AG/TC) skew"
-    default: "0"
+    default: "N"
   ]
 
   boolean: keto [
     information: "Include for observing keto (TG/AC) skew default: "0"
+    default: "N"
   ]
 
 endsection: advanced
@@ -62,6 +67,9 @@ section: output [
     standard: "@(!$(plot))"
     nullok: "Y"
     nulldefault: "$(plot)"
+    information: "Program compseq output file (optional)"
+    knowntype: "compseq output"
+    relations: "EDAM_data:3086 Nucleic acid sequence composition"
   ]
 
 endsection: output

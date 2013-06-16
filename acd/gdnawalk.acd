@@ -2,6 +2,10 @@ application: gdnawalk [
   documentation: "Draws DNA Walk map of the genome"
   groups: "Display"
   embassy: "gembassy"
+  relations: "EDAM_topic:0092 Data visualisation"
+  relations: "EDAM_topic:0157 Sequence composition analysis"
+  relations: "EDAM_operation:0377 Sequence composition calculation
+              (nucleic acid)"
 ]
 
 section: input [
@@ -13,19 +17,28 @@ section: input [
     parameter: "Y"
     type: "nucleotide"
     features: "Y"
+    relations: "EDAM_data:0849 Sequence record"
+  ]
+
+  string: format [
+    information: "Output file format. Dependent on 'convert' command"
+    knowntype: "output format"
+    default: "png"
   ]
 
 endsection: input
 
 section: output [
-	information: "Output section"
-	type: "page"
+  information: "Output section"
+  type: "page"
 ]
 
   string: goutfile [
     parameter: "Y"
-    information: "Output filename"
-    default: "gdnawalk.png"
+    information: "Output file for non interactive displays"
+    knowntype: "output filename"
+    relations: "EDAM_data:1274 DNA map"
+    default: "gdnawalk"
   ]
 
 endsection: output

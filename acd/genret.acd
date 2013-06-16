@@ -1,7 +1,10 @@
 application: genret [
   documentation: "Retrieves various gene features from genome flatfile"
-  groups: "Data retrieval, Edit"
+  groups: "Edit, Data retrieval, Feature tables"
   embassy: "gembassy"
+  relations: "EDAM_topic:0160 Sequence sites and features"
+  relations: "EDAM_topic:0091 Data handling"
+  relations: "EDAM_operation:2422 Data retrieval"
 ]
 
 section: input [
@@ -13,17 +16,20 @@ section: input [
     parameter: "Y"
     type: "nucleotide"
     features: "Y"
+    relations: "EDAM_data:0849 Sequence record"
   ]
 
   string: gene [
     parameter: "Y"
     information: "List of gene name(s) to report"
+    knowntype: "sequence id list"
     default: "*"
   ]
 
   string: access [
     parameter: "Y"
     information: "Name of gene feature to access"
+    knowntype: "feature key"
     word: "Y"
   ]
 
@@ -36,6 +42,7 @@ section: advanced [
 
   string: argument [
     information: "Extra arguments to pass to method"
+    knowntype: "string"
     default: ""
   ]
 
@@ -53,8 +60,9 @@ section: output [
 
   outfile: outfile [
     parameter: "Y"
-    information: "Full text output file"
-    extension: "$(access)"
+    extension: "$(access).genret"
+    information: "Sequence output file"
+    knowntype: "sequence data"
   ]
 
 endsection: output

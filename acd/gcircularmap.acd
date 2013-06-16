@@ -1,0 +1,55 @@
+application: gcircularmap [
+  documentation: "Draws circular map of the genome"
+  groups: "Display"
+  embassy: "gembassy"
+  relations: "EDAM_topic:0092 Data visualisation"
+  relations: "EDAM_topic:0621 Genome, proteome and model organisms"
+  relations: "EDAM_operation:0578 Circular map rendering"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+
+  seqall: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+    features: "Y"
+    relations: "EDAM_data:0849 Sequence record"
+  ]
+
+  string: format [
+    information: "Output file format. Dependent on 'convert' command"
+    knowntype: "output format"
+    default: "svg"
+  ]
+
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "N"
+  ]
+
+endsection: advanced
+
+section: output 
+[
+  information: "Output section"
+  type: "page"
+]
+
+  string: goutfile [
+    parameter: "Y"
+    information: "Output file for non interactive displays"
+    relations: "EDAM_data:1274 DNA map"
+    default: "gcircularmap"
+  ]
+
+endsection: output

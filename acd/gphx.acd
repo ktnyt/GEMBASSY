@@ -2,6 +2,8 @@ application: gphx [
   documentation: "Identify predicted highly expressed gene"
   groups: "Nucleic:Codon usage"
   embassy: "gembassy"
+  relations: "EDAM_operation:0286 Codon usage analysis"
+  relations: "EDAM_topic: 0107 Codon usage analysis"
 ]
 
 section: input [
@@ -13,6 +15,7 @@ section: input [
     parameter: "Y"
     type: "nucleotide"
     features: "Y"
+    relations: "EDAM_data:0849 Sequence record"
   ]
 
 endsection: input
@@ -24,7 +27,7 @@ section: advanced [
 
   boolean: translate [
     information: "Include when translating using standard codon table"
-    default: "0"
+    default: "N"
   ]
 
   string: usage [
@@ -34,6 +37,7 @@ section: advanced [
 
   string: delkey [
     information: "Regular expression to delete key"
+    knowntype: "regular expression"
     default: "[^ACDEFGHIKLMNPQRSTVWYacgtU]"
   ]
 
@@ -45,12 +49,15 @@ section: advanced [
 endsection: advanced
 
 section: output [
-	information: "Output section"
-	type: "page"
+  information: "Output section"
+  type: "page"
 ]
 
   outfile: outfile [
     parameter: "Y"
+    information: "Codon usage output file"
+    knowntype: "codon usage"
+    relations: "EDAM_data:2865 Codon usage bias"
   ]
 
 endsection: output

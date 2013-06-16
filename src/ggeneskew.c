@@ -4,8 +4,9 @@
 ** Calculate the gene strand bias of the given genome
 **
 ** @author Copyright (C) 2012 Hidetoshi Itaya
-** @version 1.0.0   First release
+** @version 1.0.1   Revision 1
 ** @modified 2012/1/20  Hidetoshi Itaya  Created!
+** @modified 2013/6/16  Revision 1
 ** @@
 **
 ** This program is free software; you can redistribute it and/or
@@ -24,15 +25,12 @@
 ******************************************************************************/
 
 #include "emboss.h"
-
 #include "soapH.h"
 #include "GLANGSoapBinding.nsmap"
-
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
-#include "../include/gfile.h"
-#include "../include/gplot.h"
+#include "glibs.h"
 
 
 
@@ -45,7 +43,7 @@
 
 int main(int argc, char *argv[])
 {
-  embInitPV("ggeneskew", argc, argv, "GEMBASSY", "1.0.0");
+  embInitPV("ggeneskew", argc, argv, "GEMBASSY", "1.0.1");
 
   struct soap soap;
   struct ns1__geneskewInputParams params;
@@ -76,12 +74,14 @@ int main(int argc, char *argv[])
   window = ajAcdGetInt("window");
   slide  = ajAcdGetInt("slide");
   gc3    = ajAcdGetBoolean("gctri");
-  base   = ajAcdGetString("base");
+  base   = ajAcdGetSelectSingle("base");
   accid  = ajAcdGetBoolean("accid");
 
   plot = ajAcdGetToggle("plot");
   outf = ajAcdGetOutfile("outfile");
   mult = ajAcdGetGraphxy("graph");
+
+  if(ajStrMatchC(base, "none")) base = ajStrNewC("");
 
   params.window = window;
   params.slide  = slide;
@@ -109,20 +109,18 @@ int main(int argc, char *argv[])
 
       if(!ajStrGetLen(seqid))
         {
-          ajFmtError("No header information\n");
-          embExitBad();
+          ajWarn("No valid header information\n");
         }
 
       if(accid || !gFormatGenbank(seq, &inseq))
         {
           if(!accid)
-            ajFmtError("Sequence does not have features\n"
-                       "Proceeding with sequence accession ID\n");
+            ajWarn("Sequence does not have features\n"
+                   "Proceeding with sequence accession ID:%S\n", seqid);
 
           if(!gValID(seqid))
             {
-              ajFmtError("Invalid accession ID, exiting\n");
-              embExitBad();
+              ajDie("Invalid accession ID:%S, exiting\n", seqid);
             }
 
           ajStrAssignS(&inseq, seqid);
@@ -153,14 +151,12 @@ int main(int argc, char *argv[])
 
 	      if(!gFilebuffURLC(result, &buff))
 		{
-                  ajFmtError("File downloading error from:\n%s\n", result);
-		  embExitBad();
+                  ajDie("File downloading error from:\n%s\n", result);
 		}
 
 	      if(!gPlotFilebuff(buff, mult, &gpp))
 		{
-		  ajFmtError("Error in plotting\n");
-		  embExitBad();
+		  ajDie("Error in plotting\n");
 		}
 
 	      AJFREE(gpp.title);
@@ -174,15 +170,15 @@ int main(int argc, char *argv[])
 	      ajFmtPrintF(outf, "Sequence: %S\n", seqid);
 	      if(!gFileOutURLC(result, &outf))
 		{
-                  ajFmtError("File downloading error from:\n%s\n", result);
+                  ajDie("File downloading error from:\n%s\n", result);
 		  embExitBad();
 		}
 	    }
 	}
       else
 	{
-      soap_print_fault(&soap, stderr);
-    }
+          soap_print_fault(&soap, stderr);
+        }
 
     soap_destroy(&soap);
     soap_end(&soap);

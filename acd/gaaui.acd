@@ -2,6 +2,12 @@ application: gaaui [
   documentation: "Calculates various indece of amino acid usage"
   groups: "Protein:Properties"
   embassy: "gembassy"
+  relations: "EDAM_topic:0613 Peptides and amino acids"
+  relations: "EDAM_operation:0250 Protein property calculation"
+  relations: "EDAM_operation:0398 Protein molecular weight calculation"
+  relations: "EDAM_operation:2574 Protein hydropathy calculation"
+  relations: "EDAM_operation:0401 Protein hydropathy calculation
+              (from sequence)"
 ]
 
 section: input [
@@ -13,6 +19,7 @@ section: input [
     parameter: "Y"
     features: "Y"
     type: "nucleotide"
+    relations: "EDAM_data:0849 Sequence record"
   ]
 
 endsection: input
@@ -24,6 +31,7 @@ section: advanced [
 
   string: id [
     information: "ID of a group"
+    knowntype: "name"
     default: ""
   ]
 
@@ -41,6 +49,13 @@ section: output [
 
   outfile: outfile [
     parameter: "Y"
+    information: "AAINDEX entry output file"
+    knowntype: "aaindex data"
+    relations: "EDAM_data:2016 Amino acid property"
+    relations: "EDAM_data:1501 Amino acid index"
+    relations: "EDAM_data:1502 Amino acid index (chemical classes)"
+    relations: "EDAM_data:1506 Amino acid index (hydropathy)"
+    relations: "EDAM_data:1505 Amino acid index (molecular weight)"
   ]
 
 endsection: output

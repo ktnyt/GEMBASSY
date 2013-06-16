@@ -4,8 +4,9 @@
 ** Draws DNA Walk map of the genome
 **
 ** @author Copyright (C) 2012 Hidetoshi Itaya
-** @version 1.0.0   First release
+** @version 1.0.1   Revision 1
 ** @modified 2012/1/20  Hidetoshi Itaya  Created!
+** @modified 2013/6/16  Revision 1
 ** @@
 **
 ** This program is free software; you can redistribute it and/or
@@ -24,15 +25,12 @@
 ******************************************************************************/
 
 #include "emboss.h"
-
 #include "soapH.h"
 #include "GLANGSoapBinding.nsmap"
-
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
-#include "../include/gfile.h"
-#include "../include/ghttp.h"
+#include "glibs.h"
 
 
 
@@ -45,7 +43,7 @@
 
 int main(int argc, char *argv[])
 {
-  embInitPV("gdnawalk", argc, argv, "GEMBASSY", "1.0.0");
+  embInitPV("gdnawalk", argc, argv, "GEMBASSY", "1.0.1");
 
   struct soap soap;
   struct ns1__dnawalkInputParams params;
@@ -57,13 +55,14 @@ int main(int argc, char *argv[])
   AjPFile   outf     = NULL;
   AjPStr    filename = NULL;
   AjPStr    outfname = NULL;
-  AjPStr    tempname = NULL;
+  AjPStr    format   = NULL;
 
   char *in0;
   char *result;
 
   seqall   = ajAcdGetSeqall("sequence");
   filename = ajAcdGetString("goutfile");
+  format   = ajAcdGetString("format");
 
   params.gmap = 0;
 
@@ -94,34 +93,42 @@ int main(int argc, char *argv[])
 			       &result
                                ) == SOAP_OK)
 	{
-	  outfname = ajStrNew();
-	  tempname = ajStrNew();
+          outfname = ajStrNewS(ajFmtStr("%S.%ld.%S",
+                                        filename,
+                                        ajSeqallGetCount(seqall),
+                                        format));
 
-	  ajStrAssignS(&outfname, filename);
+          outf = ajFileNewOutNameS(outfname);
 
-	  ajStrFromLong(&tempname, ajSeqallGetCount(seqall));
-	  ajStrInsertC(&tempname, 0, ".");
-	  ajStrAppendC(&tempname, ".png");
-
-	  if(!ajStrExchangeCS(&outfname, ".png", tempname))
-	    {
-	      ajStrAppendS(&outfname, tempname);
-	    }
-
-	  outf = ajFileNewOutNameS(outfname);
-
-	  ajStrDel(&outfname);
-	  ajStrDel(&tempname);
-
-	  if(!gHttpGetBinC(result, &outf))
+          if(!outf)
             {
-              ajFmtError("File downloading error from:\n%s\n", result);
-              embExitBad();
+              ajDie("File open error\n");
+            }
+
+          if(!ajStrMatchC(format, "png"))
+            {
+              if(!gHttpConvertC(result, &outf, ajStrNewC("png"), format))
+                {
+                  ajDie("File downloading error from:\n%s\n", result);
+                }
+              else
+                {
+                  ajFmtPrint("Created %S\n", outfname);
+                }
             }
           else
             {
-              ajFmtError("Created %S\n", outfname);
+              if(!gHttpGetBinC(result, &outf))
+                {
+                  ajDie("File downloading error from:\n%s\n", result);
+                }
+              else
+                {
+                  ajFmtPrint("Created %S\n", outfname);
+                }
             }
+
+          ajStrDel(&outfname);
         }
       else
         {

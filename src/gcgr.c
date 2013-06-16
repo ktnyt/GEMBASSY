@@ -4,8 +4,9 @@
 ** Create a Chaos Game Representation of a given sequence
 **
 ** @author Copyright (C) 2012 Hidetoshi Itaya
-** @version 1.0.0   First release
+** @version 1.0.1   Revision 1
 ** @modified 2012/1/20  Hidetoshi Itaya  Created!
+** @modified 2013/6/16  Revision 1
 ** @@
 **
 ** This program is free software; you can redistribute it and/or
@@ -24,19 +25,25 @@
 ******************************************************************************/
 
 #include "emboss.h"
-
 #include "soapH.h"
 #include "GLANGSoapBinding.nsmap"
-
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
-#include "../include/gfile.h"
-#include "../include/ghttp.h"
+#include "glibs.h"
+
+
+
+
+/* @prog gcgr ****************************************************************
+**
+** Create a Chaos Game Representation of a given sequence
+**
+*****************************************************************************/
 
 int main(int argc, char *argv[])
 {
-  embInitPV("gcgr", argc, argv, "GEMBASSY", "1.0.0");
+  embInitPV("gcgr", argc, argv, "GEMBASSY", "1.0.1");
 
   struct soap soap;
   struct ns1__cgrInputParams params;
@@ -46,22 +53,20 @@ int main(int argc, char *argv[])
   AjPStr    inseq    = NULL;
   AjPStr    seqid    = NULL;
   ajint	    width    = 0;
-  ajint	    level    = 0;
   AjPFile   outf     = NULL;
   AjPStr    filename = NULL;
   AjPStr    outfname = NULL;
-  AjPStr    tempname = NULL;
+  AjPStr    format   = NULL;
 
   char *in0;
   char *result;
 
   seqall   = ajAcdGetSeqall("sequence");
   width    = ajAcdGetInt("width");
-  level    = ajAcdGetInt("level");
   filename = ajAcdGetString("goutfile");
+  format   = ajAcdGetString("format");
 
   params.width = width;
-  params.level = level;
 
   while(ajSeqallNext(seqall, &seq))
     {
@@ -87,40 +92,42 @@ int main(int argc, char *argv[])
 			   &result
                            ) == SOAP_OK)
 	{
-	  outfname = ajStrNew();
-	  tempname = ajStrNew();
-
-          ajStrAssignS(&outfname, filename);
-
-	  ajStrFromLong(&tempname, ajSeqallGetCount(seqall));
-	  ajStrInsertC(&tempname, 0, ".");
-	  ajStrAppendC(&tempname, ".png");
-
-	  if(!ajStrExchangeCS(&outfname, ".png", tempname))
-	    {
-	      ajStrAppendS(&outfname, tempname);
-	    }
+	  outfname = ajStrNewS(ajFmtStr("%S.%ld.%S",
+                                        filename,
+                                        ajSeqallGetCount(seqall),
+                                        format));
 
 	  outf = ajFileNewOutNameS(outfname);
 
           if(!outf)
             {
-              ajFmtError("File open error\n");
-              embExitBad();
+              ajDie("File open error\n");
+            }
+
+          if(!ajStrMatchC(format, "png"))
+            {
+              if(!gHttpConvertC(result, &outf, ajStrNewC("png"), format))
+                {
+                  ajDie("File downloading error from:\n%s\n", result);
+                }
+              else
+                {
+                  ajFmtPrint("Created %S\n", outfname);
+                }
+            }
+          else
+            {
+              if(!gHttpGetBinC(result, &outf))
+                {
+                  ajDie("File downloading error from:\n%s\n", result);
+                }
+              else
+                {
+                  ajFmtPrint("Created %S\n", outfname);
+                }
             }
 
 	  ajStrDel(&outfname);
-	  ajStrDel(&tempname);
-
-	  if(!gHttpGetBinC(result, &outf))
-	    {
-              ajFmtError("File downloading error from:\n%s\n", result);
-	      embExitBad();
-	    }
-          else
-            {
-              ajFmtError("Created %S\n", outfname);
-            }
 	}
       else
 	{

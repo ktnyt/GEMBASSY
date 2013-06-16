@@ -4,8 +4,9 @@
 ** Calculates the GC skew of the input sequence
 **
 ** @author Copyright (C) 2012 Hidetoshi Itaya
-** @version 1.0.0   First release
+** @version 1.0.1   Revision 1
 ** @modified 2012/1/20  Hidetoshi Itaya  Created!
+** @modified 2013/6/16  Revision 1
 ** @@
 **
 ** This program is free software; you can redistribute it and/or
@@ -24,15 +25,12 @@
 ******************************************************************************/
 
 #include "emboss.h"
-
 #include "soapH.h"
 #include "GLANGSoapBinding.nsmap"
-
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
-#include "../include/gfile.h"
-#include "../include/gplot.h"
+#include "glibs.h"
 
 
 
@@ -45,7 +43,7 @@
 
 int main(int argc, char *argv[])
 {
-  embInitPV("ggcskew", argc, argv, "GEMBASSY", "1.0.0");
+  embInitPV("ggcskew", argc, argv, "GEMBASSY", "1.0.1");
 
   struct soap soap;
   struct ns1__gcskewInputParams params;
@@ -139,14 +137,12 @@ int main(int argc, char *argv[])
 
 	      if(!gFilebuffURLC(result, &buff))
 		{
-                  ajFmtError("File downloading error from:\n%s\n", result);
-		  embExitBad();
+                  ajDie("File downloading error from:\n%s\n", result);
 		}
 
 	      if(!gPlotFilebuff(buff, mult, &gpp))
 		{
-		  ajFmtError("Error in plotting\n");
-		  embExitBad();
+		  ajDie("Error in plotting\n");
 		}
 
 	      AJFREE(gpp.title);
@@ -160,15 +156,14 @@ int main(int argc, char *argv[])
 	      ajFmtPrintF(outf, "Sequence: %S\n", seqid);
 	      if(!gFileOutURLC(result, &outf))
 		{
-                  ajFmtError("File downloading error from:\n%s\n", result);
-		  embExitBad();
+                  ajDie("File downloading error from:\n%s\n", result);
 		}
 	    }
 	}
       else
 	{
-      soap_print_fault(&soap, stderr);
-    }
+          soap_print_fault(&soap, stderr);
+        }
 
     soap_destroy(&soap);
     soap_end(&soap);

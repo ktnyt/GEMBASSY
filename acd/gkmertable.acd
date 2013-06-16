@@ -1,0 +1,56 @@
+application: gkmertable [
+  documentation: "Create an image showing all k-mer abundance within a sequence"
+  groups: "Display"
+  embassy: "gembassy"
+  relations: "EDAM_topic:0092 Data visualisation"
+  relations: "EDAM_topic:0157 Sequence composition analysis"
+  relations: "EDAM_operation:0377 Sequence composition calculation
+              (nucleic acid)"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+
+  seqall: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+    features: "Y"
+    relations: "EDAM_data:0849 Sequence record"
+  ]
+
+  string: format [
+    information: "Output file format. Dependent on 'convert' command"
+    knowntype: "output format"
+    default: "png"
+  ]
+
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+
+  integer: k [
+    information: "Length of oligomer"
+    default: "6"
+  ]
+
+endsection: advanced
+
+section: output [
+  information: "Output section"
+  type: "page"
+]
+
+  string: goutfile [
+    parameter: "Y"
+    information: "Output file for non interactive displays"
+    knowntype: "output filename"
+    relations: "EDAM_data:2166 Sequence composition plot"
+    default: "gkmertable"
+  ]
+
+endsection: output

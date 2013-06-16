@@ -1,0 +1,71 @@
+application: gviewcds [
+  documentation: "Displays a graph of nucleotide contents around start and stop codons"
+  groups: "Nucleic:Composition"
+  embassy: "gembassy"
+  relations: "EDAM_topic:0157 Sequence composition analysis"
+  relations: "EDAM_operation:0377 Sequence composition calculation
+              (nucleic acid)"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+
+  seqall: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+    features: "Y"
+    relations: "EDAM_data:0849 Sequence record"
+  ]
+
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+
+  integer: length [
+    information: "Length in bases to show around start/stop codons"
+    default: "100"
+  ]
+
+  integer: gap [
+    information: "Gap shown in graph in between start/stop codon neighbors"
+    default: "3"
+  ]
+
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "N"
+  ]
+
+endsection: advanced
+
+section: output [
+  information: "Output section"
+  type: "page"
+]
+
+  toggle: plot [
+    information: "Include to plot result"
+    default: "N"
+  ]
+
+  xygraph: graph [
+    standard: "$(plot)"
+    gtitle: "gviewcds of $(sequence.name)"
+    multiple: "4"
+  ]
+
+  outfile: outfile [
+    standard: "@(!$(plot))"
+    nullok: "Y"
+    nulldefault: "$(plot)"
+    information: "Program compseq output file (optional)"
+    knowntype: "compseq output"
+    relations: "EDAM_data:3086 Nucleic acid sequence composition"
+  ]
+
+endsection: output

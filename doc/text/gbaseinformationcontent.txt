@@ -1,0 +1,184 @@
+                             gbaseinformationcontent
+Function
+
+   Calculates and graphs the sequence conservation using information content
+
+Description
+
+   This function calculates and graphs the sequence conservation in regions 
+   around the start/stop codons using information content.
+  
+   G-language SOAP service is provided by the
+   Institute for Advanced Biosciences, Keio University.
+   The original web service is located at the following URL:
+
+   http://www.g-language.org/wiki/soap
+
+   WSDL(RPC/Encoded) file is located at:
+
+   http://soap.g-language.org/g-language.wsdl
+
+   Documentation on G-language Genome Analysis Environment methods are
+   provided at the Document Center
+
+   http://ws.g-language.org/gdoc/
+
+Usage
+
+   Here is a sample session with gbaseinformationcontent
+
+   Simply calculate information content and write out to CSV file.
+
+% gbaseinformationcontent refseqn:NC_000913
+Calculates and graphs the sequence conservation using information content
+Output file [nc_000913.gbaseinformationcontent]:
+
+   Go to the output files for this example
+
+   Example 2
+
+   Plot a graph with EMBOSS graphics device.
+
+% gbaseinformationcontent -plot refseqn:NC_000913
+Calculates and graphs the sequence conservation using information content
+Created gbaseinformationcontent.ps
+
+Command line arguments
+
+   Standard (Mandatory) qualifiers (* if not always prompted):
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
+                                  format, or reference (input USA)
+*  -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
+                                  (ps, hpgl, hp7470, hp7580, meta, cps, x11,
+                                  tek, tekt, none, data, xterm, png, gif, svg)
+*  -outfile            outfile    [*.gbaseinformationcontent]
+                                  Output file name
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -position           string     [start] either 'start' (around start codon)
+                                  or 'end' (around stop codon) to create the
+                                  PWM (Any string)
+   -upstream           integer    [30] Length upstream of specified position
+                                  to create PWM (Any integer value)
+   -downstream         integer    [30] Length downstream of specified position
+                                  to create PWM (Any integer value)
+   -patlen             integer    [3] Length of oligomer to count (Any integer
+                                  value)
+   -accid              boolean    [N] Include to use sequence accession ID as
+                                  query
+   -plot               toggle     [N] Include to plot result
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+Input file format
+
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
+
+   gbaseinformationcontent reads nucleotide sequences.
+
+Output file format
+
+   The output from gbaseinformationcontent is to the specified graphics device
+   or a CSV file.
+
+   File: nc_000913.gbaseinformationcontent
+
+Sequence: NC_000913
+-30,2.42600
+-29,2.42930
+-28,2.43389
+-27,2.43186
+-26,2.44317
+-25,2.44222
+-24,2.44563
+-23,2.46172
+-22,2.46711
+
+   [Part of this file has been deleted for brevity]
+
+21,2.27642
+22,2.47003
+23,2.46355
+24,2.32715
+25,2.46289
+26,2.46106
+27,2.27744
+28,2.45762
+29,2.48301
+30,2.29212
+
+Data files
+
+   None.
+
+Notes
+
+   None.
+
+References
+
+   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
+      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
+      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
+
+   Arakawa, K. and Tomita, M. (2006) G-language System as a Platform for
+      large-scale analysis of high-throughput omics data, J. Pest Sci.,
+      31, 7.
+
+   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
+      Analysis Environment with REST and SOAP Web Service Interfaces,
+      Nucleic Acids Res., 38, W700-W705.
+
+Warnings
+
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
+
+Diagnostic Error Messages
+
+   None.
+
+Exit status
+
+   It always exits with a status of 0.
+
+Known bugs
+
+   None.
+
+See also
+
+   gbaseentropy            Calculates and graphs the sequence conservation
+                           using Shanon uncertainty (entropy)
+   gbaserelativeentropy    Calculates and graphs the sequence conservation
+                           using Kullback-Leibler divergence (relative
+                           entropy)
+
+Author(s)
+
+   Hidetoshi Itaya (celery@g-language.org)
+   Institute for Advanced Biosciences, Keio University
+   252-0882 Japan
+
+   Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Institute for Advanced Biosciences, Keio University
+   252-0882 Japan
+
+History
+
+   2012 - Written by Hidetoshi Itaya
+
+Target users
+
+   This program is intended to be used by everyone and everything, from
+   naive users to embedded scripts.
+
+Comments
+
+   None.
+

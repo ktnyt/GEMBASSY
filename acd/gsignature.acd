@@ -2,6 +2,9 @@ application: gsignature [
   documentation: "Calculate oligonucleotide usage (genomic signature)"
   groups: "Nucleic:Composition"
   embassy: "gembassy"
+  relations: "EDAM_topic:0157 Sequence composition analysis"
+  relations: "EDAM_operation:0377 Sequence composition calculation
+              (nucleic acid)"
 ]
 
 section: input [
@@ -13,6 +16,7 @@ section: input [
     parameter: "Y"
     type: "nucleotide"
     features: "Y"
+    relations: "EDAM_data:0849 Sequence record"
   ]
 
 endsection: input
@@ -28,13 +32,14 @@ section: advanced [
   ]
 
   boolean: bothstrand [
-    information: "Use direct (0) or both (1) strand"
-    default: "1"
+    information: "Include to use both strands direct used otherwise"
+    default: "Y"
   ]
 
   boolean: oe [
     information: "Use observed (0) or O/E (1) value"
-    default: "1"
+    information: "Include to use O/E value observed values used otherwise"
+    default: "Y"
   ]
 
   boolean: accid [
@@ -45,12 +50,15 @@ section: advanced [
 endsection: advanced
 
 section: output [
-	information: "Output section"
-	type: "page"
+  information: "Output section"
+  type: "page"
 ]
 
   outfile: outfile [
     parameter: "Y"
+    information: "Program compseq output file"
+    knowntype: "compseq output"
+    relations: "EDAM_data:3086 Nucleic acid sequence composition"
   ]
 
 endsection: output

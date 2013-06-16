@@ -25,7 +25,7 @@ Description
    version 2 (also known as generalized GCSI: gGCSI) is invariant of the number
    of windows. GCSI version 1 is calculated as an arithmetic mean (as opposed to 
    the geometric mean of gGCSI) of SR (spectral ratio, the signal-to-noise ratio
-   of 1Hz power spectrum) and dist. 
+   of 1Hz power spectrum) and dist.
 
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.

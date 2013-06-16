@@ -4,8 +4,9 @@
 ** Retrieves various gene related infomration from genome flatfile
 **
 ** @author Copyright (C) 2012 Hidetoshi Itaya
-** @version 1.0.0   First release
+** @version 1.0.1   Revision 1
 ** @modified 2012/1/20  Hidetoshi Itaya  Created!
+** @modified 2013/6/16  Revision 1
 ** @@
 **
 ** This program is free software; you can redistribute it and/or
@@ -24,8 +25,7 @@
 ******************************************************************************/
 
 #include "emboss.h"
-#include "../include/gfile.h"
-#include "../include/gpost.h"
+#include "glibs.h"
 
 
 
@@ -38,7 +38,7 @@
 
 int main(int argc, char *argv[])
 {
-  embInitPV("genret", argc, argv, "GEMBASSY", "1.0.0");
+  embInitPV("genret", argc, argv, "GEMBASSY", "1.0.1");
 
   AjPSeqall seqall;
   AjPSeq seq      = NULL;
@@ -52,6 +52,7 @@ int main(int argc, char *argv[])
   AjPStr seqid = NULL;
   AjBool valid = ajFalse;
   AjBool isseq = ajFalse;
+  AjBool isgbk = ajFalse;
 
   AjPFilebuff buff = NULL;
   AjPFile tmp_file = NULL;
@@ -93,6 +94,11 @@ int main(int argc, char *argv[])
     {
       isseq = ajTrue;
     }
+  else if(ajStrMatchC(access, "annotate") ||
+          ajStrMatchC(access, "output"))
+    {
+      isgbk = ajTrue;
+    }
   else
     {
       ajFmtPrintF(outfile, "gene,%S\n", access);
@@ -121,8 +127,7 @@ int main(int argc, char *argv[])
 
       if(!tmp_file)
         {
-          ajFmtError("List file (%S) open error\n", tmp_name);
-          embExitBad();
+          ajDie("List file (%S) open error\n", tmp_name);
         }
 
       gene = ajStrNew();
@@ -152,8 +157,7 @@ int main(int argc, char *argv[])
 
               if(!tmp_file)
                 {
-                  ajFmtError("Output file (%S) open error\n", tmp_name);
-                  embExitBad();
+                  ajDie("Output file (%S) open error\n", tmp_name);
                 }
 
               ajFmtPrintF(tmp_file, "%S", inseq);
@@ -170,8 +174,8 @@ int main(int argc, char *argv[])
             }
           else
             {
-              ajFmtError("Sequence does not have features\n"
-                         "Proceeding with sequence accession ID\n");
+              ajDie("Sequence does not have features\n"
+                    "Proceeding with sequence accession ID\n");
               accid = ajTrue;
             }
         }
@@ -187,24 +191,33 @@ int main(int argc, char *argv[])
 
           if(!ajStrGetLen(seqid))
             {
-              ajFmtError("No valid header information\n");
-              embExitBad();
+              ajDie("No valid header information\n");
             }
         }
 
-
       url = ajStrNew();
 
-      ajFmtPrintS(&url, "http://%S/%S/*/%S/%S", base, seqid, access, argument);
+      if(isgbk)
+        {
+          ajFmtPrintS(&url, "http://%S/%S/%S", base, seqid, access);
+        }
+      else
+        {
+          ajFmtPrintS(&url, "http://%S/%S/*/%S/%S", base, seqid, access, argument);
+        }
 
       if(!gFilebuffURLS(url, &buff))
         {
-          ajFmtError("GET error from %S\n", url);
-          embExitBad();
+          ajDie("GET error from %S\n", url);
         }
 
       while(ajBuffreadLine(buff, &line))
         {
+          if(isgbk){
+            ajFmtPrintF(outfile, "%S", line);
+            continue;
+          }
+
           ajStrRemoveLastNewline(&line);
 
           regex = ajRegCompC("^>");
@@ -229,7 +242,7 @@ int main(int argc, char *argv[])
                       if(ajRegExec(regex, line))
                         {
                           valid = ajTrue;
-                          if(!ajStrIsWild(regexstr))
+                          if(ajStrIsAlnum(regexstr))
                             {
                               ajStrExchangeSC(&gene, regexstr, "");
                             }

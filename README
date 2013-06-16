@@ -3,11 +3,10 @@
 
   All rights reserved. Copyright (C) 2012 by ITAYA Hidetoshi.
 
-  This EMBASSY package is free software for non-commercial and
-  education use only (limited due to wsdl2h); you can redistribute it
-  and/or modify it under the terms of the GNU General Public License as
-  published by the Free Software Foundation, either version 2 of the
-  License, or any later version expect commercial use.
+  This EMBASSY package is free software. You can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by the
+  Free Software Foundation, either version 2 of the License, or any later
+  version.
 
   See also GNU General Public License Version 2, included in this
   package as COPYING.
@@ -39,10 +38,12 @@
 
 REQUIREMENTS
    EMBOSS (> 6.5.7) - This EMBASSY package requires EMBOSS version 6.5.7 or
-   above.
+                      above.
+
    libpng (> 1.5.13) - (Recommended) Some older versions of libpng have a
-   problem with the setjmp.h inclusion.
-   libcurl (> 7.29.0) - Required for file POST
+                       problem with the setjmp.h inclusion.
+
+   libcurl-devel (> 7.29.0) - Required for file POST
 
 INSTALLATION
   Is EMBOSS already installed in your system?
@@ -55,7 +56,7 @@ INSTALLATION
     is EMBOSS-latest.tar.gz
 
     1. Download and compile EMBOSS source code
-      % wget ftp://emboss.open-bio.org/pub/EMBOSS/EMBOSS-latest.tar.gz
+      % wget ftp://emboss.open-bio.org/pub/EMBOSS/emboss-latest.tar.gz
       (or "curl -O ftp://emboss.open-bio.org/pub/EMBOSS/EMBOSS-latest.tar.gz")
       % tar zxf EMBOSS-latest.tar.gz
       % cd EMBOSS-6.5.7
@@ -82,11 +83,6 @@ INSTALLATION
     When running the './configure' command do the following instead:
       % ./configure --prefix=/PATH/TO/DIR/ (ex. --prefix=$HOME/opt)
 
-    Then rewrite the "emboss_acdroot" and "emboss_data" value in ~/.embossrc
-    file to the corresponding directories.
-    (ex. emboss_acdroot = ~/share/EMBOSS/acd)
-    (ex. emboss_data = ~/share/EMBOSS/data)
-
   EMBOSS is already installed:
     When EMBOSS is already installed, GEMBASSY must be installed to the exact
     same directory as the existing EMBOSS.
@@ -103,6 +99,22 @@ INSTALLATION
       % ./configure --prefix=/PATH/TO/EMBOSS/ (ex. --prefix=/usr/local)
       % make
       % make install
+
+
+    Installing custom EMBOSS configuration files
+      We highly reccomend users installing the custom EMBOSS configuration files
+      from the KBWS package. The configuration file provides database definition
+      for various databases, allowing versatile access to various sequence
+      entries.
+
+      % wget http://soap.g-language.org/kbws/embossrc
+       (or "curl -O http://soap.g-language.org/kbws/embossrc")
+      % mv embossrc ~/.embossrc
+
+    Then rewrite the "emboss_acdroot" and "emboss_data" value in ~/.embossrc
+    file to the corresponding directories.
+    (ex. emboss_acdroot = ~/share/EMBOSS/acd)
+    (ex. emboss_data = ~/share/EMBOSS/data)
 
   Update of EMBOSS
     When users are upgrading EMBOSS, please be sure to uninstall old version
@@ -146,6 +158,17 @@ INSTALLATION
 DATABASE DEFINITION
    The database definitions for following commands are available at
    http://soap.g-language.org/kbws/embossrc
+   Input files used in the examples are provided in the data/ directory.
+
+   INSTALLATION:
+     % wget http://soap.g-language.org/kbws/embossrc
+      (or "curl -O http://soap.g-language.org/kbws/embossrc")
+     % mv embossrc ~/.embossrc
+
+    Then rewrite the "emboss_acdroot" and "emboss_data" value in ~/.embossrc
+    file to the corresponding directories.
+    (ex. emboss_acdroot = ~/share/EMBOSS/acd)
+    (ex. emboss_data = ~/share/EMBOSS/data)
 
 INFORMATION OF GEMBASSY TOOLS
    List of all tools
@@ -155,8 +178,8 @@ INFORMATION OF GEMBASSY TOOLS
    Documentation
       Detailed documentation are available to be viewed with the "tfm"
       utility included in EMBOSS.
-      Here is an example for "gamino_info"
-      % tfm gamino_info
+      Here is an example for "gaminoinfo"
+      % tfm gaminoinfo
 
 USAGE EXAMPLE
    The following examples show basic usages of three GEMBASSY tools and the
@@ -168,13 +191,13 @@ USAGE EXAMPLE
       Created ggcskew.ps
 
    2. ggcsi (GC Skew Index)
-      % ggcsi -show accid.fasta -accid
+      % ggcsi accid.fasta -accid stdout
       GC Skew Index: an index for strand-specefic mutational bias
       Input nucleotide sequence: refseqn:NC_000964
       Sequence: NC_000964 GCSI: 0.214855185905019 SA: 976.152832384745 DIST: 170.245783
 
-   3. grep_ori_ter (Replication Origin and Terminus)
-      % greporiter -show
+   3. greporiter (Replication Origin and Terminus)
+      % greporiter -outfile stdout
       Get the positions of replication origin and terminus
       Input nucleotide sequence: accid.fasta
       Sequence: NC_000913 Origin: 3923881 Terminus: 1550412
