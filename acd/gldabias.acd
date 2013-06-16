@@ -1,0 +1,61 @@
+application: gldabias [
+  documentation: "Calculate strand bias of bacterial genome using linear
+                  discriminant analysis (LDA)"
+  groups: "Nucleic:Composition"
+  embassy: "gembassy"
+  relations: "EDAM_topic:0157 Sequence composition analysis"
+  relations: "EDAM_operation:0377 Sequence composition calculation
+              (nucleic acid)"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+
+  seqall: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+    features: "Y"
+    relations: "EDAM_data:0849 Sequence record"
+  ]
+
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+
+  integer: coefficients [
+    information: "Show LDA coefficients"
+    default: "0"
+  ]
+
+  selection: variable [
+    information: "Data to use for LDA. Either 'base', 'codonbase', 'codon', or
+                  'amino'"
+    values: "base;codonbase;codon;amino"
+    default: "codon"
+  ]
+
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "N"
+  ]
+
+endsection: advanced
+
+section: output [
+  information: "Output section"
+  type: "page"
+]
+
+  outfile: outfile [
+    parameter: "Y"
+    information: "Program compseq output file"
+    knowntype: "compseq output"
+    relations: "EDAM_data:3086 Nucleic acid sequence composition"
+  ]
+
+endsection: output

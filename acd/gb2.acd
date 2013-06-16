@@ -2,6 +2,9 @@ application: gb2 [
   documentation: "Calculate strand bias of bacterial genome using B2 index"
   groups: "Nucleic:Composition"
   embassy: "gembassy"
+  relations: "EDAM_topic:0157 Sequence composition analysis"
+  relations: "EDAM_operation:0377 Sequence composition calculation
+              (nucleic acid)"
 ]
 
 section: input [
@@ -13,6 +16,7 @@ section: input [
     parameter: "Y"
     type: "nucleotide"
     features: "Y"
+    relations: "EDAM_data:0849 Sequence record"
   ]
 
 endsection: input
@@ -34,13 +38,11 @@ section: output [
   type: "page"
 ]
 
-  toggle: show [
-    information: "Include to dump result to stdout"
-    default: "N"
-  ]
-
   outfile: outfile [
     parameter: "Y"
+    information: "Program compseq output file"
+    knowntype: "compseq output"
+    relations: "EDAM_data:3086 Nucleic acid sequence composition"    
   ]
 
 endsection: output

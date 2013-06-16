@@ -26,6 +26,66 @@
 
 
 
+/* @func gHttpConvertS ********************************************************
+**
+** Converts result image to specified format
+**
+** @param [r] url [AjPStr] URL to lookup
+** @param [r] outf [AjPFile*] File to write to
+** @return [AjBool]
+** @@
+******************************************************************************/
+
+AjBool gHttpConvertS(AjPStr url, AjPFile* outf, AjPStr informat, AjPStr outformat)
+{
+  AjPRegexp regexp = NULL;
+  AjPStr jobid = NULL;
+  AjPStr convert = NULL;
+
+  regexp = ajRegCompC("^.+jobid=");
+
+  if(!ajRegExec(regexp, url))
+    {
+      return ajFalse;
+    }
+
+  if(!ajRegPost(regexp, &jobid))
+    {
+      return ajFalse;
+    }
+
+  convert = ajFmtStr("http://soap.g-language.org/WS/convert.cgi?"
+                     "jobid=%S&informat=%S&outformat=%S",
+                     jobid, informat, outformat);
+
+  if(!gHttpGetBinS(convert, outf)) {
+    return ajFalse;
+  }
+
+  return ajTrue;
+}
+
+
+
+
+/* @func gHttpConvertC ********************************************************
+**
+** Converts result image to specified format
+**
+** @param [r] url [AjPStr] URL to lookup
+** @param [r] outf [AjPFile*] File to write to
+** @return [AjBool]
+** @@
+******************************************************************************/
+
+AjBool gHttpConvertC(char* url, AjPFile* outf, AjPStr informat, AjPStr outformat)
+{
+  return gHttpConvertS(ajStrNewC(url), outf, informat, outformat);
+}
+
+
+
+
 /* @func gHttpGetBinS *********************************************************
 **
 ** Writes out remote binary file to AjPFile

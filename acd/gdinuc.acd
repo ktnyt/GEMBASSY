@@ -2,6 +2,9 @@ application: gdinuc [
   documentation: "Calculates dinucleotide usage "
   groups: "Nucleic:Codon Usage"
   embassy: "gembassy"
+  relations: "EDAM_topic:0157 Sequence composition analysis"
+  relations: "EDAM_operation:0377 Sequence composition calculation
+              (nucleic acid)"
 ]
 
 section: input [
@@ -13,6 +16,7 @@ section: input [
     parameter: "Y"
     type: "nucleotide"
     features: "Y"
+    relations: "EDAM_data:0849 Sequence record"
   ]
 
 endsection: input
@@ -23,13 +27,17 @@ section: advanced [
 ]
 
   boolean: translate [
-    information: "'1' when translates using standard codon table"
-    default: "0"
+    information: "Include when translates using standard codon table"
+    default: "N"
   ]
 
-  string: position [
-    information: "codon position or reading frame;\n'' when assessing all codon positions\n'12' when assessing the reading frame 1-2\n'23' when assessing the reading frame 2-3\n'31' when assessing the reading frame 3-1"
-    default: ""
+  list: position [
+    information: "Codon position or reading frame"
+    values: "all:Assess all codon positions;
+             12:Assess the reading frame 1-2;
+             23:Assess the reading frame 2-3;
+             31:Assess the reading frame 3-1"
+    default: "all"
   ]
 
   string: id [
@@ -38,7 +46,8 @@ section: advanced [
   ]
 
   string: delkey [
-    information: "regular expression to delete key (i.e. amino acids and nucleotides)"
+    information: "Regular expression to delete key (i.e. amino acids and nucleotides)"
+    knowntype: "regular expression"
     default: "[^ACDEFGHIKLMNPQRSTVWYacgtU]"
   ]
 
@@ -50,12 +59,15 @@ section: advanced [
 endsection: advanced
 
 section: output [
-	information: "Output section"
-	type: "page"
+  information: "Output section"
+  type: "page"
 ]
 
   outfile: outfile [
     parameter: "Y"
+    information: "Program compseq output file"
+    knowntype: "compseq output"
+    relations: "EDAM_data:3086 Nucleic acid sequence composition"
   ]
 
 endsection: output

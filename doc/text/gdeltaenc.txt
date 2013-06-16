@@ -1,0 +1,133 @@
+                                   gdelta_enc
+Function
+
+   Calculate the codon usage bias related to translation optimization
+   (delta ENC)
+
+Description
+
+
+
+   Institute for Advanced Biosciences, Keio University.
+   The original web service is located at the following URL:
+
+   http://www.g-language.org/wiki/soap
+
+   WSDL(RPC/Encoded) file is located at:
+
+   http://soap.g-language.org/g-language.wsdl
+
+   Documentation on G-language Genome Analysis Environment methods are
+   provided at the Document Center:
+
+   http://ws.g-language.org/gdoc/
+
+Usage
+
+   Here is a sample session with gdelta_enc
+
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
+
+% gdelta_enc -show refseqn:NC_000913
+Calculate the codon usage bias related to translation optimization (delta ENC)
+Sequence: NC_000913 delta ENC: 0.23826860841424
+
+Command line arguments
+
+   Standard (Mandatory) qualifiers (* if not always prompted):
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
+                                  format, or reference (input USA)
+*  -outfile            outfile    [*.gdelta_enc] Output file name
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -accid              string     Include to use sequence accession ID as
+                                  query (Any string)
+   -show               toggle     [N] Include to dump result to stdout
+
+   General qualifiers:
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+
+Input file format
+
+   gdelta_enc reads nucleotide sequences.
+
+Output file format
+
+   The output from gdelta_enc is to a file or stdout.
+
+Data files
+
+   None.
+
+Notes
+
+   None.
+
+References
+
+   Rocha EPC (2004) "Codon usage bias from tRNA's point of view: Redundancy, 
+      specialization, and efficient decoding for translation optimization",
+      Genome Research, 14(11):2279-2286
+
+   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
+      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
+      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
+
+   Arakawa, K. and Tomita, M. (2006) G-language System as a Platform for
+      large-scale analysis of high-throughput omics data, J. Pest Sci.,
+      31, 7.
+
+   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
+      Analysis Environment with REST and SOAP Web Service Interfaces,
+      Nucleic Acids Res., 38, W700-W705.
+
+Warnings
+
+   This tool may give a warning on feature output when installed on
+   EMBOSS-6.5.7, but we have no known errors in analysis.
+
+Diagnostic Error Messages
+
+   None.
+
+Exit status
+
+   It always exits with a status of 0.
+
+Known bugs
+
+   None.
+
+See also
+
+   gcbi     Calculates the codon bias index (CBI)
+   gicdi    Calculates the intrinsic codon deviation index (ICDI)
+   gs_value Calculate the strength of selected codon usage bias (S)
+
+Author(s)
+
+   Hidetoshi Itaya (celery@g-language.org)
+   Institute for Advanced Biosciences, Keio University
+   252-0882 Japan
+
+   Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
+   Institute for Advanced Biosciences, Keio University
+   252-0882 Japan
+
+History
+
+   2012 - Written by Hidetoshi Itaya
+
+Target users
+
+   This program is intended to be used by everyone and everything, from
+   naive users to embedded scripts.
+
+Comments
+
+   None.
+

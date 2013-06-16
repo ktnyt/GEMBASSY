@@ -2,6 +2,10 @@ application: gshuffleseq [
   documentation: "Create randomized sequence with conserved k-mer composition"
   groups: "Nucleic:Mutation"
   embassy: "gembassy"
+  groups: "Nucleic:Mutation, Protein:Mutation"
+  relations: "EDAM_topic:0091 Data handling"
+  relations: "EDAM_topic:0199 Genetic variation"
+  relations: "EDAM_operation:0367 Sequence mutation and randomization"
 ]
 
 section: input [
@@ -11,6 +15,8 @@ section: input [
 
   seqall: sequence [
     parameter: "Y"
+    type: "any"
+    relations: "EDAM_data:0849 Sequence record"
   ]
 
 endsection: input
@@ -21,7 +27,7 @@ section: advanced [
 ]
 
   integer: k [
-    information: "k-mer to preserve composition"
+    information: "Sequence k-mer to preserve composition"
     default: "1"
   ]
 
@@ -31,8 +37,10 @@ section: output [
   information: "Output section"
   type: "page"
 ]
+
   seqout: outseq [
     parameter: "Y"
+    relations: "EDAM_data:0849 Sequence record"
   ]
 
 endsection: output

@@ -7,6 +7,8 @@
 ** Prototype definitions
 */
 
+AjBool gHttpConvertS(AjPStr url, AjPFile* outf, AjPStr informat, AjPStr outformat);
+AjBool gHttpConvertC(char* res, AjPFile* outf, AjPStr informat, AjPStr outformat);
 AjBool gHttpGetBinS(AjPStr url, AjPFile* outf);
 AjBool gHttpGetBinC(char* url, AjPFile* outf);
 AjPFilebuff gHttpPostFileSS(AjPStr url, AjPStr filename);

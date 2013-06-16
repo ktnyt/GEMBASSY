@@ -16,5 +16,6 @@ AjBool gFilebuffURLS(AjPStr url, AjPFilebuff* buff);
 AjBool gFilebuffURLC(char* url, AjPFilebuff* buff);
 AjBool gFormatGenbank(AjPSeq seq, AjPStr *str);
 void gAssignUniqueName(AjPStr *string);
+AjPStr gCreateUniqueName();
 
 #endif

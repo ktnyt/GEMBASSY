@@ -1,0 +1,50 @@
+application: gqueryarm [
+  documentation: "Get the replication arm name (left or right) from the given position"
+  groups: "Nucleic:Composition"
+  embassy: "gembassy"
+  relations: "EDAM_topic:3073 Nucleic acid feature detection"
+  relations: "EDAM_operation:0415 Nucleic acid feature prediction"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+
+  seqall: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+    features: "Y"
+    relations: "EDAM_data:0849 Sequence record"
+  ]
+
+  integer: position [
+    parameter: "Y"
+    information: "Position to query"
+  ]
+
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "N"
+  ]
+
+endsection: advanced
+
+section: output [
+        information: "Output section"
+        type: "page"
+]
+
+  outfile: outfile [
+    parameter: "Y"
+    relations: "EDAM_data:1276 Nucleic acid features"
+  ]
+
+endsection: output

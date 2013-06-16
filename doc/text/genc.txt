@@ -5,7 +5,7 @@ Function
 
 Description
 
-   This program calculates the effective number of codons (Nc).
+
 
   
    G-language SOAP service is provided by the

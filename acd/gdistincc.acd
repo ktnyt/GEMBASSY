@@ -1,0 +1,56 @@
+application: gdistincc [
+  documentation: "Calculates the distance between two loci in circular chromosomes"
+  groups: "Nucleic:Composition"
+  embassy: "gembassy"
+  relations: "EDAM_topic:3073 Nucleic acid feature detection"
+  relations: "EDAM_operation:0415 Nucleic acid feature prediction"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+
+  seqall: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+    features: "Y"
+    relations: "EDAM_data:0849 Sequence record"
+  ]
+
+  integer: first [
+    parameter: "Y"
+    information: "Position to find the distance"
+  ]
+
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+
+  integer: second [
+    information: "If the second position is negative, position of replication origin is used"
+    default: "-1"
+  ]
+
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "Y"
+  ]
+
+endsection: advanced
+
+section: output [
+  information: "Output section"
+  type: "page"
+]
+
+  outfile: outfile [
+    parameter: "Y"
+    relations: "EDAM_data:3127 Nucleic acid features (replication and
+                recombination)"
+  ]
+
+endsection: output

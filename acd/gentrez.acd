@@ -9,46 +9,17 @@ section: input [
   type: "page"
 ]
 
-  list: database [
+  string: database [
     parameter: "Y"
     information: "NCBI database to search"
-    values: "pubmed:pubmed;
-             nucleotide:nuccore;
-             est:nucest;
-             gss:nucgss;
-             protein:protein;
-             genome:genome;
-             structure:structure;
-             taxonomy:taxonomy;
-             snp:snp;
-             dbvar:dbvar;
-             gene:gene;
-             sra:sra;
-             biosystems:biosystems;
-             homologene:homologene;
-             probe:brobe;
-             bioproject:bioproject;
-             gap:gap;
-             cdd:cdd;
-             clone:clone;
-             unists:unists;
-             popset:popset;
-             geoprofiles:geoprofiles;
-             geodatasets:gds;
-             epigenomics:epigenomics;
-             bioassay:pcassay;
-             compound:pccompound;
-             substance:pcsubstance;
-             proteinclusters:proteinclusters;
-             omia:omia;
-             biosample:biosample;
-            "
+    knowntype: "name"
     default: "pubmed"
   ]
 
   string: query [
     parameter: "Y"
     information: "Query to search"
+    knowntype: "string"
   ]
 
 endsection: input
@@ -60,6 +31,8 @@ section: output [
 
   outfile: outfile [
     parameter: "Y"
+    information: "ASCII text output file"
+    knowntype: "ascii text"
     default: "$(database).$(query).gentrez"
   ]
 

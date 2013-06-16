@@ -1,0 +1,69 @@
+application: greporiter [
+  documentation: "Get the positions of replication origin and terminus"
+  groups: "Nucleic:Composition"
+  embassy: "gembassy"
+  relations: "EDAM_topic:3073 Nucleic acid feature detection"
+  relations: "EDAM_operation:0415 Nucleic acid feature prediction"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+
+  seqall: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+    features: "Y"
+    relations: "EDAM_data:0849 Sequence record"
+  ]
+
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+
+  boolean: oriloc [
+    information: "Include Oriloc for prediction"
+    default: "N"
+  ]
+
+  boolean: gcskew [
+    information: "Include to use GC skew shift-point for prediction"
+    default: "N"
+  ]
+
+  integer: difthreshold [
+    information: "Distance between the GC skew shift point and predicted dif
+                  site expressed as the precentage of genome size, used as a
+                  threshold to retrieve dif sequence from the database"
+    default: "0"
+  ]
+
+  boolean: dbonly [
+    information: "Include to only use values available in databases and to
+                  suppress prediction"
+    default: "N"
+  ]
+
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "N"
+  ]
+
+endsection: advanced
+
+section: output [
+  information: "Output section"
+  type: "page"
+]
+
+  outfile: outfile [
+    parameter: "Y"
+    relations: "EDAM_data:3127 Nucleic acid features (replication and
+                recombination)"
+  ]
+
+endsection: output

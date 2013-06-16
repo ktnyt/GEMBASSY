@@ -1,0 +1,65 @@
+application: ggenomemap3 [
+  documentation: "Draws the map of the genome (version 3)"
+  groups: "Display"
+  embassy: "gembassy"
+  relations: "EDAM_topic:0092 Data visualisation"
+  relations: "EDAM_topic:0621 Genome, proteome and model organisms"
+  relations: "EDAM_operation:0573 Map rendering"
+  relations: "EDAM_operation:2466 Map annotation"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+
+  seqall: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+    features: "Y"
+    relations: "EDAM_data:0849 Sequence record"
+  ]
+
+  string: format [
+    information: "Output file format. Dependent on 'convert' command"
+    knowntype: "output format"
+    default: "png"
+  ]
+
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+
+  integer: width [
+    information: "Image width"
+    default: "8192"
+  ]
+
+  integer: height [
+    information: "Image height"
+    default: "8192"
+  ]
+
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "N"
+  ]
+
+endsection: advanced
+
+section: output [
+  information: "Output section"
+  type: "page"
+]
+
+  string: goutfile [
+    parameter: "Y"
+    information: "Output file for non interactive displays"
+    relations: "EDAM_data:1278 Genetic map"
+    default: "ggenomemap3"
+  ]
+
+endsection: output

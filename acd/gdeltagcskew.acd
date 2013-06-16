@@ -1,0 +1,69 @@
+application: gdeltagcskew [
+  documentation: "Calculate strand bias of bacterial genome using delta GC skew index"
+  groups: "Nucleic:Composition"
+  embassy: "gembassy"
+  relations: "EDAM_topic:0157 Sequence composition analysis"
+  relations: "EDAM_operation:0377 Sequence composition calculation
+              (nucleic acid)"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+
+  seqall: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+    features: "Y"
+    relations: "EDAM_data:0849 Sequence record"
+  ]
+
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+
+  boolean: at [
+    information: "Include when observing AT skew instead of GC skew "
+    default: "N"
+  ]
+
+  boolean: purine [
+    information: "Include when observing purine (AG/TC) skew"
+    default: "N"
+  ]
+
+  boolean: keto [
+    information: "Include when observing keto (TG/AC) skew"
+    default: "N"
+  ]
+
+  selection: method [
+    information: "Choose the nucleotides to use 'degenerate', 'gc3', or 'all'"
+    values: "degenerate;gc3;all"
+    default: "degenerate"
+  ]
+
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "N"
+  ]
+
+endsection: advanced
+
+section: output [
+  information: "Output section"
+  type: "page"
+]
+
+  outfile: outfile [
+    parameter: "Y"
+    information: "Program compseq output file"
+    knowntype: "compseq output"
+    relations: "EDAM_data:3086 Nucleic acid sequence composition"
+  ]
+
+endsection: output

@@ -1,0 +1,61 @@
+application: gwvalue [
+  documentation: "Calculate the 'relative adaptiveness of each codon' (W)"
+  groups: "Nucleic:Codon Usage"
+  embassy: "gembassy"
+  relations: "EDAM_operation:0286 Codon usage analysis"
+  relations: "EDAM_topic: 0107 Codon usage analysis"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+
+  seqall: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+    features: "Y"
+    relations: "EDAM_data:0849 Sequence record"
+  ]
+
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+
+  string: include [
+    information: "Regular expression to include genes in a reference set a
+                  reference set in several studies are in-built 1: Nakamura
+                  and Tabata, 2: Sharp and Li, 3: Sakai et al."
+    knowntype: "regular expression"
+    default: "ribosomal.*protein"
+  ]
+
+  string: exclude [
+    information: "Regular expression to exclude genes from a reference set"
+    knowntype: "regular expression"
+    default: "[Mm]itochondrial"
+  ]
+
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "N"
+  ]
+
+endsection: advanced
+
+section: output [
+  information: "Output section"
+  type: "page"
+]
+
+  outfile: outfile [
+    parameter: "Y"
+    information: "Codon usage output file"
+    knowntype: "codon usage"
+    relations: "EDAM_data:2865 Codon usage bias"
+  ]
+
+endsection: output

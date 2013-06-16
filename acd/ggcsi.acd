@@ -2,16 +2,21 @@ application: ggcsi [
   documentation: "GC Skew Index: an index for strand-specific mutational bias"
   groups: "Nucleic:Composition"
   embassy: "gembassy"
+  relations: "EDAM_topic:0157 Sequence composition analysis"
+  relations: "EDAM_operation:0377 Sequence composition calculation
+              (nucleic acid)"
 ]
 
 section: input [
   information: "Input section"
   type: "page"
 ]
+
   seqall: sequence [
     parameter: "Y"
     type: "nucleotide"
     features: "Y"
+    relations: "EDAM_data:0849 Sequence record"
   ]
 
 endsection: input
@@ -21,9 +26,9 @@ section: advanced [
   type: "page"
 ]
 
-  list: gcsi [
+  selection: gcsi [
     information: "GCSI version to use"
-    values:  "1:1;2:2"
+    values:  "1;2"
     default: "2"
   ]
 
@@ -34,22 +39,22 @@ section: advanced [
 
   boolean: purine [
     information: "Use purine skew for calculation"
-    default: "0"
+    default: "N"
   ]
 
   boolean: keto [
     information: "Use keto skew for calculation"
-    default: "0"
+    default: "N"
   ]
 
   boolean: at [
     information: "Use AT skew for calculation"
-    default: "0"
+    default: "N"
   ]
 
   boolean: pval [
     information: "Calculate p-value when GCSI version 2 is selected"
-    default: "0"
+    default: "N"
   ]
 
   boolean: accid [
@@ -66,6 +71,9 @@ section: output [
 
   outfile: outfile [
     parameter: "Y"
+    information: "Program compseq output file"
+    knowntype: "compseq output"
+    relations: "EDAM_data:3086 Nucleic acid sequence composition"
   ]
 
 endsection: output

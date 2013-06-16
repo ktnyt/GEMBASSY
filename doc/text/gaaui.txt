@@ -7,6 +7,13 @@ Description
 
    This program calculates amino acid usage indices for proteins
    (excluding formylmethionine).
+
+   Returned indeces are as follows:
+      Laa:   Length in amino acids
+      ndaa:  Number of different amino acids
+      aroma: Relative frequency of aromatic amino acids
+      gravy: Mean hydropathic indices of each amino acid
+      mmw:   Mean moleclar weight
   
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
@@ -27,39 +34,102 @@ Usage
 
    Here is a sample session with gaaui
 
-   The database definitions for following commands are available at
-   http://soap.g-language.org/kbws/embossrc
-
 % gaaui refseqn:NC_000913
 Calculates various indece of amino acid usage
-Output filename [gaaui.nc_000913.csv]:
+Output filename [nc_000913.gaaui]:
+
+   Go to the output files for this example
 
 Command line arguments
 
    Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-   -outfile            outfile    [gaaui.$(sequence.name).csv] Output file
-                                  name
+  [-outfile]           outfile    [*.gaaui] AAINDEX entry output file
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -id                 string     ID of a group (Any string)
-   -accid              string     Include to use sequence accession ID as
-                                  query (Any string)
+   -accid              boolean    [N] Include to use sequence accession ID as
+                                  query
+
+   Associated qualifiers:
+
+   "-sequence" associated qualifiers
+   -sbegin1            integer    Start of each sequence to be used
+   -send1              integer    End of each sequence to be used
+   -sreverse1          boolean    Reverse (if DNA)
+   -sask1              boolean    Ask for begin/end/reverse
+   -snucleotide1       boolean    Sequence is nucleotide
+   -sprotein1          boolean    Sequence is protein
+   -slower1            boolean    Make lower case
+   -supper1            boolean    Make upper case
+   -scircular1         boolean    Sequence is circular
+   -sformat1           string     Input sequence format
+   -iquery1            string     Input query fields or ID list
+   -ioffset1           integer    Input start position offset
+   -sdbname1           string     Database name
+   -sid1               string     Entryname
+   -ufo1               string     UFO features
+   -fformat1           string     Features format
+   -fopenfile1         string     Features file name
+
+   "-outfile" associated qualifiers
+   -odirectory2        string     Output directory
 
    General qualifiers:
+   -auto               boolean    Turn off prompts
+   -stdout             boolean    Write first file to standard output
+   -filter             boolean    Read first file from standard input, write
+                                  first file to standard output
+   -options            boolean    Prompt for standard and additional values
+   -debug              boolean    Write debug output to program.dbg
+   -verbose            boolean    Report some/full command line options
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
+   -warning            boolean    Report warnings
+   -error              boolean    Report errors
+   -fatal              boolean    Report fatal errors
+   -die                boolean    Report dying program messages
+   -version            boolean    Report version number and exit
 
 Input file format
 
-   gaaui reads nucleotide sequences.
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
+
+   gaaui reads nucleotide sequences with feature tables.
 
 Output file format
 
-   The output from gaaui is to a raw CSV file.
+   The output from gaaui is to a CSV file.
+
+   File: nc_000913.gaaui
+
+Sequence: NC_000913
+Laa,ndaa,Haau,mmw,gravy,aroma,gene
+20,8,2.4842,117.48,+0.0150,0.0000,thrL
+819,20,4.0887,126.65,+0.0328,0.0659,thrA
+309,20,4.1228,126.35,+0.0181,0.0712,thrB
+427,20,4.0806,128.00,-0.1014,0.0843,thrC
+97,18,3.9165,133.54,-1.0268,0.0928,yaaX
+257,19,4.0733,132.55,-0.4117,0.1089,yaaA
+475,20,4.0413,126.46,+0.6781,0.1242,yaaJ
+316,20,4.0395,128.99,-0.2165,0.0728,talB
+
+   [Part of this file has been deleted for brevity]
+
+169,20,4.0001,124.90,+0.0231,0.0710,yjjX
+214,20,3.9937,129.77,-0.3813,0.0374,ytjC
+288,20,4.1421,132.58,-0.3628,0.1111,rob
+156,20,4.0627,126.72,-0.0442,0.0705,creA
+228,20,4.0471,131.94,-0.1408,0.0789,creB
+473,20,4.0254,128.01,+0.0023,0.0677,creC
+449,20,4.0871,128.66,+0.2082,0.0980,creD
+237,20,4.0729,132.54,-0.4970,0.0675,arcA
+45,15,3.5800,123.27,+0.7533,0.0222,yjjY
+227,20,4.0283,128.63,-0.0031,0.0573,yjtD
 
 Data files
 
@@ -106,8 +176,8 @@ Known bugs
 
 See also
 
-   gamino_info     Prints out basic amino acid sequence statistics
-   gcodon_compiler Calculate various kinds of amino acid and codon usage data
+   gaminoinfo     Prints out basic amino acid sequence statistics
+   gcodoncompiler Calculate various kinds of amino acid and codon usage data
 
 Author(s)
 
@@ -122,6 +192,7 @@ Author(s)
 History
 
    2012 - Written by Hidetoshi Itaya
+   2013 - Fixed by Hidetoshi Itaya
 
 Target users
 

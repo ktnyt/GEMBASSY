@@ -2,6 +2,10 @@ application: gcgr [
   documentation: "Create a Chaos Game Representation of a given sequence"
   groups: "Display"
   embassy: "gembassy"
+  relations: "EDAM_topic:0092 Data visualisation"
+  relations: "EDAM_topic:0157 Sequence composition analysis"
+  relations: "EDAM_operation:0377 Sequence composition calculation
+              (nucleic acid)"
 ]
 
 section: input [
@@ -13,6 +17,13 @@ section: input [
     parameter: "Y"
     type: "nucleotide"
     features: "Y"
+    relations: "EDAM_data:0849 Sequence record"
+  ]
+
+  string: format [
+    information: "Output file format. Dependent on 'convert' command"
+    knowntype: "output format"
+    default: "png"
   ]
 
 endsection: input
@@ -27,22 +38,19 @@ section: advanced [
     default: "1024"
   ]
 
-  integer: level [
-    information: "Zoom level for Google Maps representation"
-    default: "5"
-  ]
-
 endsection: advanced
 
 section: output [
-	information: "Output section"
-	type: "page"
+  information: "Output section"
+  type: "page"
 ]
 
   string: goutfile [
     parameter: "Y"
-    information: "Output filename"
-    default: "gcgr.png"
+    information: "Output file for non interactive displays"
+    knowntype: "output filename"
+    relations: "EDAM_data:2166 Sequence composition plot"
+    default: "gcgr"
   ]
 
 endsection: output

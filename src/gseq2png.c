@@ -4,8 +4,9 @@
 ** Converts a sequence to PNG image
 **
 ** @author Copyright (C) 2012 Hidetoshi Itaya
-** @version 1.0.0   First release
+** @version 1.0.1   Revision 1
 ** @modified 2012/1/20  Hidetoshi Itaya  Created!
+** @modified 2013/6/16  Revision 1
 ** @@
 **
 ** This program is free software; you can redistribute it and/or
@@ -24,14 +25,12 @@
 ******************************************************************************/
 
 #include "emboss.h"
-
 #include "soapH.h"
 #include "GLANGSoapBinding.nsmap"
-
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
-#include "../include/gfile.h"
+#include "glibs.h"
 
 
 
@@ -44,7 +43,7 @@
 
 int main(int argc, char *argv[])
 {
-  embInitPV("gseq2png", argc, argv, "GEMBASSY", "1.0.0");
+  embInitPV("gseq2png", argc, argv, "GEMBASSY", "1.0.1");
 
   struct soap soap;
   struct ns1__seq2pngInputParams params;
@@ -59,6 +58,9 @@ int main(int argc, char *argv[])
   AjPStr    filename = NULL;
   AjPStr    outfname = NULL;
   AjPStr    tempname = NULL;
+  AjPStr    appname  = NULL;
+  AjPStr    convert  = NULL;
+  AjPStr    format   = NULL;
 
   char *in0;
   char *result;
@@ -67,6 +69,9 @@ int main(int argc, char *argv[])
   window   = ajAcdGetInt("window");
   width    = ajAcdGetInt("width");
   filename = ajAcdGetString("goutfile");
+  format   = ajAcdGetString("format");
+
+  appname = ajStrNewC("convert");
 
   params.window = window;
   params.width  = width;
@@ -96,34 +101,42 @@ int main(int argc, char *argv[])
                                &result
 			       ) == SOAP_OK)
         {
-          outfname = ajStrNew();
-          tempname = ajStrNew();
-
-          ajStrAssignS(&outfname, filename);
-
-          ajStrFromLong(&tempname, ajSeqallGetCount(seqall));
-          ajStrInsertC(&tempname, 0, ".");
-          ajStrAppendC(&tempname, ".png");
-
-          if(!ajStrExchangeCS(&outfname, ".png", tempname))
-            {
-              ajStrAppendS(&outfname, tempname);
-            }
+          outfname = ajStrNewS(ajFmtStr("%S.%ld.%S",
+                                        filename,
+                                        ajSeqallGetCount(seqall),
+                                        format));
 
           outf = ajFileNewOutNameS(outfname);
 
-          ajStrDel(&outfname);
-          ajStrDel(&tempname);
-
-          if(!gHttpGetBinC(result, &outf))
+          if(!outf)
             {
-              ajFmtError("File downloading error from:\n%s\n", result);
-              embExitBad();
+              ajDie("File open error\n");
+            }
+
+          if(!ajStrMatchC(format, "png"))
+            {
+              if(!gHttpConvertC(result, &outf, ajStrNewC("png"), format))
+                {
+                  ajDie("File downloading error from:\n%s\n", result);
+                }
+              else
+                {
+                  ajFmtPrint("Created %S\n", outfname);
+                }
             }
           else
             {
-              ajFmtError("Created %S\n", outfname);
+              if(!gHttpGetBinC(result, &outf))
+                {
+                  ajDie("File downloading error from:\n%s\n", result);
+                }
+              else
+                {
+                  ajFmtPrint("Created %S\n", outfname);
+                }
             }
+
+          ajStrDel(&outfname);
         }
       else
         {

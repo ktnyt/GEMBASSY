@@ -1,0 +1,97 @@
+application: gcodoncompiler [
+  documentation: "Calculate various kinds of amino acid and codon usage data"
+  groups: "Nucleic:Codon usage"
+  embassy: "gembassy"
+  relations: "EDAM_operation:0286 Codon usage analysis"
+  relations: "EDAM_topic: 0107 Codon usage analysis"
+]
+
+section: input [
+  information: "Input section"
+  type: "page"
+]
+
+  seqall: sequence [
+    parameter: "Y"
+    type: "nucleotide"
+    features: "Y"
+    relations: "EDAM_data:0849 Sequence record"
+  ]
+
+endsection: input
+
+section: advanced [
+  information: "Advanced section"
+  type: "page"
+]
+
+  string: id [
+    information: "ID of a group"
+    knowntype: "name"
+    default: "All"
+  ]
+
+  boolean: translate [
+    information: "Include to translate using standard codon table"
+    default: "N"
+  ]
+
+  boolean: startcodon [
+    information: "Include to include start codon"
+    default: "N"
+  ]
+
+  boolean: stopcodon [
+    information: "Include to include stop codon"
+    default: "N"
+  ]
+
+  string: delkey [
+    information: "Regular expression to delete key (i.e. amino acids and
+                  nucleotides)"
+    knowntype: "regular expression"
+    default: "[^ACDEFGHIKLMNPQRSTVWYacgtU]"
+  ]
+
+  list: data [
+    information: "Kinds of codon usage data. R* hypothesizes amino acids which
+                  are not present in the gene"
+    values: "A0: Absolute amino acid frequency ('AA');
+             A1: Relative amino acid frequency ('RAAU');
+             C0: Absolute codon frequency ('AF');
+             C1: Relative codon frequency in a complete sequence;
+             C2: Relative codon frequency in each amino acid ('RF');
+             C3: Relative synonymous codon usage ('RSCU') ;
+             C4: Relative adaptiveness; i.e., ratio to maximum of minor codon
+                 ('W')
+             C5: Maximum (1) or minor (0) codon;
+             R0: Absolute codon frequency ('AF');
+             R1: Relative codon frequency in a complete sequence;
+             R2: Relative codon frequency in each amino acid ('RF');
+             R3: Relative synonymous codon usage ('RSCU') ;
+             R4: Relative adaptiveness; i.e., ratio to maximum of minor codon
+                 ('W')
+             R5: Maximum (1) or minor (0) codon"
+    default: "R0"
+  ]
+
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "N"
+  ]
+
+endsection: advanced
+
+section: output [
+  information: "Output section"
+  type: "page"
+]
+
+  outfile: outfile [
+    parameter: "Y"
+    information: "Codon usage output file"
+    knowntype: "codon usage"
+    relations: "EDAM_data:2865 Codon usage bias"
+  ]
+
+endsection: output

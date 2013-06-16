@@ -4,8 +4,9 @@
 ** Searches palindrome sequences
 **
 ** @author Copyright (C) 2012 Hidetoshi Itaya
-** @version 1.0.0   First release
+** @version 1.0.1   Revision 1
 ** @modified 2012/1/20  Hidetoshi Itaya  Created!
+** @modified 2013/6/16  Revision 1
 ** @@
 **
 ** This program is free software; you can redistribute it and/or
@@ -24,14 +25,12 @@
 ******************************************************************************/
 
 #include "emboss.h"
-
 #include "soapH.h"
 #include "GLANGSoapBinding.nsmap"
-
 #include "soapClient.c"
 #include "soapC.c"
 #include "../gsoap/stdsoap2.c"
-#include "../include/gfile.h"
+#include "glibs.h"
 
 
 
@@ -44,7 +43,7 @@
 
 int main(int argc, char *argv[])
 {
-  embInitPV("gpalindrome", argc, argv, "GEMBASSY", "1.0.0");
+  embInitPV("gpalindrome", argc, argv, "GEMBASSY", "1.0.1");
 
   struct soap soap;
   struct ns1__palindromeInputParams params;
@@ -101,7 +100,7 @@ int main(int argc, char *argv[])
 
           if(!gFileOutURLC(result, &outf))
             {
-              ajFmtError("File downloading error from:\n%s\n", result);
+              ajDie("File downloading error from:\n%s\n", result);
               embExitBad();
             }
         }

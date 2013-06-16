@@ -2,16 +2,22 @@ application: gbui [
   documentation: "Calculates base usage indices for protein-coding sequences"
   groups: "Nucleic:Codon usage"
   embassy: "gembassy"
+  relations: "EDAM_topic:0157 Sequence composition analysis"
+  relations: "EDAM_operation:0236 Sequence composition calculation"
+  relations: "EDAM_operation:0377 Sequence composition calculation
+              (nucleic acid)"
 ]
 
 section: input [
   information: "Input section"
   type: "page"
 ]
+
   seqall: sequence [
     parameter: "Y"
     type: "nucleotide"
     features: "Y"
+    relations: "EDAM_data:0849 Sequence record"
   ]
 
 endsection: input
@@ -23,21 +29,27 @@ section: advanced [
 
   boolean: translate [
     information: "Include when translating using standard codon table"
-    default: "0"
+    default: "N"
   ]
 
-  string: position [
+  list: position [
     information: "Codon position"
-    default: ""
+    values: "all: Assess overall base usage of the gene;
+             1: Assess base usage at 1st position of codons;
+             2: Assess base usage at 2nd position of codons;
+             3: Assess base usage at 3rd position of codons"
+    default: "all"
   ]
 
   string: id [
     information: "ID of a group of genes or a single gene"
+    knowntype: "name"
     default: ""
   ]
 
   string: delkey [
     information: "Regular expression to delete key"
+    knowntype: "regular expression"
     default: "[^ACDEFGHIKLMNPQRSTVWYacgtU]"
   ]
 
@@ -55,6 +67,9 @@ section: output [
 
   outfile: outfile [
     parameter: "Y"
+    information: "Program compseq output file"
+    knowntype: "compseq output"
+    relations: "EDAM_data:3086 Nucleic acid sequence composition"
   ]
 
 endsection: output
