@@ -266,25 +266,8 @@ AC_FUNC_VPRINTF
 
 AC_CHECK_FUNCS([strdup strstr strchr erand48 memmove])
 
-dnl Phylipnew needs to test for X11 and Xaw/Xt
-
-if test "${with_x}" != "no" ; then
-LF_EMBOSS_PATH_XLIB
-
-
-havextlib=1
-AC_CHECK_LIB(Xt,XtToolkitInitialize,XLIB="$XLIB -lXt",[havextlib=0],${XLIB})
-if test $havextlib == 0; then
-  AC_MSG_NOTICE([You need to install the Xt library files for your system])
-  exit $?
-fi
-
-AC_SUBST(XLIB)
-
-
-fi
-dnl End of X11/Xaw/Xt tests
-
+dnl Check for libcurl-devel
+AC_CHECK_HEADERS([curl/curl.h])
 
 dnl Library checks
 AC_CHECK_LIB(c, socket, LIBS="$LIBS" , LIBS="$LIBS -lsocket")
