@@ -73,14 +73,14 @@ subdir = src
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(srcdir)/config.h.in $(top_srcdir)/depcomp
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/amd64.m4 \
-	$(top_srcdir)/m4/general.m4 $(top_srcdir)/m4/hpdf.m4 \
-	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libtool.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/general.m4 \
+	$(top_srcdir)/m4/hpdf.m4 $(top_srcdir)/m4/java.m4 \
+	$(top_srcdir)/m4/lf_x11.m4 $(top_srcdir)/m4/libtool.m4 \
 	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
 	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
 	$(top_srcdir)/m4/mysql.m4 $(top_srcdir)/m4/pngdriver.m4 \
 	$(top_srcdir)/m4/postgresql.m4 $(top_srcdir)/m4/sgi.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/configure.in
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
@@ -92,6 +92,8 @@ PROGRAMS = $(bin_PROGRAMS)
 am_gaaui_OBJECTS = gaaui.$(OBJEXT)
 gaaui_OBJECTS = $(am_gaaui_OBJECTS)
 gaaui_LDADD = $(LDADD)
+am__DEPENDENCIES_1 =
+@LOCALLINK_FALSE@gaaui_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gaaui_DEPENDENCIES = ../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
@@ -103,7 +105,8 @@ gaaui_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
@@ -111,6 +114,7 @@ am__v_lt_1 =
 am_gaminoinfo_OBJECTS = gaminoinfo.$(OBJEXT)
 gaminoinfo_OBJECTS = $(am_gaminoinfo_OBJECTS)
 gaminoinfo_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gaminoinfo_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gaminoinfo_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -123,10 +127,12 @@ gaminoinfo_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gb1_OBJECTS = gb1.$(OBJEXT)
 gb1_OBJECTS = $(am_gb1_OBJECTS)
 gb1_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gb1_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gb1_DEPENDENCIES = ../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
@@ -138,10 +144,12 @@ gb1_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gb2_OBJECTS = gb2.$(OBJEXT)
 gb2_OBJECTS = $(am_gb2_OBJECTS)
 gb2_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gb2_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gb2_DEPENDENCIES = ../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
@@ -153,10 +161,12 @@ gb2_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gbasecounter_OBJECTS = gbasecounter.$(OBJEXT)
 gbasecounter_OBJECTS = $(am_gbasecounter_OBJECTS)
 gbasecounter_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gbasecounter_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gbasecounter_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -169,10 +179,12 @@ gbasecounter_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gbaseentropy_OBJECTS = gbaseentropy.$(OBJEXT)
 gbaseentropy_OBJECTS = $(am_gbaseentropy_OBJECTS)
 gbaseentropy_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gbaseentropy_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gbaseentropy_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -185,12 +197,15 @@ gbaseentropy_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gbaseinformationcontent_OBJECTS =  \
 	gbaseinformationcontent.$(OBJEXT)
 gbaseinformationcontent_OBJECTS =  \
 	$(am_gbaseinformationcontent_OBJECTS)
 gbaseinformationcontent_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gbaseinformationcontent_DEPENDENCIES =  \
+@LOCALLINK_FALSE@	$(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gbaseinformationcontent_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -203,10 +218,13 @@ gbaseinformationcontent_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gbaserelativeentropy_OBJECTS = gbaserelativeentropy.$(OBJEXT)
 gbaserelativeentropy_OBJECTS = $(am_gbaserelativeentropy_OBJECTS)
 gbaserelativeentropy_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gbaserelativeentropy_DEPENDENCIES =  \
+@LOCALLINK_FALSE@	$(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gbaserelativeentropy_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -219,10 +237,12 @@ gbaserelativeentropy_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gbasezvalue_OBJECTS = gbasezvalue.$(OBJEXT)
 gbasezvalue_OBJECTS = $(am_gbasezvalue_OBJECTS)
 gbasezvalue_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gbasezvalue_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gbasezvalue_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -235,10 +255,12 @@ gbasezvalue_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gbui_OBJECTS = gbui.$(OBJEXT)
 gbui_OBJECTS = $(am_gbui_OBJECTS)
 gbui_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gbui_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gbui_DEPENDENCIES = ../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
@@ -250,10 +272,12 @@ gbui_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gcai_OBJECTS = gcai.$(OBJEXT)
 gcai_OBJECTS = $(am_gcai_OBJECTS)
 gcai_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gcai_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gcai_DEPENDENCIES = ../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
@@ -265,10 +289,12 @@ gcai_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gcbi_OBJECTS = gcbi.$(OBJEXT)
 gcbi_OBJECTS = $(am_gcbi_OBJECTS)
 gcbi_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gcbi_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gcbi_DEPENDENCIES = ../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
@@ -280,10 +306,12 @@ gcbi_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gcgr_OBJECTS = gcgr.$(OBJEXT)
 gcgr_OBJECTS = $(am_gcgr_OBJECTS)
 gcgr_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gcgr_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gcgr_DEPENDENCIES = ../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
@@ -295,10 +323,12 @@ gcgr_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gcircularmap_OBJECTS = gcircularmap.$(OBJEXT)
 gcircularmap_OBJECTS = $(am_gcircularmap_OBJECTS)
 gcircularmap_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gcircularmap_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gcircularmap_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -311,10 +341,12 @@ gcircularmap_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gcodoncompiler_OBJECTS = gcodoncompiler.$(OBJEXT)
 gcodoncompiler_OBJECTS = $(am_gcodoncompiler_OBJECTS)
 gcodoncompiler_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gcodoncompiler_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gcodoncompiler_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -327,10 +359,12 @@ gcodoncompiler_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gconsensusz_OBJECTS = gconsensusz.$(OBJEXT)
 gconsensusz_OBJECTS = $(am_gconsensusz_OBJECTS)
 gconsensusz_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gconsensusz_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gconsensusz_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -343,10 +377,12 @@ gconsensusz_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gdeltaenc_OBJECTS = gdeltaenc.$(OBJEXT)
 gdeltaenc_OBJECTS = $(am_gdeltaenc_OBJECTS)
 gdeltaenc_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gdeltaenc_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gdeltaenc_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -359,10 +395,12 @@ gdeltaenc_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gdeltagcskew_OBJECTS = gdeltagcskew.$(OBJEXT)
 gdeltagcskew_OBJECTS = $(am_gdeltagcskew_OBJECTS)
 gdeltagcskew_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gdeltagcskew_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gdeltagcskew_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -375,10 +413,12 @@ gdeltagcskew_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gdinuc_OBJECTS = gdinuc.$(OBJEXT)
 gdinuc_OBJECTS = $(am_gdinuc_OBJECTS)
 gdinuc_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gdinuc_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gdinuc_DEPENDENCIES = ../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
@@ -390,10 +430,12 @@ gdinuc_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gdistincc_OBJECTS = gdistincc.$(OBJEXT)
 gdistincc_OBJECTS = $(am_gdistincc_OBJECTS)
 gdistincc_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gdistincc_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gdistincc_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -406,10 +448,12 @@ gdistincc_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gdnawalk_OBJECTS = gdnawalk.$(OBJEXT)
 gdnawalk_OBJECTS = $(am_gdnawalk_OBJECTS)
 gdnawalk_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gdnawalk_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gdnawalk_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -422,10 +466,12 @@ gdnawalk_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_genc_OBJECTS = genc.$(OBJEXT)
 genc_OBJECTS = $(am_genc_OBJECTS)
 genc_LDADD = $(LDADD)
+@LOCALLINK_FALSE@genc_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@genc_DEPENDENCIES = ../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
@@ -437,10 +483,12 @@ genc_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_genret_OBJECTS = genret.$(OBJEXT)
 genret_OBJECTS = $(am_genret_OBJECTS)
 genret_LDADD = $(LDADD)
+@LOCALLINK_FALSE@genret_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@genret_DEPENDENCIES = ../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
@@ -452,10 +500,12 @@ genret_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gentrez_OBJECTS = gentrez.$(OBJEXT)
 gentrez_OBJECTS = $(am_gentrez_OBJECTS)
 gentrez_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gentrez_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gentrez_DEPENDENCIES = ../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
@@ -467,10 +517,12 @@ gentrez_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gew_OBJECTS = gew.$(OBJEXT)
 gew_OBJECTS = $(am_gew_OBJECTS)
 gew_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gew_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gew_DEPENDENCIES = ../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
@@ -482,10 +534,12 @@ gew_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gfindoriter_OBJECTS = gfindoriter.$(OBJEXT)
 gfindoriter_OBJECTS = $(am_gfindoriter_OBJECTS)
 gfindoriter_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gfindoriter_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gfindoriter_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -498,10 +552,12 @@ gfindoriter_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gfop_OBJECTS = gfop.$(OBJEXT)
 gfop_OBJECTS = $(am_gfop_OBJECTS)
 gfop_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gfop_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gfop_DEPENDENCIES = ../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
@@ -513,10 +569,12 @@ gfop_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_ggcsi_OBJECTS = ggcsi.$(OBJEXT)
 ggcsi_OBJECTS = $(am_ggcsi_OBJECTS)
 ggcsi_LDADD = $(LDADD)
+@LOCALLINK_FALSE@ggcsi_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@ggcsi_DEPENDENCIES = ../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
@@ -528,10 +586,12 @@ ggcsi_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 ggcskew_SOURCES = ggcskew.c
 ggcskew_OBJECTS = ggcskew.$(OBJEXT)
 ggcskew_LDADD = $(LDADD)
+@LOCALLINK_FALSE@ggcskew_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@ggcskew_DEPENDENCIES = ../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
@@ -543,10 +603,12 @@ ggcskew_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_ggcwin_OBJECTS = ggcwin.$(OBJEXT)
 ggcwin_OBJECTS = $(am_ggcwin_OBJECTS)
 ggcwin_LDADD = $(LDADD)
+@LOCALLINK_FALSE@ggcwin_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@ggcwin_DEPENDENCIES = ../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
@@ -558,10 +620,12 @@ ggcwin_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_ggeneskew_OBJECTS = ggeneskew.$(OBJEXT)
 ggeneskew_OBJECTS = $(am_ggeneskew_OBJECTS)
 ggeneskew_LDADD = $(LDADD)
+@LOCALLINK_FALSE@ggeneskew_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@ggeneskew_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -574,10 +638,12 @@ ggeneskew_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_ggenomemap3_OBJECTS = ggenomemap3.$(OBJEXT)
 ggenomemap3_OBJECTS = $(am_ggenomemap3_OBJECTS)
 ggenomemap3_LDADD = $(LDADD)
+@LOCALLINK_FALSE@ggenomemap3_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@ggenomemap3_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -590,10 +656,12 @@ ggenomemap3_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_ggenomicskew_OBJECTS = ggenomicskew.$(OBJEXT)
 ggenomicskew_OBJECTS = $(am_ggenomicskew_OBJECTS)
 ggenomicskew_LDADD = $(LDADD)
+@LOCALLINK_FALSE@ggenomicskew_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@ggenomicskew_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -606,10 +674,12 @@ ggenomicskew_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gicdi_OBJECTS = gicdi.$(OBJEXT)
 gicdi_OBJECTS = $(am_gicdi_OBJECTS)
 gicdi_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gicdi_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gicdi_DEPENDENCIES = ../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
@@ -621,10 +691,12 @@ gicdi_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gkmertable_OBJECTS = gkmertable.$(OBJEXT)
 gkmertable_OBJECTS = $(am_gkmertable_OBJECTS)
 gkmertable_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gkmertable_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gkmertable_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -637,10 +709,12 @@ gkmertable_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gldabias_OBJECTS = gldabias.$(OBJEXT)
 gldabias_OBJECTS = $(am_gldabias_OBJECTS)
 gldabias_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gldabias_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gldabias_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -653,10 +727,13 @@ gldabias_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gnucleotideperiodicity_OBJECTS = gnucleotideperiodicity.$(OBJEXT)
 gnucleotideperiodicity_OBJECTS = $(am_gnucleotideperiodicity_OBJECTS)
 gnucleotideperiodicity_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gnucleotideperiodicity_DEPENDENCIES =  \
+@LOCALLINK_FALSE@	$(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gnucleotideperiodicity_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -669,10 +746,13 @@ gnucleotideperiodicity_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_goligomercounter_OBJECTS = goligomercounter.$(OBJEXT)
 goligomercounter_OBJECTS = $(am_goligomercounter_OBJECTS)
 goligomercounter_LDADD = $(LDADD)
+@LOCALLINK_FALSE@goligomercounter_DEPENDENCIES =  \
+@LOCALLINK_FALSE@	$(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@goligomercounter_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -685,10 +765,12 @@ goligomercounter_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_goligomersearch_OBJECTS = goligomersearch.$(OBJEXT)
 goligomersearch_OBJECTS = $(am_goligomersearch_OBJECTS)
 goligomersearch_LDADD = $(LDADD)
+@LOCALLINK_FALSE@goligomersearch_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@goligomersearch_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -701,10 +783,12 @@ goligomersearch_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gp2_OBJECTS = gp2.$(OBJEXT)
 gp2_OBJECTS = $(am_gp2_OBJECTS)
 gp2_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gp2_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gp2_DEPENDENCIES = ../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
@@ -716,10 +800,12 @@ gp2_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gpalindrome_OBJECTS = gpalindrome.$(OBJEXT)
 gpalindrome_OBJECTS = $(am_gpalindrome_OBJECTS)
 gpalindrome_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gpalindrome_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gpalindrome_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -732,10 +818,12 @@ gpalindrome_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gphx_OBJECTS = gphx.$(OBJEXT)
 gphx_OBJECTS = $(am_gphx_OBJECTS)
 gphx_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gphx_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gphx_DEPENDENCIES = ../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
@@ -747,10 +835,12 @@ gphx_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gqueryarm_OBJECTS = gqueryarm.$(OBJEXT)
 gqueryarm_OBJECTS = $(am_gqueryarm_OBJECTS)
 gqueryarm_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gqueryarm_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gqueryarm_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -763,10 +853,12 @@ gqueryarm_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gquerystrand_OBJECTS = gquerystrand.$(OBJEXT)
 gquerystrand_OBJECTS = $(am_gquerystrand_OBJECTS)
 gquerystrand_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gquerystrand_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gquerystrand_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -779,10 +871,12 @@ gquerystrand_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_greporiter_OBJECTS = greporiter.$(OBJEXT)
 greporiter_OBJECTS = $(am_greporiter_OBJECTS)
 greporiter_LDADD = $(LDADD)
+@LOCALLINK_FALSE@greporiter_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@greporiter_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -795,10 +889,12 @@ greporiter_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gscs_OBJECTS = gscs.$(OBJEXT)
 gscs_OBJECTS = $(am_gscs_OBJECTS)
 gscs_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gscs_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gscs_DEPENDENCIES = ../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
@@ -810,10 +906,12 @@ gscs_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gseq2png_OBJECTS = gseq2png.$(OBJEXT)
 gseq2png_OBJECTS = $(am_gseq2png_OBJECTS)
 gseq2png_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gseq2png_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gseq2png_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -826,10 +924,12 @@ gseq2png_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gseqinfo_OBJECTS = gseqinfo.$(OBJEXT)
 gseqinfo_OBJECTS = $(am_gseqinfo_OBJECTS)
 gseqinfo_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gseqinfo_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gseqinfo_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -842,10 +942,12 @@ gseqinfo_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gshuffleseq_OBJECTS = gshuffleseq.$(OBJEXT)
 gshuffleseq_OBJECTS = $(am_gshuffleseq_OBJECTS)
 gshuffleseq_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gshuffleseq_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gshuffleseq_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -858,10 +960,12 @@ gshuffleseq_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gsignature_OBJECTS = gsignature.$(OBJEXT)
 gsignature_OBJECTS = $(am_gsignature_OBJECTS)
 gsignature_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gsignature_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gsignature_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -874,10 +978,12 @@ gsignature_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gsvalue_OBJECTS = gsvalue.$(OBJEXT)
 gsvalue_OBJECTS = $(am_gsvalue_OBJECTS)
 gsvalue_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gsvalue_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gsvalue_DEPENDENCIES = ../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
@@ -889,10 +995,12 @@ gsvalue_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gviewcds_OBJECTS = gviewcds.$(OBJEXT)
 gviewcds_OBJECTS = $(am_gviewcds_OBJECTS)
 gviewcds_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gviewcds_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gviewcds_DEPENDENCIES =  \
 @LOCALLINK_TRUE@	../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
@@ -905,10 +1013,12 @@ gviewcds_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 am_gwvalue_OBJECTS = gwvalue.$(OBJEXT)
 gwvalue_OBJECTS = $(am_gwvalue_OBJECTS)
 gwvalue_LDADD = $(LDADD)
+@LOCALLINK_FALSE@gwvalue_DEPENDENCIES = $(am__DEPENDENCIES_1)
 @LOCALLINK_TRUE@gwvalue_DEPENDENCIES = ../../../nucleus/libnucleus.la \
 @LOCALLINK_TRUE@	../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
@@ -920,7 +1030,8 @@ gwvalue_LDADD = $(LDADD)
 @LOCALLINK_TRUE@	../../../ajax/pcre/libepcre.la \
 @LOCALLINK_TRUE@	../../../plplot/libeplplot.la \
 @LOCALLINK_TRUE@	../include/libgfile.a ../include/libghttp.a \
-@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a
+@LOCALLINK_TRUE@	../include/libgplot.a ../include/libgpost.a \
+@LOCALLINK_TRUE@	$(am__DEPENDENCIES_1)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -1026,6 +1137,7 @@ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
 AM_DEFAULT_VERBOSITY = @AM_DEFAULT_VERBOSITY@
+ANT = @ANT@
 AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -1036,9 +1148,14 @@ CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
+CXX = @CXX@
+CXXCPP = @CXXCPP@
+CXXDEPMODE = @CXXDEPMODE@
+CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
+DEVWARN_CFLAGS = @DEVWARN_CFLAGS@
 DLLTOOL = @DLLTOOL@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
@@ -1046,7 +1163,6 @@ ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 EGREP = @EGREP@
-ESYSTEMLIBS = @ESYSTEMLIBS@
 EXEEXT = @EXEEXT@
 FGREP = @FGREP@
 GREP = @GREP@
@@ -1057,9 +1173,12 @@ INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
 INSTALL_SCRIPT = @INSTALL_SCRIPT@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
-ISAIXIA64 = @ISAIXIA64@
-ISCYGWIN = @ISCYGWIN@
-JAVA_OK = @JAVA_OK@
+JAR = @JAR@
+JAVA = @JAVA@
+JAVAC = @JAVAC@
+JAVA_CFLAGS = @JAVA_CFLAGS@
+JAVA_CPPFLAGS = @JAVA_CPPFLAGS@
+JAVA_LDFLAGS = @JAVA_LDFLAGS@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
@@ -1076,7 +1195,6 @@ MYSQL_CONFIG = @MYSQL_CONFIG@
 MYSQL_CPPFLAGS = @MYSQL_CPPFLAGS@
 MYSQL_LDFLAGS = @MYSQL_LDFLAGS@
 MYSQL_VERSION = @MYSQL_VERSION@
-NEEDAJAX = @NEEDAJAX@
 NM = @NM@
 NMEDIT = @NMEDIT@
 OBJDUMP = @OBJDUMP@
@@ -1097,9 +1215,9 @@ PCRE_MAJOR = @PCRE_MAJOR@
 PCRE_MINOR = @PCRE_MINOR@
 PCRE_POSIXLIB_VERSION = @PCRE_POSIXLIB_VERSION@
 PCRE_VERSION = @PCRE_VERSION@
-PG_CONFIG = @PG_CONFIG@
 POSIX_MALLOC_THRESHOLD = @POSIX_MALLOC_THRESHOLD@
 POSTGRESQL_CFLAGS = @POSTGRESQL_CFLAGS@
+POSTGRESQL_CONFIG = @POSTGRESQL_CONFIG@
 POSTGRESQL_CPPFLAGS = @POSTGRESQL_CPPFLAGS@
 POSTGRESQL_LDFLAGS = @POSTGRESQL_LDFLAGS@
 POSTGRESQL_VERSION = @POSTGRESQL_VERSION@
@@ -1109,6 +1227,8 @@ SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
 VERSION = @VERSION@
+WARN_CFLAGS = @WARN_CFLAGS@
+XLIB = @XLIB@
 XMKMF = @XMKMF@
 X_CFLAGS = @X_CFLAGS@
 X_EXTRA_LIBS = @X_EXTRA_LIBS@
@@ -1120,6 +1240,7 @@ abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
 ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
+ac_ct_CXX = @ac_ct_CXX@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
 am__include = @am__include@
 am__leading_dot = @am__leading_dot@
@@ -1139,7 +1260,6 @@ docdir = @docdir@
 dvidir = @dvidir@
 embprefix = @embprefix@
 exec_prefix = @exec_prefix@
-havejavac = @havejavac@
 host = @host@
 host_alias = @host_alias@
 host_cpu = @host_cpu@
@@ -1176,7 +1296,7 @@ top_srcdir = @top_srcdir@
 @LOCALLINK_TRUE@	-I../../../ajax/acd -I../../../plplot -I../gsoap
 
 @ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_FALSE@AIX_CFLAGS = -Wl,-bdynamic -Wl,-brtl -L${embprefix}/lib -lnucleus -lacd \
-@ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_FALSE@-lajaxdb -lensembl -lajaxg -lajax -leexpat -lepcre -lezlib -leplplot -lcurl
+@ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_FALSE@-lajaxdb -lensembl -lajaxg -lajax -leexpat -lepcre -lezlib -leplplot
 
 @ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_TRUE@AIX_CFLAGS = -Wl,-bdynamic -Wl,-brtl -L../../../plplot/.libs \
 @ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_TRUE@-L../../../ajax/pcre/.libs -L../../../ajax/expat/.libs \
@@ -1185,7 +1305,7 @@ top_srcdir = @top_srcdir@
 @ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_TRUE@-L../../../ajax/ajaxdb/.libs -L../../../ajax/acd/.libs \
 @ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_TRUE@-L../../../nucleus/.libs \
 @ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_TRUE@-lnucleus -lacd -lajaxdb -lensembl -lajaxg -lajax -leexpat -lepcre \
-@ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_TRUE@-lezlib -leplplot -lcurl
+@ISAIXIA64_TRUE@@ISSHARED_TRUE@@LOCALLINK_TRUE@-lezlib -leplplot
 
 AM_CFLAGS = $(AIX_CFLAGS) $(WARN_CFLAGS) $(DEVWARN_CFLAGS)
 genret_SOURCES = genret.c
@@ -1240,9 +1360,8 @@ gshuffleseq_SOURCES = gshuffleseq.c
 gsignature_SOURCES = gsignature.c
 gviewcds_SOURCES = gviewcds.c
 gwvalue_SOURCES = gwvalue.c
-@LOCALLINK_FALSE@LDADD = -L${embprefix}/lib -L../include -lnucleus -lacd \
-@LOCALLINK_FALSE@        -lajaxdb -lensembl -lajaxg -lajax -leexpat -lepcre -lezlib -leplplot \
-@LOCALLINK_FALSE@        -lcurl $(XLIB)
+@LOCALLINK_FALSE@LDADD = -L${embprefix}/lib -L../include -lnucleus -lacd -lajaxdb -lensembl \
+@LOCALLINK_FALSE@        -lajaxg -lajax -leexpat -lepcre -lezlib -leplplot $(XLIB)
 
 @LOCALLINK_TRUE@LDADD = ../../../nucleus/libnucleus.la ../../../ajax/acd/libacd.la \
 @LOCALLINK_TRUE@	../../../ajax/ajaxdb/libajaxdb.la \
@@ -1257,7 +1376,6 @@ gwvalue_SOURCES = gwvalue.c
 @LOCALLINK_TRUE@        ../include/libghttp.a \
 @LOCALLINK_TRUE@        ../include/libgplot.a \
 @LOCALLINK_TRUE@        ../include/libgpost.a \
-@LOCALLINK_TRUE@        -lcurl \
 @LOCALLINK_TRUE@        $(XLIB)
 
 all: config.h
