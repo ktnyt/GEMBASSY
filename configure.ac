@@ -275,6 +275,15 @@ then
    exit $?
 fi
 
+dnl Check for xlib
+have_xlib=1
+AC_CHECK_LIB(curl, curl_easy_init, [], [have_xlib=0])
+if test $have_xlib == 0
+then
+   AC_MSG_NOTICE([You need to install the libx library to your system])
+   exit $?
+fi
+
 dnl Library checks
 AC_CHECK_LIB(c, socket, LIBS="$LIBS" , LIBS="$LIBS -lsocket")
 AC_CHECK_LIB(m, main)
