@@ -681,7 +681,6 @@ AMPDF_FALSE
 AMPDF_TRUE
 AMPNG_FALSE
 AMPNG_TRUE
-XLIB
 X_EXTRA_LIBS
 X_LIBS
 X_PRE_LIBS
@@ -14163,176 +14162,17 @@ fi
 done
 
 
-
-if test "${with_x}" != "no" ; then
-
-  CFLAGS="$CFLAGS $X_CFLAGS"
-
-case $host_os in
-irix*)
-    XLIB="-lX11 $X_EXTRA_LIBS"
-    ;;
-*)
-    XLIB="$X_LIBS -lX11 $X_EXTRA_LIBS"
-    ;;
-esac
-
-
-
-ac_fn_c_check_header_mongrel "$LINENO" "X11/Xlib.h" "ac_cv_header_X11_Xlib_h" "$ac_includes_default"
-if test "x$ac_cv_header_X11_Xlib_h" = xyes; then :
-
-
-$as_echo "#define PLD_xwin 1" >>confdefs.h
-
-
-else
-
-	echo ""
-	echo "X11 graphics have been selected but no X11 header files"
-        echo "have been found."
-        echo ""
-        echo "This error usually happens on Linux/MacOSX distributions"
-	echo "where the optional X11 development files have not been installed."
-        echo "On Linux RPM systems this package is usually called something"
-        echo "like xorg-x11-proto-devel whereas on Debian/Ubuntu it may"
-        echo "be called x-dev. On MacOSX installation DVDs the X11 files"
-        echo "can usually be found as an explicitly named optional"
-        echo "installation."
-        echo ""
-        echo "After installing the X11 development files you should do a"
-        echo "'make clean' and perform the configure stage again."
-        echo ""
-        echo "Alternatively, to install EMBOSS without X11 support, you can add"
-        echo "the --without-x switch to the configure command."
-	echo ""
-        exit $?
-
-fi
-
-
-
-
-
-
-havexawh=1
-ac_fn_c_check_header_mongrel "$LINENO" "X11/Xaw/Label.h" "ac_cv_header_X11_Xaw_Label_h" "$ac_includes_default"
-if test "x$ac_cv_header_X11_Xaw_Label_h" = xyes; then :
-
-else
-  havexawh=0
-fi
-
-
-if test $havexawh == 0; then
-  { $as_echo "$as_me:${as_lineno-$LINENO}: You need to install the Xaw development files for your system" >&5
-$as_echo "$as_me: You need to install the Xaw development files for your system" >&6;}
-  exit $?
-fi
-
-havexawlib=1
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for XawInitializeWidgetSet in -lXaw" >&5
-$as_echo_n "checking for XawInitializeWidgetSet in -lXaw... " >&6; }
-if ${ac_cv_lib_Xaw_XawInitializeWidgetSet+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  ac_check_lib_save_LIBS=$LIBS
-LIBS="-lXaw ${XLIB} $LIBS"
-cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-
-/* Override any GCC internal prototype to avoid an error.
-   Use char because int might match the return type of a GCC
-   builtin and then its argument prototype would still apply.  */
-#ifdef __cplusplus
-extern "C"
-#endif
-char XawInitializeWidgetSet ();
-int
-main ()
-{
-return XawInitializeWidgetSet ();
-  ;
-  return 0;
-}
+for ac_header in curl/curl.h
+do :
+  ac_fn_c_check_header_mongrel "$LINENO" "curl/curl.h" "ac_cv_header_curl_curl_h" "$ac_includes_default"
+if test "x$ac_cv_header_curl_curl_h" = xyes; then :
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_CURL_CURL_H 1
 _ACEOF
-if ac_fn_c_try_link "$LINENO"; then :
-  ac_cv_lib_Xaw_XawInitializeWidgetSet=yes
-else
-  ac_cv_lib_Xaw_XawInitializeWidgetSet=no
-fi
-rm -f core conftest.err conftest.$ac_objext \
-    conftest$ac_exeext conftest.$ac_ext
-LIBS=$ac_check_lib_save_LIBS
-fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_Xaw_XawInitializeWidgetSet" >&5
-$as_echo "$ac_cv_lib_Xaw_XawInitializeWidgetSet" >&6; }
-if test "x$ac_cv_lib_Xaw_XawInitializeWidgetSet" = xyes; then :
-  XLIB="$XLIB -lXaw"
-else
-  havexawlib=0
-fi
-
-if test $havexawlib == 0; then
-  { $as_echo "$as_me:${as_lineno-$LINENO}: You need to install the Xaw library files for your system" >&5
-$as_echo "$as_me: You need to install the Xaw library files for your system" >&6;}
-  exit $?
-fi
-
-
-havextlib=1
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for XtToolkitInitialize in -lXt" >&5
-$as_echo_n "checking for XtToolkitInitialize in -lXt... " >&6; }
-if ${ac_cv_lib_Xt_XtToolkitInitialize+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  ac_check_lib_save_LIBS=$LIBS
-LIBS="-lXt ${XLIB} $LIBS"
-cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-
-/* Override any GCC internal prototype to avoid an error.
-   Use char because int might match the return type of a GCC
-   builtin and then its argument prototype would still apply.  */
-#ifdef __cplusplus
-extern "C"
-#endif
-char XtToolkitInitialize ();
-int
-main ()
-{
-return XtToolkitInitialize ();
-  ;
-  return 0;
-}
-_ACEOF
-if ac_fn_c_try_link "$LINENO"; then :
-  ac_cv_lib_Xt_XtToolkitInitialize=yes
-else
-  ac_cv_lib_Xt_XtToolkitInitialize=no
-fi
-rm -f core conftest.err conftest.$ac_objext \
-    conftest$ac_exeext conftest.$ac_ext
-LIBS=$ac_check_lib_save_LIBS
-fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_Xt_XtToolkitInitialize" >&5
-$as_echo "$ac_cv_lib_Xt_XtToolkitInitialize" >&6; }
-if test "x$ac_cv_lib_Xt_XtToolkitInitialize" = xyes; then :
-  XLIB="$XLIB -lXt"
-else
-  havextlib=0
-fi
-
-if test $havextlib == 0; then
-  { $as_echo "$as_me:${as_lineno-$LINENO}: You need to install the Xt library files for your system" >&5
-$as_echo "$as_me: You need to install the Xt library files for your system" >&6;}
-  exit $?
-fi
-
-
-
 
 fi
+
+done
 
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for socket in -lc" >&5
