@@ -1,7 +1,16 @@
-/* src/config.h.in.  Generated from configure.ac by autoheader.  */
+/* src/config.h.in.  Generated from configure.in by autoheader.  */
 
 /* Define if building universal (internal helper macro) */
 #undef AC_APPLE_UNIVERSAL_BUILD
+
+/* Define to 1 to compile all deprecated functions */
+#undef AJ_COMPILE_DEPRECATED
+
+/* Define to 1 to compile deprecated functions used in book texts for 6.2.0 */
+#undef AJ_COMPILE_DEPRECATED_BOOK
+
+/* Define to 1 to collect AJAX library usage statistics. */
+#undef AJ_SAVESTATS
 
 /* Define to 1 if the `getpgrp' function requires zero arguments. */
 #undef GETPGRP_VOID
@@ -25,8 +34,17 @@
 /* Define to 1 if you have the <inttypes.h> header file. */
 #undef HAVE_INTTYPES_H
 
+/* Define to 1 if the Java Native Interface (JNI) is available. */
+#undef HAVE_JAVA
+
+/* Define to 1 if you have the `curl' library (-lcurl). */
+#undef HAVE_LIBCURL
+
 /* Define to 1 if you have the `m' library (-lm). */
 #undef HAVE_LIBM
+
+/* Define to 1 if you have the `mcheck' function. */
+#undef HAVE_MCHECK
 
 /* Define to 1 if you have the `memmove' function. */
 #undef HAVE_MEMMOVE
@@ -80,6 +98,9 @@
 
 /* Define to 1 if you have the <sys/types.h> header file. */
 #undef HAVE_SYS_TYPES_H
+
+/* Define to 1 if you have the <TargetConfig.h> header file. */
+#undef HAVE_TARGETCONFIG_H
 
 /* Define to 1 if you have the <unistd.h> header file. */
 #undef HAVE_UNISTD_H
@@ -159,6 +180,9 @@
 
 /* Define to 1 if the X Window System is missing or not being used. */
 #undef X_DISPLAY_MISSING
+
+/* Set to 2 for open args */
+#undef _FORTIFY_SOURCE
 
 /* Define to empty if `const' does not conform to ANSI C. */
 #undef const
