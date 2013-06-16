@@ -267,7 +267,12 @@ AC_FUNC_VPRINTF
 AC_CHECK_FUNCS([strdup strstr strchr erand48 memmove])
 
 dnl Check for libcurl-devel
-AC_CHECK_HEADERS([curl/curl.h])
+AC_CHECK_HEADER([curl/curl.h], [AC_DEFINE(HAVE_CURL_H)])
+AC_CHECK_LIB(curl, curl_easy_init)
+if ${HAVE_LIBCURL} == 0; then
+   AC_MSG_NOTICE([You need to install the libcurl-devel library to your system])
+   exit $_
+fi
 
 dnl Library checks
 AC_CHECK_LIB(c, socket, LIBS="$LIBS" , LIBS="$LIBS -lsocket")
