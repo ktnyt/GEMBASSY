@@ -3,7 +3,7 @@ application: gwvalue [
   groups: "Nucleic:Codon Usage"
   embassy: "gembassy"
   relations: "EDAM_operation:0286 Codon usage analysis"
-  relations: "EDAM_topic: 0107 Codon usage analysis"
+  relations: "EDAM_topic:0107 Codon usage analysis"
 ]
 
 section: input [
