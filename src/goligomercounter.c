@@ -54,17 +54,19 @@ int main(int argc, char *argv[])
 
   ajint window = 0;
 
-  AjPFile outfile = NULL;
+  AjPFile outf = NULL;
+
   AjPFile tmpfile = NULL;
   AjPStr  tmpname = NULL;
+
   AjPFilebuff tmp = NULL;
-  AjPStr line     = NULL;
+  AjPStr     line = NULL;
 
   seqall   = ajAcdGetSeqall("sequence");
   oligomer = ajAcdGetString("oligomer");
   window   = ajAcdGetInt("window");
   accid    = ajAcdGetBoolean("accid");
-  outfile  = ajAcdGetOutfile("outfile");
+  outf     = ajAcdGetOutfile("outfile");
 
   base = ajStrNewC("rest.g-language.org");
 
@@ -111,14 +113,14 @@ int main(int argc, char *argv[])
 
       ajStrRemoveSetC(&line, "\n");
 
-      ajFmtPrintF(outfile, "Sequence: %S Oligomer: %S Number: %S\n",
+      ajFmtPrintF(outf, "Sequence: %S Oligomer: %S Number: %S\n",
                   seqid, oligomer, line);
 
       ajStrDel(&url);
       ajStrDel(&inseq);
     }
 
-  ajFileClose(&outfile);
+  ajFileClose(&outf);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);

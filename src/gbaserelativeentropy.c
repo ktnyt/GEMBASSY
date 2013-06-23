@@ -26,16 +26,12 @@
 ******************************************************************************/
 
 #include "emboss.h"
-#include "soapH.h"
-#include "GLANGSoapBinding.nsmap"
-#include "soapClient.c"
-#include "soapC.c"
-#include "../gsoap/stdsoap2.c"
 #include "glibs.h"
 
 
 
-/* @prog gbaserelativeentropy ************************************************
+
+/* @prog gbaserelativeentropy *************************************************
 **
 ** Calculates and graphs the sequence conservation using Kullback-Leibler
 ** divergence (relative entropy)
@@ -46,21 +42,24 @@ int main(int argc, char *argv[])
 {
   embInitPV("gbaserelativeentropy", argc, argv, "GEMBASSY", "1.0.1");
 
-  struct soap soap;
-  struct ns1__base_USCORErelative_USCOREentropyInputParams params;
-
   AjPSeqall seqall;
   AjPSeq    seq;
-  AjPStr    inseq      = NULL;
-  AjPStr    seqid      = NULL;
-  AjPStr    position   = NULL;
-  ajint	    PatLen     = 0;
-  ajint	    upstream   = 0;
-  ajint	    downstream = 0;
-  AjBool    accid      = ajFalse;
+  AjPStr    inseq = NULL;
 
-  char *in0;
-  char *result;
+  AjPStr position   = 0;
+  ajint  PatLen     = 0;
+  ajint  upstream   = 0;
+  ajint  downstream = 0;
+
+  AjBool accid  = ajFalse;
+  AjPStr restid = NULL;
+  AjPStr seqid  = NULL;
+
+  AjPStr base = NULL;
+  AjPStr url  = NULL;
+
+  AjPFile tmpfile = NULL;
+  AjPStr  tmpname = NULL;
 
   AjBool      plot = 0;
   AjPFile     outf = NULL;
@@ -81,101 +80,105 @@ int main(int argc, char *argv[])
   outf = ajAcdGetOutfile("outfile");
   mult = ajAcdGetGraphxy("graph");
 
-  params.position   = ajCharNewS(position);
-  params.PatLength  = PatLen;
-  params.upstream   = upstream;
-  params.downstream = downstream;
-  params.output     = "f";
+  base = ajStrNewC("rest.g-language.org");
 
-  while (ajSeqallNext(seqall, &seq))
+  gAssignUniqueName(&tmpname);
+
+  while(ajSeqallNext(seqall, &seq))
     {
-      soap_init(&soap);
-
       inseq = NULL;
+
+      if(!accid)
+        {
+          if(gFormatGenbank(seq, &inseq))
+            {
+              gAssignUniqueName(&tmpname);
+
+              tmpfile = ajFileNewOutNameS(tmpname);
+
+              if(!tmpfile)
+                {
+                  ajFmtError("Output file (%S) open error\n", tmpname);
+                  embExitBad();
+                }
+
+              ajFmtPrintF(tmpfile, "%S", inseq);
+              ajFileClose(&tmpfile);
+              ajFmtPrintS(&url, "http://%S/upload/upl.pl", base);
+              gFilePostSS(url, tmpname, &restid);
+              ajStrDel(&url);
+              ajSysFileUnlinkS(tmpname);
+            }
+          else
+            {
+              ajFmtError("Sequence does not have features\n"
+                         "Proceeding with sequence accession ID\n");
+              accid = ajTrue;
+            }
+        }
+
+      if(accid)
+        {
+          ajStrAssignS(&seqid, ajSeqGetAccS(seq));
+
+          if(!ajStrGetLen(seqid))
+            {
+              ajStrAssignS(&seqid, ajSeqGetNameS(seq));
+            }
+
+          if(!ajStrGetLen(seqid))
+            {
+              ajFmtError("No valid header information\n");
+              embExitBad();
+            }
+
+          ajStrAssignS(&restid, seqid);
+        }
 
       ajStrAssignS(&seqid, ajSeqGetAccS(seq));
 
-      if(!ajStrGetLen(seqid))
-        ajStrAssignS(&seqid, ajSeqGetNameS(seq));
+      url = ajStrNew();
 
-      if(!ajStrGetLen(seqid))
+      ajFmtPrintS(&url, "http://%S/%S/base_relative_entropy/position=%S/"
+                  "PatLen=%d/upstream=%d/downstream=%d/output=f/tag=gene",
+                  base, restid, position, PatLen, upstream, downstream);
+
+      if(plot)
         {
-          ajWarn("No valid header information\n");
-        }
+          title = ajStrNew();
 
-      if(accid || !gFormatGenbank(seq, &inseq))
-        {
-          if(!accid)
-            ajWarn("Sequence does not have features\n"
-                   "Proceeding with sequence accession ID:%S\n", seqid);
+          ajStrAppendC(&title, argv[0]);
+          ajStrAppendC(&title, " of ");
+          ajStrAppendS(&title, seqid);
 
-          if(!gValID(seqid))
+          gpp.title = ajStrNewS(title);
+          gpp.xlab = ajStrNewC("position");
+          gpp.ylab = ajStrNewC("relative entropy");
+
+          if(!gFilebuffURLS(url, &buff))
             {
-              ajDie("Invalid accession ID:%S, exiting\n", seqid);
+              ajDie("File downloading error from:\n%S\n", url);
             }
 
-          ajStrAssignS(&inseq, seqid);
+          if(!gPlotFilebuff(buff, mult, &gpp))
+            {
+              ajDie("Error in plotting\n");
+            }
+
+          AJFREE(gpp.title);
+          AJFREE(gpp.xlab);
+          AJFREE(gpp.ylab);
+          ajStrDel(&title);
+          ajFilebuffDel(&buff);
         }
-
-      in0 = ajCharNewS(inseq);
-
-      if(soap_call_ns1__base_USCORErelative_USCOREentropy(
-	                                                 &soap,
-							  NULL,
-							  NULL,
-							  in0,
-							 &params,
-							 &result
-                                                         ) == SOAP_OK)
-	{
-	  if(plot)
-	    {
-	      ajStrAppendC(&title, argv[0]);
-	      ajStrAppendC(&title, " of ");
-	      ajStrAppendS(&title, seqid);
-
-	      gpp.title = ajStrNewS(title);
-	      gpp.xlab = ajStrNewC("position");
-	      gpp.ylab = ajStrNewC("relative entropy");
-
-	      if(!gFilebuffURLC(result, &buff))
-		{
-                  ajFmtError("File downloading error from:\n%s\n", result);
-		  embExitBad();
-		}
-	      
-	      if(!gPlotFilebuff(buff, mult, &gpp))
-		{
-		  ajDie( "Error in plotting\n");
-		}
-
-	      ajStrDel(&title);
-	      ajStrDel(&(gpp.title));
-	      ajStrDel(&(gpp.xlab));
-	      ajStrDel(&(gpp.ylab));
-	      ajFilebuffDel(&buff);
-	    }
-	  else
-	    {
-	      ajFmtPrintF(outf, "Sequence: %S\n", seqid);
-	      if(!gFileOutURLC(result, &outf))
-		{
-                  ajDie("File downloading error from:\n%s\n", result);
-		}
-	    }
-	}
       else
-	{
-	  soap_print_fault(&soap, stderr);
-	}
-
-      soap_destroy(&soap);
-      soap_end(&soap);
-      soap_done(&soap);
-
-      AJFREE(in0);
-
-      ajStrDel(&inseq);
+        {
+          ajFmtPrintF(outf, "Sequence: %S\n", seqid);
+          if(!gFileOutURLS(url, &outf))
+            {
+              ajDie("File downloading error from:\n%S\n", url);
+            }
+        }
     }
 
   ajFileClose(&outf);
@@ -183,8 +186,6 @@ int main(int argc, char *argv[])
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
   ajStrDel(&seqid);
-
-  AJFREE(params.position);
 
   ajStrDel(&position);
 

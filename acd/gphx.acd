@@ -30,11 +30,6 @@ section: advanced [
     default: "N"
   ]
 
-  string: usage [
-    information: "Pointer HASH of vectors of amino acid and codon usage of a set of highly expressed genes"
-    default: ""
-  ]
-
   string: delkey [
     information: "Regular expression to delete key"
     knowntype: "regular expression"

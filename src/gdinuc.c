@@ -25,11 +25,6 @@
 ******************************************************************************/
 
 #include "emboss.h"
-#include "soapH.h"
-#include "GLANGSoapBinding.nsmap"
-#include "soapClient.c"
-#include "soapC.c"
-#include "../gsoap/stdsoap2.c"
 #include "glibs.h"
 
 
@@ -45,105 +40,99 @@ int main(int argc, char *argv[])
 {
   embInitPV("gdinuc", argc, argv, "GEMBASSY", "1.0.1");
 
-  struct soap soap;
-  struct ns1__dinucInputParams params;
-
   AjPSeqall seqall;
   AjPSeq    seq;
-  AjPStr    inseq     = NULL;
-  AjPStr    seqid     = NULL;
-  AjPStr    id        = NULL;
-  AjPStr    position  = NULL;
-  AjBool    translate = 0;
-  AjPStr    delkey    = NULL;
-  AjBool    accid     = ajFalse;
+  AjPStr    inseq = NULL;
 
-  char *in0;
-  char *result;
+  AjBool translate = ajFalse;
+  AjPStr position  = NULL;
+  AjPStr delkey    = NULL;
+
+  AjBool accid  = ajFalse;
+  AjPStr restid = NULL;
+  AjPStr seqid  = NULL;
+
+  AjPStr base = NULL;
+  AjPStr url  = NULL;
+
+  AjPFile tmpfile = NULL;
+  AjPStr  tmpname = NULL;
 
   AjPFile outf = NULL;
 
   seqall    = ajAcdGetSeqall("sequence");
-  id        = ajAcdGetString("id");
-  position  = ajAcdGetListSingle("position");
   translate = ajAcdGetBoolean("translate");
+  position  = ajAcdGetListSingle("position");
   delkey    = ajAcdGetString("delkey");
   accid     = ajAcdGetBoolean("accid");
   outf      = ajAcdGetOutfile("outfile");
 
-  if(ajStrMatchC(position, "all"))
+  if(ajStrMatchCaseC(position, "all"))
     {
       ajStrDel(&position);
       position = ajStrNew();
     }
 
-  params.translate     = 0;
-  params.del_USCOREkey = ajCharNewS(delkey);
-  params.position      = ajCharNewS(position);
-  params.id            = ajCharNewS(id);
-  params.output        = "f";
+  base = ajStrNewC("rest.g-language.org");
 
-  if(translate)
-    params.translate = 1;
+  gAssignUniqueName(&tmpname);
 
   while(ajSeqallNext(seqall, &seq))
     {
-      soap_init(&soap);
-
       inseq = NULL;
+
+      if(!accid)
+        {
+          if(gFormatGenbank(seq, &inseq))
+            {
+              tmpfile = ajFileNewOutNameS(tmpname);
+              if(!tmpfile)
+                {
+                  ajDie("Output file (%S) open error\n", tmpname);
+                }
+              ajFmtPrintF(tmpfile, "%S", inseq);
+              ajFileClose(&tmpfile);
+              ajFmtPrintS(&url, "http://%S/upload/upl.pl", base);
+              gFilePostSS(url, tmpname, &restid);
+              ajStrDel(&url);
+              ajSysFileUnlinkS(tmpname);
+            }
+          else
+            {
+              ajDie("Sequence does not have features\n"
+                    "Proceeding with sequence accession ID\n");
+              accid = ajTrue;
+            }
+        }
+
+      if(accid)
+        {
+          ajStrAssignS(&restid, ajSeqGetAccS(seq));
+          if(!ajStrGetLen(restid))
+            {
+              ajStrAssignS(&restid, ajSeqGetNameS(seq));
+            }
+          if(!ajStrGetLen(restid))
+            {
+              ajDie("No valid header information\n");
+            }
+        }
 
       ajStrAssignS(&seqid, ajSeqGetAccS(seq));
 
-      if(!ajStrGetLen(seqid))
-        ajStrAssignS(&seqid, ajSeqGetNameS(seq));
+      url = ajStrNew();
 
-      if(!ajStrGetLen(seqid))
+      ajFmtPrintS(&url, "http://%S/%S/dinuc/translate=%d/position=%S/"
+                  "delkey=%S/output=f/tag=gene", base, restid, translate,
+                  position, delkey);
+
+      ajFmtPrintF(outf, "Sequence: %S\n", seqid);
+      if(!gFileOutURLS(url, &outf))
         {
-          ajWarn("No valid header information\n");
+          ajDie("Failed to download result from:\n%S\n", url);
         }
 
-      if(accid || !gFormatGenbank(seq, &inseq))
-        {
-          if(!accid)
-            ajWarn("Sequence does not have features\n"
-                   "Proceeding with sequence accession ID:%S\n", seqid);
-
-          if(!gValID(seqid))
-            {
-              ajDie("Invalid accession ID:%S, exiting\n", seqid);
-            }
-
-          ajStrAssignS(&inseq, seqid);
-        }
-
-      in0 = ajCharNewS(inseq);
-
-      if(soap_call_ns1__dinuc(
-	                     &soap,
-			      NULL,
-			      NULL,
-			      in0,
-			     &params,
-			     &result
-                             ) == SOAP_OK)
-	{
-	  ajFmtPrintF(outf, "Sequence: %S\n", seqid);
-	  if(!gFileOutURLC(result, &outf))
-	    {
-              ajDie("File downloading error from:\n%s\n", result);
-	    }
-	}
-      else
-	{
-	  soap_print_fault(&soap, stderr);
-	}
-
-      soap_destroy(&soap);
-      soap_end(&soap);
-      soap_done(&soap);
-
-      AJFREE(in0);
-
+      ajStrDel(&url);
       ajStrDel(&inseq);
     }
 
@@ -152,9 +141,6 @@ int main(int argc, char *argv[])
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
   ajStrDel(&seqid);
-
-  AJFREE(params.del_USCOREkey);
-  AJFREE(params.position);
 
   ajStrDel(&position);
   ajStrDel(&delkey);

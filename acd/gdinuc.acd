@@ -40,11 +40,6 @@ section: advanced [
     default: "all"
   ]
 
-  string: id [
-    information: "ID of a group of genes or a single gene"
-    default: "All"
-  ]
-
   string: delkey [
     information: "Regular expression to delete key (i.e. amino acids and nucleotides)"
     knowntype: "regular expression"

@@ -25,11 +25,6 @@
 ******************************************************************************/
 
 #include "emboss.h"
-#include "soapH.h"
-#include "GLANGSoapBinding.nsmap"
-#include "soapClient.c"
-#include "soapC.c"
-#include "../gsoap/stdsoap2.c"
 #include "glibs.h"
 
 
@@ -45,22 +40,25 @@ int main(int argc, char *argv[])
 {
   embInitPV("ggeneskew", argc, argv, "GEMBASSY", "1.0.1");
 
-  struct soap soap;
-  struct ns1__geneskewInputParams params;
-
   AjPSeqall seqall;
   AjPSeq    seq;
-  AjPStr    inseq      = NULL;
-  AjPStr    seqid      = NULL;
-  ajint	    window     = 0;
-  ajint	    slide      = 0;
-  AjBool    cumulative = 0;
-  AjBool    gc3        = 0;
-  AjPStr    base       = 0;
-  AjBool    accid      = ajFalse;
+  AjPStr    inseq = NULL;
 
-  char *in0;
-  char *result;
+  ajint	 window     = 0;
+  ajint	 slide      = 0;
+  AjBool cumulative = ajFalse;
+  AjBool gc3        = ajFalse;
+  AjPStr basetype   = NULL;
+
+  AjBool accid  = ajFalse;
+  AjPStr restid = NULL;
+  AjPStr seqid  = NULL;
+
+  AjPStr base = NULL;
+  AjPStr url  = NULL;
+
+  AjPFile tmpfile = NULL;
+  AjPStr  tmpname = NULL;
 
   AjBool      plot = 0;
   AjPFile     outf = NULL;
@@ -70,124 +68,120 @@ int main(int argc, char *argv[])
   gPlotParams gpp;
   AjPStr      title = NULL;
 
-  seqall = ajAcdGetSeqall("sequence");
-  window = ajAcdGetInt("window");
-  slide  = ajAcdGetInt("slide");
-  gc3    = ajAcdGetBoolean("gctri");
-  base   = ajAcdGetSelectSingle("base");
-  accid  = ajAcdGetBoolean("accid");
+  seqall     = ajAcdGetSeqall("sequence");
+  window     = ajAcdGetInt("window");
+  slide      = ajAcdGetInt("slide");
+  cumulative = ajAcdGetBoolean("cumulative");
+  gc3        = ajAcdGetBoolean("gctri");
+  basetype   = ajAcdGetSelectSingle("base");
+  accid      = ajAcdGetBoolean("accid");
 
   plot = ajAcdGetToggle("plot");
   outf = ajAcdGetOutfile("outfile");
   mult = ajAcdGetGraphxy("graph");
 
-  if(ajStrMatchC(base, "none")) base = ajStrNewC("");
+  if(ajStrMatchC(base, "none")) basetype = ajStrNewC("");
 
-  params.window = window;
-  params.slide  = slide;
-  params.cumulative = 0;
-  params.gc3    = 0;
-  params.base   = ajCharNewS(base);
-  params.output = "f";
+  base = ajStrNewC("rest.g-language.org");
 
-  if(cumulative)
-    params.cumulative = 1;
-  if(gc3)
-    params.gc3 = 1;
+  gAssignUniqueName(&tmpname);
 
   while(ajSeqallNext(seqall, &seq))
     {
-
-      soap_init(&soap);
-
       inseq = NULL;
+
+      if(!accid)
+        {
+          if(gFormatGenbank(seq, &inseq))
+            {
+              gAssignUniqueName(&tmpname);
+
+              tmpfile = ajFileNewOutNameS(tmpname);
+
+              if(!tmpfile)
+                {
+                  ajFmtError("Output file (%S) open error\n", tmpname);
+                  embExitBad();
+                }
+
+              ajFmtPrintF(tmpfile, "%S", inseq);
+              ajFileClose(&tmpfile);
+              ajFmtPrintS(&url, "http://%S/upload/upl.pl", base);
+              gFilePostSS(url, tmpname, &restid);
+              ajStrDel(&url);
+              ajSysFileUnlinkS(tmpname);
+            }
+          else
+            {
+              ajFmtError("Sequence does not have features\n"
+                         "Proceeding with sequence accession ID\n");
+              accid = ajTrue;
+            }
+        }
+
+      if(accid)
+        {
+          ajStrAssignS(&seqid, ajSeqGetAccS(seq));
+
+          if(!ajStrGetLen(seqid))
+            {
+              ajStrAssignS(&seqid, ajSeqGetNameS(seq));
+            }
+
+          if(!ajStrGetLen(seqid))
+            {
+              ajFmtError("No valid header information\n");
+              embExitBad();
+            }
+
+          ajStrAssignS(&restid, seqid);
+        }
 
       ajStrAssignS(&seqid, ajSeqGetAccS(seq));
 
-      if(!ajStrGetLen(seqid))
-        ajStrAssignS(&seqid, ajSeqGetNameS(seq));
+      url = ajStrNew();
 
-      if(!ajStrGetLen(seqid))
+      ajFmtPrintS(&url, "http://%S/%S/geneskew/window=%d/slide=%d/"
+                  "cumulative=%d/gc3=%d/base=%S/output=f/tag=gene",
+                  base, restid, window, slide, cumulative, gc3, basetype);
+
+      if(plot)
         {
-          ajWarn("No valid header information\n");
-        }
+          title = ajStrNew();
 
-      if(accid || !gFormatGenbank(seq, &inseq))
-        {
-          if(!accid)
-            ajWarn("Sequence does not have features\n"
-                   "Proceeding with sequence accession ID:%S\n", seqid);
+          ajStrAppendC(&title, argv[0]);
+          ajStrAppendC(&title, " of ");
+          ajStrAppendS(&title, seqid);
 
-          if(!gValID(seqid))
+          gpp.title = ajStrNewS(title);
+          gpp.xlab = ajStrNewC("gene skew");
+          gpp.ylab = ajStrNewC("bp");
+
+          if(!gFilebuffURLS(url, &buff))
             {
-              ajDie("Invalid accession ID:%S, exiting\n", seqid);
+              ajDie("File downloading error from:\n%S\n", url);
             }
 
-          ajStrAssignS(&inseq, seqid);
+          if(!gPlotFilebuff(buff, mult, &gpp))
+            {
+              ajDie("Error in plotting\n");
+            }
+
+          AJFREE(gpp.title);
+          AJFREE(gpp.xlab);
+          AJFREE(gpp.ylab);
+          ajStrDel(&title);
+          ajFilebuffDel(&buff);
         }
-
-      in0 = ajCharNewS(inseq);
-
-      if(soap_call_ns1__geneskew(
-			        &soap,
-                                 NULL,
-                                 NULL,
-                                 in0,
-                                &params,
-                                &result
-			        ) == SOAP_OK)
-	{
-	  if(plot)
-	    {
-	      title = ajStrNew();
-
-	      ajStrAppendC(&title, argv[0]);
-	      ajStrAppendC(&title, " of ");
-	      ajStrAppendS(&title, seqid);
-
-	      gpp.title = ajStrNewS(title);
-	      gpp.xlab = ajStrNewC("bp");
-	      gpp.ylab = ajStrNewC("gene skew");
-
-	      if(!gFilebuffURLC(result, &buff))
-		{
-                  ajDie("File downloading error from:\n%s\n", result);
-		}
-
-	      if(!gPlotFilebuff(buff, mult, &gpp))
-		{
-		  ajDie("Error in plotting\n");
-		}
-
-	      AJFREE(gpp.title);
-	      AJFREE(gpp.xlab);
-	      AJFREE(gpp.ylab);
-	      ajStrDel(&title);
-              ajFilebuffDel(&buff);
-	    }
-	  else
-	    {
-	      ajFmtPrintF(outf, "Sequence: %S\n", seqid);
-	      if(!gFileOutURLC(result, &outf))
-		{
-                  ajDie("File downloading error from:\n%s\n", result);
-		  embExitBad();
-		}
-	    }
-	}
       else
-	{
-          soap_print_fault(&soap, stderr);
+        {
+          ajFmtPrintF(outf, "Sequence: %S\n", seqid);
+          if(!gFileOutURLS(url, &outf))
+            {
+              ajDie("File downloading error from:\n%S\n", url);
+            }
         }
-
-    soap_destroy(&soap);
-    soap_end(&soap);
-    soap_done(&soap);
-
-    AJFREE(in0);
-
-    ajStrDel(&inseq);
-  }
+    }
 
   ajFileClose(&outf);
 

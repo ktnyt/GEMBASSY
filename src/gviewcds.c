@@ -25,11 +25,6 @@
 ******************************************************************************/
 
 #include "emboss.h"
-#include "soapH.h"
-#include "GLANGSoapBinding.nsmap"
-#include "soapClient.c"
-#include "soapC.c"
-#include "../gsoap/stdsoap2.c"
 #include "glibs.h"
 
 
@@ -45,20 +40,22 @@ int main(int argc, char *argv[])
 {
   embInitPV("gviewcds", argc, argv, "GEMBASSY", "1.0.1");
 
-  struct soap soap;
-  struct ns1__view_USCOREcdsInputParams params;
-
   AjPSeqall seqall;
   AjPSeq    seq;
   AjPStr    inseq = NULL;
-  AjPStr    seqid = NULL;
-  ajint	    length = 0;
-  ajint	    gap = 0;
-  AjBool    accid = ajFalse;
 
-  char *in0;
-  char *result;
-  int   i;
+  ajint	length = 0;
+  ajint	gap = 0;
+
+  AjBool accid  = ajFalse;
+  AjPStr restid = NULL;
+  AjPStr seqid  = NULL;
+
+  AjPStr base = NULL;
+  AjPStr url  = NULL;
+
+  AjPFile tmpfile = NULL;
+  AjPStr  tmpname = NULL;
 
   AjBool      plot = 0;
   AjPFile     outf = NULL;
@@ -66,8 +63,10 @@ int main(int argc, char *argv[])
   AjPGraph    mult = NULL;
 
   gPlotParams gpp;
-  AjPStr      title = NULL;    
+  AjPStr      title = NULL;
   AjPPStr     names = NULL;
+
+  ajint i;
 
   seqall = ajAcdGetSeqall("sequence");
   length = ajAcdGetInt("length");
@@ -78,122 +77,125 @@ int main(int argc, char *argv[])
   outf = ajAcdGetOutfile("outfile");
   mult = ajAcdGetGraphxy("graph");
 
-  params.length = length;
-  params.gap    = gap;
-  params.output = "f";
+  base = ajStrNewC("rest.g-language.org");
+
+  gAssignUniqueName(&tmpname);
 
   while(ajSeqallNext(seqall, &seq))
     {
-
-      soap_init(&soap);
-
       inseq = NULL;
 
-      ajStrAssignS(&seqid, ajSeqGetAccS(seq));
-
-      if(!ajStrGetLen(seqid))
-        ajStrAssignS(&seqid, ajSeqGetNameS(seq));
-
-      if(!ajStrGetLen(seqid))
+      if(!accid)
         {
-          ajWarn("No valid header information\n");
-        }
-
-      if(accid || !gFormatGenbank(seq, &inseq))
-        {
-          if(!accid)
-            ajWarn("Sequence does not have features\n"
-                   "Proceeding with sequence accession ID:%S\n", seqid);
-
-          if(!gValID(seqid))
+          if(gFormatGenbank(seq, &inseq))
             {
-              ajDie("Invalid accession ID:%S, exiting\n", seqid);
-            }
+              gAssignUniqueName(&tmpname);
 
-          ajStrAssignS(&inseq, seqid);
-        }
+              tmpfile = ajFileNewOutNameS(tmpname);
 
-      in0 = ajCharNewS(inseq);
-
-      if(soap_call_ns1__view_USCOREcds(
-				      &soap,
-                                       NULL,
-                                       NULL,
-				       in0,
-                                      &params,
-                                      &result
-				      ) == SOAP_OK)
-        {
-          if(plot)
-            {
-              if((names = (AjPPStr)malloc(sizeof(AjPStr) * 5)) == NULL) {
-                ajDie("Error in memory allocation, exiting\n");
-              }
-
-              names[0] = NULL;
-              names[1] = ajStrNewC("A");
-              names[2] = ajStrNewC("T");
-              names[3] = ajStrNewC("G");
-              names[4] = ajStrNewC("C");
-
-              title = ajStrNew();
-
-              ajStrAppendC(&title, argv[0]);
-              ajStrAppendC(&title, " of ");
-              ajStrAppendS(&title, seqid);
-
-              gpp.title = ajStrNewS(title);
-              gpp.xlab = ajStrNewC("position");
-              gpp.ylab = ajStrNewC("percentage");
-              gpp.names = names;
-
-              if(!gFilebuffURLC(result, &buff))
+              if(!tmpfile)
                 {
-                  ajDie("File downloading error from:\n%s\n", result);
+                  ajFmtError("Output file (%S) open error\n", tmpname);
+                  embExitBad();
                 }
 
-              if(!gPlotFilebuff(buff, mult, &gpp))
-                {
-                  ajDie("Error in plotting\n");
-                }
-
-              i = 0;
-              while(names[i])
-                {
-                  AJFREE(names[i]);
-                  ++i;
-                }
-
-              AJFREE(names);
-
-              AJFREE(gpp.title);
-              AJFREE(gpp.xlab);
-              AJFREE(gpp.ylab);
-              ajStrDel(&title);
-              ajFilebuffDel(&buff);
+              ajFmtPrintF(tmpfile, "%S", inseq);
+              ajFileClose(&tmpfile);
+              ajFmtPrintS(&url, "http://%S/upload/upl.pl", base);
+              gFilePostSS(url, tmpname, &restid);
+              ajStrDel(&url);
+              ajSysFileUnlinkS(tmpname);
             }
           else
             {
-              ajFmtPrintF(outf, "Sequence: %S\n", seqid);
-              if(!gFileOutURLC(result, &outf))
-                {
-                  ajDie("File downloading error from:\n%s\n", result);
-                }
+              ajFmtError("Sequence does not have features\n"
+                         "Proceeding with sequence accession ID\n");
+              accid = ajTrue;
             }
+        }
+
+      if(accid)
+        {
+          ajStrAssignS(&seqid, ajSeqGetAccS(seq));
+
+          if(!ajStrGetLen(seqid))
+            {
+              ajStrAssignS(&seqid, ajSeqGetNameS(seq));
+            }
+
+          if(!ajStrGetLen(seqid))
+            {
+              ajFmtError("No valid header information\n");
+              embExitBad();
+            }
+
+          ajStrAssignS(&restid, seqid);
+        }
+
+      ajStrAssignS(&seqid, ajSeqGetAccS(seq));
+
+      url = ajStrNew();
+
+      ajFmtPrintS(&url, "http://%S/%S/view_cds/length=%d/gap=%d/"
+                  "output=f/tag=gene", base, restid, length, gap);
+
+      if(plot)
+        {
+          if((names = (AjPPStr)malloc(sizeof(AjPStr) * 5)) == NULL) {
+            ajDie("Error in memory allocation, exiting\n");
+          }
+
+          names[0] = NULL;
+          names[1] = ajStrNewC("A");
+          names[2] = ajStrNewC("T");
+          names[3] = ajStrNewC("G");
+          names[4] = ajStrNewC("C");
+
+          title = ajStrNew();
+
+          ajStrAppendC(&title, argv[0]);
+          ajStrAppendC(&title, " of ");
+          ajStrAppendS(&title, seqid);
+
+          gpp.title = ajStrNewS(title);
+          gpp.xlab = ajStrNewC("position");
+          gpp.ylab = ajStrNewC("percentage");
+          gpp.names = names;
+
+          if(!gFilebuffURLS(url, &buff))
+            {
+              ajDie("File downloading error from:\n%S\n", url);
+            }
+
+          if(!gPlotFilebuff(buff, mult, &gpp))
+            {
+              ajDie("Error in plotting\n");
+            }
+
+          i = 0;
+          while(names[i])
+            {
+              AJFREE(names[i]);
+              ++i;
+            }
+
+          AJFREE(names);
+
+          AJFREE(gpp.title);
+          AJFREE(gpp.xlab);
+          AJFREE(gpp.ylab);
+          ajStrDel(&title);
+          ajFilebuffDel(&buff);
         }
       else
         {
-          soap_print_fault(&soap, stderr);
+          ajFmtPrintF(outf, "Sequence: %S\n", seqid);
+          if(!gFileOutURLS(url, &outf))
+            {
+              ajDie("File downloading error from:\n%S\n", url);
+            }
         }
-
-      soap_destroy(&soap);
-      soap_end(&soap);
-      soap_done(&soap);
-
-      AJFREE(in0);
-
-      ajStrDel(&inseq);
-  }
+    }
 
   ajFileClose(&outf);
 
