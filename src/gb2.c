@@ -65,6 +65,8 @@ int main(int argc, char *argv[])
 
   base = ajStrNewC("rest.g-language.org");
 
+  gAssignUniqueName(&tmpname);
+
   while(ajSeqallNext(seqall, &seq))
     {
       inseq = NULL;

@@ -44,7 +44,6 @@ int main(int argc, char *argv[])
   AjPSeq    seq;
   AjPStr    inseq = NULL;
 
-  AjPStr id         = NULL;
   AjBool translate  = ajFalse;
   AjBool startcodon = ajFalse;
   AjBool stopcodon  = ajFalse;
@@ -64,7 +63,6 @@ int main(int argc, char *argv[])
   AjPFile outf = NULL;
 
   seqall     = ajAcdGetSeqall("sequence");
-  id         = ajAcdGetString("id");
   translate  = ajAcdGetBoolean("translate");
   startcodon = ajAcdGetBoolean("startcodon");
   stopcodon  = ajAcdGetBoolean("stopcodon");
@@ -122,10 +120,9 @@ int main(int argc, char *argv[])
 
       url = ajStrNew();
 
-      ajFmtPrintS(&url, "http://%S/%S/codon_compiler/id=%S/translate=%d/"
+      ajFmtPrintS(&url, "http://%S/%S/codon_compiler//translate=%d/"
                   "startcodon=%d/stopcodon=%d/delkey=%S/data=%S/output=f/",
-                  base, restid, id, translate, startcodon,
-                  stopcodon, delkey, data);
+                  base, restid, translate, startcodon, stopcodon, delkey, data);
       
       ajFmtPrintF(outf, "Sequence: %S\n", seqid);
       if(!gFileOutURLS(url, &outf))
