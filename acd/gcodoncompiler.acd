@@ -25,12 +25,6 @@ section: advanced [
   type: "page"
 ]
 
-  string: id [
-    information: "ID of a group"
-    knowntype: "name"
-    default: "All"
-  ]
-
   boolean: translate [
     information: "Include to translate using standard codon table"
     default: "N"

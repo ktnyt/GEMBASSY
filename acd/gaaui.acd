@@ -29,12 +29,6 @@ section: advanced [
   type: "page"
 ]
 
-  string: id [
-    information: "ID of a group"
-    knowntype: "name"
-    default: ""
-  ]
-
   boolean: accid [
     information: "Include to use sequence accession ID as query"
     default: "N"

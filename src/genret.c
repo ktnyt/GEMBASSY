@@ -55,8 +55,8 @@ int main(int argc, char *argv[])
   AjBool isgbk = ajFalse;
 
   AjPFilebuff buff = NULL;
-  AjPFile tmp_file = NULL;
-  AjPStr  tmp_name = NULL;
+  AjPFile  tmpfile = NULL;
+  AjPStr   tmpname = NULL;
 
   AjPStr regexstr = NULL;
   AjPStrTok token = NULL;
@@ -121,29 +121,29 @@ int main(int argc, char *argv[])
     {
       ajStrExchangeCC(&gene, "@", "");
       ajStrExchangeCC(&gene, "list::", "");
-      ajStrAssignS(&tmp_name, gene);
+      ajStrAssignS(&tmpname, gene);
 
-      tmp_file = ajFileNewInNameS(tmp_name);
+      tmpfile = ajFileNewInNameS(tmpname);
 
-      if(!tmp_file)
+      if(!tmpfile)
         {
-          ajDie("List file (%S) open error\n", tmp_name);
+          ajDie("List file (%S) open error\n", tmpname);
         }
 
       gene = ajStrNew();
 
-      while(ajReadline(tmp_file, &line))
+      while(ajReadline(tmpfile, &line))
         {
           ajStrAppendS(&gene, line);
         }
 
-      ajFileClose(&tmp_file);
-      ajStrDel(&tmp_name);
+      ajFileClose(&tmpfile);
+      ajStrDel(&tmpname);
       ajStrDel(&line);
     }
 
-  tmp_name = ajStrNew();
-  gAssignUniqueName(&tmp_name);
+  tmpname = ajStrNew();
+  gAssignUniqueName(&tmpname);
 
   while(ajSeqallNext(seqall, &seq))
     {
@@ -153,24 +153,24 @@ int main(int argc, char *argv[])
         {
           if(gFormatGenbank(seq, &inseq))
             {
-              tmp_file = ajFileNewOutNameS(tmp_name);
+              tmpfile = ajFileNewOutNameS(tmpname);
 
-              if(!tmp_file)
+              if(!tmpfile)
                 {
-                  ajDie("Output file (%S) open error\n", tmp_name);
+                  ajDie("Output file (%S) open error\n", tmpname);
                 }
 
-              ajFmtPrintF(tmp_file, "%S", inseq);
+              ajFmtPrintF(tmpfile, "%S", inseq);
 
-              ajFileClose(&tmp_file);
+              ajFileClose(&tmpfile);
 
               ajFmtPrintS(&url, "http://%S/upload/upl.pl", base);
 
-              gFilePostSS(url, tmp_name, &seqid);
+              gFilePostSS(url, tmpname, &seqid);
 
               ajStrDel(&url);
 
-              ajSysFileUnlinkS(tmp_name);
+              ajSysFileUnlinkS(tmpname);
             }
           else
             {
@@ -254,9 +254,6 @@ int main(int argc, char *argv[])
             }
           else
             {
-              if(!ajStrIsAlnum(line))
-                continue;
-
               if(valid)
                 {
                   if(isseq)

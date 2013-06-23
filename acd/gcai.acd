@@ -30,7 +30,7 @@ section: advanced [
     default: "N"
   ]
 
-  float: wabsent [
+  string: wabsent [
     information: "W value of codons absent from a reference set to negative
                   when excludes such codons from the calculation"
     

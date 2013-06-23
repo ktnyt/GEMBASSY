@@ -54,10 +54,8 @@ int main(int argc, char *argv[])
   AjPStr base = NULL;
   AjPStr url  = NULL;
 
-  AjPFile tempfile = NULL;
-  AjPStr  tempname = NULL;
-  AjPStr  outfname = NULL;
-  AjPStr  filename = NULL;
+  AjPFile tmpfile = NULL;
+  AjPStr  tmpname = NULL;
 
   AjBool      plot = 0;
   AjPFile     outf = NULL;
@@ -86,22 +84,22 @@ int main(int argc, char *argv[])
         {
           if(gFormatGenbank(seq, &inseq))
             {
-              gAssignUniqueName(&tempname);
+              gAssignUniqueName(&tmpname);
 
-              tempfile = ajFileNewOutNameS(tempname);
+              tmpfile = ajFileNewOutNameS(tmpname);
 
-              if(!tempfile)
+              if(!tmpfile)
                 {
-                  ajFmtError("Output file (%S) open error\n", tempname);
+                  ajFmtError("Output file (%S) open error\n", tmpname);
                   embExitBad();
                 }
 
-              ajFmtPrintF(tempfile, "%S", inseq);
-              ajFileClose(&tempfile);
+              ajFmtPrintF(tmpfile, "%S", inseq);
+              ajFileClose(&tmpfile);
               ajFmtPrintS(&url, "http://%S/upload/upl.pl", base);
-              gFilePostSS(url, tempname, &restid);
+              gFilePostSS(url, tmpname, &restid);
               ajStrDel(&url);
-              ajSysFileUnlinkS(tempname);
+              ajSysFileUnlinkS(tmpname);
             }
           else
             {
@@ -176,7 +174,6 @@ int main(int argc, char *argv[])
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
-  ajStrDel(&filename);
 
   embExit();
 

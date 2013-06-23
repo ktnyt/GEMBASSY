@@ -25,11 +25,6 @@
 ******************************************************************************/
 
 #include "emboss.h"
-#include "soapH.h"
-#include "GLANGSoapBinding.nsmap"
-#include "soapClient.c"
-#include "soapC.c"
-#include "../gsoap/stdsoap2.c"
 #include "glibs.h"
 
 
@@ -45,21 +40,27 @@ int main(int argc, char *argv[])
 {
   embInitPV("gdeltagcskew", argc, argv, "GEMBASSY", "1.0.1");
 
-  struct soap soap;
-  struct ns1__delta_USCOREgcskewInputParams params;
-
   AjPSeqall seqall;
   AjPSeq    seq;
-  AjPStr    inseq  = NULL;
-  AjPStr    seqid  = NULL;
-  AjBool    at     = 0;
-  AjBool    purine = 0;
-  AjBool    keto   = 0;
-  AjPStr    method = 0;
-  AjBool    accid  = ajFalse;
+  AjPStr    inseq = NULL;
 
-  char *in0;
-  char *result;
+  AjBool at     = 0;
+  AjBool purine = 0;
+  AjBool keto   = 0;
+  AjPStr method = 0;
+
+  AjBool accid  = ajFalse;
+  AjPStr restid = NULL;
+  AjPStr seqid  = NULL;
+
+  AjPStr base = NULL;
+  AjPStr url  = NULL;
+
+  AjPFile tmpfile = NULL;
+  AjPStr  tmpname = NULL;
+  AjPFilebuff tmp = NULL;
+
+  AjPStr line = NULL;
 
   AjPFile outf = NULL;
 
@@ -71,72 +72,69 @@ int main(int argc, char *argv[])
   accid  = ajAcdGetBoolean("accid");
   outf   = ajAcdGetOutfile("outfile");
 
-  params.at     = 0;
-  params.purine = 0;
-  params.keto   = 0;
-  params.method = ajCharNewS(method);
+  base = ajStrNewC("rest.g-language.org");
 
-  if(at)
-    params.at     = 1;
-  if(purine)
-    params.purine = 1;
-  if (keto)
-    params.keto   = 1;
+  gAssignUniqueName(&tmpname);
 
   while(ajSeqallNext(seqall, &seq))
     {
-      soap_init(&soap);
-
       inseq = NULL;
+
+      if(!accid)
+        {
+          if(gFormatGenbank(seq, &inseq))
+            {
+              tmpfile = ajFileNewOutNameS(tmpname);
+              if(!tmpfile)
+                {
+                  ajDie("Output file (%S) open error\n", tmpname);
+                }
+              ajFmtPrintF(tmpfile, "%S", inseq);
+              ajFileClose(&tmpfile);
+              ajFmtPrintS(&url, "http://%S/upload/upl.pl", base);
+              gFilePostSS(url, tmpname, &restid);
+              ajStrDel(&url);
+              ajSysFileUnlinkS(tmpname);
+            }
+          else
+            {
+              ajDie("Sequence does not have features\n"
+                    "Proceeding with sequence accession ID\n");
+              accid = ajTrue;
+            }
+        }
+
+      if(accid)
+        {
+          ajStrAssignS(&restid, ajSeqGetAccS(seq));
+          if(!ajStrGetLen(restid))
+            {
+              ajStrAssignS(&restid, ajSeqGetNameS(seq));
+            }
+          if(!ajStrGetLen(restid))
+            {
+              ajDie("No valid header information\n");
+            }
+        }
 
       ajStrAssignS(&seqid, ajSeqGetAccS(seq));
 
-      if(!ajStrGetLen(seqid))
-        ajStrAssignS(&seqid, ajSeqGetNameS(seq));
+      url = ajStrNew();
 
-      if(!ajStrGetLen(seqid))
+      ajFmtPrintS(&url, "http://%S/%S/delta_gcskew/", base, restid);
+
+      if(!gFilebuffURLS(url, &tmp))
         {
-          ajWarn("No valid header information\n");
+          ajDie("Failed to download result from:\n%S\n", url);
         }
 
-      if(accid || !gFormatGenbank(seq, &inseq))
-        {
-          if(!accid)
-            ajWarn("Sequence does not have features\n"
-                   "Proceeding with sequence accession ID:%S\n", seqid);
+      ajBuffreadLine(tmp, &line);
 
-          if(!gValID(seqid))
-            {
-              ajDie("Invalid accession ID:%S, exiting\n", seqid);
-            }
+      ajStrRemoveSetC(&line, "\n");
 
-          ajStrAssignS(&inseq, seqid);
-        }
+      ajFmtPrintF(outf, "Sequence: %S DELTA-GCskew %S\n", seqid, line);
 
-      in0 = ajCharNewS(inseq);
-
-      if(soap_call_ns1__delta_USCOREgcskew(
-	                                  &soap,
-					   NULL,
-					   NULL,
-					   in0,
-					  &params,
-					  &result
-                                          ) == SOAP_OK)
-	{
-          ajFmtPrintF(outf, "Sequence: %S delta GC skew: %s\n", seqid, result);
-	}
-      else
-	{
-	  soap_print_fault(&soap, stderr);
-	}
-
-      soap_destroy(&soap);
-      soap_end(&soap);
-      soap_done(&soap);
-
-      AJFREE(in0);
-
+      ajStrDel(&url);
       ajStrDel(&inseq);
     }
 
