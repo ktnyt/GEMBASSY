@@ -5,9 +5,11 @@ Function
 
 Description
 
-   This program graphs the GC skew for the whole genome, coding regions,
-   intergenic regions, and the third codon.
- 
+   ggenomicskew calculates and plots the GC skew for the whole genome, coding
+   regions, intergenic regions, and the third codon. This program is useful in
+   visualizing various base composition bias within the genome. AT skew can be
+   calculated instead of GC skew by toggling the -at qualifier.
+    
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -25,15 +27,23 @@ Description
 
 Usage
 
-   Here is a sample session with ggenomicskew
+Here is a sample session with ggenomicskew
 
-   The database definitions for following commands are available at
-   http://soap.g-language.org/kbws/embossrc
-
-% ggenomicskew -plot refseqn:NC_000913
+% ggenomicskew refseqn:NC_000913
 Calculates the GC skew in different regions of the given genome
-Output filename [ggenomicskew.nc_000913.csv]:
-Created ggenomicskew.ps
+Program compseq output file (optional) [nc_000913.ggenomicskew]: 
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+   Example 2
+
+% ggenomicskew refseqn:NC_000913 -plot -graph png
+Calculates the GC skew in different regions of the given genome
+Created ggenomicskew.1.png
+
+   Go to the input files for this example
+   Go to the output files for this example
 
 Command line arguments
 
@@ -43,32 +53,107 @@ Command line arguments
 *  -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
                                   (ps, hpgl, hp7470, hp7580, meta, cps, x11,
                                   tek, tekt, none, data, xterm, png, gif, svg)
-*  -outfile            outfile    [genomicskew.$(sequence.name).csv] Output
-                                  file name
+*  -outfile            outfile    [*.ggenomicskew] Program compseq output file
+                                  (optional)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -divide             integer    [250] Window to divide into (Any integer
                                   value)
-   -at                 boolean    [0] Input 1 when observing AT skew instead
+   -at                 boolean    [N] Input 1 when observing AT skew instead
                                   of GC skew
-   -csv                boolean    [N] Include to create CSV file
-   -accid              string     Include to use sequence accession ID as
-                                  query (Any string)
+   -[no]accid          boolean    [Y] Include to use sequence accession ID as
+                                  query
    -plot               toggle     [N] Include to plot result
 
+   Associated qualifiers:
+
+   "-sequence" associated qualifiers
+   -sbegin1            integer    Start of each sequence to be used
+   -send1              integer    End of each sequence to be used
+   -sreverse1          boolean    Reverse (if DNA)
+   -sask1              boolean    Ask for begin/end/reverse
+   -snucleotide1       boolean    Sequence is nucleotide
+   -sprotein1          boolean    Sequence is protein
+   -slower1            boolean    Make lower case
+   -supper1            boolean    Make upper case
+   -scircular1         boolean    Sequence is circular
+   -sformat1           string     Input sequence format
+   -iquery1            string     Input query fields or ID list
+   -ioffset1           integer    Input start position offset
+   -sdbname1           string     Database name
+   -sid1               string     Entryname
+   -ufo1               string     UFO features
+   -fformat1           string     Features format
+   -fopenfile1         string     Features file name
+
+   "-graph" associated qualifiers
+   -gprompt            boolean    Graph prompting
+   -gdesc              string     Graph description
+   -gtitle             string     Graph title
+   -gsubtitle          string     Graph subtitle
+   -gxtitle            string     Graph x axis title
+   -gytitle            string     Graph y axis title
+   -goutfile           string     Output file for non interactive displays
+   -gdirectory         string     Output directory
+
+   "-outfile" associated qualifiers
+   -odirectory         string     Output directory
+
    General qualifiers:
+   -auto               boolean    Turn off prompts
+   -stdout             boolean    Write first file to standard output
+   -filter             boolean    Read first file from standard input, write
+                                  first file to standard output
+   -options            boolean    Prompt for standard and additional values
+   -debug              boolean    Write debug output to program.dbg
+   -verbose            boolean    Report some/full command line options
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
+   -warning            boolean    Report warnings
+   -error              boolean    Report errors
+   -fatal              boolean    Report fatal errors
+   -die                boolean    Report dying program messages
+   -version            boolean    Report version number and exit
 
 Input file format
 
-   ggenomicskew reads nucleotide sequences.
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
+
+   ggenomicskew reads one or more nucleotide sequences.
 
 Output file format
 
-   The output from ggenomicskew is to the specified graphics device.
+   The output from ggenomicskew is to a plain text file or the EMBOSS graphics device.
+
+   File: nc_000913.ggenomicskew
+
+Sequence: NC_000913
+location,GC skew,coding,intergenic,third codon
+0,-0.036259,-0.040085,-0.034707,-0.141888,
+1,-0.031167,-0.035657,0.047953,-0.175758,
+2,-0.028670,-0.031139,-0.049143,-0.018466,
+3,-0.016647,-0.004656,-0.102616,0.086181,
+4,-0.041985,-0.029846,-0.088670,0.015291,
+5,-0.097093,-0.103813,-0.067275,-0.247401,
+6,-0.028028,-0.016363,-0.048806,-0.047332,
+7,-0.055805,-0.059329,-0.020071,-0.123271,
+
+   [Part of this file has been deleted for brevity]
+
+241,0.000772,-0.012151,-0.063786,0.069585,
+242,-0.025787,-0.000384,-0.049143,0.029431,
+243,0.010516,0.008217,-0.030600,0.128657,
+244,-0.037115,-0.015134,0.017500,0.035398,
+245,-0.000317,0.006021,-0.047170,0.091549,
+246,-0.025417,-0.015190,-0.116608,0.044619,
+247,-0.038404,-0.035676,-0.135714,0.015375,
+248,-0.026246,-0.024240,-0.037190,-0.130118,
+249,-0.053371,-0.057225,-0.022472,-0.082167,
+250,-0.026316,0.166667,-0.151515,0.000000,
+
 
 Data files
 
@@ -94,8 +179,7 @@ References
 
 Warnings
 
-   This tool may give a warning on feature output when installed on
-   EMBOSS-6.5.7, but we have no known errors in analysis.
+   None.
 
 Diagnostic Error Messages
 
@@ -128,6 +212,7 @@ Author(s)
 History
 
    2012 - Written by Hidetoshi Itaya
+   2013 - Fixed by Hidetoshi Itaya
 
 Target users
 

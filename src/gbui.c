@@ -46,7 +46,6 @@ int main(int argc, char *argv[])
 
   AjBool translate = ajFalse;
   AjPStr position  = NULL;
-  AjPStr id        = NULL;
   AjPStr delkey    = NULL;
 
   AjBool accid  = ajFalse;
@@ -64,7 +63,6 @@ int main(int argc, char *argv[])
   seqall    = ajAcdGetSeqall("sequence");
   translate = ajAcdGetBoolean("translate");
   position  = ajAcdGetListSingle("position");
-  id        = ajAcdGetString("id");
   delkey    = ajAcdGetString("delkey");
   accid     = ajAcdGetBoolean("accid");
   outf      = ajAcdGetOutfile("outfile");
@@ -124,9 +122,9 @@ int main(int argc, char *argv[])
 
       url = ajStrNew();
 
-      ajFmtPrintS(&url, "http://%S/%S/bui/translate=%d/position=%S/id=%S/"
+      ajFmtPrintS(&url, "http://%S/%S/bui/translate=%d/position=%S/"
                   "delkey=%S/output=f/tag=gene", base, restid, translate,
-                  position, id, delkey);
+                  position, delkey);
 
       ajFmtPrintF(outf, "Sequence: %S\n", seqid);
       if(!gFileOutURLS(url, &outf))
@@ -145,7 +143,6 @@ int main(int argc, char *argv[])
   ajStrDel(&seqid);
 
   ajStrDel(&position);
-  ajStrDel(&id);
   ajStrDel(&delkey);
 
   embExit();

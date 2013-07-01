@@ -2,7 +2,7 @@
 
 <HTML>
 <HEAD>
-  <TITLE> EMBOSS: gfind_ori_ter </TITLE>
+  <TITLE> EMBOSS: ggenomemap3 </TITLE>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" text="#000000">
 
@@ -14,7 +14,7 @@
 </td>
 <td align=left valign=middle>
 <b><font size="+6">
-gfind_ori_ter
+ggenomemap3
 </font></b>
 </td></tr>
 </table>
@@ -30,7 +30,7 @@ gfind_ori_ter
 
 
 <H2> Function </H2>
-   Predict the replication origin and terminus in bacterial genomes
+   Draws the map of the genome (version 3)
 <!--
 DON'T WRITE ANYTHING HERE.
 IT IS DONE FOR YOU.
@@ -41,44 +41,46 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   Predicts the replicational origin and terminus in circular bacterial genomes,<br>
-   by taking the vertices of cumulative skew graphs (GC, keto, or purine). See<br>
-   Frank and Lobry (2000) for the basic idea behind thid algorithm (but also<br>
-   note that this algorithm is different from that of Oriloc, which uses GC3 of<br>
-   genes). <br>
-<br>
-   Terminus of replication can be more accurate by using noise-reduction <br>
-   filtering using Fourier spectrum of the GC skew. This low-pass filtering<br>
-   can be applied using -filter option. See Arakawa et al. (2007) for details.<br>
- <br>
-   G-language SOAP service is provided by the<br>
-   Institute for Advanced Biosciences, Keio University.<br>
-   The original web service is located at the following URL:<br>
-<br>
-   http://www.g-language.org/wiki/soap<br>
-<br>
-   WSDL(RPC/Encoded) file is located at:<br>
-<br>
-   http://soap.g-language.org/g-language.wsdl<br>
-<br>
-   Documentation on G-language Genome Analysis Environment methods are<br>
-   provided at the Document Center<br>
-<br>
-   http://ws.g-language.org/gdoc/
+   ggenomemap3 creates a map of the genome, showing the local nucleotide<br />
+   contents and positions of genes. A is shown in red, T is shown in green, <br />
+   G is shown in yellow, and C is shown in blue.<br />
+   Created image has a resolution of 8192x8192 and is suited for conversion<br />
+   to SVG, which can be performed by specifying the -format option. The formats<br />
+   available are dependent to the "convert" command from ImageMagick.<br />
+    <br />
+   G-language SOAP service is provided by the<br />
+   Institute for Advanced Biosciences, Keio University.<br />
+   The original web service is located at the following URL:<br />
+<br />
+   http://www.g-language.org/wiki/soap<br />
+<br />
+   WSDL(RPC/Encoded) file is located at:<br />
+<br />
+   http://soap.g-language.org/g-language.wsdl<br />
+<br />
+   Documentation on G-language Genome Analysis Environment methods are<br />
+   provided at the Document Center<br />
+<br />
+   http://ws.g-language.org/gdoc/<br />
+<br />
+
 </p>
 
 <H2>Usage</H2>
 
 <table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
 
-   Here is a sample session with gfind_ori_ter
+Here is a sample session with ggenomemap3
 
-   The database definitions for following commands are available at
-   http://soap.g-language.org/kbws/embossrc
+% ggenomemap3 refseqn:NC_000913
+Draws the map of the genome (version 3)
+Output file for non interactive displays [ggenomemap3]: Created ggenomemap3.1.png
 
-% gfind_ori_ter -show refseqn:NC_000913
-Predict the replication origin and terminus in bacterial genomes
-Sequence: NC_000913 Origin: 3922946 Terminus: 1550274
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+
 
 </pre></td></tr></table>
 
@@ -108,11 +110,11 @@ Sequence: NC_000913 Origin: 3922946 Terminus: 1550274
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>[-outfile]<br>(Parameter 2)</td>
-<td>outfile</td>
-<td>Output file name</td>
-<td>Output file</td>
-<td><i>&lt;*&gt;</i>.gfind_ori_ter</td>
+<td>[-goutfile]<br>(Parameter 2)</td>
+<td>string</td>
+<td>Output file for non interactive displays</td>
+<td>Any string</td>
+<td>ggenomemap3</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -128,43 +130,35 @@ Sequence: NC_000913 Origin: 3922946 Terminus: 1550274
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-window</td>
+<td>-format</td>
+<td>string</td>
+<td>Output file format. Dependent on 'convert' command</td>
+<td>Any string</td>
+<td>png</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-width</td>
 <td>integer</td>
-<td>Number of windows to use for Fat Fourier Transform. Only active when -lowpass option is specified. Value must be the power of two</td>
+<td>Image width</td>
 <td>Any integer value</td>
-<td>4096</td>
+<td>8192</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-purine</td>
-<td>boolean</td>
-<td>Use purine skew for calculation</td>
-<td>Boolean value Yes/No</td>
-<td>No</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-keto</td>
-<td>boolean</td>
-<td>Use keto skew for calculation</td>
-<td>Boolean value Yes/No</td>
-<td>No</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-lowpass</td>
+<td>-height</td>
 <td>integer</td>
-<td>Lowpass filter strength in percent. Typically 95 or 99 works best</td>
+<td>Image height</td>
 <td>Any integer value</td>
-<td>0</td>
+<td>8192</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-accid</td>
+<td>-[no]accid</td>
 <td>boolean</td>
 <td>Include to use sequence accession ID as query</td>
 <td>Boolean value Yes/No</td>
-<td>No</td>
+<td>Yes</td>
 </tr>
 
 </table>
@@ -173,13 +167,22 @@ Sequence: NC_000913 Origin: 3922946 Terminus: 1550274
 <h2>Input file format</h2>
 
 <p>
-   gfind_ori_ter reads nucleotide sequences.
+   The database definitions for following commands are available at<br />
+   http://soap.g-language.org/kbws/embossrc<br />
+<br />
+   ggenomemap3 reads one or more nucleotide sequences.<br />
+<br />
+
 </p>
 
 <h2>Output file format</h2>
 
 <p>
-   The output from gfind_ori_ter is to a file or stdout.
+   The output from ggenomemap3 is to an image file.<br />
+<br />
+<br />
+<br />
+
 </p>
 
 <h2>Data files</h2>
@@ -194,16 +197,9 @@ None.
 None.
 </p>
 
-<h2>Refrences</h2>
+<h2>References</h2>
 
 <pre>
-   Frank AC, Lobry JR (2000) "Oriloc: prediction of replication boundaries in
-      unannotated bacterial chromosomes", Bioinformatics, 16:566-567.
-
-   Arakawa K, Saito R, Tomita M (2007) "Noise-reduction filtering for accurate
-      detection of replication termini in bacterial genomes", FEBS Letters,
-      581(2):253-258.
-
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
       for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
@@ -215,13 +211,13 @@ None.
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Web Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
+
 </pre>
 
 <h2>Warnings</h2>
 
 <p>
-   This tool may give a warning on feature output when installed on
-   EMBOSS-6.5.7, but we have no known errors in analysis.
+None.
 </p>
 
 <h2>Diagnostic Error Messages</h2>
@@ -248,8 +244,11 @@ None.
 <th>Description</th></tr>
 
 <tr>
-<td><a href="grep_ori_ter.html">grep_ori_ter</a></td>
-<td>Get the positions of replication origin and terminus</td>
+<td><a href="gcircular_map.html">gcircular_map</a></td>
+<td>Draws circular map of the genome</td>
+</tr><tr>
+<td><a href="gdnawalk.html">gdnawalk</a></td>
+<td>Draws DNA Walk map of the genome</td>
 </tr>
 
 </table>

@@ -41,38 +41,52 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This program graphs the GC skew for the whole genome, coding regions,<br>
-   intergenic regions, and the third codon.<br>
- <br>
-   G-language SOAP service is provided by the<br>
-   Institute for Advanced Biosciences, Keio University.<br>
-   The original web service is located at the following URL:<br>
-<br>
-   http://www.g-language.org/wiki/soap<br>
-<br>
-   WSDL(RPC/Encoded) file is located at:<br>
-<br>
-   http://soap.g-language.org/g-language.wsdl<br>
-<br>
-   Documentation on G-language Genome Analysis Environment methods are<br>
-   provided at the Document Center<br>
-<br>
-   http://ws.g-language.org/gdoc/
+   ggenomicskew calculates and plots the GC skew for the whole genome, coding<br />
+   regions, intergenic regions, and the third codon. This program is useful in<br />
+   visualizing various base composition bias within the genome. AT skew can be<br />
+   calculated instead of GC skew by toggling the -at qualifier.<br />
+    <br />
+   G-language SOAP service is provided by the<br />
+   Institute for Advanced Biosciences, Keio University.<br />
+   The original web service is located at the following URL:<br />
+<br />
+   http://www.g-language.org/wiki/soap<br />
+<br />
+   WSDL(RPC/Encoded) file is located at:<br />
+<br />
+   http://soap.g-language.org/g-language.wsdl<br />
+<br />
+   Documentation on G-language Genome Analysis Environment methods are<br />
+   provided at the Document Center<br />
+<br />
+   http://ws.g-language.org/gdoc/<br />
+<br />
+
 </p>
 
 <H2>Usage</H2>
 
 <table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
 
-   Here is a sample session with ggenomicskew
+Here is a sample session with ggenomicskew
 
-   The database definitions for following commands are available at
-   http://soap.g-language.org/kbws/embossrc
-
-% ggenomicskew -plot refseqn:NC_000913
+% ggenomicskew refseqn:NC_000913
 Calculates the GC skew in different regions of the given genome
-Output filename [ggenomicskew.nc_000913.csv]:
-Created ggenomicskew.ps
+Program compseq output file (optional) [nc_000913.ggenomicskew]: 
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+   Example 2
+
+% ggenomicskew refseqn:NC_000913 -plot -graph png
+Calculates the GC skew in different regions of the given genome
+Created ggenomicskew.1.png
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+
 
 </pre></td></tr></table>
 
@@ -112,7 +126,7 @@ Created ggenomicskew.ps
 <tr bgcolor="#FFFFCC">
 <td>-outfile</td>
 <td>outfile</td>
-<td>Output file name</td>
+<td>Program compseq output file (optional)</td>
 <td>Output file</td>
 <td><i>&lt;*&gt;</i>.ggenomicskew</td>
 </tr>
@@ -146,19 +160,11 @@ Created ggenomicskew.ps
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-csv</td>
-<td>boolean</td>
-<td>Include to create CSV file</td>
-<td>Boolean value Yes/No</td>
-<td>No</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-accid</td>
+<td>-[no]accid</td>
 <td>boolean</td>
 <td>Include to use sequence accession ID as query</td>
 <td>Boolean value Yes/No</td>
-<td>No</td>
+<td>Yes</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -175,26 +181,47 @@ Created ggenomicskew.ps
 <h2>Input file format</h2>
 
 <p>
-                                  of GC skew
-   -csv                boolean    [N] Include to create CSV file
-   -accid              string     Include to use sequence accession ID as
-                                  query (Any string)
-   -plot               toggle     [N] Include to plot result
+   The database definitions for following commands are available at<br />
+   http://soap.g-language.org/kbws/embossrc<br />
+<br />
+   ggenomicskew reads one or more nucleotide sequences.<br />
+<br />
 
-   General qualifiers:
-   -help               boolean    Report command line options and exit. More
-                                  information on associated and general
-                                  qualifiers can be found with -help -verbose
-
-Input file format
-
-   ggenomicskew reads nucleotide sequences.
 </p>
 
 <h2>Output file format</h2>
 
 <p>
-   The output from ggenomicskew is to the specified graphics device.
+   The output from ggenomicskew is to a plain text file or the EMBOSS graphics device.<br />
+<br />
+   File: nc_000913.ggenomicskew<br />
+<br />
+Sequence: NC_000913<br />
+location,GC skew,coding,intergenic,third codon<br />
+0,-0.036259,-0.040085,-0.034707,-0.141888,<br />
+1,-0.031167,-0.035657,0.047953,-0.175758,<br />
+2,-0.028670,-0.031139,-0.049143,-0.018466,<br />
+3,-0.016647,-0.004656,-0.102616,0.086181,<br />
+4,-0.041985,-0.029846,-0.088670,0.015291,<br />
+5,-0.097093,-0.103813,-0.067275,-0.247401,<br />
+6,-0.028028,-0.016363,-0.048806,-0.047332,<br />
+7,-0.055805,-0.059329,-0.020071,-0.123271,<br />
+<br />
+   [Part of this file has been deleted for brevity]<br />
+<br />
+241,0.000772,-0.012151,-0.063786,0.069585,<br />
+242,-0.025787,-0.000384,-0.049143,0.029431,<br />
+243,0.010516,0.008217,-0.030600,0.128657,<br />
+244,-0.037115,-0.015134,0.017500,0.035398,<br />
+245,-0.000317,0.006021,-0.047170,0.091549,<br />
+246,-0.025417,-0.015190,-0.116608,0.044619,<br />
+247,-0.038404,-0.035676,-0.135714,0.015375,<br />
+248,-0.026246,-0.024240,-0.037190,-0.130118,<br />
+249,-0.053371,-0.057225,-0.022472,-0.082167,<br />
+250,-0.026316,0.166667,-0.151515,0.000000,<br />
+<br />
+<br />
+
 </p>
 
 <h2>Data files</h2>
@@ -209,7 +236,7 @@ None.
 None.
 </p>
 
-<h2>Refrences</h2>
+<h2>References</h2>
 
 <pre>
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
@@ -223,13 +250,13 @@ None.
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Web Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
+
 </pre>
 
 <h2>Warnings</h2>
 
 <p>
-   This tool may give a warning on feature output when installed on
-   EMBOSS-6.5.7, but we have no known errors in analysis.
+None.
 </p>
 
 <h2>Diagnostic Error Messages</h2>
@@ -258,14 +285,10 @@ None.
 <tr>
 <td><a href="ggcskew.html">ggcskew</a></td>
 <td>Calculates the GC skew of the input sequence</td>
-</tr>
-
-<tr>
+</tr><tr>
 <td><a href="ggcwin.html">ggcwin</a></td>
 <td>Calculates the GC content along the given genome</td>
-</tr>
-
-<tr>
+</tr><tr>
 <td><a href="ggeneskew.html">ggeneskew</a></td>
 <td>Calculate the gene strand bias of the given genome</td>
 </tr>

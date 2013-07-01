@@ -41,36 +41,45 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This program calculates codon usage differences between gene classes for<br>
-   identifying Predicted Highly eXpressed (PHX) and Putative Alien (PA) genes.<br>
-<br>
-   Institute for Advanced Biosciences, Keio University.<br>
-   The original web service is located at the following URL:<br>
-<br>
-   http://www.g-language.org/wiki/soap<br>
-<br>
-   WSDL(RPC/Encoded) file is located at:<br>
-<br>
-   http://soap.g-language.org/g-language.wsdl<br>
-<br>
-   Documentation on G-language Genome Analysis Environment methods are<br>
-   provided at the Document Center:<br>
-<br>
-   http://ws.g-language.org/gdoc/
+   gphx calculates codon usage differences between gene classes for identifying<br />
+   Predicted Highly eXpressed (PHX) and Putative Alien (PA) genes. A gene is<br />
+   categorized as PHX if the gene has codon frequencies similar to ribosomal<br />
+   proteins, translation and transcription processing factors, or chaperone<br />
+   degradation genes. PHX genes are known to generally have favorable codon<br />
+   usage, strong SD sequences, and probably strong promoter sequences.<br />
+    <br />
+   G-language SOAP service is provided by the<br />
+   Institute for Advanced Biosciences, Keio University.<br />
+   The original web service is located at the following URL:<br />
+<br />
+   http://www.g-language.org/wiki/soap<br />
+<br />
+   WSDL(RPC/Encoded) file is located at:<br />
+<br />
+   http://soap.g-language.org/g-language.wsdl<br />
+<br />
+   Documentation on G-language Genome Analysis Environment methods are<br />
+   provided at the Document Center<br />
+<br />
+   http://ws.g-language.org/gdoc/<br />
+<br />
+
 </p>
 
 <H2>Usage</H2>
 
 <table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
 
-   Here is a sample session with gphx
-
-   The database definitions for following commands are available at
-   http://soap.g-language.org/kbws/embossrc
+Here is a sample session with gphx
 
 % gphx refseqn:NC_000913
 Identify predicted highly expressed gene
-Output filename [gphx.nc_000913.csv]:
+Codon usage output file [nc_000913.gphx]: 
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+
 
 </pre></td></tr></table>
 
@@ -102,7 +111,7 @@ Output filename [gphx.nc_000913.csv]:
 <tr bgcolor="#FFFFCC">
 <td>[-outfile]<br>(Parameter 2)</td>
 <td>outfile</td>
-<td>Output file name</td>
+<td>Codon usage output file</td>
 <td>Output file</td>
 <td><i>&lt;*&gt;</i>.gphx</td>
 </tr>
@@ -128,14 +137,6 @@ Output filename [gphx.nc_000913.csv]:
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-usage</td>
-<td>string</td>
-<td>Pointer HASH of vectors of amino acid and codon usage of a set of highly expressed genes</td>
-<td>Any string</td>
-<td>&nbsp;</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
 <td>-delkey</td>
 <td>string</td>
 <td>Regular expression to delete key</td>
@@ -144,11 +145,11 @@ Output filename [gphx.nc_000913.csv]:
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-accid</td>
+<td>-[no]accid</td>
 <td>boolean</td>
 <td>Include to use sequence accession ID as query</td>
 <td>Boolean value Yes/No</td>
-<td>No</td>
+<td>Yes</td>
 </tr>
 
 </table>
@@ -157,13 +158,47 @@ Output filename [gphx.nc_000913.csv]:
 <h2>Input file format</h2>
 
 <p>
-   gphx reads nucleotide sequences.
+   The database definitions for following commands are available at<br />
+   http://soap.g-language.org/kbws/embossrc<br />
+<br />
+   gphx reads one or more nucleotide sequences.<br />
+<br />
+
 </p>
 
 <h2>Output file format</h2>
 
 <p>
-   The output from gphx is to a raw CSV file.
+   The output from gphx is to a plain text file.<br />
+<br />
+   File: nc_000913.gphx<br />
+<br />
+Sequence: NC_000913<br />
+BgC,BgH,E_g,phx,pa,gene<br />
+0.8070,0.8977,0.8990,0,1,thrL<br />
+0.1857,0.5958,0.3116,0,0,thrA<br />
+0.2323,0.5964,0.3896,0,0,thrB<br />
+0.2353,0.6064,0.3881,0,0,thrC<br />
+0.4353,0.6020,0.7231,0,1,yaaX<br />
+0.2961,0.6790,0.4361,0,0,yaaA<br />
+0.2233,0.7009,0.3186,0,0,yaaJ<br />
+0.4149,0.3071,1.3511,1,0,talB<br />
+<br />
+   [Part of this file has been deleted for brevity]<br />
+<br />
+0.3255,0.7038,0.4625,0,0,yjjX<br />
+0.3531,0.5906,0.5979,0,0,ytjC<br />
+0.2257,0.5235,0.4311,0,0,rob<br />
+0.3584,0.6809,0.5264,0,0,creA<br />
+0.3455,0.7950,0.4346,0,0,creB<br />
+0.2298,0.7154,0.3212,0,0,creC<br />
+0.3299,0.7916,0.4167,0,0,creD<br />
+0.3543,0.3786,0.9357,0,0,arcA<br />
+0.7295,0.8286,0.8804,0,1,yjjY<br />
+0.4028,0.8401,0.4795,0,0,yjtD<br />
+<br />
+<br />
+
 </p>
 
 <h2>Data files</h2>
@@ -178,12 +213,16 @@ None.
 None.
 </p>
 
-<h2>Refrences</h2>
+<h2>References</h2>
 
 <pre>
-      CMBL- PHX/PA user guide http://www.cmbl.uga.edu/software/PHX-PA-guide.htm
-      Henry I, Sharp PM. 2007 Mol Biol Evol. 24(1):10-2.
-      Karlin and Mrazek (2000) J.Bacteriol. 182(18):5238-5250.
+   CMBL- PHX/PA user guide http://www.cmbl.uga.edu/software/PHX-PA-guide.htm
+
+   Henry I., Sharp PM. (2007) Predicting gene expression level from codon
+      usage bias Mol Biol Evol, 24(1):10-2.
+
+   Karlin S., and Mrazek J. (2000) Predicted highly expressed genes of diverse
+      prokaryotic genomes J.Bacteriol, 182(18):5238-5250.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -196,13 +235,13 @@ None.
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Web Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
+
 </pre>
 
 <h2>Warnings</h2>
 
 <p>
-   This tool may give a warning on feature output when installed on
-   EMBOSS-6.5.7, but we have no known errors in analysis.
+None.
 </p>
 
 <h2>Diagnostic Error Messages</h2>
@@ -231,9 +270,7 @@ None.
 <tr>
 <td><a href="gcai.html">gcai</a></td>
 <td>Calculate codon adaptation index for each gene</td>
-</tr>
-
-<tr>
+</tr><tr>
 <td><a href="gp2.html">gp2</a></td>
 <td>Calculate the P2 index of each gene</td>
 </tr>

@@ -2,7 +2,7 @@
 
 <HTML>
 <HEAD>
-  <TITLE> EMBOSS: gview_cds </TITLE>
+  <TITLE> EMBOSS: gviewcds </TITLE>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" text="#000000">
 
@@ -14,7 +14,7 @@
 </td>
 <td align=left valign=middle>
 <b><font size="+6">
-gview_cds
+gviewcds
 </font></b>
 </td></tr>
 </table>
@@ -41,38 +41,51 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This method creates a graph showing the average A,T,G,C contents<br>
-   around start/stop codons. This is useful to view consensus around<br>
-   start/stop codons and to find characteristic pattern in CDS. <br>
-   <br>
-   G-language SOAP service is provided by the<br>
-   Institute for Advanced Biosciences, Keio University.<br>
-   The original web service is located at the following URL:<br>
-<br>
-   http://www.g-language.org/wiki/soap<br>
-<br>
-   WSDL(RPC/Encoded) file is located at:<br>
-<br>
-   http://soap.g-language.org/g-language.wsdl<br>
-<br>
-   Documentation on G-language Genome Analysis Environment methods are<br>
-   provided at the Document Center<br>
-<br>
-   http://ws.g-language.org/gdoc/
+   gviewcds creates a graph showing the average A,T,G,C contents<br />
+   around start/stop codons. This is useful to view consensus around<br />
+   start/stop codons and to find characteristic pattern in CDS.<br />
+    <br />
+   G-language SOAP service is provided by the<br />
+   Institute for Advanced Biosciences, Keio University.<br />
+   The original web service is located at the following URL:<br />
+<br />
+   http://www.g-language.org/wiki/soap<br />
+<br />
+   WSDL(RPC/Encoded) file is located at:<br />
+<br />
+   http://soap.g-language.org/g-language.wsdl<br />
+<br />
+   Documentation on G-language Genome Analysis Environment methods are<br />
+   provided at the Document Center<br />
+<br />
+   http://ws.g-language.org/gdoc/<br />
+<br />
+
 </p>
 
 <H2>Usage</H2>
 
 <table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
 
-   Here is a sample session with gview_cds
+Here is a sample session with gviewcds
 
-   The database definitions for following commands are available at
-   http://soap.g-language.org/kbws/embossrc
-
-% gview_cds -plot refseqn:NC_000913
+% gviewcds refseqn:NC_000913
 Displays a graph of nucleotide contents around start and stop codons
-Created gview_cds.ps
+Program compseq output file (optional) [nc_000913.gviewcds]: 
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+   Example 2
+
+% gviewcds refseqn:NC_000913 -plot -graph png
+Displays a graph of nucleotide contents around start and stop codons
+Created gviewcds.1.png
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+
 
 </pre></td></tr></table>
 
@@ -112,9 +125,9 @@ Created gview_cds.ps
 <tr bgcolor="#FFFFCC">
 <td>-outfile</td>
 <td>outfile</td>
-<td>Output file name</td>
+<td>Program compseq output file (optional)</td>
 <td>Output file</td>
-<td><i>&lt;*&gt;</i>.gview_cds</td>
+<td><i>&lt;*&gt;</i>.gviewcds</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -146,19 +159,11 @@ Created gview_cds.ps
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-csv</td>
-<td>boolean</td>
-<td>Include to create CSV file</td>
-<td>Boolean value Yes/No</td>
-<td>No</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-accid</td>
+<td>-[no]accid</td>
 <td>boolean</td>
 <td>Include to use sequence accession ID as query</td>
 <td>Boolean value Yes/No</td>
-<td>No</td>
+<td>Yes</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -175,13 +180,47 @@ Created gview_cds.ps
 <h2>Input file format</h2>
 
 <p>
-   gview_cds reads nucleotide sequences.
+   The database definitions for following commands are available at<br />
+   http://soap.g-language.org/kbws/embossrc<br />
+<br />
+   gviewcds reads one or more nucleotide sequences.<br />
+<br />
+
 </p>
 
 <h2>Output file format</h2>
 
 <p>
-   The output from gview_cds is to the specified graphics device.
+   The output from gviewcds is to a plain text file or the EMBOSS graphics device.<br />
+<br />
+   File: nc_000913.gviewcds<br />
+<br />
+Sequence: NC_000913<br />
+position,A,T,G,C<br />
+1,28.20,27.60,22.18,22.02<br />
+2,26.05,26.81,23.06,24.08<br />
+3,27.34,27.37,23.94,21.35<br />
+4,26.28,28.83,23.01,21.88<br />
+5,26.72,28.22,22.18,22.88<br />
+6,26.42,26.72,24.96,21.90<br />
+7,27.21,28.66,21.95,22.18<br />
+8,25.47,28.39,23.06,23.08<br />
+<br />
+   [Part of this file has been deleted for brevity]<br />
+<br />
+400,26.60,27.44,22.67,23.27<br />
+401,24.38,26.63,25.05,23.92<br />
+402,25.03,26.37,23.71,24.87<br />
+403,25.96,27.53,22.53,23.96<br />
+404,26.63,25.52,24.17,23.66<br />
+405,25.68,26.26,23.50,24.54<br />
+406,24.94,26.86,23.92,24.26<br />
+407,25.54,26.28,23.73,24.43<br />
+408,25.28,26.93,24.38,23.39<br />
+409,26.63,26.46,22.32,24.57<br />
+<br />
+<br />
+
 </p>
 
 <h2>Data files</h2>
@@ -196,7 +235,7 @@ None.
 None.
 </p>
 
-<h2>Refrences</h2>
+<h2>References</h2>
 
 <pre>
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
@@ -210,13 +249,13 @@ None.
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Web Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
+
 </pre>
 
 <h2>Warnings</h2>
 
 <p>
-   This tool may give a warning on feature output when installed on
-   EMBOSS-6.5.7, but we have no known errors in analysis.
+None.
 </p>
 
 <h2>Diagnostic Error Messages</h2>
@@ -244,10 +283,8 @@ None.
 
 <tr>
 <td><a href="gbase_counter.html">gbase_counter</a></td>
-<td>Creates a position weight matrix of oligomers around start codon</td>
-</tr>
-
-<tr>
+<td>Creates a position weight matrix of oligomers around start                  codon</td>
+</tr><tr>
 <td><a href="gbase_z_value.html">gbase_z_value</a></td>
 <td>Extracts conserved oligomers per position using Z-score</td>
 </tr>

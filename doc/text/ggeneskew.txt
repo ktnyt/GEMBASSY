@@ -1,16 +1,16 @@
-                                    ggeneskew
+                                   ggeneskew
 Function
 
    Calculate the gene strand bias of the given genome
 
 Description
 
-   This program calculates and graphs the strand bias of genes (or the GC skew
+   ggeneskew calculates and plots the strand bias of genes (or the GC skew
    within them). By default, this program visualizes the gene strand preference
    (1 for direct, -1 for complement strand), but by specifying -base option
-   option, GC/AT/Purine/Keto skews of the coding regions or more specifically in
-   the GC3 (third codon position) with -gc3 option can be calculated.
-
+   option, GC/AT/Purine/Keto skews of the coding regions or more specifically
+   in the GC3 (third codon position) with -gctri option can be calculated.
+    
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -28,14 +28,23 @@ Description
 
 Usage
 
-   Here is a sample session with ggeneskew
+Here is a sample session with ggeneskew
 
-   The database definitions for following commands are available at
-   http://soap.g-language.org/kbws/embossrc
-
-% ggeneskew -plot refseqn:NC_000913
+% ggeneskew refseqn:NC_000913
 Calculate the gene strand bias of the given genome
-Created ggeneskew.ps
+Program compseq output file (optional) [nc_000913.ggeneskew]: 
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+   Example 2
+
+% ggeneskew refseqn:NC_000913 -plot -graph png
+Calculate the gene strand bias of the given genome
+Created ggeneskew.1.png
+
+   Go to the input files for this example
+   Go to the output files for this example
 
 Command line arguments
 
@@ -45,8 +54,8 @@ Command line arguments
 *  -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
                                   (ps, hpgl, hp7470, hp7580, meta, cps, x11,
                                   tek, tekt, none, data, xterm, png, gif, svg)
-*  -outfile            outfile    [ggeneskew.$(sequence.name).csv] Output file
-                                  name
+*  -outfile            outfile    [*.ggeneskew] Program compseq output file
+                                  (optional)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -54,29 +63,103 @@ Command line arguments
                                   value)
    -slide              integer    [10000] Window slide size (Any integer
                                   value)
-   -cumulative         boolean    [0] Input 1 to calculate cumulative skew
-   -base               string     [none] Input 'gc', 'at', 'purine', or keto'
-                                  for observing GC/AT/Purine/Keto skews (Any
-                                  string)
-   -gctri              boolean    [0] Include to use only the third codon
+   -cumulative         boolean    [N] Input 1 to calculate cumulative skew
+   -base               selection  [none] Input 'gc', 'at', 'purine', or 'keto'
+                                  for observing GC/AT/Purine/Keto skews
+   -gctri              boolean    [N] Include to use only the third codon
                                   positions
-   -csv                boolean    [0] Include to create CSV file
-   -accid              string     Include to use sequence accession ID as
-                                  query (Any string)
+   -[no]accid          boolean    [Y] Include to use sequence accession ID as
+                                  query
    -plot               toggle     [N] Include to plot result
 
+   Associated qualifiers:
+
+   "-sequence" associated qualifiers
+   -sbegin1            integer    Start of each sequence to be used
+   -send1              integer    End of each sequence to be used
+   -sreverse1          boolean    Reverse (if DNA)
+   -sask1              boolean    Ask for begin/end/reverse
+   -snucleotide1       boolean    Sequence is nucleotide
+   -sprotein1          boolean    Sequence is protein
+   -slower1            boolean    Make lower case
+   -supper1            boolean    Make upper case
+   -scircular1         boolean    Sequence is circular
+   -sformat1           string     Input sequence format
+   -iquery1            string     Input query fields or ID list
+   -ioffset1           integer    Input start position offset
+   -sdbname1           string     Database name
+   -sid1               string     Entryname
+   -ufo1               string     UFO features
+   -fformat1           string     Features format
+   -fopenfile1         string     Features file name
+
+   "-graph" associated qualifiers
+   -gprompt            boolean    Graph prompting
+   -gdesc              string     Graph description
+   -gtitle             string     Graph title
+   -gsubtitle          string     Graph subtitle
+   -gxtitle            string     Graph x axis title
+   -gytitle            string     Graph y axis title
+   -goutfile           string     Output file for non interactive displays
+   -gdirectory         string     Output directory
+
+   "-outfile" associated qualifiers
+   -odirectory         string     Output directory
+
    General qualifiers:
+   -auto               boolean    Turn off prompts
+   -stdout             boolean    Write first file to standard output
+   -filter             boolean    Read first file from standard input, write
+                                  first file to standard output
+   -options            boolean    Prompt for standard and additional values
+   -debug              boolean    Write debug output to program.dbg
+   -verbose            boolean    Report some/full command line options
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
+   -warning            boolean    Report warnings
+   -error              boolean    Report errors
+   -fatal              boolean    Report fatal errors
+   -die                boolean    Report dying program messages
+   -version            boolean    Report version number and exit
 
 Input file format
 
-   ggeneskew reads nucleotide sequences.
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
+
+   ggeneskew reads one or more nucleotide sequences.
 
 Output file format
 
-   The output from ggeneskew is to the specified graphics device.
+   The output from ggeneskew is to a plain text file or the EMBOSS graphics device.
+
+   File: nc_000913.ggeneskew
+
+Sequence: NC_000913
+location,gene None skew
+190,0.294118
+337,-0.058914
+2801,-0.120000
+3734,-0.070588
+5234,0.037500
+5683,0.020725
+6529,0.032765
+8238,-0.028226
+
+   [Part of this file has been deleted for brevity]
+
+4631820,-0.093407
+4632464,-0.006479
+4633544,-0.120690
+4634030,-0.060367
+4634719,-0.104167
+4636201,-0.144560
+4637613,0.010929
+4638425,0.200000
+4638965,-0.081871
+,
+
 
 Data files
 
@@ -102,8 +185,7 @@ References
 
 Warnings
 
-   This tool may give a warning on feature output when installed on
-   EMBOSS-6.5.7, but we have no known errors in analysis.
+   None.
 
 Diagnostic Error Messages
 
@@ -136,6 +218,7 @@ Author(s)
 History
 
    2012 - Written by Hidetoshi Itaya
+   2013 - Fixed by Hidetoshi Itaya
 
 Target users
 

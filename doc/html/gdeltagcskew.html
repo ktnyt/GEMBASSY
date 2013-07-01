@@ -2,7 +2,7 @@
 
 <HTML>
 <HEAD>
-  <TITLE> EMBOSS: glda_bias </TITLE>
+  <TITLE> EMBOSS: gdeltagcskew </TITLE>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" text="#000000">
 
@@ -14,7 +14,7 @@
 </td>
 <td align=left valign=middle>
 <b><font size="+6">
-glda_bias
+gdeltagcskew
 </font></b>
 </td></tr>
 </table>
@@ -30,8 +30,7 @@ glda_bias
 
 
 <H2> Function </H2>
-   Calculate strand bias of bacterial genome using linear discriminant analysis
-   (LDA)
+   Calculate strand bias of bacterial genome using delta GC skew index
 <!--
 DON'T WRITE ANYTHING HERE.
 IT IS DONE FOR YOU.
@@ -42,45 +41,46 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This method calculate strand bias of bacterial genome using linear<br>
-   discriminant analysis (LDA), as proposed in Reference 1. The basic idea is to<br>
-   use composition data of genes to train and predict the strand of genes<br>
-   residing either on the leading or the lagging strand. For computational<br>
-   efficiency, this method trans and predicts the strands at putative<br>
-   replication origin as reported by the rep_ori_ter() method. This usually<br>
-   results in maximum predictability of LDA within bacterial genomes.<br>
-<br>
-   Data to use for LDA can be chosen from "base", "codonbase", "codon", and<br>
-   "amino", with -variable option.<br>
-<br>
-   G-language SOAP service is provided by the<br>
-   Institute for Advanced Biosciences, Keio University.<br>
-   The original web service is located at the following URL:<br>
-<br>
-   http://www.g-language.org/wiki/soap<br>
-<br>
-   WSDL(RPC/Encoded) file is located at:<br>
-<br>
-   http://soap.g-language.org/g-language.wsdl<br>
-<br>
-   Documentation on G-language Genome Analysis Environment methods are<br>
-   provided at the Document Center<br>
-<br>
-   http://ws.g-language.org/gdoc/
+   gdeltagcskew calculates strand bias of bacterial genome using delta GC skew<br />
+   index, first proposed by Rocha et al. (2001), and further extended in 2006.<br />
+   Basic idea of delta GC skew index is to calculate the difference of GC skew<br />
+   in coding regions residing in leading and lagging strands. Rocha et al.<br />
+   (2001) calculates delta GC skew index using the third codon position of<br />
+   genes, and Rocha et al. (2006)  modified to only use >fourfold degenerate<br />
+   codons.<br />
+    <br />
+   G-language SOAP service is provided by the<br />
+   Institute for Advanced Biosciences, Keio University.<br />
+   The original web service is located at the following URL:<br />
+<br />
+   http://www.g-language.org/wiki/soap<br />
+<br />
+   WSDL(RPC/Encoded) file is located at:<br />
+<br />
+   http://soap.g-language.org/g-language.wsdl<br />
+<br />
+   Documentation on G-language Genome Analysis Environment methods are<br />
+   provided at the Document Center<br />
+<br />
+   http://ws.g-language.org/gdoc/<br />
+<br />
+
 </p>
 
 <H2>Usage</H2>
 
 <table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
 
-   Here is a sample session with glda_bias
+Here is a sample session with gdeltagcskew
 
-   The database definitions for following commands are available at
-   http://soap.g-language.org/kbws/embossrc
+% gdeltagcskew refseqn:NC_000913
+Calculate strand bias of bacterial genome using delta GC skew index
+Program compseq output file [nc_000913.gdeltagcskew]: 
 
-% glda_bias -show refseqn:NC_000913
-Calculate strand bias of bacterial genome using linear discriminant analysis (LDA)
-Sequence: NC_000913 LDA bias: 0.7421296
+   Go to the input files for this example
+   Go to the output files for this example
+
+
 
 </pre></td></tr></table>
 
@@ -112,9 +112,9 @@ Sequence: NC_000913 LDA bias: 0.7421296
 <tr bgcolor="#FFFFCC">
 <td>[-outfile]<br>(Parameter 2)</td>
 <td>outfile</td>
-<td>Output file name</td>
+<td>Program compseq output file</td>
 <td>Output file</td>
-<td><i>&lt;*&gt;</i>.glda_bias</td>
+<td><i>&lt;*&gt;</i>.gdeltagcskew</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -130,27 +130,43 @@ Sequence: NC_000913 LDA bias: 0.7421296
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-coefficients</td>
-<td>integer</td>
-<td>Show LDA coefficients</td>
-<td>Any integer value</td>
-<td>0</td>
+<td>-at</td>
+<td>boolean</td>
+<td>Include when observing AT skew instead of GC skew</td>
+<td>Boolean value Yes/No</td>
+<td>No</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-variable</td>
-<td>string</td>
-<td>Data to use for LDA. Either 'base', 'codonbase', 'codon', or 'amino'</td>
-<td>Any string</td>
-<td>codon</td>
+<td>-purine</td>
+<td>boolean</td>
+<td>Include when observing purine (AG/TC) skew</td>
+<td>Boolean value Yes/No</td>
+<td>No</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-accid</td>
+<td>-keto</td>
+<td>boolean</td>
+<td>Include when observing keto (TG/AC) skew</td>
+<td>Boolean value Yes/No</td>
+<td>No</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-method</td>
+<td>selection</td>
+<td>Choose the nucleotides to use 'degenerate', 'gc3', or 'all'</td>
+<td>Choose from selection list of values</td>
+<td>degenerate</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-[no]accid</td>
 <td>boolean</td>
 <td>Include to use sequence accession ID as query</td>
 <td>Boolean value Yes/No</td>
-<td>No</td>
+<td>Yes</td>
 </tr>
 
 </table>
@@ -159,13 +175,25 @@ Sequence: NC_000913 LDA bias: 0.7421296
 <h2>Input file format</h2>
 
 <p>
-   glda_bias reads nucleotide sequences.
+   The database definitions for following commands are available at<br />
+   http://soap.g-language.org/kbws/embossrc<br />
+<br />
+   gdeltagcskew reads one or more nucleotide sequences.<br />
+<br />
+
 </p>
 
 <h2>Output file format</h2>
 
 <p>
-   The output from glda_bias is to a file or stdout.
+   The output from gdeltagcskew is to a plain text file.<br />
+<br />
+   File: nc_000913.gdeltagcskew<br />
+<br />
+Sequence: NC_000913 DELTA-GCskew -0.108937<br />
+<br />
+<br />
+
 </p>
 
 <h2>Data files</h2>
@@ -180,11 +208,14 @@ None.
 None.
 </p>
 
-<h2>Refrences</h2>
+<h2>References</h2>
 
 <pre>
-   Rocha EPC et al. (1999) "Universal replication biases in bacteria",
-      Molecular Microbiology, 32(1):11-16
+   Rocha EPC et al. (2001) Ongoing Evolution of Strand Composition in Bacterial
+      Genomes, Molecular Biology and Evolution, 18(9):1789-1799
+
+   Rocha EPC et al. (2006) Similar compositional biases are caused by very
+      different mutational effects, Genome Research, 16:1537-1547
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -197,13 +228,13 @@ None.
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Web Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
+
 </pre>
 
 <h2>Warnings</h2>
 
 <p>
-   This tool may give a warning on feature output when installed on
-   EMBOSS-6.5.7, but we have no known errors in analysis.
+None.
 </p>
 
 <h2>Diagnostic Error Messages</h2>
@@ -232,21 +263,18 @@ None.
 <tr>
 <td><a href="gb1.html">gb1</a></td>
 <td>Calculate strand bias of bacterial genome using B1 index</td>
-</tr>
-
-<tr>
+</tr><tr>
 <td><a href="gb2.html">gb2</a></td>
 <td>Calculate strand bias of bacterial genome using B2 index</td>
-</tr>
-
-<tr>
-<td><a href="gdelta_gcskew.html">gdelta_gcskew</a></td>
-<td>Calculate strand bias of bacterial genome using delta GC skew index</td>
-</tr>
-
-<tr>
+</tr><tr>
 <td><a href="ggcsi.html">ggcsi</a></td>
-<td>GC Skew Index: an index for strand-specific mutational bias</td>
+<td>GC Skew Index: an index for strand-specefic mutational bias</td>
+</tr><tr>
+<td><a href="glda_bias.html">glda_bias</a></td>
+<td>Calculate strand bias of bacterial genome using linear</td>
+</tr><tr>
+<td><a href="discriminant.html">discriminant</a></td>
+<td>analysis (LDA)</td>
 </tr>
 
 </table>

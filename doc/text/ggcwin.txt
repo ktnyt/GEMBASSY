@@ -5,8 +5,8 @@ Function
 
 Description
 
-   This program calculates and graphs the GC content.
-
+   ggcwin calculates and plots the GC content of the given sequence.
+    
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -24,14 +24,23 @@ Description
 
 Usage
 
-   Here is a sample session with ggcwin
+Here is a sample session with ggcwin
 
-   The database definitions for following commands are available at
-   http://soap.g-language.org/kbws/embossrc
-
-% ggcwin -plot refseqn:NC_000913
+% ggcwin refseqn:NC_000913
 Calculates the GC content along the given genome
-Created ggcwin.ps
+Program compseq output file (optional) [nc_000913.ggcwin]: 
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+   Example 2
+
+% ggcwin refseqn:NC_000913 -plot -graph png
+Calculates the GC content along the given genome
+Created ggcwin.1.png
+
+   Go to the input files for this example
+   Go to the output files for this example
 
 Command line arguments
 
@@ -41,35 +50,109 @@ Command line arguments
 *  -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
                                   (ps, hpgl, hp7470, hp7580, meta, cps, x11,
                                   tek, tekt, none, data, xterm, png, gif, svg)
-*  -outfile            outfile    [ggcwin.$(sequence.name).csv] Output file
-                                  name
+*  -outfile            outfile    [*.ggcwin] Program compseq output file
+                                  (optional)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -window             integer    [10000] Window size to observe (Any integer
                                   value)
-   -at                 boolean    [0] Include for observing AT skew instead of
+   -at                 boolean    [N] Include for observing AT skew instead of
                                   GC skew
-   -purine             boolean    [0] Include for observing purine (AG/TC)
+   -purine             boolean    [N] Include for observing purine (AG/TC)
                                   skew
-   -keto               boolean    Include for observing keto (TG/AC) skew
+   -keto               boolean    [N] Include for observing keto (TG/AC) skew
                                   default: "0
-   -accid              string     Include to use sequence accession ID as
-                                  query (Any string)
    -plot               toggle     [N] Include to plot result
 
+   Associated qualifiers:
+
+   "-sequence" associated qualifiers
+   -sbegin1            integer    Start of each sequence to be used
+   -send1              integer    End of each sequence to be used
+   -sreverse1          boolean    Reverse (if DNA)
+   -sask1              boolean    Ask for begin/end/reverse
+   -snucleotide1       boolean    Sequence is nucleotide
+   -sprotein1          boolean    Sequence is protein
+   -slower1            boolean    Make lower case
+   -supper1            boolean    Make upper case
+   -scircular1         boolean    Sequence is circular
+   -sformat1           string     Input sequence format
+   -iquery1            string     Input query fields or ID list
+   -ioffset1           integer    Input start position offset
+   -sdbname1           string     Database name
+   -sid1               string     Entryname
+   -ufo1               string     UFO features
+   -fformat1           string     Features format
+   -fopenfile1         string     Features file name
+
+   "-graph" associated qualifiers
+   -gprompt            boolean    Graph prompting
+   -gdesc              string     Graph description
+   -gtitle             string     Graph title
+   -gsubtitle          string     Graph subtitle
+   -gxtitle            string     Graph x axis title
+   -gytitle            string     Graph y axis title
+   -goutfile           string     Output file for non interactive displays
+   -gdirectory         string     Output directory
+
+   "-outfile" associated qualifiers
+   -odirectory         string     Output directory
+
    General qualifiers:
+   -auto               boolean    Turn off prompts
+   -stdout             boolean    Write first file to standard output
+   -filter             boolean    Read first file from standard input, write
+                                  first file to standard output
+   -options            boolean    Prompt for standard and additional values
+   -debug              boolean    Write debug output to program.dbg
+   -verbose            boolean    Report some/full command line options
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
+   -warning            boolean    Report warnings
+   -error              boolean    Report errors
+   -fatal              boolean    Report fatal errors
+   -die                boolean    Report dying program messages
+   -version            boolean    Report version number and exit
 
 Input file format
 
-   ggcwin reads nucleotide sequences.
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
+
+   ggcwin reads one or more nucleotide sequences.
 
 Output file format
 
-   The output from ggcwin is to the specified graphics device.
+   The output from ggcwin is to a plain text file or the EMBOSS graphics device.
+
+   File: nc_000913.ggcwin
+
+Sequence: NC_000913
+location,GC content
+0,0.520700
+10000,0.499400
+20000,0.526200
+30000,0.532300
+40000,0.527700
+50000,0.515600
+60000,0.555800
+70000,0.536000
+
+   [Part of this file has been deleted for brevity]
+
+4530000,0.442800
+4540000,0.487000
+4550000,0.507700
+4560000,0.509600
+4570000,0.444600
+4580000,0.531600
+4590000,0.512300
+4600000,0.504500
+4610000,0.535600
+4620000,0.546600
+
 
 Data files
 
@@ -95,7 +178,8 @@ References
 
 Warnings
 
-None.
+   None.
+
 Diagnostic Error Messages
 
    None.
@@ -127,6 +211,7 @@ Author(s)
 History
 
    2012 - Written by Hidetoshi Itaya
+   2013 - Fixed by Hidetoshi Itaya
 
 Target users
 

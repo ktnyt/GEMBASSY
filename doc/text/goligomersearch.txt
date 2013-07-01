@@ -1,17 +1,15 @@
-                                goligomer_search
+                                goligomersearch
 Function
 
    Searches oligomers in given sequence
 
 Description
 
-   Searches for the given oligomer in given sequence. Oligomer can be 
-   specified using degenerate nucleotide alphabet, or by regular expressions.
-   Performance is optimized for fast searching.
-
+   goligomersearch searches for the given oligomer in given sequence. Oligomer
+   can be specified using degenerate nucleotide alphabet, or by regular
+   expressions. Performance is optimized for fast searching.
    This method changes the returning value according to the given options.
-
-  
+    
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -29,23 +27,92 @@ Description
 
 Usage
 
-   Here is a sample session with goligomer_search
+Here is a sample session with goligomersearch
 
-% goligomer_search -show refseqn:NC_000913
+% goligomersearch refseqn:NC_000913 atgcatgc
 Searches oligomers in given sequence
-Output filename [nc_000913.goligomer_search]:
-Can't exec "goligomer_search": No such file or directory at maketxt.pl line 90.
+Program compseq output file [nc_000913.goligomersearch]: 
+
+   Go to the input files for this example
+   Go to the output files for this example
 
 Command line arguments
 
-   Can't exec "goligomer_search": No such file or directory at maketxt.pl line 103.
+   Standard (Mandatory) qualifiers:
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
+                                  format, or reference (input USA)
+  [-oligomer]          string     Oligomer to search (Any string)
+  [-outfile]           outfile    [*.goligomersearch] Program compseq output
+                                  file
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -return             selection  [position] 'position' to return list of
+                                  positions where oligomers are found, 'oligo'
+                                  to return list of oligomers found ordered
+                                  by positions, 'both' to return a hash with
+                                  positions as keys and oligomers as values,
+                                  'distribution' to return four values about
+                                  the distribution of given oligomer
+   -[no]accid          boolean    [Y] Include to use sequence accession ID as
+                                  query
+
+   Associated qualifiers:
+
+   "-sequence" associated qualifiers
+   -sbegin1            integer    Start of each sequence to be used
+   -send1              integer    End of each sequence to be used
+   -sreverse1          boolean    Reverse (if DNA)
+   -sask1              boolean    Ask for begin/end/reverse
+   -snucleotide1       boolean    Sequence is nucleotide
+   -sprotein1          boolean    Sequence is protein
+   -slower1            boolean    Make lower case
+   -supper1            boolean    Make upper case
+   -scircular1         boolean    Sequence is circular
+   -sformat1           string     Input sequence format
+   -iquery1            string     Input query fields or ID list
+   -ioffset1           integer    Input start position offset
+   -sdbname1           string     Database name
+   -sid1               string     Entryname
+   -ufo1               string     UFO features
+   -fformat1           string     Features format
+   -fopenfile1         string     Features file name
+
+   "-outfile" associated qualifiers
+   -odirectory3        string     Output directory
+
+   General qualifiers:
+   -auto               boolean    Turn off prompts
+   -stdout             boolean    Write first file to standard output
+   -filter             boolean    Read first file from standard input, write
+                                  first file to standard output
+   -options            boolean    Prompt for standard and additional values
+   -debug              boolean    Write debug output to program.dbg
+   -verbose            boolean    Report some/full command line options
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+   -warning            boolean    Report warnings
+   -error              boolean    Report errors
+   -fatal              boolean    Report fatal errors
+   -die                boolean    Report dying program messages
+   -version            boolean    Report version number and exit
+
 Input file format
 
-   goligomer_search reads nucleotide sequences.
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
+
+   goligomersearch reads one or more nucleotide sequences.
 
 Output file format
 
-   The output from goligomer_search is to a file or stdout.
+   The output from goligomersearch is to a plain text file.
+
+   File: nc_000913.goligomersearch
+
+Sequence: NC_000913 Oligomer: atgcatgc Return: 147018,366819,653138,863326,1288615,1627117,2111200,2246695,2697278,2750962,2826906,2882353,2998362,3022134,3346029,3477018,3629113,3842819,3958304,3982183,4013480,4285578,4474663,4484501,4499080,4604562,4638391
+
 
 Data files
 
@@ -71,7 +138,8 @@ References
 
 Warnings
 
-None.
+   None.
+
 Diagnostic Error Messages
 
    None.
@@ -104,6 +172,7 @@ Author(s)
 History
 
    2012 - Written by Hidetoshi Itaya
+   2013 - Fixed by Hidetoshi Itaya
 
 Target users
 

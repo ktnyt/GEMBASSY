@@ -41,38 +41,43 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This program calculates the intrinsic codon deviation index (ICDI).<br>
-<br>
-  <br>
-   G-language SOAP service is provided by the<br>
-   Institute for Advanced Biosciences, Keio University.<br>
-   The original web service is located at the following URL:<br>
-<br>
-   http://www.g-language.org/wiki/soap<br>
-<br>
-   WSDL(RPC/Encoded) file is located at:<br>
-<br>
-   http://soap.g-language.org/g-language.wsdl<br>
-<br>
-   Documentation on G-language Genome Analysis Environment methods are<br>
-   provided at the Document Center<br>
-<br>
-   http://ws.g-language.org/gdoc/
+   gicdi calculates the intrinsic codon deviation index (ICDI).<br />
+   ICDI is a measure to estimate codon bias of genes from species in which<br />
+   optimal codons are not known. It is known to show high correlation with<br />
+   other indices such as CBI and ENC.<br />
+    <br />
+   G-language SOAP service is provided by the<br />
+   Institute for Advanced Biosciences, Keio University.<br />
+   The original web service is located at the following URL:<br />
+<br />
+   http://www.g-language.org/wiki/soap<br />
+<br />
+   WSDL(RPC/Encoded) file is located at:<br />
+<br />
+   http://soap.g-language.org/g-language.wsdl<br />
+<br />
+   Documentation on G-language Genome Analysis Environment methods are<br />
+   provided at the Document Center<br />
+<br />
+   http://ws.g-language.org/gdoc/<br />
+<br />
+
 </p>
 
 <H2>Usage</H2>
 
 <table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
 
-   Here is a sample session with gicdi
+Here is a sample session with gicdi
 
-   The database definitions for following commands are available at
-   http://soap.g-language.org/kbws/embossrc
-
-% gicdi -show refseqn:NC_000913
+% gicdi refseqn:NC_000913
 Calculates the intrinsic codon deviation index (ICDI)
-Output filename [nc_000913.gicdi]:
-Sequence: NC_000913 ICDI: 0.0880
+Codon usage output file [nc_000913.gicdi]: 
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+
 
 </pre></td></tr></table>
 
@@ -104,7 +109,7 @@ Sequence: NC_000913 ICDI: 0.0880
 <tr bgcolor="#FFFFCC">
 <td>[-outfile]<br>(Parameter 2)</td>
 <td>outfile</td>
-<td>Output file name</td>
+<td>Codon usage output file</td>
 <td>Output file</td>
 <td><i>&lt;*&gt;</i>.gicdi</td>
 </tr>
@@ -130,14 +135,6 @@ Sequence: NC_000913 ICDI: 0.0880
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-id</td>
-<td>string</td>
-<td>ID of a group of genes or a single gene</td>
-<td>Any string</td>
-<td>ALL</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
 <td>-delkey</td>
 <td>string</td>
 <td>Regular expression to delete key</td>
@@ -146,11 +143,11 @@ Sequence: NC_000913 ICDI: 0.0880
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-accid</td>
+<td>-[no]accid</td>
 <td>boolean</td>
 <td>Include to use sequence accession ID as query</td>
 <td>Boolean value Yes/No</td>
-<td>No</td>
+<td>Yes</td>
 </tr>
 
 </table>
@@ -159,13 +156,47 @@ Sequence: NC_000913 ICDI: 0.0880
 <h2>Input file format</h2>
 
 <p>
-   gicdi reads nucleotide sequences.
+   The database definitions for following commands are available at<br />
+   http://soap.g-language.org/kbws/embossrc<br />
+<br />
+   gicdi reads one or more nucleotide sequences.<br />
+<br />
+
 </p>
 
 <h2>Output file format</h2>
 
 <p>
-   The output from gicdi is to a file or stdout.
+   The output from gicdi is to a plain text file.<br />
+<br />
+   File: nc_000913.gicdi<br />
+<br />
+Sequence: NC_000913<br />
+icdi,gene<br />
+0.8192,thrL<br />
+0.1258,thrA<br />
+0.1127,thrB<br />
+0.1689,thrC<br />
+0.3099,yaaX<br />
+0.2030,yaaA<br />
+0.1600,yaaJ<br />
+0.3533,talB<br />
+<br />
+   [Part of this file has been deleted for brevity]<br />
+<br />
+0.2203,yjjX<br />
+0.2719,ytjC<br />
+0.1377,rob<br />
+0.2647,creA<br />
+0.1944,creB<br />
+0.1733,creC<br />
+0.1926,creD<br />
+0.2728,arcA<br />
+0.5171,yjjY<br />
+0.2434,yjtD<br />
+<br />
+<br />
+
 </p>
 
 <h2>Data files</h2>
@@ -180,11 +211,14 @@ None.
 None.
 </p>
 
-<h2>Refrences</h2>
+<h2>References</h2>
 
 <pre>
-      Comeron JM, Aguade M. (1998) J Mol Evol. 47(3):268-74.
-      Freire-Picos MA et al. (1994) Gene 139:43-49.
+   Comeron JM, Aguade M. (1998) An evaluation of measures of synonymous codon
+      usage bias, J Mol Evol, 47(3):268-74.
+
+   Freire-Picos MA et al. (1994) Codon usage in Kluyveromyces lactis and in
+      yeast cytochrome c-encoding genes, Gene, 139:43-49.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -197,13 +231,13 @@ None.
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Web Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
+
 </pre>
 
 <h2>Warnings</h2>
 
 <p>
-   This tool may give a warning on feature output when installed on
-   EMBOSS-6.5.7, but we have no known errors in analysis.
+None.
 </p>
 
 <h2>Diagnostic Error Messages</h2>
@@ -232,14 +266,10 @@ None.
 <tr>
 <td><a href="gcbi.html">gcbi</a></td>
 <td>Calculates the codon bias index (CBI)</td>
-</tr>
-
-<tr>
+</tr><tr>
 <td><a href="gdelta_enc.html">gdelta_enc</a></td>
-<td>Calculate the codon usage bias related to translation optimization (delta ENC)</td>
-</tr>
-
-<tr>
+<td>Calculate the codon usage bias related to translation optimization              (delta ENC)</td>
+</tr><tr>
 <td><a href="gs_value.html">gs_value</a></td>
 <td>Calculate the strength of selected codon usage bias (S)</td>
 </tr>

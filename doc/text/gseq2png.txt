@@ -5,11 +5,10 @@ Function
 
 Description
 
-   Converts a sequence to a png image, by representing nucleotide 
-   sequences with representative pixels. 
-   A is shown in red, T is shown in green, 
-   G is shown in yellow, and C is shown in blue. 
-  
+   gseq2png converts a sequence to a png image, by representing nucleotide
+   sequences with representative pixels. A is shown in red, T is shown in
+   green, G is shown in yellow, and C is shown in blue.
+    
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -27,40 +26,82 @@ Description
 
 Usage
 
-   Here is a sample session with gseq2png
+Here is a sample session with gseq2png
 
-% gseq2png accid.fasta
+% gseq2png refseqn:NC_000913
 Converts a sequence to PNG image
-Output filename [nc_000913.gseq2png]:
+Output file for non interactive displays [gcgr]: Created gcgr.1.png
+
+
+   Go to the input files for this example
+   Go to the output files for this example
 
 Command line arguments
 
-   Standard (Mandatory) qualifiers (* if not always prompted):
+   Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-  [-goutfile]          string     [gseq2png.png] Output filename (Any string)
+  [-goutfile]          string     [gcgr] Output file for non interactive
+                                  displays (Any string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
+   -format             string     [png] Output file format. Dependent on
+                                  'convert' command (Any string)
    -width              integer    [640] Width of the image (Any integer value)
    -window             integer    [20] Window size of a sequence to represent
                                   each pixel (Any integer value)
-   -accid              string     Include to use sequence accession ID as
-                                  query (Any string)
-   -show               toggle     [N] Inclue to show PNG through X11 window
+
+   Associated qualifiers:
+
+   "-sequence" associated qualifiers
+   -sbegin1            integer    Start of each sequence to be used
+   -send1              integer    End of each sequence to be used
+   -sreverse1          boolean    Reverse (if DNA)
+   -sask1              boolean    Ask for begin/end/reverse
+   -snucleotide1       boolean    Sequence is nucleotide
+   -sprotein1          boolean    Sequence is protein
+   -slower1            boolean    Make lower case
+   -supper1            boolean    Make upper case
+   -scircular1         boolean    Sequence is circular
+   -sformat1           string     Input sequence format
+   -iquery1            string     Input query fields or ID list
+   -ioffset1           integer    Input start position offset
+   -sdbname1           string     Database name
+   -sid1               string     Entryname
+   -ufo1               string     UFO features
+   -fformat1           string     Features format
+   -fopenfile1         string     Features file name
 
    General qualifiers:
+   -auto               boolean    Turn off prompts
+   -stdout             boolean    Write first file to standard output
+   -filter             boolean    Read first file from standard input, write
+                                  first file to standard output
+   -options            boolean    Prompt for standard and additional values
+   -debug              boolean    Write debug output to program.dbg
+   -verbose            boolean    Report some/full command line options
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
+   -warning            boolean    Report warnings
+   -error              boolean    Report errors
+   -fatal              boolean    Report fatal errors
+   -die                boolean    Report dying program messages
+   -version            boolean    Report version number and exit
 
 Input file format
 
-   gseq2png reads nucleotide sequences.
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
+
+   gseq2png reads one or more nucleotide sequences.
 
 Output file format
 
-   The output from gseq2png is to png file.
+   The output from gseq2png is to an image file.
+
+
 
 Data files
 
@@ -86,7 +127,8 @@ References
 
 Warnings
 
-None.
+   None.
+
 Diagnostic Error Messages
 
    None.
@@ -116,6 +158,7 @@ Author(s)
 History
 
    2012 - Written by Hidetoshi Itaya
+   2013 - Fixed by Hidetoshi Itaya
 
 Target users
 

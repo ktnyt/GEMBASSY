@@ -41,38 +41,41 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This method prints out basic compositional statistics of the <br>
-   given nucleotide sequence, in a format similar to the one printed<br>
-   right after calling load(). Returns the number of A, T, G, and C bases.<br>
- <br>
-   G-language SOAP service is provided by the<br>
-   Institute for Advanced Biosciences, Keio University.<br>
-   The original web service is located at the following URL:<br>
-<br>
-   http://www.g-language.org/wiki/soap<br>
-<br>
-   WSDL(RPC/Encoded) file is located at:<br>
-<br>
-   http://soap.g-language.org/g-language.wsdl<br>
-<br>
-   Documentation on G-language Genome Analysis Environment methods are<br>
-   provided at the Document Center<br>
-<br>
-   http://ws.g-language.org/gdoc/
+   gseqinfo prints out basic nucleotide sequence statistics of the given<br />
+   nucleotide sequence. It returns the number of A, T, G, and C bases.<br />
+    <br />
+   G-language SOAP service is provided by the<br />
+   Institute for Advanced Biosciences, Keio University.<br />
+   The original web service is located at the following URL:<br />
+<br />
+   http://www.g-language.org/wiki/soap<br />
+<br />
+   WSDL(RPC/Encoded) file is located at:<br />
+<br />
+   http://soap.g-language.org/g-language.wsdl<br />
+<br />
+   Documentation on G-language Genome Analysis Environment methods are<br />
+   provided at the Document Center<br />
+<br />
+   http://ws.g-language.org/gdoc/<br />
+<br />
+
 </p>
 
 <H2>Usage</H2>
 
 <table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
 
-   Here is a sample session with gseqinfo
+Here is a sample session with gseqinfo
 
-   The database definitions for following commands are available at
-   http://soap.g-language.org/kbws/embossrc
-
-% gseqinfo -show refseqn:NC_000913
+% gseqinfo refseqn:NC_000913
 Prints out basic nucleotide sequence statistics
-Sequence: NC_000913 A: 1142228 T: 1140970 G: 1176923 C: 1179554
+Program compseq output file [nc_000913.gseqinfo]: 
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+
 
 </pre></td></tr></table>
 
@@ -104,7 +107,7 @@ Sequence: NC_000913 A: 1142228 T: 1140970 G: 1176923 C: 1179554
 <tr bgcolor="#FFFFCC">
 <td>[-outfile]<br>(Parameter 2)</td>
 <td>outfile</td>
-<td>Output file name</td>
+<td>Program compseq output file</td>
 <td>Output file</td>
 <td><i>&lt;*&gt;</i>.gseqinfo</td>
 </tr>
@@ -131,13 +134,25 @@ Sequence: NC_000913 A: 1142228 T: 1140970 G: 1176923 C: 1179554
 <h2>Input file format</h2>
 
 <p>
-   gseqinfo reads nucleotide sequences.
+   The database definitions for following commands are available at<br />
+   http://soap.g-language.org/kbws/embossrc<br />
+<br />
+   gseqinfo reads one or more nucleotide sequences.<br />
+<br />
+
 </p>
 
 <h2>Output file format</h2>
 
 <p>
-   The output from gseqinfo is to a file or stdout.
+   The output from gseqinfo is to a plain text file.<br />
+<br />
+   File: nc_000913.gseqinfo<br />
+<br />
+Sequence: NC_000913 A: 1142228 T: 1140970 G: 1176923 C: 1179555<br />
+<br />
+<br />
+
 </p>
 
 <h2>Data files</h2>
@@ -152,7 +167,7 @@ None.
 None.
 </p>
 
-<h2>Refrences</h2>
+<h2>References</h2>
 
 <pre>
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
@@ -166,6 +181,7 @@ None.
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Web Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
+
 </pre>
 
 <h2>Warnings</h2>
@@ -200,14 +216,10 @@ None.
 <tr>
 <td><a href="gconsensus_z.html">gconsensus_z</a></td>
 <td>Calculate consensus in given array of sequences</td>
-</tr>
-
-<tr>
+</tr><tr>
 <td><a href="gdist_in_cc.html">gdist_in_cc</a></td>
 <td>Calculates the distance between two loci in circular chromosomes</td>
-</tr>
-
-<tr>
+</tr><tr>
 <td><a href="gpalindrome.html">gpalindrome</a></td>
 <td>Searches palindrome sequences</td>
 </tr>

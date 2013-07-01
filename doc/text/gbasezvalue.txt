@@ -1,4 +1,4 @@
-                                  gbase_z_value
+                                  gbasezvalue
 Function
 
    Extracts conserved oligomers per position using Z-score
@@ -6,8 +6,10 @@ Function
 Description
 
    This function calculates and extracts conserved oligomers per position using
-   Z-score, in regions around the start/stop codons using Z-score
-
+   Z-score, in regions around the start/stop codons. The oligomers are returned
+   in ranking order up to "-limit" number.
+    
+   G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
 
@@ -18,57 +20,123 @@ Description
    http://soap.g-language.org/g-language.wsdl
 
    Documentation on G-language Genome Analysis Environment methods are
-   provided at the Document Center:
+   provided at the Document Center
 
    http://ws.g-language.org/gdoc/
 
 Usage
 
-   Here is a sample session with gbase_z_value
+Here is a sample session with gbasezvalue
 
-   The database definitions for following commands are available at
-   http://soap.g-language.org/kbws/embossrc
-
-% gbase_z_value refseqn:NC_000913
+% gbasezvalue refseqn:NC_000913
 Extracts conserved oligomers per position using Z-score
-Output filename [nc_000913.gbase_z_value]:
+Program compseq output file (optional) [nc_000913.gbasezvalue]: 
+
+   Go to the input files for this example
+   Go to the output files for this example
 
 Command line arguments
 
    Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-   -outfile            outfile    [gbase_z_value.$(sequence.name).csv] Output
-                                  file name
+  [-outfile]           outfile    [*.gbasezvalue] Program compseq output file
+                                  (optional)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -limit              integer    [5] Rank threshold for showing the conserved
                                   oligomer (Any integer value)
-   -position           string     [start] Either 'start' (around start codon)
+   -position           selection  [start] Either 'start' (around start codon)
                                   or 'end' (around stop codon) to create the
-                                  PWM (Any string)
+                                  PWM
    -patlen             integer    [3] Length of oligomer to count (Any integer
                                   value)
    -upstream           integer    [30] Length upstream of specified position
                                   to create PWM (Any integer value)
    -downstream         integer    [30] Length downstream of specified position
                                   to create PWM (Any integer value)
-   -accid              string     Include to use sequence accession ID as
-                                  query (Any string)
+   -[no]accid          boolean    [Y] Include to use sequence accession ID as
+                                  query
+
+   Associated qualifiers:
+
+   "-sequence" associated qualifiers
+   -sbegin1            integer    Start of each sequence to be used
+   -send1              integer    End of each sequence to be used
+   -sreverse1          boolean    Reverse (if DNA)
+   -sask1              boolean    Ask for begin/end/reverse
+   -snucleotide1       boolean    Sequence is nucleotide
+   -sprotein1          boolean    Sequence is protein
+   -slower1            boolean    Make lower case
+   -supper1            boolean    Make upper case
+   -scircular1         boolean    Sequence is circular
+   -sformat1           string     Input sequence format
+   -iquery1            string     Input query fields or ID list
+   -ioffset1           integer    Input start position offset
+   -sdbname1           string     Database name
+   -sid1               string     Entryname
+   -ufo1               string     UFO features
+   -fformat1           string     Features format
+   -fopenfile1         string     Features file name
+
+   "-outfile" associated qualifiers
+   -odirectory2        string     Output directory
 
    General qualifiers:
+   -auto               boolean    Turn off prompts
+   -stdout             boolean    Write first file to standard output
+   -filter             boolean    Read first file from standard input, write
+                                  first file to standard output
+   -options            boolean    Prompt for standard and additional values
+   -debug              boolean    Write debug output to program.dbg
+   -verbose            boolean    Report some/full command line options
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
+   -warning            boolean    Report warnings
+   -error              boolean    Report errors
+   -fatal              boolean    Report fatal errors
+   -die                boolean    Report dying program messages
+   -version            boolean    Report version number and exit
 
 Input file format
 
-   gbase_z_value reads nucleotide sequences.
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
+
+   gbasezvalue reads one or more nucleotide sequences.
 
 Output file format
 
-   The output from gbase_z_value is to a raw CSV file.
+   The output from gbasezvalue is to a plain text file.
+
+   File: nc_000913.gbasezvalue
+
+Sequence: NC_000913
+position:-30,1,taa,-0.76525
+2,aga,-0.79101
+3,tta,-1.14174
+4,cta,-1.18831
+5,aat,-1.86652
+position:-29,1,cta,-0.18368
+2,aat,-0.71851
+3,gac,-1.26182
+4,taa,-1.39455
+
+   [Part of this file has been deleted for brevity]
+
+position:29,1,gct,1.66288
+2,act,1.26637
+3,tat,0.66721
+4,cct,-0.43158
+5,tgt,-0.59254
+position:30,1,ctg,3.12072
+2,att,0.04193
+3,ctc,-0.12416
+4,cta,-0.38461
+5,tta,-0.76413
+
 
 Data files
 
@@ -94,8 +162,7 @@ References
 
 Warnings
 
-   This tool may give a warning on feature output when installed on
-   EMBOSS-6.5.7, but we have no known errors in analysis.
+   None.
 
 Diagnostic Error Messages
 
@@ -127,6 +194,7 @@ Author(s)
 History
 
    2012 - Written by Hidetoshi Itaya
+   2013 - Fixed by Hidetoshi Itaya
 
 Target users
 

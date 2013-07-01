@@ -1,15 +1,14 @@
-                                     gentrez
+                                    gentrez
 Function
 
-   Search NCBI Entrez in G-language Shell
+   Search NCBI Entrez
 
 Description
 
-   Search NCBI Entrez with keyword through EUtilities. 
-   This is intended for quick lookup through G-language Shell, 
+   gentrez searches NCBI Entrez with keyword through EUtilities. 
+   This is intended for quick lookup through the command line
    so only top ten hits are reported.
-
-  
+    
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -27,78 +26,94 @@ Description
 
 Usage
 
-   Here is a sample session with gentrez
+Here is a sample session with gentrez
 
-% gentrez -show pubmed 'Venter C'
-Search NCBI Entrez in G-language Shell
-Output filename [pubmed.Venter C.gentrez]:
-    130 entries found in PUBMED: (Showing up to 10 hits)
+% gentrez genome 'Escherichia coli'
+Search NCBI Entrez
+ASCII text output file [genome.Escherichia coli.gentrez]: 
 
-     1. PMID:   23209482
-        Venter C et al. "Food hypersensitivity: diagnosing and managing food allergies and intolerances."
-        J Allergy (Cairo)  2012;2012:576017
-
-     2. PMID:   23150738
-        Venter C et al. "Nutritional aspects in diagnosis and management of food hypersensitivity-the dietitians role."
-        J Allergy (Cairo)  2012;2012:269376
-
-     3. PMID:   23121771
-        Papadopoulos NG et al. "Research needs in allergy: an EAACI position paper, in collaboration with EFA."
-        Clin Transl Allergy  2012 Nov 2;2(1):21
-
-     4. PMID:   22913718
-        Sommer I et al. "Factors influencing food choices of food-allergic consumers: findings from focus groups."
-        Allergy  2012 Oct;67(10):1319-22
-
-     5. PMID:   22714410
-        Djagaeva I et al. "Three routes to suppression of the neurodegenerative phenotypes caused by kinesin heavy chain mutations."
-        Genetics  2012 Sep;192(1):173-83
-
-     6. PMID:   22685976
-        Venter C et al. "A topic in 10 questions: weaning the child with cow's milk protein allergy."
-        J Fam Health Care  2012 Mar-Apr;22(2):22-3
-
-     7. PMID:   22499144
-        Venter C et al. "Guideline fever: an overview of DRACMA, US NIAID and UK NICE guidelines."
-        Curr Opin Allergy Clin Immunol  2012 Jun;12(3):302-15
-
-     8. PMID:   22435534
-        Meyer R et al. "Practical dietary management of protein energy malnutrition in young children with cow's milk protein allergy."
-        Pediatr Allergy Immunol  2012 Jun;23(4):307-14
-
-     9. PMID:   22053062
-        Cox H et al. "Emollients, education and quality of life: the RCPCH care pathway for children with eczema."
-        Arch Dis Child  2011 Nov;96 Suppl 2:i19-24
-
-    10. PMID:   22132560
-        Venter C et al. "First tastes."
-        J Fam Health Care  2011 Sep-Oct;21(5):14-7
-
+   Go to the input files for this example
+   Go to the output files for this example
 
 Command line arguments
 
-   Standard (Mandatory) qualifiers (* if not always prompted):
-  [-db]                string     [pubmed] NCBI database to search (Any
+   Standard (Mandatory) qualifiers:
+  [-database]          string     [pubmed] NCBI database to search (Any
                                   string)
   [-query]             string     Query to search (Any string)
-*  -outfile            outfile    [$(db).$(query).gentrez] Output file name
+  [-outfile]           outfile    [$(database).$(query).gentrez] ASCII text
+                                  output file
 
    Additional (Optional) qualifiers: (none)
-   Advanced (Unprompted) qualifiers:
-   -show               toggle     [N] Include to show png with X11 window
+   Advanced (Unprompted) qualifiers: (none)
+   Associated qualifiers:
+
+   "-outfile" associated qualifiers
+   -odirectory3        string     Output directory
 
    General qualifiers:
+   -auto               boolean    Turn off prompts
+   -stdout             boolean    Write first file to standard output
+   -filter             boolean    Read first file from standard input, write
+                                  first file to standard output
+   -options            boolean    Prompt for standard and additional values
+   -debug              boolean    Write debug output to program.dbg
+   -verbose            boolean    Report some/full command line options
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
+   -warning            boolean    Report warnings
+   -error              boolean    Report errors
+   -fatal              boolean    Report fatal errors
+   -die                boolean    Report dying program messages
+   -version            boolean    Report version number and exit
 
 Input file format
 
-   gentrez reads nucleotide sequences.
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
+
+   gentrez reads no file input.
 
 Output file format
 
-   The output from gentrez is to a file or stdout.
+   The output from gentrez is to a plain text file.
+
+   File: genome.Escherichia coli.gentrez
+
+    53 entries found in NUCLEOTIDE: (Showing up to 10 hits)
+
+     1. Accession Number:   NZ_AKBV01000001
+        Escherichia coli str. K-12 substr. MG1655 strain K-12 cont1.1 chromosome, whole genome shotgun sequence, complete genome
+
+     2. Accession Number:   NC_018658
+        Escherichia coli O104:H4 str. 2011C-3493 chromosome, complete genome
+
+     3. Accession Number:   NC_012971
+        Escherichia coli BL21(DE3) chromosome, complete genome
+
+     4. Accession Number:   NC_017635
+        Escherichia coli W chromosome, complete genome
+
+     5. Accession Number:   NC_018650
+        Escherichia coli O104:H4 str. 2009EL-2050 chromosome, complete genome
+
+     6. Accession Number:   NC_018661
+        Escherichia coli O104:H4 str. 2009EL-2071 chromosome, complete genome
+
+     7. Accession Number:   NC_017906
+        Escherichia coli Xuzhou21 chromosome, complete genome
+
+     8. Accession Number:   NC_017634
+        Escherichia coli O83:H1 str. NRG 857C chromosome, complete genome
+
+     9. Accession Number:   NC_017656
+        Escherichia coli O55:H7 str. RM12579 chromosome, complete genome
+
+    10. Accession Number:   NC_017664
+        Escherichia coli W chromosome, complete genome
+
+
 
 Data files
 
@@ -124,7 +139,8 @@ References
 
 Warnings
 
-None.
+   None.
+
 Diagnostic Error Messages
 
    None.
@@ -154,6 +170,7 @@ Author(s)
 History
 
    2012 - Written by Hidetoshi Itaya
+   2013 - Fixed by Hidetoshi Itaya
 
 Target users
 

@@ -1,22 +1,22 @@
-                                   gshuffleseq
+                                  gshuffleseq
 Function
 
    Create randomized sequence with conserved k-mer composition
 
 Description
 
-   Shuffle and randomize the given sequence, conserving the nucleotide/peptide
-   k-mer content of the original sequence. 
+   gshuffleseq shuffles and randomizes the given sequence, conserving the
+   nucleotide/peptide k-mer content of the original sequence.
 
-   For k=1, i.e. shuffling sequencing preserving single nucleotide composition, 
-   Fisher-Yates Algorithm is employed. 
-
+   For k=1, i.e. shuffling sequencing preserving single nucleotide composition,
+   Fisher-Yates Algorithm is employed.
    For k>1, shuffling preserves all k-mers (all k where k=1~k). For example,
-   k=3 preserves all triplet, doublet, and single nucleotide composition. 
+   k=3 preserves all triplet, doublet, and single nucleotide composition.
    Algorithm for k-mer preserved shuffling is non-trivial, which is solved
-   by graph theoretical approach with Eulerian random walks in the graph of 
-   k-1-mers. See references 3-5 for details of this algorithm. 
-   
+   by graph theoretical approach with Eulerian random walks in the graph of
+   k-1-mers. See Jiang et al., Kandel et al., and Propp et al., for details
+   of this algorithm.
+    
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -34,37 +34,96 @@ Description
 
 Usage
 
-   Here is a sample session with gshuffleseq
+Here is a sample session with gshuffleseq
 
-% gshuffleseq refseqn:NC_000913
+% gshuffleseq tsw:hbb_human
 Create randomized sequence with conserved k-mer composition
-Output filename [nc_000913.fasta]:
+output sequence [hbb_human.fasta]: 
+
+   Go to the input files for this example
+   Go to the output files for this example
 
 Command line arguments
 
    Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Sequence(s) filename and optional format, or
                                   reference (input USA)
+  [-outseq]            seqout     [<sequence>.<format>] Sequence filename and
+                                  optional format (output USA)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
-   -k                  integer    [1] k-mer to preserve composition (Any
-                                  integer value)
-   -outseq             seqout     [<sequence>.<format>] Sequence filename and
-                                  optional format (output USA)
+   -k                  integer    [1] Sequence k-mer to preserve composition
+                                  (Any integer value)
+
+   Associated qualifiers:
+
+   "-sequence" associated qualifiers
+   -sbegin1            integer    Start of each sequence to be used
+   -send1              integer    End of each sequence to be used
+   -sreverse1          boolean    Reverse (if DNA)
+   -sask1              boolean    Ask for begin/end/reverse
+   -snucleotide1       boolean    Sequence is nucleotide
+   -sprotein1          boolean    Sequence is protein
+   -slower1            boolean    Make lower case
+   -supper1            boolean    Make upper case
+   -scircular1         boolean    Sequence is circular
+   -sformat1           string     Input sequence format
+   -iquery1            string     Input query fields or ID list
+   -ioffset1           integer    Input start position offset
+   -sdbname1           string     Database name
+   -sid1               string     Entryname
+   -ufo1               string     UFO features
+   -fformat1           string     Features format
+   -fopenfile1         string     Features file name
+
+   "-outseq" associated qualifiers
+   -osformat2          string     Output seq format
+   -osextension2       string     File name extension
+   -osname2            string     Base file name
+   -osdirectory2       string     Output directory
+   -osdbname2          string     Database name to add
+   -ossingle2          boolean    Separate file for each entry
+   -oufo2              string     UFO features
+   -offormat2          string     Features format
+   -ofname2            string     Features file name
+   -ofdirectory2       string     Output directory
 
    General qualifiers:
+   -auto               boolean    Turn off prompts
+   -stdout             boolean    Write first file to standard output
+   -filter             boolean    Read first file from standard input, write
+                                  first file to standard output
+   -options            boolean    Prompt for standard and additional values
+   -debug              boolean    Write debug output to program.dbg
+   -verbose            boolean    Report some/full command line options
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
+   -warning            boolean    Report warnings
+   -error              boolean    Report errors
+   -fatal              boolean    Report fatal errors
+   -die                boolean    Report dying program messages
+   -version            boolean    Report version number and exit
 
 Input file format
 
-   gshuffleseq reads nucleotide sequences.
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
+
+   gshuffleseq reads one or more nucleotide or protein sequences.
 
 Output file format
 
    The output from gshuffleseq is to .
+
+   File: hbb_human.fasta
+
+>HBB_HUMAN P68871 Hemoglobin subunit beta (Beta-globin) (Hemoglobin beta chain) (LVV-hemorphin-7)
+KGWLDLVAGAAHFVRRLKMLLEVDWAAHEERVGTSNPNNALKNEAADVEVHSPTHVNPTQ
+LVLVQVGFGTLHLQGVECPKPKPGGVALKPVAHLLAMKECTLVALGSDFYVDHGSDGEDK
+GFKAYVLATSFFAYTNFLHGKVKHVLF
+
 
 Data files
 
@@ -81,8 +140,8 @@ References
    Durstenfeld R. (1964) "Algorithm 235: Random permutation", CACM 7(7):420
 
    Jiang M., Anderson J., Gillespie J., and Mayne M. (2008) "uShuffle: 
-      a useful tool for shuffling biological sequences while preserving the k-let
-      counts", BMC Bioinformatics 9:192
+      a useful tool for shuffling biological sequences while preserving the
+      k-let counts", BMC Bioinformatics 9:192
 
    Kandel D., Matias Y., Unver R., and Winker P. (1996) "Shuffling biological 
       sequences", Discrete Applied Mathematics 71(1-3):171-185  
@@ -105,7 +164,8 @@ References
 
 Warnings
 
-None.
+   None.
+
 Diagnostic Error Messages
 
    None.
@@ -135,6 +195,7 @@ Author(s)
 History
 
    2012 - Written by Hidetoshi Itaya
+   2013 - Fixed by Hidetoshi Itaya
 
 Target users
 

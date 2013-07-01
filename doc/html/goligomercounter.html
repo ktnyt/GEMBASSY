@@ -2,7 +2,7 @@
 
 <HTML>
 <HEAD>
-  <TITLE> EMBOSS: gconsensus_z </TITLE>
+  <TITLE> EMBOSS: goligomercounter </TITLE>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" text="#000000">
 
@@ -14,7 +14,7 @@
 </td>
 <td align=left valign=middle>
 <b><font size="+6">
-gconsensus_z
+goligomercounter
 </font></b>
 </td></tr>
 </table>
@@ -30,7 +30,7 @@ gconsensus_z
 
 
 <H2> Function </H2>
-   Calculate consensus in given array of sequences
+   Counts the number of given oligomers in a sequence
 <!--
 DON'T WRITE ANYTHING HERE.
 IT IS DONE FOR YOU.
@@ -41,34 +41,43 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   Calculates the consensus of given list of sequences, using Z-score.<br>
-  <br>
-   G-language SOAP service is provided by the<br>
-   Institute for Advanced Biosciences, Keio University.<br>
-   The original web service is located at the following URL:<br>
-<br>
-   http://www.g-language.org/wiki/soap<br>
-<br>
-   WSDL(RPC/Encoded) file is located at:<br>
-<br>
-   http://soap.g-language.org/g-language.wsdl<br>
-<br>
-   Documentation on G-language Genome Analysis Environment methods are<br>
-   provided at the Document Center<br>
-<br>
-   http://ws.g-language.org/gdoc/
+   goligomercounter counts the number of oligomers in a sequence (by windows<br />
+   optionally). Oligomer can be specified using degenerate nucleotide alphabet,<br />
+   or by regular expressions. k-mers can be counted by specifying the "-length"<br />
+   qualifier.<br />
+    <br />
+   G-language SOAP service is provided by the<br />
+   Institute for Advanced Biosciences, Keio University.<br />
+   The original web service is located at the following URL:<br />
+<br />
+   http://www.g-language.org/wiki/soap<br />
+<br />
+   WSDL(RPC/Encoded) file is located at:<br />
+<br />
+   http://soap.g-language.org/g-language.wsdl<br />
+<br />
+   Documentation on G-language Genome Analysis Environment methods are<br />
+   provided at the Document Center<br />
+<br />
+   http://ws.g-language.org/gdoc/<br />
+<br />
+
 </p>
 
 <H2>Usage</H2>
 
 <table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
 
-   Here is a sample session with gconsensus_z
+Here is a sample session with goligomercounter
 
-% gconsensus_z -plot consensus.fasta
-Calculate consensus in given array of sequences
-Output filename [rs_000000.gconsensus_z]:
-Created gconsensus_z.ps
+% goligomercounter refseqn:NC_000913 atgcatgc
+Counts the number of given oligomers in a sequence
+Program compseq output file [nc_000913.goligomercounter]: 
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+
 
 </pre></td></tr></table>
 
@@ -98,19 +107,19 @@ Created gconsensus_z.ps
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-graph</td>
-<td>xygraph</td>
-<td>Graph type</td>
-<td>EMBOSS has a list of known devices, including ps, hpgl, hp7470, hp7580, meta, cps, x11, tek, tekt, none, data, xterm, png, gif, svg</td>
-<td><i>EMBOSS_GRAPHICS</i> value, or x11</td>
+<td>[-oligomer]<br>(Parameter 2)</td>
+<td>string</td>
+<td>Oligomer to count</td>
+<td>Any string</td>
+<td>&nbsp;</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-outfile</td>
+<td>[-outfile]<br>(Parameter 3)</td>
 <td>outfile</td>
-<td>Output file name</td>
+<td>Program compseq output file</td>
 <td>Output file</td>
-<td><i>&lt;*&gt;</i>.gconsensus_z</td>
+<td><i>&lt;*&gt;</i>.goligomercounter</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -126,27 +135,19 @@ Created gconsensus_z.ps
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-high</td>
+<td>-window</td>
 <td>integer</td>
-<td>z value greater than which is significant</td>
+<td>Int window size</td>
 <td>Any integer value</td>
-<td>1</td>
+<td>0</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-low</td>
-<td>float</td>
-<td>z value less than which is insignificant</td>
-<td>Any numeric value</td>
-<td>0.2</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-plot</td>
-<td>toggle</td>
-<td>Include to plot result</td>
-<td>Toggle value Yes/No</td>
-<td>No</td>
+<td>-[no]accid</td>
+<td>boolean</td>
+<td>Include to use sequence accession ID as query</td>
+<td>Boolean value Yes/No</td>
+<td>Yes</td>
 </tr>
 
 </table>
@@ -155,13 +156,25 @@ Created gconsensus_z.ps
 <h2>Input file format</h2>
 
 <p>
-   gconsensus_z reads nucleotide sequences.
+   The database definitions for following commands are available at<br />
+   http://soap.g-language.org/kbws/embossrc<br />
+<br />
+   goligomercounter reads one or more nucleotide sequences.<br />
+<br />
+
 </p>
 
 <h2>Output file format</h2>
 
 <p>
-   The output from gconsensus_z is to the specified graphics device.
+   The output from goligomercounter is to a plain text file.<br />
+<br />
+   File: nc_000913.goligomercounter<br />
+<br />
+Sequence: NC_000913 Oligomer: atgcatgc Number: 27<br />
+<br />
+<br />
+
 </p>
 
 <h2>Data files</h2>
@@ -176,7 +189,7 @@ None.
 None.
 </p>
 
-<h2>Refrences</h2>
+<h2>References</h2>
 
 <pre>
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
@@ -190,6 +203,7 @@ None.
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Web Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
+
 </pre>
 
 <h2>Warnings</h2>
@@ -222,18 +236,17 @@ None.
 <th>Description</th></tr>
 
 <tr>
-<td><a href="gdist_in_cc.html">gdist_in_cc</a></td>
-<td>Calculates the distance between two loci in circular chromosomes</td>
-</tr>
-
-<tr>
-<td><a href="gpalindrome.html">gpalindrome</a></td>
-<td>Searches palindrome sequences</td>
-</tr>
-
-<tr>
-<td><a href="gseqinfo.html">gseqinfo</a></td>
-<td>Prints out basic nucleotide sequence statistics</td>
+<td><a href="gkmer_table.html">gkmer_table</a></td>
+<td>Create an image showing all k-mer abundance within a                            sequence</td>
+</tr><tr>
+<td><a href="gnucleotide_periodicity.html">gnucleotide_periodicity</a></td>
+<td>Checks the periodicity of certain oligonucleotides</td>
+</tr><tr>
+<td><a href="goligomer_search.html">goligomer_search</a></td>
+<td>Searches oligomers in given sequence</td>
+</tr><tr>
+<td><a href="gsignature.html">gsignature</a></td>
+<td>Calculate oligonucleotide usage (genomic signature)</td>
 </tr>
 
 </table>

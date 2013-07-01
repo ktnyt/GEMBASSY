@@ -1,13 +1,13 @@
-                             gnucleotide_periodicity
+                             gnucleotideperiodicity
 Function
 
    Checks the periodicity of certain oligonucleotides
 
 Description
 
-   Checks the periodicity of certain nucleotide (best known with AA
-   dinucleotide)
-   
+   gnucleotideperiodicity checks the periodicity of certain nucleotide
+   (best known with AA dinucleotide).
+    
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -25,14 +25,23 @@ Description
 
 Usage
 
-   Here is a sample session with gnucleotide_periodicity
+Here is a sample session with gnucleotideperiodicity
 
-   The database definitions for following commands are available at
-   http://soap.g-language.org/kbws/embossrc
-
-% gnucleotide_periodicity -plot refseqn:NC_000913
+% gnucleotideperiodicity refseqn:NC_000913
 Checks the periodicity of certain oligonucleotides
-Output filename [gnucleotide_periodicity.nc_000913.csv]:
+Program compseq output file (optional) [nc_000913.gnucleotideperiodicity]: 
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+   Example 2
+
+% gnucleotideperiodicity refseqn:NC_000913 -plot -graph png
+Checks the periodicity of certain oligonucleotides
+Created gnucleotideperiodicity.1.png
+
+   Go to the input files for this example
+   Go to the output files for this example
 
 Command line arguments
 
@@ -42,30 +51,108 @@ Command line arguments
 *  -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
                                   (ps, hpgl, hp7470, hp7580, meta, cps, x11,
                                   tek, tekt, none, data, xterm, png, gif, svg)
-*  -outfile            outfile    [gnucleotide_periodicity.$(sequence.name).csv]
-                                  Output file name
+*  -outfile            outfile    [*.gnucleotideperiodicity] Program compseq
+                                  output file (optional)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
+   -format             string     [png] Output file format. Dependent on
+                                  'convert' command (Any string)
    -window             integer    [50] Window size to seek periodicity (Any
                                   integer value)
    -nucleotide         string     [aa] Nucleotide to search (Any string)
-   -accid              string     Include to use sequence accession ID as
-                                  query (Any string)
+   -[no]accid          boolean    [Y] Include to use sequence accession ID as
+                                  query
    -plot               toggle     [N] Include to plot result
 
+   Associated qualifiers:
+
+   "-sequence" associated qualifiers
+   -sbegin1            integer    Start of each sequence to be used
+   -send1              integer    End of each sequence to be used
+   -sreverse1          boolean    Reverse (if DNA)
+   -sask1              boolean    Ask for begin/end/reverse
+   -snucleotide1       boolean    Sequence is nucleotide
+   -sprotein1          boolean    Sequence is protein
+   -slower1            boolean    Make lower case
+   -supper1            boolean    Make upper case
+   -scircular1         boolean    Sequence is circular
+   -sformat1           string     Input sequence format
+   -iquery1            string     Input query fields or ID list
+   -ioffset1           integer    Input start position offset
+   -sdbname1           string     Database name
+   -sid1               string     Entryname
+   -ufo1               string     UFO features
+   -fformat1           string     Features format
+   -fopenfile1         string     Features file name
+
+   "-graph" associated qualifiers
+   -gprompt            boolean    Graph prompting
+   -gdesc              string     Graph description
+   -gtitle             string     Graph title
+   -gsubtitle          string     Graph subtitle
+   -gxtitle            string     Graph x axis title
+   -gytitle            string     Graph y axis title
+   -goutfile           string     Output file for non interactive displays
+   -gdirectory         string     Output directory
+
+   "-outfile" associated qualifiers
+   -odirectory         string     Output directory
+
    General qualifiers:
+   -auto               boolean    Turn off prompts
+   -stdout             boolean    Write first file to standard output
+   -filter             boolean    Read first file from standard input, write
+                                  first file to standard output
+   -options            boolean    Prompt for standard and additional values
+   -debug              boolean    Write debug output to program.dbg
+   -verbose            boolean    Report some/full command line options
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
+   -warning            boolean    Report warnings
+   -error              boolean    Report errors
+   -fatal              boolean    Report fatal errors
+   -die                boolean    Report dying program messages
+   -version            boolean    Report version number and exit
 
 Input file format
 
-   gnucleotide_periodicity reads nucleotide sequences.
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
+
+   gnucleotideperiodicity reads one or more nucleotide sequences.
 
 Output file format
 
-   The output from gnucleotide_periodicity is to the specified graphics device.
+   The output from gnucleotideperiodicity is to a plain text file or the EMBOSS graphics device.
+
+   File: nc_000913.gnucleotideperiodicity
+
+Sequence: NC_000913
+window,value
+0,35134
+1,30121
+2,25409
+3,23508
+4,25830
+5,25136
+6,25658
+7,28279
+
+   [Part of this file has been deleted for brevity]
+
+40,28042
+41,25892
+42,25968
+43,28240
+44,25841
+45,25591
+46,27788
+47,25832
+48,25427
+49,0
+
 
 Data files
 
@@ -91,8 +178,7 @@ References
 
 Warnings
 
-   This tool may give a warning on feature output when installed on
-   EMBOSS-6.5.7, but we have no known errors in analysis.
+   None.
 
 Diagnostic Error Messages
 
@@ -126,6 +212,7 @@ Author(s)
 History
 
    2012 - Written by Hidetoshi Itaya
+   2013 - Fixed by Hidetoshi Itaya
 
 Target users
 

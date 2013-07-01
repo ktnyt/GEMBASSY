@@ -41,36 +41,44 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This program calculates codon adaptation index (CAI) for each gene.<br>
-  <br>
-   G-language SOAP service is provided by the<br>
-   Institute for Advanced Biosciences, Keio University.<br>
-   The original web service is located at the following URL:<br>
-<br>
-   http://www.g-language.org/wiki/soap<br>
-<br>
-   WSDL(RPC/Encoded) file is located at:<br>
-<br>
-   http://soap.g-language.org/g-language.wsdl<br>
-<br>
-   Documentation on G-language Genome Analysis Environment methods are<br>
-   provided at the Document Center<br>
-<br>
-   http://ws.g-language.org/gdoc/
+   gcai calculates codon adaptation index (CAI) for each gene.<br />
+   CAI is measure a of the relative adaptiveness of the codon usage of a gene<br />
+   towards the codon usage of highly expressed genes. CAI can be used as a<br />
+   'universal' measure of codon usage bias as it is correlated with various<br />
+   gene features such as gene expression level, GC content, and GC skew.<br />
+    <br />
+   G-language SOAP service is provided by the<br />
+   Institute for Advanced Biosciences, Keio University.<br />
+   The original web service is located at the following URL:<br />
+<br />
+   http://www.g-language.org/wiki/soap<br />
+<br />
+   WSDL(RPC/Encoded) file is located at:<br />
+<br />
+   http://soap.g-language.org/g-language.wsdl<br />
+<br />
+   Documentation on G-language Genome Analysis Environment methods are<br />
+   provided at the Document Center<br />
+<br />
+   http://ws.g-language.org/gdoc/<br />
+<br />
+
 </p>
 
 <H2>Usage</H2>
 
 <table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
 
-   Here is a sample session with gcai
-
-   The database definitions for following commands are available at
-   http://soap.g-language.org/kbws/embossrc
+Here is a sample session with gcai
 
 % gcai refseqn:NC_000913
 Calculate codon adaptation index for each gene
-Output filename [gcai.nc_000913.csv]:
+Codon usage output file [nc_000913.gcai]: 
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+
 
 </pre></td></tr></table>
 
@@ -102,7 +110,7 @@ Output filename [gcai.nc_000913.csv]:
 <tr bgcolor="#FFFFCC">
 <td>[-outfile]<br>(Parameter 2)</td>
 <td>outfile</td>
-<td>Output file name</td>
+<td>Codon usage output file</td>
 <td>Output file</td>
 <td><i>&lt;*&gt;</i>.gcai</td>
 </tr>
@@ -130,17 +138,17 @@ Output filename [gcai.nc_000913.csv]:
 <tr bgcolor="#FFFFCC">
 <td>-wabsent</td>
 <td>string</td>
-<td>W value of codons absent from a reference set '-' when excludes such codons from the calculation</td>
+<td>W value of codons absent from a reference set to negative when excludes such codons from the calculation</td>
 <td>Any string</td>
-<td>-</td>
+<td>-1</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-accid</td>
+<td>-[no]accid</td>
 <td>boolean</td>
 <td>Include to use sequence accession ID as query</td>
 <td>Boolean value Yes/No</td>
-<td>No</td>
+<td>Yes</td>
 </tr>
 
 </table>
@@ -149,13 +157,47 @@ Output filename [gcai.nc_000913.csv]:
 <h2>Input file format</h2>
 
 <p>
-   gcai reads nucleotide sequences.
+   The database definitions for following commands are available at<br />
+   http://soap.g-language.org/kbws/embossrc<br />
+<br />
+   gcai reads one or more nucleotide sequences.<br />
+<br />
+
 </p>
 
 <h2>Output file format</h2>
 
 <p>
-   The output from gcai is to a raw CSV file.
+   The output from gcai is to a plain text file.<br />
+<br />
+   File: nc_000913.gcai<br />
+<br />
+Sequence: NC_000913<br />
+cai,gene<br />
+0.7256,thrL<br />
+0.4831,thrA<br />
+0.4719,thrB<br />
+0.5178,thrC<br />
+0.4989,yaaX<br />
+0.4933,yaaA<br />
+0.4533,yaaJ<br />
+0.7074,talB<br />
+<br />
+   [Part of this file has been deleted for brevity]<br />
+<br />
+0.4681,yjjX<br />
+0.4797,ytjC<br />
+0.5350,rob<br />
+0.4932,creA<br />
+0.3918,creB<br />
+0.4170,creC<br />
+0.4167,creD<br />
+0.6466,arcA<br />
+0.4236,yjjY<br />
+0.3913,yjtD<br />
+<br />
+<br />
+
 </p>
 
 <h2>Data files</h2>
@@ -170,10 +212,12 @@ None.
 None.
 </p>
 
-<h2>Refrences</h2>
+<h2>References</h2>
 
 <pre>
-      Sharp PM, Li WH. 1987 Nucleic Acids Res. 15(3):1281-95.
+   Sharp PM, Li WH. (1987) The codon Adaptation Index--a measure of directional
+      synonymous codon usage bias, and its potential applications.
+      Nucleic Acids Res. 15(3):1281-95.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -186,13 +230,13 @@ None.
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Web Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
+
 </pre>
 
 <h2>Warnings</h2>
 
 <p>
-   This tool may give a warning on feature output when installed on
-   EMBOSS-6.5.7, but we have no known errors in analysis.
+None.
 </p>
 
 <h2>Diagnostic Error Messages</h2>
@@ -221,9 +265,7 @@ None.
 <tr>
 <td><a href="gp2.html">gp2</a></td>
 <td>Calculate the P2 index of each gene</td>
-</tr>
-
-<tr>
+</tr><tr>
 <td><a href="gphx.html">gphx</a></td>
 <td>Identify predicted highly expressed gene</td>
 </tr>

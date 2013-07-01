@@ -5,9 +5,15 @@ Function
 
 Description
 
-   This program calculates base usage indices for protein-coding sequences
-   (excluding start and stop codons).
-
+   gbui calculates base usage indices of protein-coding sequences (excluding
+   start and stop codons) for each gene. Indices calculated are as follows,
+      acgt: Total bumber of bases (A+T+G+C)
+      ryr:  Purine/Pyrimidine ratio (A+G)/(T+C)
+      gcc:  G+C content (G+C)/(A+T+G+C)
+      Hgc:  entropy of G+C content (G+C)/(A+T+G+C)
+      gcs:  GC skew (C-G)/(C+G)
+      ats:  AT skew (A-T)/(A+T)
+    
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -25,46 +31,115 @@ Description
 
 Usage
 
-   Here is a sample session with gbui
-
-   The database definitions for following commands are available at
-   http://soap.g-language.org/kbws/embossrc
+Here is a sample session with gbui
 
 % gbui refseqn:NC_000913
 Calculates base usage indices for protein-coding sequences
-Output filename [gbui.nc_000913.csv]:
+Program compseq output file [nc_000913.gbui]: 
+
+   Go to the input files for this example
+   Go to the output files for this example
 
 Command line arguments
 
    Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-   -outfile            outfile    [gbui.$(sequence.name).csv] Output file name
+  [-outfile]           outfile    [*.gbui] Program compseq output file
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
-   -translate          boolean    [0] Include when translating using standard
+   -translate          boolean    [N] Include when translating using standard
                                   codon table
-   -position           string     Codon position (Any string)
-   -id                 string     ID of a group of genes or a single gene (Any
-                                  string)
+   -position           menu       [all] Codon position (Values: all (Assess
+                                  overall base usage of the gene); 1 (Assess
+                                  base usage at 1st position of codons); 2
+                                  (Assess base usage at 2nd position of
+                                  codons); 3 (Assess base usage at 3rd
+                                  position of codons))
    -delkey             string     [[^ACDEFGHIKLMNPQRSTVWYacgtU]] Regular
                                   expression to delete key (Any string)
-   -accid              string     Include to use sequence accession ID as
-                                  query (Any string)
+   -[no]accid          boolean    [Y] Include to use sequence accession ID as
+                                  query
+
+   Associated qualifiers:
+
+   "-sequence" associated qualifiers
+   -sbegin1            integer    Start of each sequence to be used
+   -send1              integer    End of each sequence to be used
+   -sreverse1          boolean    Reverse (if DNA)
+   -sask1              boolean    Ask for begin/end/reverse
+   -snucleotide1       boolean    Sequence is nucleotide
+   -sprotein1          boolean    Sequence is protein
+   -slower1            boolean    Make lower case
+   -supper1            boolean    Make upper case
+   -scircular1         boolean    Sequence is circular
+   -sformat1           string     Input sequence format
+   -iquery1            string     Input query fields or ID list
+   -ioffset1           integer    Input start position offset
+   -sdbname1           string     Database name
+   -sid1               string     Entryname
+   -ufo1               string     UFO features
+   -fformat1           string     Features format
+   -fopenfile1         string     Features file name
+
+   "-outfile" associated qualifiers
+   -odirectory2        string     Output directory
 
    General qualifiers:
+   -auto               boolean    Turn off prompts
+   -stdout             boolean    Write first file to standard output
+   -filter             boolean    Read first file from standard input, write
+                                  first file to standard output
+   -options            boolean    Prompt for standard and additional values
+   -debug              boolean    Write debug output to program.dbg
+   -verbose            boolean    Report some/full command line options
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
+   -warning            boolean    Report warnings
+   -error              boolean    Report errors
+   -fatal              boolean    Report fatal errors
+   -die                boolean    Report dying program messages
+   -version            boolean    Report version number and exit
 
 Input file format
 
-   gbui reads nucleotide sequences.
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
+
+   gbui reads one or more nucleotide sequences.
 
 Output file format
 
-   The output from gbui is to a raw CSV file.
+   The output from gbui is to a plain text file.
+
+   File: nc_000913.gbui
+
+Sequence: NC_000913
+acgt,ryr,gcc,Hgc,gcs,ats,gene
+60,0.9355,0.5333,0.9968,+0.3750,+0.3571,thrL
+2457,1.0206,0.5311,0.9972,-0.0575,-0.0434,thrA
+927,1.0973,0.5653,0.9877,-0.1183,-0.0471,thrB
+1281,1.0795,0.5301,0.9974,-0.0692,+0.0033,thrC
+291,1.0638,0.5430,0.9947,+0.0506,+0.1278,yaaX
+771,1.0615,0.4994,1.0000,-0.0182,+0.0415,yaaA
+1425,0.8363,0.5347,0.9965,-0.0315,-0.2278,yaaJ
+948,1.1303,0.5222,0.9986,-0.0263,+0.0993,talB
+
+   [Part of this file has been deleted for brevity]
+
+507,1.0444,0.5661,0.9874,-0.1080,-0.0909,yjjX
+642,1.1472,0.5654,0.9876,-0.0909,+0.0394,ytjC
+864,0.9636,0.5347,0.9965,+0.0087,-0.0299,rob
+468,1.1273,0.4936,0.9999,-0.1169,+0.0042,creA
+684,1.0118,0.5556,0.9911,-0.0579,-0.0592,creB
+1419,1.0655,0.5398,0.9954,-0.1018,-0.0505,creC
+1347,1.0660,0.4974,1.0000,-0.1433,-0.0783,creD
+711,1.0850,0.5134,0.9995,-0.0082,+0.0751,arcA
+135,0.8493,0.4370,0.9885,+0.2203,+0.0263,yjjY
+681,1.1415,0.5007,1.0000,-0.0792,+0.0529,yjtD
+
 
 Data files
 
@@ -90,8 +165,7 @@ References
 
 Warnings
 
-   This tool may give a warning on feature output when installed on
-   EMBOSS-6.5.7, but we have no known errors in analysis.
+   None.
 
 Diagnostic Error Messages
 
@@ -122,6 +196,7 @@ Author(s)
 History
 
    2012 - Written by Hidetoshi Itaya
+   2013 - Fixed by Hidetoshi Itaya
 
 Target users
 
