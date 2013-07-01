@@ -6,7 +6,9 @@ Function
 Description
 
    gnucleotideperiodicity checks the periodicity of certain nucleotide
-   (best known with AA dinucleotide).
+   (best known with AA dinucleotide). Bacteria and archaebacteria are
+   known to show periodicity of ApA dinucleotides at about 11bp and 10bp.
+   Lower eukaryotes also show periodicity but higher eukaryotes do not.
     
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.

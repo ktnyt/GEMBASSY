@@ -7,6 +7,7 @@ Description
 
    gdnawalk creates a circular map of the genome using SVG, suitable for
    plasmids and circular bacterial chromosomes.
+
    From the outer ring inwards, genes on direct strand (pink), 
    genes on complementary strand (yellow), tRNAs (green arrows), 
    rRNAs (pink or orange stripes depending on the strand), 

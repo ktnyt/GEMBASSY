@@ -15,6 +15,7 @@ Description
       C3: Relative synonymous codon usage
       C4: Relative adaptiveness
       C5: Maximum or minor codon
+
    For amino acids unpresent in a gene, C2-C3 does not calculate the values.
    By using R* in place, such values are hypothesized that alternative
    synonymous codons are used with equal frequency.
