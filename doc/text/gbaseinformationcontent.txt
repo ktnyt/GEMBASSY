@@ -1,13 +1,17 @@
-                             gbaseinformationcontent
+                            gbaseinformationcontent
 Function
 
    Calculates and graphs the sequence conservation using information content
 
 Description
 
-   This function calculates and graphs the sequence conservation in regions 
-   around the start/stop codons using information content.
-  
+   This function calculates and graphs the sequence conservation in regions
+   around the start/stop codons using information content. Values are obtained
+   by subtracting the entropy for each positfion from the maximum possible value
+   (which will be 2 in the case of nucleotide sequences). Information content
+   will show the highest value when the frequency is most biased to a single
+   alphabet.
+    
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -25,23 +29,23 @@ Description
 
 Usage
 
-   Here is a sample session with gbaseinformationcontent
-
-   Simply calculate information content and write out to CSV file.
+Here is a sample session with gbaseinformationcontent
 
 % gbaseinformationcontent refseqn:NC_000913
 Calculates and graphs the sequence conservation using information content
-Output file [nc_000913.gbaseinformationcontent]:
+Program compseq output file (optional) [nc_000913.gbaseinformationcontent]: 
 
+   Go to the input files for this example
    Go to the output files for this example
 
    Example 2
 
-   Plot a graph with EMBOSS graphics device.
-
-% gbaseinformationcontent -plot refseqn:NC_000913
+% gbaseinformationcontent refseqn:NC_000913 -plot -graph png
 Calculates and graphs the sequence conservation using information content
-Created gbaseinformationcontent.ps
+Created gbaseinformationcontent.1.png
+
+   Go to the input files for this example
+   Go to the output files for this example
 
 Command line arguments
 
@@ -51,66 +55,112 @@ Command line arguments
 *  -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
                                   (ps, hpgl, hp7470, hp7580, meta, cps, x11,
                                   tek, tekt, none, data, xterm, png, gif, svg)
-*  -outfile            outfile    [*.gbaseinformationcontent]
-                                  Output file name
+*  -outfile            outfile    [*.gbaseinformationcontent] Program compseq
+                                  output file (optional)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
-   -position           string     [start] either 'start' (around start codon)
+   -position           selection  [start] Either 'start' (around start codon)
                                   or 'end' (around stop codon) to create the
-                                  PWM (Any string)
+                                  PWM
    -upstream           integer    [30] Length upstream of specified position
                                   to create PWM (Any integer value)
    -downstream         integer    [30] Length downstream of specified position
                                   to create PWM (Any integer value)
    -patlen             integer    [3] Length of oligomer to count (Any integer
                                   value)
-   -accid              boolean    [N] Include to use sequence accession ID as
+   -[no]accid          boolean    [Y] Include to use sequence accession ID as
                                   query
    -plot               toggle     [N] Include to plot result
 
+   Associated qualifiers:
+
+   "-sequence" associated qualifiers
+   -sbegin1            integer    Start of each sequence to be used
+   -send1              integer    End of each sequence to be used
+   -sreverse1          boolean    Reverse (if DNA)
+   -sask1              boolean    Ask for begin/end/reverse
+   -snucleotide1       boolean    Sequence is nucleotide
+   -sprotein1          boolean    Sequence is protein
+   -slower1            boolean    Make lower case
+   -supper1            boolean    Make upper case
+   -scircular1         boolean    Sequence is circular
+   -sformat1           string     Input sequence format
+   -iquery1            string     Input query fields or ID list
+   -ioffset1           integer    Input start position offset
+   -sdbname1           string     Database name
+   -sid1               string     Entryname
+   -ufo1               string     UFO features
+   -fformat1           string     Features format
+   -fopenfile1         string     Features file name
+
+   "-graph" associated qualifiers
+   -gprompt            boolean    Graph prompting
+   -gdesc              string     Graph description
+   -gtitle             string     Graph title
+   -gsubtitle          string     Graph subtitle
+   -gxtitle            string     Graph x axis title
+   -gytitle            string     Graph y axis title
+   -goutfile           string     Output file for non interactive displays
+   -gdirectory         string     Output directory
+
+   "-outfile" associated qualifiers
+   -odirectory         string     Output directory
+
    General qualifiers:
+   -auto               boolean    Turn off prompts
+   -stdout             boolean    Write first file to standard output
+   -filter             boolean    Read first file from standard input, write
+                                  first file to standard output
+   -options            boolean    Prompt for standard and additional values
+   -debug              boolean    Write debug output to program.dbg
+   -verbose            boolean    Report some/full command line options
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
+   -warning            boolean    Report warnings
+   -error              boolean    Report errors
+   -fatal              boolean    Report fatal errors
+   -die                boolean    Report dying program messages
+   -version            boolean    Report version number and exit
 
 Input file format
 
    The database definitions for following commands are available at
    http://soap.g-language.org/kbws/embossrc
 
-   gbaseinformationcontent reads nucleotide sequences.
+   gbaseinformationcontent reads one or more nucleotide sequences.
 
 Output file format
 
-   The output from gbaseinformationcontent is to the specified graphics device
-   or a CSV file.
+   The output from gbaseinformationcontent is to a plain text file or the EMBOSS graphics device.
 
    File: nc_000913.gbaseinformationcontent
 
 Sequence: NC_000913
--30,2.42600
--29,2.42930
--28,2.43389
--27,2.43186
--26,2.44317
--25,2.44222
--24,2.44563
--23,2.46172
--22,2.46711
+-30,2.42457
+-29,2.42811
+-28,2.43235
+-27,2.43116
+-26,2.44278
+-25,2.44236
+-24,2.44502
+-23,2.46097
+-22,2.46588
 
    [Part of this file has been deleted for brevity]
 
-21,2.27642
-22,2.47003
-23,2.46355
-24,2.32715
-25,2.46289
-26,2.46106
-27,2.27744
-28,2.45762
-29,2.48301
-30,2.29212
+21,2.27547
+22,2.46974
+23,2.46342
+24,2.32686
+25,2.46245
+26,2.46061
+27,2.27664
+28,2.45650
+29,2.48206
+30,2.29140
+
 
 Data files
 
@@ -136,8 +186,7 @@ References
 
 Warnings
 
-   This tool may give a warning on feature output when installed on
-   EMBOSS-6.5.7, but we have no known errors in analysis.
+   None.
 
 Diagnostic Error Messages
 
@@ -172,6 +221,7 @@ Author(s)
 History
 
    2012 - Written by Hidetoshi Itaya
+   2013 - Fixed by Hidetoshi Itaya
 
 Target users
 

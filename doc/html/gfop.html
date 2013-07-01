@@ -41,36 +41,42 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This program calculates the frequency of optimal codons (Fop).<br>
-  <br>
-   G-language SOAP service is provided by the<br>
-   Institute for Advanced Biosciences, Keio University.<br>
-   The original web service is located at the following URL:<br>
-<br>
-   http://www.g-language.org/wiki/soap<br>
-<br>
-   WSDL(RPC/Encoded) file is located at:<br>
-<br>
-   http://soap.g-language.org/g-language.wsdl<br>
-<br>
-   Documentation on G-language Genome Analysis Environment methods are<br>
-   provided at the Document Center<br>
-<br>
-   http://ws.g-language.org/gdoc/
+   gfop calculates the frequency of optimal codons (Fop).Fop is an index to<br />
+   show the optimization level of synonymous codon usage choice. It is<br />
+   basically a ratio of optimal codons against all codons used.<br />
+    <br />
+   G-language SOAP service is provided by the<br />
+   Institute for Advanced Biosciences, Keio University.<br />
+   The original web service is located at the following URL:<br />
+<br />
+   http://www.g-language.org/wiki/soap<br />
+<br />
+   WSDL(RPC/Encoded) file is located at:<br />
+<br />
+   http://soap.g-language.org/g-language.wsdl<br />
+<br />
+   Documentation on G-language Genome Analysis Environment methods are<br />
+   provided at the Document Center<br />
+<br />
+   http://ws.g-language.org/gdoc/<br />
+<br />
+
 </p>
 
 <H2>Usage</H2>
 
 <table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
 
-   Here is a sample session with gfop
-
-   The database definitions for following commands are available at
-   http://soap.g-language.org/kbws/embossrc
+Here is a sample session with gfop
 
 % gfop refseqn:NC_000913
 Calculate the frequency of optimal codons (Fop)
-Output filename [gfop.nc_000913.csv]:
+Codon usage output file [nc_000913.gfop]: 
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+
 
 </pre></td></tr></table>
 
@@ -102,7 +108,7 @@ Output filename [gfop.nc_000913.csv]:
 <tr bgcolor="#FFFFCC">
 <td>[-outfile]<br>(Parameter 2)</td>
 <td>outfile</td>
-<td>Output file name</td>
+<td>Codon usage output file</td>
 <td>Output file</td>
 <td><i>&lt;*&gt;</i>.gfop</td>
 </tr>
@@ -128,11 +134,11 @@ Output filename [gfop.nc_000913.csv]:
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-accid</td>
+<td>-[no]accid</td>
 <td>boolean</td>
 <td>Include to use sequence accession ID as query</td>
 <td>Boolean value Yes/No</td>
-<td>No</td>
+<td>Yes</td>
 </tr>
 
 </table>
@@ -141,13 +147,47 @@ Output filename [gfop.nc_000913.csv]:
 <h2>Input file format</h2>
 
 <p>
-   gfop reads nucleotide sequences.
+   The database definitions for following commands are available at<br />
+   http://soap.g-language.org/kbws/embossrc<br />
+<br />
+   gfop reads one or more nucleotide sequences.<br />
+<br />
+
 </p>
 
 <h2>Output file format</h2>
 
 <p>
-   The output from gfop is to a raw CSV file.
+   The output from gfop is to a plain text file.<br />
+<br />
+   File: nc_000913.gfop<br />
+<br />
+Sequence: NC_000913<br />
+Laa,Lc,fop,gene<br />
+20,5,0.4000,thrL<br />
+819,133,0.4361,thrA<br />
+309,46,0.4783,thrB<br />
+427,69,0.5217,thrC<br />
+97,7,0.2857,yaaX<br />
+257,56,0.4643,yaaA<br />
+475,96,0.3958,yaaJ<br />
+316,56,0.6964,talB<br />
+<br />
+   [Part of this file has been deleted for brevity]<br />
+<br />
+169,27,0.2593,yjjX<br />
+214,23,0.5652,ytjC<br />
+288,49,0.4082,rob<br />
+156,23,0.3478,creA<br />
+228,26,0.3462,creB<br />
+473,69,0.3478,creC<br />
+449,70,0.3286,creD<br />
+237,46,0.6957,arcA<br />
+45,10,0.7000,yjjY<br />
+227,24,0.2500,yjtD<br />
+<br />
+<br />
+
 </p>
 
 <h2>Data files</h2>
@@ -162,12 +202,16 @@ None.
 None.
 </p>
 
-<h2>Refrences</h2>
+<h2>References</h2>
 
 <pre>
-   Ikemura (1981) J.Mol.Biol. 151:389-409.
+   Ikemura, T. (1981) Correlation between the abundance of Escherichia coli
+      transfer RNAs and the occurrence of the respective codons in its protein
+      genes: a proposal for a synonymous codon choice that is optimal for the
+      E. coli translational system, J.Mol.Biol, 151:389-409.
 
-   Ikemura (1985) Mol.Biol.Evol. 2(1):13-34.
+   Ikemura (1985) Codon usage and tRNA content in unicellular and multicellular
+      organisms, Mol.Biol.Evol, 2(1):13-34.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -180,13 +224,13 @@ None.
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Web Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
+
 </pre>
 
 <h2>Warnings</h2>
 
 <p>
-   This tool may give a warning on feature output when installed on
-   EMBOSS-6.5.7, but we have no known errors in analysis.
+None.
 </p>
 
 <h2>Diagnostic Error Messages</h2>
@@ -215,19 +259,13 @@ None.
 <tr>
 <td><a href="genc.html">genc</a></td>
 <td>Calculate the effective number of codons (Nc)</td>
-</tr>
-
-<tr>
+</tr><tr>
 <td><a href="gew.html">gew</a></td>
 <td>Calculate a measure of synonymous codon usage evenness (Ew)</td>
-</tr>
-
-<tr>
+</tr><tr>
 <td><a href="gscs.html">gscs</a></td>
 <td>Calculates the scaled chi-square</td>
-</tr>
-
-<tr>
+</tr><tr>
 <td><a href="gw_value.html">gw_value</a></td>
 <td>Calculate the 'relative adaptiveness of each codon' (W)</td>
 </tr>

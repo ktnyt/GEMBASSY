@@ -1,13 +1,17 @@
-                                   gdelta_enc
+                                   gdeltaenc
 Function
 
-   Calculate the codon usage bias related to translation optimization
-   (delta ENC)
+   Calculate the codon usage bias related to translation optimization (delta
 
 Description
 
-
-
+   gdeltaenc calculates the codon usage bias related to translation
+   optimization (delta ENC) described in Rocha (2004). The basic idea is to
+   calculate the Effective Number of Codons (ENC) for highly-expressed genes
+   (ribosomal genes) and weakly-expressed genes (all genes), and taking the
+   relative difference between them.
+    
+   G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
 
@@ -18,46 +22,94 @@ Description
    http://soap.g-language.org/g-language.wsdl
 
    Documentation on G-language Genome Analysis Environment methods are
-   provided at the Document Center:
+   provided at the Document Center
 
    http://ws.g-language.org/gdoc/
 
 Usage
 
-   Here is a sample session with gdelta_enc
+Here is a sample session with gdeltaenc
+
+% gdeltaenc refseqn:NC_000913
+Calculate the codon usage bias related to translation optimization (delta
+ENC)
+Program compseq output file [nc_000913.gdeltaenc]: 
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+Command line arguments
+
+Calculate the codon usage bias related to translation optimization (delta
+ENC)
+Version: EMBOSS:6.5.7.0 GEMBASSY:1.0.1
+
+   Standard (Mandatory) qualifiers:
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
+                                  format, or reference (input USA)
+  [-outfile]           outfile    [*.gdeltaenc] Program compseq output file
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -[no]accid          boolean    [Y] Include to use sequence accession ID as
+                                  query
+
+   Associated qualifiers:
+
+   "-sequence" associated qualifiers
+   -sbegin1            integer    Start of each sequence to be used
+   -send1              integer    End of each sequence to be used
+   -sreverse1          boolean    Reverse (if DNA)
+   -sask1              boolean    Ask for begin/end/reverse
+   -snucleotide1       boolean    Sequence is nucleotide
+   -sprotein1          boolean    Sequence is protein
+   -slower1            boolean    Make lower case
+   -supper1            boolean    Make upper case
+   -scircular1         boolean    Sequence is circular
+   -sformat1           string     Input sequence format
+   -iquery1            string     Input query fields or ID list
+   -ioffset1           integer    Input start position offset
+   -sdbname1           string     Database name
+   -sid1               string     Entryname
+   -ufo1               string     UFO features
+   -fformat1           string     Features format
+   -fopenfile1         string     Features file name
+
+   "-outfile" associated qualifiers
+   -odirectory2        string     Output directory
+
+   General qualifiers:
+   -auto               boolean    Turn off prompts
+   -stdout             boolean    Write first file to standard output
+   -filter             boolean    Read first file from standard input, write
+                                  first file to standard output
+   -options            boolean    Prompt for standard and additional values
+   -debug              boolean    Write debug output to program.dbg
+   -verbose            boolean    Report some/full command line options
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+   -warning            boolean    Report warnings
+   -error              boolean    Report errors
+   -fatal              boolean    Report fatal errors
+   -die                boolean    Report dying program messages
+   -version            boolean    Report version number and exit
+
+Input file format
 
    The database definitions for following commands are available at
    http://soap.g-language.org/kbws/embossrc
 
-% gdelta_enc -show refseqn:NC_000913
-Calculate the codon usage bias related to translation optimization (delta ENC)
-Sequence: NC_000913 delta ENC: 0.23826860841424
-
-Command line arguments
-
-   Standard (Mandatory) qualifiers (* if not always prompted):
-  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
-                                  format, or reference (input USA)
-*  -outfile            outfile    [*.gdelta_enc] Output file name
-
-   Additional (Optional) qualifiers: (none)
-   Advanced (Unprompted) qualifiers:
-   -accid              string     Include to use sequence accession ID as
-                                  query (Any string)
-   -show               toggle     [N] Include to dump result to stdout
-
-   General qualifiers:
-   -help               boolean    Report command line options and exit. More
-                                  information on associated and general
-                                  qualifiers can be found with -help -verbose
-
-Input file format
-
-   gdelta_enc reads nucleotide sequences.
+   gdeltaenc reads one or more nucleotide sequences.
 
 Output file format
 
-   The output from gdelta_enc is to a file or stdout.
+   The output from gdeltaenc is to a plain text file.
+
+   File: nc_000913.gdeltaenc
+
+Sequence: NC_000913 DELTA-ENC 0.255663430420712
+
 
 Data files
 
@@ -69,8 +121,8 @@ Notes
 
 References
 
-   Rocha EPC (2004) "Codon usage bias from tRNA's point of view: Redundancy, 
-      specialization, and efficient decoding for translation optimization",
+   Rocha EPC (2004) Codon usage bias from tRNA's point of view: Redundancy, 
+      specialization, and efficient decoding for translation optimization,
       Genome Research, 14(11):2279-2286
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
@@ -87,8 +139,7 @@ References
 
 Warnings
 
-   This tool may give a warning on feature output when installed on
-   EMBOSS-6.5.7, but we have no known errors in analysis.
+   None.
 
 Diagnostic Error Messages
 
@@ -121,6 +172,7 @@ Author(s)
 History
 
    2012 - Written by Hidetoshi Itaya
+   2013 - Fixed by Hidetoshi Itaya
 
 Target users
 

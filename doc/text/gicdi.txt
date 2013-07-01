@@ -1,13 +1,15 @@
-                                      gicdi
+                                     gicdi
 Function
 
    Calculates the intrinsic codon deviation index (ICDI)
 
 Description
 
-   This program calculates the intrinsic codon deviation index (ICDI).
-
-  
+   gicdi calculates the intrinsic codon deviation index (ICDI).
+   ICDI is a measure to estimate codon bias of genes from species in which
+   optimal codons are not known. It is known to show high correlation with
+   other indices such as CBI and ENC.
+    
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -25,47 +27,109 @@ Description
 
 Usage
 
-   Here is a sample session with gicdi
+Here is a sample session with gicdi
+
+% gicdi refseqn:NC_000913
+Calculates the intrinsic codon deviation index (ICDI)
+Codon usage output file [nc_000913.gicdi]: 
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+Command line arguments
+
+   Standard (Mandatory) qualifiers:
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
+                                  format, or reference (input USA)
+  [-outfile]           outfile    [*.gicdi] Codon usage output file
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -translate          boolean    [N] Include when translating using standard
+                                  codon table
+   -delkey             string     [[^ACDEFGHIKLMNPQRSTVWYacgtU]] Regular
+                                  expression to delete key (Any string)
+   -[no]accid          boolean    [Y] Include to use sequence accession ID as
+                                  query
+
+   Associated qualifiers:
+
+   "-sequence" associated qualifiers
+   -sbegin1            integer    Start of each sequence to be used
+   -send1              integer    End of each sequence to be used
+   -sreverse1          boolean    Reverse (if DNA)
+   -sask1              boolean    Ask for begin/end/reverse
+   -snucleotide1       boolean    Sequence is nucleotide
+   -sprotein1          boolean    Sequence is protein
+   -slower1            boolean    Make lower case
+   -supper1            boolean    Make upper case
+   -scircular1         boolean    Sequence is circular
+   -sformat1           string     Input sequence format
+   -iquery1            string     Input query fields or ID list
+   -ioffset1           integer    Input start position offset
+   -sdbname1           string     Database name
+   -sid1               string     Entryname
+   -ufo1               string     UFO features
+   -fformat1           string     Features format
+   -fopenfile1         string     Features file name
+
+   "-outfile" associated qualifiers
+   -odirectory2        string     Output directory
+
+   General qualifiers:
+   -auto               boolean    Turn off prompts
+   -stdout             boolean    Write first file to standard output
+   -filter             boolean    Read first file from standard input, write
+                                  first file to standard output
+   -options            boolean    Prompt for standard and additional values
+   -debug              boolean    Write debug output to program.dbg
+   -verbose            boolean    Report some/full command line options
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+   -warning            boolean    Report warnings
+   -error              boolean    Report errors
+   -fatal              boolean    Report fatal errors
+   -die                boolean    Report dying program messages
+   -version            boolean    Report version number and exit
+
+Input file format
 
    The database definitions for following commands are available at
    http://soap.g-language.org/kbws/embossrc
 
-% gicdi -show refseqn:NC_000913
-Calculates the intrinsic codon deviation index (ICDI)
-Output filename [nc_000913.gicdi]:
-Sequence: NC_000913 ICDI: 0.0880
-
-Command line arguments
-
-   Standard (Mandatory) qualifiers (* if not always prompted):
-  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
-                                  format, or reference (input USA)
-*  -outfile            outfile    [*.gicdi] Output file name
-
-   Additional (Optional) qualifiers: (none)
-   Advanced (Unprompted) qualifiers:
-   -translate          boolean    [0] Include when translating using standard
-                                  codon table
-   -id                 string     [ALL] ID of a group of genes or a single
-                                  gene (Any string)
-   -delkey             string     [[^ACDEFGHIKLMNPQRSTVWYacgtU]] Regular
-                                  expression to delete key (Any string)
-   -accid              string     Include to use sequence accession ID as
-                                  query (Any string)
-   -show               toggle     [N] Include to dump result to stdout
-
-   General qualifiers:
-   -help               boolean    Report command line options and exit. More
-                                  information on associated and general
-                                  qualifiers can be found with -help -verbose
-
-Input file format
-
-   gicdi reads nucleotide sequences.
+   gicdi reads one or more nucleotide sequences.
 
 Output file format
 
-   The output from gicdi is to a file or stdout.
+   The output from gicdi is to a plain text file.
+
+   File: nc_000913.gicdi
+
+Sequence: NC_000913
+icdi,gene
+0.8192,thrL
+0.1258,thrA
+0.1127,thrB
+0.1689,thrC
+0.3099,yaaX
+0.2030,yaaA
+0.1600,yaaJ
+0.3533,talB
+
+   [Part of this file has been deleted for brevity]
+
+0.2203,yjjX
+0.2719,ytjC
+0.1377,rob
+0.2647,creA
+0.1944,creB
+0.1733,creC
+0.1926,creD
+0.2728,arcA
+0.5171,yjjY
+0.2434,yjtD
+
 
 Data files
 
@@ -77,8 +141,11 @@ Notes
 
 References
 
-      Comeron JM, Aguade M. (1998) J Mol Evol. 47(3):268-74.
-      Freire-Picos MA et al. (1994) Gene 139:43-49.
+   Comeron JM, Aguade M. (1998) An evaluation of measures of synonymous codon
+      usage bias, J Mol Evol, 47(3):268-74.
+
+   Freire-Picos MA et al. (1994) Codon usage in Kluyveromyces lactis and in
+      yeast cytochrome c-encoding genes, Gene, 139:43-49.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -94,8 +161,7 @@ References
 
 Warnings
 
-   This tool may give a warning on feature output when installed on
-   EMBOSS-6.5.7, but we have no known errors in analysis.
+   None.
 
 Diagnostic Error Messages
 
@@ -128,6 +194,7 @@ Author(s)
 History
 
    2012 - Written by Hidetoshi Itaya
+   2013 - Fixed by Hidetoshi Itaya
 
 Target users
 

@@ -1,11 +1,11 @@
-                                  grep_ori_ter
+                                   greporiter
 Function
 
    Get the positions of replication origin and terminus
 
 Description
 
-   This method returns the positions of replication origin and terminus
+   greporiter returns the positions of replication origin and terminus
    in bacterial genomes by several means. 
 
    1. Use of databases
@@ -13,9 +13,10 @@ Description
    origin in DoriC Gao and Zhang (2007) database, and the position of
    replication terminus from the supplemental data provided in
    Kono et al. (2011).
-
    If the position of origin cannot be found in the database, but "rep_origin" 
-   feature is available, center position within this feature is used for origin. 
+   feature is available, center position within this feature is used for
+   origin. 
+
    2. Oriloc
    Using -orilocoption, you can predict the replication origin and 
    terminus using the popular Oriloc program developed by Lobry et al. 
@@ -25,7 +26,7 @@ Description
    If the positions of origin or terminus cannot be found in the databases,
    grep_ori_ter automatically calls find_ori_ter() method to predict the 
    positions using GC skew shift-points at one-base-pair resolution.
-
+    
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -43,50 +44,93 @@ Description
 
 Usage
 
-   Here is a sample session with grep_ori_ter
+Here is a sample session with greporiter
 
-   The database definitions for following commands are available at
-   http://soap.g-language.org/kbws/embossrc
-
-% grep_ori_ter -show refseqn:NC_000913
+% greporiter refseqn:NC_000913
 Get the positions of replication origin and terminus
-Sequence: NC_000913 Origin: 3923881 Terminus: 1550412
+Output file [nc_000913.greporiter]: 
+
+   Go to the input files for this example
+   Go to the output files for this example
 
 Command line arguments
 
-   Standard (Mandatory) qualifiers (* if not always prompted):
+   Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-*  -outfile            outfile    [*.grep_ori_ter] Output file name
+  [-outfile]           outfile    [*.greporiter] Output file name
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
-   -oriloc             boolean    [0] Set to 1 to use Oriloc for prediction
-   -gcskew             boolean    [0] Set to 1 to use GC skew shift-point for
+   -oriloc             boolean    [N] Include Oriloc for prediction
+   -gcskew             boolean    [N] Include to use GC skew shift-point for
                                   prediction
    -difthreshold       integer    [0] Distance between the GC skew shift point
                                   and predicted dif site expressed as the
                                   precentage of genome size, used as a
                                   threshold to retrieve dif sequence from the
                                   database (Any integer value)
-   -dbonly             boolean    [0] Set to 1 to only use values available in
+   -dbonly             boolean    [N] Include to only use values available in
                                   databases and to suppress prediction
-   -accid              string     Include to use sequence accession ID as
-                                  query (Any string)
-   -show               toggle     [N] Include to dump result to stdout
+   -[no]accid          boolean    [Y] Include to use sequence accession ID as
+                                  query
+
+   Associated qualifiers:
+
+   "-sequence" associated qualifiers
+   -sbegin1            integer    Start of each sequence to be used
+   -send1              integer    End of each sequence to be used
+   -sreverse1          boolean    Reverse (if DNA)
+   -sask1              boolean    Ask for begin/end/reverse
+   -snucleotide1       boolean    Sequence is nucleotide
+   -sprotein1          boolean    Sequence is protein
+   -slower1            boolean    Make lower case
+   -supper1            boolean    Make upper case
+   -scircular1         boolean    Sequence is circular
+   -sformat1           string     Input sequence format
+   -iquery1            string     Input query fields or ID list
+   -ioffset1           integer    Input start position offset
+   -sdbname1           string     Database name
+   -sid1               string     Entryname
+   -ufo1               string     UFO features
+   -fformat1           string     Features format
+   -fopenfile1         string     Features file name
+
+   "-outfile" associated qualifiers
+   -odirectory2        string     Output directory
 
    General qualifiers:
+   -auto               boolean    Turn off prompts
+   -stdout             boolean    Write first file to standard output
+   -filter             boolean    Read first file from standard input, write
+                                  first file to standard output
+   -options            boolean    Prompt for standard and additional values
+   -debug              boolean    Write debug output to program.dbg
+   -verbose            boolean    Report some/full command line options
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
+   -warning            boolean    Report warnings
+   -error              boolean    Report errors
+   -fatal              boolean    Report fatal errors
+   -die                boolean    Report dying program messages
+   -version            boolean    Report version number and exit
 
 Input file format
 
-   grep_ori_ter reads nucleotide sequences.
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
+
+   greporiter reads one or more nucleotide sequences.
 
 Output file format
 
-   The output from grep_ori_ter is to a file or stdout.
+   The output from greporiter is to a plain text file.
+
+   File: nc_000913.greporiter
+
+Sequence: NC_000913 Origin: 3923881 Terminus: 1550412
+
 
 Data files
 
@@ -98,11 +142,11 @@ Notes
 
 References
 
-   Gao F and Zhang CT (2007) "DoriC: a database of oriC regions in bacterial
-      genomes", Bioinformatics, 23(14):1866-1867
+   Gao F and Zhang CT (2007) DoriC: a database of oriC regions in bacterial
+      genomes, Bioinformatics, 23(14):1866-1867
 
-   Kono N et al. (2011) "Comprehensive prediction of chromosome dimer resolution 
-      sites in bacterial genomes", BMC Genomics, 12(1):19
+   Kono N et al. (2011) Comprehensive prediction of chromosome dimer resolution 
+      sites in bacterial genomes, BMC Genomics, 12(1):19
 
    Frank AC and Lobry JR (2000) "Oriloc: prediction of replication boundaries 
       in unannotated bacterial chromosomes", Bioinformatics, 16(6):560-561
@@ -121,8 +165,7 @@ References
 
 Warnings
 
-   This tool may give a warning on feature output when installed on
-   EMBOSS-6.5.7, but we have no known errors in analysis.
+   None.
 
 Diagnostic Error Messages
 
@@ -138,8 +181,8 @@ Known bugs
 
 See also
 
-   gfind_ori_ter Predict the replication origin and terminus in bacterial
-                 genomes
+   gfindoriter Predicts the replication origin and terminus in bacterial
+               genomes
 
 Author(s)
 
@@ -154,6 +197,7 @@ Author(s)
 History
 
    2012 - Written by Hidetoshi Itaya
+   2013 - Fixed by Hidetoshi Itaya
 
 Target users
 

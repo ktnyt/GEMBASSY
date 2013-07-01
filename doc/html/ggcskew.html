@@ -41,37 +41,53 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This program calculates and graphs the GC skew. <br>
- <br>
-   G-language SOAP service is provided by the<br>
-   Institute for Advanced Biosciences, Keio University.<br>
-   The original web service is located at the following URL:<br>
-<br>
-   http://www.g-language.org/wiki/soap<br>
-<br>
-   WSDL(RPC/Encoded) file is located at:<br>
-<br>
-   http://soap.g-language.org/g-language.wsdl<br>
-<br>
-   Documentation on G-language Genome Analysis Environment methods are<br>
-   provided at the Document Center<br>
-<br>
-   http://ws.g-language.org/gdoc/
+   ggcskew calculates and plots the GC skew of the given sequence. The "skew"<br />
+   of a sequence is calculated as (C-G)/(C+G) in GC skew. The program can<br />
+   alternatively calculate AT skew, purine skew, and keto skew, as well as<br />
+   cumulative skew. GC skew is used to observe various biological aspects<br />
+   such as prediction of replication origin and terminus in bacteria.<br />
+    <br />
+   G-language SOAP service is provided by the<br />
+   Institute for Advanced Biosciences, Keio University.<br />
+   The original web service is located at the following URL:<br />
+<br />
+   http://www.g-language.org/wiki/soap<br />
+<br />
+   WSDL(RPC/Encoded) file is located at:<br />
+<br />
+   http://soap.g-language.org/g-language.wsdl<br />
+<br />
+   Documentation on G-language Genome Analysis Environment methods are<br />
+   provided at the Document Center<br />
+<br />
+   http://ws.g-language.org/gdoc/<br />
+<br />
+
 </p>
 
 <H2>Usage</H2>
 
 <table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
 
-   Here is a sample session with ggcskew
+Here is a sample session with ggcskew
 
-   The database definitions for following commands are available at
-   http://soap.g-language.org/kbws/embossrc
-
-% ggcskew -plot refseqn:NC_000913
+% ggcskew refseqn:NC_000913
 Calculates the GC skew of the input sequence
-Created ggcskew.ps
-Output filename [ggcskew.nc_000913.csv]:
+Program compseq output file (optional) [nc_000913.ggcskew]: 
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+   Example 2
+
+% ggcskew refseqn:NC_000913 -plot -graph png
+Calculates the GC skew of the input sequence
+Created ggcskew.1.png
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+
 
 </pre></td></tr></table>
 
@@ -111,7 +127,7 @@ Output filename [ggcskew.nc_000913.csv]:
 <tr bgcolor="#FFFFCC">
 <td>-outfile</td>
 <td>outfile</td>
-<td>Output file name</td>
+<td>Program compseq output file (optional)</td>
 <td>Output file</td>
 <td><i>&lt;*&gt;</i>.ggcskew</td>
 </tr>
@@ -190,13 +206,47 @@ Output filename [ggcskew.nc_000913.csv]:
 <h2>Input file format</h2>
 
 <p>
-   ggcskew reads nucleotide sequences.
+   The database definitions for following commands are available at<br />
+   http://soap.g-language.org/kbws/embossrc<br />
+<br />
+   ggcskew reads one or more nucleotide sequences.<br />
+<br />
+
 </p>
 
 <h2>Output file format</h2>
 
 <p>
-   The output from ggcskew is to the specified graphics device.
+   The output from ggcskew is to a plain text file or the EMBOSS graphics device.<br />
+<br />
+   File: nc_000913.ggcskew<br />
+<br />
+Sequence: NC_000913<br />
+location,GC skew<br />
+0,-0.035529<br />
+10000,-0.039648<br />
+20000,-0.049791<br />
+30000,0.005072<br />
+40000,-0.063483<br />
+50000,-0.030256<br />
+60000,0.011875<br />
+70000,-0.029478<br />
+<br />
+   [Part of this file has been deleted for brevity]<br />
+<br />
+4530000,-0.017164<br />
+4540000,-0.036140<br />
+4550000,-0.028166<br />
+4560000,0.012166<br />
+4570000,-0.040486<br />
+4580000,-0.020692<br />
+4590000,-0.043920<br />
+4600000,-0.026363<br />
+4610000,-0.022778<br />
+4620000,-0.049396<br />
+<br />
+<br />
+
 </p>
 
 <h2>Data files</h2>
@@ -211,7 +261,7 @@ None.
 None.
 </p>
 
-<h2>Refrences</h2>
+<h2>References</h2>
 
 <pre>
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
@@ -225,6 +275,7 @@ None.
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Web Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
+
 </pre>
 
 <h2>Warnings</h2>
@@ -259,16 +310,12 @@ None.
 <tr>
 <td><a href="ggcwin.html">ggcwin</a></td>
 <td>Calculates the GC content along the given genome</td>
-</tr>
-
-<tr>
+</tr><tr>
 <td><a href="ggeneskew.html">ggeneskew</a></td>
 <td>Calculate the gene strand bias of the given genome</td>
-</tr>
-
-<tr>
+</tr><tr>
 <td><a href="ggenomicskew.html">ggenomicskew</a></td>
-<td>Calculates the GC skew in different regions of the given genome</td>
+<td>Calculates the GC skew in different regions of the given genom</td>
 </tr>
 
 </table>

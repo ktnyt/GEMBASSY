@@ -2,7 +2,7 @@
 
 <HTML>
 <HEAD>
-  <TITLE> EMBOSS: goligomer_counter </TITLE>
+  <TITLE> EMBOSS: gnucleotideperiodicity </TITLE>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" text="#000000">
 
@@ -14,7 +14,7 @@
 </td>
 <td align=left valign=middle>
 <b><font size="+6">
-goligomer_counter
+gnucleotideperiodicity
 </font></b>
 </td></tr>
 </table>
@@ -30,7 +30,7 @@ goligomer_counter
 
 
 <H2> Function </H2>
-   Counts the number of given oligomers in a sequence
+   Checks the periodicity of certain oligonucleotides
 <!--
 DON'T WRITE ANYTHING HERE.
 IT IS DONE FOR YOU.
@@ -41,40 +41,50 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   Counts the number of oligomers in a sequence (by windows optionally).<br>
-   Oligomer can be specified using degenerate nucleotide alphabet, or by <br>
-   regular expressions.<br>
-<br>
-  <br>
-   G-language SOAP service is provided by the<br>
-   Institute for Advanced Biosciences, Keio University.<br>
-   The original web service is located at the following URL:<br>
-<br>
-   http://www.g-language.org/wiki/soap<br>
-<br>
-   WSDL(RPC/Encoded) file is located at:<br>
-<br>
-   http://soap.g-language.org/g-language.wsdl<br>
-<br>
-   Documentation on G-language Genome Analysis Environment methods are<br>
-   provided at the Document Center<br>
-<br>
-   http://ws.g-language.org/gdoc/
+   gnucleotideperiodicity checks the periodicity of certain nucleotide<br />
+   (best known with AA dinucleotide).<br />
+    <br />
+   G-language SOAP service is provided by the<br />
+   Institute for Advanced Biosciences, Keio University.<br />
+   The original web service is located at the following URL:<br />
+<br />
+   http://www.g-language.org/wiki/soap<br />
+<br />
+   WSDL(RPC/Encoded) file is located at:<br />
+<br />
+   http://soap.g-language.org/g-language.wsdl<br />
+<br />
+   Documentation on G-language Genome Analysis Environment methods are<br />
+   provided at the Document Center<br />
+<br />
+   http://ws.g-language.org/gdoc/<br />
+<br />
+
 </p>
 
 <H2>Usage</H2>
 
 <table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
 
-   Here is a sample session with goligomer_counter
+Here is a sample session with gnucleotideperiodicity
 
-   The database definitions for following commands are available at
-   http://soap.g-language.org/kbws/embossrc
+% gnucleotideperiodicity refseqn:NC_000913
+Checks the periodicity of certain oligonucleotides
+Program compseq output file (optional) [nc_000913.gnucleotideperiodicity]: 
 
-% goligomer_counter -show refseqn:NC_000913
-Counts the number of given oligomers in a sequence
-Output filename [nc_000913.goligomer_counter]:
-Can't exec "goligomer_counter": No such file or directory at maketxt.pl line 90.
+   Go to the input files for this example
+   Go to the output files for this example
+
+   Example 2
+
+% gnucleotideperiodicity refseqn:NC_000913 -plot -graph png
+Checks the periodicity of certain oligonucleotides
+Created gnucleotideperiodicity.1.png
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+
 
 </pre></td></tr></table>
 
@@ -104,19 +114,19 @@ Can't exec "goligomer_counter": No such file or directory at maketxt.pl line 90.
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>[-oligomer]<br>(Parameter 2)</td>
-<td>string</td>
-<td>Oligomer to count</td>
-<td>Any string</td>
-<td>&nbsp;</td>
+<td>-graph</td>
+<td>xygraph</td>
+<td>Graph type</td>
+<td>EMBOSS has a list of known devices, including ps, hpgl, hp7470, hp7580, meta, cps, x11, tek, tekt, none, data, xterm, png, gif, svg</td>
+<td><i>EMBOSS_GRAPHICS</i> value, or x11</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>[-outfile]<br>(Parameter 3)</td>
+<td>-outfile</td>
 <td>outfile</td>
-<td>Output file name</td>
+<td>Program compseq output file (optional)</td>
 <td>Output file</td>
-<td><i>&lt;*&gt;</i>.goligomer_counter</td>
+<td><i>&lt;*&gt;</i>.gnucleotideperiodicity</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -132,11 +142,43 @@ Can't exec "goligomer_counter": No such file or directory at maketxt.pl line 90.
 </tr>
 
 <tr bgcolor="#FFFFCC">
+<td>-format</td>
+<td>string</td>
+<td>Output file format. Dependent on 'convert' command</td>
+<td>Any string</td>
+<td>png</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
 <td>-window</td>
 <td>integer</td>
-<td>Int window size</td>
+<td>Window size to seek periodicity</td>
 <td>Any integer value</td>
-<td>0</td>
+<td>50</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-nucleotide</td>
+<td>string</td>
+<td>Nucleotide to search</td>
+<td>Any string</td>
+<td>aa</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-[no]accid</td>
+<td>boolean</td>
+<td>Include to use sequence accession ID as query</td>
+<td>Boolean value Yes/No</td>
+<td>Yes</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-plot</td>
+<td>toggle</td>
+<td>Include to plot result</td>
+<td>Toggle value Yes/No</td>
+<td>No</td>
 </tr>
 
 </table>
@@ -145,13 +187,47 @@ Can't exec "goligomer_counter": No such file or directory at maketxt.pl line 90.
 <h2>Input file format</h2>
 
 <p>
-   goligomer_counter reads nucleotide sequences.
+   The database definitions for following commands are available at<br />
+   http://soap.g-language.org/kbws/embossrc<br />
+<br />
+   gnucleotideperiodicity reads one or more nucleotide sequences.<br />
+<br />
+
 </p>
 
 <h2>Output file format</h2>
 
 <p>
-   The output from goligomer_counter is to a file or stdout.
+   The output from gnucleotideperiodicity is to a plain text file or the EMBOSS graphics device.<br />
+<br />
+   File: nc_000913.gnucleotideperiodicity<br />
+<br />
+Sequence: NC_000913<br />
+window,value<br />
+0,35134<br />
+1,30121<br />
+2,25409<br />
+3,23508<br />
+4,25830<br />
+5,25136<br />
+6,25658<br />
+7,28279<br />
+<br />
+   [Part of this file has been deleted for brevity]<br />
+<br />
+40,28042<br />
+41,25892<br />
+42,25968<br />
+43,28240<br />
+44,25841<br />
+45,25591<br />
+46,27788<br />
+47,25832<br />
+48,25427<br />
+49,0<br />
+<br />
+<br />
+
 </p>
 
 <h2>Data files</h2>
@@ -166,7 +242,7 @@ None.
 None.
 </p>
 
-<h2>Refrences</h2>
+<h2>References</h2>
 
 <pre>
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
@@ -180,6 +256,7 @@ None.
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Web Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
+
 </pre>
 
 <h2>Warnings</h2>
@@ -213,20 +290,14 @@ None.
 
 <tr>
 <td><a href="gkmer_table.html">gkmer_table</a></td>
-<td>Create an image showing all k-mer abundance within a sequence</td>
-</tr>
-
-<tr>
-<td><a href="gnucleotide_periodicity.html">gnucleotide_periodicity</a></td>
-<td>Checks the periodicity of certain oligonucleotides</td>
-</tr>
-
-<tr>
+<td>Create an image showing all k-mer abundance within a                            sequence</td>
+</tr><tr>
+<td><a href="goligomer_counter.html">goligomer_counter</a></td>
+<td>Counts the number of given oligomers in a sequence</td>
+</tr><tr>
 <td><a href="goligomer_search.html">goligomer_search</a></td>
 <td>Searches oligomers in given sequence</td>
-</tr>
-
-<tr>
+</tr><tr>
 <td><a href="gsignature.html">gsignature</a></td>
 <td>Calculate oligonucleotide usage (genomic signature)</td>
 </tr>

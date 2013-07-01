@@ -2,7 +2,7 @@
 
 <HTML>
 <HEAD>
-  <TITLE> EMBOSS: grep_ori_ter </TITLE>
+  <TITLE> EMBOSS: greporiter </TITLE>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" text="#000000">
 
@@ -14,7 +14,7 @@
 </td>
 <td align=left valign=middle>
 <b><font size="+6">
-grep_ori_ter
+greporiter
 </font></b>
 </td></tr>
 </table>
@@ -41,55 +41,60 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This method returns the positions of replication origin and terminus<br>
-   in bacterial genomes by several means. <br>
-<br>
-   1. Use of databases<br>
-   By default, grep_ori_ter tries to retrieve the position of replication<br>
-   origin in DoriC Gao and Zhang (2007) database, and the position of<br>
-   replication terminus from the supplemental data provided in<br>
-   Kono et al. (2011).<br>
-<br>
-   If the position of origin cannot be found in the database, but "rep_origin" <br>
-   feature is available, center position within this feature is used for origin. <br>
-   2. Oriloc<br>
-   Using -orilocoption, you can predict the replication origin and <br>
-   terminus using the popular Oriloc program developed by Lobry et al. <br>
-   available as part of the SeqinR package Frank and Lobry (2000).<br>
-<br>
-   3. Use GC skew shift-point<br>
-   If the positions of origin or terminus cannot be found in the databases,<br>
-   grep_ori_ter automatically calls find_ori_ter() method to predict the <br>
-   positions using GC skew shift-points at one-base-pair resolution.<br>
-<br>
-   G-language SOAP service is provided by the<br>
-   Institute for Advanced Biosciences, Keio University.<br>
-   The original web service is located at the following URL:<br>
-<br>
-   http://www.g-language.org/wiki/soap<br>
-<br>
-   WSDL(RPC/Encoded) file is located at:<br>
-<br>
-   http://soap.g-language.org/g-language.wsdl<br>
-<br>
-   Documentation on G-language Genome Analysis Environment methods are<br>
-   provided at the Document Center<br>
-<br>
-   http://ws.g-language.org/gdoc/
+   greporiter returns the positions of replication origin and terminus<br />
+   in bacterial genomes by several means. <br />
+<br />
+   1. Use of databases<br />
+   By default, grep_ori_ter tries to retrieve the position of replication<br />
+   origin in DoriC Gao and Zhang (2007) database, and the position of<br />
+   replication terminus from the supplemental data provided in<br />
+   Kono et al. (2011).<br />
+   If the position of origin cannot be found in the database, but "rep_origin" <br />
+   feature is available, center position within this feature is used for<br />
+   origin. <br />
+<br />
+   2. Oriloc<br />
+   Using -orilocoption, you can predict the replication origin and <br />
+   terminus using the popular Oriloc program developed by Lobry et al. <br />
+   available as part of the SeqinR package Frank and Lobry (2000).<br />
+<br />
+   3. Use GC skew shift-point<br />
+   If the positions of origin or terminus cannot be found in the databases,<br />
+   grep_ori_ter automatically calls find_ori_ter() method to predict the <br />
+   positions using GC skew shift-points at one-base-pair resolution.<br />
+    <br />
+   G-language SOAP service is provided by the<br />
+   Institute for Advanced Biosciences, Keio University.<br />
+   The original web service is located at the following URL:<br />
+<br />
+   http://www.g-language.org/wiki/soap<br />
+<br />
+   WSDL(RPC/Encoded) file is located at:<br />
+<br />
+   http://soap.g-language.org/g-language.wsdl<br />
+<br />
+   Documentation on G-language Genome Analysis Environment methods are<br />
+   provided at the Document Center<br />
+<br />
+   http://ws.g-language.org/gdoc/<br />
+<br />
+
 </p>
 
 <H2>Usage</H2>
 
 <table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
 
-   Here is a sample session with grep_ori_ter
+Here is a sample session with greporiter
 
-   The database definitions for following commands are available at
-   http://soap.g-language.org/kbws/embossrc
-
-% grep_ori_ter -show refseqn:NC_000913
+% greporiter refseqn:NC_000913
 Get the positions of replication origin and terminus
-Sequence: NC_000913 Origin: 3923881 Terminus: 1550412
+Output file [nc_000913.greporiter]: 
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+
 
 </pre></td></tr></table>
 
@@ -123,7 +128,7 @@ Sequence: NC_000913 Origin: 3923881 Terminus: 1550412
 <td>outfile</td>
 <td>Output file name</td>
 <td>Output file</td>
-<td><i>&lt;*&gt;</i>.grep_ori_ter</td>
+<td><i>&lt;*&gt;</i>.greporiter</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -141,7 +146,7 @@ Sequence: NC_000913 Origin: 3923881 Terminus: 1550412
 <tr bgcolor="#FFFFCC">
 <td>-oriloc</td>
 <td>boolean</td>
-<td>Set to 1 to use Oriloc for prediction</td>
+<td>Include Oriloc for prediction</td>
 <td>Boolean value Yes/No</td>
 <td>No</td>
 </tr>
@@ -149,7 +154,7 @@ Sequence: NC_000913 Origin: 3923881 Terminus: 1550412
 <tr bgcolor="#FFFFCC">
 <td>-gcskew</td>
 <td>boolean</td>
-<td>Set to 1 to use GC skew shift-point for prediction</td>
+<td>Include to use GC skew shift-point for prediction</td>
 <td>Boolean value Yes/No</td>
 <td>No</td>
 </tr>
@@ -165,17 +170,17 @@ Sequence: NC_000913 Origin: 3923881 Terminus: 1550412
 <tr bgcolor="#FFFFCC">
 <td>-dbonly</td>
 <td>boolean</td>
-<td>Set to 1 to only use values available in databases and to suppress prediction</td>
+<td>Include to only use values available in databases and to suppress prediction</td>
 <td>Boolean value Yes/No</td>
 <td>No</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-accid</td>
+<td>-[no]accid</td>
 <td>boolean</td>
 <td>Include to use sequence accession ID as query</td>
 <td>Boolean value Yes/No</td>
-<td>No</td>
+<td>Yes</td>
 </tr>
 
 </table>
@@ -184,13 +189,25 @@ Sequence: NC_000913 Origin: 3923881 Terminus: 1550412
 <h2>Input file format</h2>
 
 <p>
-   grep_ori_ter reads nucleotide sequences.
+   The database definitions for following commands are available at<br />
+   http://soap.g-language.org/kbws/embossrc<br />
+<br />
+   greporiter reads one or more nucleotide sequences.<br />
+<br />
+
 </p>
 
 <h2>Output file format</h2>
 
 <p>
-   The output from grep_ori_ter is to a file or stdout.
+   The output from greporiter is to a plain text file.<br />
+<br />
+   File: nc_000913.greporiter<br />
+<br />
+Sequence: NC_000913 Origin: 3923881 Terminus: 1550412<br />
+<br />
+<br />
+
 </p>
 
 <h2>Data files</h2>
@@ -205,14 +222,14 @@ None.
 None.
 </p>
 
-<h2>Refrences</h2>
+<h2>References</h2>
 
 <pre>
-   Gao F and Zhang CT (2007) "DoriC: a database of oriC regions in bacterial
-      genomes", Bioinformatics, 23(14):1866-1867
+   Gao F and Zhang CT (2007) DoriC: a database of oriC regions in bacterial
+      genomes, Bioinformatics, 23(14):1866-1867
 
-   Kono N et al. (2011) "Comprehensive prediction of chromosome dimer resolution 
-      sites in bacterial genomes", BMC Genomics, 12(1):19
+   Kono N et al. (2011) Comprehensive prediction of chromosome dimer resolution 
+      sites in bacterial genomes, BMC Genomics, 12(1):19
 
    Frank AC and Lobry JR (2000) "Oriloc: prediction of replication boundaries 
       in unannotated bacterial chromosomes", Bioinformatics, 16(6):560-561
@@ -228,13 +245,13 @@ None.
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Web Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
+
 </pre>
 
 <h2>Warnings</h2>
 
 <p>
-   This tool may give a warning on feature output when installed on
-   EMBOSS-6.5.7, but we have no known errors in analysis.
+None.
 </p>
 
 <h2>Diagnostic Error Messages</h2>
@@ -261,8 +278,8 @@ None.
 <th>Description</th></tr>
 
 <tr>
-<td><a href="gfind_ori_ter.html">gfind_ori_ter</a></td>
-<td>Predict the replication origin and terminus in bacterial genomes</td>
+<td><a href="gfindoriter.html">gfindoriter</a></td>
+<td>Predicts the replication origin and terminus in bacterial</td>
 </tr>
 
 </table>

@@ -5,17 +5,16 @@ Function
 
 Description
 
-   This method prints out basic compositional statistics of the 
-   given amino acid sequence in a human readable manner.
-
-   Returned information includes the following:
-      Molecular weight, number of residues, average residue weight, charge,
-      isoelectric point, number/mole/DayhoffStat of each amino acid, and
-      percentage of Tiny (A+C+G+S+T), Small (A+B+C+D+G+N+P+S+T+V), 
-      Aliphatic (I+L+V), Aromatic (F+H+W+Y), Non-polar (A+C+F+G+I+L+M+P+V+W+Y),
-      Polar (D+E+H+K+N+Q+R+S+T+Z), Charged (B+D+E+H+K+R+Z), Basic (H+K+R),
-      Acidic (B+D+E+Z) residues.
+   gaminoinfo prints out basic compositional statistics of the given amino
+   acid sequence in a human readble manner. The calculated values are molecular
+   weight, number of residues, average residue weight, charge, isoelectric
+   point, number/mole/Dayhoffstat of each amino acid, and percentage of
+   Tiny (A+C+G+S+T), Small (A+B+C+D+G+N+P+S+T+V), Aliphatic (I+L+V),
+   Armoatic (F+H+W+Y), Non-polar (A+C+F+G+I+L+M+P+V+W+Y),
+   Polar (D+E+H+K+N+Q+R+S+T+Z), Charged (B+D+E+H+K+R+Z), Basic (H+K+R), and
+   Acidic (B+D+E+Z) reidues.
   
+    
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -33,11 +32,11 @@ Description
 
 Usage
 
-   Here is a sample session with gaminoinfo
+Here is a sample session with gaminoinfo
 
-% gaminoinfo ADH_HUMAN.fasta
+% gaminoinfo tsw:hbb_human
 Prints out basic amino acid sequence statistics
-Output file [4_cdsid_np_000659.gaminoinfo]:
+AAINDEX entry output file [hbb_human.gaminoinfo]: 
 
    Go to the input files for this example
    Go to the output files for this example
@@ -94,72 +93,61 @@ Command line arguments
 
 Input file format
 
-   gaminoinfo reads protein sequences.
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
 
-   File: ADH_HUMAN.fasta
-
->lcl|NM_000668.4_cdsid_NP_000659.2 [gene=ADH1B] [protein=alcohol dehydrogenase 1B] [protein_id=NP_000659.2] [location=85..1212]
-MSTAGKVIKCKAAVLWEVKKPFSIEDVEVAPPKAYEVRIKMVAVGICHTDDHVVSGNLVTPLPVILGHEA
-AGIVESVGEGVTTVKPGDKVIPLFTPQCGKCRVCKNPESNYCLKNDLGNPRGTLQDGTRRFTCRGKPIHH
-FLGTSTFSQYTVVDENAVAKIDAASPLEKVCLIGCGFSTGYGSAVNVAKVTPGSTCAVFGLGGVGLSAVM
-GCKAAGAARIIAVDINKDKFAKAKELGATECINPQDYKKPIQEVLKEMTDGGVDFSFEVIGRLDTMMASL
-LCCHEACGTSVIVGVPPASQNLSINPMLLLTGRTWKGAVYGGFKSKEGIPKLVADFMAKKFSLDALITHV
-LPFEKINEGFDLLHSGKSIRTVLTF
+   gaminoinfo reads one or more protein sequences.
 
 Output file format
 
-   File: 4_cdsid_np_000659.gaminoinfo
+   The output from gaminoinfo is to a plain text file.
 
-Sequence: M_000668.4_cdsid_NP_000659.2
-AminoInfo of  from 1 to 406
+   File: hbb_human.gaminoinfo
 
-Molecular weight = 47725.11 Residues = 406
-Average Weight = 117.55 Charge = 8
-Isoelectric Point = 8.0134
+Sequence: P68871
+AminoInfo of  from 1 to 158
+
+Molecular weight = 19309.27 Residues = 158
+Average Weight = 122.21 Charge = 3.5
+Isoelectric Point = 7.4065
 Residue         Number          Mole%               DayhoffStat
 
- =             1               0.246                     0.000
-. =             2               0.493                     0.000
-0 =             6               1.478                     0.000
-2 =             1               0.246                     0.000
-4 =             1               0.246                     0.000
-5 =             1               0.246                     0.000
-6 =             3               0.739                     0.000
-8 =             1               0.246                     0.000
-9 =             1               0.246                     0.000
-> =             1               0.246                     0.000
-A = Ala         31              7.635                     0.888
-C = Cys         16              3.941                     1.359
-D = Asp         19              4.680                     0.851
-E = Glu         19              4.680                     0.780
-F = Phe         16              3.941                     1.095
-G = Gly         38              9.360                     1.114
-H = His         8               1.970                     0.985
-I = Ile         23              5.665                     1.259
-K = Lys         32              7.882                     1.194
-L = Leu         29              7.143                     0.965
-M = Met         9               2.217                     1.304
-N = Asn         14              3.448                     0.802
-P = Pro         21              5.172                     0.995
-Q = Gln         6               1.478                     0.379
-R = Arg         10              2.463                     0.503
-S = Ser         22              5.419                     0.774
-T = Thr         24              5.911                     0.969
-V = Val         39              9.606                     1.455
-W = Trp         2               0.493                     0.379
-Y = Tyr         6               1.478                     0.435
-_ =             4               0.985                     0.000
+ =             1               0.633                     0.000
+> =             1               0.633                     0.000
+A = Ala         16              10.127                    1.178
+B = Asx         2               1.266                     0.000
+C = Cys         2               1.266                     0.436
+D = Asp         7               4.430                     0.806
+E = Glu         8               5.063                     0.844
+F = Phe         8               5.063                     1.406
+G = Gly         13              8.228                     0.980
+H = His         11              6.962                     3.481
+K = Lys         11              6.962                     1.055
+L = Leu         18              11.392                    1.540
+M = Met         3               1.899                     1.117
+N = Asn         7               4.430                     1.030
+P = Pro         7               4.430                     0.852
+Q = Gln         3               1.899                     0.487
+R = Arg         3               1.899                     0.387
+S = Ser         5               3.165                     0.452
+T = Thr         7               4.430                     0.726
+U = Sec         1               0.633                     0.000
+V = Val         18              11.392                    1.726
+W = Trp         2               1.266                     0.974
+Y = Tyr         3               1.899                     0.558
+_ =             1               0.633                     0.000
 
 Property        Residues                Number          Mole%
-Tiny            (A+C+G+S+T)             131             32.266
-Small           (A+B+C+D+G+N+P+S+T+V)   224             55.172
-Aliphatic       (I+L+V)                 91              22.414
-Aromatic        (F+H+W+Y)               32              7.882
-Non-polar       (A+C+F+G+I+L+M+P+V+W+Y) 230             56.650
-Polar           (D+E+H+K+N+Q+R+S+T+Z)   154             37.931
-Charged         (B+D+E+H+K+R+Z)         88              21.675
-Basic           (H+K+R)                 50              12.315
-Acidic          (B+D+E+Z)               38              9.360
+Tiny            (A+C+G+S+T)             43              27.215
+Small           (A+B+C+D+G+N+P+S+T+V)   84              53.165
+Aliphatic       (I+L+V)                 36              22.785
+Aromatic        (F+H+W+Y)               24              15.190
+Non-polar       (A+C+F+G+I+L+M+P+V+W+Y) 90              56.962
+Polar           (D+E+H+K+N+Q+R+S+T+Z)   62              39.241
+Charged         (B+D+E+H+K+R+Z)         42              26.582
+Basic           (H+K+R)                 25              15.823
+Acidic          (B+D+E+Z)               17              10.759
+
 
 
 Data files

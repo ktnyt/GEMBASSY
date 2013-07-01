@@ -2,7 +2,7 @@
 
 <HTML>
 <HEAD>
-  <TITLE> EMBOSS: gcodon_compiler </TITLE>
+  <TITLE> EMBOSS: gcodoncompiler </TITLE>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" text="#000000">
 
@@ -14,7 +14,7 @@
 </td>
 <td align=left valign=middle>
 <b><font size="+6">
-gcodon_compiler
+gcodoncompiler
 </font></b>
 </td></tr>
 </table>
@@ -41,35 +41,52 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This program calculates various kinds of amino acid and codon usage data.<br>
-<br>
-   Institute for Advanced Biosciences, Keio University.<br>
-   The original web service is located at the following URL:<br>
-<br>
-   http://www.g-language.org/wiki/soap<br>
-<br>
-   WSDL(RPC/Encoded) file is located at:<br>
-<br>
-   http://soap.g-language.org/g-language.wsdl<br>
-<br>
-   Documentation on G-language Genome Analysis Environment methods are<br>
-   provided at the Document Center:<br>
-<br>
-   http://ws.g-language.org/gdoc/
+   gcodoncompiler calculates various kinds of amino acid and codon usage data.<br />
+   The following values are calculable:<br />
+      A0: Absolute amino acid frequency<br />
+      A1: Relative amino acid frequency<br />
+      C0: Absolute codon frequency<br />
+      C1: Relative codon frequency in a complete sequence<br />
+      C2: Relative codon frequency in each amino acid<br />
+      C3: Relative synonymous codon usage<br />
+      C4: Relative adaptiveness<br />
+      C5: Maximum or minor codon<br />
+   For amino acids unpresent in a gene, C2-C3 does not calculate the values.<br />
+   By using R* in place, such values are hypothesized that alternative<br />
+   synonymous codons are used with equal frequency.<br />
+    <br />
+   G-language SOAP service is provided by the<br />
+   Institute for Advanced Biosciences, Keio University.<br />
+   The original web service is located at the following URL:<br />
+<br />
+   http://www.g-language.org/wiki/soap<br />
+<br />
+   WSDL(RPC/Encoded) file is located at:<br />
+<br />
+   http://soap.g-language.org/g-language.wsdl<br />
+<br />
+   Documentation on G-language Genome Analysis Environment methods are<br />
+   provided at the Document Center<br />
+<br />
+   http://ws.g-language.org/gdoc/<br />
+<br />
+
 </p>
 
 <H2>Usage</H2>
 
 <table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
 
-   Here is a sample session with gcodon_compiler
+Here is a sample session with gcodoncompiler
 
-   The database definitions for following commands are available at
-   http://soap.g-language.org/kbws/embossrc
-
-% gcodon_compiler refseqn:NC_000913
+% gcodoncompiler refseqn:NC_000913
 Calculate various kinds of amino acid and codon usage data
-Output filename [gcodon_compiler.nc_000913.csv]:
+Codon usage output file [nc_000913.gcodoncompiler]: 
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+
 
 </pre></td></tr></table>
 
@@ -101,9 +118,9 @@ Output filename [gcodon_compiler.nc_000913.csv]:
 <tr bgcolor="#FFFFCC">
 <td>[-outfile]<br>(Parameter 2)</td>
 <td>outfile</td>
-<td>Output file name</td>
+<td>Codon usage output file</td>
 <td>Output file</td>
-<td><i>&lt;*&gt;</i>.gcodon_compiler</td>
+<td><i>&lt;*&gt;</i>.gcodoncompiler</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -119,17 +136,9 @@ Output filename [gcodon_compiler.nc_000913.csv]:
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-id</td>
-<td>string</td>
-<td>ID of a group</td>
-<td>Any string</td>
-<td>All</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
 <td>-translate</td>
 <td>boolean</td>
-<td>'1' when translates using standard codon table</td>
+<td>Include to translate using standard codon table</td>
 <td>Boolean value Yes/No</td>
 <td>No</td>
 </tr>
@@ -137,7 +146,7 @@ Output filename [gcodon_compiler.nc_000913.csv]:
 <tr bgcolor="#FFFFCC">
 <td>-startcodon</td>
 <td>boolean</td>
-<td>'1' when includes start codon</td>
+<td>Include to include start codon</td>
 <td>Boolean value Yes/No</td>
 <td>No</td>
 </tr>
@@ -145,7 +154,7 @@ Output filename [gcodon_compiler.nc_000913.csv]:
 <tr bgcolor="#FFFFCC">
 <td>-stopcodon</td>
 <td>boolean</td>
-<td>'1' when includes stop codon</td>
+<td>Include to include stop codon</td>
 <td>Boolean value Yes/No</td>
 <td>No</td>
 </tr>
@@ -161,17 +170,17 @@ Output filename [gcodon_compiler.nc_000913.csv]:
 <tr bgcolor="#FFFFCC">
 <td>-data</td>
 <td>list</td>
-<td>kinds of codon usage data</td>
-<td><table><tr><td>A0</td> <td><i>(Absolute amino acid frequency ('AA'))</i></td></tr><tr><td>A1</td> <td><i>(Relative amino acid frequency ('RAAU'))</i></td></tr><tr><td>C0</td> <td><i>(Absolute codon frequency ('AF'))</i></td></tr><tr><td>C1</td> <td><i>(Relative codon frequency in a complete sequence)</i></td></tr><tr><td>C2</td> <td><i>(Relative codon frequency in each amino acid ('RF'))</i></td></tr><tr><td>C3</td> <td><i>(Relative synonymous codon usage ('RSCU'))</i></td></tr><tr><td>C4</td> <td><i>(Relative adaptiveness)</i></td></tr><tr><td>i.e., ratio to maximum of minor codon ('W')</td> <td><i>()</i></td></tr></table></td>
-<td>C0</td>
+<td>Kinds of codon usage data. R* hypothesizes amino acids which are not present in the gene</td>
+<td><table><tr><td>A0</td> <td><i>(Absolute amino acid frequency ('AA'))</i></td></tr><tr><td>A1</td> <td><i>(Relative amino acid frequency ('RAAU'))</i></td></tr><tr><td>C0</td> <td><i>(Absolute codon frequency ('AF'))</i></td></tr><tr><td>C1</td> <td><i>(Relative codon frequency in a complete sequence)</i></td></tr><tr><td>C2</td> <td><i>(Relative codon frequency in each amino acid ('RF'))</i></td></tr><tr><td>C3</td> <td><i>(Relative synonymous codon usage ('RSCU'))</i></td></tr><tr><td>C4</td> <td><i>(Relative adaptiveness)</i></td></tr><tr><td>i.e., ratio to maximum of minor codon ('W') C5</td> <td><i>(Maximum (1) or minor (0) codon)</i></td></tr><tr><td>R0</td> <td><i>(Absolute codon frequency ('AF'))</i></td></tr><tr><td>R1</td> <td><i>(Relative codon frequency in a complete sequence)</i></td></tr><tr><td>R2</td> <td><i>(Relative codon frequency in each amino acid ('RF'))</i></td></tr><tr><td>R3</td> <td><i>(Relative synonymous codon usage ('RSCU'))</i></td></tr><tr><td>R4</td> <td><i>(Relative adaptiveness)</i></td></tr><tr><td>i.e., ratio to maximum of minor codon ('W') R5</td> <td><i>(Maximum (1) or minor (0) codon)</i></td></tr></table></td>
+<td>R0</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-accid</td>
+<td>-[no]accid</td>
 <td>boolean</td>
 <td>Include to use sequence accession ID as query</td>
 <td>Boolean value Yes/No</td>
-<td>No</td>
+<td>Yes</td>
 </tr>
 
 </table>
@@ -180,13 +189,27 @@ Output filename [gcodon_compiler.nc_000913.csv]:
 <h2>Input file format</h2>
 
 <p>
-   gcodon_compiler reads nucleotide sequences.
+   The database definitions for following commands are available at<br />
+   http://soap.g-language.org/kbws/embossrc<br />
+<br />
+   gcodoncompiler reads one or more nucleotide sequences.<br />
+<br />
+
 </p>
 
 <h2>Output file format</h2>
 
 <p>
-   The output from gcodon_compiler is to a raw CSV file.
+   The output from gcodoncompiler is to a plain text file.<br />
+<br />
+   File: nc_000913.gcodoncompiler<br />
+<br />
+Sequence: NC_000913<br />
+Agca,Agcc,Agcg,Agct,Ctgc,Ctgt,Dgac,Dgat,Egaa,Egag,Fttc,Fttt,Ggga,Gggc,Gggg,Gggt,Hcac,Hcat,Iata,Iatc,Iatt,Kaaa,Kaag,Lcta,Lctc,Lctg,Lctt,Ltta,Lttg,Matg,Naac,Naat,Pcca,Pccc,Pccg,Pcct,Qcaa,Qcag,Raga,Ragg,Rcga,Rcgc,Rcgg,Rcgt,Sagc,Sagt,Stca,Stcc,Stcg,Stct,Taca,Tacc,Tacg,Tact,Utga,Vgta,Vgtc,Vgtg,Vgtt,Wtgg,Ytac,Ytat,locus_tag<br />
+26551,33911,44924,20010,8486,6707,25234,42161,52362,23474,21841,29334,10226,39395,14472,32678,12830,16952,5356,33359,40221,44272,13398,5079,14709,70441,14410,18097,17936,32971,28329,22786,11063,7142,30994,9130,20216,38169,2495,1366,4529,29308,6991,27864,21132,11323,9159,11332,11759,10992,8979,31001,18989,11581,3,14337,20240,34499,24056,20071,16088,21069,<br />
+<br />
+<br />
+
 </p>
 
 <h2>Data files</h2>
@@ -201,12 +224,9 @@ None.
 None.
 </p>
 
-<h2>Refrences</h2>
+<h2>References</h2>
 
 <pre>
-      Arakawa K. et al. (2008) Genes, Genomes and Genomics.
-      Suzuki H. et al. (2005) FEBS Lett. 579(28):6499-6504.
-
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
       for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
@@ -218,13 +238,13 @@ None.
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Web Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
+
 </pre>
 
 <h2>Warnings</h2>
 
 <p>
-   This tool may give a warning on feature output when installed on
-   EMBOSS-6.5.7, but we have no known errors in analysis.
+None.
 </p>
 
 <h2>Diagnostic Error Messages</h2>
@@ -253,9 +273,7 @@ None.
 <tr>
 <td><a href="gamino_info.html">gamino_info</a></td>
 <td>Prints out basic amino acid sequence statistics</td>
-</tr>
-
-<tr>
+</tr><tr>
 <td><a href="gaaui.html">gaaui</a></td>
 <td>Calculates various indece of amino acid usage</td>
 </tr>

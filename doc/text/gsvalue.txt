@@ -1,11 +1,11 @@
-                                    gs_value
+                                    gsvalue
 Function
 
    Calculate the strength of selected codon usage bias (S)
 
 Description
 
-   This method calculates the strength of selected codon usage bias (S), also
+   gsvalue calculates the strength of selected codon usage bias (S), also
    known as Sharp's S index. Using four codon pairs that are recognized by the
    same tRNA anticodon, namely, Phe(UUC and UUU), Ile(AUC and AUU), Tyr(UAC and
    UAU), and Asn(AAC and AAU), since the former in each of the pairs has
@@ -13,17 +13,15 @@ Description
    observed for highly expressed genes. S index is therefore the weighted
    average of such bias, giving an over-all value for a genome, indicating its
    strength of selected codon usage bias. See Sharp et al. (2005) for details.
-
    Sharp originally defined 40 genes as the highly expressed gene group, with
-   tufA, tsf, fusA, rplA-rplF, rplI-rplT, rpsB-rpsT. Since the identificaiton 
-   of these genes is not convenient for computational automation, by default, 
-   this method uses ribosomal proteins as the highly expressed gene group, 
+   tufA, tsf, fusA, rplA-rplF, rplI-rplT, rpsB-rpsT. Since the identificaiton
+   of these genes is not convenient for computational automation, by default,
+   this method uses ribosomal proteins as the highly expressed gene group,
    as used by Viera-silva and Rocha (2010).
-
    However, Sharp's gene group can be optionally used with -sharp option.
    With this option, all of the 40 genes must be named accordingly in the given
    genome file.
-
+    
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -35,49 +33,91 @@ Description
    http://soap.g-language.org/g-language.wsdl
 
    Documentation on G-language Genome Analysis Environment methods are
-   provided at the Document Center:
+   provided at the Document Center
 
    http://ws.g-language.org/gdoc/
 
 Usage
 
-   Here is a sample session with gs_value
+Here is a sample session with gsvalue
+
+% gsvalue refseqn:NC_000913
+Calculate the strength of selected codon usage bias (S)
+Codon usage output file [nc_000913.gsvalue]: 
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+Command line arguments
+
+   Standard (Mandatory) qualifiers:
+  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
+                                  format, or reference (input USA)
+  [-outfile]           outfile    [*.gsvalue] Codon usage output file
+
+   Additional (Optional) qualifiers: (none)
+   Advanced (Unprompted) qualifiers:
+   -sharp              boolean    [N] Include to use the 40 genes used by
+                                  Sharp instead of ribosomal proteins
+   -[no]accid          boolean    [Y] Include to use sequence accession ID as
+                                  query
+
+   Associated qualifiers:
+
+   "-sequence" associated qualifiers
+   -sbegin1            integer    Start of each sequence to be used
+   -send1              integer    End of each sequence to be used
+   -sreverse1          boolean    Reverse (if DNA)
+   -sask1              boolean    Ask for begin/end/reverse
+   -snucleotide1       boolean    Sequence is nucleotide
+   -sprotein1          boolean    Sequence is protein
+   -slower1            boolean    Make lower case
+   -supper1            boolean    Make upper case
+   -scircular1         boolean    Sequence is circular
+   -sformat1           string     Input sequence format
+   -iquery1            string     Input query fields or ID list
+   -ioffset1           integer    Input start position offset
+   -sdbname1           string     Database name
+   -sid1               string     Entryname
+   -ufo1               string     UFO features
+   -fformat1           string     Features format
+   -fopenfile1         string     Features file name
+
+   "-outfile" associated qualifiers
+   -odirectory2        string     Output directory
+
+   General qualifiers:
+   -auto               boolean    Turn off prompts
+   -stdout             boolean    Write first file to standard output
+   -filter             boolean    Read first file from standard input, write
+                                  first file to standard output
+   -options            boolean    Prompt for standard and additional values
+   -debug              boolean    Write debug output to program.dbg
+   -verbose            boolean    Report some/full command line options
+   -help               boolean    Report command line options and exit. More
+                                  information on associated and general
+                                  qualifiers can be found with -help -verbose
+   -warning            boolean    Report warnings
+   -error              boolean    Report errors
+   -fatal              boolean    Report fatal errors
+   -die                boolean    Report dying program messages
+   -version            boolean    Report version number and exit
+
+Input file format
 
    The database definitions for following commands are available at
    http://soap.g-language.org/kbws/embossrc
 
-% gs_value -show refseqn:NC_000913
-Calculate the strength of selected codon usage bias (S)
-Sequence: NC_000913 S value: 1.11907731545538
-
-Command line arguments
-
-   Standard (Mandatory) qualifiers (* if not always prompted):
-  [-sequence]          seqall     Nucleotide sequence(s) filename and optional
-                                  format, or reference (input USA)
-*  -outfile            outfile    [*.gs_value] Output file name
-
-   Additional (Optional) qualifiers: (none)
-   Advanced (Unprompted) qualifiers:
-   -sharp              integer    [0] Set to 1 to use the 40 genes used by
-                                      Sharp instead of ribosomal proteins (Any
-                                      integer value)
-   -accid              string     Include to use sequence accession ID as
-                                  query (Any string)
-   -show               toggle     [N] Include to dump result to stdout
-
-   General qualifiers:
-   -help               boolean    Report command line options and exit. More
-                                  information on associated and general
-                                  qualifiers can be found with -help -verbose
-
-Input file format
-
-   gs_value reads nucleotide sequences.
+   gsvalue reads one or more nucleotide sequences.
 
 Output file format
 
-   The output from gs_value is to a file or stdout.
+   The output from gsvalue is to a plain text file.
+
+   File: nc_000913.gsvalue
+
+Sequence: NC_000913 S-value: 1.23467100598485
+
 
 Data files
 
@@ -109,8 +149,7 @@ References
 
 Warnings
 
-   This tool may give a warning on feature output when installed on
-   EMBOSS-6.5.7, but we have no known errors in analysis.
+   None.
 
 Diagnostic Error Messages
 
@@ -143,6 +182,7 @@ Author(s)
 History
 
    2012 - Written by Hidetoshi Itaya
+   2013 - Fixed by Hidetoshi Itaya
 
 Target users
 

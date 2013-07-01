@@ -2,7 +2,7 @@
 
 <HTML>
 <HEAD>
-  <TITLE> EMBOSS: ggenome_map3 </TITLE>
+  <TITLE> EMBOSS: gqueryarm </TITLE>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" text="#000000">
 
@@ -14,7 +14,7 @@
 </td>
 <td align=left valign=middle>
 <b><font size="+6">
-ggenome_map3
+gqueryarm
 </font></b>
 </td></tr>
 </table>
@@ -30,7 +30,7 @@ ggenome_map3
 
 
 <H2> Function </H2>
-   Draws the map of the genome (version 3)
+   Get the replication arm name (left or right) from the given position
 <!--
 DON'T WRITE ANYTHING HERE.
 IT IS DONE FOR YOU.
@@ -41,39 +41,41 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This method creates a map of the genome, showing the local <br>
-   nucleotide contents and positions of genes.<br>
-   A is shown in red, T is shown in green, <br>
-   G is shown in yellow, and C is shown in blue. <br>
-  <br>
-   G-language SOAP service is provided by the<br>
-   Institute for Advanced Biosciences, Keio University.<br>
-   The original web service is located at the following URL:<br>
-<br>
-   http://www.g-language.org/wiki/soap<br>
-<br>
-   WSDL(RPC/Encoded) file is located at:<br>
-<br>
-   http://soap.g-language.org/g-language.wsdl<br>
-<br>
-   Documentation on G-language Genome Analysis Environment methods are<br>
-   provided at the Document Center<br>
-<br>
-   http://ws.g-language.org/gdoc/
+   gqueryarm returns whether the given position is in the left or right arm of<br />
+   a circular chromosome.<br />
+    <br />
+   G-language SOAP service is provided by the<br />
+   Institute for Advanced Biosciences, Keio University.<br />
+   The original web service is located at the following URL:<br />
+<br />
+   http://www.g-language.org/wiki/soap<br />
+<br />
+   WSDL(RPC/Encoded) file is located at:<br />
+<br />
+   http://soap.g-language.org/g-language.wsdl<br />
+<br />
+   Documentation on G-language Genome Analysis Environment methods are<br />
+   provided at the Document Center<br />
+<br />
+   http://ws.g-language.org/gdoc/<br />
+<br />
+
 </p>
 
 <H2>Usage</H2>
 
 <table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
 
-   Here is a sample session with ggenome_map3
+Here is a sample session with gqueryarm
 
-   The database definitions for following commands are available at
-   http://soap.g-language.org/kbws/embossrc
+% gqueryarm refseqn:NC_000913 1234
+Get the replication arm name (left or right) from the given position
+Output file [nc_000913.gqueryarm]: 
 
-% ggenome_map3 refseqn:NC_000908
-Draws the map of the genome (version 3)
-Output filename [ggenome_map3.1.png]:
+   Go to the input files for this example
+   Go to the output files for this example
+
+
 
 </pre></td></tr></table>
 
@@ -103,11 +105,19 @@ Output filename [ggenome_map3.1.png]:
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>[-goutfile]<br>(Parameter 2)</td>
-<td>string</td>
-<td>Output filename</td>
-<td>Any string</td>
-<td>ggenome_map3.png</td>
+<td>[-position]<br>(Parameter 2)</td>
+<td>integer</td>
+<td>Position to query</td>
+<td>Any integer value</td>
+<td>0</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>[-outfile]<br>(Parameter 3)</td>
+<td>outfile</td>
+<td>Output file name</td>
+<td>Output file</td>
+<td><i>&lt;*&gt;</i>.gqueryarm</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -123,27 +133,11 @@ Output filename [ggenome_map3.1.png]:
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-width</td>
-<td>integer</td>
-<td>Image width</td>
-<td>Any integer value</td>
-<td>8192</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-height</td>
-<td>integer</td>
-<td>Image height</td>
-<td>Any integer value</td>
-<td>8192</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-accid</td>
+<td>-[no]accid</td>
 <td>boolean</td>
 <td>Include to use sequence accession ID as query</td>
 <td>Boolean value Yes/No</td>
-<td>No</td>
+<td>Yes</td>
 </tr>
 
 </table>
@@ -152,13 +146,25 @@ Output filename [ggenome_map3.1.png]:
 <h2>Input file format</h2>
 
 <p>
-   ggenome_map3 reads nucleotide sequences.
+   The database definitions for following commands are available at<br />
+   http://soap.g-language.org/kbws/embossrc<br />
+<br />
+   gqueryarm reads one or more nucleotide sequences.<br />
+<br />
+
 </p>
 
 <h2>Output file format</h2>
 
 <p>
-   The output from ggenome_map3 is to png file.
+   The output from gqueryarm is to a plain text file.<br />
+<br />
+   File: nc_000913.gqueryarm<br />
+<br />
+Sequence: NC_000913 Arm: right<br />
+<br />
+<br />
+
 </p>
 
 <h2>Data files</h2>
@@ -173,7 +179,7 @@ None.
 None.
 </p>
 
-<h2>Refrences</h2>
+<h2>References</h2>
 
 <pre>
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
@@ -187,13 +193,13 @@ None.
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Web Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
+
 </pre>
 
 <h2>Warnings</h2>
 
 <p>
-   This tool may give a warning on feature output when installed on
-   EMBOSS-6.5.7, but we have no known errors in analysis.
+None.
 </p>
 
 <h2>Diagnostic Error Messages</h2>
@@ -220,13 +226,8 @@ None.
 <th>Description</th></tr>
 
 <tr>
-<td><a href="gcircular_map.html">gcircular_map</a></td>
-<td>Draws circular map of the genome</td>
-</tr>
-
-<tr>
-<td><a href="gdnawalk.html">gdnawalk</a></td>
-<td>Draws DNA Walk map of the genome</td>
+<td><a href="gquery_strand.html">gquery_strand</a></td>
+<td>Get the strand name (leading or lagging) from the given</td>
 </tr>
 
 </table>

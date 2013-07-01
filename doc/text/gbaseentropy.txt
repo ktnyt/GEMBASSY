@@ -2,13 +2,15 @@
 Function
 
    Calculates and graphs the sequence conservation using Shanon uncertainty
-   (entropy)
 
 Description
 
-   This function calculates and graphs the sequence conservation in regions 
-   around the start/stop codons using Shanon uncertainty (entropy).
-
+   This function calculates and graphs the sequence conservation in regions
+   around the start/stop codons using Shanon uncertainty (entropy). Smaller
+   values resemble higher conservation where the minumum value is 0 and the
+   maximum value is 2. The entropy is typically the lowest around position 0
+   (start/stop codon position).
+    
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -26,44 +28,55 @@ Description
 
 Usage
 
-   Here is a sample session with gbaseentropy
-
-   Simply calculate the entropy and write out to CSV file.
+Here is a sample session with gbaseentropy
 
 % gbaseentropy refseqn:NC_000913
-Calculates and graphs the sequence conservation using Shanon uncertainty (entropy)
-Output file [nc_000913.gbase_entropy]:
+Calculates and graphs the sequence conservation using Shanon uncertainty
+(entropy)
+Program compseq output file (optional) [nc_000913.gbaseentropy]: 
 
-   Go to output files for this example
+   Go to the input files for this example
+   Go to the output files for this example
 
    Example 2
 
-   Plot a graph with EMBOSS graphics device.
+% gbaseentropy refseqn:NC_000913 -plot -graph png
+Calculates and graphs the sequence conservation using Shanon uncertainty
+(entropy)
+Created gbaseentropy.1.png
 
-% gbaseentropy -plot refseqn:NC_000913
-Calculates and graphs the sequence conservation using Shanon uncertainty (entropy)
-Created gbaseentropy.ps
+   Go to the input files for this example
+   Go to the output files for this example
 
 Command line arguments
 
-   Standard (Mandatory) qualifiers:
+Calculates and graphs the sequence conservation using Shanon uncertainty
+(entropy)
+Version: EMBOSS:6.5.7.0 GEMBASSY:1.0.1
+
+   Standard (Mandatory) qualifiers (* if not always prompted):
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-  [-outfile]           outfile    [*.gbasecounter] Weight matrix output file
+*  -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
+                                  (ps, hpgl, hp7470, hp7580, meta, cps, x11,
+                                  tek, tekt, none, data, xterm, png, gif, svg)
+*  -outfile            outfile    [*.gbaseentropy] Program compseq output file
+                                  (optional)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
-   -position           menu       [1] Either 'start' (around start codon) or
-                                  'end' (around stop codon) to create the PWM
-                                  (Values: 1 (start); 2 (end))
+   -position           selection  [start] Either 'start' (around start codon)
+                                  or 'end' (around stop codon) to create the
+                                  PWM
    -patlen             integer    [3] Length of oligomer to count (Any integer
                                   value)
    -upstream           integer    [30] Length upstream of specified position
                                   to create PWM (Any integer value)
    -downstream         integer    [30] Length downstream of specified position
                                   to create PWM (Any integer value)
-   -accid              boolean    [N] Include to use sequence accession ID as
+   -[no]accid          boolean    [Y] Include to use sequence accession ID as
                                   query
+   -plot               toggle     [N] Include to plot result
 
    Associated qualifiers:
 
@@ -86,8 +99,18 @@ Command line arguments
    -fformat1           string     Features format
    -fopenfile1         string     Features file name
 
+   "-graph" associated qualifiers
+   -gprompt            boolean    Graph prompting
+   -gdesc              string     Graph description
+   -gtitle             string     Graph title
+   -gsubtitle          string     Graph subtitle
+   -gxtitle            string     Graph x axis title
+   -gytitle            string     Graph y axis title
+   -goutfile           string     Output file for non interactive displays
+   -gdirectory         string     Output directory
+
    "-outfile" associated qualifiers
-   -odirectory2        string     Output directory
+   -odirectory         string     Output directory
 
    General qualifiers:
    -auto               boolean    Turn off prompts
@@ -111,38 +134,38 @@ Input file format
    The database definitions for following commands are available at
    http://soap.g-language.org/kbws/embossrc
 
-   gbaseentropy reads nucleotide sequences with feature tables.
+   gbaseentropy reads one or more nucleotide sequences.
 
 Output file format
 
-   The output from gbaseentropy is to the specified graphics device or
-   a CSV file.
+   The output from gbaseentropy is to a plain text file or the EMBOSS graphics device.
 
    File: nc_000913.gbaseentropy
 
 Sequence: NC_000913
--30,1.98285
--29,1.97853
--28,1.97663
--27,1.97598
--26,1.97115
--25,1.96826
--24,1.96279
--23,1.96281
--22,1.95662
+-30,1.98284
+-29,1.97873
+-28,1.97692
+-27,1.97595
+-26,1.97094
+-25,1.96777
+-24,1.96272
+-23,1.96288
+-22,1.95707
 
    [Part of this file has been deleted for brevity]
 
-21,1.93483
-22,1.94485
-23,1.95235
+21,1.93528
+22,1.94470
+23,1.95204
 24,1.93139
-25,1.95651
-26,1.95743
-27,1.93761
-28,1.96051
-29,1.94308
-30,1.92570
+25,1.95640
+26,1.95711
+27,1.93785
+28,1.96060
+29,1.94316
+30,1.92581
+
 
 Data files
 
@@ -168,8 +191,7 @@ References
 
 Warnings
 
-   This tool may give a warning on feature output when installed on
-   EMBOSS-6.5.7, but we have no known errors in analysis.
+   None.
 
 Diagnostic Error Messages
 

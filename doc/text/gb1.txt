@@ -1,21 +1,20 @@
-                                       gb1
+                                      gb1
 Function
 
    Calculate strand bias of bacterial genome using B1 index
 
 Description
 
-   This method calculate strand bias of bacterial genome using B1 index,
-   first proposed by Lobry and Sueoka (2002), and further extended by 
-   Rocha et al. (2006). Basic idea of B1 index is to calculate the 
+   gb1 calculates the strand bias of bacterial genome using B1 index,
+   first proposed by Lobry and Sueoka (2002), and further extended by
+   Rocha et al. (2006). Basic idea of B1 index is to calculate the
    distance between the two strands, when the leading and lagging strands
    are plotted in a coordinate system with axes representing G/(G+C) and
    A/(A+T), using the third codon position of genes. This index measures the
    degree of replication-induced bias from Chargaff's second parity rule.
-
    Rocha et al. modified B1 index to only use >fourfold degenerate codons,
    and to use T/(A+T) in place of A/(A+T).
- 
+    
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -33,12 +32,14 @@ Description
 
 Usage
 
-   Here is a sample session with gb1
+Here is a sample session with gb1
 
 % gb1 refseqn:NC_000913
 Calculate strand bias of bacterial genome using B1 index
-Output filename [nc_000913.gb1]: stdout
-Sequence: NC_000913 B1: 0.063080624778723
+Program compseq output file [nc_000913.gb1]: 
+
+   Go to the input files for this example
+   Go to the output files for this example
 
 Command line arguments
 
@@ -49,9 +50,8 @@ Command line arguments
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
-   -method             menu       [rocha] Choose method of 'lobry' or 'rocha'
-                                  (Values: lobry (lobry); rocha (rocha))
-   -accid              boolean    [N] Include to use sequence accession ID as
+   -method             selection  [rocha] Choose method of 'lobry' or 'rocha'
+   -[no]accid          boolean    [Y] Include to use sequence accession ID as
                                   query
 
    Associated qualifiers:
@@ -100,11 +100,16 @@ Input file format
    The database definitions for following commands are available at
    http://soap.g-language.org/kbws/embossrc
 
-   gb1 reads nucleotide sequences with feature tables.
+   gb1 reads one or more nucleotide sequences.
 
 Output file format
 
-   The output from gb1 is to a regular file.
+   The output from gb1 is to a plain text file.
+
+   File: nc_000913.gb1
+
+Sequence: NC_000913 B1: 0.0630702874711314
+
 
 Data files
 
@@ -116,11 +121,11 @@ Notes
 
 References
 
-   Lobry JR and Sueoka N (2002) "Asymmetric directional mutation pressures in
-      bacteria", Genome Biology, 3(10):0058
+   Lobry JR and Sueoka N (2002) Asymmetric directional mutation pressures in
+      bacteria, Genome Biology, 3(10):0058
 
-   Rocha EPC et al. (2006) "Similar compositional biases are caused by very
-      different mutational effects", Genome Research, 16:1537-1547
+   Rocha EPC et al. (2006) Similar compositional biases are caused by very
+      different mutational effects, Genome Research, 16:1537-1547
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -136,8 +141,7 @@ References
 
 Warnings
 
-   This tool may give a warning on feature output when installed on
-   EMBOSS-6.5.7, but we have no known errors in analysis.
+   None.
 
 Diagnostic Error Messages
 

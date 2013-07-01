@@ -41,36 +41,43 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This program calculates the codon bias index (CBI).<br>
-<br>
-   G-language SOAP service is provided by the<br>
-   Institute for Advanced Biosciences, Keio University.<br>
-   The original web service is located at the following URL:<br>
-<br>
-   http://www.g-language.org/wiki/soap<br>
-<br>
-   WSDL(RPC/Encoded) file is located at:<br>
-<br>
-   http://soap.g-language.org/g-language.wsdl<br>
-<br>
-   Documentation on G-language Genome Analysis Environment methods are<br>
-   provided at the Document Center<br>
-<br>
-   http://ws.g-language.org/gdoc/
+   gcbi calculates the codon bias index (CBI) for each gene af the given<br />
+   genome. CBI is a directional codon bias which measures the usage of<br />
+   optimal codons in a gene. CBI is similar to Fop, and can take negative<br />
+   values depending on the codon usage.<br />
+    <br />
+   G-language SOAP service is provided by the<br />
+   Institute for Advanced Biosciences, Keio University.<br />
+   The original web service is located at the following URL:<br />
+<br />
+   http://www.g-language.org/wiki/soap<br />
+<br />
+   WSDL(RPC/Encoded) file is located at:<br />
+<br />
+   http://soap.g-language.org/g-language.wsdl<br />
+<br />
+   Documentation on G-language Genome Analysis Environment methods are<br />
+   provided at the Document Center<br />
+<br />
+   http://ws.g-language.org/gdoc/<br />
+<br />
+
 </p>
 
 <H2>Usage</H2>
 
 <table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
 
-   Here is a sample session with gcbi
+Here is a sample session with gcbi
 
-   The database definitions for following commands are available at
-   http://soap.g-language.org/kbws/embossrc
-
-% gcbi -show refseqn:NC_000913
+% gcbi refseqn:NC_000913
 Calculates the codon bias index (CBI)
-Output filename [nc_000913.gcbi]:
+Codon usage output file [nc_000913.gcbi]: 
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+
 
 </pre></td></tr></table>
 
@@ -102,7 +109,7 @@ Output filename [nc_000913.gcbi]:
 <tr bgcolor="#FFFFCC">
 <td>[-outfile]<br>(Parameter 2)</td>
 <td>outfile</td>
-<td>Output file name</td>
+<td>Codon usage output file</td>
 <td>Output file</td>
 <td><i>&lt;*&gt;</i>.gcbi</td>
 </tr>
@@ -128,14 +135,6 @@ Output filename [nc_000913.gcbi]:
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-id</td>
-<td>string</td>
-<td>ID of a group of genes or a single gene</td>
-<td>Any string</td>
-<td>&nbsp;</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
 <td>-delkey</td>
 <td>string</td>
 <td>Regular expression to delete key</td>
@@ -144,11 +143,11 @@ Output filename [nc_000913.gcbi]:
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-accid</td>
+<td>-[no]accid</td>
 <td>boolean</td>
 <td>Include to use sequence accession ID as query</td>
 <td>Boolean value Yes/No</td>
-<td>No</td>
+<td>Yes</td>
 </tr>
 
 </table>
@@ -157,13 +156,47 @@ Output filename [nc_000913.gcbi]:
 <h2>Input file format</h2>
 
 <p>
-   gcbi reads nucleotide sequences.
+   The database definitions for following commands are available at<br />
+   http://soap.g-language.org/kbws/embossrc<br />
+<br />
+   gcbi reads one or more nucleotide sequences.<br />
+<br />
+
 </p>
 
 <h2>Output file format</h2>
 
 <p>
-   The output from gcbi is to a file or stdout.
+   The output from gcbi is to a plain text file.<br />
+<br />
+   File: nc_000913.gcbi<br />
+<br />
+Sequence: NC_000913<br />
+cbi,gene<br />
+0.8716,thrL<br />
+0.3441,thrA<br />
+0.3462,thrB<br />
+0.4280,thrC<br />
+0.3868,yaaX<br />
+0.3908,yaaA<br />
+0.3521,yaaJ<br />
+0.5354,talB<br />
+<br />
+   [Part of this file has been deleted for brevity]<br />
+<br />
+0.4005,yjjX<br />
+0.4388,ytjC<br />
+0.3934,rob<br />
+0.4645,creA<br />
+0.4266,creB<br />
+0.3435,creC<br />
+0.3796,creD<br />
+0.4980,arcA<br />
+0.5412,yjjY<br />
+0.4018,yjtD<br />
+<br />
+<br />
+
 </p>
 
 <h2>Data files</h2>
@@ -178,11 +211,14 @@ None.
 None.
 </p>
 
-<h2>Refrences</h2>
+<h2>References</h2>
 
 <pre>
-      Comeron JM, Aguade M. (1998) J Mol Evol. 47(3):268-74.
-      Morton BR (1993) J.Mol.Evol. 37:273-280.
+   Comeron JM, Aguade M. (1998) An evaluation of measures of synonymous codon
+      usage bias, J Mol Evol, 47(3):268-74.
+
+   Morton BR (1993) Chloroplast DNA codon use: evidence for selection at the
+      psb A locus based on tRNA availability, J.Mol.Evo,. 37:273-280.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -195,13 +231,13 @@ None.
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Web Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
+
 </pre>
 
 <h2>Warnings</h2>
 
 <p>
-   This tool may give a warning on feature output when installed on
-   EMBOSS-6.5.7, but we have no known errors in analysis.
+None.
 </p>
 
 <h2>Diagnostic Error Messages</h2>
@@ -229,15 +265,11 @@ None.
 
 <tr>
 <td><a href="gdelta_enc.html">gdelta_enc</a></td>
-<td>Calculate the codon usage bias related to translation optimization (delta ENC)</td>
-</tr>
-
-<tr>
+<td>Calculate the codon usage bias related to translation optimization              (delta ENC)</td>
+</tr><tr>
 <td><a href="gicdi.html">gicdi</a></td>
 <td>Calculates the intrinsic codon deviation index (ICDI)</td>
-</tr>
-
-<tr>
+</tr><tr>
 <td><a href="gs_value.html">gs_value</a></td>
 <td>Calculate the strength of selected codon usage bias (S)</td>
 </tr>

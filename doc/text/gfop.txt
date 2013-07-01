@@ -5,8 +5,10 @@ Function
 
 Description
 
-   This program calculates the frequency of optimal codons (Fop).
-  
+   gfop calculates the frequency of optimal codons (Fop).Fop is an index to
+   show the optimization level of synonymous codon usage choice. It is
+   basically a ratio of optimal codons against all codons used.
+    
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -24,41 +26,107 @@ Description
 
 Usage
 
-   Here is a sample session with gfop
-
-   The database definitions for following commands are available at
-   http://soap.g-language.org/kbws/embossrc
+Here is a sample session with gfop
 
 % gfop refseqn:NC_000913
 Calculate the frequency of optimal codons (Fop)
-Output filename [gfop.nc_000913.csv]:
+Codon usage output file [nc_000913.gfop]: 
+
+   Go to the input files for this example
+   Go to the output files for this example
 
 Command line arguments
 
    Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-   -outfile            outfile    [gfop.$(sequence.name).csv] Output file name
+  [-outfile]           outfile    [*.gfop] Codon usage output file
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
-   -translate          boolean    [0] Include when translates using standard
+   -translate          boolean    [N] Include when translates using standard
                                   codon table
-   -accid              string     Include to use sequence accession ID as
-                                  query (Any string)
+   -[no]accid          boolean    [Y] Include to use sequence accession ID as
+                                  query
+
+   Associated qualifiers:
+
+   "-sequence" associated qualifiers
+   -sbegin1            integer    Start of each sequence to be used
+   -send1              integer    End of each sequence to be used
+   -sreverse1          boolean    Reverse (if DNA)
+   -sask1              boolean    Ask for begin/end/reverse
+   -snucleotide1       boolean    Sequence is nucleotide
+   -sprotein1          boolean    Sequence is protein
+   -slower1            boolean    Make lower case
+   -supper1            boolean    Make upper case
+   -scircular1         boolean    Sequence is circular
+   -sformat1           string     Input sequence format
+   -iquery1            string     Input query fields or ID list
+   -ioffset1           integer    Input start position offset
+   -sdbname1           string     Database name
+   -sid1               string     Entryname
+   -ufo1               string     UFO features
+   -fformat1           string     Features format
+   -fopenfile1         string     Features file name
+
+   "-outfile" associated qualifiers
+   -odirectory2        string     Output directory
 
    General qualifiers:
+   -auto               boolean    Turn off prompts
+   -stdout             boolean    Write first file to standard output
+   -filter             boolean    Read first file from standard input, write
+                                  first file to standard output
+   -options            boolean    Prompt for standard and additional values
+   -debug              boolean    Write debug output to program.dbg
+   -verbose            boolean    Report some/full command line options
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
+   -warning            boolean    Report warnings
+   -error              boolean    Report errors
+   -fatal              boolean    Report fatal errors
+   -die                boolean    Report dying program messages
+   -version            boolean    Report version number and exit
 
 Input file format
 
-   gfop reads nucleotide sequences.
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
+
+   gfop reads one or more nucleotide sequences.
 
 Output file format
 
-   The output from gfop is to a raw CSV file.
+   The output from gfop is to a plain text file.
+
+   File: nc_000913.gfop
+
+Sequence: NC_000913
+Laa,Lc,fop,gene
+20,5,0.4000,thrL
+819,133,0.4361,thrA
+309,46,0.4783,thrB
+427,69,0.5217,thrC
+97,7,0.2857,yaaX
+257,56,0.4643,yaaA
+475,96,0.3958,yaaJ
+316,56,0.6964,talB
+
+   [Part of this file has been deleted for brevity]
+
+169,27,0.2593,yjjX
+214,23,0.5652,ytjC
+288,49,0.4082,rob
+156,23,0.3478,creA
+228,26,0.3462,creB
+473,69,0.3478,creC
+449,70,0.3286,creD
+237,46,0.6957,arcA
+45,10,0.7000,yjjY
+227,24,0.2500,yjtD
+
 
 Data files
 
@@ -70,9 +138,13 @@ Notes
 
 References
 
-   Ikemura (1981) J.Mol.Biol. 151:389-409.
+   Ikemura, T. (1981) Correlation between the abundance of Escherichia coli
+      transfer RNAs and the occurrence of the respective codons in its protein
+      genes: a proposal for a synonymous codon choice that is optimal for the
+      E. coli translational system, J.Mol.Biol, 151:389-409.
 
-   Ikemura (1985) Mol.Biol.Evol. 2(1):13-34.
+   Ikemura (1985) Codon usage and tRNA content in unicellular and multicellular
+      organisms, Mol.Biol.Evol, 2(1):13-34.
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -88,8 +160,7 @@ References
 
 Warnings
 
-   This tool may give a warning on feature output when installed on
-   EMBOSS-6.5.7, but we have no known errors in analysis.
+   None.
 
 Diagnostic Error Messages
 
@@ -123,6 +194,7 @@ Author(s)
 History
 
    2012 - Written by Hidetoshi Itaya
+   2013 - Fixed by Hidetoshi Itaya
 
 Target users
 

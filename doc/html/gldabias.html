@@ -2,7 +2,7 @@
 
 <HTML>
 <HEAD>
-  <TITLE> EMBOSS: gcircular_map </TITLE>
+  <TITLE> EMBOSS: gldabias </TITLE>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" text="#000000">
 
@@ -14,7 +14,7 @@
 </td>
 <td align=left valign=middle>
 <b><font size="+6">
-gcircular_map
+gldabias
 </font></b>
 </td></tr>
 </table>
@@ -30,7 +30,7 @@ gcircular_map
 
 
 <H2> Function </H2>
-   Draws circular map of the genome
+   Calculate strand bias of bacterial genome using linear discriminant
 <!--
 DON'T WRITE ANYTHING HERE.
 IT IS DONE FOR YOU.
@@ -41,44 +41,49 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This method creates a circular map of the genome using SVG,<br>
-   suitable for plasmids and circular bacterial chromosomes.<br>
-<br>
-   From the outer ring inwards, genes on direct strand (pink), <br>
-   genes on complementary strand (yellow), tRNAs (green arrows), <br>
-   rRNAs (pink or orange stripes depending on the strand), <br>
-   GC content (brown lines), GC skew (yellow lines). Replication <br>
-   origin and terminus predicted from the GC skew shift points <br>
-   are also labeled. <br>
-<br>
-   G-language SOAP service is provided by the<br>
-   Institute for Advanced Biosciences, Keio University.<br>
-   The original web service is located at the following URL:<br>
-<br>
-   http://www.g-language.org/wiki/soap<br>
-<br>
-   WSDL(RPC/Encoded) file is located at:<br>
-<br>
-   http://soap.g-language.org/g-language.wsdl<br>
-<br>
-   Documentation on G-language Genome Analysis Environment methods are<br>
-   provided at the Document Center<br>
-<br>
-   http://ws.g-language.org/gdoc/
+   gldabias calculates strand bias of bacterial genome using linear<br />
+   discriminant analysis (LDA), as proposed in Reference 1. The basic idea is<br />
+   to use composition data of genes to train and predict the strand of genes<br />
+   residing either on the leading or the lagging strand. For computational<br />
+   efficiency, this method trans and predicts the strands at putative<br />
+   replication origin as reported by the rep_ori_ter() method. This usually<br />
+   results in maximum predictability of LDA within bacterial genomes.<br />
+   Data to use for LDA can be chosen from "base", "codonbase", "codon", and<br />
+   "amino", with -variable option.<br />
+    <br />
+   G-language SOAP service is provided by the<br />
+   Institute for Advanced Biosciences, Keio University.<br />
+   The original web service is located at the following URL:<br />
+<br />
+   http://www.g-language.org/wiki/soap<br />
+<br />
+   WSDL(RPC/Encoded) file is located at:<br />
+<br />
+   http://soap.g-language.org/g-language.wsdl<br />
+<br />
+   Documentation on G-language Genome Analysis Environment methods are<br />
+   provided at the Document Center<br />
+<br />
+   http://ws.g-language.org/gdoc/<br />
+<br />
+
 </p>
 
 <H2>Usage</H2>
 
 <table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
 
-   Here is a sample session with gcircular_map
+Here is a sample session with gldabias
 
-   The database definitions for following commands are available at
-   http://soap.g-language.org/kbws/embossrc
+% gldabias refseqn:NC_000913
+Calculate strand bias of bacterial genome using linear discriminant
+analysis (LDA)
+Program compseq output file [nc_000913.gldabias]: 
 
-% gcircular_map refseqn:NC_000908
-Draws circular map of the genome 
-Output filename [gcircular_map.1.svg]:
+   Go to the input files for this example
+   Go to the output files for this example
+
+
 
 </pre></td></tr></table>
 
@@ -108,11 +113,11 @@ Output filename [gcircular_map.1.svg]:
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-filename</td>
-<td>string</td>
-<td>Output filename</td>
-<td>Any string</td>
-<td>gcircular_map.svg</td>
+<td>[-outfile]<br>(Parameter 2)</td>
+<td>outfile</td>
+<td>Program compseq output file</td>
+<td>Output file</td>
+<td><i>&lt;*&gt;</i>.gldabias</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -128,11 +133,27 @@ Output filename [gcircular_map.1.svg]:
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-accid</td>
+<td>-coefficients</td>
+<td>integer</td>
+<td>Show LDA coefficients</td>
+<td>Any integer value</td>
+<td>0</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-variable</td>
+<td>selection</td>
+<td>Data to use for LDA. Either 'base', 'codonbase', 'codon', or 'amino'</td>
+<td>Choose from selection list of values</td>
+<td>codon</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-[no]accid</td>
 <td>boolean</td>
 <td>Include to use sequence accession ID as query</td>
 <td>Boolean value Yes/No</td>
-<td>No</td>
+<td>Yes</td>
 </tr>
 
 </table>
@@ -141,13 +162,25 @@ Output filename [gcircular_map.1.svg]:
 <h2>Input file format</h2>
 
 <p>
-   gcircular_map reads nucleotide sequences.
+   The database definitions for following commands are available at<br />
+   http://soap.g-language.org/kbws/embossrc<br />
+<br />
+   gldabias reads one or more nucleotide sequences.<br />
+<br />
+
 </p>
 
 <h2>Output file format</h2>
 
 <p>
-   The output from gcircular_map is to .
+   The output from gldabias is to a plain text file.<br />
+<br />
+   File: nc_000913.gldabias<br />
+<br />
+Sequence: NC_000913 LDA-BIAS: 0.742533<br />
+<br />
+<br />
+
 </p>
 
 <h2>Data files</h2>
@@ -162,9 +195,12 @@ None.
 None.
 </p>
 
-<h2>Refrences</h2>
+<h2>References</h2>
 
 <pre>
+   Rocha EPC et al. (1999) "Universal replication biases in bacteria",
+      Molecular Microbiology, 32(1):11-16
+
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
       for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
@@ -176,13 +212,13 @@ None.
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Web Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
+
 </pre>
 
 <h2>Warnings</h2>
 
 <p>
-   This tool may give a warning on feature output when installed on
-   EMBOSS-6.5.7, but we have no known errors in analysis.
+None.
 </p>
 
 <h2>Diagnostic Error Messages</h2>
@@ -209,13 +245,17 @@ None.
 <th>Description</th></tr>
 
 <tr>
-<td><a href="gdnawalk.html">gdnawalk</a></td>
-<td>Draws DNA Walk map of the genome</td>
-</tr>
-
-<tr>
-<td><a href="ggenome_map3.html">ggenome_map3</a></td>
-<td>Draws the map of the genome (version 3)</td>
+<td><a href="gb1.html">gb1</a></td>
+<td>Calculate strand bias of bacterial genome using B1 index</td>
+</tr><tr>
+<td><a href="gb2.html">gb2</a></td>
+<td>Calculate strand bias of bacterial genome using B2 index</td>
+</tr><tr>
+<td><a href="gdelta_gcskew.html">gdelta_gcskew</a></td>
+<td>Calculate strand bias of bacterial genome using delta GC skew</td>
+</tr><tr>
+<td><a href="ggcsi.html">ggcsi</a></td>
+<td>GC Skew Index: an index for strand-specefic mutational bias</td>
 </tr>
 
 </table>

@@ -41,42 +41,45 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This method draws the DNA Walk map of the given genome.<br>
-   DNA Walk is drawn by moving a single pixel per nucleotide, <br>
-   in the direction specified for each base. Here A is moved<br>
-   upward, T downward, G to the right, and C to the left.<br>
-   Position zero (first letter of the genome) is indicated<br>
-   by the crossing of thin axes.<br>
-<br>
-  <br>
-   G-language SOAP service is provided by the<br>
-   Institute for Advanced Biosciences, Keio University.<br>
-   The original web service is located at the following URL:<br>
-<br>
-   http://www.g-language.org/wiki/soap<br>
-<br>
-   WSDL(RPC/Encoded) file is located at:<br>
-<br>
-   http://soap.g-language.org/g-language.wsdl<br>
-<br>
-   Documentation on G-language Genome Analysis Environment methods are<br>
-   provided at the Document Center<br>
-<br>
-   http://ws.g-language.org/gdoc/
+   gdnawalk draws the DNA Walk map of the given genome. DNA Walk is drawn by<br />
+   moving a single pixel per nucleotide, in the direction specified for each<br />
+   base. Here A is moved upward, T downward, G to the right, and C to the<br />
+   left. Position zero (first letter of the genome) is indicated by the<br />
+   crossing of thin axes.<br />
+    <br />
+   G-language SOAP service is provided by the<br />
+   Institute for Advanced Biosciences, Keio University.<br />
+   The original web service is located at the following URL:<br />
+<br />
+   http://www.g-language.org/wiki/soap<br />
+<br />
+   WSDL(RPC/Encoded) file is located at:<br />
+<br />
+   http://soap.g-language.org/g-language.wsdl<br />
+<br />
+   Documentation on G-language Genome Analysis Environment methods are<br />
+   provided at the Document Center<br />
+<br />
+   http://ws.g-language.org/gdoc/<br />
+<br />
+
 </p>
 
 <H2>Usage</H2>
 
 <table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
 
-   Here is a sample session with gdnawalk
+Here is a sample session with gdnawalk
 
-   The database definitions for following commands are available at
-   http://soap.g-language.org/kbws/embossrc
-
-% gdnawalk refseqn:NC_000908
+% gdnawalk refseqn:NC_000913
 Draws DNA Walk map of the genome
-Output filename [gdnawalk.1.png]:
+Output file for non interactive displays [gdnawalk]: Created gdnawalk.1.png
+
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+
 
 </pre></td></tr></table>
 
@@ -108,9 +111,9 @@ Output filename [gdnawalk.1.png]:
 <tr bgcolor="#FFFFCC">
 <td>[-goutfile]<br>(Parameter 2)</td>
 <td>string</td>
-<td>Output filename</td>
+<td>Output file for non interactive displays</td>
 <td>Any string</td>
-<td>gdnawalk.png</td>
+<td>gdnawalk</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -125,8 +128,12 @@ Output filename [gdnawalk.1.png]:
 <th align="left" colspan=5>Advanced (Unprompted) qualifiers</th>
 </tr>
 
-<tr>
-<td colspan=5>(none)</td>
+<tr bgcolor="#FFFFCC">
+<td>-format</td>
+<td>string</td>
+<td>Output file format. Dependent on 'convert' command</td>
+<td>Any string</td>
+<td>png</td>
 </tr>
 
 </table>
@@ -135,13 +142,22 @@ Output filename [gdnawalk.1.png]:
 <h2>Input file format</h2>
 
 <p>
-   gdnawalk reads nucleotide sequences.
+   The database definitions for following commands are available at<br />
+   http://soap.g-language.org/kbws/embossrc<br />
+<br />
+   gdnawalk reads one or more nucleotide sequences.<br />
+<br />
+
 </p>
 
 <h2>Output file format</h2>
 
 <p>
-   The output from gdnawalk is to png file.
+   The output from gdnawalk is to an image file.<br />
+<br />
+<br />
+<br />
+
 </p>
 
 <h2>Data files</h2>
@@ -156,7 +172,7 @@ None.
 None.
 </p>
 
-<h2>Refrences</h2>
+<h2>References</h2>
 
 <pre>
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
@@ -170,13 +186,13 @@ None.
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Web Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
+
 </pre>
 
 <h2>Warnings</h2>
 
 <p>
-   This tool may give a warning on feature output when installed on
-   EMBOSS-6.5.7, but we have no known errors in analysis.
+None.
 </p>
 
 <h2>Diagnostic Error Messages</h2>
@@ -205,9 +221,7 @@ None.
 <tr>
 <td><a href="gcircular_map.html">gcircular_map</a></td>
 <td>Draws circular map of the genome</td>
-</tr>
-
-<tr>
+</tr><tr>
 <td><a href="ggenome_map3.html">ggenome_map3</a></td>
 <td>Draws the map of the genome (version 3)</td>
 </tr>

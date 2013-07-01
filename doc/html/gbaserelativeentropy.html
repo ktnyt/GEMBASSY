@@ -2,7 +2,7 @@
 
 <HTML>
 <HEAD>
-  <TITLE> EMBOSS: gbase_information_content </TITLE>
+  <TITLE> EMBOSS: gbaserelativeentropy </TITLE>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" text="#000000">
 
@@ -14,7 +14,7 @@
 </td>
 <td align=left valign=middle>
 <b><font size="+6">
-gbase_information_content
+gbaserelativeentropy
 </font></b>
 </td></tr>
 </table>
@@ -30,7 +30,7 @@ gbase_information_content
 
 
 <H2> Function </H2>
-   Calculates and graphs the sequence conservation using information content
+   Calculates and graphs the sequence conservation using Kullback-Leibler
 <!--
 DON'T WRITE ANYTHING HERE.
 IT IS DONE FOR YOU.
@@ -41,37 +41,55 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This function calculates and graphs the sequence conservation in regions <br>
-   around the start/stop codons using information content.<br>
-  <br>
-   G-language SOAP service is provided by the<br>
-   Institute for Advanced Biosciences, Keio University.<br>
-   The original web service is located at the following URL:<br>
-<br>
-   http://www.g-language.org/wiki/soap<br>
-<br>
-   WSDL(RPC/Encoded) file is located at:<br>
-<br>
-   http://soap.g-language.org/g-language.wsdl<br>
-<br>
-   Documentation on G-language Genome Analysis Environment methods are<br>
-   provided at the Document Center<br>
-<br>
-   http://ws.g-language.org/gdoc/
+   This function calculates and graphs the sequence conservation in regions<br />
+   around the start/stop codons using Kullback-Leibler divergence (relative<br />
+   entropy). In realistic conditions, as background nucleotide composition<br />
+   (e.g. G+C content) varies among species. Kullback-Leibler divergence<br />
+   calculates the entropy with reduced background noise.<br />
+    <br />
+   G-language SOAP service is provided by the<br />
+   Institute for Advanced Biosciences, Keio University.<br />
+   The original web service is located at the following URL:<br />
+<br />
+   http://www.g-language.org/wiki/soap<br />
+<br />
+   WSDL(RPC/Encoded) file is located at:<br />
+<br />
+   http://soap.g-language.org/g-language.wsdl<br />
+<br />
+   Documentation on G-language Genome Analysis Environment methods are<br />
+   provided at the Document Center<br />
+<br />
+   http://ws.g-language.org/gdoc/<br />
+<br />
+
 </p>
 
 <H2>Usage</H2>
 
 <table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
 
-   Here is a sample session with gbase_information_content
+Here is a sample session with gbaserelativeentropy
 
-   The database definitions for following commands are available at
-   http://soap.g-language.org/kbws/embossrc
+% gbaserelativeentropy refseqn:NC_000913
+Calculates and graphs the sequence conservation using Kullback-Leibler
+divergence (relative entropy)
+Program compseq output file (optional) [nc_000913.gbaserelativeentropy]: 
 
-% gbase_information_content -plot refseqn:NC_000913
-Calculates and graphs the sequence conservation using information content
-Created gbase_information_content.ps
+   Go to the input files for this example
+   Go to the output files for this example
+
+   Example 2
+
+% gbaserelativeentropy refseqn:NC_000913 -plot -graph png
+Calculates and graphs the sequence conservation using Kullback-Leibler
+divergence (relative entropy)
+Created gbaserelativeentropy.1.png
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+
 
 </pre></td></tr></table>
 
@@ -111,9 +129,9 @@ Created gbase_information_content.ps
 <tr bgcolor="#FFFFCC">
 <td>-outfile</td>
 <td>outfile</td>
-<td>Output file name</td>
+<td>Program compseq output file (optional)</td>
 <td>Output file</td>
-<td><i>&lt;*&gt;</i>.gbase_information_content</td>
+<td><i>&lt;*&gt;</i>.gbaserelativeentropy</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -130,10 +148,18 @@ Created gbase_information_content.ps
 
 <tr bgcolor="#FFFFCC">
 <td>-position</td>
-<td>string</td>
-<td>either 'start' (around start codon) or 'end' (around stop codon) to create the PWM</td>
-<td>Any string</td>
+<td>selection</td>
+<td>Either 'start' (around start codon) or 'end' (around stop codon) to create the PWM</td>
+<td>Choose from selection list of values</td>
 <td>start</td>
+</tr>
+
+<tr bgcolor="#FFFFCC">
+<td>-patlen</td>
+<td>integer</td>
+<td>Length of oligomer to count</td>
+<td>Any integer value</td>
+<td>3</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -153,19 +179,11 @@ Created gbase_information_content.ps
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-patlen</td>
-<td>integer</td>
-<td>Length of oligomer to count</td>
-<td>Any integer value</td>
-<td>3</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-accid</td>
+<td>-[no]accid</td>
 <td>boolean</td>
 <td>Include to use sequence accession ID as query</td>
 <td>Boolean value Yes/No</td>
-<td>No</td>
+<td>Yes</td>
 </tr>
 
 <tr bgcolor="#FFFFCC">
@@ -182,13 +200,47 @@ Created gbase_information_content.ps
 <h2>Input file format</h2>
 
 <p>
-   gbase_information_content reads nucleotide sequences.
+   The database definitions for following commands are available at<br />
+   http://soap.g-language.org/kbws/embossrc<br />
+<br />
+   gbaserelativeentropy reads one or more nucleotide sequences.<br />
+<br />
+
 </p>
 
 <h2>Output file format</h2>
 
 <p>
-   The output from gbase_information_content is to the specified graphics device.
+   The output from gbaserelativeentropy is to a plain text file or the EMBOSS graphics device.<br />
+<br />
+   File: nc_000913.gbaserelativeentropy<br />
+<br />
+Sequence: NC_000913<br />
+-30,-0.46682<br />
+-29,-0.46265<br />
+-28,-0.45732<br />
+-27,-0.45704<br />
+-26,-0.44692<br />
+-25,-0.44396<br />
+-24,-0.43528<br />
+-23,-0.43419<br />
+-22,-0.42518<br />
+<br />
+   [Part of this file has been deleted for brevity]<br />
+<br />
+21,-0.40010<br />
+22,-0.41772<br />
+23,-0.42503<br />
+24,-0.39675<br />
+25,-0.43091<br />
+26,-0.43196<br />
+27,-0.40576<br />
+28,-0.43387<br />
+29,-0.41228<br />
+30,-0.38869<br />
+<br />
+<br />
+
 </p>
 
 <h2>Data files</h2>
@@ -203,7 +255,7 @@ None.
 None.
 </p>
 
-<h2>Refrences</h2>
+<h2>References</h2>
 
 <pre>
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
@@ -217,13 +269,13 @@ None.
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Web Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
+
 </pre>
 
 <h2>Warnings</h2>
 
 <p>
-   This tool may give a warning on feature output when installed on
-   EMBOSS-6.5.7, but we have no known errors in analysis.
+None.
 </p>
 
 <h2>Diagnostic Error Messages</h2>
@@ -251,12 +303,16 @@ None.
 
 <tr>
 <td><a href="gbase_entropy.html">gbase_entropy</a></td>
-<td>Calculates and graphs the sequence conservation using Shanon uncertainty (entropy)</td>
-</tr>
-
-<tr>
-<td><a href="gbase_relative_entropy.html">gbase_relative_entropy</a></td>
-<td>Calculates and graphs the sequence conservation using Kullback-Leibler divergence (relative entropy)</td>
+<td>Calculates and graphs the sequence conservation</td>
+</tr><tr>
+<td><a href="using.html">using</a></td>
+<td>Shanon uncertainty (entropy)</td>
+</tr><tr>
+<td><a href="gbase_information_content.html">gbase_information_content</a></td>
+<td>Calculates and graphs the sequence conservation</td>
+</tr><tr>
+<td><a href="using.html">using</a></td>
+<td>information content</td>
 </tr>
 
 </table>

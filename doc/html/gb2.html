@@ -41,43 +41,46 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This method calculate strand bias of bacterial genome using B2 index,<br>
-   proposed by Lobry and Sueoka(2002). Basic idea of B2 index is to calculate<br>
-   the distance from neutral parity state (0.5, 0.5), when the bias of<br>
-   the coding regions is plotted in a coordinate system with axes representing <br>
-   G/(G+C) and A/(A+T), using the third codon position of genes. This index<br>
-   measures the degree of transcription- and translation-associated effects of<br>
-   bias from Chargaff's second parity rule.<br>
- <br>
-   G-language SOAP service is provided by the<br>
-   Institute for Advanced Biosciences, Keio University.<br>
-   The original web service is located at the following URL:<br>
-<br>
-   http://www.g-language.org/wiki/soap<br>
-<br>
-   WSDL(RPC/Encoded) file is located at:<br>
-<br>
-   http://soap.g-language.org/g-language.wsdl<br>
-<br>
-   Documentation on G-language Genome Analysis Environment methods are<br>
-   provided at the Document Center<br>
-<br>
-   http://ws.g-language.org/gdoc/
+   gb2 calculates strand bias of bacterial genome using B2 index,<br />
+   proposed by Lobry and Sueoka(2002). Basic idea of B2 index is to calculate<br />
+   the distance from neutral parity state (0.5, 0.5), when the bias of<br />
+   the coding regions is plotted in a coordinate system with axes representing<br />
+   G/(G+C) and A/(A+T), using the third codon position of genes. This index<br />
+   measures the degree of transcription- and translation-associated effects of<br />
+   bias from Chargaff's second parity rule.<br />
+    <br />
+   G-language SOAP service is provided by the<br />
+   Institute for Advanced Biosciences, Keio University.<br />
+   The original web service is located at the following URL:<br />
+<br />
+   http://www.g-language.org/wiki/soap<br />
+<br />
+   WSDL(RPC/Encoded) file is located at:<br />
+<br />
+   http://soap.g-language.org/g-language.wsdl<br />
+<br />
+   Documentation on G-language Genome Analysis Environment methods are<br />
+   provided at the Document Center<br />
+<br />
+   http://ws.g-language.org/gdoc/<br />
+<br />
+
 </p>
 
 <H2>Usage</H2>
 
 <table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
 
-   Here is a sample session with gb2
+Here is a sample session with gb2
 
-   The database definitions for following commands are available at
-   http://soap.g-language.org/kbws/embossrc
-
-% gb2 -show refseqn:NC_000913
+% gb2 refseqn:NC_000913
 Calculate strand bias of bacterial genome using B2 index
-Output filename [nc_000913.gb2]:
-Sequence: NC_000913 B1: 0.0920067301798418
+Program compseq output file [nc_000913.gb2]: 
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+
 
 </pre></td></tr></table>
 
@@ -109,7 +112,7 @@ Sequence: NC_000913 B1: 0.0920067301798418
 <tr bgcolor="#FFFFCC">
 <td>[-outfile]<br>(Parameter 2)</td>
 <td>outfile</td>
-<td>Output file name</td>
+<td>Program compseq output file</td>
 <td>Output file</td>
 <td><i>&lt;*&gt;</i>.gb2</td>
 </tr>
@@ -127,19 +130,11 @@ Sequence: NC_000913 B1: 0.0920067301798418
 </tr>
 
 <tr bgcolor="#FFFFCC">
-<td>-accid</td>
+<td>-[no]accid</td>
 <td>boolean</td>
 <td>Include to use sequence accession ID as query</td>
 <td>Boolean value Yes/No</td>
-<td>No</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-show</td>
-<td>toggle</td>
-<td>Include to dump result to stdout</td>
-<td>Toggle value Yes/No</td>
-<td>No</td>
+<td>Yes</td>
 </tr>
 
 </table>
@@ -148,13 +143,25 @@ Sequence: NC_000913 B1: 0.0920067301798418
 <h2>Input file format</h2>
 
 <p>
-   gb2 reads nucleotide sequences.
+   The database definitions for following commands are available at<br />
+   http://soap.g-language.org/kbws/embossrc<br />
+<br />
+   gb2 reads one or more nucleotide sequences.<br />
+<br />
+
 </p>
 
 <h2>Output file format</h2>
 
 <p>
-   The output from gb2 is to a file or stdout.
+   The output from gb2 is to a plain text file.<br />
+<br />
+   File: nc_000913.gb2<br />
+<br />
+Sequence: NC_000913 B2: 0.0919769585775651<br />
+<br />
+<br />
+
 </p>
 
 <h2>Data files</h2>
@@ -169,11 +176,11 @@ None.
 None.
 </p>
 
-<h2>Refrences</h2>
+<h2>References</h2>
 
 <pre>
-   Lobry JR and Sueoka N (2002) "Asymmetric directional mutation pressures in
-      bacteria", Genome Biology, 3(10):0058
+   Lobry JR and Sueoka N (2002) Asymmetric directional mutation pressures in
+      bacteria, Genome Biology, 3(10):0058
 
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
       Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
@@ -186,13 +193,13 @@ None.
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Web Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
+
 </pre>
 
 <h2>Warnings</h2>
 
 <p>
-   This tool may give a warning on feature output when installed on
-   EMBOSS-6.5.7, but we have no known errors in analysis.
+None.
 </p>
 
 <h2>Diagnostic Error Messages</h2>
@@ -221,21 +228,18 @@ None.
 <tr>
 <td><a href="gb1.html">gb1</a></td>
 <td>Calculate strand bias of bacterial genome using B1 index</td>
-</tr>
-
-<tr>
-<td><a href="gdelta_gcskew.html">gdelta_gcskew</a></td>
-<td>Calculate strand bias of bacterial genome using delta GC skew index</td>
-</tr>
-
-<tr>
+</tr><tr>
+<td><a href="gdeltagcskew.html">gdeltagcskew</a></td>
+<td>Calculate strand bias of bacterial genome using delta GC skew</td>
+</tr><tr>
 <td><a href="ggcsi.html">ggcsi</a></td>
-<td>GC Skew Index: an index for strand-specific mutational bias</td>
-</tr>
-
-<tr>
-<td><a href="glda_bias.html">glda_bias</a></td>
-<td>Calculate strand bias of bacterial genome using linear discriminant analysis (LDA)</td>
+<td>GC Skew Index: an index for strand-specefic mutational bias</td>
+</tr><tr>
+<td><a href="gldabias.html">gldabias</a></td>
+<td>Calculate strand bias of bacterial genome using linear</td>
+</tr><tr>
+<td><a href="discriminant.html">discriminant</a></td>
+<td>analysis (LDA)</td>
 </tr>
 
 </table>

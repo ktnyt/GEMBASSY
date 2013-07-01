@@ -41,36 +41,49 @@ IT IS DONE FOR YOU.
 
 <H2>Description</H2>
 <p>
-   This program calculates and graphs the GC content.<br>
-<br>
-   G-language SOAP service is provided by the<br>
-   Institute for Advanced Biosciences, Keio University.<br>
-   The original web service is located at the following URL:<br>
-<br>
-   http://www.g-language.org/wiki/soap<br>
-<br>
-   WSDL(RPC/Encoded) file is located at:<br>
-<br>
-   http://soap.g-language.org/g-language.wsdl<br>
-<br>
-   Documentation on G-language Genome Analysis Environment methods are<br>
-   provided at the Document Center<br>
-<br>
-   http://ws.g-language.org/gdoc/
+   ggcwin calculates and plots the GC content of the given sequence.<br />
+    <br />
+   G-language SOAP service is provided by the<br />
+   Institute for Advanced Biosciences, Keio University.<br />
+   The original web service is located at the following URL:<br />
+<br />
+   http://www.g-language.org/wiki/soap<br />
+<br />
+   WSDL(RPC/Encoded) file is located at:<br />
+<br />
+   http://soap.g-language.org/g-language.wsdl<br />
+<br />
+   Documentation on G-language Genome Analysis Environment methods are<br />
+   provided at the Document Center<br />
+<br />
+   http://ws.g-language.org/gdoc/<br />
+<br />
+
 </p>
 
 <H2>Usage</H2>
 
 <table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
 
-   Here is a sample session with ggcwin
+Here is a sample session with ggcwin
 
-   The database definitions for following commands are available at
-   http://soap.g-language.org/kbws/embossrc
-
-% ggcwin -plot refseqn:NC_000913
+% ggcwin refseqn:NC_000913
 Calculates the GC content along the given genome
-Created ggcwin.ps
+Program compseq output file (optional) [nc_000913.ggcwin]: 
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+   Example 2
+
+% ggcwin refseqn:NC_000913 -plot -graph png
+Calculates the GC content along the given genome
+Created ggcwin.1.png
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+
 
 </pre></td></tr></table>
 
@@ -110,7 +123,7 @@ Created ggcwin.ps
 <tr bgcolor="#FFFFCC">
 <td>-outfile</td>
 <td>outfile</td>
-<td>Output file name</td>
+<td>Program compseq output file (optional)</td>
 <td>Output file</td>
 <td><i>&lt;*&gt;</i>.ggcwin</td>
 </tr>
@@ -173,13 +186,47 @@ Created ggcwin.ps
 <h2>Input file format</h2>
 
 <p>
-   ggcwin reads nucleotide sequences.
+   The database definitions for following commands are available at<br />
+   http://soap.g-language.org/kbws/embossrc<br />
+<br />
+   ggcwin reads one or more nucleotide sequences.<br />
+<br />
+
 </p>
 
 <h2>Output file format</h2>
 
 <p>
-   The output from ggcwin is to the specified graphics device.
+   The output from ggcwin is to a plain text file or the EMBOSS graphics device.<br />
+<br />
+   File: nc_000913.ggcwin<br />
+<br />
+Sequence: NC_000913<br />
+location,GC content<br />
+0,0.520700<br />
+10000,0.499400<br />
+20000,0.526200<br />
+30000,0.532300<br />
+40000,0.527700<br />
+50000,0.515600<br />
+60000,0.555800<br />
+70000,0.536000<br />
+<br />
+   [Part of this file has been deleted for brevity]<br />
+<br />
+4530000,0.442800<br />
+4540000,0.487000<br />
+4550000,0.507700<br />
+4560000,0.509600<br />
+4570000,0.444600<br />
+4580000,0.531600<br />
+4590000,0.512300<br />
+4600000,0.504500<br />
+4610000,0.535600<br />
+4620000,0.546600<br />
+<br />
+<br />
+
 </p>
 
 <h2>Data files</h2>
@@ -194,7 +241,7 @@ None.
 None.
 </p>
 
-<h2>Refrences</h2>
+<h2>References</h2>
 
 <pre>
    Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
@@ -208,6 +255,7 @@ None.
    Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
       Analysis Environment with REST and SOAP Web Service Interfaces,
       Nucleic Acids Res., 38, W700-W705.
+
 </pre>
 
 <h2>Warnings</h2>
@@ -242,16 +290,12 @@ None.
 <tr>
 <td><a href="ggcskew.html">ggcskew</a></td>
 <td>Calculates the GC skew of the input sequence</td>
-</tr>
-
-<tr>
+</tr><tr>
 <td><a href="ggeneskew.html">ggeneskew</a></td>
 <td>Calculate the gene strand bias of the given genome</td>
-</tr>
-
-<tr>
+</tr><tr>
 <td><a href="ggenomicskew.html">ggenomicskew</a></td>
-<td>Calculates the GC skew in different regions of the given genome</td>
+<td>Calculates the GC skew in different regions of the given genom</td>
 </tr>
 
 </table>

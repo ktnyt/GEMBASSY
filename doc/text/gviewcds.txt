@@ -1,14 +1,14 @@
-                                    gview_cds
+                                    gviewcds
 Function
 
    Displays a graph of nucleotide contents around start and stop codons
 
 Description
 
-   This method creates a graph showing the average A,T,G,C contents
+   gviewcds creates a graph showing the average A,T,G,C contents
    around start/stop codons. This is useful to view consensus around
-   start/stop codons and to find characteristic pattern in CDS. 
-   
+   start/stop codons and to find characteristic pattern in CDS.
+    
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:
@@ -26,14 +26,23 @@ Description
 
 Usage
 
-   Here is a sample session with gview_cds
+Here is a sample session with gviewcds
 
-   The database definitions for following commands are available at
-   http://soap.g-language.org/kbws/embossrc
-
-% gview_cds -plot refseqn:NC_000913
+% gviewcds refseqn:NC_000913
 Displays a graph of nucleotide contents around start and stop codons
-Created gview_cds.ps
+Program compseq output file (optional) [nc_000913.gviewcds]: 
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+   Example 2
+
+% gviewcds refseqn:NC_000913 -plot -graph png
+Displays a graph of nucleotide contents around start and stop codons
+Created gviewcds.1.png
+
+   Go to the input files for this example
+   Go to the output files for this example
 
 Command line arguments
 
@@ -43,8 +52,8 @@ Command line arguments
 *  -graph              xygraph    [$EMBOSS_GRAPHICS value, or x11] Graph type
                                   (ps, hpgl, hp7470, hp7580, meta, cps, x11,
                                   tek, tekt, none, data, xterm, png, gif, svg)
-*  -outfile            outfile    [gview_cds.$(sequence.name).csv] Output file
-                                  name
+*  -outfile            outfile    [*.gviewcds] Program compseq output file
+                                  (optional)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -52,23 +61,98 @@ Command line arguments
                                   start/stop codons (Any integer value)
    -gap                integer    [3] Gap shown in graph in between start/stop
                                   codon neighbors (Any integer value)
-   -csv                boolean    [N] Include to create CSV file
-   -accid              string     Include to use sequence accession ID as
-                                  query (Any string)
+   -[no]accid          boolean    [Y] Include to use sequence accession ID as
+                                  query
    -plot               toggle     [N] Include to plot result
 
+   Associated qualifiers:
+
+   "-sequence" associated qualifiers
+   -sbegin1            integer    Start of each sequence to be used
+   -send1              integer    End of each sequence to be used
+   -sreverse1          boolean    Reverse (if DNA)
+   -sask1              boolean    Ask for begin/end/reverse
+   -snucleotide1       boolean    Sequence is nucleotide
+   -sprotein1          boolean    Sequence is protein
+   -slower1            boolean    Make lower case
+   -supper1            boolean    Make upper case
+   -scircular1         boolean    Sequence is circular
+   -sformat1           string     Input sequence format
+   -iquery1            string     Input query fields or ID list
+   -ioffset1           integer    Input start position offset
+   -sdbname1           string     Database name
+   -sid1               string     Entryname
+   -ufo1               string     UFO features
+   -fformat1           string     Features format
+   -fopenfile1         string     Features file name
+
+   "-graph" associated qualifiers
+   -gprompt            boolean    Graph prompting
+   -gdesc              string     Graph description
+   -gtitle             string     Graph title
+   -gsubtitle          string     Graph subtitle
+   -gxtitle            string     Graph x axis title
+   -gytitle            string     Graph y axis title
+   -goutfile           string     Output file for non interactive displays
+   -gdirectory         string     Output directory
+
+   "-outfile" associated qualifiers
+   -odirectory         string     Output directory
+
    General qualifiers:
+   -auto               boolean    Turn off prompts
+   -stdout             boolean    Write first file to standard output
+   -filter             boolean    Read first file from standard input, write
+                                  first file to standard output
+   -options            boolean    Prompt for standard and additional values
+   -debug              boolean    Write debug output to program.dbg
+   -verbose            boolean    Report some/full command line options
    -help               boolean    Report command line options and exit. More
                                   information on associated and general
                                   qualifiers can be found with -help -verbose
+   -warning            boolean    Report warnings
+   -error              boolean    Report errors
+   -fatal              boolean    Report fatal errors
+   -die                boolean    Report dying program messages
+   -version            boolean    Report version number and exit
 
 Input file format
 
-   gview_cds reads nucleotide sequences.
+   The database definitions for following commands are available at
+   http://soap.g-language.org/kbws/embossrc
+
+   gviewcds reads one or more nucleotide sequences.
 
 Output file format
 
-   The output from gview_cds is to the specified graphics device.
+   The output from gviewcds is to a plain text file or the EMBOSS graphics device.
+
+   File: nc_000913.gviewcds
+
+Sequence: NC_000913
+position,A,T,G,C
+1,28.20,27.60,22.18,22.02
+2,26.05,26.81,23.06,24.08
+3,27.34,27.37,23.94,21.35
+4,26.28,28.83,23.01,21.88
+5,26.72,28.22,22.18,22.88
+6,26.42,26.72,24.96,21.90
+7,27.21,28.66,21.95,22.18
+8,25.47,28.39,23.06,23.08
+
+   [Part of this file has been deleted for brevity]
+
+400,26.60,27.44,22.67,23.27
+401,24.38,26.63,25.05,23.92
+402,25.03,26.37,23.71,24.87
+403,25.96,27.53,22.53,23.96
+404,26.63,25.52,24.17,23.66
+405,25.68,26.26,23.50,24.54
+406,24.94,26.86,23.92,24.26
+407,25.54,26.28,23.73,24.43
+408,25.28,26.93,24.38,23.39
+409,26.63,26.46,22.32,24.57
+
 
 Data files
 
@@ -94,8 +178,7 @@ References
 
 Warnings
 
-   This tool may give a warning on feature output when installed on
-   EMBOSS-6.5.7, but we have no known errors in analysis.
+   None.
 
 Diagnostic Error Messages
 
@@ -127,6 +210,7 @@ Author(s)
 History
 
    2012 - Written by Hidetoshi Itaya
+   2013 - Fixed by Hidetoshi Itaya
 
 Target users
 
