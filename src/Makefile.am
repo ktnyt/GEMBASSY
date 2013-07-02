@@ -157,10 +157,6 @@ LDADD = ../../../nucleus/libnucleus.la ../../../ajax/acd/libacd.la \
 	../../../ajax/expat/libeexpat.la \
 	../../../ajax/pcre/libepcre.la \
 	../../../plplot/libeplplot.la \
-        ../include/libgfile.a \
-        ../include/libghttp.a \
-        ../include/libgplot.a \
-        ../include/libgpost.a \
         $(XLIB)
 else
 LDADD = -L${embprefix}/lib -L../include -lnucleus -lacd -lajaxdb -lensembl \
