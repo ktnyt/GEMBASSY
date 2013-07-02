@@ -105,7 +105,7 @@ int main(int argc, char *argv[])
                                &result
 			       ) == SOAP_OK)
         {
-          ++i:
+          ++i;
 
           outfname = ajStrNewS(ajFmtStr("%S.%d.%S",
                                         filename,
