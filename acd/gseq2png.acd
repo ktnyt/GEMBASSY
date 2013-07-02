@@ -55,7 +55,7 @@ section: output [
     information: "Output file for non interactive displays"
     knowntype: "output filename"
     relations: "EDAM_data:2166 Sequence composition plot"
-    default: "gcgr"
+    default: "gseq2png"
   ]
 
 endsection: output

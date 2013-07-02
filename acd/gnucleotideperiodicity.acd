@@ -19,12 +19,6 @@ section: input [
     relations: "EDAM_data:0849 Sequence record"
   ]
 
-  string: format [
-    information: "Output file format. Dependent on 'convert' command"
-    knowntype: "output format"
-    default: "png"
-  ]
-
 endsection: input
 
 section: advanced [
