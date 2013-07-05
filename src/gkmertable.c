@@ -53,6 +53,8 @@ int main(int argc, char *argv[])
   AjPStr    outfname = NULL;
   AjPStr    format   = NULL;
 
+  ajint i;
+
   char *in0;
   char *result;
 
@@ -62,6 +64,8 @@ int main(int argc, char *argv[])
   format   = ajAcdGetString("format");
 
   params.k = k;
+
+  i = 0;
 
   while(ajSeqallNext(seqall, &seq))
     {
@@ -88,9 +92,11 @@ int main(int argc, char *argv[])
                                         &result
                                         ) == SOAP_OK)
 	{
-          outfname = ajStrNewS(ajFmtStr("%S.%ld.%S",
+          ++i;
+
+          outfname = ajStrNewS(ajFmtStr("%S.%d.%S",
                                         filename,
-                                        ajSeqallGetCount(seqall),
+                                        i,
                                         format));
 
           outf = ajFileNewOutNameS(outfname);

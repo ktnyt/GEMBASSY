@@ -83,6 +83,7 @@ int main(int argc, char *argv[])
   params.purine = 0;
   params.keto   = 0;
   params.output = "f";
+  params.application = "";
 
   if(at)
     params.at = 1;

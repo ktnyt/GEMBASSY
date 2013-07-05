@@ -42,7 +42,7 @@ section: advanced [
   ]
 
   boolean: keto [
-    information: "Include for observing keto (TG/AC) skew default: "0"
+    information: "Include for observing keto (TG/AC) skew"
     default: "N"
   ]
 
