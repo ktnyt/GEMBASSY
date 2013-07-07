@@ -1,346 +1,1 @@
-<!--START OF HEADER - DON'T ALTER -->
-
-<HTML>
-<HEAD>
-  <TITLE> EMBOSS: ggeneskew </TITLE>
-</HEAD>
-<BODY BGCOLOR="#FFFFFF" text="#000000">
-
-
-
-<table align=center border=0 cellspacing=0 cellpadding=0>
-<tr><td valign=top>
-<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="http://soap.g-language.org/gembassy/emboss_explorer/manual/emboss_icon.jpg" alt="" width=150 height=48></a>
-</td>
-<td align=left valign=middle>
-<b><font size="+6">
-ggeneskew
-</font></b>
-</td></tr>
-</table>
-<br>&nbsp;
-<p>
-
-
-<!--END OF HEADER-->
-
-
-
-
-
-
-<H2> Function </H2>
-   Calculate the gene strand bias of the given genome
-<!--
-DON'T WRITE ANYTHING HERE.
-IT IS DONE FOR YOU.
--->
-
-
-
-
-<H2>Description</H2>
-<p>
-   ggeneskew calculates and plots the strand bias of genes (or the GC skew<br />
-   within them). By default, this program visualizes the gene strand preference<br />
-   (1 for direct, -1 for complement strand), but by specifying -base option<br />
-   option, GC/AT/Purine/Keto skews of the coding regions or more specifically<br />
-   in the GC3 (third codon position) with -gctri option can be calculated.<br />
-    <br />
-   G-language SOAP service is provided by the<br />
-   Institute for Advanced Biosciences, Keio University.<br />
-   The original web service is located at the following URL:<br />
-<br />
-   http://www.g-language.org/wiki/soap<br />
-<br />
-   WSDL(RPC/Encoded) file is located at:<br />
-<br />
-   http://soap.g-language.org/g-language.wsdl<br />
-<br />
-   Documentation on G-language Genome Analysis Environment methods are<br />
-   provided at the Document Center<br />
-<br />
-   http://ws.g-language.org/gdoc/<br />
-<br />
-
-</p>
-
-<H2>Usage</H2>
-
-<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
-
-Here is a sample session with ggeneskew
-
-% ggeneskew refseqn:NC_000913
-Calculate the gene strand bias of the given genome
-Program compseq output file (optional) [nc_000913.ggeneskew]: 
-
-   Go to the input files for this example
-   Go to the output files for this example
-
-   Example 2
-
-% ggeneskew refseqn:NC_000913 -plot -graph png
-Calculate the gene strand bias of the given genome
-Created ggeneskew.1.png
-
-   Go to the input files for this example
-   Go to the output files for this example
-
-
-
-</pre></td></tr></table>
-
-
-
-<h2>Command line arguments</h2>
-
-<table border cellspacing=0 cellpadding=3 bgcolor="#ccccff">
-<tr bgcolor="#FFFFCC">
-<th align="left">Qualifier</th>
-<th align="left">Type</th>
-<th align="left">Description</th>
-<th align="left">Allowed values</th>
-<th align="left">Default</th>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<th align="left" colspan=5>Standard (Mandatory) qualifiers</th>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>[-sequence]<br>(Parameter 1)</td>
-<td>seqall</td>
-<td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
-<td>Readable sequence(s)</td>
-<td><b>Required</b></td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-graph</td>
-<td>xygraph</td>
-<td>Graph type</td>
-<td>EMBOSS has a list of known devices, including ps, hpgl, hp7470, hp7580, meta, cps, x11, tek, tekt, none, data, xterm, png, gif, svg</td>
-<td><i>EMBOSS_GRAPHICS</i> value, or x11</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-outfile</td>
-<td>outfile</td>
-<td>Program compseq output file (optional)</td>
-<td>Output file</td>
-<td><i>&lt;*&gt;</i>.ggeneskew</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<th align="left" colspan=5>Additional (Optional) qualifiers</th>
-</tr>
-
-<tr>
-<td colspan=5>(none)</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<th align="left" colspan=5>Advanced (Unprompted) qualifiers</th>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-window</td>
-<td>integer</td>
-<td>Window size to observe</td>
-<td>Any integer value</td>
-<td>10000</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-slide</td>
-<td>integer</td>
-<td>Window slide size</td>
-<td>Any integer value</td>
-<td>10000</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-cumulative</td>
-<td>boolean</td>
-<td>Input 1 to calculate cumulative skew</td>
-<td>Boolean value Yes/No</td>
-<td>No</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-base</td>
-<td>selection</td>
-<td>Input 'gc', 'at', 'purine', or 'keto' for observing GC/AT/Purine/Keto skews</td>
-<td>Choose from selection list of values</td>
-<td>none</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-gctri</td>
-<td>boolean</td>
-<td>Include to use only the third codon positions</td>
-<td>Boolean value Yes/No</td>
-<td>No</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-[no]accid</td>
-<td>boolean</td>
-<td>Include to use sequence accession ID as query</td>
-<td>Boolean value Yes/No</td>
-<td>Yes</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-plot</td>
-<td>toggle</td>
-<td>Include to plot result</td>
-<td>Toggle value Yes/No</td>
-<td>No</td>
-</tr>
-
-</table>
-
-
-<h2>Input file format</h2>
-
-<p>
-   The database definitions for following commands are available at<br />
-   http://soap.g-language.org/kbws/embossrc<br />
-<br />
-   ggeneskew reads one or more nucleotide sequences.<br />
-<br />
-
-</p>
-
-<h2>Output file format</h2>
-
-<p>
-   The output from ggeneskew is to a plain text file or the EMBOSS graphics device.<br />
-<br />
-   File: nc_000913.ggeneskew<br />
-<br />
-Sequence: NC_000913<br />
-location,gene None skew<br />
-190,0.294118<br />
-337,-0.058914<br />
-2801,-0.120000<br />
-3734,-0.070588<br />
-5234,0.037500<br />
-5683,0.020725<br />
-6529,0.032765<br />
-8238,-0.028226<br />
-<br />
-   [Part of this file has been deleted for brevity]<br />
-<br />
-4631820,-0.093407<br />
-4632464,-0.006479<br />
-4633544,-0.120690<br />
-4634030,-0.060367<br />
-4634719,-0.104167<br />
-4636201,-0.144560<br />
-4637613,0.010929<br />
-4638425,0.200000<br />
-4638965,-0.081871<br />
-,<br />
-<br />
-<br />
-
-</p>
-
-<h2>Data files</h2>
-
-<p>
-None.
-</p>
-
-<h2>Notes</h2>
-
-<p>
-None.
-</p>
-
-<h2>References</h2>
-
-<pre>
-   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
-      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
-      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
-
-   Arakawa, K. and Tomita, M. (2006) G-language System as a Platform for
-      large-scale analysis of high-throughput omics data, J. Pest Sci.,
-      31, 7.
-
-   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
-      Analysis Environment with REST and SOAP Web Service Interfaces,
-      Nucleic Acids Res., 38, W700-W705.
-
-</pre>
-
-<h2>Warnings</h2>
-
-<p>
-None.
-</p>
-
-<h2>Diagnostic Error Messages</h2>
-
-<p>
-None.
-</p>
-
-<h2>Exit status</h2>
-
-<p>
-It always exits with a status of 0.
-</p>
-
-<h2>Known bugs</h2>
-
-<p>
-None.
-</p>
-
-<h2>See also</h2>
-
-<table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th>
-<th>Description</th></tr>
-
-<tr>
-<td><a href="ggcskew.html">ggcskew</a></td>
-<td>Calculates the GC skew of the input sequence</td>
-</tr><tr>
-<td><a href="ggcwin.html">ggcwin</a></td>
-<td>Calculates the GC content along the given genome</td>
-</tr><tr>
-<td><a href="ggenomicskew.html">ggenomicskew</a></td>
-<td>Calculates the GC skew in different regions of the given genom</td>
-</tr>
-
-</table>
-
-<h2>Author(s)</h2>
-
-<pre>
-   Hidetoshi Itaya (celery@g-language.org)
-   Institute for Advanced Biosciences, Keio University
-   252-0882 Japan
-
-  Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
-  Institute for Advanced Biosciences, Keio University
-  252-0882 Japan</pre>
-
-<h2>History</h2>
-
-   2012 - Written by Hidetoshi Itaya
-
-<h2>Target users</h2>
-
-   This program is intended to be used by everyone and everything, from
-   naive users to embedded scrips.
-
-<h2>Comments</h2>
-
-   None.
-
+<!--START OF HEADER - DON'T ALTER --><HTML><HEAD>  <TITLE> EMBOSS: ggeneskew </TITLE></HEAD><BODY BGCOLOR="#FFFFFF" text="#000000"><table align=center border=0 cellspacing=0 cellpadding=0><tr><td valign=top><A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="http://soap.g-language.org/gembassy/emboss_explorer/manual/emboss_icon.jpg" alt="" width=150 height=48></a></td><td align=left valign=middle><b><font size="+6">ggeneskew</font></b></td></tr></table><br>&nbsp;<p><!--END OF HEADER--><H2> Function </H2>   Calculate the gene strand bias of the given genome<!--DON'T WRITE ANYTHING HERE.IT IS DONE FOR YOU.--><H2>Description</H2><p>   ggeneskew calculates and plots the strand bias of genes (or the GC skew<br />   within them). By default, this program visualizes the gene strand preference<br />   (1 for direct, -1 for complement strand), but by specifying -base option<br />   option, GC/AT/Purine/Keto skews of the coding regions or more specifically<br />   in the GC3 (third codon position) with -gctri option can be calculated.<br />    <br />   G-language SOAP service is provided by the<br />   Institute for Advanced Biosciences, Keio University.<br />   The original web service is located at the following URL:<br /><br />   http://www.g-language.org/wiki/soap<br /><br />   WSDL(RPC/Encoded) file is located at:<br /><br />   http://soap.g-language.org/g-language.wsdl<br /><br />   Documentation on G-language Genome Analysis Environment methods are<br />   provided at the Document Center<br /><br />   http://ws.g-language.org/gdoc/<br /><br /></p><H2>Usage</H2>Here is a sample session with ggeneskew<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>% ggeneskew refseqn:NC_000913Calculate the gene strand bias of the given genomeProgram compseq output file (optional) [nc_000913.ggeneskew]: </pre></td></tr></table>Go to the <a href="#input">input files</a> for this example<br>Go to the <a href="#output">output files</a> for this example<br><br>   Example 2<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>% ggeneskew refseqn:NC_000913 -plot -graph pngCalculate the gene strand bias of the given genomeCreated ggeneskew.1.png</pre></td></tr></table>Go to the <a href="#input">input files</a> for this example<br>Go to the <a href="#output">output files</a> for this example<br><br><h2>Command line arguments</h2><table border cellspacing=0 cellpadding=3 bgcolor="#ccccff"><tr bgcolor="#FFFFCC"><th align="left">Qualifier</th><th align="left">Type</th><th align="left">Description</th><th align="left">Allowed values</th><th align="left">Default</th></tr><tr bgcolor="#FFFFCC"><th align="left" colspan=5>Standard (Mandatory) qualifiers</th></tr><tr bgcolor="#FFFFCC"><td>[-sequence]<br>(Parameter 1)</td><td>seqall</td><td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td><td>Readable sequence(s)</td><td><b>Required</b></td></tr><tr bgcolor="#FFFFCC"><td>-graph</td><td>xygraph</td><td>Graph type</td><td>EMBOSS has a list of known devices, including ps, hpgl, hp7470, hp7580, meta, cps, x11, tek, tekt, none, data, xterm, png, gif, svg</td><td><i>EMBOSS_GRAPHICS</i> value, or x11</td></tr><tr bgcolor="#FFFFCC"><td>-outfile</td><td>outfile</td><td>Program compseq output file (optional)</td><td>Output file</td><td><i>&lt;*&gt;</i>.ggeneskew</td></tr><tr bgcolor="#FFFFCC"><th align="left" colspan=5>Additional (Optional) qualifiers</th></tr><tr><td colspan=5>(none)</td></tr><tr bgcolor="#FFFFCC"><th align="left" colspan=5>Advanced (Unprompted) qualifiers</th></tr><tr bgcolor="#FFFFCC"><td>-window</td><td>integer</td><td>Window size to observe</td><td>Any integer value</td><td>10000</td></tr><tr bgcolor="#FFFFCC"><td>-slide</td><td>integer</td><td>Window slide size</td><td>Any integer value</td><td>10000</td></tr><tr bgcolor="#FFFFCC"><td>-cumulative</td><td>boolean</td><td>Input 1 to calculate cumulative skew</td><td>Boolean value Yes/No</td><td>No</td></tr><tr bgcolor="#FFFFCC"><td>-base</td><td>selection</td><td>Input 'gc', 'at', 'purine', or 'keto' for observing GC/AT/Purine/Keto skews</td><td>Choose from selection list of values</td><td>none</td></tr><tr bgcolor="#FFFFCC"><td>-gctri</td><td>boolean</td><td>Include to use only the third codon positions</td><td>Boolean value Yes/No</td><td>No</td></tr><tr bgcolor="#FFFFCC"><td>-[no]accid</td><td>boolean</td><td>Include to use sequence accession ID as query</td><td>Boolean value Yes/No</td><td>Yes</td></tr><tr bgcolor="#FFFFCC"><td>-plot</td><td>toggle</td><td>Include to plot result</td><td>Toggle value Yes/No</td><td>No</td></tr></table><h2 id="input">Input file format</h2><p>   The database definitions for following commands are available at<br />   http://soap.g-language.org/kbws/embossrc<br /><br />   ggeneskew reads one or more nucleotide sequences.<br /><br /></p><h2 id="output">Output file format</h2><p>   The output from ggeneskew is to a plain text file or the EMBOSS graphics device.<br /><br />   File: nc_000913.ggeneskew<br /><br /><table width="90%"><tr><td bgcolor="#CCFFCC">Sequence: NC_000913<br />location,gene None skew<br />190,0.294118<br />337,-0.058914<br />2801,-0.120000<br />3734,-0.070588<br />5234,0.037500<br />5683,0.020725<br />6529,0.032765<br />8238,-0.028226<br /><br /><font color=red>[Part of this file has been deleted for brevity]</font><br /><br />4631820,-0.093407<br />4632464,-0.006479<br />4633544,-0.120690<br />4634030,-0.060367<br />4634719,-0.104167<br />4636201,-0.144560<br />4637613,0.010929<br />4638425,0.200000<br />4638965,-0.081871<br />,<br /></td></tr></table></p><h2>Data files</h2><p>None.</p><h2>Notes</h2><p>None.</p><h2>References</h2><pre>   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.   Arakawa, K. and Tomita, M. (2006) G-language System as a Platform for      large-scale analysis of high-throughput omics data, J. Pest Sci.,      31, 7.   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome      Analysis Environment with REST and SOAP Web Service Interfaces,      Nucleic Acids Res., 38, W700-W705.</pre><h2>Warnings</h2><p>None.</p><h2>Diagnostic Error Messages</h2><p>None.</p><h2>Exit status</h2><p>It always exits with a status of 0.</p><h2>Known bugs</h2><p>None.</p><h2>See also</h2><table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th><th>Description</th></tr><tr><td><a href="ggcskew.html">ggcskew</a></td><td>Calculates the GC skew of the input sequence</td></tr><tr><td><a href="ggcwin.html">ggcwin</a></td><td>Calculates the GC content along the given genome</td></tr><tr><td><a href="ggenomicskew.html">ggenomicskew</a></td><td>Calculates the GC skew in different regions of the given genome</td></tr></table><h2>Author(s)</h2><pre>Hidetoshi Itaya (celery@g-language.org)  Institute for Advanced Biosciences, Keio University  252-0882 JapanKazuharu Arakawa (gaou@sfc.keio.ac.jp)  Institute for Advanced Biosciences, Keio University  252-0882 Japan</pre><h2>History</h2>   2012 - Written by Hidetoshi Itaya<h2>Target users</h2>   This program is intended to be used by everyone and everything, from   naive users to embedded scrips.<h2>Comments</h2>   None.

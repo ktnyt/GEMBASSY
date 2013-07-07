@@ -131,7 +131,8 @@ Input file format
 
 Output file format
 
-   The output from ggcskew is to a plain text file or the EMBOSS graphics device.
+   The output from ggcskew is to a plain text file or the EMBOSS graphics
+   device.
 
    File: nc_000913.ggcskew
 

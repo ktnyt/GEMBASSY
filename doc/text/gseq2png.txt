@@ -30,8 +30,7 @@ Here is a sample session with gseq2png
 
 % gseq2png refseqn:NC_000913
 Converts a sequence to PNG image
-Output file for non interactive displays [gcgr]: Created gcgr.1.png
-
+Output file for non interactive displays [gseq2png]: Created gseq2png.1.png
 
    Go to the input files for this example
    Go to the output files for this example

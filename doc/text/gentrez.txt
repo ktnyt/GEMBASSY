@@ -114,7 +114,6 @@ Output file format
         Escherichia coli W chromosome, complete genome
 
 
-
 Data files
 
    None.

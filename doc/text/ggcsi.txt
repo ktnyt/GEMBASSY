@@ -171,12 +171,12 @@ Known bugs
 
 See also
 
-   gb1           Calculate strand bias of bacterial genome using B1 index
-   gb2           Calculate strand bias of bacterial genome using B2 index
-   gdelta_gcskew Calculate strand bias of bacterial genome using delta GC skew
-                 index
-   glda_bias     Calculate strand bias of bacterial genome using linear
-                 discriminant analysis (LDA)
+   gb1          Calculate strand bias of bacterial genome using B1 index
+   gb2          Calculate strand bias of bacterial genome using B2 index
+   gdeltagcskew Calculate strand bias of bacterial genome using delta GC skew
+                index
+   gldabias     Calculate strand bias of bacterial genome using linear
+                discriminant analysis (LDA)
 
 Author(s)
 

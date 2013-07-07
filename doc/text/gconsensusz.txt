@@ -170,9 +170,9 @@ Known bugs
 
 See also
 
-   gdist_in_cc  Calculates the distance between two loci in circular chromosomes
-   gpalindrome  Searches palindrome sequences
-   gseqinfo     Prints out basic nucleotide sequence statistics
+   gdistincc   Calculates the distance between two loci in circular chromosomes
+   gpalindrome Searches palindrome sequences
+   gseqinfo    Prints out basic nucleotide sequence statistics
 
 Author(s)
 

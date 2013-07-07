@@ -195,9 +195,9 @@ Known bugs
 
 See also
 
-   ggcskew      Calculates the GC skew of the input sequence
-   ggcwin       Calculates the GC content along the given genome
-   ggeneskew    Calculate the gene strand bias of the given genome
+   ggcskew   Calculates the GC skew of the input sequence
+   ggcwin    Calculates the GC content along the given genome
+   ggeneskew Calculate the gene strand bias of the given genome
 
 Author(s)
 

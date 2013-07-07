@@ -1,279 +1,1 @@
-<!--START OF HEADER - DON'T ALTER -->
-
-<HTML>
-<HEAD>
-  <TITLE> EMBOSS: ggenomemap3 </TITLE>
-</HEAD>
-<BODY BGCOLOR="#FFFFFF" text="#000000">
-
-
-
-<table align=center border=0 cellspacing=0 cellpadding=0>
-<tr><td valign=top>
-<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="http://soap.g-language.org/gembassy/emboss_explorer/manual/emboss_icon.jpg" alt="" width=150 height=48></a>
-</td>
-<td align=left valign=middle>
-<b><font size="+6">
-ggenomemap3
-</font></b>
-</td></tr>
-</table>
-<br>&nbsp;
-<p>
-
-
-<!--END OF HEADER-->
-
-
-
-
-
-
-<H2> Function </H2>
-   Draws the map of the genome (version 3)
-<!--
-DON'T WRITE ANYTHING HERE.
-IT IS DONE FOR YOU.
--->
-
-
-
-
-<H2>Description</H2>
-<p>
-   ggenomemap3 creates a map of the genome, showing the local nucleotide<br />
-   contents and positions of genes. A is shown in red, T is shown in green, <br />
-   G is shown in yellow, and C is shown in blue.<br />
-   Created image has a resolution of 8192x8192 and is suited for conversion<br />
-   to SVG, which can be performed by specifying the -format option. The formats<br />
-   available are dependent to the "convert" command from ImageMagick.<br />
-    <br />
-   G-language SOAP service is provided by the<br />
-   Institute for Advanced Biosciences, Keio University.<br />
-   The original web service is located at the following URL:<br />
-<br />
-   http://www.g-language.org/wiki/soap<br />
-<br />
-   WSDL(RPC/Encoded) file is located at:<br />
-<br />
-   http://soap.g-language.org/g-language.wsdl<br />
-<br />
-   Documentation on G-language Genome Analysis Environment methods are<br />
-   provided at the Document Center<br />
-<br />
-   http://ws.g-language.org/gdoc/<br />
-<br />
-
-</p>
-
-<H2>Usage</H2>
-
-<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
-
-Here is a sample session with ggenomemap3
-
-% ggenomemap3 refseqn:NC_000913
-Draws the map of the genome (version 3)
-Output file for non interactive displays [ggenomemap3]: Created ggenomemap3.1.png
-
-
-   Go to the input files for this example
-   Go to the output files for this example
-
-
-
-</pre></td></tr></table>
-
-
-
-<h2>Command line arguments</h2>
-
-<table border cellspacing=0 cellpadding=3 bgcolor="#ccccff">
-<tr bgcolor="#FFFFCC">
-<th align="left">Qualifier</th>
-<th align="left">Type</th>
-<th align="left">Description</th>
-<th align="left">Allowed values</th>
-<th align="left">Default</th>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<th align="left" colspan=5>Standard (Mandatory) qualifiers</th>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>[-sequence]<br>(Parameter 1)</td>
-<td>seqall</td>
-<td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
-<td>Readable sequence(s)</td>
-<td><b>Required</b></td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>[-goutfile]<br>(Parameter 2)</td>
-<td>string</td>
-<td>Output file for non interactive displays</td>
-<td>Any string</td>
-<td>ggenomemap3</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<th align="left" colspan=5>Additional (Optional) qualifiers</th>
-</tr>
-
-<tr>
-<td colspan=5>(none)</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<th align="left" colspan=5>Advanced (Unprompted) qualifiers</th>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-format</td>
-<td>string</td>
-<td>Output file format. Dependent on 'convert' command</td>
-<td>Any string</td>
-<td>png</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-width</td>
-<td>integer</td>
-<td>Image width</td>
-<td>Any integer value</td>
-<td>8192</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-height</td>
-<td>integer</td>
-<td>Image height</td>
-<td>Any integer value</td>
-<td>8192</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-[no]accid</td>
-<td>boolean</td>
-<td>Include to use sequence accession ID as query</td>
-<td>Boolean value Yes/No</td>
-<td>Yes</td>
-</tr>
-
-</table>
-
-
-<h2>Input file format</h2>
-
-<p>
-   The database definitions for following commands are available at<br />
-   http://soap.g-language.org/kbws/embossrc<br />
-<br />
-   ggenomemap3 reads one or more nucleotide sequences.<br />
-<br />
-
-</p>
-
-<h2>Output file format</h2>
-
-<p>
-   The output from ggenomemap3 is to an image file.<br />
-<br />
-<br />
-<br />
-
-</p>
-
-<h2>Data files</h2>
-
-<p>
-None.
-</p>
-
-<h2>Notes</h2>
-
-<p>
-None.
-</p>
-
-<h2>References</h2>
-
-<pre>
-   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
-      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
-      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
-
-   Arakawa, K. and Tomita, M. (2006) G-language System as a Platform for
-      large-scale analysis of high-throughput omics data, J. Pest Sci.,
-      31, 7.
-
-   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
-      Analysis Environment with REST and SOAP Web Service Interfaces,
-      Nucleic Acids Res., 38, W700-W705.
-
-</pre>
-
-<h2>Warnings</h2>
-
-<p>
-None.
-</p>
-
-<h2>Diagnostic Error Messages</h2>
-
-<p>
-None.
-</p>
-
-<h2>Exit status</h2>
-
-<p>
-It always exits with a status of 0.
-</p>
-
-<h2>Known bugs</h2>
-
-<p>
-None.
-</p>
-
-<h2>See also</h2>
-
-<table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th>
-<th>Description</th></tr>
-
-<tr>
-<td><a href="gcircular_map.html">gcircular_map</a></td>
-<td>Draws circular map of the genome</td>
-</tr><tr>
-<td><a href="gdnawalk.html">gdnawalk</a></td>
-<td>Draws DNA Walk map of the genome</td>
-</tr>
-
-</table>
-
-<h2>Author(s)</h2>
-
-<pre>
-   Hidetoshi Itaya (celery@g-language.org)
-   Institute for Advanced Biosciences, Keio University
-   252-0882 Japan
-
-  Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
-  Institute for Advanced Biosciences, Keio University
-  252-0882 Japan</pre>
-
-<h2>History</h2>
-
-   2012 - Written by Hidetoshi Itaya
-
-<h2>Target users</h2>
-
-   This program is intended to be used by everyone and everything, from
-   naive users to embedded scrips.
-
-<h2>Comments</h2>
-
-   None.
-
+<!--START OF HEADER - DON'T ALTER --><HTML><HEAD>  <TITLE> EMBOSS: ggenomemap3 </TITLE></HEAD><BODY BGCOLOR="#FFFFFF" text="#000000"><table align=center border=0 cellspacing=0 cellpadding=0><tr><td valign=top><A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="http://soap.g-language.org/gembassy/emboss_explorer/manual/emboss_icon.jpg" alt="" width=150 height=48></a></td><td align=left valign=middle><b><font size="+6">ggenomemap3</font></b></td></tr></table><br>&nbsp;<p><!--END OF HEADER--><H2> Function </H2>   Draws the map of the genome (version 3)<!--DON'T WRITE ANYTHING HERE.IT IS DONE FOR YOU.--><H2>Description</H2><p>   ggenomemap3 creates a map of the genome, showing the local nucleotide<br />   contents and positions of genes. A is shown in red, T is shown in green, <br />   G is shown in yellow, and C is shown in blue.<br />   Created image has a resolution of 8192x8192 and is suited for conversion<br />   to SVG, which can be performed by specifying the -format option. The formats<br />   available are dependent to the "convert" command from ImageMagick.<br />    <br />   G-language SOAP service is provided by the<br />   Institute for Advanced Biosciences, Keio University.<br />   The original web service is located at the following URL:<br /><br />   http://www.g-language.org/wiki/soap<br /><br />   WSDL(RPC/Encoded) file is located at:<br /><br />   http://soap.g-language.org/g-language.wsdl<br /><br />   Documentation on G-language Genome Analysis Environment methods are<br />   provided at the Document Center<br /><br />   http://ws.g-language.org/gdoc/<br /><br /></p><H2>Usage</H2>Here is a sample session with ggenomemap3<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>% ggenomemap3 refseqn:NC_000913Draws the map of the genome (version 3)Output file for non interactive displays [ggenomemap3]: Created ggenomemap3.1.png</pre></td></tr></table><h2>Command line arguments</h2><table border cellspacing=0 cellpadding=3 bgcolor="#ccccff"><tr bgcolor="#FFFFCC"><th align="left">Qualifier</th><th align="left">Type</th><th align="left">Description</th><th align="left">Allowed values</th><th align="left">Default</th></tr><tr bgcolor="#FFFFCC"><th align="left" colspan=5>Standard (Mandatory) qualifiers</th></tr><tr bgcolor="#FFFFCC"><td>[-sequence]<br>(Parameter 1)</td><td>seqall</td><td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td><td>Readable sequence(s)</td><td><b>Required</b></td></tr><tr bgcolor="#FFFFCC"><td>[-goutfile]<br>(Parameter 2)</td><td>string</td><td>Output file for non interactive displays</td><td>Any string</td><td>ggenomemap3</td></tr><tr bgcolor="#FFFFCC"><th align="left" colspan=5>Additional (Optional) qualifiers</th></tr><tr><td colspan=5>(none)</td></tr><tr bgcolor="#FFFFCC"><th align="left" colspan=5>Advanced (Unprompted) qualifiers</th></tr><tr bgcolor="#FFFFCC"><td>-format</td><td>string</td><td>Output file format. Dependent on 'convert' command</td><td>Any string</td><td>png</td></tr><tr bgcolor="#FFFFCC"><td>-width</td><td>integer</td><td>Image width</td><td>Any integer value</td><td>8192</td></tr><tr bgcolor="#FFFFCC"><td>-height</td><td>integer</td><td>Image height</td><td>Any integer value</td><td>8192</td></tr><tr bgcolor="#FFFFCC"><td>-[no]accid</td><td>boolean</td><td>Include to use sequence accession ID as query</td><td>Boolean value Yes/No</td><td>Yes</td></tr></table><h2 id="input">Input file format</h2><p>   The database definitions for following commands are available at<br />   http://soap.g-language.org/kbws/embossrc<br /><br />   ggenomemap3 reads one or more nucleotide sequences.<br /><br /></p><h2 id="output">Output file format</h2><p>   The output from ggenomemap3 is to an image file.<br /></p><h2>Data files</h2><p>None.</p><h2>Notes</h2><p>None.</p><h2>References</h2><pre>   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.   Arakawa, K. and Tomita, M. (2006) G-language System as a Platform for      large-scale analysis of high-throughput omics data, J. Pest Sci.,      31, 7.   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome      Analysis Environment with REST and SOAP Web Service Interfaces,      Nucleic Acids Res., 38, W700-W705.</pre><h2>Warnings</h2><p>None.</p><h2>Diagnostic Error Messages</h2><p>None.</p><h2>Exit status</h2><p>It always exits with a status of 0.</p><h2>Known bugs</h2><p>None.</p><h2>See also</h2><table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th><th>Description</th></tr><tr><td><a href="gcircularmap.html">gcircular_map</a></td><td>Draws circular map of the genome</td></tr><tr><td><a href="gdnawalk.html">gdnawalk</a></td><td>Draws DNA Walk map of the genome</td></tr></table><h2>Author(s)</h2><pre>Hidetoshi Itaya (celery@g-language.org)  Institute for Advanced Biosciences, Keio University  252-0882 JapanKazuharu Arakawa (gaou@sfc.keio.ac.jp)  Institute for Advanced Biosciences, Keio University  252-0882 Japan</pre><h2>History</h2>   2012 - Written by Hidetoshi Itaya<h2>Target users</h2>   This program is intended to be used by everyone and everything, from   naive users to embedded scrips.<h2>Comments</h2>   None.</BODY></HTML>

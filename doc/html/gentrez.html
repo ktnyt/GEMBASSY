@@ -1,283 +1,1 @@
-<!--START OF HEADER - DON'T ALTER -->
-
-<HTML>
-<HEAD>
-  <TITLE> EMBOSS: gentrez </TITLE>
-</HEAD>
-<BODY BGCOLOR="#FFFFFF" text="#000000">
-
-
-
-<table align=center border=0 cellspacing=0 cellpadding=0>
-<tr><td valign=top>
-<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="http://soap.g-language.org/gembassy/emboss_explorer/manual/emboss_icon.jpg" alt="" width=150 height=48></a>
-</td>
-<td align=left valign=middle>
-<b><font size="+6">
-gentrez
-</font></b>
-</td></tr>
-</table>
-<br>&nbsp;
-<p>
-
-
-<!--END OF HEADER-->
-
-
-
-
-
-
-<H2> Function </H2>
-   Search NCBI Entrez
-<!--
-DON'T WRITE ANYTHING HERE.
-IT IS DONE FOR YOU.
--->
-
-
-
-
-<H2>Description</H2>
-<p>
-   gentrez searches NCBI Entrez with keyword through EUtilities. <br />
-   This is intended for quick lookup through the command line<br />
-   so only top ten hits are reported.<br />
-    <br />
-   G-language SOAP service is provided by the<br />
-   Institute for Advanced Biosciences, Keio University.<br />
-   The original web service is located at the following URL:<br />
-<br />
-   http://www.g-language.org/wiki/soap<br />
-<br />
-   WSDL(RPC/Encoded) file is located at:<br />
-<br />
-   http://soap.g-language.org/g-language.wsdl<br />
-<br />
-   Documentation on G-language Genome Analysis Environment methods are<br />
-   provided at the Document Center<br />
-<br />
-   http://ws.g-language.org/gdoc/<br />
-<br />
-
-</p>
-
-<H2>Usage</H2>
-
-<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
-
-Here is a sample session with gentrez
-
-% gentrez genome 'Escherichia coli'
-Search NCBI Entrez
-ASCII text output file [genome.Escherichia coli.gentrez]: 
-
-   Go to the input files for this example
-   Go to the output files for this example
-
-
-
-</pre></td></tr></table>
-
-
-
-<h2>Command line arguments</h2>
-
-<table border cellspacing=0 cellpadding=3 bgcolor="#ccccff">
-<tr bgcolor="#FFFFCC">
-<th align="left">Qualifier</th>
-<th align="left">Type</th>
-<th align="left">Description</th>
-<th align="left">Allowed values</th>
-<th align="left">Default</th>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<th align="left" colspan=5>Standard (Mandatory) qualifiers</th>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>[-database]<br>(Parameter 1)</td>
-<td>string</td>
-<td>NCBI database to search</td>
-<td>Any string</td>
-<td>pubmed</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>[-query]<br>(Parameter 2)</td>
-<td>string</td>
-<td>Query to search</td>
-<td>Any string</td>
-<td>&nbsp;</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>[-outfile]<br>(Parameter 3)</td>
-<td>outfile</td>
-<td>ASCII text output file</td>
-<td>Output file</td>
-<td>$(database).$(query).gentrez</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<th align="left" colspan=5>Additional (Optional) qualifiers</th>
-</tr>
-
-<tr>
-<td colspan=5>(none)</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<th align="left" colspan=5>Advanced (Unprompted) qualifiers</th>
-</tr>
-
-<tr>
-<td colspan=5>(none)</td>
-</tr>
-
-</table>
-
-
-<h2>Input file format</h2>
-
-<p>
-   The database definitions for following commands are available at<br />
-   http://soap.g-language.org/kbws/embossrc<br />
-<br />
-   gentrez reads no file input.<br />
-<br />
-
-</p>
-
-<h2>Output file format</h2>
-
-<p>
-   The output from gentrez is to a plain text file.<br />
-<br />
-   File: genome.Escherichia coli.gentrez<br />
-<br />
-    53 entries found in NUCLEOTIDE: (Showing up to 10 hits)<br />
-<br />
-     1. Accession Number:   NZ_AKBV01000001<br />
-        Escherichia coli str. K-12 substr. MG1655 strain K-12 cont1.1 chromosome, whole genome shotgun sequence, complete genome<br />
-<br />
-     2. Accession Number:   NC_018658<br />
-        Escherichia coli O104:H4 str. 2011C-3493 chromosome, complete genome<br />
-<br />
-     3. Accession Number:   NC_012971<br />
-        Escherichia coli BL21(DE3) chromosome, complete genome<br />
-<br />
-     4. Accession Number:   NC_017635<br />
-        Escherichia coli W chromosome, complete genome<br />
-<br />
-     5. Accession Number:   NC_018650<br />
-        Escherichia coli O104:H4 str. 2009EL-2050 chromosome, complete genome<br />
-<br />
-     6. Accession Number:   NC_018661<br />
-        Escherichia coli O104:H4 str. 2009EL-2071 chromosome, complete genome<br />
-<br />
-     7. Accession Number:   NC_017906<br />
-        Escherichia coli Xuzhou21 chromosome, complete genome<br />
-<br />
-     8. Accession Number:   NC_017634<br />
-        Escherichia coli O83:H1 str. NRG 857C chromosome, complete genome<br />
-<br />
-     9. Accession Number:   NC_017656<br />
-        Escherichia coli O55:H7 str. RM12579 chromosome, complete genome<br />
-<br />
-    10. Accession Number:   NC_017664<br />
-        Escherichia coli W chromosome, complete genome<br />
-<br />
-<br />
-<br />
-
-</p>
-
-<h2>Data files</h2>
-
-<p>
-None.
-</p>
-
-<h2>Notes</h2>
-
-<p>
-None.
-</p>
-
-<h2>References</h2>
-
-<pre>
-   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
-      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
-      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
-
-   Arakawa, K. and Tomita, M. (2006) G-language System as a Platform for
-      large-scale analysis of high-throughput omics data, J. Pest Sci.,
-      31, 7.
-
-   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
-      Analysis Environment with REST and SOAP Web Service Interfaces,
-      Nucleic Acids Res., 38, W700-W705.
-
-</pre>
-
-<h2>Warnings</h2>
-
-<p>
-None.
-</p>
-
-<h2>Diagnostic Error Messages</h2>
-
-<p>
-None.
-</p>
-
-<h2>Exit status</h2>
-
-<p>
-It always exits with a status of 0.
-</p>
-
-<h2>Known bugs</h2>
-
-<p>
-None.
-</p>
-
-<h2>See also</h2>
-
-<table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th>
-<th>Description</th></tr>
-
-
-
-</table>
-
-<h2>Author(s)</h2>
-
-<pre>
-   Hidetoshi Itaya (celery@g-language.org)
-   Institute for Advanced Biosciences, Keio University
-   252-0882 Japan
-
-  Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
-  Institute for Advanced Biosciences, Keio University
-  252-0882 Japan</pre>
-
-<h2>History</h2>
-
-   2012 - Written by Hidetoshi Itaya
-
-<h2>Target users</h2>
-
-   This program is intended to be used by everyone and everything, from
-   naive users to embedded scrips.
-
-<h2>Comments</h2>
-
-   None.
-
+<!--START OF HEADER - DON'T ALTER --><HTML><HEAD>  <TITLE> EMBOSS: gentrez </TITLE></HEAD><BODY BGCOLOR="#FFFFFF" text="#000000"><table align=center border=0 cellspacing=0 cellpadding=0><tr><td valign=top><A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="http://soap.g-language.org/gembassy/emboss_explorer/manual/emboss_icon.jpg" alt="" width=150 height=48></a></td><td align=left valign=middle><b><font size="+6">gentrez</font></b></td></tr></table><br>&nbsp;<p><!--END OF HEADER--><H2> Function </H2>   Search NCBI Entrez<!--DON'T WRITE ANYTHING HERE.IT IS DONE FOR YOU.--><H2>Description</H2><p>   gentrez searches NCBI Entrez with keyword through EUtilities. <br />   This is intended for quick lookup through the command line<br />   so only top ten hits are reported.<br />    <br />   G-language SOAP service is provided by the<br />   Institute for Advanced Biosciences, Keio University.<br />   The original web service is located at the following URL:<br /><br />   http://www.g-language.org/wiki/soap<br /><br />   WSDL(RPC/Encoded) file is located at:<br /><br />   http://soap.g-language.org/g-language.wsdl<br /><br />   Documentation on G-language Genome Analysis Environment methods are<br />   provided at the Document Center<br /><br />   http://ws.g-language.org/gdoc/<br /><br /></p><H2>Usage</H2>Here is a sample session with gentrez<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>% gentrez genome 'Escherichia coli'Search NCBI EntrezASCII text output file [genome.Escherichia coli.gentrez]: </pre></td></tr></table>Go to the <a href="#input">input files</a> for this example<br>Go to the <a href="#output">output files</a> for this example<br><br><h2>Command line arguments</h2><table border cellspacing=0 cellpadding=3 bgcolor="#ccccff"><tr bgcolor="#FFFFCC"><th align="left">Qualifier</th><th align="left">Type</th><th align="left">Description</th><th align="left">Allowed values</th><th align="left">Default</th></tr><tr bgcolor="#FFFFCC"><th align="left" colspan=5>Standard (Mandatory) qualifiers</th></tr><tr bgcolor="#FFFFCC"><td>[-database]<br>(Parameter 1)</td><td>string</td><td>NCBI database to search</td><td>Any string</td><td>pubmed</td></tr><tr bgcolor="#FFFFCC"><td>[-query]<br>(Parameter 2)</td><td>string</td><td>Query to search</td><td>Any string</td><td>&nbsp;</td></tr><tr bgcolor="#FFFFCC"><td>[-outfile]<br>(Parameter 3)</td><td>outfile</td><td>ASCII text output file</td><td>Output file</td><td>$(database).$(query).gentrez</td></tr><tr bgcolor="#FFFFCC"><th align="left" colspan=5>Additional (Optional) qualifiers</th></tr><tr><td colspan=5>(none)</td></tr><tr bgcolor="#FFFFCC"><th align="left" colspan=5>Advanced (Unprompted) qualifiers</th></tr><tr><td colspan=5>(none)</td></tr></table><h2 id="input">Input file format</h2><p>   The database definitions for following commands are available at<br />   http://soap.g-language.org/kbws/embossrc<br /><br />   gentrez reads no file input.<br /><br /></p><h2 id="output">Output file format</h2><p>   The output from gentrez is to a plain text file.<br /><br />   File: genome.Escherichia coli.gentrez<br /><br /><table width="90%"><tr><td bgcolor="#CCFFCC">    53 entries found in NUCLEOTIDE: (Showing up to 10 hits)<br /><br />     1. Accession Number:   NZ_AKBV01000001<br />        Escherichia coli str. K-12 substr. MG1655 strain K-12 cont1.1 chromosome, whole genome shotgun sequence, complete genome<br /><br />     2. Accession Number:   NC_018658<br />        Escherichia coli O104:H4 str. 2011C-3493 chromosome, complete genome<br /><br />     3. Accession Number:   NC_012971<br />        Escherichia coli BL21(DE3) chromosome, complete genome<br /><br />     4. Accession Number:   NC_017635<br />        Escherichia coli W chromosome, complete genome<br /><br />     5. Accession Number:   NC_018650<br />        Escherichia coli O104:H4 str. 2009EL-2050 chromosome, complete genome<br /><br />     6. Accession Number:   NC_018661<br />        Escherichia coli O104:H4 str. 2009EL-2071 chromosome, complete genome<br /><br />     7. Accession Number:   NC_017906<br />        Escherichia coli Xuzhou21 chromosome, complete genome<br /><br />     8. Accession Number:   NC_017634<br />        Escherichia coli O83:H1 str. NRG 857C chromosome, complete genome<br /><br />     9. Accession Number:   NC_017656<br />        Escherichia coli O55:H7 str. RM12579 chromosome, complete genome<br /><br />    10. Accession Number:   NC_017664<br />        Escherichia coli W chromosome, complete genome<br /></td></tr></table></p><h2>Data files</h2><p>None.</p><h2>Notes</h2><p>None.</p><h2>References</h2><pre>   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.   Arakawa, K. and Tomita, M. (2006) G-language System as a Platform for      large-scale analysis of high-throughput omics data, J. Pest Sci.,      31, 7.   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome      Analysis Environment with REST and SOAP Web Service Interfaces,      Nucleic Acids Res., 38, W700-W705.</pre><h2>Warnings</h2><p>None.</p><h2>Diagnostic Error Messages</h2><p>None.</p><h2>Exit status</h2><p>It always exits with a status of 0.</p><h2>Known bugs</h2><p>None.</p><h2>See also</h2><table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th><th>Description</th></tr></table><h2>Author(s)</h2><pre>Hidetoshi Itaya (celery@g-language.org)  Institute for Advanced Biosciences, Keio University  252-0882 JapanKazuharu Arakawa (gaou@sfc.keio.ac.jp)  Institute for Advanced Biosciences, Keio University  252-0882 Japan</pre><h2>History</h2>   2012 - Written by Hidetoshi Itaya<h2>Target users</h2>   This program is intended to be used by everyone and everything, from   naive users to embedded scrips.<h2>Comments</h2>   None.</BODY></HTML>

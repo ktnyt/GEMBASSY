@@ -33,7 +33,8 @@ Here is a sample session with ggenomemap3
 
 % ggenomemap3 refseqn:NC_000913
 Draws the map of the genome (version 3)
-Output file for non interactive displays [ggenomemap3]: Created ggenomemap3.1.png
+Output file for non interactive displays [ggenomemap3]: 
+Created ggenomemap3.1.png
 
 
    Go to the input files for this example
@@ -105,8 +106,6 @@ Output file format
 
    The output from ggenomemap3 is to an image file.
 
-
-
 Data files
 
    None.
@@ -147,8 +146,8 @@ Known bugs
 
 See also
 
-   gcircular_map Draws circular map of the genome
-   gdnawalk      Draws DNA Walk map of the genome
+   gcircularmap Draws circular map of the genome
+   gdnawalk     Draws DNA Walk map of the genome
 
 Author(s)
 

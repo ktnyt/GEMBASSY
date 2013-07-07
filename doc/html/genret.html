@@ -1,444 +1,1 @@
-<!--START OF HEADER - DON'T ALTER -->
-
-<HTML>
-<HEAD>
-  <TITLE> EMBOSS: genret </TITLE>
-</HEAD>
-<BODY BGCOLOR="#FFFFFF" text="#000000">
-
-
-
-<table align=center border=0 cellspacing=0 cellpadding=0>
-<tr><td valign=top>
-<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="http://soap.g-language.org/gembassy/emboss_explorer/manual/emboss_icon.jpg" alt="" width=150 height=48></a>
-</td>
-<td align=left valign=middle>
-<b><font size="+6">
-genret
-</font></b>
-</td></tr>
-</table>
-<br>&nbsp;
-<p>
-
-
-<!--END OF HEADER-->
-
-
-
-
-
-
-<H2> Function </H2>
-   Retrieves various gene related information from genome flatfile
-<!--
-DON'T WRITE ANYTHING HERE.
-IT IS DONE FOR YOU.
--->
-
-
-
-
-<H2>Description</H2>
-<p>
-   genret reads in one or more genome flatfiles and retrieves various data from<br />
-   the input file. It is a wrapper program to the G-language REST service,<br />
-   where a method is specified by giving a string to the "method" qualifier. By<br />
-   default, genret will parse the input file to retrieve the accession ID<br />
-   (or name) of the genome to query G-language REST service. By setting the<br />
-   "accid" qualifier to false (or 0), genret will instead parse the sequence<br />
-   and features of the genome to create a GenBank formatted flatfile and upload<br />
-   the file to the G-language web server. Using the file uploaded, genret will<br />
-   execute the method provided.<br />
-<br />
-   genret is able to perform a variety of tasks, incluing the retrieval of<br />
-   sequence upstream, downstream, or around the start or stop codon,<br />
-   translated gene sequences search of gene data by keyword.<br />
-<br />
-   Details on G-language REST service is available from the wiki page<br />
-<br />
-   http://www.g-language.org/wiki/rest<br />
-<br />
-   Documentation on G-language Genome Analysis Environment methods are<br />
-   provided at the Document Center<br />
-<br />
-   http://ws.g-language.org/gdoc/<br />
-<br />
-
-</p>
-
-<H2>Usage</H2>
-
-Here is a sample session with genret<br><br>
-
-Retrieving sequences upstream, downstream, or around the start/stop codons.
-The following example shows the retrieval of sequence around the start
-codons of all genes.<br><br>
-
-Available methods are:<br>
-   after_startcodon<br>
-   after_stopcodon<br>
-   around_startcodon<br>
-   around_stopcodon<br>
-   before_startcodon<br>
-   before_stopcodon<br><br>
-
-<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
-
-% genret
-Retrieves various gene related information from genome flatfile
-Input nucleotide sequence(s): refseqn:NC_000913
-Gene name(s) to lookup [*]:
-Feature to access: around_startcodon
-Full text output file [nc_000913.around_startcodon]:
-
-</pre></td></tr></table>
-
-Go to the <a href="#input">input files</a> for this example<br>
-Go to the <a href="#output">output files</a> for this example<br><br>
-
-Example 2<br><br>
-
-Retrieving translations of coding sequences.<br>
-The following example will retrieve the translated protein sequence of
-the "recA" gene.<br><br>
-
-<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
-
-% genret
-Retrieves various gene related information from genome flatfile
-Input nucleotide sequence(s): refseqn:NC_000913
-Gene name(s) to lookup [*]: recA
-Feature to access: translation
-Full text output file [nc_000913.translation]: stdout
->recA
-MAIDENKQKALAAALGQIEKQFGKGSIMRLGEDRSMDVETISTGSLSLDIALGAGGLPMGR
-IVEIYGPESSGKTTLTLQVIAAAQREGKTCAFIDAEHALDPIYARKLGVDIDNLLCSQPDT
-GEQALEICDALARSGAVDVIVVDSVAALTPKAEIEGEIGDSHMGLAARMMSQAMRKLAGNL
-KQSNTLLIFINQIRMKIGVMFGNPETTTGGNALKFYASVRLDIRRIGAVKEGENVVGSETR
-VKVVKNKIAAPFKQAEFQILYGEGINFYGELVDLGVKEKLIEKAGAWYSYKGEKIGQGKAN
-ATAWLKDNPETAKEIEKKVRELLLSNPNSTPDFSVDDSEGVAETNEDF
-
-</pre></td></tr></table>
-
-Go to the <a href="#input">input files</a> for this example<br>
-Go to the <a href="#output">output files</a> for this example<br><br>
-
-Example 3<br><br>
-
-Retrieving feature information of the genes.<br>
-The following example will retrieve the start positions for each gene.
-The values for the keys in GenBank format is available for retrieval.
-(ex. start end direction GO* etc.)<br>
-Positions will be returned with a 1 start value.<br><br>
-
-<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
-
-% genret
-Retrieves various gene related information from genome flatfile
-Input nucleotide sequence(s): refseqn:NC_000913
-Gene name(s) to lookup [*]:
-Feature to access: start
-Full text output file [nc_000913.start]:
-
-</pre></td></tr></table>
-
-Go to the <a href="#input">input files</a> for this example<br>
-Go to the <a href="#output">output files</a> for this example<br><br>
-
-Example 4<br><br>
-
-Using a file with a list of gene names.<br>
-The following example will retrieve the strand direction for each gene
-listed in the "gene_list.txt" file. String prefixed with an "@" or "list::"
-will be interpreted as file names.<br><br>
-
-<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
-
-% genret
-Retrieves various gene features from genome flatfile
-Input nucleotide sequence(s): refseqn:NC_000913
-List of gene name(s) to report [*]: @gene_list.txt
-Name of gene feature to access: direction
-Full text output file [nc_000913.direction]: stdout
-gene,direction
-thrA,direct
-thrB,direct
-thrC,direct
-
-</pre></td></tr></table>
-
-Go to the <a href="#input">input files</a> for this example<br>
-Go to the <a href="#output">output files</a> for this example<br><br>
-
-Example 5<br><br>
-
-Passing extra arguments to the methods.<br>
-The following example shows the retrieval of 30 base pairs around the
-start codon of the "recA" gene. By default, the "around_startcodon" method
-returns 200 base pairs around the start codon. Using the "-argument"
-qualifier allows the user to change this value.<br><br>
-
-<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
-
-% genret refseqn:NC_000913 recA around_startcodon -argument 30,30 stdout
-Retrieves various gene features from genome flatfile
->recA
-ccggtattacccggcatgacaggagtaaaaatggctatcgacgaaaacaaacagaaagcgt
-tg
-
-</pre></td></tr></table>
-
-Go to the <a href="#input">input files</a> for this example<br>
-Go to the <a href="#output">output files</a> for this example<br><br>
-
-
-<h2>Command line arguments</h2>
-
-<table border cellspacing=0 cellpadding=3 bgcolor="#ccccff">
-<tr bgcolor="#FFFFCC">
-<th align="left">Qualifier</th>
-<th align="left">Type</th>
-<th align="left">Description</th>
-<th align="left">Allowed values</th>
-<th align="left">Default</th>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<th align="left" colspan=5>Standard (Mandatory) qualifiers</th>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>[-sequence]<br>(Parameter 1)</td>
-<td>seqall</td>
-<td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
-<td>Readable sequence(s)</td>
-<td><b>Required</b></td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>[-gene]<br>(Parameter 2)</td>
-<td>string</td>
-<td>List of gene name(s) to report</td>
-<td>Any string</td>
-<td>*</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>[-access]<br>(Parameter 3)</td>
-<td>string</td>
-<td>Name of gene feature to access</td>
-<td>Any word</td>
-<td>&nbsp;</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>[-outfile]<br>(Parameter 4)</td>
-<td>outfile</td>
-<td>Sequence output file</td>
-<td>Output file</td>
-<td><i>&lt;*&gt;</i>.genret</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<th align="left" colspan=5>Additional (Optional) qualifiers</th>
-</tr>
-
-<tr>
-<td colspan=5>(none)</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<th align="left" colspan=5>Advanced (Unprompted) qualifiers</th>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-argument</td>
-<td>string</td>
-<td>Extra arguments to pass to method</td>
-<td>Any string</td>
-<td>&nbsp;</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-[no]accid</td>
-<td>boolean</td>
-<td>Include to use sequence accession ID as query</td>
-<td>Boolean value Yes/No</td>
-<td>Yes</td>
-</tr>
-
-</table>
-
-
-<h2 id="input">Input file format</h2>
-
-<p>
-   Database definitions for the examples are included in the embossrc_template<br />
-   file of the Keio Bioinformatcs Web Service (KBWS) package.<br />
-<br />
-   Input files for usage example 4<br />
-<br />
-   File: gene_list.txt<br />
-<br />
-thrA<br />
-thrB<br />
-thrC<br />
-<br />
-
-</p>
-
-<h2 id="output">Output file format</h2>
-
-<p>
-   Output files for usage example 1<br />
-<br />
-   File: nc_000913.around_startcodon<br />
-<br />
->thrL<br />
-cgtgagtaaattaaaattttattgacttaggtcactaaatactttaaccaatataggcata<br />
-gcgcacagacagataaaaattacagagtacacaacatccatgaaacgcattagcaccacca<br />
-ttaccaccaccatcaccattaccacaggtaacggtgcgggctgacgcgtacaggaaacaca<br />
-gaaaaaagcccgcacctgac<br />
->thrA<br />
-aggtaacggtgcgggctgacgcgtacaggaaacacagaaaaaagcccgcacctgacagtgc<br />
-gggctttttttttcgaccaaaggtaacgaggtaacaaccatgcgagtgttgaagttcggcg<br />
-gtacatcagtggcaaatgcagaacgttttctgcgtgttgccgatattctggaaagcaatgc<br />
-caggcaggggcaggtggcca<br />
-<br />
-   [Part of this file has been deleted for brevity]<br />
-<br />
->yjjY<br />
-tgcatgtttgctacctaaattgccaactaaatcgaaacaggaagtacaaaagtccctgacc<br />
-tgcctgatgcatgctgcaaattaacatgatcggcgtaacatgactaaagtacgtaattgcg<br />
-ttcttgatgcactttccatcaacgtcaacaacatcattagcttggtcgtgggtactttccc<br />
-tcaggacccgacagtgtcaa<br />
->yjtD<br />
-tttttctgcgacttacgttaagaatttgtaaattcgcaccgcgtaataagttgacagtgat<br />
-cacccggttcgcggttatttgatcaagaagagtggcaatatgcgtataacgattattctgg<br />
-tcgcacccgccagagcagaaaatattggggcagcggcgcgggcaatgaaaacgatggggtt<br />
-tagcgatctgcggattgtcg<br />
-<br />
-   Output files for usage example 3<br />
-<br />
-   File: nc_000913.start<br />
-<br />
-gene,start<br />
-thrL,190<br />
-thrA,337<br />
-thrB,2801<br />
-thrC,3734<br />
-yaaX,5234<br />
-yaaA,5683<br />
-yaaJ,6529<br />
-talB,8238<br />
-mog,9306<br />
-<br />
-   [Part of this file has been deleted for brevity]<br />
-<br />
-yjjX,4631256<br />
-ytjC,4631820<br />
-rob,4632464<br />
-creA,4633544<br />
-creB,4634030<br />
-creC,4634719<br />
-creD,4636201<br />
-arcA,4637613<br />
-yjjY,4638425<br />
-yjtD,4638965<br />
-<br />
-
-</p>
-
-<h2>Data files</h2>
-
-<p>
-None.
-</p>
-
-<h2>Notes</h2>
-
-<p>
-None.
-</p>
-
-<h2>References</h2>
-
-<pre>
-   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
-      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
-      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
-
-   Arakawa, K. and Tomita, M. (2006) G-language System as a Platform for
-      large-scale analysis of high-throughput omics data, J. Pest Sci.,
-      31, 7.
-
-   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
-      Analysis Environment with REST and SOAP Web Service Interfaces,
-      Nucleic Acids Res., 38, W700-W705.
-
-</pre>
-
-<h2>Warnings</h2>
-
-<p>
-None.
-</p>
-
-<h2>Diagnostic Error Messages</h2>
-
-<p>
-None.
-</p>
-
-<h2>Exit status</h2>
-
-<p>
-It always exits with a status of 0.
-</p>
-
-<h2>Known bugs</h2>
-
-<p>
-None.
-</p>
-
-<h2>See also</h2>
-
-<table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th>
-<th>Description</th></tr>
-
-<tr>
-<td><a href="entret.html">entret</a></td>
-<td>Retrieve sequence entries from flatfile databases and files</td>
-</tr><tr>
-<td><a href="seqret.html">seqret</a></td>
-<td>Read and write (return) sequences</td>
-</tr>
-
-</table>
-
-<h2>Author(s)</h2>
-
-<pre>
-   Hidetoshi Itaya (celery@g-language.org)
-   Institute for Advanced Biosciences, Keio University
-   252-0882 Japan
-
-  Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
-  Institute for Advanced Biosciences, Keio University
-  252-0882 Japan</pre>
-
-<h2>History</h2>
-
-   2012 - Written by Hidetoshi Itaya
-
-<h2>Target users</h2>
-
-   This program is intended to be used by everyone and everything, from
-   naive users to embedded scrips.
-
-<h2>Comments</h2>
-
-   None.
-
+<!--START OF HEADER - DON'T ALTER --><HTML><HEAD>  <TITLE> EMBOSS: genret </TITLE></HEAD><BODY BGCOLOR="#FFFFFF" text="#000000"><table align=center border=0 cellspacing=0 cellpadding=0><tr><td valign=top><A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="http://soap.g-language.org/gembassy/emboss_explorer/manual/emboss_icon.jpg" alt="" width=150 height=48></a></td><td align=left valign=middle><b><font size="+6">genret</font></b></td></tr></table><br>&nbsp;<p><!--END OF HEADER--><H2> Function </H2>   Retrieves various gene related information from genome flatfile<!--DON'T WRITE ANYTHING HERE.IT IS DONE FOR YOU.--><H2>Description</H2><p>   genret reads in one or more genome flatfiles and retrieves various data from<br />   the input file. It is a wrapper program to the G-language REST service,<br />   where a method is specified by giving a string to the "method" qualifier. By<br />   default, genret will parse the input file to retrieve the accession ID<br />   (or name) of the genome to query G-language REST service. By setting the<br />   "accid" qualifier to false (or 0), genret will instead parse the sequence<br />   and features of the genome to create a GenBank formatted flatfile and upload<br />   the file to the G-language web server. Using the file uploaded, genret will<br />   execute the method provided.<br /><br />   genret is able to perform a variety of tasks, incluing the retrieval of<br />   sequence upstream, downstream, or around the start or stop codon,<br />   translated gene sequences search of gene data by keyword.<br /><br />   Details on G-language REST service is available from the wiki page<br /><br />   http://www.g-language.org/wiki/rest<br /><br />   Documentation on G-language Genome Analysis Environment methods are<br />   provided at the Document Center<br /><br />   http://ws.g-language.org/gdoc/<br /><br /></p><H2>Usage</H2>Here is a sample session with genret<br><br>Retrieving sequences upstream, downstream, or around the start/stop codons.The following example shows the retrieval of sequence around the startcodons of all genes.<br><br>Available methods are:<br>   after_startcodon<br>   after_stopcodon<br>   around_startcodon<br>   around_stopcodon<br>   before_startcodon<br>   before_stopcodon<br><br><table width="90%"><tr><td bgcolor="#CCFFFF"><pre>% genretRetrieves various gene related information from genome flatfileInput nucleotide sequence(s): refseqn:NC_000913Gene name(s) to lookup [*]:Feature to access: around_startcodonFull text output file [nc_000913.around_startcodon]:</pre></td></tr></table>Go to the <a href="#input">input files</a> for this example<br>Go to the <a href="#output">output files</a> for this example<br><br>Example 2<br><br>Retrieving translations of coding sequences.<br>The following example will retrieve the translated protein sequence ofthe "recA" gene.<br><br><table width="90%"><tr><td bgcolor="#CCFFFF"><pre>% genretRetrieves various gene related information from genome flatfileInput nucleotide sequence(s): refseqn:NC_000913Gene name(s) to lookup [*]: recAFeature to access: translationFull text output file [nc_000913.translation]: stdout>recAMAIDENKQKALAAALGQIEKQFGKGSIMRLGEDRSMDVETISTGSLSLDIALGAGGLPMGRIVEIYGPESSGKTTLTLQVIAAAQREGKTCAFIDAEHALDPIYARKLGVDIDNLLCSQPDTGEQALEICDALARSGAVDVIVVDSVAALTPKAEIEGEIGDSHMGLAARMMSQAMRKLAGNLKQSNTLLIFINQIRMKIGVMFGNPETTTGGNALKFYASVRLDIRRIGAVKEGENVVGSETRVKVVKNKIAAPFKQAEFQILYGEGINFYGELVDLGVKEKLIEKAGAWYSYKGEKIGQGKANATAWLKDNPETAKEIEKKVRELLLSNPNSTPDFSVDDSEGVAETNEDF</pre></td></tr></table>Go to the <a href="#input">input files</a> for this example<br>Go to the <a href="#output">output files</a> for this example<br><br>Example 3<br><br>Retrieving feature information of the genes.<br>The following example will retrieve the start positions for each gene.The values for the keys in GenBank format is available for retrieval.(ex. start end direction GO* etc.)<br>Positions will be returned with a 1 start value.<br><br><table width="90%"><tr><td bgcolor="#CCFFFF"><pre>% genretRetrieves various gene related information from genome flatfileInput nucleotide sequence(s): refseqn:NC_000913Gene name(s) to lookup [*]:Feature to access: startFull text output file [nc_000913.start]:</pre></td></tr></table>Go to the <a href="#input">input files</a> for this example<br>Go to the <a href="#output">output files</a> for this example<br><br>Example 4<br><br>Using a file with a list of gene names.<br>The following example will retrieve the strand direction for each genelisted in the "gene_list.txt" file. String prefixed with an "@" or "list::"will be interpreted as file names.<br><br><table width="90%"><tr><td bgcolor="#CCFFFF"><pre>% genretRetrieves various gene features from genome flatfileInput nucleotide sequence(s): refseqn:NC_000913List of gene name(s) to report [*]: @gene_list.txtName of gene feature to access: directionFull text output file [nc_000913.direction]: stdoutgene,directionthrA,directthrB,directthrC,direct</pre></td></tr></table>Go to the <a href="#input">input files</a> for this example<br>Go to the <a href="#output">output files</a> for this example<br><br>Example 5<br><br>Passing extra arguments to the methods.<br>The following example shows the retrieval of 30 base pairs around thestart codon of the "recA" gene. By default, the "around_startcodon" methodreturns 200 base pairs around the start codon. Using the "-argument"qualifier allows the user to change this value.<br><br><table width="90%"><tr><td bgcolor="#CCFFFF"><pre>% genret refseqn:NC_000913 recA around_startcodon -argument 30,30 stdoutRetrieves various gene features from genome flatfile>recAccggtattacccggcatgacaggagtaaaaatggctatcgacgaaaacaaacagaaagcgttg</pre></td></tr></table>Go to the <a href="#input">input files</a> for this example<br>Go to the <a href="#output">output files</a> for this example<br><br><h2>Command line arguments</h2><table border cellspacing=0 cellpadding=3 bgcolor="#ccccff"><tr bgcolor="#FFFFCC"><th align="left">Qualifier</th><th align="left">Type</th><th align="left">Description</th><th align="left">Allowed values</th><th align="left">Default</th></tr><tr bgcolor="#FFFFCC"><th align="left" colspan=5>Standard (Mandatory) qualifiers</th></tr><tr bgcolor="#FFFFCC"><td>[-sequence]<br>(Parameter 1)</td><td>seqall</td><td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td><td>Readable sequence(s)</td><td><b>Required</b></td></tr><tr bgcolor="#FFFFCC"><td>[-gene]<br>(Parameter 2)</td><td>string</td><td>List of gene name(s) to report</td><td>Any string</td><td>*</td></tr><tr bgcolor="#FFFFCC"><td>[-access]<br>(Parameter 3)</td><td>string</td><td>Name of gene feature to access</td><td>Any word</td><td>&nbsp;</td></tr><tr bgcolor="#FFFFCC"><td>[-outfile]<br>(Parameter 4)</td><td>outfile</td><td>Sequence output file</td><td>Output file</td><td><i>&lt;*&gt;</i>.genret</td></tr><tr bgcolor="#FFFFCC"><th align="left" colspan=5>Additional (Optional) qualifiers</th></tr><tr><td colspan=5>(none)</td></tr><tr bgcolor="#FFFFCC"><th align="left" colspan=5>Advanced (Unprompted) qualifiers</th></tr><tr bgcolor="#FFFFCC"><td>-argument</td><td>string</td><td>Extra arguments to pass to method</td><td>Any string</td><td>&nbsp;</td></tr><tr bgcolor="#FFFFCC"><td>-[no]accid</td><td>boolean</td><td>Include to use sequence accession ID as query</td><td>Boolean value Yes/No</td><td>Yes</td></tr></table><h2 id="input">Input file format</h2><p>   Database definitions for the examples are included in the embossrc_template<br />   file of the Keio Bioinformatcs Web Service (KBWS) package.<br /><br />   Input files for usage example 4<br /><br />   File: gene_list.txt<br /><br />thrA<br />thrB<br />thrC<br /><br /></p><h2 id="output">Output file format</h2><p>   Output files for usage example 1<br /><br />   File: nc_000913.around_startcodon<br /><br /><table width="90%"><tr><td bgcolor="#CCFFCC">>thrL<br />cgtgagtaaattaaaattttattgacttaggtcactaaatactttaaccaatataggcata<br />gcgcacagacagataaaaattacagagtacacaacatccatgaaacgcattagcaccacca<br />ttaccaccaccatcaccattaccacaggtaacggtgcgggctgacgcgtacaggaaacaca<br />gaaaaaagcccgcacctgac<br />>thrA<br />aggtaacggtgcgggctgacgcgtacaggaaacacagaaaaaagcccgcacctgacagtgc<br />gggctttttttttcgaccaaaggtaacgaggtaacaaccatgcgagtgttgaagttcggcg<br />gtacatcagtggcaaatgcagaacgttttctgcgtgttgccgatattctggaaagcaatgc<br />caggcaggggcaggtggcca<br /><br /><font color=red>[Part of this file has been deleted for brevity]</font><br /><br />>yjjY<br />tgcatgtttgctacctaaattgccaactaaatcgaaacaggaagtacaaaagtccctgacc<br />tgcctgatgcatgctgcaaattaacatgatcggcgtaacatgactaaagtacgtaattgcg<br />ttcttgatgcactttccatcaacgtcaacaacatcattagcttggtcgtgggtactttccc<br />tcaggacccgacagtgtcaa<br />>yjtD<br />tttttctgcgacttacgttaagaatttgtaaattcgcaccgcgtaataagttgacagtgat<br />cacccggttcgcggttatttgatcaagaagagtggcaatatgcgtataacgattattctgg<br />tcgcacccgccagagcagaaaatattggggcagcggcgcgggcaatgaaaacgatggggtt<br />tagcgatctgcggattgtcg<br /></td></tr></table><br />   Output files for usage example 3<br /><br />   File: nc_000913.start<br /><br /><table width="90%"><tr><td bgcolor="#CCFFCC">gene,start<br />thrL,190<br />thrA,337<br />thrB,2801<br />thrC,3734<br />yaaX,5234<br />yaaA,5683<br />yaaJ,6529<br />talB,8238<br />mog,9306<br /><br /><font color=red>[Part of this file has been deleted for brevity]</font><br /><br />yjjX,4631256<br />ytjC,4631820<br />rob,4632464<br />creA,4633544<br />creB,4634030<br />creC,4634719<br />creD,4636201<br />arcA,4637613<br />yjjY,4638425<br />yjtD,4638965<br /></td></tr></table></p><h2>Data files</h2><p>None.</p><h2>Notes</h2><p>None.</p><h2>References</h2><pre>   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.   Arakawa, K. and Tomita, M. (2006) G-language System as a Platform for      large-scale analysis of high-throughput omics data, J. Pest Sci.,      31, 7.   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome      Analysis Environment with REST and SOAP Web Service Interfaces,      Nucleic Acids Res., 38, W700-W705.</pre><h2>Warnings</h2><p>None.</p><h2>Diagnostic Error Messages</h2><p>None.</p><h2>Exit status</h2><p>It always exits with a status of 0.</p><h2>Known bugs</h2><p>None.</p><h2>See also</h2><table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th><th>Description</th></tr><tr><td><a href="entret.html">entret</a></td><td>Retrieve sequence entries from flatfile databases and files</td></tr><tr><td><a href="seqret.html">seqret</a></td><td>Read and write (return) sequences</td></tr></table><h2>Author(s)</h2><pre>Hidetoshi Itaya (celery@g-language.org)  Institute for Advanced Biosciences, Keio University  252-0882 JapanKazuharu Arakawa (gaou@sfc.keio.ac.jp)  Institute for Advanced Biosciences, Keio University  252-0882 Japan</pre><h2>History</h2>   2012 - Written by Hidetoshi Itaya<h2>Target users</h2>   This program is intended to be used by everyone and everything, from   naive users to embedded scrips.<h2>Comments</h2>   None.</BODY></HTML>

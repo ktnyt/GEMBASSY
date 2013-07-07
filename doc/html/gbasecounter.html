@@ -1,308 +1,1 @@
-<!--START OF HEADER - DON'T ALTER -->
-
-<HTML>
-<HEAD>
-  <TITLE> EMBOSS: gbasecounter </TITLE>
-</HEAD>
-<BODY BGCOLOR="#FFFFFF" text="#000000">
-
-
-
-<table align=center border=0 cellspacing=0 cellpadding=0>
-<tr><td valign=top>
-<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="http://soap.g-language.org/gembassy/emboss_explorer/manual/emboss_icon.jpg" alt="" width=150 height=48></a>
-</td>
-<td align=left valign=middle>
-<b><font size="+6">
-gbasecounter
-</font></b>
-</td></tr>
-</table>
-<br>&nbsp;
-<p>
-
-
-<!--END OF HEADER-->
-
-
-
-
-
-
-<H2> Function </H2>
-   Creates a position weight matrix of oligomers around start codon
-<!--
-DON'T WRITE ANYTHING HERE.
-IT IS DONE FOR YOU.
--->
-
-
-
-
-<H2>Description</H2>
-<p>
-   This function creates a position weight matrix (PWM) of<br />
-   oligomers of specified length around the start codon of all<br />
-   genes in the given genome.<br />
-    <br />
-   G-language SOAP service is provided by the<br />
-   Institute for Advanced Biosciences, Keio University.<br />
-   The original web service is located at the following URL:<br />
-<br />
-   http://www.g-language.org/wiki/soap<br />
-<br />
-   WSDL(RPC/Encoded) file is located at:<br />
-<br />
-   http://soap.g-language.org/g-language.wsdl<br />
-<br />
-   Documentation on G-language Genome Analysis Environment methods are<br />
-   provided at the Document Center<br />
-<br />
-   http://ws.g-language.org/gdoc/<br />
-<br />
-
-</p>
-
-<H2>Usage</H2>
-
-<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
-
-Here is a sample session with gbasecounter
-
-% gbasecounter refseqn:NC_000913
-Creates a position weight matrix of oligomers around start codon
-Weight matrix output file [nc_000913.gbasecounter]: 
-
-   Go to the input files for this example
-   Go to the output files for this example
-
-
-
-</pre></td></tr></table>
-
-
-
-<h2>Command line arguments</h2>
-
-<table border cellspacing=0 cellpadding=3 bgcolor="#ccccff">
-<tr bgcolor="#FFFFCC">
-<th align="left">Qualifier</th>
-<th align="left">Type</th>
-<th align="left">Description</th>
-<th align="left">Allowed values</th>
-<th align="left">Default</th>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<th align="left" colspan=5>Standard (Mandatory) qualifiers</th>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>[-sequence]<br>(Parameter 1)</td>
-<td>seqall</td>
-<td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
-<td>Readable sequence(s)</td>
-<td><b>Required</b></td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>[-outfile]<br>(Parameter 2)</td>
-<td>outfile</td>
-<td>Weight matrix output file</td>
-<td>Output file</td>
-<td><i>&lt;*&gt;</i>.gbasecounter</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<th align="left" colspan=5>Additional (Optional) qualifiers</th>
-</tr>
-
-<tr>
-<td colspan=5>(none)</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<th align="left" colspan=5>Advanced (Unprompted) qualifiers</th>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-position</td>
-<td>selection</td>
-<td>Either 'start' (around start codon) or 'end' (around stop codon) to create the PWM</td>
-<td>Choose from selection list of values</td>
-<td>start</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-patlen</td>
-<td>integer</td>
-<td>Length of oligomer to count</td>
-<td>Any integer value</td>
-<td>3</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-upstream</td>
-<td>integer</td>
-<td>Length upstream of specified position to create PWM</td>
-<td>Any integer value</td>
-<td>30</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-downstream</td>
-<td>integer</td>
-<td>Length downstream of specified position to create PWM</td>
-<td>Any integer value</td>
-<td>30</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-[no]accid</td>
-<td>boolean</td>
-<td>Include to use sequence accession ID as query</td>
-<td>Boolean value Yes/No</td>
-<td>Yes</td>
-</tr>
-
-</table>
-
-
-<h2>Input file format</h2>
-
-<p>
-   The database definitions for following commands are available at<br />
-   http://soap.g-language.org/kbws/embossrc<br />
-<br />
-   gbasecounter reads one or more nucleotide sequences.<br />
-<br />
-
-</p>
-
-<h2>Output file format</h2>
-
-<p>
-   The output from gbasecounter is to a plain text file.<br />
-<br />
-   File: nc_000913.gbasecounter<br />
-<br />
-Sequence: NC_000913<br />
-Pattern,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30<br />
-aaa,0,1,199,111,104,139,94,103,99,44,42,26,75,103,107,95,107,103,102,82,91,71,73,81,86,80,74,74,78,65,69,65,31,41,68,51,61,83,55,67,92,55,71,89,60,77,100,59,87,123,97,105,141,83,117,180,154,203,262,2,0<br />
-aac,2,0,0,63,104,56,67,64,28,34,22,12,17,37,43,59,61,71,54,42,62,59,63,52,56,61,48,55,56,52,38,30,34,54,36,42,43,33,49,49,36,43,58,37,53,62,46,47,79,38,52,72,58,52,89,74,83,91,68,2,1<br />
-aag,0,0,17,46,38,57,56,44,25,44,43,170,162,125,92,70,61,50,42,46,21,22,43,39,29,35,39,34,28,26,30,25,9,43,31,12,55,33,13,66,21,21,50,30,21,55,31,21,47,38,16,55,35,23,63,96,31,51,71,0,0<br />
-aat,1,565,4,56,124,45,83,74,63,42,24,24,20,27,59,71,54,74,66,71,67,52,58,77,61,52,57,49,56,71,61,34,33,24,40,38,30,43,46,25,48,56,35,58,51,33,47,71,46,70,77,60,74,74,73,83,69,61,110,0,1<br />
-aca,0,1,92,73,39,69,39,24,31,31,16,19,34,64,61,63,65,56,42,60,45,66,38,45,46,41,49,40,51,43,39,20,34,29,23,26,28,34,35,26,35,39,30,28,48,26,28,53,35,36,59,42,53,46,64,56,62,44,55,0,0<br />
-acc,2,2,0,81,37,19,28,19,15,8,12,7,7,14,22,27,30,24,31,23,30,27,34,27,30,22,25,42,34,29,25,41,23,32,44,19,32,51,21,19,50,23,24,52,30,31,56,25,31,55,30,25,35,30,32,53,20,21,48,0,2<br />
-acg,0,0,21,38,23,38,32,25,13,18,12,15,34,29,34,37,25,31,25,34,30,20,22,24,40,22,24,30,34,29,25,29,25,34,41,23,32,25,36,44,28,32,40,32,23,28,40,30,25,36,39,32,28,40,38,39,45,30,33,0,0<br />
-act,0,0,1,57,35,14,30,29,21,9,6,9,9,10,17,38,28,35,30,37,41,46,38,43,39,31,31,31,30,32,27,18,55,24,20,32,16,25,32,24,31,44,14,33,43,12,35,60,24,40,58,19,36,71,22,44,46,13,45,3,1<br />
-<br />
-   [Part of this file has been deleted for brevity]<br />
-<br />
-tcg,0.000,0.000,0.347,0.255,0.301,0.764,0.347,0.232,0.162,0.093,0.093,0.278,0.347,0.370,0.370,0.440,0.556,0.394,0.486,0.440,0.417,0.347,0.370,0.463,0.417,0.695,0.394,0.671,0.533,0.579,0.602,0.347,0.695,1.598,0.556,0.648,1.366,0.394,0.463,1.505,0.579,0.810,1.320,0.278,0.810,1.065,0.533,0.579,0.972,0.255,0.787,1.158,0.440,0.787,0.602,0.255,0.625,0.463,0.347,0.000,0.000<br />
-tct,0.000,0.046,0.000,0.671,0.764,0.394,0.278,0.347,0.278,0.116,0.116,0.162,0.255,0.162,0.486,0.648,0.533,0.625,0.741,0.718,0.903,0.834,0.880,0.857,0.741,0.857,0.671,0.648,0.857,0.695,0.625,0.440,0.880,0.463,0.556,1.111,0.509,0.579,1.227,0.556,0.370,1.135,0.671,0.648,1.250,0.834,0.509,1.273,0.440,0.718,0.972,1.042,0.648,0.926,0.533,0.625,0.556,0.185,1.690,0.000,0.000<br />
-tga,0.000,0.000,2.315,0.463,1.227,1.297,1.088,0.949,0.625,0.417,1.065,0.903,1.737,1.667,1.042,1.158,1.366,1.320,1.227,1.158,0.926,1.459,1.181,0.810,1.366,0.972,0.972,1.111,0.764,0.787,1.227,0.000,1.598,1.250,0.000,1.482,1.181,0.000,1.459,1.389,0.000,1.783,1.297,0.000,1.505,1.482,0.023,1.343,1.690,0.000,1.690,1.204,0.000,1.389,0.949,0.000,2.408,0.996,0.000,0.023,24.311<br />
-tgc,0.023,0.000,0.000,0.394,0.996,0.579,0.787,0.556,0.208,0.185,0.208,0.116,0.278,0.324,0.394,0.834,0.486,0.394,0.718,0.556,0.509,0.857,0.509,0.625,0.810,0.741,0.695,0.834,0.625,0.787,1.158,0.347,1.158,1.621,0.394,1.667,1.204,0.347,1.551,1.320,0.417,1.088,1.065,0.232,1.320,1.042,0.139,1.204,0.996,0.208,0.996,0.602,0.139,0.648,0.764,0.069,0.857,0.394,0.023,0.000,7.803<br />
-tgg,0.000,0.023,0.069,0.208,0.370,0.509,0.486,0.417,0.394,0.671,1.343,1.713,1.621,1.482,0.810,0.834,0.718,0.301,0.463,0.509,0.509,0.741,0.579,0.509,0.625,0.486,0.509,0.625,0.625,0.533,0.857,0.996,0.718,1.968,1.042,0.880,1.760,0.671,0.949,1.459,0.556,0.787,0.903,0.718,0.695,1.273,0.533,0.440,0.648,0.880,0.417,0.718,0.648,0.278,0.625,0.463,0.440,0.486,0.116,0.023,11.021<br />
-tgt,0.023,0.880,0.023,0.533,1.135,0.301,0.440,0.602,0.417,0.208,0.232,0.185,0.185,0.278,0.370,0.440,0.533,0.556,0.648,0.764,0.509,0.926,0.579,0.718,0.880,0.695,0.718,0.741,0.741,0.579,0.625,0.278,1.158,0.857,0.278,0.972,0.718,0.324,0.926,0.695,0.463,1.111,0.834,0.162,1.482,0.787,0.278,1.065,0.695,0.278,1.042,0.695,0.208,0.903,0.718,0.139,0.857,0.232,0.093,0.023,7.340<br />
-tta,0.000,0.000,6.506,0.648,0.810,1.829,1.320,0.602,0.486,0.509,0.255,0.347,0.301,0.834,1.320,1.459,1.412,1.667,1.644,1.852,1.667,1.574,1.366,1.042,1.204,1.621,1.505,1.227,1.436,1.088,1.273,1.343,0.486,1.158,1.042,0.440,1.135,1.389,0.370,1.273,1.574,0.486,1.875,1.505,0.463,1.991,1.875,0.533,2.362,2.061,0.324,2.084,2.200,0.509,1.505,1.320,0.463,1.366,0.648,0.000,0.069<br />
-ttc,0.000,0.000,0.000,0.648,0.417,0.695,0.764,0.347,0.301,0.278,0.208,0.023,0.232,0.533,0.718,0.718,0.903,1.042,1.158,0.880,1.158,1.065,0.903,0.834,1.343,0.996,0.926,0.810,0.741,0.834,1.042,0.926,0.579,1.088,0.695,0.695,1.297,0.741,0.741,1.111,0.926,0.787,1.366,0.695,0.857,1.412,0.648,0.834,1.111,0.440,0.602,1.250,1.019,1.135,0.787,0.440,0.880,0.509,0.370,0.000,0.000<br />
-ttg,0.857,0.023,0.255,0.394,0.556,1.111,0.533,0.463,0.417,0.185,0.232,0.533,0.602,1.042,0.718,0.695,1.135,0.972,0.857,0.926,0.787,0.671,1.320,0.695,0.903,1.204,0.880,0.764,0.926,0.741,0.718,1.019,0.347,1.551,1.042,0.370,2.014,0.834,0.463,2.061,0.880,0.278,2.014,0.857,0.208,2.593,0.741,0.278,1.922,0.764,0.417,2.130,0.834,0.208,1.111,0.394,0.093,1.111,0.417,0.000,0.023<br />
-ttt,0.023,0.440,0.093,1.598,1.181,1.320,1.829,1.343,0.648,0.370,0.394,0.278,0.185,0.440,1.135,1.574,1.667,1.945,2.315,2.362,2.431,2.501,2.107,2.362,1.806,2.014,2.292,2.014,1.598,1.760,1.829,1.389,1.505,1.042,1.343,1.297,0.926,1.528,1.574,1.227,1.482,1.737,1.389,1.667,1.922,1.389,1.945,1.922,1.343,1.806,1.760,1.389,2.014,1.760,1.065,0.949,1.111,0.625,1.227,0.023,0.023<br />
-<br />
-<br />
-
-</p>
-
-<h2>Data files</h2>
-
-<p>
-None.
-</p>
-
-<h2>Notes</h2>
-
-<p>
-None.
-</p>
-
-<h2>References</h2>
-
-<pre>
-   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
-      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
-      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
-
-   Arakawa, K. and Tomita, M. (2006) G-language System as a Platform for
-      large-scale analysis of high-throughput omics data, J. Pest Sci.,
-      31, 7.
-
-   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
-      Analysis Environment with REST and SOAP Web Service Interfaces,
-      Nucleic Acids Res., 38, W700-W705.
-
-</pre>
-
-<h2>Warnings</h2>
-
-<p>
-None.
-</p>
-
-<h2>Diagnostic Error Messages</h2>
-
-<p>
-None.
-</p>
-
-<h2>Exit status</h2>
-
-<p>
-It always exits with a status of 0.
-</p>
-
-<h2>Known bugs</h2>
-
-<p>
-None.
-</p>
-
-<h2>See also</h2>
-
-<table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th>
-<th>Description</th></tr>
-
-<tr>
-<td><a href="gbasezvalue.html">gbasezvalue</a></td>
-<td>Extracts conserved oligomers per position using Z-score</td>
-</tr><tr>
-<td><a href="gviewcds.html">gviewcds</a></td>
-<td>Displays a graph of nucleotide contents around start and stop</td>
-</tr>
-
-</table>
-
-<h2>Author(s)</h2>
-
-<pre>
-   Hidetoshi Itaya (celery@g-language.org)
-   Institute for Advanced Biosciences, Keio University
-   252-0882 Japan
-
-  Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
-  Institute for Advanced Biosciences, Keio University
-  252-0882 Japan</pre>
-
-<h2>History</h2>
-
-   2012 - Written by Hidetoshi Itaya
-
-<h2>Target users</h2>
-
-   This program is intended to be used by everyone and everything, from
-   naive users to embedded scrips.
-
-<h2>Comments</h2>
-
-   None.
-
+<!--START OF HEADER - DON'T ALTER --><HTML><HEAD>  <TITLE> EMBOSS: gbasecounter </TITLE></HEAD><BODY BGCOLOR="#FFFFFF" text="#000000"><table align=center border=0 cellspacing=0 cellpadding=0><tr><td valign=top><A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="http://soap.g-language.org/gembassy/emboss_explorer/manual/emboss_icon.jpg" alt="" width=150 height=48></a></td><td align=left valign=middle><b><font size="+6">gbasecounter</font></b></td></tr></table><br>&nbsp;<p><!--END OF HEADER--><H2> Function </H2>   Creates a position weight matrix of oligomers around start codon<!--DON'T WRITE ANYTHING HERE.IT IS DONE FOR YOU.--><H2>Description</H2><p>   This function creates a position weight matrix (PWM) of<br />   oligomers of specified length around the start codon of all<br />   genes in the given genome.<br />    <br />   G-language SOAP service is provided by the<br />   Institute for Advanced Biosciences, Keio University.<br />   The original web service is located at the following URL:<br /><br />   http://www.g-language.org/wiki/soap<br /><br />   WSDL(RPC/Encoded) file is located at:<br /><br />   http://soap.g-language.org/g-language.wsdl<br /><br />   Documentation on G-language Genome Analysis Environment methods are<br />   provided at the Document Center<br /><br />   http://ws.g-language.org/gdoc/<br /><br /></p><H2>Usage</H2>Here is a sample session with gbasecounter<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>% gbasecounter refseqn:NC_000913Creates a position weight matrix of oligomers around start codonWeight matrix output file [nc_000913.gbasecounter]: </pre></td></tr></table>Go to the <a href="#input">input files</a> for this example<br>Go to the <a href="#output">output files</a> for this example<br><br><h2>Command line arguments</h2><table border cellspacing=0 cellpadding=3 bgcolor="#ccccff"><tr bgcolor="#FFFFCC"><th align="left">Qualifier</th><th align="left">Type</th><th align="left">Description</th><th align="left">Allowed values</th><th align="left">Default</th></tr><tr bgcolor="#FFFFCC"><th align="left" colspan=5>Standard (Mandatory) qualifiers</th></tr><tr bgcolor="#FFFFCC"><td>[-sequence]<br>(Parameter 1)</td><td>seqall</td><td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td><td>Readable sequence(s)</td><td><b>Required</b></td></tr><tr bgcolor="#FFFFCC"><td>[-outfile]<br>(Parameter 2)</td><td>outfile</td><td>Weight matrix output file</td><td>Output file</td><td><i>&lt;*&gt;</i>.gbasecounter</td></tr><tr bgcolor="#FFFFCC"><th align="left" colspan=5>Additional (Optional) qualifiers</th></tr><tr><td colspan=5>(none)</td></tr><tr bgcolor="#FFFFCC"><th align="left" colspan=5>Advanced (Unprompted) qualifiers</th></tr><tr bgcolor="#FFFFCC"><td>-position</td><td>selection</td><td>Either 'start' (around start codon) or 'end' (around stop codon) to create the PWM</td><td>Choose from selection list of values</td><td>start</td></tr><tr bgcolor="#FFFFCC"><td>-patlen</td><td>integer</td><td>Length of oligomer to count</td><td>Any integer value</td><td>3</td></tr><tr bgcolor="#FFFFCC"><td>-upstream</td><td>integer</td><td>Length upstream of specified position to create PWM</td><td>Any integer value</td><td>30</td></tr><tr bgcolor="#FFFFCC"><td>-downstream</td><td>integer</td><td>Length downstream of specified position to create PWM</td><td>Any integer value</td><td>30</td></tr><tr bgcolor="#FFFFCC"><td>-[no]accid</td><td>boolean</td><td>Include to use sequence accession ID as query</td><td>Boolean value Yes/No</td><td>Yes</td></tr></table><h2 id="input">Input file format</h2><p>   The database definitions for following commands are available at<br />   http://soap.g-language.org/kbws/embossrc<br /><br />   gbasecounter reads one or more nucleotide sequences.<br /><br /></p><h2 id="output">Output file format</h2><p>   The output from gbasecounter is to a plain text file.<br /><br />   File: nc_000913.gbasecounter<br /><br /><table width="90%"><tr><td bgcolor="#CCFFCC">Sequence: NC_000913<br />Pattern,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30<br />aaa,0,1,199,111,104,139,94,103,99,44,42,26,75,103,107,95,107,103,102,82,91,71,73,81,86,80,74,74,78,65,69,65,31,41,68,51,61,83,55,67,92,55,71,89,60,77,100,59,87,123,97,105,141,83,117,180,154,203,262,2,0<br />aac,2,0,0,63,104,56,67,64,28,34,22,12,17,37,43,59,61,71,54,42,62,59,63,52,56,61,48,55,56,52,38,30,34,54,36,42,43,33,49,49,36,43,58,37,53,62,46,47,79,38,52,72,58,52,89,74,83,91,68,2,1<br />aag,0,0,17,46,38,57,56,44,25,44,43,170,162,125,92,70,61,50,42,46,21,22,43,39,29,35,39,34,28,26,30,25,9,43,31,12,55,33,13,66,21,21,50,30,21,55,31,21,47,38,16,55,35,23,63,96,31,51,71,0,0<br />aat,1,565,4,56,124,45,83,74,63,42,24,24,20,27,59,71,54,74,66,71,67,52,58,77,61,52,57,49,56,71,61,34,33,24,40,38,30,43,46,25,48,56,35,58,51,33,47,71,46,70,77,60,74,74,73,83,69,61,110,0,1<br />aca,0,1,92,73,39,69,39,24,31,31,16,19,34,64,61,63,65,56,42,60,45,66,38,45,46,41,49,40,51,43,39,20,34,29,23,26,28,34,35,26,35,39,30,28,48,26,28,53,35,36,59,42,53,46,64,56,62,44,55,0,0<br />acc,2,2,0,81,37,19,28,19,15,8,12,7,7,14,22,27,30,24,31,23,30,27,34,27,30,22,25,42,34,29,25,41,23,32,44,19,32,51,21,19,50,23,24,52,30,31,56,25,31,55,30,25,35,30,32,53,20,21,48,0,2<br />acg,0,0,21,38,23,38,32,25,13,18,12,15,34,29,34,37,25,31,25,34,30,20,22,24,40,22,24,30,34,29,25,29,25,34,41,23,32,25,36,44,28,32,40,32,23,28,40,30,25,36,39,32,28,40,38,39,45,30,33,0,0<br />act,0,0,1,57,35,14,30,29,21,9,6,9,9,10,17,38,28,35,30,37,41,46,38,43,39,31,31,31,30,32,27,18,55,24,20,32,16,25,32,24,31,44,14,33,43,12,35,60,24,40,58,19,36,71,22,44,46,13,45,3,1<br /><br /><font color=red>[Part of this file has been deleted for brevity]</font><br /><br />tcg,0.000,0.000,0.347,0.255,0.301,0.764,0.347,0.232,0.162,0.093,0.093,0.278,0.347,0.370,0.370,0.440,0.556,0.394,0.486,0.440,0.417,0.347,0.370,0.463,0.417,0.695,0.394,0.671,0.533,0.579,0.602,0.347,0.695,1.598,0.556,0.648,1.366,0.394,0.463,1.505,0.579,0.810,1.320,0.278,0.810,1.065,0.533,0.579,0.972,0.255,0.787,1.158,0.440,0.787,0.602,0.255,0.625,0.463,0.347,0.000,0.000<br />tct,0.000,0.046,0.000,0.671,0.764,0.394,0.278,0.347,0.278,0.116,0.116,0.162,0.255,0.162,0.486,0.648,0.533,0.625,0.741,0.718,0.903,0.834,0.880,0.857,0.741,0.857,0.671,0.648,0.857,0.695,0.625,0.440,0.880,0.463,0.556,1.111,0.509,0.579,1.227,0.556,0.370,1.135,0.671,0.648,1.250,0.834,0.509,1.273,0.440,0.718,0.972,1.042,0.648,0.926,0.533,0.625,0.556,0.185,1.690,0.000,0.000<br />tga,0.000,0.000,2.315,0.463,1.227,1.297,1.088,0.949,0.625,0.417,1.065,0.903,1.737,1.667,1.042,1.158,1.366,1.320,1.227,1.158,0.926,1.459,1.181,0.810,1.366,0.972,0.972,1.111,0.764,0.787,1.227,0.000,1.598,1.250,0.000,1.482,1.181,0.000,1.459,1.389,0.000,1.783,1.297,0.000,1.505,1.482,0.023,1.343,1.690,0.000,1.690,1.204,0.000,1.389,0.949,0.000,2.408,0.996,0.000,0.023,24.311<br />tgc,0.023,0.000,0.000,0.394,0.996,0.579,0.787,0.556,0.208,0.185,0.208,0.116,0.278,0.324,0.394,0.834,0.486,0.394,0.718,0.556,0.509,0.857,0.509,0.625,0.810,0.741,0.695,0.834,0.625,0.787,1.158,0.347,1.158,1.621,0.394,1.667,1.204,0.347,1.551,1.320,0.417,1.088,1.065,0.232,1.320,1.042,0.139,1.204,0.996,0.208,0.996,0.602,0.139,0.648,0.764,0.069,0.857,0.394,0.023,0.000,7.803<br />tgg,0.000,0.023,0.069,0.208,0.370,0.509,0.486,0.417,0.394,0.671,1.343,1.713,1.621,1.482,0.810,0.834,0.718,0.301,0.463,0.509,0.509,0.741,0.579,0.509,0.625,0.486,0.509,0.625,0.625,0.533,0.857,0.996,0.718,1.968,1.042,0.880,1.760,0.671,0.949,1.459,0.556,0.787,0.903,0.718,0.695,1.273,0.533,0.440,0.648,0.880,0.417,0.718,0.648,0.278,0.625,0.463,0.440,0.486,0.116,0.023,11.021<br />tgt,0.023,0.880,0.023,0.533,1.135,0.301,0.440,0.602,0.417,0.208,0.232,0.185,0.185,0.278,0.370,0.440,0.533,0.556,0.648,0.764,0.509,0.926,0.579,0.718,0.880,0.695,0.718,0.741,0.741,0.579,0.625,0.278,1.158,0.857,0.278,0.972,0.718,0.324,0.926,0.695,0.463,1.111,0.834,0.162,1.482,0.787,0.278,1.065,0.695,0.278,1.042,0.695,0.208,0.903,0.718,0.139,0.857,0.232,0.093,0.023,7.340<br />tta,0.000,0.000,6.506,0.648,0.810,1.829,1.320,0.602,0.486,0.509,0.255,0.347,0.301,0.834,1.320,1.459,1.412,1.667,1.644,1.852,1.667,1.574,1.366,1.042,1.204,1.621,1.505,1.227,1.436,1.088,1.273,1.343,0.486,1.158,1.042,0.440,1.135,1.389,0.370,1.273,1.574,0.486,1.875,1.505,0.463,1.991,1.875,0.533,2.362,2.061,0.324,2.084,2.200,0.509,1.505,1.320,0.463,1.366,0.648,0.000,0.069<br />ttc,0.000,0.000,0.000,0.648,0.417,0.695,0.764,0.347,0.301,0.278,0.208,0.023,0.232,0.533,0.718,0.718,0.903,1.042,1.158,0.880,1.158,1.065,0.903,0.834,1.343,0.996,0.926,0.810,0.741,0.834,1.042,0.926,0.579,1.088,0.695,0.695,1.297,0.741,0.741,1.111,0.926,0.787,1.366,0.695,0.857,1.412,0.648,0.834,1.111,0.440,0.602,1.250,1.019,1.135,0.787,0.440,0.880,0.509,0.370,0.000,0.000<br />ttg,0.857,0.023,0.255,0.394,0.556,1.111,0.533,0.463,0.417,0.185,0.232,0.533,0.602,1.042,0.718,0.695,1.135,0.972,0.857,0.926,0.787,0.671,1.320,0.695,0.903,1.204,0.880,0.764,0.926,0.741,0.718,1.019,0.347,1.551,1.042,0.370,2.014,0.834,0.463,2.061,0.880,0.278,2.014,0.857,0.208,2.593,0.741,0.278,1.922,0.764,0.417,2.130,0.834,0.208,1.111,0.394,0.093,1.111,0.417,0.000,0.023<br />ttt,0.023,0.440,0.093,1.598,1.181,1.320,1.829,1.343,0.648,0.370,0.394,0.278,0.185,0.440,1.135,1.574,1.667,1.945,2.315,2.362,2.431,2.501,2.107,2.362,1.806,2.014,2.292,2.014,1.598,1.760,1.829,1.389,1.505,1.042,1.343,1.297,0.926,1.528,1.574,1.227,1.482,1.737,1.389,1.667,1.922,1.389,1.945,1.922,1.343,1.806,1.760,1.389,2.014,1.760,1.065,0.949,1.111,0.625,1.227,0.023,0.023<br /></td></tr></table></p><h2>Data files</h2><p>None.</p><h2>Notes</h2><p>None.</p><h2>References</h2><pre>   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.   Arakawa, K. and Tomita, M. (2006) G-language System as a Platform for      large-scale analysis of high-throughput omics data, J. Pest Sci.,      31, 7.   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome      Analysis Environment with REST and SOAP Web Service Interfaces,      Nucleic Acids Res., 38, W700-W705.</pre><h2>Warnings</h2><p>None.</p><h2>Diagnostic Error Messages</h2><p>None.</p><h2>Exit status</h2><p>It always exits with a status of 0.</p><h2>Known bugs</h2><p>None.</p><h2>See also</h2><table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th><th>Description</th></tr><tr><td><a href="gbasezvalue.html">gbasezvalue</a></td><td>Extracts conserved oligomers per position using Z-score</td></tr><tr><td><a href="gviewcds.html">gviewcds</a></td><td>Displays a graph of nucleotide contents around start and stop codons</td></tr></table><h2>Author(s)</h2><pre>Hidetoshi Itaya (celery@g-language.org)  Institute for Advanced Biosciences, Keio University  252-0882 JapanKazuharu Arakawa (gaou@sfc.keio.ac.jp)  Institute for Advanced Biosciences, Keio University  252-0882 Japan</pre><h2>History</h2>   2012 - Written by Hidetoshi Itaya<h2>Target users</h2>   This program is intended to be used by everyone and everything, from   naive users to embedded scrips.<h2>Comments</h2>   None.</p></BODY></HTML>

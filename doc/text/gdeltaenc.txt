@@ -1,7 +1,8 @@
                                    gdeltaenc
 Function
 
-   Calculate the codon usage bias related to translation optimization (delta
+   Calculate the codon usage bias related to translation optimization
+   (delta ENC)
 
 Description
 
@@ -39,10 +40,6 @@ Program compseq output file [nc_000913.gdeltaenc]:
    Go to the output files for this example
 
 Command line arguments
-
-Calculate the codon usage bias related to translation optimization (delta
-ENC)
-Version: EMBOSS:6.5.7.0 GEMBASSY:1.0.1
 
    Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
@@ -155,9 +152,9 @@ Known bugs
 
 See also
 
-   gcbi     Calculates the codon bias index (CBI)
-   gicdi    Calculates the intrinsic codon deviation index (ICDI)
-   gs_value Calculate the strength of selected codon usage bias (S)
+   gcbi    Calculates the codon bias index (CBI)
+   gicdi   Calculates the intrinsic codon deviation index (ICDI)
+   gsvalue Calculate the strength of selected codon usage bias (S)
 
 Author(s)
 

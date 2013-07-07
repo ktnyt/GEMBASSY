@@ -138,7 +138,8 @@ Input file format
 
 Output file format
 
-   The output from gbaseentropy is to a plain text file or the EMBOSS graphics device.
+   The output from gbaseentropy is to a plain text file or the EMBOSS
+   graphics device.
 
    File: nc_000913.gbaseentropy
 

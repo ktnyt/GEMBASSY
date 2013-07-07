@@ -178,8 +178,10 @@ Known bugs
 
 See also
 
-   gbase_counter Creates a position weight matrix of oligomers around start                  codon
-   gview_cds     Displays a graph of nucleotide contents around start and stop                  codons
+   gbasecounter Creates a position weight matrix of oligomers around start
+                codon
+   gviewcds     Displays a graph of nucleotide contents around start and stop
+                codons
 
 Author(s)
 

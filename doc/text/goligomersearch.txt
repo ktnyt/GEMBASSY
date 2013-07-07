@@ -154,10 +154,11 @@ Known bugs
 
 See also
 
-   gkmer_table             Create an image showing all k-mer abundance within a                            sequence
-   gnucleotide_periodicity Checks the periodicity of certain oligonucleotides
-   goligomer_counter       Counts the number of given oligomers in a sequence
-   gsignature              Calculate oligonucleotide usage (genomic signature)
+   gkmertable             Create an image showing all k-mer abundance within a
+                          sequence
+   gnucleotideperiodicity Checks the periodicity of certain oligonucleotides
+   goligomercounter       Counts the number of given oligomers in a sequence
+   gsignature             Calculate oligonucleotide usage (genomic signature)
 
 Author(s)
 

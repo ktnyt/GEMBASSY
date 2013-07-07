@@ -1,326 +1,1 @@
-<!--START OF HEADER - DON'T ALTER -->
-
-<HTML>
-<HEAD>
-  <TITLE> EMBOSS: ggcwin </TITLE>
-</HEAD>
-<BODY BGCOLOR="#FFFFFF" text="#000000">
-
-
-
-<table align=center border=0 cellspacing=0 cellpadding=0>
-<tr><td valign=top>
-<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="http://soap.g-language.org/gembassy/emboss_explorer/manual/emboss_icon.jpg" alt="" width=150 height=48></a>
-</td>
-<td align=left valign=middle>
-<b><font size="+6">
-ggcwin
-</font></b>
-</td></tr>
-</table>
-<br>&nbsp;
-<p>
-
-
-<!--END OF HEADER-->
-
-
-
-
-
-
-<H2> Function </H2>
-   Calculates the GC content along the given genome
-<!--
-DON'T WRITE ANYTHING HERE.
-IT IS DONE FOR YOU.
--->
-
-
-
-
-<H2>Description</H2>
-<p>
-   ggcwin calculates and plots the GC content of the given sequence.<br />
-    <br />
-   G-language SOAP service is provided by the<br />
-   Institute for Advanced Biosciences, Keio University.<br />
-   The original web service is located at the following URL:<br />
-<br />
-   http://www.g-language.org/wiki/soap<br />
-<br />
-   WSDL(RPC/Encoded) file is located at:<br />
-<br />
-   http://soap.g-language.org/g-language.wsdl<br />
-<br />
-   Documentation on G-language Genome Analysis Environment methods are<br />
-   provided at the Document Center<br />
-<br />
-   http://ws.g-language.org/gdoc/<br />
-<br />
-
-</p>
-
-<H2>Usage</H2>
-
-<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
-
-Here is a sample session with ggcwin
-
-% ggcwin refseqn:NC_000913
-Calculates the GC content along the given genome
-Program compseq output file (optional) [nc_000913.ggcwin]: 
-
-   Go to the input files for this example
-   Go to the output files for this example
-
-   Example 2
-
-% ggcwin refseqn:NC_000913 -plot -graph png
-Calculates the GC content along the given genome
-Created ggcwin.1.png
-
-   Go to the input files for this example
-   Go to the output files for this example
-
-
-
-</pre></td></tr></table>
-
-
-
-<h2>Command line arguments</h2>
-
-<table border cellspacing=0 cellpadding=3 bgcolor="#ccccff">
-<tr bgcolor="#FFFFCC">
-<th align="left">Qualifier</th>
-<th align="left">Type</th>
-<th align="left">Description</th>
-<th align="left">Allowed values</th>
-<th align="left">Default</th>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<th align="left" colspan=5>Standard (Mandatory) qualifiers</th>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>[-sequence]<br>(Parameter 1)</td>
-<td>seqall</td>
-<td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
-<td>Readable sequence(s)</td>
-<td><b>Required</b></td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-graph</td>
-<td>xygraph</td>
-<td>Graph type</td>
-<td>EMBOSS has a list of known devices, including ps, hpgl, hp7470, hp7580, meta, cps, x11, tek, tekt, none, data, xterm, png, gif, svg</td>
-<td><i>EMBOSS_GRAPHICS</i> value, or x11</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-outfile</td>
-<td>outfile</td>
-<td>Program compseq output file (optional)</td>
-<td>Output file</td>
-<td><i>&lt;*&gt;</i>.ggcwin</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<th align="left" colspan=5>Additional (Optional) qualifiers</th>
-</tr>
-
-<tr>
-<td colspan=5>(none)</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<th align="left" colspan=5>Advanced (Unprompted) qualifiers</th>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-window</td>
-<td>integer</td>
-<td>Window size to observe</td>
-<td>Any integer value</td>
-<td>10000</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-at</td>
-<td>boolean</td>
-<td>Include for observing AT skew instead of GC skew</td>
-<td>Boolean value Yes/No</td>
-<td>No</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-purine</td>
-<td>boolean</td>
-<td>Include for observing purine (AG/TC) skew</td>
-<td>Boolean value Yes/No</td>
-<td>No</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-keto</td>
-<td>boolean</td>
-<td>Include for observing keto (TG/AC) skew default: "0</td>
-<td>Boolean value Yes/No</td>
-<td>No</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-plot</td>
-<td>toggle</td>
-<td>Include to plot result</td>
-<td>Toggle value Yes/No</td>
-<td>No</td>
-</tr>
-
-</table>
-
-
-<h2>Input file format</h2>
-
-<p>
-   The database definitions for following commands are available at<br />
-   http://soap.g-language.org/kbws/embossrc<br />
-<br />
-   ggcwin reads one or more nucleotide sequences.<br />
-<br />
-
-</p>
-
-<h2>Output file format</h2>
-
-<p>
-   The output from ggcwin is to a plain text file or the EMBOSS graphics device.<br />
-<br />
-   File: nc_000913.ggcwin<br />
-<br />
-Sequence: NC_000913<br />
-location,GC content<br />
-0,0.520700<br />
-10000,0.499400<br />
-20000,0.526200<br />
-30000,0.532300<br />
-40000,0.527700<br />
-50000,0.515600<br />
-60000,0.555800<br />
-70000,0.536000<br />
-<br />
-   [Part of this file has been deleted for brevity]<br />
-<br />
-4530000,0.442800<br />
-4540000,0.487000<br />
-4550000,0.507700<br />
-4560000,0.509600<br />
-4570000,0.444600<br />
-4580000,0.531600<br />
-4590000,0.512300<br />
-4600000,0.504500<br />
-4610000,0.535600<br />
-4620000,0.546600<br />
-<br />
-<br />
-
-</p>
-
-<h2>Data files</h2>
-
-<p>
-None.
-</p>
-
-<h2>Notes</h2>
-
-<p>
-None.
-</p>
-
-<h2>References</h2>
-
-<pre>
-   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
-      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
-      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
-
-   Arakawa, K. and Tomita, M. (2006) G-language System as a Platform for
-      large-scale analysis of high-throughput omics data, J. Pest Sci.,
-      31, 7.
-
-   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
-      Analysis Environment with REST and SOAP Web Service Interfaces,
-      Nucleic Acids Res., 38, W700-W705.
-
-</pre>
-
-<h2>Warnings</h2>
-
-<p>
-None.
-</p>
-
-<h2>Diagnostic Error Messages</h2>
-
-<p>
-None.
-</p>
-
-<h2>Exit status</h2>
-
-<p>
-It always exits with a status of 0.
-</p>
-
-<h2>Known bugs</h2>
-
-<p>
-None.
-</p>
-
-<h2>See also</h2>
-
-<table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th>
-<th>Description</th></tr>
-
-<tr>
-<td><a href="ggcskew.html">ggcskew</a></td>
-<td>Calculates the GC skew of the input sequence</td>
-</tr><tr>
-<td><a href="ggeneskew.html">ggeneskew</a></td>
-<td>Calculate the gene strand bias of the given genome</td>
-</tr><tr>
-<td><a href="ggenomicskew.html">ggenomicskew</a></td>
-<td>Calculates the GC skew in different regions of the given genom</td>
-</tr>
-
-</table>
-
-<h2>Author(s)</h2>
-
-<pre>
-   Hidetoshi Itaya (celery@g-language.org)
-   Institute for Advanced Biosciences, Keio University
-   252-0882 Japan
-
-  Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
-  Institute for Advanced Biosciences, Keio University
-  252-0882 Japan</pre>
-
-<h2>History</h2>
-
-   2012 - Written by Hidetoshi Itaya
-
-<h2>Target users</h2>
-
-   This program is intended to be used by everyone and everything, from
-   naive users to embedded scrips.
-
-<h2>Comments</h2>
-
-   None.
-
+<!--START OF HEADER - DON'T ALTER --><HTML><HEAD>  <TITLE> EMBOSS: ggcwin </TITLE></HEAD><BODY BGCOLOR="#FFFFFF" text="#000000"><table align=center border=0 cellspacing=0 cellpadding=0><tr><td valign=top><A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="http://soap.g-language.org/gembassy/emboss_explorer/manual/emboss_icon.jpg" alt="" width=150 height=48></a></td><td align=left valign=middle><b><font size="+6">ggcwin</font></b></td></tr></table><br>&nbsp;<p><!--END OF HEADER--><H2> Function </H2>   Calculates the GC content along the given genome<!--DON'T WRITE ANYTHING HERE.IT IS DONE FOR YOU.--><H2>Description</H2><p>   ggcwin calculates and plots the GC content of the given sequence.<br />    <br />   G-language SOAP service is provided by the<br />   Institute for Advanced Biosciences, Keio University.<br />   The original web service is located at the following URL:<br /><br />   http://www.g-language.org/wiki/soap<br /><br />   WSDL(RPC/Encoded) file is located at:<br /><br />   http://soap.g-language.org/g-language.wsdl<br /><br />   Documentation on G-language Genome Analysis Environment methods are<br />   provided at the Document Center<br /><br />   http://ws.g-language.org/gdoc/<br /><br /></p><H2>Usage</H2>Here is a sample session with ggcwin<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>% ggcwin refseqn:NC_000913Calculates the GC content along the given genomeProgram compseq output file (optional) [nc_000913.ggcwin]: </pre></td></tr></table>Go to the <a href="#input">input files</a> for this example<br>Go to the <a href="#output">output files</a> for this example<br><br>   Example 2<table width="90%"><tr><td bgcolor="#CCFFCC">% ggcwin refseqn:NC_000913 -plot -graph pngCalculates the GC content along the given genomeCreated ggcwin.1.png</pre></td></tr></table>Go to the <a href="#input">input files</a> for this example<br>Go to the <a href="#output">output files</a> for this example<br><br><h2>Command line arguments</h2><table border cellspacing=0 cellpadding=3 bgcolor="#ccccff"><tr bgcolor="#FFFFCC"><th align="left">Qualifier</th><th align="left">Type</th><th align="left">Description</th><th align="left">Allowed values</th><th align="left">Default</th></tr><tr bgcolor="#FFFFCC"><th align="left" colspan=5>Standard (Mandatory) qualifiers</th></tr><tr bgcolor="#FFFFCC"><td>[-sequence]<br>(Parameter 1)</td><td>seqall</td><td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td><td>Readable sequence(s)</td><td><b>Required</b></td></tr><tr bgcolor="#FFFFCC"><td>-graph</td><td>xygraph</td><td>Graph type</td><td>EMBOSS has a list of known devices, including ps, hpgl, hp7470, hp7580, meta, cps, x11, tek, tekt, none, data, xterm, png, gif, svg</td><td><i>EMBOSS_GRAPHICS</i> value, or x11</td></tr><tr bgcolor="#FFFFCC"><td>-outfile</td><td>outfile</td><td>Program compseq output file (optional)</td><td>Output file</td><td><i>&lt;*&gt;</i>.ggcwin</td></tr><tr bgcolor="#FFFFCC"><th align="left" colspan=5>Additional (Optional) qualifiers</th></tr><tr><td colspan=5>(none)</td></tr><tr bgcolor="#FFFFCC"><th align="left" colspan=5>Advanced (Unprompted) qualifiers</th></tr><tr bgcolor="#FFFFCC"><td>-window</td><td>integer</td><td>Window size to observe</td><td>Any integer value</td><td>10000</td></tr><tr bgcolor="#FFFFCC"><td>-at</td><td>boolean</td><td>Include for observing AT skew instead of GC skew</td><td>Boolean value Yes/No</td><td>No</td></tr><tr bgcolor="#FFFFCC"><td>-purine</td><td>boolean</td><td>Include for observing purine (AG/TC) skew</td><td>Boolean value Yes/No</td><td>No</td></tr><tr bgcolor="#FFFFCC"><td>-keto</td><td>boolean</td><td>Include for observing keto (TG/AC) skew default: "0</td><td>Boolean value Yes/No</td><td>No</td></tr><tr bgcolor="#FFFFCC"><td>-plot</td><td>toggle</td><td>Include to plot result</td><td>Toggle value Yes/No</td><td>No</td></tr></table><h2 id="input">Input file format</h2><p>   The database definitions for following commands are available at<br />   http://soap.g-language.org/kbws/embossrc<br /><br />   ggcwin reads one or more nucleotide sequences.<br /><br /></p><h2 id="output">Output file format</h2><p>   The output from ggcwin is to a plain text file or the EMBOSS graphics device.<br /><br />   File: nc_000913.ggcwin<br /><br /><table width="90%"><tr><td bgcolor="#CCFFCC">Sequence: NC_000913<br />location,GC content<br />0,0.520700<br />10000,0.499400<br />20000,0.526200<br />30000,0.532300<br />40000,0.527700<br />50000,0.515600<br />60000,0.555800<br />70000,0.536000<br /><br /><font color=red>[Part of this file has been deleted for brevity]</font><br /><br />4530000,0.442800<br />4540000,0.487000<br />4550000,0.507700<br />4560000,0.509600<br />4570000,0.444600<br />4580000,0.531600<br />4590000,0.512300<br />4600000,0.504500<br />4610000,0.535600<br />4620000,0.546600<br /></td></tr></table></p><h2>Data files</h2><p>None.</p><h2>Notes</h2><p>None.</p><h2>References</h2><pre>   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.   Arakawa, K. and Tomita, M. (2006) G-language System as a Platform for      large-scale analysis of high-throughput omics data, J. Pest Sci.,      31, 7.   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome      Analysis Environment with REST and SOAP Web Service Interfaces,      Nucleic Acids Res., 38, W700-W705.</pre><h2>Warnings</h2><p>None.</p><h2>Diagnostic Error Messages</h2><p>None.</p><h2>Exit status</h2><p>It always exits with a status of 0.</p><h2>Known bugs</h2><p>None.</p><h2>See also</h2><table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th><th>Description</th></tr><tr><td><a href="ggcskew.html">ggcskew</a></td><td>Calculates the GC skew of the input sequence</td></tr><tr><td><a href="ggeneskew.html">ggeneskew</a></td><td>Calculate the gene strand bias of the given genome</td></tr><tr><td><a href="ggenomicskew.html">ggenomicskew</a></td><td>Calculates the GC skew in different regions of the given genome</td></tr></table><h2>Author(s)</h2><pre>Hidetoshi Itaya (celery@g-language.org)  Institute for Advanced Biosciences, Keio University  252-0882 Japan  Kazuharu Arakawa (gaou@sfc.keio.ac.jp)  Institute for Advanced Biosciences, Keio University  252-0882 Japan</pre><h2>History</h2>   2012 - Written by Hidetoshi Itaya<h2>Target users</h2>   This program is intended to be used by everyone and everything, from   naive users to embedded scrips.<h2>Comments</h2>   None.

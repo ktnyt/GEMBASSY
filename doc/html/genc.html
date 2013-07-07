@@ -1,307 +1,1 @@
-<!--START OF HEADER - DON'T ALTER -->
-
-<HTML>
-<HEAD>
-  <TITLE> EMBOSS: genc </TITLE>
-</HEAD>
-<BODY BGCOLOR="#FFFFFF" text="#000000">
-
-
-
-<table align=center border=0 cellspacing=0 cellpadding=0>
-<tr><td valign=top>
-<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="http://soap.g-language.org/gembassy/emboss_explorer/manual/emboss_icon.jpg" alt="" width=150 height=48></a>
-</td>
-<td align=left valign=middle>
-<b><font size="+6">
-genc
-</font></b>
-</td></tr>
-</table>
-<br>&nbsp;
-<p>
-
-
-<!--END OF HEADER-->
-
-
-
-
-
-
-<H2> Function </H2>
-   Calculate the effective number of codons (Nc)
-<!--
-DON'T WRITE ANYTHING HERE.
-IT IS DONE FOR YOU.
--->
-
-
-
-
-<H2>Description</H2>
-<p>
-   genc calculates the effective number of codons (ENC|Nc). ENC is a measure<br />
-   for species-independent codon usage bias. Some measures including CAI are<br />
-   species-dependent as optimal codons differ. ENC assigns a gene a number<br />
-   between 20 to 61 where 20 indicates that one codon is used for each amino<br />
-   acid and 61 indicates that each codon is used equally throughout the<br />
-   protein sequence.<br />
-    <br />
-   G-language SOAP service is provided by the<br />
-   Institute for Advanced Biosciences, Keio University.<br />
-   The original web service is located at the following URL:<br />
-<br />
-   http://www.g-language.org/wiki/soap<br />
-<br />
-   WSDL(RPC/Encoded) file is located at:<br />
-<br />
-   http://soap.g-language.org/g-language.wsdl<br />
-<br />
-   Documentation on G-language Genome Analysis Environment methods are<br />
-   provided at the Document Center<br />
-<br />
-   http://ws.g-language.org/gdoc/<br />
-<br />
-
-</p>
-
-<H2>Usage</H2>
-
-<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
-
-Here is a sample session with genc
-
-% genc refseqn:NC_000913
-Calculate the effective number of codons (Nc)
-Codon usage output file [nc_000913.genc]: 
-
-   Go to the input files for this example
-   Go to the output files for this example
-
-
-
-</pre></td></tr></table>
-
-
-
-<h2>Command line arguments</h2>
-
-<table border cellspacing=0 cellpadding=3 bgcolor="#ccccff">
-<tr bgcolor="#FFFFCC">
-<th align="left">Qualifier</th>
-<th align="left">Type</th>
-<th align="left">Description</th>
-<th align="left">Allowed values</th>
-<th align="left">Default</th>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<th align="left" colspan=5>Standard (Mandatory) qualifiers</th>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>[-sequence]<br>(Parameter 1)</td>
-<td>seqall</td>
-<td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
-<td>Readable sequence(s)</td>
-<td><b>Required</b></td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>[-outfile]<br>(Parameter 2)</td>
-<td>outfile</td>
-<td>Codon usage output file</td>
-<td>Output file</td>
-<td><i>&lt;*&gt;</i>.genc</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<th align="left" colspan=5>Additional (Optional) qualifiers</th>
-</tr>
-
-<tr>
-<td colspan=5>(none)</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<th align="left" colspan=5>Advanced (Unprompted) qualifiers</th>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-translate</td>
-<td>boolean</td>
-<td>Include when translates using standard codon table</td>
-<td>Boolean value Yes/No</td>
-<td>No</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-delkey</td>
-<td>string</td>
-<td>Regular expression to delete key (i.e. amino acids and nucleotides)</td>
-<td>Any string</td>
-<td>[^ACDEFGHIKLMNPQRSTVWYacgtU]</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-[no]accid</td>
-<td>boolean</td>
-<td>Include to use sequence accession ID as query</td>
-<td>Boolean value Yes/No</td>
-<td>Yes</td>
-</tr>
-
-</table>
-
-
-<h2>Input file format</h2>
-
-<p>
-   The database definitions for following commands are available at<br />
-   http://soap.g-language.org/kbws/embossrc<br />
-<br />
-   genc reads one or more nucleotide sequences.<br />
-<br />
-
-</p>
-
-<h2>Output file format</h2>
-
-<p>
-   The output from genc is to a plain text file.<br />
-<br />
-   File: nc_000913.genc<br />
-<br />
-Sequence: NC_000913<br />
-enc,gene<br />
-,thrL<br />
-48.41,thrA<br />
-54.13,thrB<br />
-46.18,thrC<br />
-51.65,yaaX<br />
-45.71,yaaA<br />
-48.54,yaaJ<br />
-36.83,talB<br />
-<br />
-   [Part of this file has been deleted for brevity]<br />
-<br />
-51.43,yjjX<br />
-46.61,ytjC<br />
-49.83,rob<br />
-47.74,creA<br />
-50.63,creB<br />
-51.39,creC<br />
-48.42,creD<br />
-41.53,arcA<br />
-61,yjjY<br />
-53.63,yjtD<br />
-<br />
-<br />
-
-</p>
-
-<h2>Data files</h2>
-
-<p>
-None.
-</p>
-
-<h2>Notes</h2>
-
-<p>
-None.
-</p>
-
-<h2>References</h2>
-
-<pre>
-   Comeron JM, Aguade M. (1998) An evaluation of measures of synonymous codon
-      usage bias, J Mol Evol, 47(3):268-74.
-
-   Wright F. (1990) The 'effective number of codons' used in a gene, Gene,
-      87:23-29.
-
-   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
-      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
-      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
-
-   Arakawa, K. and Tomita, M. (2006) G-language System as a Platform for
-      large-scale analysis of high-throughput omics data, J. Pest Sci.,
-      31, 7.
-
-   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
-      Analysis Environment with REST and SOAP Web Service Interfaces,
-      Nucleic Acids Res., 38, W700-W705.
-
-</pre>
-
-<h2>Warnings</h2>
-
-<p>
-None.
-</p>
-
-<h2>Diagnostic Error Messages</h2>
-
-<p>
-None.
-</p>
-
-<h2>Exit status</h2>
-
-<p>
-It always exits with a status of 0.
-</p>
-
-<h2>Known bugs</h2>
-
-<p>
-None.
-</p>
-
-<h2>See also</h2>
-
-<table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th>
-<th>Description</th></tr>
-
-<tr>
-<td><a href="gew.html">gew</a></td>
-<td>Calculate a measure of synonymous codon usage evenness (Ew)</td>
-</tr><tr>
-<td><a href="gfop.html">gfop</a></td>
-<td>Calculate the frequency of optimal codons (Fop)</td>
-</tr><tr>
-<td><a href="gscs.html">gscs</a></td>
-<td>Calculates the scaled chi-square</td>
-</tr><tr>
-<td><a href="gw_value.html">gw_value</a></td>
-<td>Calculate the 'relative adaptiveness of each codon' (W)</td>
-</tr>
-
-</table>
-
-<h2>Author(s)</h2>
-
-<pre>
-   Hidetoshi Itaya (celery@g-language.org)
-   Institute for Advanced Biosciences, Keio University
-   252-0882 Japan
-
-  Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
-  Institute for Advanced Biosciences, Keio University
-  252-0882 Japan</pre>
-
-<h2>History</h2>
-
-   2012 - Written by Hidetoshi Itaya
-
-<h2>Target users</h2>
-
-   This program is intended to be used by everyone and everything, from
-   naive users to embedded scrips.
-
-<h2>Comments</h2>
-
-   None.
-
+<!--START OF HEADER - DON'T ALTER --><HTML><HEAD>  <TITLE> EMBOSS: genc </TITLE></HEAD><BODY BGCOLOR="#FFFFFF" text="#000000"><table align=center border=0 cellspacing=0 cellpadding=0><tr><td valign=top><A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="http://soap.g-language.org/gembassy/emboss_explorer/manual/emboss_icon.jpg" alt="" width=150 height=48></a></td><td align=left valign=middle><b><font size="+6">genc</font></b></td></tr></table><br>&nbsp;<p><!--END OF HEADER--><H2> Function </H2>   Calculate the effective number of codons (Nc)<!--DON'T WRITE ANYTHING HERE.IT IS DONE FOR YOU.--><H2>Description</H2><p>   genc calculates the effective number of codons (ENC|Nc). ENC is a measure<br />   for species-independent codon usage bias. Some measures including CAI are<br />   species-dependent as optimal codons differ. ENC assigns a gene a number<br />   between 20 to 61 where 20 indicates that one codon is used for each amino<br />   acid and 61 indicates that each codon is used equally throughout the<br />   protein sequence.<br />    <br />   G-language SOAP service is provided by the<br />   Institute for Advanced Biosciences, Keio University.<br />   The original web service is located at the following URL:<br /><br />   http://www.g-language.org/wiki/soap<br /><br />   WSDL(RPC/Encoded) file is located at:<br /><br />   http://soap.g-language.org/g-language.wsdl<br /><br />   Documentation on G-language Genome Analysis Environment methods are<br />   provided at the Document Center<br /><br />   http://ws.g-language.org/gdoc/<br /><br /></p><H2>Usage</H2>Here is a sample session with genc<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>% genc refseqn:NC_000913Calculate the effective number of codons (Nc)Codon usage output file [nc_000913.genc]: </pre></td></tr></table>Go to the <a href="#input">input files</a> for this example<br>Go to the <a href="#output">output files</a> for this example<br><br><h2>Command line arguments</h2><table border cellspacing=0 cellpadding=3 bgcolor="#ccccff"><tr bgcolor="#FFFFCC"><th align="left">Qualifier</th><th align="left">Type</th><th align="left">Description</th><th align="left">Allowed values</th><th align="left">Default</th></tr><tr bgcolor="#FFFFCC"><th align="left" colspan=5>Standard (Mandatory) qualifiers</th></tr><tr bgcolor="#FFFFCC"><td>[-sequence]<br>(Parameter 1)</td><td>seqall</td><td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td><td>Readable sequence(s)</td><td><b>Required</b></td></tr><tr bgcolor="#FFFFCC"><td>[-outfile]<br>(Parameter 2)</td><td>outfile</td><td>Codon usage output file</td><td>Output file</td><td><i>&lt;*&gt;</i>.genc</td></tr><tr bgcolor="#FFFFCC"><th align="left" colspan=5>Additional (Optional) qualifiers</th></tr><tr><td colspan=5>(none)</td></tr><tr bgcolor="#FFFFCC"><th align="left" colspan=5>Advanced (Unprompted) qualifiers</th></tr><tr bgcolor="#FFFFCC"><td>-translate</td><td>boolean</td><td>Include when translates using standard codon table</td><td>Boolean value Yes/No</td><td>No</td></tr><tr bgcolor="#FFFFCC"><td>-delkey</td><td>string</td><td>Regular expression to delete key (i.e. amino acids and nucleotides)</td><td>Any string</td><td>[^ACDEFGHIKLMNPQRSTVWYacgtU]</td></tr><tr bgcolor="#FFFFCC"><td>-[no]accid</td><td>boolean</td><td>Include to use sequence accession ID as query</td><td>Boolean value Yes/No</td><td>Yes</td></tr></table><h2 id="input">Input file format</h2><p>   The database definitions for following commands are available at<br />   http://soap.g-language.org/kbws/embossrc<br /><br />   genc reads one or more nucleotide sequences.<br /><br /></p><h2 id="output">Output file format</h2><p>   The output from genc is to a plain text file.<br /><br />   File: nc_000913.genc<br /><br /><table width="90%"><tr><td bgcolor="#CCFFCC">Sequence: NC_000913<br />enc,gene<br />,thrL<br />48.41,thrA<br />54.13,thrB<br />46.18,thrC<br />51.65,yaaX<br />45.71,yaaA<br />48.54,yaaJ<br />36.83,talB<br /><br /><font color=red>[Part of this file has been deleted for brevity]</font><br /><br />51.43,yjjX<br />46.61,ytjC<br />49.83,rob<br />47.74,creA<br />50.63,creB<br />51.39,creC<br />48.42,creD<br />41.53,arcA<br />61,yjjY<br />53.63,yjtD<br /></td></tr></table></p><h2>Data files</h2><p>None.</p><h2>Notes</h2><p>None.</p><h2>References</h2><pre>   Comeron JM, Aguade M. (1998) An evaluation of measures of synonymous codon      usage bias, J Mol Evol, 47(3):268-74.   Wright F. (1990) The 'effective number of codons' used in a gene, Gene,      87:23-29.   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.   Arakawa, K. and Tomita, M. (2006) G-language System as a Platform for      large-scale analysis of high-throughput omics data, J. Pest Sci.,      31, 7.   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome      Analysis Environment with REST and SOAP Web Service Interfaces,      Nucleic Acids Res., 38, W700-W705.</pre><h2>Warnings</h2><p>None.</p><h2>Diagnostic Error Messages</h2><p>None.</p><h2>Exit status</h2><p>It always exits with a status of 0.</p><h2>Known bugs</h2><p>None.</p><h2>See also</h2><table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th><th>Description</th></tr><tr><td><a href="gew.html">gew</a></td><td>Calculate a measure of synonymous codon usage evenness (Ew)</td></tr><tr><td><a href="gfop.html">gfop</a></td><td>Calculate the frequency of optimal codons (Fop)</td></tr><tr><td><a href="gscs.html">gscs</a></td><td>Calculates the scaled chi-square</td></tr><tr><td><a href="gwvalue.html">gwvalue</a></td><td>Calculate the 'relative adaptiveness of each codon' (W)</td></tr></table><h2>Author(s)</h2><pre>   Hidetoshi Itaya (celery@g-language.org)   Institute for Advanced Biosciences, Keio University   252-0882 Japan  Kazuharu Arakawa (gaou@sfc.keio.ac.jp)  Institute for Advanced Biosciences, Keio University  252-0882 Japan</pre><h2>History</h2>   2012 - Written by Hidetoshi Itaya<h2>Target users</h2>   This program is intended to be used by everyone and everything, from   naive users to embedded scrips.<h2>Comments</h2>   None.</BODY></HTML>

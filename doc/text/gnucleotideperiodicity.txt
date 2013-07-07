@@ -196,10 +196,11 @@ Known bugs
 
 See also
 
-   gkmer_table             Create an image showing all k-mer abundance within a                            sequence
-   goligomer_counter       Counts the number of given oligomers in a sequence
-   goligomer_search        Searches oligomers in given sequence
-   gsignature              Calculate oligonucleotide usage (genomic signature)
+   gkmertable       Create an image showing all k-mer abundance within a
+                    sequence
+   goligomercounter Counts the number of given oligomers in a sequence
+   goligomersearch  Searches oligomers in given sequence
+   gsignature       Calculate oligonucleotide usage (genomic signature)
 
 Author(s)
 

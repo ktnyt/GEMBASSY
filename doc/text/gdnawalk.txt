@@ -142,8 +142,8 @@ Known bugs
 
 See also
 
-   gcircular_map Draws circular map of the genome
-   ggenome_map3  Draws the map of the genome (version 3)
+   gcircularmap Draws circular map of the genome
+   ggenomemap3  Draws the map of the genome (version 3)
 
 Author(s)
 

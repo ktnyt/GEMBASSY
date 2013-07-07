@@ -42,8 +42,8 @@ Here is a sample session with gcgr
 
 % gcgr refseqn:NC_000913
 Create a Chaos Game Representation of a given sequence
-Output file for non interactive displays [gcgr]: Created gcgr.1.png
-
+Output file for non interactive displays [gcgr]:
+Created gcgr.1.png
 
    Go to the input files for this example
    Go to the output files for this example
@@ -110,8 +110,6 @@ Input file format
 Output file format
 
    The output from gcgr is to an image file.
-
-
 
 Data files
 

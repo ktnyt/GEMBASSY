@@ -179,10 +179,10 @@ Known bugs
 
 See also
 
-   genc     Calculate the effective number of codons (Nc)
-   gfop     Calculate the frequency of optimal codons (Fop)
-   gscs     Calculates the scaled chi-square
-   gw_value Calculate the 'relative adaptiveness of each codon' (W)
+   genc    Calculate the effective number of codons (Nc)
+   gfop    Calculate the frequency of optimal codons (Fop)
+   gscs    Calculates the scaled chi-square
+   gwvalue Calculate the 'relative adaptiveness of each codon' (W)
 
 Author(s)
 

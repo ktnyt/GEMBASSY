@@ -179,7 +179,8 @@ Known bugs
 See also
 
    gaminoinfo     Prints out basic amino acid sequence statistics
-   gcodoncompiler Calculate various kinds of amino acid and codon usage data
+   gbui           Calculates base usage indeces for protein-codin sequences
+   gcodoncompiler Calculates various kinds of amino acid and codon usage data
 
 Author(s)
 

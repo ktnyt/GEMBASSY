@@ -180,10 +180,10 @@ Known bugs
 
 See also
 
-   gew      Calculate a measure of synonymous codon usage evenness (Ew)
-   gfop     Calculate the frequency of optimal codons (Fop)
-   gscs     Calculates the scaled chi-square
-   gw_value Calculate the 'relative adaptiveness of each codon' (W)
+   gew     Calculate a measure of synonymous codon usage evenness (Ew)
+   gfop    Calculate the frequency of optimal codons (Fop)
+   gscs    Calculates the scaled chi-square
+   gwvalue Calculate the 'relative adaptiveness of each codon' (W)
 
 Author(s)
 

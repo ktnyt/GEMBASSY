@@ -1,302 +1,1 @@
-<!--START OF HEADER - DON'T ALTER -->
-
-<HTML>
-<HEAD>
-  <TITLE> EMBOSS: gbui </TITLE>
-</HEAD>
-<BODY BGCOLOR="#FFFFFF" text="#000000">
-
-
-
-<table align=center border=0 cellspacing=0 cellpadding=0>
-<tr><td valign=top>
-<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="http://soap.g-language.org/gembassy/emboss_explorer/manual/emboss_icon.jpg" alt="" width=150 height=48></a>
-</td>
-<td align=left valign=middle>
-<b><font size="+6">
-gbui
-</font></b>
-</td></tr>
-</table>
-<br>&nbsp;
-<p>
-
-
-<!--END OF HEADER-->
-
-
-
-
-
-
-<H2> Function </H2>
-   Calculates base usage indices for protein-coding sequences
-<!--
-DON'T WRITE ANYTHING HERE.
-IT IS DONE FOR YOU.
--->
-
-
-
-
-<H2>Description</H2>
-<p>
-   gbui calculates base usage indices of protein-coding sequences (excluding<br />
-   start and stop codons) for each gene. Indices calculated are as follows,<br />
-      acgt: Total bumber of bases (A+T+G+C)<br />
-      ryr:  Purine/Pyrimidine ratio (A+G)/(T+C)<br />
-      gcc:  G+C content (G+C)/(A+T+G+C)<br />
-      Hgc:  entropy of G+C content (G+C)/(A+T+G+C)<br />
-      gcs:  GC skew (C-G)/(C+G)<br />
-      ats:  AT skew (A-T)/(A+T)<br />
-    <br />
-   G-language SOAP service is provided by the<br />
-   Institute for Advanced Biosciences, Keio University.<br />
-   The original web service is located at the following URL:<br />
-<br />
-   http://www.g-language.org/wiki/soap<br />
-<br />
-   WSDL(RPC/Encoded) file is located at:<br />
-<br />
-   http://soap.g-language.org/g-language.wsdl<br />
-<br />
-   Documentation on G-language Genome Analysis Environment methods are<br />
-   provided at the Document Center<br />
-<br />
-   http://ws.g-language.org/gdoc/<br />
-<br />
-
-</p>
-
-<H2>Usage</H2>
-
-<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
-
-Here is a sample session with gbui
-
-% gbui refseqn:NC_000913
-Calculates base usage indices for protein-coding sequences
-Program compseq output file [nc_000913.gbui]: 
-
-   Go to the input files for this example
-   Go to the output files for this example
-
-
-
-</pre></td></tr></table>
-
-
-
-<h2>Command line arguments</h2>
-
-<table border cellspacing=0 cellpadding=3 bgcolor="#ccccff">
-<tr bgcolor="#FFFFCC">
-<th align="left">Qualifier</th>
-<th align="left">Type</th>
-<th align="left">Description</th>
-<th align="left">Allowed values</th>
-<th align="left">Default</th>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<th align="left" colspan=5>Standard (Mandatory) qualifiers</th>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>[-sequence]<br>(Parameter 1)</td>
-<td>seqall</td>
-<td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
-<td>Readable sequence(s)</td>
-<td><b>Required</b></td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>[-outfile]<br>(Parameter 2)</td>
-<td>outfile</td>
-<td>Program compseq output file</td>
-<td>Output file</td>
-<td><i>&lt;*&gt;</i>.gbui</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<th align="left" colspan=5>Additional (Optional) qualifiers</th>
-</tr>
-
-<tr>
-<td colspan=5>(none)</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<th align="left" colspan=5>Advanced (Unprompted) qualifiers</th>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-translate</td>
-<td>boolean</td>
-<td>Include when translating using standard codon table</td>
-<td>Boolean value Yes/No</td>
-<td>No</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-position</td>
-<td>list</td>
-<td>Codon position</td>
-<td><table><tr><td>all</td> <td><i>(Assess overall base usage of the gene)</i></td></tr><tr><td>1</td> <td><i>(Assess base usage at 1st position of codons)</i></td></tr><tr><td>2</td> <td><i>(Assess base usage at 2nd position of codons)</i></td></tr><tr><td>3</td> <td><i>(Assess base usage at 3rd position of codons)</i></td></tr></table></td>
-<td>all</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-delkey</td>
-<td>string</td>
-<td>Regular expression to delete key</td>
-<td>Any string</td>
-<td>[^ACDEFGHIKLMNPQRSTVWYacgtU]</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-[no]accid</td>
-<td>boolean</td>
-<td>Include to use sequence accession ID as query</td>
-<td>Boolean value Yes/No</td>
-<td>Yes</td>
-</tr>
-
-</table>
-
-
-<h2>Input file format</h2>
-
-<p>
-   The database definitions for following commands are available at<br />
-   http://soap.g-language.org/kbws/embossrc<br />
-<br />
-   gbui reads one or more nucleotide sequences.<br />
-<br />
-
-</p>
-
-<h2>Output file format</h2>
-
-<p>
-   The output from gbui is to a plain text file.<br />
-<br />
-   File: nc_000913.gbui<br />
-<br />
-Sequence: NC_000913<br />
-acgt,ryr,gcc,Hgc,gcs,ats,gene<br />
-60,0.9355,0.5333,0.9968,+0.3750,+0.3571,thrL<br />
-2457,1.0206,0.5311,0.9972,-0.0575,-0.0434,thrA<br />
-927,1.0973,0.5653,0.9877,-0.1183,-0.0471,thrB<br />
-1281,1.0795,0.5301,0.9974,-0.0692,+0.0033,thrC<br />
-291,1.0638,0.5430,0.9947,+0.0506,+0.1278,yaaX<br />
-771,1.0615,0.4994,1.0000,-0.0182,+0.0415,yaaA<br />
-1425,0.8363,0.5347,0.9965,-0.0315,-0.2278,yaaJ<br />
-948,1.1303,0.5222,0.9986,-0.0263,+0.0993,talB<br />
-<br />
-   [Part of this file has been deleted for brevity]<br />
-<br />
-507,1.0444,0.5661,0.9874,-0.1080,-0.0909,yjjX<br />
-642,1.1472,0.5654,0.9876,-0.0909,+0.0394,ytjC<br />
-864,0.9636,0.5347,0.9965,+0.0087,-0.0299,rob<br />
-468,1.1273,0.4936,0.9999,-0.1169,+0.0042,creA<br />
-684,1.0118,0.5556,0.9911,-0.0579,-0.0592,creB<br />
-1419,1.0655,0.5398,0.9954,-0.1018,-0.0505,creC<br />
-1347,1.0660,0.4974,1.0000,-0.1433,-0.0783,creD<br />
-711,1.0850,0.5134,0.9995,-0.0082,+0.0751,arcA<br />
-135,0.8493,0.4370,0.9885,+0.2203,+0.0263,yjjY<br />
-681,1.1415,0.5007,1.0000,-0.0792,+0.0529,yjtD<br />
-<br />
-<br />
-
-</p>
-
-<h2>Data files</h2>
-
-<p>
-None.
-</p>
-
-<h2>Notes</h2>
-
-<p>
-None.
-</p>
-
-<h2>References</h2>
-
-<pre>
-   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
-      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
-      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
-
-   Arakawa, K. and Tomita, M. (2006) G-language System as a Platform for
-      large-scale analysis of high-throughput omics data, J. Pest Sci.,
-      31, 7.
-
-   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
-      Analysis Environment with REST and SOAP Web Service Interfaces,
-      Nucleic Acids Res., 38, W700-W705.
-
-</pre>
-
-<h2>Warnings</h2>
-
-<p>
-None.
-</p>
-
-<h2>Diagnostic Error Messages</h2>
-
-<p>
-None.
-</p>
-
-<h2>Exit status</h2>
-
-<p>
-It always exits with a status of 0.
-</p>
-
-<h2>Known bugs</h2>
-
-<p>
-None.
-</p>
-
-<h2>See also</h2>
-
-<table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th>
-<th>Description</th></tr>
-
-<tr>
-<td><a href="gdinuc.html">gdinuc</a></td>
-<td>Calculates dinucleotide usage</td>
-</tr>
-
-</table>
-
-<h2>Author(s)</h2>
-
-<pre>
-   Hidetoshi Itaya (celery@g-language.org)
-   Institute for Advanced Biosciences, Keio University
-   252-0882 Japan
-
-  Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
-  Institute for Advanced Biosciences, Keio University
-  252-0882 Japan</pre>
-
-<h2>History</h2>
-
-   2012 - Written by Hidetoshi Itaya
-
-<h2>Target users</h2>
-
-   This program is intended to be used by everyone and everything, from
-   naive users to embedded scrips.
-
-<h2>Comments</h2>
-
-   None.
-
+<!--START OF HEADER - DON'T ALTER --><HTML><HEAD>  <TITLE> EMBOSS: gbui </TITLE></HEAD><BODY BGCOLOR="#FFFFFF" text="#000000"><table align=center border=0 cellspacing=0 cellpadding=0><tr><td valign=top><A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="http://soap.g-language.org/gembassy/emboss_explorer/manual/emboss_icon.jpg" alt="" width=150 height=48></a></td><td align=left valign=middle><b><font size="+6">gbui</font></b></td></tr></table><br>&nbsp;<p><!--END OF HEADER--><H2> Function </H2>   Calculates base usage indices for protein-coding sequences<!--DON'T WRITE ANYTHING HERE.IT IS DONE FOR YOU.--><H2>Description</H2><p>   gbui calculates base usage indices of protein-coding sequences (excluding<br />   start and stop codons) for each gene. Indices calculated are as follows,<br />      acgt: Total bumber of bases (A+T+G+C)<br />      ryr:  Purine/Pyrimidine ratio (A+G)/(T+C)<br />      gcc:  G+C content (G+C)/(A+T+G+C)<br />      Hgc:  entropy of G+C content (G+C)/(A+T+G+C)<br />      gcs:  GC skew (C-G)/(C+G)<br />      ats:  AT skew (A-T)/(A+T)<br />    <br />   G-language SOAP service is provided by the<br />   Institute for Advanced Biosciences, Keio University.<br />   The original web service is located at the following URL:<br /><br />   http://www.g-language.org/wiki/soap<br /><br />   WSDL(RPC/Encoded) file is located at:<br /><br />   http://soap.g-language.org/g-language.wsdl<br /><br />   Documentation on G-language Genome Analysis Environment methods are<br />   provided at the Document Center<br /><br />   http://ws.g-language.org/gdoc/<br /><br /></p><H2>Usage</H2>Here is a sample session with gbui<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>% gbui refseqn:NC_000913Calculates base usage indices for protein-coding sequencesProgram compseq output file [nc_000913.gbui]: </pre></td></tr></table>Go to the <a href="#input">input files</a> for this example<br>Go to the <a href="#output">output files</a> for this example<br><br><h2>Command line arguments</h2><table border cellspacing=0 cellpadding=3 bgcolor="#ccccff"><tr bgcolor="#FFFFCC"><th align="left">Qualifier</th><th align="left">Type</th><th align="left">Description</th><th align="left">Allowed values</th><th align="left">Default</th></tr><tr bgcolor="#FFFFCC"><th align="left" colspan=5>Standard (Mandatory) qualifiers</th></tr><tr bgcolor="#FFFFCC"><td>[-sequence]<br>(Parameter 1)</td><td>seqall</td><td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td><td>Readable sequence(s)</td><td><b>Required</b></td></tr><tr bgcolor="#FFFFCC"><td>[-outfile]<br>(Parameter 2)</td><td>outfile</td><td>Program compseq output file</td><td>Output file</td><td><i>&lt;*&gt;</i>.gbui</td></tr><tr bgcolor="#FFFFCC"><th align="left" colspan=5>Additional (Optional) qualifiers</th></tr><tr><td colspan=5>(none)</td></tr><tr bgcolor="#FFFFCC"><th align="left" colspan=5>Advanced (Unprompted) qualifiers</th></tr><tr bgcolor="#FFFFCC"><td>-translate</td><td>boolean</td><td>Include when translating using standard codon table</td><td>Boolean value Yes/No</td><td>No</td></tr><tr bgcolor="#FFFFCC"><td>-position</td><td>list</td><td>Codon position</td><td><table><tr><td>all</td> <td><i>(Assess overall base usage of the gene)</i></td></tr><tr><td>1</td> <td><i>(Assess base usage at 1st position of codons)</i></td></tr><tr><td>2</td> <td><i>(Assess base usage at 2nd position of codons)</i></td></tr><tr><td>3</td> <td><i>(Assess base usage at 3rd position of codons)</i></td></tr></table></td><td>all</td></tr><tr bgcolor="#FFFFCC"><td>-delkey</td><td>string</td><td>Regular expression to delete key</td><td>Any string</td><td>[^ACDEFGHIKLMNPQRSTVWYacgtU]</td></tr><tr bgcolor="#FFFFCC"><td>-[no]accid</td><td>boolean</td><td>Include to use sequence accession ID as query</td><td>Boolean value Yes/No</td><td>Yes</td></tr></table><h2 id="input">Input file format</h2><p>   The database definitions for following commands are available at<br />   http://soap.g-language.org/kbws/embossrc<br /><br />   gbui reads one or more nucleotide sequences.<br /><br /></p><h2 id="output">Output file format</h2><p>   The output from gbui is to a plain text file.<br /><br />   File: nc_000913.gbui<br /><br /><table width="90%"><tr><td bgcolor="#CCFFCC">Sequence: NC_000913<br />acgt,ryr,gcc,Hgc,gcs,ats,gene<br />60,0.9355,0.5333,0.9968,+0.3750,+0.3571,thrL<br />2457,1.0206,0.5311,0.9972,-0.0575,-0.0434,thrA<br />927,1.0973,0.5653,0.9877,-0.1183,-0.0471,thrB<br />1281,1.0795,0.5301,0.9974,-0.0692,+0.0033,thrC<br />291,1.0638,0.5430,0.9947,+0.0506,+0.1278,yaaX<br />771,1.0615,0.4994,1.0000,-0.0182,+0.0415,yaaA<br />1425,0.8363,0.5347,0.9965,-0.0315,-0.2278,yaaJ<br />948,1.1303,0.5222,0.9986,-0.0263,+0.0993,talB<br /><br /><font color=red>[Part of this file has been deleted for brevity]</font><br /><br />507,1.0444,0.5661,0.9874,-0.1080,-0.0909,yjjX<br />642,1.1472,0.5654,0.9876,-0.0909,+0.0394,ytjC<br />864,0.9636,0.5347,0.9965,+0.0087,-0.0299,rob<br />468,1.1273,0.4936,0.9999,-0.1169,+0.0042,creA<br />684,1.0118,0.5556,0.9911,-0.0579,-0.0592,creB<br />1419,1.0655,0.5398,0.9954,-0.1018,-0.0505,creC<br />1347,1.0660,0.4974,1.0000,-0.1433,-0.0783,creD<br />711,1.0850,0.5134,0.9995,-0.0082,+0.0751,arcA<br />135,0.8493,0.4370,0.9885,+0.2203,+0.0263,yjjY<br />681,1.1415,0.5007,1.0000,-0.0792,+0.0529,yjtD<br /></td></tr></table></p><h2>Data files</h2><p>None.</p><h2>Notes</h2><p>None.</p><h2>References</h2><pre>   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.   Arakawa, K. and Tomita, M. (2006) G-language System as a Platform for      large-scale analysis of high-throughput omics data, J. Pest Sci.,      31, 7.   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome      Analysis Environment with REST and SOAP Web Service Interfaces,      Nucleic Acids Res., 38, W700-W705.</pre><h2>Warnings</h2><p>None.</p><h2>Diagnostic Error Messages</h2><p>None.</p><h2>Exit status</h2><p>It always exits with a status of 0.</p><h2>Known bugs</h2><p>None.</p><h2>See also</h2><table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th><th>Description</th></tr><tr><td><a href="gdinuc.html">gdinuc</a></td><td>Calculates dinucleotide usage</td></tr></table><h2>Author(s)</h2><pre>Hidetoshi Itaya (celery@g-language.org)  Institute for Advanced Biosciences, Keio University  252-0882 JapanKazuharu Arakawa (gaou@sfc.keio.ac.jp)  Institute for Advanced Biosciences, Keio University  252-0882 Japan</pre><h2>History</h2>   2012 - Written by Hidetoshi Itaya<h2>Target users</h2>   This program is intended to be used by everyone and everything, from   naive users to embedded scrips.<h2>Comments</h2>   None.</BODY></HTML>

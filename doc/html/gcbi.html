@@ -1,302 +1,1 @@
-<!--START OF HEADER - DON'T ALTER -->
-
-<HTML>
-<HEAD>
-  <TITLE> EMBOSS: gcbi </TITLE>
-</HEAD>
-<BODY BGCOLOR="#FFFFFF" text="#000000">
-
-
-
-<table align=center border=0 cellspacing=0 cellpadding=0>
-<tr><td valign=top>
-<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="http://soap.g-language.org/gembassy/emboss_explorer/manual/emboss_icon.jpg" alt="" width=150 height=48></a>
-</td>
-<td align=left valign=middle>
-<b><font size="+6">
-gcbi
-</font></b>
-</td></tr>
-</table>
-<br>&nbsp;
-<p>
-
-
-<!--END OF HEADER-->
-
-
-
-
-
-
-<H2> Function </H2>
-   Calculates the codon bias index (CBI)
-<!--
-DON'T WRITE ANYTHING HERE.
-IT IS DONE FOR YOU.
--->
-
-
-
-
-<H2>Description</H2>
-<p>
-   gcbi calculates the codon bias index (CBI) for each gene af the given<br />
-   genome. CBI is a directional codon bias which measures the usage of<br />
-   optimal codons in a gene. CBI is similar to Fop, and can take negative<br />
-   values depending on the codon usage.<br />
-    <br />
-   G-language SOAP service is provided by the<br />
-   Institute for Advanced Biosciences, Keio University.<br />
-   The original web service is located at the following URL:<br />
-<br />
-   http://www.g-language.org/wiki/soap<br />
-<br />
-   WSDL(RPC/Encoded) file is located at:<br />
-<br />
-   http://soap.g-language.org/g-language.wsdl<br />
-<br />
-   Documentation on G-language Genome Analysis Environment methods are<br />
-   provided at the Document Center<br />
-<br />
-   http://ws.g-language.org/gdoc/<br />
-<br />
-
-</p>
-
-<H2>Usage</H2>
-
-<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
-
-Here is a sample session with gcbi
-
-% gcbi refseqn:NC_000913
-Calculates the codon bias index (CBI)
-Codon usage output file [nc_000913.gcbi]: 
-
-   Go to the input files for this example
-   Go to the output files for this example
-
-
-
-</pre></td></tr></table>
-
-
-
-<h2>Command line arguments</h2>
-
-<table border cellspacing=0 cellpadding=3 bgcolor="#ccccff">
-<tr bgcolor="#FFFFCC">
-<th align="left">Qualifier</th>
-<th align="left">Type</th>
-<th align="left">Description</th>
-<th align="left">Allowed values</th>
-<th align="left">Default</th>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<th align="left" colspan=5>Standard (Mandatory) qualifiers</th>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>[-sequence]<br>(Parameter 1)</td>
-<td>seqall</td>
-<td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td>
-<td>Readable sequence(s)</td>
-<td><b>Required</b></td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>[-outfile]<br>(Parameter 2)</td>
-<td>outfile</td>
-<td>Codon usage output file</td>
-<td>Output file</td>
-<td><i>&lt;*&gt;</i>.gcbi</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<th align="left" colspan=5>Additional (Optional) qualifiers</th>
-</tr>
-
-<tr>
-<td colspan=5>(none)</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<th align="left" colspan=5>Advanced (Unprompted) qualifiers</th>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-translate</td>
-<td>boolean</td>
-<td>Include when translating using standard codon table</td>
-<td>Boolean value Yes/No</td>
-<td>No</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-delkey</td>
-<td>string</td>
-<td>Regular expression to delete key</td>
-<td>Any string</td>
-<td>[^ACDEFGHIKLMNPQRSTVWYacgtU]</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>-[no]accid</td>
-<td>boolean</td>
-<td>Include to use sequence accession ID as query</td>
-<td>Boolean value Yes/No</td>
-<td>Yes</td>
-</tr>
-
-</table>
-
-
-<h2>Input file format</h2>
-
-<p>
-   The database definitions for following commands are available at<br />
-   http://soap.g-language.org/kbws/embossrc<br />
-<br />
-   gcbi reads one or more nucleotide sequences.<br />
-<br />
-
-</p>
-
-<h2>Output file format</h2>
-
-<p>
-   The output from gcbi is to a plain text file.<br />
-<br />
-   File: nc_000913.gcbi<br />
-<br />
-Sequence: NC_000913<br />
-cbi,gene<br />
-0.8716,thrL<br />
-0.3441,thrA<br />
-0.3462,thrB<br />
-0.4280,thrC<br />
-0.3868,yaaX<br />
-0.3908,yaaA<br />
-0.3521,yaaJ<br />
-0.5354,talB<br />
-<br />
-   [Part of this file has been deleted for brevity]<br />
-<br />
-0.4005,yjjX<br />
-0.4388,ytjC<br />
-0.3934,rob<br />
-0.4645,creA<br />
-0.4266,creB<br />
-0.3435,creC<br />
-0.3796,creD<br />
-0.4980,arcA<br />
-0.5412,yjjY<br />
-0.4018,yjtD<br />
-<br />
-<br />
-
-</p>
-
-<h2>Data files</h2>
-
-<p>
-None.
-</p>
-
-<h2>Notes</h2>
-
-<p>
-None.
-</p>
-
-<h2>References</h2>
-
-<pre>
-   Comeron JM, Aguade M. (1998) An evaluation of measures of synonymous codon
-      usage bias, J Mol Evol, 47(3):268-74.
-
-   Morton BR (1993) Chloroplast DNA codon use: evidence for selection at the
-      psb A locus based on tRNA availability, J.Mol.Evo,. 37:273-280.
-
-   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
-      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
-      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
-
-   Arakawa, K. and Tomita, M. (2006) G-language System as a Platform for
-      large-scale analysis of high-throughput omics data, J. Pest Sci.,
-      31, 7.
-
-   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
-      Analysis Environment with REST and SOAP Web Service Interfaces,
-      Nucleic Acids Res., 38, W700-W705.
-
-</pre>
-
-<h2>Warnings</h2>
-
-<p>
-None.
-</p>
-
-<h2>Diagnostic Error Messages</h2>
-
-<p>
-None.
-</p>
-
-<h2>Exit status</h2>
-
-<p>
-It always exits with a status of 0.
-</p>
-
-<h2>Known bugs</h2>
-
-<p>
-None.
-</p>
-
-<h2>See also</h2>
-
-<table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th>
-<th>Description</th></tr>
-
-<tr>
-<td><a href="gdelta_enc.html">gdelta_enc</a></td>
-<td>Calculate the codon usage bias related to translation optimization              (delta ENC)</td>
-</tr><tr>
-<td><a href="gicdi.html">gicdi</a></td>
-<td>Calculates the intrinsic codon deviation index (ICDI)</td>
-</tr><tr>
-<td><a href="gs_value.html">gs_value</a></td>
-<td>Calculate the strength of selected codon usage bias (S)</td>
-</tr>
-
-</table>
-
-<h2>Author(s)</h2>
-
-<pre>
-   Hidetoshi Itaya (celery@g-language.org)
-   Institute for Advanced Biosciences, Keio University
-   252-0882 Japan
-
-  Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
-  Institute for Advanced Biosciences, Keio University
-  252-0882 Japan</pre>
-
-<h2>History</h2>
-
-   2012 - Written by Hidetoshi Itaya
-
-<h2>Target users</h2>
-
-   This program is intended to be used by everyone and everything, from
-   naive users to embedded scrips.
-
-<h2>Comments</h2>
-
-   None.
-
+<!--START OF HEADER - DON'T ALTER --><HTML><HEAD>  <TITLE> EMBOSS: gcbi </TITLE></HEAD><BODY BGCOLOR="#FFFFFF" text="#000000"><table align=center border=0 cellspacing=0 cellpadding=0><tr><td valign=top><A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="http://soap.g-language.org/gembassy/emboss_explorer/manual/emboss_icon.jpg" alt="" width=150 height=48></a></td><td align=left valign=middle><b><font size="+6">gcbi</font></b></td></tr></table><br>&nbsp;<p><!--END OF HEADER--><H2> Function </H2>   Calculates the codon bias index (CBI)<!--DON'T WRITE ANYTHING HERE.IT IS DONE FOR YOU.--><H2>Description</H2><p>   gcbi calculates the codon bias index (CBI) for each gene af the given<br />   genome. CBI is a directional codon bias which measures the usage of<br />   optimal codons in a gene. CBI is similar to Fop, and can take negative<br />   values depending on the codon usage.<br />    <br />   G-language SOAP service is provided by the<br />   Institute for Advanced Biosciences, Keio University.<br />   The original web service is located at the following URL:<br /><br />   http://www.g-language.org/wiki/soap<br /><br />   WSDL(RPC/Encoded) file is located at:<br /><br />   http://soap.g-language.org/g-language.wsdl<br /><br />   Documentation on G-language Genome Analysis Environment methods are<br />   provided at the Document Center<br /><br />   http://ws.g-language.org/gdoc/<br /><br /></p><H2>Usage</H2>Here is a sample session with gcbi<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>% gcbi refseqn:NC_000913Calculates the codon bias index (CBI)Codon usage output file [nc_000913.gcbi]: </pre></td></tr></table>Go to the <a href="#input">input files</a> for this example<br>Go to the <a href="#output">output files</a> for this example<br><br><h2>Command line arguments</h2><table border cellspacing=0 cellpadding=3 bgcolor="#ccccff"><tr bgcolor="#FFFFCC"><th align="left">Qualifier</th><th align="left">Type</th><th align="left">Description</th><th align="left">Allowed values</th><th align="left">Default</th></tr><tr bgcolor="#FFFFCC"><th align="left" colspan=5>Standard (Mandatory) qualifiers</th></tr><tr bgcolor="#FFFFCC"><td>[-sequence]<br>(Parameter 1)</td><td>seqall</td><td>Nucleotide sequence(s) filename and optional format, or reference (input USA)</td><td>Readable sequence(s)</td><td><b>Required</b></td></tr><tr bgcolor="#FFFFCC"><td>[-outfile]<br>(Parameter 2)</td><td>outfile</td><td>Codon usage output file</td><td>Output file</td><td><i>&lt;*&gt;</i>.gcbi</td></tr><tr bgcolor="#FFFFCC"><th align="left" colspan=5>Additional (Optional) qualifiers</th></tr><tr><td colspan=5>(none)</td></tr><tr bgcolor="#FFFFCC"><th align="left" colspan=5>Advanced (Unprompted) qualifiers</th></tr><tr bgcolor="#FFFFCC"><td>-translate</td><td>boolean</td><td>Include when translating using standard codon table</td><td>Boolean value Yes/No</td><td>No</td></tr><tr bgcolor="#FFFFCC"><td>-delkey</td><td>string</td><td>Regular expression to delete key</td><td>Any string</td><td>[^ACDEFGHIKLMNPQRSTVWYacgtU]</td></tr><tr bgcolor="#FFFFCC"><td>-[no]accid</td><td>boolean</td><td>Include to use sequence accession ID as query</td><td>Boolean value Yes/No</td><td>Yes</td></tr></table><h2 id="input">Input file format</h2><p>   The database definitions for following commands are available at<br />   http://soap.g-language.org/kbws/embossrc<br /><br />   gcbi reads one or more nucleotide sequences.<br /><br /></p><h2 id="output">Output file format</h2><p>   The output from gcbi is to a plain text file.<br /><br />   File: nc_000913.gcbi<br /><br /><table width="90%"><tr><td bgcolor="#CCFFCC">Sequence: NC_000913<br />cbi,gene<br />0.8716,thrL<br />0.3441,thrA<br />0.3462,thrB<br />0.4280,thrC<br />0.3868,yaaX<br />0.3908,yaaA<br />0.3521,yaaJ<br />0.5354,talB<br /><br /><font color=red>[Part of this file has been deleted for brevity]</font><br /><br />0.4005,yjjX<br />0.4388,ytjC<br />0.3934,rob<br />0.4645,creA<br />0.4266,creB<br />0.3435,creC<br />0.3796,creD<br />0.4980,arcA<br />0.5412,yjjY<br />0.4018,yjtD<br /></td></tr></table></p><h2>Data files</h2><p>None.</p><h2>Notes</h2><p>None.</p><h2>References</h2><pre>   Comeron JM, Aguade M. (1998) An evaluation of measures of synonymous codon      usage bias, J Mol Evol, 47(3):268-74.   Morton BR (1993) Chloroplast DNA codon use: evidence for selection at the      psb A locus based on tRNA availability, J.Mol.Evo,. 37:273-280.   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.   Arakawa, K. and Tomita, M. (2006) G-language System as a Platform for      large-scale analysis of high-throughput omics data, J. Pest Sci.,      31, 7.   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome      Analysis Environment with REST and SOAP Web Service Interfaces,      Nucleic Acids Res., 38, W700-W705.</pre><h2>Warnings</h2><p>None.</p><h2>Diagnostic Error Messages</h2><p>None.</p><h2>Exit status</h2><p>It always exits with a status of 0.</p><h2>Known bugs</h2><p>None.</p><h2>See also</h2><table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th><th>Description</th></tr><tr><td><a href="gdeltaenc.html">gdeltaenc</a></td><td>Calculate the codon usage bias related to translation optimization (delta ENC)</td></tr><tr><td><a href="gicdi.html">gicdi</a></td><td>Calculates the intrinsic codon deviation index (ICDI)</td></tr><tr><td><a href="gsvalue.html">gsvalue</a></td><td>Calculate the strength of selected codon usage bias (S)</td></tr></table><h2>Author(s)</h2><pre>   Hidetoshi Itaya (celery@g-language.org)   Institute for Advanced Biosciences, Keio University   252-0882 Japan  Kazuharu Arakawa (gaou@sfc.keio.ac.jp)  Institute for Advanced Biosciences, Keio University  252-0882 Japan</pre><h2>History</h2>   2012 - Written by Hidetoshi Itaya<h2>Target users</h2>   This program is intended to be used by everyone and everything, from   naive users to embedded scrips.<h2>Comments</h2>   None.</BODY></HTML>

@@ -11,12 +11,14 @@ Description
    representing an oligomer. Oligomer name and abundance is written within
    these boxes, and abundance is also visualized with the box color, from
    white (none) to black (highly frequent).
+
    This k-mer table is alternatively known as the FCGR (frequency matrices
    extracted from Chaos Game Representation).
    Position of the oligomers can be recursively located as follows:
    For each letter in an oligomer, a box is subdivided into four quadrants, 
    where A is upper left, T is lower right, G is upper right, and C is lower
    left.
+
    Therefore, oligomer ATGC is in the 
    A = upper left quadrant
    T = lower right within the above quadrant
@@ -46,8 +48,8 @@ Here is a sample session with gkmertable
 
 % gkmertable refseqn:NC_000913
 Create an image showing all k-mer abundance within a sequence
-Output file for non interactive displays [gkmertable]: Created gkmertable.1.png
-
+Output file for non interactive displays [gkmertable]: 
+Created gkmertable.1.png
 
    Go to the input files for this example
    Go to the output files for this example
@@ -114,8 +116,6 @@ Input file format
 Output file format
 
    The output from gkmertable is to an image file.
-
-
 
 Data files
 

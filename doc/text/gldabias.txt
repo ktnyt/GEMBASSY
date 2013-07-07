@@ -162,11 +162,11 @@ Known bugs
 
 See also
 
-   gb1           Calculate strand bias of bacterial genome using B1 index
-   gb2           Calculate strand bias of bacterial genome using B2 index
-   gdelta_gcskew Calculate strand bias of bacterial genome using delta GC skew
-                 index
-   ggcsi         GC Skew Index: an index for strand-specefic mutational bias
+   gb1          Calculate strand bias of bacterial genome using B1 index
+   gb2          Calculate strand bias of bacterial genome using B2 index
+   gdeltagcskew Calculate strand bias of bacterial genome using delta GC skew
+                index
+   ggcsi        GC Skew Index: an index for strand-specefic mutational bias
 
 Author(s)
 

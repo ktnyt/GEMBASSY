@@ -184,8 +184,8 @@ Known bugs
 
 See also
 
-   gamino_info Prints out basic amino acid sequence statistics
-   gaaui       Calculates various indece of amino acid usage
+   gaminoinfo Prints out basic amino acid sequence statistics
+   gaaui      Calculates various indece of amino acid usage
 
 Author(s)
 

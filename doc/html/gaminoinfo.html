@@ -1,299 +1,1 @@
-<!--START OF HEADER - DON'T ALTER -->
-
-<HTML>
-<HEAD>
-  <TITLE> EMBOSS: gaminoinfo </TITLE>
-</HEAD>
-<BODY BGCOLOR="#FFFFFF" text="#000000">
-
-
-
-<table align=center border=0 cellspacing=0 cellpadding=0>
-<tr><td valign=top>
-<A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="http://soap.g-language.org/gembassy/emboss_explorer/manual/emboss_icon.jpg" alt="" width=150 height=48></a>
-</td>
-<td align=left valign=middle>
-<b><font size="+6">
-gaminoinfo
-</font></b>
-</td></tr>
-</table>
-<br>&nbsp;
-<p>
-
-
-<!--END OF HEADER-->
-
-
-
-
-
-
-<H2> Function </H2>
-   Prints out basic amino acid sequence statistics
-<!--
-DON'T WRITE ANYTHING HERE.
-IT IS DONE FOR YOU.
--->
-
-
-
-
-<H2>Description</H2>
-<p>
-   gaminoinfo prints out basic compositional statistics of the given amino<br />
-   acid sequence in a human readble manner. The calculated values are molecular<br />
-   weight, number of residues, average residue weight, charge, isoelectric<br />
-   point, number/mole/Dayhoffstat of each amino acid, and percentage of<br />
-   Tiny (A+C+G+S+T), Small (A+B+C+D+G+N+P+S+T+V), Aliphatic (I+L+V),<br />
-   Armoatic (F+H+W+Y), Non-polar (A+C+F+G+I+L+M+P+V+W+Y),<br />
-   Polar (D+E+H+K+N+Q+R+S+T+Z), Charged (B+D+E+H+K+R+Z), Basic (H+K+R), and<br />
-   Acidic (B+D+E+Z) reidues.<br />
-  <br />
-    <br />
-   G-language SOAP service is provided by the<br />
-   Institute for Advanced Biosciences, Keio University.<br />
-   The original web service is located at the following URL:<br />
-<br />
-   http://www.g-language.org/wiki/soap<br />
-<br />
-   WSDL(RPC/Encoded) file is located at:<br />
-<br />
-   http://soap.g-language.org/g-language.wsdl<br />
-<br />
-   Documentation on G-language Genome Analysis Environment methods are<br />
-   provided at the Document Center<br />
-<br />
-   http://ws.g-language.org/gdoc/<br />
-<br />
-
-</p>
-
-<H2>Usage</H2>
-
-<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>
-
-Here is a sample session with gaminoinfo
-
-% gaminoinfo tsw:hbb_human
-Prints out basic amino acid sequence statistics
-AAINDEX entry output file [hbb_human.gaminoinfo]: 
-
-   Go to the input files for this example
-   Go to the output files for this example
-
-
-
-</pre></td></tr></table>
-
-
-
-<h2>Command line arguments</h2>
-
-<table border cellspacing=0 cellpadding=3 bgcolor="#ccccff">
-<tr bgcolor="#FFFFCC">
-<th align="left">Qualifier</th>
-<th align="left">Type</th>
-<th align="left">Description</th>
-<th align="left">Allowed values</th>
-<th align="left">Default</th>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<th align="left" colspan=5>Standard (Mandatory) qualifiers</th>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>[-sequence]<br>(Parameter 1)</td>
-<td>seqall</td>
-<td>Protein sequence(s) filename and optional format, or reference (input USA)</td>
-<td>Readable sequence(s)</td>
-<td><b>Required</b></td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<td>[-outfile]<br>(Parameter 2)</td>
-<td>outfile</td>
-<td>AAINDEX entry output file</td>
-<td>Output file</td>
-<td><i>&lt;*&gt;</i>.gaminoinfo</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<th align="left" colspan=5>Additional (Optional) qualifiers</th>
-</tr>
-
-<tr>
-<td colspan=5>(none)</td>
-</tr>
-
-<tr bgcolor="#FFFFCC">
-<th align="left" colspan=5>Advanced (Unprompted) qualifiers</th>
-</tr>
-
-<tr>
-<td colspan=5>(none)</td>
-</tr>
-
-</table>
-
-
-<h2>Input file format</h2>
-
-<p>
-   The database definitions for following commands are available at<br />
-   http://soap.g-language.org/kbws/embossrc<br />
-<br />
-   gaminoinfo reads one or more protein sequences.<br />
-<br />
-
-</p>
-
-<h2>Output file format</h2>
-
-<p>
-   The output from gaminoinfo is to a plain text file.<br />
-<br />
-   File: hbb_human.gaminoinfo<br />
-<br />
-Sequence: P68871<br />
-AminoInfo of  from 1 to 158<br />
-<br />
-Molecular weight = 19309.27 Residues = 158<br />
-Average Weight = 122.21 Charge = 3.5<br />
-Isoelectric Point = 7.4065<br />
-Residue         Number          Mole%               DayhoffStat<br />
-<br />
- =             1               0.633                     0.000<br />
-> =             1               0.633                     0.000<br />
-A = Ala         16              10.127                    1.178<br />
-B = Asx         2               1.266                     0.000<br />
-C = Cys         2               1.266                     0.436<br />
-D = Asp         7               4.430                     0.806<br />
-E = Glu         8               5.063                     0.844<br />
-F = Phe         8               5.063                     1.406<br />
-G = Gly         13              8.228                     0.980<br />
-H = His         11              6.962                     3.481<br />
-K = Lys         11              6.962                     1.055<br />
-L = Leu         18              11.392                    1.540<br />
-M = Met         3               1.899                     1.117<br />
-N = Asn         7               4.430                     1.030<br />
-P = Pro         7               4.430                     0.852<br />
-Q = Gln         3               1.899                     0.487<br />
-R = Arg         3               1.899                     0.387<br />
-S = Ser         5               3.165                     0.452<br />
-T = Thr         7               4.430                     0.726<br />
-U = Sec         1               0.633                     0.000<br />
-V = Val         18              11.392                    1.726<br />
-W = Trp         2               1.266                     0.974<br />
-Y = Tyr         3               1.899                     0.558<br />
-_ =             1               0.633                     0.000<br />
-<br />
-Property        Residues                Number          Mole%<br />
-Tiny            (A+C+G+S+T)             43              27.215<br />
-Small           (A+B+C+D+G+N+P+S+T+V)   84              53.165<br />
-Aliphatic       (I+L+V)                 36              22.785<br />
-Aromatic        (F+H+W+Y)               24              15.190<br />
-Non-polar       (A+C+F+G+I+L+M+P+V+W+Y) 90              56.962<br />
-Polar           (D+E+H+K+N+Q+R+S+T+Z)   62              39.241<br />
-Charged         (B+D+E+H+K+R+Z)         42              26.582<br />
-Basic           (H+K+R)                 25              15.823<br />
-Acidic          (B+D+E+Z)               17              10.759<br />
-<br />
-<br />
-<br />
-
-</p>
-
-<h2>Data files</h2>
-
-<p>
-None.
-</p>
-
-<h2>Notes</h2>
-
-<p>
-None.
-</p>
-
-<h2>References</h2>
-
-<pre>
-   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and
-      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench
-      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.
-
-   Arakawa, K. and Tomita, M. (2006) G-language System as a Platform for
-      large-scale analysis of high-throughput omics data, J. Pest Sci.,
-      31, 7.
-
-   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome
-      Analysis Environment with REST and SOAP Web Service Interfaces,
-      Nucleic Acids Res., 38, W700-W705.
-
-</pre>
-
-<h2>Warnings</h2>
-
-<p>
-None.
-</p>
-
-<h2>Diagnostic Error Messages</h2>
-
-<p>
-None.
-</p>
-
-<h2>Exit status</h2>
-
-<p>
-It always exits with a status of 0.
-</p>
-
-<h2>Known bugs</h2>
-
-<p>
-None.
-</p>
-
-<h2>See also</h2>
-
-<table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th>
-<th>Description</th></tr>
-
-<tr>
-<td><a href="gaaui.html">gaaui</a></td>
-<td>Calculates various indece of amino acid usage</td>
-</tr><tr>
-<td><a href="gcodoncompiler.html">gcodoncompiler</a></td>
-<td>Calculate various kinds of amino acid and codon usage data</td>
-</tr>
-
-</table>
-
-<h2>Author(s)</h2>
-
-<pre>
-   Hidetoshi Itaya (celery@g-language.org)
-   Institute for Advanced Biosciences, Keio University
-   252-0882 Japan
-
-  Kazuharu Arakawa (gaou@sfc.keio.ac.jp)
-  Institute for Advanced Biosciences, Keio University
-  252-0882 Japan</pre>
-
-<h2>History</h2>
-
-   2012 - Written by Hidetoshi Itaya
-
-<h2>Target users</h2>
-
-   This program is intended to be used by everyone and everything, from
-   naive users to embedded scrips.
-
-<h2>Comments</h2>
-
-   None.
-
+<!--START OF HEADER - DON'T ALTER --><HTML><HEAD>  <TITLE> EMBOSS: gaminoinfo </TITLE></HEAD><BODY BGCOLOR="#FFFFFF" text="#000000"><table align=center border=0 cellspacing=0 cellpadding=0><tr><td valign=top><A HREF="/" ONMOUSEOVER="self.status='Go to the EMBOSS home page';return true"><img border=0 src="http://soap.g-language.org/gembassy/emboss_explorer/manual/emboss_icon.jpg" alt="" width=150 height=48></a></td><td align=left valign=middle><b><font size="+6">gaminoinfo</font></b></td></tr></table><br>&nbsp;<p><!--END OF HEADER--><H2> Function </H2>   Prints out basic amino acid sequence statistics<!--DON'T WRITE ANYTHING HERE.IT IS DONE FOR YOU.--><H2>Description</H2><p>   gaminoinfo prints out basic compositional statistics of the given amino<br />   acid sequence in a human readble manner. The calculated values are molecular<br />   weight, number of residues, average residue weight, charge, isoelectric<br />   point, number/mole/Dayhoffstat of each amino acid, and percentage of<br />   Tiny (A+C+G+S+T), Small (A+B+C+D+G+N+P+S+T+V), Aliphatic (I+L+V),<br />   Armoatic (F+H+W+Y), Non-polar (A+C+F+G+I+L+M+P+V+W+Y),<br />   Polar (D+E+H+K+N+Q+R+S+T+Z), Charged (B+D+E+H+K+R+Z), Basic (H+K+R), and<br />   Acidic (B+D+E+Z) reidues.<br />  <br />    <br />   G-language SOAP service is provided by the<br />   Institute for Advanced Biosciences, Keio University.<br />   The original web service is located at the following URL:<br /><br />   http://www.g-language.org/wiki/soap<br /><br />   WSDL(RPC/Encoded) file is located at:<br /><br />   http://soap.g-language.org/g-language.wsdl<br /><br />   Documentation on G-language Genome Analysis Environment methods are<br />   provided at the Document Center<br /><br />   http://ws.g-language.org/gdoc/<br /><br /></p><H2>Usage</H2>Here is a sample session with gaminoinfo<table width="90%"><tr><td bgcolor="#CCFFFF"><pre>% gaminoinfo tsw:hbb_humanPrints out basic amino acid sequence statisticsAAINDEX entry output file [hbb_human.gaminoinfo]: </pre></td></tr></table>Go to the <a href="#input">input files</a> for this example<br>Go to the <a href="#output">output files</a> for this example<br><br><h2>Command line arguments</h2><table border cellspacing=0 cellpadding=3 bgcolor="#ccccff"><tr bgcolor="#FFFFCC"><th align="left">Qualifier</th><th align="left">Type</th><th align="left">Description</th><th align="left">Allowed values</th><th align="left">Default</th></tr><tr bgcolor="#FFFFCC"><th align="left" colspan=5>Standard (Mandatory) qualifiers</th></tr><tr bgcolor="#FFFFCC"><td>[-sequence]<br>(Parameter 1)</td><td>seqall</td><td>Protein sequence(s) filename and optional format, or reference (input USA)</td><td>Readable sequence(s)</td><td><b>Required</b></td></tr><tr bgcolor="#FFFFCC"><td>[-outfile]<br>(Parameter 2)</td><td>outfile</td><td>AAINDEX entry output file</td><td>Output file</td><td><i>&lt;*&gt;</i>.gaminoinfo</td></tr><tr bgcolor="#FFFFCC"><th align="left" colspan=5>Additional (Optional) qualifiers</th></tr><tr><td colspan=5>(none)</td></tr><tr bgcolor="#FFFFCC"><th align="left" colspan=5>Advanced (Unprompted) qualifiers</th></tr><tr><td colspan=5>(none)</td></tr></table><h2 id="input">Input file format</h2><p>   The database definitions for following commands are available at<br />   http://soap.g-language.org/kbws/embossrc<br /><br />   gaminoinfo reads one or more protein sequences.<br /><br /></p><h2 id="output">Output file format</h2><p>   The output from gaminoinfo is to a plain text file.<br /><br />   File: hbb_human.gaminoinfo<br /><br /><table width="90%"><tr><td bgcolor="#CCFFCC">Sequence: P68871<br />AminoInfo of  from 1 to 158<br /><br />Molecular weight = 19309.27 Residues = 158<br />Average Weight = 122.21 Charge = 3.5<br />Isoelectric Point = 7.4065<br />Residue         Number          Mole%               DayhoffStat<br /><br /> =             1               0.633                     0.000<br />> =             1               0.633                     0.000<br />A = Ala         16              10.127                    1.178<br />B = Asx         2               1.266                     0.000<br />C = Cys         2               1.266                     0.436<br />D = Asp         7               4.430                     0.806<br />E = Glu         8               5.063                     0.844<br />F = Phe         8               5.063                     1.406<br />G = Gly         13              8.228                     0.980<br />H = His         11              6.962                     3.481<br />K = Lys         11              6.962                     1.055<br />L = Leu         18              11.392                    1.540<br />M = Met         3               1.899                     1.117<br />N = Asn         7               4.430                     1.030<br />P = Pro         7               4.430                     0.852<br />Q = Gln         3               1.899                     0.487<br />R = Arg         3               1.899                     0.387<br />S = Ser         5               3.165                     0.452<br />T = Thr         7               4.430                     0.726<br />U = Sec         1               0.633                     0.000<br />V = Val         18              11.392                    1.726<br />W = Trp         2               1.266                     0.974<br />Y = Tyr         3               1.899                     0.558<br />_ =             1               0.633                     0.000<br /><br />Property        Residues                Number          Mole%<br />Tiny            (A+C+G+S+T)             43              27.215<br />Small           (A+B+C+D+G+N+P+S+T+V)   84              53.165<br />Aliphatic       (I+L+V)                 36              22.785<br />Aromatic        (F+H+W+Y)               24              15.190<br />Non-polar       (A+C+F+G+I+L+M+P+V+W+Y) 90              56.962<br />Polar           (D+E+H+K+N+Q+R+S+T+Z)   62              39.241<br />Charged         (B+D+E+H+K+R+Z)         42              26.582<br />Basic           (H+K+R)                 25              15.823<br />Acidic          (B+D+E+Z)               17              10.759<br /></pre></td></tr></table></p><h2>Data files</h2><p>None.</p><h2>Notes</h2><p>None.</p><h2>References</h2><pre>   Arakawa, K., Mori, K., Ikeda, K., Matsuzaki, T., Konayashi, Y., and      Tomita, M. (2003) G-language Genome Analysis Environment: A Workbench      for Nucleotide Sequence Data Mining, Bioinformatics, 19, 305-306.   Arakawa, K. and Tomita, M. (2006) G-language System as a Platform for      large-scale analysis of high-throughput omics data, J. Pest Sci.,      31, 7.   Arakawa, K., Kido, N., Oshita, K., Tomita, M. (2010) G-language Genome      Analysis Environment with REST and SOAP Web Service Interfaces,      Nucleic Acids Res., 38, W700-W705.</pre><h2>Warnings</h2><p>None.</p><h2>Diagnostic Error Messages</h2><p>None.</p><h2>Exit status</h2><p>It always exits with a status of 0.</p><h2>Known bugs</h2><p>None.</p><h2>See also</h2><table border cellpadding=4 bgcolor="#FFFFF0"><tr><th>Program name</th><th>Description</th></tr><tr><td><a href="gaaui.html">gaaui</a></td><td>Calculates various indece of amino acid usage</td></tr><tr><td><a href="gcodoncompiler.html">gcodoncompiler</a></td><td>Calculate various kinds of amino acid and codon usage data</td></tr></table><h2>Author(s)</h2><pre>Hidetoshi Itaya (celery@g-language.org)  Institute for Advanced Biosciences, Keio University  252-0882 JapanKazuharu Arakawa (gaou@sfc.keio.ac.jp)  Institute for Advanced Biosciences, Keio University  252-0882 Japan</pre><h2>History</h2>   2012 - Written by Hidetoshi Itaya<h2>Target users</h2>   This program is intended to be used by everyone and everything, from   naive users to embedded scrips.<h2>Comments</h2>   None.
