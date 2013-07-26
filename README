@@ -40,9 +40,6 @@ REQUIREMENTS
    EMBOSS (> 6.5.7) - This EMBASSY package requires EMBOSS version 6.5.7 or
                       above.
 
-   libpng (> 1.5.13) - (Recommended) Some older versions of libpng have a
-                       problem with the setjmp.h inclusion.
-
    libcurl-devel (> 7.29.0) - Required for file POST
 
 INSTALLATION
