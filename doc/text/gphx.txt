@@ -7,11 +7,12 @@ Description
 
    gphx calculates codon usage differences between gene classes for identifying
    Predicted Highly eXpressed (PHX) and Putative Alien (PA) genes. A gene is
-   categorized as PHX if the gene has codon frequencies similar to ribosomal
-   proteins, translation and transcription processing factors, or chaperone
-   degradation genes. PHX genes are known to generally have favorable codon
-   usage, strong SD sequences, and probably strong promoter sequences.
-    
+   identified as PHX if BgC/BgH >= 1, where BgC and BgH is a value < 1 by it's
+   nature. PHX genes are known to generally have favorable codon usage, strong
+   SD sequences, and probably stronger conservation of promoter sequences.
+   A gene is idenfitied as PA if BgC and BgH is greater than the median of
+   BgC for every gene with a length close to the gene.
+
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:

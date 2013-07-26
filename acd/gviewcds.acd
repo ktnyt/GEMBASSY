@@ -50,7 +50,7 @@ section: output [
 
   toggle: plot [
     information: "Include to plot result"
-    default: "N"
+    default: "Y"
   ]
 
   xygraph: graph [

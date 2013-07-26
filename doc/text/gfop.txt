@@ -7,7 +7,9 @@ Description
 
    gfop calculates the frequency of optimal codons (Fop).Fop is an index to
    show the optimization level of synonymous codon usage choice. It is
-   basically a ratio of optimal codons against all codons used.
+   basically a ratio of optimal codons against all codons used. The value
+   of Fop ranges from 0 (no optimal codons are used) and 1 (only optimal
+   codons are used).
     
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.

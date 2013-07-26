@@ -33,9 +33,7 @@ Here is a sample session with ggenomemap3
 
 % ggenomemap3 refseqn:NC_000913
 Draws the map of the genome (version 3)
-Output file for non interactive displays [ggenomemap3]: 
 Created ggenomemap3.1.png
-
 
    Go to the input files for this example
    Go to the output files for this example
@@ -45,8 +43,6 @@ Command line arguments
    Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-  [-goutfile]          string     [ggenomemap3] Output file for non
-                                  interactive displays (Any string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -56,6 +52,8 @@ Command line arguments
    -height             integer    [8192] Image height (Any integer value)
    -[no]accid          boolean    [Y] Include to use sequence accession ID as
                                   query
+   -goutfile           string     [ggenomemap3] Output file for non
+                                  interactive displays (Any string)
 
    Associated qualifiers:
 

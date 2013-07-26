@@ -1,5 +1,5 @@
 application: gdeltaenc [
-  documentation: "Calculate the codon usage bias related to translation
+  documentation: "Calculates the codon usage bias related to translation
                   optimization (delta ENC)"
   groups: "Nucleic:Codon Usage"
   embassy: "gembassy"

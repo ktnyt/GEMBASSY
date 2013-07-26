@@ -6,8 +6,10 @@ Function
 Description
 
    gdinuc calculates dinucleotide usage indices for protein-coding sequences
-   (excluding start and stop codons). Dinucleotide usage was computed as the
-   ratio of observed (O) to expected (E) dinucleotide frequencies.
+   (excluding start and stop codons). Dinucleotide usage is computed as the
+   ratio of observed (O) to expected (E) dinucleotide frequencies within the
+   given sequence. Dinucleotides are known to have consistent patterns within
+   the genome (signatures) and tend to have certain periodicities.
     
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.

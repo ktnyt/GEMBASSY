@@ -1,5 +1,5 @@
 application: gwvalue [
-  documentation: "Calculate the 'relative adaptiveness of each codon' (W)"
+  documentation: "Calculates the 'relative adaptiveness of each codon' (W)"
   groups: "Nucleic:Codon Usage"
   embassy: "gembassy"
   relations: "EDAM_operation:0286 Codon usage analysis"

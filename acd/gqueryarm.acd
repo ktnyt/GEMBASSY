@@ -1,5 +1,5 @@
 application: gqueryarm [
-  documentation: "Get the replication arm name (left or right) from the given position"
+  documentation: "Gets the replication arm name (left or right) from the given position"
   groups: "Nucleic:Composition"
   embassy: "gembassy"
   relations: "EDAM_topic:3073 Nucleic acid feature detection"

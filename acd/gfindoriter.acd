@@ -1,5 +1,5 @@
 application: gfindoriter [
-  documentation: "Predict the replication origin and terminus in bacterial genomes"
+  documentation: "Predicts the replication origin and terminus in bacterial genomes"
   groups: "Nucleic:Composition"
   embassy: "gembassy"
   relations: "EDAM_topic:3073 Nucleic acid feature detection"

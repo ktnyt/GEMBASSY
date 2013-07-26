@@ -5,11 +5,12 @@ Function
 
 Description
 
-   gcai calculates codon adaptation index (CAI) for each gene.
-   CAI is measure a of the relative adaptiveness of the codon usage of a gene
-   towards the codon usage of highly expressed genes. CAI can be used as a
-   'universal' measure of codon usage bias as it is correlated with various
-   gene features such as gene expression level, GC content, and GC skew.
+   gcai calculates codon adaptation index (CAI) for each gene. CAI is measure
+   a of the relative adaptiveness of the codon usage of a gene towards the
+   codon usage of highly expressed genes, ranging from 0 (no bias) to 1
+   (maximum bias). CAI can be used as a 'universal' measure of codon usage
+   bias as it is correlated with various gene features such as gene expression
+   level, GC content, and GC skew.
     
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.

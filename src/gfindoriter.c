@@ -94,27 +94,12 @@ int main(int argc, char *argv[])
 
       ajStrAssignS(&seqid, ajSeqGetAccS(seq));
 
-      if(!ajStrGetLen(seqid))
-        ajStrAssignS(&seqid, ajSeqGetNameS(seq));
+      ajStrAppendC(&inseq, ">");
+      ajStrAppendS(&inseq, ajSeqGetNameS(seq));
+      ajStrAppendC(&inseq, "\n");
+      ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
 
-      if(!ajStrGetLen(seqid))
-        {
-          ajWarn("No valid header information\n");
-        }
-
-      if(accid || !gFormatGenbank(seq, &inseq))
-        {
-          if(!accid)
-            ajWarn("Sequence does not have features\n"
-                   "Proceeding with sequence accession ID:%S\n", seqid);
-
-          if(!gValID(seqid))
-            {
-              ajDie("Invalid accession ID:%S, exiting\n", seqid);
-            }
-
-          ajStrAssignS(&inseq, seqid);
-        }
+      ajStrAssignS(&seqid, ajSeqGetAccS(seq));
 
       in0 = ajCharNewS(inseq);
 

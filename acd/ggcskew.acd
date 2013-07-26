@@ -1,5 +1,5 @@
 application: ggcskew [
-  documentation: "Calculates the GC skew of the input sequence"
+  documentation: "Calculates and plots the GC skew of the input sequence"
   groups: "Nucleic:Composition"
   embassy: "gembassy"
   relations: "EDAM_topic:0157 Sequence composition analysis"
@@ -65,7 +65,7 @@ section: output [
 
   toggle: plot [
     information: "Include to plot result"
-    default: "N"
+    default: "Y"
   ]
 
   xygraph: graph [

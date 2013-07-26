@@ -30,7 +30,7 @@ Here is a sample session with gseq2png
 
 % gseq2png refseqn:NC_000913
 Converts a sequence to PNG image
-Output file for non interactive displays [gseq2png]: Created gseq2png.1.png
+Created gseq2png.1.png
 
    Go to the input files for this example
    Go to the output files for this example
@@ -40,8 +40,6 @@ Command line arguments
    Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-  [-goutfile]          string     [gcgr] Output file for non interactive
-                                  displays (Any string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
@@ -50,6 +48,8 @@ Command line arguments
    -width              integer    [640] Width of the image (Any integer value)
    -window             integer    [20] Window size of a sequence to represent
                                   each pixel (Any integer value)
+   -goutfile           string     [gcgr] Output file for non interactive
+                                  displays (Any string)
 
    Associated qualifiers:
 

@@ -1,5 +1,5 @@
 application: gdeltagcskew [
-  documentation: "Calculate strand bias of bacterial genome using delta GC skew index"
+  documentation: "Calculates strand bias of bacterial genome using delta GC skew index"
   groups: "Nucleic:Composition"
   embassy: "gembassy"
   relations: "EDAM_topic:0157 Sequence composition analysis"

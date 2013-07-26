@@ -1,5 +1,5 @@
 application: gfop [
-  documentation: "Calculate the frequency of optimal codons (Fop)"
+  documentation: "Calculates the frequency of optimal codons (Fop)"
   groups: "Nucleic:Codon Usage"
   embassy: "gembassy"
   relations: "EDAM_operation:0286 Codon usage analysis"

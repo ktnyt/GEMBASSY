@@ -1,5 +1,5 @@
 application: gquerystrand [
-  documentation: "Get the strand name (leading or lagging) from the given position"
+  documentation: "Gets the strand name (leading or lagging) from the given position"
   groups: "Nucleic:Composition"
   embassy: "gembassy"
   relations: "EDAM_topic:3073 Nucleic acid feature detection"

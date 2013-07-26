@@ -56,7 +56,6 @@ section: output [
 ]
 
   string: goutfile [
-    parameter: "Y"
     information: "Output file for non interactive displays"
     relations: "EDAM_data:1278 Genetic map"
     default: "ggenomemap3"

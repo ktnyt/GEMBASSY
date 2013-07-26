@@ -1,5 +1,5 @@
 application: genc [
-  documentation: "Calculate the effective number of codons (Nc)"
+  documentation: "Calculates the effective number of codons (Nc)"
   groups: "Nucleic:Codon Usage"
   embassy: "gembassy"
   relations: "EDAM_operation:0286 Codon usage analysis"

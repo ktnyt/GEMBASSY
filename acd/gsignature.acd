@@ -1,5 +1,5 @@
 application: gsignature [
-  documentation: "Calculate oligonucleotide usage (genomic signature)"
+  documentation: "Calculates oligonucleotide usage (genomic signature)"
   groups: "Nucleic:Composition"
   embassy: "gembassy"
   relations: "EDAM_topic:0157 Sequence composition analysis"

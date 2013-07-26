@@ -46,7 +46,6 @@ section: output
 ]
 
   string: goutfile [
-    parameter: "Y"
     information: "Output file for non interactive displays"
     relations: "EDAM_data:1274 DNA map"
     default: "gcircularmap"

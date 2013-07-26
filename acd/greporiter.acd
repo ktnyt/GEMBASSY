@@ -1,5 +1,5 @@
 application: greporiter [
-  documentation: "Get the positions of replication origin and terminus"
+  documentation: "Gets the positions of replication origin and terminus"
   groups: "Nucleic:Composition"
   embassy: "gembassy"
   relations: "EDAM_topic:3073 Nucleic acid feature detection"

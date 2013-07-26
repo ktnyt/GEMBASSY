@@ -1,5 +1,5 @@
 application: gkmertable [
-  documentation: "Create an image showing all k-mer abundance within a sequence"
+  documentation: "Creates an image showing all k-mer abundance within a sequence"
   groups: "Display"
   embassy: "gembassy"
   relations: "EDAM_topic:0092 Data visualisation"
@@ -46,7 +46,6 @@ section: output [
 ]
 
   string: goutfile [
-    parameter: "Y"
     information: "Output file for non interactive displays"
     knowntype: "output filename"
     relations: "EDAM_data:2166 Sequence composition plot"

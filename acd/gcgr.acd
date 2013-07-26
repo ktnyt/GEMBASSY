@@ -1,5 +1,5 @@
 application: gcgr [
-  documentation: "Create a Chaos Game Representation of a given sequence"
+  documentation: "Creates a Chaos Game Representation of a given sequence"
   groups: "Display"
   embassy: "gembassy"
   relations: "EDAM_topic:0092 Data visualisation"
@@ -46,7 +46,6 @@ section: output [
 ]
 
   string: goutfile [
-    parameter: "Y"
     information: "Output file for non interactive displays"
     knowntype: "output filename"
     relations: "EDAM_data:2166 Sequence composition plot"

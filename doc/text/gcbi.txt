@@ -7,8 +7,9 @@ Description
 
    gcbi calculates the codon bias index (CBI) for each gene af the given
    genome. CBI is a directional codon bias which measures the usage of
-   optimal codons in a gene. CBI is similar to Fop, and can take negative
-   values depending on the codon usage.
+   optimal codons in a gene. CBI is similar to Fop, basically taking values
+   from 0 (no bias) and 1 (maximum bias) and can take negative values
+   depending on the codon usage.
     
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.

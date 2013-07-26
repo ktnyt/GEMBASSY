@@ -9,6 +9,7 @@ Description
    of synonymous codon usage evenness for each gene. This index takes all
    three aspects of amino acid usage (number of distinct amino acids,
    relatieve frequencies, and degree of codon degeneracy) into account.
+   The values range from 0 (no bias) to 1 (maximum bias).
     
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.

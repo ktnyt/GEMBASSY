@@ -1,5 +1,5 @@
 application: gb2 [
-  documentation: "Calculate strand bias of bacterial genome using B2 index"
+  documentation: "Calculates strand bias of bacterial genome using B2 index"
   groups: "Nucleic:Composition"
   embassy: "gembassy"
   relations: "EDAM_topic:0157 Sequence composition analysis"

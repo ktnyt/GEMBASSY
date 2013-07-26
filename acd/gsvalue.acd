@@ -1,5 +1,5 @@
 application: gsvalue [
-  documentation: "Calculate the strength of selected codon usage bias (S)"
+  documentation: "Calculates the strength of selected codon usage bias (S)"
   groups: "Nucleic:Codon Usage"
   embassy: "gembassy"
   relations: "EDAM_operation:0286 Codon usage analysis"

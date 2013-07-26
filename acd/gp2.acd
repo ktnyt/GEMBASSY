@@ -1,5 +1,5 @@
 application: gp2 [
-  documentation: "Calculate the P2 index of each gene"
+  documentation: "Calculates the P2 index of each gene"
   groups: "Nucleic:Codon usage"
   embassy: "gembassy"
   relations: "EDAM_operation:0286 Codon usage analysis"

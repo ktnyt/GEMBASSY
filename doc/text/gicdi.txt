@@ -5,10 +5,12 @@ Function
 
 Description
 
-   gicdi calculates the intrinsic codon deviation index (ICDI).
-   ICDI is a measure to estimate codon bias of genes from species in which
-   optimal codons are not known. It is known to show high correlation with
-   other indices such as CBI and ENC.
+   gicdi calculates the intrinsic codon deviation index (ICDI). ICDI is a
+   measure to estimate codon bias of genes from species in which optimal
+   codons are not known. It is known to show high correlation with other
+   indices such as CBI and ENC. A gene using only one codon for each amino
+   acid will have an ICDI of 1, and a gene using every codon equally for
+   each amino acid will have an ICDI of 0.
     
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.

@@ -48,7 +48,6 @@ Here is a sample session with gkmertable
 
 % gkmertable refseqn:NC_000913
 Create an image showing all k-mer abundance within a sequence
-Output file for non interactive displays [gkmertable]: 
 Created gkmertable.1.png
 
    Go to the input files for this example
@@ -59,14 +58,14 @@ Command line arguments
    Standard (Mandatory) qualifiers:
   [-sequence]          seqall     Nucleotide sequence(s) filename and optional
                                   format, or reference (input USA)
-  [-goutfile]          string     [gkmertable] Output file for non interactive
-                                  displays (Any string)
 
    Additional (Optional) qualifiers: (none)
    Advanced (Unprompted) qualifiers:
    -format             string     [png] Output file format. Dependent on
                                   'convert' command (Any string)
    -k                  integer    [6] Length of oligomer (Any integer value)
+   -goutfile           string     [gkmertable] Output file for non interactive
+                                  displays (Any string)
 
    Associated qualifiers:
 
@@ -157,12 +156,10 @@ Known bugs
 
 See also
 
-   gkmer_table             Create an image showing all k-mer abundance within a
-                           sequence
-   gnucleotide_periodicity Checks the periodicity of certain oligonucleotides
-   goligomer_counter       Counts the number of given oligomers in a sequence
-   goligomer_search        Searches oligomers in given sequence
-   gsignature              Calculate oligonucleotide usage (genomic signature)
+   gnucleotideperiodicity Checks the periodicity of certain oligonucleotides
+   goligomercounter       Counts the number of given oligomers in a sequence
+   goligomersearch        Searches oligomers in given sequence
+   gsignature             Calculate oligonucleotide usage (genomic signature)
 
 Author(s)
 

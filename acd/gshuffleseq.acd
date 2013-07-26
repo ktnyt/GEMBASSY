@@ -1,5 +1,5 @@
 application: gshuffleseq [
-  documentation: "Create randomized sequence with conserved k-mer composition"
+  documentation: "Creates randomized sequence with conserved k-mer composition"
   groups: "Nucleic:Mutation"
   embassy: "gembassy"
   groups: "Nucleic:Mutation, Protein:Mutation"

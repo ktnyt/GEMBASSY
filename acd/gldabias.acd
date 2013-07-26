@@ -1,5 +1,5 @@
 application: gldabias [
-  documentation: "Calculate strand bias of bacterial genome using linear
+  documentation: "Calculates strand bias of bacterial genome using linear
                   discriminant analysis (LDA)"
   groups: "Nucleic:Composition"
   embassy: "gembassy"

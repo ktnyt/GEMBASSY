@@ -6,7 +6,8 @@ Function
 Description
 
    gwvalue calculates the 'relative adaptiveness of each codon' (W value)
-   which is essential in CAI analysis.
+   which is essential in CAI analysis. W value is calculated by setting the
+   best codon to 1 and calculating the proportion of the other codons.
     
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
