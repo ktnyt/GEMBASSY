@@ -17,7 +17,9 @@ Description
 
    genret is able to perform a variety of tasks, incluing the retrieval of
    sequence upstream, downstream, or around the start or stop codon,
-   translated gene sequences search of gene data by keyword.
+   translated gene sequences search of gene data by keyword. The set of genes
+   can be given as flat text, regular expression, or a file containing the
+   list of genes.
 
    Details on G-language REST service is available from the wiki page
 
@@ -35,6 +37,9 @@ Usage
    Retrieving sequences upstream, downstream, or around the start/stop codons. 
    The following example shows the retrieval of sequence around the start
    codons of all genes.
+
+   Genes to access are specified by regular expression. '*' stands for every
+   gene.
 
    Available methods are:
       after_startcodon
@@ -56,16 +61,15 @@ Full text output file [nc_000913.around_startcodon]:
 
    Example 2
 
-   Retrieving translations of coding sequences.
-   The following example will retrieve the translated protein sequence of
-   the "recA" gene.
+   Using flat text as target genes. The names can be split with with a space,
+   comma, or vertical bar.
 
 % genret
 Retrieves various gene related information from genome flatfile
 Input nucleotide sequence(s): refseqn:NC_000913
-Gene name(s) to lookup [*]: recA
-Feature to access: translation
-Full text output file [nc_000913.translation]: stdout
+List of gene name(s) to report [*]: recA,recB
+Name of gene feature to access: translation
+Sequence output file [nc_000913.translation.genret]: stdout
 >recA
 MAIDENKQKALAAALGQIEKQFGKGSIMRLGEDRSMDVETISTGSLSLDIALGAGGLPMGR
 IVEIYGPESSGKTTLTLQVIAAAQREGKTCAFIDAEHALDPIYARKLGVDIDNLLCSQPDT
@@ -73,26 +77,29 @@ GEQALEICDALARSGAVDVIVVDSVAALTPKAEIEGEIGDSHMGLAARMMSQAMRKLAGNL
 KQSNTLLIFINQIRMKIGVMFGNPETTTGGNALKFYASVRLDIRRIGAVKEGENVVGSETR
 VKVVKNKIAAPFKQAEFQILYGEGINFYGELVDLGVKEKLIEKAGAWYSYKGEKIGQGKAN
 ATAWLKDNPETAKEIEKKVRELLLSNPNSTPDFSVDDSEGVAETNEDF
+>recB
+MSDVAETLDPLRLPLQGERLIEASAGTGKTFTIAALYLRLLLGLGGSAAFPRPLTVEELLV
+VTFTEAATAELRGRIRSNIHELRIACLRETTDNPLYERLLEEIDDKAQAAQWLLLAERQMD
+EAAVFTIHGFCQRMLNLNAFESGMLFEQQLIEDESLLRYQACADFWRRHCYPLPREIAQVV
+FETWKGPQALLRDINRYLQGEAPVIKAPPPDDETLASRHAQIVARIDTVKQQWRDAVGELD
+ALIESSGIDRRKFNRSNQAKWIDKISAWAEEETNSYQLPESLEKFSQRFLEDRTKAGGETP
+RHPLFEAIDQLLAEPLSIRDLVITRALAEIRETVAREKRRRGELGFDDMLSRLDSALRSES
+GEVLAAAIRTRFPVAMIDEFQDTDPQQYRIFRRIWHHQPETALLLIGDPKQAIYAFRGADI
+FTYMKARSEVHAHYTLDTNWRSAPGMVNSVNKLFSQTDDAFMFREIPFIPVKSAGKNQALR
+FVFKGETQPAMKMWLMEGESCGVGDYQSTMAQVCAAQIRDWLQAGQRGEALLMNGDDARPV
+RASDISVLVRSRQEAAQVRDALTLLEIPSVYLSNRDSVFETLEAQEMLWLLQAVMTPEREN
+TLRSALATSMMGLNALDIETLNNDEHAWDVVVEEFDGYRQIWRKRGVMPMLRALMSARNIA
+ENLLATAGGERRLTDILHISELLQEAGTQLESEHALVRWLSQHILEPDSNASSQQMRLESD
+KHLVQIVTIHKSKGLEYPLVWLPFITNFRVQEQAFYHDRHSFEAVLDLNAAPESVDLAEAE
+RLAEDLRLLYVALTRSVWHCSLGVAPLVRRRGDKKGDTDVHQSALGRLLQKGEPQDAAGLR
+TCIEALCDDDIAWQTAQTGDNQPWQVNDVSTAELNAKTLQRLPGDNWRVTSYSGLQQRGHG
+IAQDLMPRLDVDAAGVASVVEEPTLTPHQFPRGASPGTFLHSLFEDLDFTQPVDPNWVREK
+LELGGFESQWEPVLTEWITAVLQAPLNETGVSLSQLSARNKQVEMEFYLPISEPLIASQLD
+TLIRQFDPLSAGCPPLEFMQVRGMLKGFIDLVFRHEGRYYLLDYKSNWLGEDSSAYTQQAM
+AAAMQAHRYDLQYQLYTLALHRYLRHRIADYDYEHHFGGVIYLFLRGVDKEHPQQGIYTTR
+PNAGLIALMDEMFAGMTLEEA
 
    Example 3
-
-   Retrieving feature information of the genes.
-   The following example will retrieve the start positions for each gene.
-   The values for the keys in GenBank format is available for retrieval.
-   (ex. start end direction GO* etc.)
-   Positions will be returned with a 1 start value.
-
-% genret
-Retrieves various gene related information from genome flatfile
-Input nucleotide sequence(s): refseqn:NC_000913
-Gene name(s) to lookup [*]:
-Feature to access: start
-Full text output file [nc_000913.start]:
-
-   Go to the input files for this example
-   Go to the output files for this example
-
-   Example 4
 
    Using a file with a list of gene names.
    The following example will retrieve the strand direction for each gene
@@ -113,7 +120,45 @@ thrC,direct
    Go to the input files for this example
    Go to the output files for this example
 
+   Example 4
+
+   Retrieving translations of coding sequences.
+   The following example will retrieve the translated protein sequence of
+   the "recA" gene.
+
+% genret
+Retrieves various gene related information from genome flatfile
+Input nucleotide sequence(s): refseqn:NC_000913
+Gene name(s) to lookup [*]: recA
+Feature to access: translation
+Full text output file [nc_000913.translation]: stdout
+>recA
+MAIDENKQKALAAALGQIEKQFGKGSIMRLGEDRSMDVETISTGSLSLDIALGAGGLPMGR
+IVEIYGPESSGKTTLTLQVIAAAQREGKTCAFIDAEHALDPIYARKLGVDIDNLLCSQPDT
+GEQALEICDALARSGAVDVIVVDSVAALTPKAEIEGEIGDSHMGLAARMMSQAMRKLAGNL
+KQSNTLLIFINQIRMKIGVMFGNPETTTGGNALKFYASVRLDIRRIGAVKEGENVVGSETR
+VKVVKNKIAAPFKQAEFQILYGEGINFYGELVDLGVKEKLIEKAGAWYSYKGEKIGQGKAN
+ATAWLKDNPETAKEIEKKVRELLLSNPNSTPDFSVDDSEGVAETNEDF
+
    Example 5
+
+   Retrieving feature information of the genes.
+   The following example will retrieve the start positions for each gene.
+   The values for the keys in GenBank format is available for retrieval.
+   (ex. start end direction GO* etc.)
+   Positions will be returned with a 1 start value.
+
+% genret
+Retrieves various gene related information from genome flatfile
+Input nucleotide sequence(s): refseqn:NC_000913
+Gene name(s) to lookup [*]:
+Feature to access: start
+Full text output file [nc_000913.start]:
+
+   Go to the input files for this example
+   Go to the output files for this example
+
+   Example 6
 
    Passing extra arguments to the methods.
    The following example shows the retrieval of 30 base pairs around the
