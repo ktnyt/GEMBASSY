@@ -39,8 +39,9 @@
 REQUIREMENTS
    EMBOSS (> 6.5.7) - This EMBASSY package requires EMBOSS version 6.5.7 or
                       above.
-
    libcurl-devel (> 7.29.0) - Required for file POST
+
+   A UNIX-like operating system
 
 INSTALLATION
   Is EMBOSS already installed in your system?
