@@ -172,6 +172,16 @@ Retrieves various gene features from genome flatfile
 ccggtattacccggcatgacaggagtaaaaatggctatcgacgaaaacaaacagaaagcgt
 tg
 
+   Example 7
+
+   Re-annotating a flatfile.
+   genret supports re-annotation of a genome flatfile via Restauro-G
+   service developed by our team.
+   The original software is available at [http://restauro-g.iab.keio.ac.jp]
+
+% genret refseqn:NC_000913 '*' annotate nc_000913-annotate.gbk
+Retrieves various gene features from genome flatfile
+
 Command line arguments
 
    Standard (Mandatory) qualifiers:
@@ -235,7 +245,7 @@ cacccggttcgcggttatttgatcaagaagagtggcaatatgcgtataacgattattctgg
 tcgcacccgccagagcagaaaatattggggcagcggcgcgggcaatgaaaacgatggggtt
 tagcgatctgcggattgtcg
 
-   Output files for usage example 3
+   Output files for usage example 5
 
    File: nc_000913.start
 
@@ -262,6 +272,113 @@ creD,4636201
 arcA,4637613
 yjjY,4638425
 yjtD,4638965
+
+   Output files for usage example 7
+
+   File: ecoli-annotate.gbk
+
+LOCUS       NC_000913            4639675 bp    DNA     circular BCT 25-OCT-2010
+DEFINITION  Escherichia coli str. K-12 substr. MG1655 chromosome, complete
+            genome.
+ACCESSION   NC_000913
+VERSION     NC_000913.2  GI:49175990
+DBLINK      Project: 57779
+KEYWORDS    .
+SOURCE      Escherichia coli str. K-12 substr. MG1655
+  ORGANISM  Escherichia coli str. K-12 substr. MG1655
+            Bacteria; Proteobacteria; Gammaproteobacteria; Enterobacteriales;
+
+   [Part of this file has been deleted for brevity]
+
+     CDS             2801..3733
+                     /EC_number="2.7.1.39"
+                     /codon_start="1"
+                     /db_xref="GI:16127997"
+                     /db_xref="ASAP:ABE-0000010"
+                     /db_xref="UniProtKB/Swiss-Prot:P00547"
+                     /db_xref="ECOCYC:EG10999"
+                     /db_xref="EcoGene:EG10999"
+                     /db_xref="GeneID:947498"
+                     /function="enzyme; Amino acid biosynthesis: Threonine"
+                     /function="1.5.1.8 metabolism; building block
+                     biosynthesis; amino acids; threonine"
+                     /function="7.1 location of gene products; cytoplasm"
+                     /gene="thrB"
+                     /gene_synonym="ECK0003; JW0002"
+                     /locus_tag="b0003"
+                     /note="GO_component: GO:0005737 - cytoplasm; GO_process:
+                     GO:0009088 - threonine biosynthetic process"
+                     /product="homoserine kinase"
+                     /protein_id="NP_414544.1"
+                     /rs_com="FUNCTION: Catalyzes the ATP-dependent
+                     phosphorylation of L- homoserine to L-homoserine
+                     phosphate (By similarity)."
+                     /rs_com="CATALYTIC ACTIVITY: ATP + L-homoserine = ADP +
+                     O-phospho-L- homoserine."
+                     /rs_com="PATHWAY: Amino-acid biosynthesis; L-threonine
+                     biosynthesis; L- threonine from L-aspartate: step 4/5."
+                     /rs_com="SUBCELLULAR LOCATION: Cytoplasm (Potential)."
+                     /rs_com="SIMILARITY: Belongs to the GHMP kinase family.
+                     Homoserine kinase subfamily."
+                     /rs_des="RecName: Full=Homoserine kinase; Short=HK;
+                     Short=HSK; EC=2.7.1.39;"
+                     /rs_protein="Level 1: similar to KHSE_ECODH 1.7e-180"
+                     /rs_xr="EMBL; CP000948; ACB01208.1; -; Genomic_DNA."
+                     /rs_xr="RefSeq; YP_001728986.1; -."
+                     /rs_xr="ProteinModelPortal; B1XBC8; -."
+                     /rs_xr="SMR; B1XBC8; 2-308."
+                     /rs_xr="EnsemblBacteria; EBESCT00000012034;
+                     EBESCP00000011562; EBESCG00000011096."
+                     /rs_xr="GeneID; 6058639; -."
+                     /rs_xr="GenomeReviews; CP000948_GR; ECDH10B_0003."
+                     /rs_xr="KEGG; ecd:ECDH10B_0003; -."
+                     /rs_xr="HOGENOM; HBG646290; -."
+                     /rs_xr="OMA; GSAHADN; -."
+                     /rs_xr="ProtClustDB; PRK01212; -."
+                     /rs_xr="BioCyc; ECOL316385:ECDH10B_0003-MONOMER; -."
+                     /rs_xr="GO; GO:0005737; C:cytoplasm;
+                     IEA:UniProtKB-SubCell."
+                     /rs_xr="GO; GO:0005524; F:ATP binding; IEA:UniProtKB-KW."
+                     /rs_xr="GO; GO:0004413; F:homoserine kinase activity;
+                     IEA:EC."
+                     /rs_xr="GO; GO:0009088; P:threonine biosynthetic process;
+                     IEA:UniProtKB-KW."
+                     /rs_xr="HAMAP; MF_00384; Homoser_kinase; 1; -."
+                     /rs_xr="InterPro; IPR006204; GHMP_kinase."
+                     /rs_xr="InterPro; IPR013750; GHMP_kinase_C."
+                     /rs_xr="InterPro; IPR006203; GHMP_knse_ATP-bd_CS."
+                     /rs_xr="InterPro; IPR000870; Homoserine_kin."
+                     /rs_xr="InterPro; IPR020568; Ribosomal_S5_D2-typ_fold."
+                     /rs_xr="InterPro; IPR014721;
+                     Ribosomal_S5_D2-typ_fold_subgr."
+                     /rs_xr="Gene3D; G3DSA:3.30.230.10;
+                     Ribosomal_S5_D2-type_fold; 1."
+                     /rs_xr="Pfam; PF08544; GHMP_kinases_C; 1."
+                     /rs_xr="Pfam; PF00288; GHMP_kinases_N; 1."
+                     /rs_xr="PIRSF; PIRSF000676; Homoser_kin; 1."
+                     /rs_xr="PRINTS; PR00958; HOMSERKINASE."
+                     /rs_xr="SUPFAM; SSF54211; Ribosomal_S5_D2-typ_fold; 1."
+                     /rs_xr="TIGRFAMs; TIGR00191; thrB; 1."
+                     /rs_xr="PROSITE; PS00627; GHMP_KINASES_ATP; 1."
+                     /transl_table="11"
+                     /translation="MVKVYAPASSANMSVGFDVLGAAVTPVDGALLGDVVTVEAAETF
+                     SLNNLGRFADKLPSEPRENIVYQCWERFCQELGKQIPVAMTLEKNMPIGSGLGSSACS
+                     VVAALMAMNEHCGKPLNDTRLLALMGELEGRISGSIHYDNVAPCFLGGMQLMIEENDI
+                     ISQQVPGFDEWLWVLAYPGIKVSTAEARAILPAQYRRQDCIAHGRHLAGFIHACYSRQ
+                     PELAAKLMKDVIAEPYRERLLPGFRQARQAVAEIGAVASGISGSGPTLFALCDKPETA
+                     QRVADWLGKNYLQNQEGFVHICRLDTAGARVLEN"
+
+   [Part of this file has been deleted for brevity]
+
+  4639201 gcgcagtcgg gcgaaatatc attactacgc cacgccagtt gaactggtgc cgctgttaga
+  4639261 ggaaaaatct tcatggatga gccatgccgc gctggtgttt ggtcgcgaag attccgggtt
+  4639321 gactaacgaa gagttagcgt tggctgacgt tcttactggt gtgccgatgg tggcggatta
+  4639381 tccttcgctc aatctggggc aggcggtgat ggtctattgc tatcaattag caacattaat
+  4639441 acaacaaccg gcgaaaagtg atgcaacggc agaccaacat caactgcaag ctttacgcga
+  4639501 acgagccatg acattgctga cgactctggc agtggcagat gacataaaac tggtcgactg
+  4639561 gttacaacaa cgcctggggc ttttagagca acgagacacg gcaatgttgc accgtttgct
+  4639621 gcatgatatt gaaaaaaata tcaccaaata aaaaacgcct tagtaagtat ttttc
+//
 
 Data files
 
