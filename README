@@ -37,7 +37,7 @@
 /* Installation **************************************************************
 
 REQUIREMENTS
-   EMBOSS (> 6.5.7) - This EMBASSY package requires EMBOSS version 6.5.7 or
+   EMBOSS (> 6.6.0) - This EMBASSY package requires EMBOSS version 6.6.0 or
                       above.
    libcurl-devel (> 7.29.0) - Required for file POST
 
@@ -57,12 +57,12 @@ INSTALLATION
       % wget ftp://emboss.open-bio.org/pub/EMBOSS/emboss-latest.tar.gz
       (or "curl -O ftp://emboss.open-bio.org/pub/EMBOSS/emboss-latest.tar.gz")
       % tar zxf emboss-latest.tar.gz
-      % cd EMBOSS-6.5.7
+      % cd EMBOSS-6.6.0
       % ./configure
       % make
       % sudo make install
 
-    2. Make "embassy" directory in the EMBOSS-6.5.7/ directory if it does not
+    2. Make "embassy" directory in the EMBOSS-6.6.0/ directory if it does not
        exist and go into the directory.
       % mkdir embassy
       % cd embassy
@@ -72,7 +72,7 @@ INSTALLATION
       (or "curl -O http://soap.g-language.org/gembassy/source/GEMBASSY-1.0.1.tar.gz")
       % tar zxf GEMBASSY-1.0.1.tar.gz
       % cd GEMBASSY-1.0.1
-      ( EMBOSS-6.5.7/embassy/GEMBASSY-1.0.1 )
+      ( EMBOSS-6.6.0/embassy/GEMBASSY-1.0.1 )
       % ./configure
       % make
       % sudo make install
