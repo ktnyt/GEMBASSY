@@ -233,7 +233,7 @@ int main(int argc, char *argv[])
 
               token = ajStrTokenNewC(ajStrNewS(gene), " ,\t\r\n");
 
-              while(ajStrTokenNextParse(&token, &regexstr))
+              while(ajStrTokenNextParse(token, &regexstr))
                 {
                   if(ajStrGetLen(regexstr))
                     {
