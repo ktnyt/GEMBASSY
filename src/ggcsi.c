@@ -138,7 +138,7 @@ int main(int argc, char *argv[])
 
 	  handle = ajStrTokenNewC(tmp, "\n");
 
-	  while (ajStrTokenNextParse(&handle, &parse))
+	  while (ajStrTokenNextParse(handle, &parse))
 	    {
 	      if (ajStrIsFloat(parse))
 		{

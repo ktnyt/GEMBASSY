@@ -79,6 +79,8 @@ AjBool gFilePostCC(char* url, char* filename, AjPStr* string)
   curl_easy_cleanup(curl);
 
   ajStrAssignC(string, mem->memory);
+
+  return 1;
 }
 
 size_t curl_write(void* ptr, size_t size, size_t nmemb, void* data)

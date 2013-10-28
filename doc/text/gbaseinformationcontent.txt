@@ -7,10 +7,14 @@ Description
 
    This function calculates and graphs the sequence conservation in regions
    around the start/stop codons using information content. Values are obtained
-   by subtracting the entropy for each positfion from the maximum possible value
-   (which will be 2 in the case of nucleotide sequences). Information content
-   will show the highest value when the frequency is most biased to a single
-   alphabet.
+   by subtracting the entropy for each positfion from the maximum possible
+   value (which will be 2 in the case of nucleotide sequences). Information
+   content will show the highest value when the frequency is most biased to a
+   single alphabet.
+
+   Information content I is obtained by subtracting the entropy H from the
+   maximum uncertainty log(2,|M|):
+   I(P(i)) = log(2,|M|) - (-sum(P(i,j) * log(2,P(i,j))))
     
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.

@@ -11,7 +11,12 @@ Description
    (maximum bias). CAI can be used as a 'universal' measure of codon usage
    bias as it is correlated with various gene features such as gene expression
    level, GC content, and GC skew.
-    
+
+   The CAI for a gene where A(i) is the amino acid at position i and W(A) is
+   the W value corresponding to the amino acid is calculated as follows:
+
+   CAI = sum(log(e,W(A(i))))
+
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
    The original web service is located at the following URL:

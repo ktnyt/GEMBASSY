@@ -8,6 +8,11 @@ Description
    gconsensusz calculates the consensus of given list of sequences, using
    Z-score. The Z-score will show higher values when the sequences are biased
    to a single character within the list.
+
+   The Z-score for mean m and standard error SE is calculated as follows:
+   z = (x - m) / SE
+   where SE for standard deviation s and number of samples s is as follows:
+   SE = s/sqrt(n)
     
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.

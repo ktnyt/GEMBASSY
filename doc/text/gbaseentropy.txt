@@ -10,6 +10,9 @@ Description
    values resemble higher conservation where the minumum value is 0 and the
    maximum value is 2. The entropy is typically the lowest around position 0
    (start/stop codon position).
+
+   The entropy H at position i with distribution P(i) is calculated as follows:
+   H(P(i)) = -sum(P(i,j) * log(2,P(i,j)))
     
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.

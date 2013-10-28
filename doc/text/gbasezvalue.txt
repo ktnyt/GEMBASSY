@@ -8,6 +8,11 @@ Description
    This function calculates and extracts conserved oligomers per position using
    Z-score, in regions around the start/stop codons. The oligomers are returned
    in ranking order up to "-limit" number.
+
+   The Z-score for mean m and standard error SE is calculated as follows:
+   z = (x - m) / SE
+   where SE for standard deviation s and number of samples s is as follows:
+   SE = s/sqrt(n)
     
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.

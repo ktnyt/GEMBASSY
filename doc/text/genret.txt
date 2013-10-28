@@ -17,9 +17,9 @@ Description
 
    genret is able to perform a variety of tasks, incluing the retrieval of
    sequence upstream, downstream, or around the start or stop codon,
-   translated gene sequences search of gene data by keyword. The set of genes
-   can be given as flat text, regular expression, or a file containing the
-   list of genes.
+   translated gene sequences search of gene data by keyword, and re-annotation
+   and retrieval of genome flatfiles. The set of genes can be given as flat
+   text, regular expression, or a file containing the list of genes.
 
    Details on G-language REST service is available from the wiki page
 
@@ -176,8 +176,11 @@ tg
 
    Re-annotating a flatfile.
    genret supports re-annotation of a genome flatfile via Restauro-G
-   service developed by our team.
-   The original software is available at [http://restauro-g.iab.keio.ac.jp]
+   service developed by our team. Using the BLAST Like Alignment Tool,
+   to refer the UniProt KB and annotates information including the description,
+   comments, feature tables, cross references, COG family, position, and Pfam.
+   The original software is available at [http://restauro-g.iab.keio.ac.jp].
+   
 
 % genret refseqn:NC_000913 '*' annotate nc_000913-annotate.gbk
 Retrieves various gene features from genome flatfile

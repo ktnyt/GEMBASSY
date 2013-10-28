@@ -13,6 +13,8 @@ Description
    relative difference between them. ENC assigns a gene a number between 20 to
    61 where 20 indicates that one codon is used for each aminoacid and 61
    indicates that each codon is used equally throughout the protein sequence.
+
+   ENC is calculated as follows:
     
    G-language SOAP service is provided by the
    Institute for Advanced Biosciences, Keio University.
