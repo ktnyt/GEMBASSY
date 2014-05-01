@@ -5,9 +5,9 @@
 
 --------------------------------------------------------------------------------
 gSOAP XML Web services tools
-Copyright (C) 2000-2011, Robert van Engelen, Genivia Inc. All Rights Reserved.
-This part of the software is released under ONE of the following licenses:
-GPL OR Genivia's license for commercial use.
+Copyright (C) 2000-2012, Robert van Engelen, Genivia Inc. All Rights Reserved.
+This part of the software is released under one of the following licenses:
+GPL or Genivia's license for commercial use.
 --------------------------------------------------------------------------------
 GPL license.
 
@@ -43,7 +43,8 @@ A commercial use license is available from Genivia, Inc., contact@genivia.com
 #include "error2.h"
 
 #ifndef VERSION
-# define VERSION "2.8.6" /* Current version */
+# define VERSION "2.8.17r" /* Current version */
+# define GSOAP_VERSION 20817
 #endif
 
 #ifdef WIN32
@@ -251,7 +252,7 @@ typedef	struct IDinfo {
 
 typedef	struct Entry {
 	Symbol	*sym;
-	Symbol	*tag;
+	char	*tag;
 	IDinfo	info;
 	Level	level;
 	int	lineno;
@@ -282,19 +283,20 @@ typedef	struct Node {
 	LONG64	maxLength;
 } Node;
 
-#define ACTION		        0x00
-#define REQUEST_ACTION	        0x01
-#define RESPONSE_ACTION	        0x02
-#define FAULT_ACTION	        0x04
-#define HDRIN		        0x10	
-#define HDROUT		        0x20
-#define MIMEIN		        0x40
-#define MIMEOUT		        0x80
-#define COMMENT		        0x100
-#define ENCODING	        0x200
-#define RESPONSE_ENCODING       0x400
-#define STYLE		        0x800
-#define FAULT		        0x1000
+#define ACTION		        0x0000
+#define REQUEST_ACTION	        0x0001
+#define RESPONSE_ACTION	        0x0002
+#define FAULT_ACTION	        0x0004
+#define HDRIN		        0x0010	
+#define HDROUT		        0x0020
+#define MIMEIN		        0x0040
+#define MIMEOUT		        0x0080
+#define COMMENT		        0x0100
+#define ENCODING	        0x0200
+#define RESPONSE_ENCODING       0x0400
+#define STYLE                   0x0800
+#define FAULT                   0x1000
+#define PROTOCOL                0x2000
 
 typedef struct Data
 {	struct Data *next;
@@ -326,6 +328,7 @@ typedef struct Service
 	char *WSDL;
 	char *style;
 	char *encoding;
+	char *protocol;
 	int xsi_type;
 	char *elementForm;
 	char *attributeForm;
@@ -365,6 +368,7 @@ extern Entry *unlinklast(Table*);
 extern FILE *fmsg;
 
 extern int aflag;
+extern int Aflag;
 extern int bflag;
 extern int vflag;
 extern int wflag;
@@ -380,6 +384,7 @@ extern int nflag;
 extern int nflag;
 extern int lflag;
 extern int Lflag;
+extern int Qflag;
 extern int sflag;
 extern int Sflag;
 extern int Tflag;

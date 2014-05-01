@@ -5,8 +5,8 @@
 
 --------------------------------------------------------------------------------
 gSOAP XML Web services tools
-Copyright (C) 2001-2010, Robert van Engelen, Genivia Inc. All Rights Reserved.
-This software is released under one of the following two licenses:
+Copyright (C) 2000-2013, Robert van Engelen, Genivia Inc. All Rights Reserved.
+This software is released under one of the following licenses:
 GPL or Genivia's license for commercial use.
 --------------------------------------------------------------------------------
 GPL license.
@@ -79,6 +79,7 @@ class xs__element
 	xs__annotation			*annotation;
 	xs__simpleType			*simpleType;		// choice
 	xs__complexType			*complexType;		// choice
+	xsd__string			unique;			// dummy, not used
   private:
 	xs__schema			*schemaRef;		// schema to which this belongs
   	xs__element			*elementRef;		// traverse() finds ref
@@ -155,7 +156,7 @@ class xs__any
 class xs__contents
 { public:
 	$int				__union;			
-	union				xs__union_content
+	union xs__union_content
 	{	xs__element		*element;
 		xs__group		*group;
 		xs__seqchoice		*choice;
@@ -308,6 +309,7 @@ class xs__whiteSpace
 class xs__restriction
 { public:
 	@xsd__QName			base;
+	xs__simpleType			*simpleType;    // used in <simpleType><restriction>
 	xs__attributeGroup		*attributeGroup;// not used in <simpleType><restriction>
 	xs__group			*group;		// not used in <simpleType><restriction>
 	xs__all				*all;		// not used in <simpleType><restriction>
@@ -486,6 +488,7 @@ class xs__schema
 	const SetOfString&		builtinTypes() const;
 	const SetOfString&		builtinElements() const;
 	const SetOfString&		builtinAttributes() const;
+	bool				empty() const;
 	friend ostream&			operator<<(ostream&, const xs__schema&);
 	friend istream&			operator>>(istream&, xs__schema&);
 };

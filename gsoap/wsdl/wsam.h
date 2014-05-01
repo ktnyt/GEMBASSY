@@ -6,7 +6,7 @@
 --------------------------------------------------------------------------------
 gSOAP XML Web services tools
 Copyright (C) 2001-2010, Robert van Engelen, Genivia Inc. All Rights Reserved.
-This software is released under one of the following two licenses:
+This software is released under one of the following licenses:
 GPL or Genivia's license for commercial use.
 --------------------------------------------------------------------------------
 GPL license.
@@ -40,6 +40,11 @@ A commercial use license is available from Genivia, Inc., contact@genivia.com
 //gsoap wsam schema namespace:		http://www.w3.org/2007/05/addressing/metadata
 //gsoap wsam schema elementForm:	qualified
 //gsoap wsam schema attributeForm:	unqualified
+
+//gsoap wsaw schema documentation:	WS-Addressing WSDL
+//gsoap wsaw schema namespace:		http://www.w3.org/2006/05/addressing/wsdl
+//gsoap wsaw schema elementForm:	qualified
+//gsoap wsaw schema attributeForm:	unqualified
 
 class wsa__EndpointReferenceType
 { public:

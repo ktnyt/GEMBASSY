@@ -5,9 +5,9 @@
 
 --------------------------------------------------------------------------------
 gSOAP XML Web services tools
-Copyright (C) 2000-2011, Robert van Engelen, Genivia Inc. All Rights Reserved.
+Copyright (C) 2000-2013, Robert van Engelen, Genivia Inc. All Rights Reserved.
 This part of the software is released under ONE of the following licenses:
-GPL OR Genivia's license for commercial use.
+GPL or Genivia's license for commercial use.
 --------------------------------------------------------------------------------
 GPL license.
 
@@ -65,6 +65,7 @@ int imports = 0;
 char *imported = NULL;
 static void check_id(const char*);
 static Token install_id(void);
+static Token install_tag(void);
 static Token install_int(void);
 static Token install_hex(void);
 static Token install_num(void);
@@ -85,12 +86,12 @@ ws		[ \t\v\r\f\n\x1A\xA0]
 digit		[0-9]
 alpha		[a-zA-Z_]
 id		({alpha}|:{alpha})({alpha}|{digit}|::|:{alpha})*
-tag		-<[^ \t\v\r\f\n>]+>-
+tag		`[^`\t\v\r\f\n>]+`
 int		{digit}+
 hex		0[xX][0-9a-fA-F]+
 num		{int}(\.{int}([Ee][+-]?{int})?|(\.{int})?[Ee][+-]?{int})
 chr		'(\\'|[^'\n])*'
-str		\"(\\\"|\\\n|[^"])*\"
+str		L?\"(\\\"|\\\n|[^"])*\"
 module		#module{ws}+.*\n
 import		#import{ws}+.*\n
 %x MLCOMMENT
@@ -100,8 +101,8 @@ import		#import{ws}+.*\n
 <MLCOMMENT>.|\n		{ }
 <MLCOMMENT>"*/"		{ BEGIN(INITIAL); }
 <MLCOMMENT><<EOF>>	{ execerror("Unclosed multiline comment at the end of file"); }
-"//gsoapopt".*\n	{ option(); }
-"//gsoap".*\n		{ directive(); }
+"//"\/*"gsoapopt".*\n	{ option(); }
+"//"\/*"gsoap".*\n	{ directive(); }
 "//".*\n		{ /* skip single line comment */ }
 "+="			{ return PA; }
 "-="			{ return NA; }
@@ -126,7 +127,7 @@ import		#import{ws}+.*\n
 "->"			{ return AR; }
 [;,:=|^&<>+\-*/%!?~(){}\[\].@$]	{ return yytext[0]; }
 {id}			{ return install_id(); }
-{tag}			{ return TAG; }
+{tag}			{ return install_tag(); }
 {int}			{ return install_int(); }
 {hex}			{ return install_hex(); }
 {num}			{ return install_num(); }
@@ -210,6 +211,18 @@ install_id()
 }
 
 /*
+	install_tag - 
+	return TAG token.
+*/ 
+static Token
+install_tag()
+{	yylval.s = emalloc(yyleng-1);	/* yyleng = length(yytext) */
+	strcpy(yylval.s, yytext+1);
+	yylval.s[yyleng-2] = '\0';
+	return TAG;
+}
+
+/*
 	check_id - check for (x|X)(m|M)(l|L)
 */
 static void
@@ -274,7 +287,7 @@ static Token
 install_str(void)
 {	int i, j = 0;
 	yylval.s = emalloc(yyleng-1);	/* yyleng = length(yytext) */
-	for (i = 1; i < yyleng-1; i++)
+	for (i = 1 + (yytext[0] == 'L'); i < yyleng-1; i++)
 		if (yytext[i] == '\\')
 		{	if (yytext[++i] != '\n')
 			{	yylval.s[j++] = convchar(&i);
@@ -339,6 +352,7 @@ static void directive(void)
 		sp->WSDL = NULL;
 		sp->style = NULL;
 		sp->encoding = NULL;
+		sp->protocol = NULL;
 		sp->xsi_type = 0;
 		sp->elementForm = NULL;
 		sp->attributeForm = NULL;
@@ -388,9 +402,7 @@ static void directive(void)
 			s[k-j] = '\0';
 			sp->documentation = s;
 		}
-		else if (!strncmp(yytext+i, "type:", 5))
-			sp->porttype = s;
-		else if (!strncmp(yytext+i, "portType:", 9))
+		else if (!strncmp(yytext+i, "type:", 5) || !strncmp(yytext+i, "portType:", 9) || !strncmp(yytext+i, "interface:", 10))
 			sp->porttype = s;
 		else if (!strncmp(yytext+i, "portName:", 9))
 			sp->portname = s;
@@ -411,7 +423,7 @@ static void directive(void)
 		}
 		else if (!strncmp(yytext+i, "transport:", 10))
 			sp->transport = s;
-		else if (!strncmp(yytext+i, "location:", 9) || !strncmp(yytext+i, "port:", 5))
+		else if (!strncmp(yytext+i, "location:", 9) || !strncmp(yytext+i, "endpoint:", 9) || !strncmp(yytext+i, "port:", 5))
 		{	if (sp->URL)
 			{	char *t = (char*)emalloc(strlen(sp->URL) + strlen(s) + 2);
 				strcpy(t, sp->URL);
@@ -433,18 +445,18 @@ static void directive(void)
 				sp->WSDL = s;
 			}
 			else if (!strcmp(sp->ns, "SOAP-ENV"))
-			{	if (vflag)
+			{	if (vflag > 0)
 					semwarn("option -1 or -2 overrides SOAP-ENV namespace");
 				else
 					envURI = s;
 				sp->URI = envURI;
 			}
 			else if (!strcmp(sp->ns, "SOAP-ENC"))
-			{	if (vflag)
+			{	if (vflag > 0)
 					semwarn("option -1 or -2 overrides SOAP-ENC namespace");
 				else
 					encURI = s;
-				sp->URI = encURI = s;
+				sp->URI = encURI;
 			}
 			else
 				sp->URI = s;
@@ -476,6 +488,28 @@ static void directive(void)
 		}
 		else if (!strncmp(yytext+i, "style:", 6))
 			sp->style = s;
+		else if (!strncmp(yytext+i, "protocol:", 9))
+			sp->protocol = s;
+		else if (!strncmp(yytext+i, "method-protocol:", 16))
+		{	m = (Method*)emalloc(sizeof(Method));
+			m->name = s;
+			m->mess = PROTOCOL;
+			m->part = NULL;
+			m->next = sp->list;
+			sp->list = m;
+			for (j = k; yytext[j]; j++)
+				if (yytext[j] > 32)
+					break;
+			for (k = j; yytext[k]; k++)
+				if (yytext[k] == 10 || yytext[k] == 13)
+					break;
+			if (j == k)
+				return;
+			s = (char*)emalloc(k-j+1);
+			strncpy(s, yytext+j, k-j);
+			s[k-j] = '\0';
+			m->part = s;
+		}
 		else if (!strncmp(yytext+i, "method-style:", 13))
 		{	m = (Method*)emalloc(sizeof(Method));
 			m->name = s;
@@ -989,7 +1023,8 @@ static void import(const char *file)
     { char *s, *t;
       s = importpath;
       do
-      { t = strstr(s, SOAP_PATHSEP);
+      { size_t n;
+        t = strstr(s, SOAP_PATHSEP);
         if (t)
         { if (t - s >= sizeof(buf))
 	    t = s + sizeof(buf) - 1;
@@ -1001,13 +1036,13 @@ static void import(const char *file)
         { strcpy(buf, s);
           s = NULL;
 	}
+        n = strlen(buf) - 1;
 #ifdef __VMS
-        { size_t len = strlen(buf) - 1;
-          if (buf[len] != ']' && buf[len] != ':')
-            strcat(buf, ":");
-        }
+        if (buf[n] != ']' && buf[n] != ':')
+          strcat(buf, ":");
 #else
-        strcat(buf, "/");
+        if (buf[n] != SOAP_PATHCAT[0])
+	  strcat(buf, SOAP_PATHCAT);
 #endif
         strcat(buf, file);
         yyin = fopen(buf, "r");
@@ -1015,7 +1050,7 @@ static void import(const char *file)
       while (s && !yyin);
     }
     if (!yyin)
-    { sprintf(errbuf, "#import: Cannot open file \"%s\" for reading.\nHint: use option -I<path> (you can define multiple paths separated with '"SOAP_PATHSEP"')", file);
+    { sprintf(errbuf, "#import: Cannot open file \"%s\" for reading.\nHint: use option -I<path> (for example -Igsoap/import"SOAP_PATHSEP"gsoap/custom:.)", file);
       execerror(errbuf);
     }
   }

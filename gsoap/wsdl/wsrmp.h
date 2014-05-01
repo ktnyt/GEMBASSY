@@ -6,7 +6,7 @@
 --------------------------------------------------------------------------------
 gSOAP XML Web services tools
 Copyright (C) 2001-2010, Robert van Engelen, Genivia Inc. All Rights Reserved.
-This software is released under one of the following two licenses:
+This software is released under one of the following licenses:
 GPL or Genivia's license for commercial use.
 --------------------------------------------------------------------------------
 GPL license.
@@ -33,13 +33,23 @@ A commercial use license is available from Genivia, Inc., contact@genivia.com
 */
 
 //gsoap wsrmp schema documentation:	WS-ReliableMessaging Policy binding
-//gsoap wsrmp schema namespace:		http://docs.oasis-open.org/ws-rx/wsrmp/200702
+//gsoap wsrmp schema namespace:		http://schemas.xmlsoap.org/ws/2005/02/rm/policy
 //gsoap wsrmp schema elementForm:	qualified             
 //gsoap wsrmp schema attributeForm:	unqualified           
 
 #import "imports.h"
 
+class wsrmp__Timeout
+{ public:
+  @char *Milliseconds;
+};
+
 class wsrmp__RMAssertion : public wsp__Assertion
 { public:
-// TODO: WCF netrmp extension elements go here
+  wsrmp__Timeout *InactivityTimeout;
+  wsrmp__Timeout *BaseRetransmissionInterval;;
+  wsrmp__Timeout *AcknowledgementInterval;
+  char           *ExponentialBackoff;
+// TODO: WCF netrmp extension elements go here, as necessary
 };
+

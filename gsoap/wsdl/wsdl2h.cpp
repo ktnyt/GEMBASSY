@@ -5,8 +5,8 @@
 
 --------------------------------------------------------------------------------
 gSOAP XML Web services tools
-Copyright (C) 2000-2011, Robert van Engelen, Genivia Inc. All Rights Reserved.
-This software is released under one of the following two licenses:
+Copyright (C) 2000-2013, Robert van Engelen, Genivia Inc. All Rights Reserved.
+This software is released under one of the following licenses:
 GPL or Genivia's license for commercial use.
 --------------------------------------------------------------------------------
 GPL license.
@@ -58,6 +58,7 @@ static void options(int argc, char **argv);
 
 int _flag = 0,
     aflag = 0,
+    bflag = 0,
     cflag = 0,
     dflag = 0,
     eflag = 0,
@@ -69,6 +70,7 @@ int _flag = 0,
     mflag = 0,
     pflag = 0,
     Pflag = 0,
+    Rflag = 0,
     sflag = 0,
     uflag = 0,
     vflag = 0,
@@ -83,8 +85,10 @@ char *infile[MAXINFILES],
      *outfile = NULL,
      *proxy_host = NULL,
      *proxy_userid = NULL,
-     *proxy_passwd = NULL;
-extern const char
+     *proxy_passwd = NULL,
+     *auth_userid = NULL,
+     *auth_passwd = NULL;
+const char
      *mapfile = WSDL_TYPEMAP_FILE,
      *import_path = WSDL2H_IMPORT_PATH,
      *cwd_path = NULL,
@@ -117,17 +121,17 @@ const char serviceformat[]             = "//gsoap %-4s service %s:\t%s %s\n";
 const char paraformat[]                = "    %-35s%s%s%s";
 const char anonformat[]                = "    %-35s%s_%s%s";
 
-const char copyrightnotice[] = "\n**  The gSOAP WSDL/Schema processor for C and C++, wsdl2h release "VERSION"\n**  Copyright (C) 2000-2011 Robert van Engelen, Genivia Inc.\n**  All Rights Reserved. This product is provided \"as is\", without any warranty.\n**  The wsdl2h tool is released under one of the following two licenses:\n**  GPL or the commercial license by Genivia Inc. Use option -l for details.\n\n";
+const char copyrightnotice[] = "\n**  The gSOAP WSDL/Schema processor for C and C++, wsdl2h release " WSDL2H_VERSION "\n**  Copyright (C) 2000-2013 Robert van Engelen, Genivia Inc.\n**  All Rights Reserved. This product is provided \"as is\", without any warranty.\n**  The wsdl2h tool is released under one of the following licenses:\n**  GPL or the commercial license by Genivia Inc. Use option -l for details.\n\n";
 
 const char licensenotice[]   = "\
 --------------------------------------------------------------------------------\n\
 gSOAP XML Web services tools\n\
-Copyright (C) 2000-2011, Robert van Engelen, Genivia Inc. All Rights Reserved.\n\
+Copyright (C) 2000-2013, Robert van Engelen, Genivia Inc. All Rights Reserved.\n\
 \n\
-This software is released under one of the following two licenses:\n\
-1) GPL or 2) Genivia's license for commercial use.\n\
+This software is released under one of the following licenses:\n\
+GPL or Genivia's license for commercial use.\n\
 --------------------------------------------------------------------------------\n\
-1) GPL license.\n\
+GPL license.\n\
 \n\
 This program is free software; you can redistribute it and/or modify it under\n\
 the terms of the GNU General Public License as published by the Free Software\n\
@@ -148,7 +152,7 @@ engelen@genivia.com / engelen@acm.org\n\
 This program is released under the GPL with the additional exemption that\n\
 compiling, linking, and/or using OpenSSL is allowed.\n\
 --------------------------------------------------------------------------------\n\
-2) A commercial-use license is available from Genivia, Inc., contact@genivia.com\n\
+A commercial-use license is available from Genivia, Inc., contact@genivia.com\n\
 --------------------------------------------------------------------------------\n";
 
 int main(int argc, char **argv)
@@ -216,6 +220,9 @@ static void options(int argc, char **argv)
        	    break;
           case 'a':
             aflag = 1;
+       	    break;
+          case 'b':
+            bflag = 1;
        	    break;
           case 'c':
             cflag = 1;
@@ -316,7 +323,7 @@ static void options(int argc, char **argv)
             else if (i < argc && argv[++i])
               proxy_host = argv[i];
             else
-              fprintf(stderr, "wsdl2h: Option -r requires a proxy host:port argument\n");
+              fprintf(stderr, "wsdl2h: Option -r requires proxy host:port:userid:passwd or :userid:passwd authentication argument\n");
             if (proxy_host)
 	    { char *s = (char*)emalloc(strlen(proxy_host + 1));
 	      strcpy(s, proxy_host);
@@ -324,18 +331,33 @@ static void options(int argc, char **argv)
 	      s = strchr(proxy_host, ':');
 	      if (s)
 	      { *s = '\0';
-	        proxy_port = soap_strtol(s + 1, &s, 10);
-		if (s && *s == ':')
-	        { *s = '\0';
-		  proxy_userid = s + 1;
-		  s = strchr(proxy_userid, ':');
+		if (*proxy_host)
+	        { proxy_port = soap_strtol(s + 1, &s, 10);
+		  if (s && *s == ':')
+	          { *s = '\0';
+		    proxy_userid = s + 1;
+		    s = strchr(proxy_userid, ':');
+		    if (s && *s == ':')
+		    { *s = '\0';
+		      proxy_passwd = s + 1;
+		    }
+		  }
+	        }
+		else
+		{ s = proxy_host;
+		  proxy_host = NULL;
+		  auth_userid = s + 1;
+                  s = strchr(auth_userid, ':');
 		  if (s && *s == ':')
 		  { *s = '\0';
-		    proxy_passwd = s + 1;
+		    auth_passwd = s + 1;
 		  }
 		}
 	      }
 	    }
+	    break;
+	  case 'R':
+	    Rflag = 1;
 	    break;
 	  case 's':
 	    sflag = 1;
@@ -380,39 +402,46 @@ static void options(int argc, char **argv)
 	    break;
           case '?':
           case 'h':
-            fprintf(stderr, "Usage: wsdl2h [-a] [-c] [-d] [-e] [-f] [-g] [-h] [-I path] [-i] [-j] [-k] [-l] [-m] [-n name] [-N name] [-p|-P] [-q name] [-r proxyhost[:port[:uid:pwd]]] [-s] [-t typemapfile] [-u] [-v] [-w] [-W] [-x] [-y] [-z#] [-_] [-o outfile.h] infile.wsdl infile.xsd http://www... ...\n\n");
+            fprintf(stderr, "Usage: wsdl2h [-a] [-b] [-c] [-d] [-e] [-f] [-g] [-h] [-I path] [-i] [-j] [-k] [-l] [-m] [-N name] [-n name] [-P|-p] [-q name] [-R] [-r proxyhost[:port[:uid:pwd]]] [-r:userid:passwd] [-s] [-t typemapfile] [-u] [-v] [-w] [-W] [-x] [-y] [-z#] [-_] [-o outfile.h] infile.wsdl infile.xsd http://www... ...\n\n");
             fprintf(stderr, "\
 -a      generate indexed struct names for local elements with anonymous types\n\
+-b	bi-directional operations (duplex ops) added to serve one-way responses\n\
 -c      generate C source code\n\
 -d      use DOM to populate xs:any, xs:anyType, and xs:anyAttribute\n\
 -e      don't qualify enum names\n\
 -f      generate flat C++ class hierarchy\n\
 -g      generate global top-level element declarations\n\
 -h      display help info\n\
--i      don't import (advanced option)\n\
 -Ipath  use path to find files\n\
--j	don't generate SOAP_ENV__Header and SOAP_ENV__Detail definitions\n\
--k	don't generate SOAP_ENV__Header mustUnderstand qualifiers\n\
+-i      don't import (advanced option)\n\
+-j      don't generate SOAP_ENV__Header and SOAP_ENV__Detail definitions\n\
+-k      don't generate SOAP_ENV__Header mustUnderstand qualifiers\n\
 -l      display license information\n\
 -m      use xsd.h module to import primitive types\n\
+-Nname  use name for service prefixes to produce a service for each binding\n\
 -nname  use name as the base namespace prefix instead of 'ns'\n\
--Nname  use name as the base namespace prefix for service namespaces\n\
 -ofile  output to file\n\
--p      create polymorphic types with C++ inheritance from base xsd__anyType\n\
--P      don't create polymorphic types with C++ inheritance from xsd__anyType\n\
--qname	use name for the C++ namespace of all declarations\n\
+-P      don't create polymorphic types inherited from xsd__anyType\n\
+-p      create polymorphic types inherited from base xsd__anyType\n\
+-qname  use name for the C++ namespace of all declarations\n\
+-R      generate REST operations for REST bindings in the WSDL\n\
 -rhost[:port[:uid:pwd]]\n\
         connect via proxy host, port, and proxy credentials\n\
+-r:uid:pwd\n\
+        connect with authentication credentials (digest auth requires SSL)\n\
 -s      don't generate STL code (no std::string and no std::vector)\n\
 -tfile  use type map file instead of the default file typemap.dat\n\
 -u      don't generate unions\n\
 -v      verbose output\n\
--w      always wrap response parameters in a response struct (<=1.1.4 behavior)\n\
 -W      suppress warnings\n\
+-w      always wrap response parameters in a response struct (<=1.1.4 behavior)\n\
 -x      don't generate _XML any/anyAttribute extensibility elements\n\
 -y      generate typedef synonyms for structs and enums\n\
 -z1     compatibility with 2.7.6e: generate pointer-based arrays\n\
--z2     compatibility with 2.7.15: qualify element/attribute referenced members\n\
+-z2     compatibility with 2.7.7 to 2.7.15: qualify element/attribute references\n\
+-z3     compatibility with 2.7.16 to 2.8.7: qualify element/attribute references\n\
+-z4     compatibility up to 2.8.11: don't generate union structs in std::vector\n\
+-z5     compatibility up to 2.8.15\n\
 -_      don't generate _USCORE (replace with UNICODE _x005f)\n\
 infile.wsdl infile.xsd http://www... list of input sources (if none: use stdin)\n\
 \n");
@@ -480,10 +509,16 @@ struct Namespace namespaces[] =
   {"xmime", "http://www.w3.org/2005/05/xmlmime"},
   {"dime", "http://schemas.xmlsoap.org/ws/2002/04/dime/wsdl/", "http://schemas.xmlsoap.org/ws/*/dime/wsdl/"},
   {"sp", "http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702", "http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"},
-  {"wsdl", "http://schemas.xmlsoap.org/wsdl/"},
+  {"wsdl", "http://schemas.xmlsoap.org/wsdl/", "http://www.w3.org/ns/wsdl"},
+  {"wsdli", "http://www.w3.org/ns/wsdl-instance"},
+  {"wsdlx", "http://www.w3.org/ns/wsdl-extensions"},
+  {"wsoap", "http://www.w3.org/ns/wsdl/soap"},
+  {"whttp", "http://www.w3.org/ns/wsdl/http"},
+  {"wrpc", "http://www.w3.org/ns/wsdl/rpc"},
   {"wsa_", "http://www.w3.org/2005/08/addressing"},
+  {"wsaw", "http://www.w3.org/2006/05/addressing/wsdl"},
   {"wsam", "http://www.w3.org/2007/05/addressing/metadata"},
-  {"wsrmp", "http://docs.oasis-open.org/ws-rx/wsrmp/200702"},
+  {"wsrmp", "http://schemas.xmlsoap.org/ws/2005/02/rm/policy", "http://docs.oasis-open.org/ws-rx/wsrmp/*"},
   {"wsp", "http://www.w3.org/ns/ws-policy", "http://schemas.xmlsoap.org/ws/2004/09/policy"},
   {"wst", "http://docs.oasis-open.org/ws-sx/ws-trust/200512"},
   {"wsu_", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"},

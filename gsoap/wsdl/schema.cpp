@@ -5,8 +5,8 @@
 
 --------------------------------------------------------------------------------
 gSOAP XML Web services tools
-Copyright (C) 2001-2011, Robert van Engelen, Genivia Inc. All Rights Reserved.
-This software is released under one of the following two licenses:
+Copyright (C) 2000-2012, Robert van Engelen, Genivia Inc. All Rights Reserved.
+This software is released under one of the following licenses:
 GPL or Genivia's license for commercial use.
 --------------------------------------------------------------------------------
 GPL license.
@@ -52,6 +52,9 @@ extern int is_builtin_qname(const char*);
 
 xs__schema::xs__schema()
 { soap = soap_new1(SOAP_XML_TREE | SOAP_C_UTFSTRING);
+#ifdef HTTPDA_H
+  soap_register_plugin(soap, http_da);
+#endif
 #ifdef WITH_OPENSSL
   soap_ssl_client_context(soap, SOAP_SSL_NO_AUTHENTICATION, NULL, NULL, NULL, NULL, NULL);
 #endif
@@ -313,7 +316,15 @@ int xs__schema::read(const char *cwd, const char *loc)
   if (vflag)
     fprintf(stderr, "\nOpening schema '%s' from '%s'\n", loc?loc:"", cwd?cwd:"");
   if (loc)
-  {
+  { if (soap->recvfd > 2)
+    { soap_end_recv(soap);
+      close(soap->recvfd);
+      soap->recvfd = -1;
+    }
+    else if (soap_valid_socket(soap->socket))
+    { soap_end_recv(soap);
+      soap_closesock(soap);
+    }
 #ifdef WITH_OPENSSL
     if (!strncmp(loc, "http://", 7) || !strncmp(loc, "https://", 8))
 #else
@@ -340,7 +351,7 @@ int xs__schema::read(const char *cwd, const char *loc)
         *s = '\0';
       strcat(location, "/");
       strcat(location, loc);
-      fprintf(stderr, "\nConnecting to '%s' to retrieve relative '%s' schema...\n", location, loc);
+      fprintf(stderr, "\nConnecting to '%s' to retrieve relative path '%s' schema...\n", location, loc);
       if (soap_connect_command(soap, SOAP_GET, location, NULL))
       { fprintf(stderr, "\nConnection failed\n");
         exit(1);
@@ -400,10 +411,33 @@ int xs__schema::read(const char *cwd, const char *loc)
     redirs--;
     return r;
   }
+  else if (soap->error == 401)
+  { int r = SOAP_ERR;
+    fprintf(stderr, "Authenticating to '%s' realm '%s'...\n", loc, soap->authrealm);
+    if (auth_userid && auth_passwd && redirs++ < 1)
+    { 
+#ifdef HTTPDA_H
+      struct http_da_info info;
+      http_da_save(soap, &info, soap->authrealm, auth_userid, auth_passwd);
+#else
+      soap->userid = auth_userid;
+      soap->passwd = auth_passwd;
+#endif
+      r = read(cwd, loc);
+#ifdef HTTPDA_H
+      http_da_release(soap, &info);
+#endif
+      redirs--;
+    }
+    else
+      fprintf(stderr, "Authentication failed, use option -r:uid:pwd and (re)build with OpenSSL to enable digest authentication\n");
+    return r;
+  }
   if (soap->error)
   { fprintf(stderr, "\nAn error occurred while parsing schema from '%s'\n", loc?loc:"");
     soap_print_fault(soap, stderr);
-    soap_print_fault_location(soap, stderr);
+    if (soap->error < 200)
+      soap_print_fault_location(soap, stderr);
     fprintf(stderr, "\nIf this schema namespace is considered \"built-in\", then add\n  namespaceprefix = <namespaceURI>\nto typemap.dat.\n");
     exit(1);
   }
@@ -433,7 +467,8 @@ int xs__schema::error()
 
 void xs__schema::print_fault()
 { soap_print_fault(soap, stderr);
-  soap_print_fault_location(soap, stderr);
+  if (soap->error < 200)
+    soap_print_fault_location(soap, stderr);
 }
 
 void xs__schema::builtinType(const char *type)
@@ -458,6 +493,10 @@ const SetOfString& xs__schema::builtinElements() const
 
 const SetOfString& xs__schema::builtinAttributes() const
 { return builtinAttributeSet;
+}
+
+bool xs__schema::empty() const
+{ return include.empty() && redefine.empty() && import.empty() && attribute.empty() && element.empty() && group.empty() && attributeGroup.empty() && simpleType.empty() && complexType.empty();
 }
 
 xs__include::xs__include()
@@ -763,12 +802,13 @@ int xs__element::traverse(xs__schema &schema)
   elementRef = NULL;
   if (token)
   { for (vector<xs__element>::iterator i = schema.element.begin(); i != schema.element.end(); ++i)
-      if (!strcmp((*i).name, token))
+    { if ((*i).name && !strcmp((*i).name, token))
       { elementRef = &(*i);
         if (vflag)
           cerr << "    Found element '" << (name?name:"") << "' ref '" << (token?token:"") << "'" << endl;
         break;
       }
+    }
   }
   if (!elementRef)
   { for (vector<xs__import>::const_iterator i = schema.import.begin(); i != schema.import.end(); ++i)
@@ -777,7 +817,7 @@ int xs__element::traverse(xs__schema &schema)
       { token = qname_token(ref, s->targetNamespace);
         if (token)
         { for (vector<xs__element>::iterator j = s->element.begin(); j != s->element.end(); ++j)
-          { if (!strcmp((*j).name, token))
+          { if ((*j).name && !strcmp((*j).name, token))
             { elementRef = &(*j);
               if (vflag)
                 cerr << "    Found element '" << (name?name:"") << "' ref '" << (token?token:"") << "'" << endl;
@@ -799,7 +839,7 @@ int xs__element::traverse(xs__schema &schema)
     simpleTypeRef = NULL;
     if (token)
     { for (vector<xs__simpleType>::iterator i = schema.simpleType.begin(); i != schema.simpleType.end(); ++i)
-        if (!strcmp((*i).name, token))
+        if ((*i).name && !strcmp((*i).name, token))
         { simpleTypeRef = &(*i);
           if (vflag)
             cerr << "    Found element '" << (name?name:"") << "' simpleType '" << (token?token:"") << "'" << endl;
@@ -813,7 +853,7 @@ int xs__element::traverse(xs__schema &schema)
         { token = qname_token(type, s->targetNamespace);
           if (token)
           { for (vector<xs__simpleType>::iterator j = s->simpleType.begin(); j != s->simpleType.end(); ++j)
-            { if (!strcmp((*j).name, token))
+            { if ((*j).name && !strcmp((*j).name, token))
               { simpleTypeRef = &(*j);
                 if (vflag)
                   cerr << "    Found element '" << (name?name:"") << "' simpleType '" << (token?token:"") << "'" << endl;
@@ -836,7 +876,7 @@ int xs__element::traverse(xs__schema &schema)
     complexTypeRef = NULL;
     if (token)
     { for (vector<xs__complexType>::iterator i = schema.complexType.begin(); i != schema.complexType.end(); ++i)
-        if (!strcmp((*i).name, token))
+        if ((*i).name && !strcmp((*i).name, token))
         { complexTypeRef = &(*i);
           if (vflag)
             cerr << "    Found element '" << (name?name:"") << "' complexType '" << (token?token:"") << "'" << endl;
@@ -850,7 +890,7 @@ int xs__element::traverse(xs__schema &schema)
         { token = qname_token(type, s->targetNamespace);
           if (token)
           { for (vector<xs__complexType>::iterator j = s->complexType.begin(); j != s->complexType.end(); ++j)
-            { if (!strcmp((*j).name, token))
+            { if ((*j).name && !strcmp((*j).name, token))
               { complexTypeRef = &(*j);
                 if (vflag)
                   cerr << "    Found element '" << (name?name:"") << "' complexType '" << (token?token:"") << "'" << endl;
@@ -1156,7 +1196,7 @@ int xs__extension::traverse(xs__schema &schema)
   complexTypeRef = NULL;
   if (token)
   { for (vector<xs__complexType>::iterator i = schema.complexType.begin(); i != schema.complexType.end(); ++i)
-      if (!strcmp((*i).name, token))
+      if ((*i).name && !strcmp((*i).name, token))
       { complexTypeRef = &(*i);
         if (vflag)
           cerr << "    Found extension base type '" << (token?token:"") << "'" << endl;
@@ -1170,7 +1210,7 @@ int xs__extension::traverse(xs__schema &schema)
       { token = qname_token(base, s->targetNamespace);
         if (token)
         { for (vector<xs__complexType>::iterator j = s->complexType.begin(); j != s->complexType.end(); ++j)
-          { if (!strcmp((*j).name, token))
+          { if ((*j).name && !strcmp((*j).name, token))
             { complexTypeRef = &(*j);
               if (vflag)
                 cerr << "    Found extension base type '" << (token?token:"") << "'" << endl;
@@ -1220,6 +1260,8 @@ xs__restriction::xs__restriction()
 int xs__restriction::traverse(xs__schema &schema)
 { if (vflag)
     cerr << "   Analyzing schema restriction '" << (base?base:"") << "'" << endl;
+  if (simpleType)
+    simpleType->traverse(schema);
   if (attributeGroup)
     attributeGroup->traverse(schema);
   if (group)
@@ -1273,7 +1315,7 @@ int xs__restriction::traverse(xs__schema &schema)
   complexTypeRef = NULL;
   if (token)
   { for (vector<xs__complexType>::iterator i = schema.complexType.begin(); i != schema.complexType.end(); ++i)
-      if (!strcmp((*i).name, token))
+      if ((*i).name && !strcmp((*i).name, token))
       { complexTypeRef = &(*i);
         if (vflag)
           cerr << "    Found restriction base type '" << (token?token:"") << "'" << endl;
@@ -1287,7 +1329,7 @@ int xs__restriction::traverse(xs__schema &schema)
       { token = qname_token(base, s->targetNamespace);
         if (token)
         { for (vector<xs__complexType>::iterator j = s->complexType.begin(); j != s->complexType.end(); ++j)
-          { if (!strcmp((*j).name, token))
+          { if ((*j).name && !strcmp((*j).name, token))
             { complexTypeRef = &(*j);
               if (vflag)
                 cerr << "    Found restriction base type '" << (token?token:"") << "'" << endl;
@@ -1307,7 +1349,7 @@ int xs__restriction::traverse(xs__schema &schema)
       else if (!Wflag)
 	cerr << "Warning: could not find restriction base type '" << base << "' in schema '" << (schema.targetNamespace?schema.targetNamespace:"") << "'" << endl;
     }
-    else
+    else if (!simpleType)
       cerr << "Restriction has no base" << endl;
   }
   return SOAP_OK;

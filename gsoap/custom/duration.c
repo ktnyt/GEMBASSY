@@ -65,7 +65,7 @@ A commercial use license is available from Genivia, Inc., contact@genivia.com
 
 void soap_default_xsd__duration(struct soap *soap, LONG64 *a)
 { (void)soap; /* appease -Wall -Werror */
-  a = 0;
+  *a = 0;
 }
 
 const char *soap_xsd__duration2s(struct soap *soap, LONG64 a)
@@ -89,7 +89,7 @@ const char *soap_xsd__duration2s(struct soap *soap, LONG64 a)
   h = a % 24;
   d = a / 24;
   if (d)
-    sprintf(soap->tmpbuf + k, SOAP_LONG_FORMAT"D", d);
+    sprintf(soap->tmpbuf + k, SOAP_LONG_FORMAT "D", d);
   if (h || m || s || f)
   { if (d)
       k = strlen(soap->tmpbuf);
@@ -98,6 +98,8 @@ const char *soap_xsd__duration2s(struct soap *soap, LONG64 a)
     else
       sprintf(soap->tmpbuf + k, "T%dH%dM%dS", h, m, s);
   }
+  else if (!d)
+    strcpy(soap->tmpbuf + k, "T0S");
   return soap->tmpbuf;
 }
 
@@ -127,7 +129,7 @@ int soap_s2xsd__duration(struct soap *soap, const char *s, LONG64 *a)
       { s++;
 	break;
       }
-      if (sscanf(s, SOAP_LONG_FORMAT"%c", &n, &k) != 2)
+      if (sscanf(s, SOAP_LONG_FORMAT "%c", &n, &k) != 2)
 	return soap->error = SOAP_TYPE;
       s = strchr(s, k);
       if (!s)
@@ -151,7 +153,7 @@ int soap_s2xsd__duration(struct soap *soap, const char *s, LONG64 *a)
     while (s && *s)
     { LONG64 n;
       char k;
-      if (sscanf(s, SOAP_LONG_FORMAT"%c", &n, &k) != 2)
+      if (sscanf(s, SOAP_LONG_FORMAT "%c", &n, &k) != 2)
 	return soap->error = SOAP_TYPE;
       s = strchr(s, k);
       if (!s)
@@ -165,7 +167,7 @@ int soap_s2xsd__duration(struct soap *soap, const char *s, LONG64 *a)
 	  break;
 	case '.':
 	  S = n;
-	  if (sscanf(s, "%f", &f) != 1)
+	  if (sscanf(s, "%g", &f) != 1)
 	    return soap->error = SOAP_TYPE;
 	  s = NULL;
 	  continue;
@@ -178,7 +180,7 @@ int soap_s2xsd__duration(struct soap *soap, const char *s, LONG64 *a)
       s++;
     }
     /* convert Y-M-D H:N:S.f to signed long long int */
-    *a = sign * ((((((((((((Y * 12) + M) * 30) + D) * 24) + H) * 60) + N) * 60) + S) * 1000) + (long)(1000 * f));
+    *a = sign * ((((((((((((Y * 12) + M) * 30) + D) * 24) + H) * 60) + N) * 60) + S) * 1000) + (long)(1000.0 * f));
   }
   return soap->error;
 }

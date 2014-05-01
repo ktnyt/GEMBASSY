@@ -5,8 +5,8 @@
 
 gSOAP XML Web services tools
 Copyright (C) 2000-2008, Robert van Engelen, Genivia Inc. All Rights Reserved.
-This part of the software is released under ONE of the following licenses:
-GPL OR Genivia's license for commercial use.
+This part of the software is released under one of the following licenses:
+GPL or Genivia's license for commercial use.
 --------------------------------------------------------------------------------
 GPL license.
 
@@ -90,7 +90,7 @@ void semerror(const char *s)
 semwarn - report semantic warning from static checking
 */
 void semwarn(const char *s)
-{	fprintf(stderr, "\n**WARNING**: %s (detected at line %d in %s)\n\n", s, yylineno, filename);
+{	fprintf(stderr, "\n%s(%d): *WARNING*: %s\n\n", filename, yylineno, s);
 	semwarno++;
 }
 

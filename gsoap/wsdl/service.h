@@ -5,8 +5,8 @@
 
 --------------------------------------------------------------------------------
 gSOAP XML Web services tools
-Copyright (C) 2001-2010, Robert van Engelen, Genivia Inc. All Rights Reserved.
-This software is released under one of the following two licenses:
+Copyright (C) 2001-2012, Robert van Engelen, Genivia Inc. All Rights Reserved.
+This software is released under one of the following licenses:
 GPL or Genivia's license for commercial use.
 --------------------------------------------------------------------------------
 GPL license.
@@ -47,16 +47,19 @@ class Message
     const char *encodingStyle;
     const char *action;
     wsdl__message *message;
+    xs__element *element;
     const char *body_parts;
     wsdl__part *part;
+    bool mustUnderstand;
     vector<soap__header> header;
+    vector<wsoap__header> wheader;
     mime__multipartRelated *multipartRelated;	// MIME
-    mime__content *content;			// MIME
+    mime__content *content;			// REST/MIME
     const char *layout;				// DIME
     const char *documentation;
     const char *ext_documentation;
     vector<const wsp__Policy*> policy;
-    void generate(Types&, const char *sep, bool anonymous, bool remark, bool response);
+    void generate(Types&, const char *sep, bool anonymous, bool remark, bool response, bool optional);
 };
 
 typedef map<const char*, Message*, ltstr> MapOfStringToMessage;
@@ -66,18 +69,21 @@ class Operation
     const char *prefix;
     const char *URI;
     const char *name;
+    const char *mep;			// WSDL 2.0
+    const char *protocol;
     soap__styleChoice style;
     const char *parameterOrder;
-    const char *soapAction;
+    const char *action;
     const char *input_name;
     const char *output_name;
     Message *input; 			// name, use, and parts
     Message *output;			// name, use, and parts
-    vector<Message*> fault;
+    vector<Message*> infault;
+    vector<Message*> outfault;
     const char *documentation;
     const char *operation_documentation;
     vector<const wsp__Policy*> policy;
-    void generate(Types&);
+    void generate(Types&, Service&);
 };
 
 class Service
@@ -96,8 +102,11 @@ class Service
     MapOfStringToString port_documentation;
     MapOfStringToString binding_documentation;
     vector<const wsp__Policy*> policy;
+    VectorOfString imports;
     Service();
     void generate(Types&);
+    void add_import(const char*);
+    void del_import(const char*);
 };
 
 typedef map<const char*, Service*, ltstr> MapOfStringToService;
@@ -106,11 +115,15 @@ class Definitions
 { public:
     Types types;				// to process schema type information
     MapOfStringToService services;		// service information gathered
+    bool soap12;
     Definitions();
     void collect(const wsdl__definitions&);
     void compile(const wsdl__definitions&);
   private:
     void analyze(const wsdl__definitions&);
+    void analyze_headers(const wsdl__definitions&, Service*, wsdl__ext_ioput*, wsdl__ext_ioput*);
+    void analyze_faults(const wsdl__definitions&, Service*, Operation*, vector<wsdl__ext_operation>::const_iterator&);
+    Message *analyze_fault(const wsdl__definitions&, Service*, const wsdl__ext_fault&);
     void generate();
 };
 

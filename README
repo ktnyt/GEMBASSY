@@ -70,7 +70,7 @@ INSTALLATION
     3. Download and compile the GEMBASSY source code
       % wget http://soap.g-language.org/gembassy/source/GEMBASSSY-1.0.2.tar.gz
       (or "curl -O http://soap.g-language.org/gembassy/source/GEMBASSY-1.0.2.tar.gz")
-      % tar zxf GEMBASSY-1.0..tar.gz
+      % tar zxvf GEMBASSY-1.0.2.tar.gz
       % cd GEMBASSY-1.0.2
       ( EMBOSS-6.6.0/embassy/GEMBASSY-1.0.2 )
       % ./configure

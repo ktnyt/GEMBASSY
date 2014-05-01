@@ -21,7 +21,7 @@
 gSOAP XML Web services tools
 Copyright (C) 2000-2011, Robert van Engelen, Genivia Inc. All Rights Reserved.
 This part of the software is released under ONE of the following licenses:
-GPL OR Genivia's license for commercial use.
+GPL or Genivia's license for commercial use.
 --------------------------------------------------------------------------------
 GPL license.
 
@@ -104,7 +104,7 @@ static void	mkscope(Table*, int), enterscope(Table*, int), exitscope(void);
 static int	integer(Tnode*), real(Tnode*), numeric(Tnode*);
 static void	add_soap(void), add_XML(void), add_qname(void), add_header(Table*), add_fault(Table*), add_response(Entry*, Entry*), add_result(Tnode*);
 extern char	*c_storage(Storage), *c_type(Tnode*), *c_ident(Tnode*);
-extern int	is_primitive_or_string(Tnode*), is_stdstr(Tnode*), is_binary(Tnode*), is_external(Tnode*), is_mutable(Tnode*);
+extern int	is_primitive_or_string(Tnode*), is_stdstr(Tnode*), is_binary(Tnode*), is_external(Tnode*), is_mutable(Tnode*), has_attachment(Tnode*);
 
 /* Temporaries used in semantic rules */
 int	i;
@@ -155,18 +155,18 @@ Pragma	**pp;
 /* */
 %token	NONE
 /* identifiers (TYPE = typedef identifier) */
-%token	<sym> ID TAG LAB TYPE
+%token	<sym> ID LAB TYPE
 /* constants */
 %token	<i> LNG
 %token	<r> DBL
 %token	<c> CHR
-%token	<s> STR
+%token	<s> TAG STR
 /* types and related */
 %type	<typ> type
 %type	<sto> store virtual constobj abstract
 %type	<e> fname struct class base enum
-%type	<sym> id tag arg name
-%type	<s> patt
+%type	<sym> id arg name
+%type	<s> tag patt
 %type	<i> cint
 /* expressions and statements */
 %type	<rec> expr cexp oexp obex aexp abex rexp lexp pexp init spec tspec ptrs array arrayck texp qexp occurs
@@ -259,7 +259,7 @@ pragma	: PRAGMA	{ if ($1[1] >= 'a' && $1[1] <= 'z')
 			  else if ((i = atoi($1+2)) > 0)
 				yylineno = i;
 			  else
-			  {	sprintf(errbuf, "directive '%s' ignored (use #import to import files and/or use option -i)", $1);
+			  {	sprintf(errbuf, "directive '%s' ignored (use #import to import files)", $1);
 			  	semwarn(errbuf);
 			  }
 			}
@@ -368,7 +368,7 @@ dclr	: ptrs ID arrayck tag occurs init
 							break;
 						default:
 							if ($3.typ->type == Tpointer
-							 && ((Tnode*)$3.typ->ref)->type == Tchar
+							 && (((Tnode*)$3.typ->ref)->type == Tchar || ((Tnode*)$3.typ->ref)->type == Twchar)
 							 && $6.typ->type == Tpointer
 							 && ((Tnode*)$6.typ->ref)->type == Tchar)
 								p->info.val.s = $6.val.s;
@@ -386,9 +386,9 @@ dclr	: ptrs ID arrayck tag occurs init
 									p->info.val.s = $6.val.s;
 							}
 							else if ($3.typ->type == Tpointer
-							      && ((Tnode*)$3.typ->ref)->id == lookup("std::string"))
+							      && (((Tnode*)$3.typ->ref)->id == lookup("std::string") || ((Tnode*)$3.typ->ref)->id == lookup("std::wstring")))
 							      	p->info.val.s = $6.val.s;
-							else if ($3.typ->id == lookup("std::string"))
+							else if ($3.typ->id == lookup("std::string") || $3.typ->id == lookup("std::wstring"))
 							      	p->info.val.s = $6.val.s;
 							else if ($3.typ->type == Tpointer
 							      && $6.typ->type == Tint
@@ -404,7 +404,7 @@ dclr	: ptrs ID arrayck tag occurs init
 				else
 					p->info.val.i = sp->val;
 			        if ($5.minOccurs < 0)
-			        {	if (($3.sto & Sattribute) || $3.typ->type == Tpointer || $3.typ->type == Ttemplate || !strncmp($2->name, "__size", 6))
+			        {	if ($6.hasval || ($3.sto & Sattribute) || $3.typ->type == Tpointer || $3.typ->type == Ttemplate || !strncmp($2->name, "__size", 6))
 			        		p->info.minOccurs = 0;
 			        	else
 			        		p->info.minOccurs = 1;
@@ -551,7 +551,7 @@ func	: fname '(' s6 fargso ')' constobj abstract
 					}
 				}
 			  	else
-			  	{	sprintf(errbuf, "last output parameter of remote method function prototype '%s' is a return parameter and must be a pointer or reference, or use %s(void) for no return parameter", $1->sym->name, $1->sym->name);
+			  	{	sprintf(errbuf, "last output parameter of remote method function prototype '%s' is a return parameter and must be a pointer or reference, or use %s(..., void) for one-way sends", $1->sym->name, $1->sym->name);
 					semerror(errbuf);
 			  	}
 				if (!($1->info.sto & Sextern))
@@ -596,7 +596,7 @@ farg	: tspec ptrs arg arrayck occurs init
 			  p->info.typ = $4.typ;
 			  p->info.sto = $4.sto;
 			  if ($5.minOccurs < 0)
-			  {	if (($4.sto & Sattribute) || $4.typ->type == Tpointer)
+			  {	if ($6.hasval || ($4.sto & Sattribute) || $4.typ->type == Tpointer)
 			        	p->info.minOccurs = 0;
 			       	else
 			        	p->info.minOccurs = 1;
@@ -638,14 +638,14 @@ farg	: tspec ptrs arg arrayck occurs init
 						break;
 					default:
 						if ($4.typ->type == Tpointer
-						 && ((Tnode*)$4.typ->ref)->type == Tchar
+						 && (((Tnode*)$4.typ->ref)->type == Tchar || ((Tnode*)$4.typ->ref)->type == Twchar)
 						 && $6.typ->type == Tpointer
 						 && ((Tnode*)$6.typ->ref)->type == Tchar)
 							p->info.val.s = $6.val.s;
 						else if ($4.typ->type == Tpointer
-						      && ((Tnode*)$4.typ->ref)->id == lookup("std::string"))
+						      && (((Tnode*)$4.typ->ref)->id == lookup("std::string") || ((Tnode*)$4.typ->ref)->id == lookup("std::wstring")))
 						      	p->info.val.s = $6.val.s;
-						else if ($4.typ->id == lookup("std::string"))
+						else if ($4.typ->id == lookup("std::string") || $4.typ->id == lookup("std::wstring"))
 						      	p->info.val.s = $6.val.s;
 						else if ($4.typ->type == Tpointer
 						      && $6.typ->type == Tint
@@ -675,7 +675,7 @@ arg	: /* empty */	{ if (sp->table->level != PARAM)
 			  else
 				$$ = gensym("_param");
 			}
-	| ID		{ if (vflag != 1 && *$1->name == '_' && sp->table->level == GLOBAL)
+	| ID		{ if (vflag == 2 && *$1->name == '_' && sp->table->level == GLOBAL)
 			  { sprintf(errbuf, "SOAP 1.2 does not support anonymous parameters '%s'", $1->name);
 			    semwarn(errbuf);
 			  }
@@ -699,8 +699,11 @@ spec	: /*empty */	{ $$.typ = mkint();
 			  $$.sto = Snone;
 			  sp->node = $$;
 			}
-	| store spec	{ $$.typ = $2.typ;
-			  $$.sto = (Storage)((int)$1 | (int)$2.sto);
+	| store spec	{ if (($1 & Stypedef) && is_external($2.typ) && $2.typ->type != Tstruct && $2.typ->type != Tclass)
+			  	$$.typ = mktype($2.typ->type, $2.typ->ref, $2.typ->width);
+			  else
+			  	$$.typ = $2.typ;
+			  $$.sto = (Storage)((int)$1 | ((int)($2.sto)));
 			  if (($$.sto & Sattribute) && !is_primitive_or_string($2.typ) && !is_stdstr($2.typ) && !is_binary($2.typ) && !is_external($2.typ))
 			  {	semwarn("invalid attribute type");
 			  	$$.sto = (Storage)((int)$$.sto & ~Sattribute);
@@ -1139,7 +1142,7 @@ type	: VOID		{ $$ = mkvoid(); }
 			  }
 			}
 	| TYPE		{ if ((p = entry(typetable, $1)))
-				$$ = p->info.typ;
+			  	$$ = p->info.typ;
 			  else if ((p = entry(classtable, $1)))
 			  	$$ = p->info.typ;
 			  else if ((p = entry(enumtable, $1)))
@@ -1148,7 +1151,10 @@ type	: VOID		{ $$ = mkvoid(); }
 			  {	p = enter(classtable, $1);
 				$$ = p->info.typ = mkclass((Table*)0, 0);
 			  	p->info.typ->id = $1;
-			  	p->info.typ->transient = -2;
+				if (cflag)
+			  		p->info.typ->transient = 1;	/* make std::string transient in C */
+				else
+			  		p->info.typ->transient = -2;
 			  }
 			  else
 			  {	sprintf(errbuf, "unknown type '%s'", $1->name);
@@ -1158,7 +1164,12 @@ type	: VOID		{ $$ = mkvoid(); }
 			}
 	| TYPE '<' texp '>'
 			{ if ((p = entry(templatetable, $1)))
-				$$ = mktemplate($3.typ, $1);
+			  {	$$ = mktemplate($3.typ, $1);
+			  	if (has_attachment($3.typ))
+				{	sprintf(errbuf, "template type '%s<%s>' of attachment objects may lead to deserialization failures, use '%s<*%s>' instead", $1->name, $3.typ->id ? $3.typ->id->name : "", $1->name, $3.typ->id ? $3.typ->id->name : "");
+					semwarn(errbuf);
+				}
+			  }
 			  else
 			  {	sprintf(errbuf, "invalid template '%s'", $1->name);
 				semerror(errbuf);
@@ -1206,7 +1217,7 @@ struct	: STRUCT id	{ if ((p = entry(classtable, $2)))
 class	: CLASS id	{ if ((p = entry(classtable, $2)))
 			  {	if (p->info.typ->ref)
 			   	{	if (!is_mutable(p->info.typ))
-					{	sprintf(errbuf, "class '%s' already declared at line %d", $2->name, p->lineno);
+					{	sprintf(errbuf, "class '%s' already declared at line %d (redundant 'class' specifier here?)", $2->name, p->lineno);
 						semerror(errbuf);
 					}
 				}
@@ -1316,7 +1327,7 @@ virtual : /* empty */	{ $$ = Snone; }
 	;
 ptrs	: /* empty */	{ $$ = tmp = sp->node; }
 	| ptrs '*'	{ /* handle const pointers, such as const char* */
-			  if (/*tmp.typ->type == Tchar &&*/ (tmp.sto & Sconst))
+			  if ((tmp.sto & Sconst))
 			  	tmp.sto = (Storage)(((int)tmp.sto & ~Sconst) | Sconstptr);
 			  tmp.typ = mkpointer(tmp.typ);
 			  tmp.typ->transient = transient;
@@ -1331,7 +1342,7 @@ array	: /* empty */ 	{ $$ = tmp;	/* tmp is inherited */
 			}
 	| '[' cexp ']' array
 			{ if (!bflag && $4.typ->type == Tchar)
-			  {	sprintf(errbuf, "char["SOAP_LONG_FORMAT"] will be serialized as an array of "SOAP_LONG_FORMAT" bytes: use soapcpp2 option -b to enable char[] string serialization or use char* for strings", $2.val.i, $2.val.i);
+			  {	sprintf(errbuf, "char[" SOAP_LONG_FORMAT "] will be serialized as an array of " SOAP_LONG_FORMAT " bytes: use soapcpp2 option -b to enable char[] string serialization or use char* for strings", $2.val.i, $2.val.i);
 			  	semwarn(errbuf);
 			  }
 			  if ($2.hasval && $2.typ->type == Tint && $2.val.i > 0 && $4.typ->width > 0)
@@ -1874,12 +1885,18 @@ add_response(Entry *fun, Entry *ret)
 { Table *t;
   Entry *p, *q;
   Symbol *s;
-  size_t n = strlen(fun->sym->name);
-  char *r = (char*)emalloc(n+9);
+  size_t i = 0, j, n = strlen(fun->sym->name);
+  char *r = (char*)emalloc(n+100);
   strcpy(r, fun->sym->name);
   strcat(r, "Response");
-  if (!(s = lookup(r)))
-    s = install(r, ID);
+  do
+  { for (j = 0; j < i; j++)
+      r[n+j+8] = '_';
+    r[n+i+8] = '\0';
+    if (!(s = lookup(r)))
+      s = install(r, ID);
+    i++;
+  } while (entry(classtable, s));
   free(r);
   t = mktable((Table*)0);
   q = enter(t, ret->sym);
