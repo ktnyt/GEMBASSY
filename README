@@ -100,7 +100,7 @@ INSTALLATION
 
 
     Installing custom EMBOSS configuration files
-      We highly reccomend users installing the custom EMBOSS configuration files
+      We highly recommend users to install the custom EMBOSS configuration files
       from the KBWS package. The configuration file provides database definition
       for various databases, allowing versatile access to various sequence
       entries.
@@ -111,11 +111,11 @@ INSTALLATION
 
     Then rewrite the "emboss_acdroot" and "emboss_data" value in ~/.embossrc
     file to the corresponding directories.
-    (ex. emboss_acdroot = ~/share/EMBOSS/acd)
-    (ex. emboss_data = ~/share/EMBOSS/data)
+    (ex. emboss_acdroot = ~/opt/share/EMBOSS/acd)
+    (ex. emboss_data = ~/opt/share/EMBOSS/data)
 
   Update of EMBOSS
-    When users are upgrading EMBOSS, please be sure to uninstall old version
+    When users are upgrading EMBOSS, please be sure to uninstall old versions
     of EMBOSS and GEMBASSY. If you override them, some older versions of files
     may cause errors.
 
