@@ -4,9 +4,10 @@
 ** Calculates the intrinsic codon deviation index
 **
 ** @author Copyright (C) 2012 Hidetoshi Itaya
-** @version 1.0.1   Revision 1
+** @version 1.0.3
 ** @modified 2012/1/20  Hidetoshi Itaya  Created!
 ** @modified 2013/6/16  Revision 1
+** @modified 2015/2/7   Refactor
 ** @@
 **
 ** This program is free software; you can redistribute it and/or
@@ -30,7 +31,7 @@
 
 
 
-/* @prog gcbi *****************************************************************
+/* @prog gicdi ****************************************************************
 **
 ** Calculates the intrinsic codon deviation index
 **
@@ -38,7 +39,7 @@
 
 int main(int argc, char *argv[])
 {
-  embInitPV("gicdi", argc, argv, "GEMBASSY", "1.0.1");
+  embInitPV("gicdi", argc, argv, "GEMBASSY", "1.0.3");
 
   AjPSeqall seqall;
   AjPSeq    seq;
@@ -91,22 +92,35 @@ int main(int argc, char *argv[])
             }
           else
             {
-              ajDie("Sequence does not have features\n"
-                    "Proceeding with sequence accession ID\n");
+              ajWarn("Sequence does not have features\n"
+                     "Proceeding with sequence accession ID\n");
               accid = ajTrue;
             }
         }
 
+      ajStrAssignS(&seqid, ajSeqGetAccS(seq));
+
+      if(ajStrGetLen(seqid) == 0)
+        {
+          ajStrAssignS(&seqid, ajSeqGetNameS(seq));
+        }
+
+      if(ajStrGetLen(seqid) == 0)
+        {
+          ajWarn("No valid header information\n");
+        }
+
       if(accid)
         {
-          ajStrAssignS(&restid, ajSeqGetAccS(seq));
-          if(!ajStrGetLen(restid))
+          ajStrAssignS(&restid, seqid);
+          if(ajStrGetLen(seqid) == 0)
             {
-              ajStrAssignS(&restid, ajSeqGetNameS(seq));
+              ajDie("Cannot proceed without header with -accid\n");
             }
-          if(!ajStrGetLen(restid))
+
+          if(!gValID(seqid))
             {
-              ajDie("No valid header information\n");
+              ajDie("Invalid accession ID:%S, exiting\n", seqid);
             }
         }
 
@@ -124,6 +138,8 @@ int main(int argc, char *argv[])
         }
 
       ajStrDel(&url);
+      ajStrDel(&restid);
+      ajStrDel(&seqid);
       ajStrDel(&inseq);
     }
 
@@ -131,7 +147,7 @@ int main(int argc, char *argv[])
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
-  ajStrDel(&seqid);
+  ajStrDel(&base);
 
   ajStrDel(&delkey);
 

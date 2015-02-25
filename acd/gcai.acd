@@ -37,9 +37,14 @@ section: advanced [
     default: "-1"
   ]
 
+  boolean: tai [
+    information: "Include when calculating tRNA adaptation index (TAI)"
+    default: "N"
+  ]
+
   boolean: accid [
     information: "Include to use sequence accession ID as query"
-    default: "Y"
+    default: "N"
   ]
 
 endsection: advanced

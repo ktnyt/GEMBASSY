@@ -4,9 +4,11 @@
 ** Predict the replication origin and terminus in bacterial genomes
 **
 ** @author Copyright (C) 2012 Hidetoshi Itaya
-** @version 1.0.1   Revision 1
+** @version 1.0.3
 ** @modified 2012/1/20  Hidetoshi Itaya  Created!
 ** @modified 2013/6/16  Revision 1
+** @modified 2015/2/7   RESTify
+** @modified 2015/2/7   Refactor
 ** @@
 **
 ** This program is free software; you can redistribute it and/or
@@ -25,11 +27,6 @@
 ******************************************************************************/
 
 #include "emboss.h"
-#include "soapH.h"
-#include "GLANGSoapBinding.nsmap"
-#include "soapClient.c"
-#include "soapC.c"
-#include "../gsoap/stdsoap2.c"
 #include "glibs.h"
 
 
@@ -43,28 +40,33 @@
 
 int main(int argc, char *argv[])
 {
-  embInitPV("gfindoriter", argc, argv, "GEMBASSY", "1.0.1");
-
-  struct soap soap;
-  struct ns1__find_USCOREori_USCOREterInputParams params;
+  embInitPV("gfindoriter", argc, argv, "GEMBASSY", "1.0.3");
 
   AjPSeqall seqall;
   AjPSeq    seq;
-  AjPStr    inseq  = NULL;
-  AjPStr    seqid  = NULL;
-  ajint	    window = 0;
-  AjBool    purine = 0;
-  AjBool    keto   = 0;
-  ajint	    lowpass = 0;
-  AjBool    accid  = ajFalse;
-  AjPStr    tmp    = NULL;
-  AjPStr    parse  = NULL;
-  AjPStrTok handle = NULL;
-  AjPStr    ori    = NULL;
-  AjPStr    ter    = NULL;
 
-  char *in0;
-  char *result;
+  ajint	 window  = 0;
+  AjBool purine  = 0;
+  AjBool keto    = 0;
+  ajint	 lowpass = 0;
+
+  AjPStr ori = NULL;
+  AjPStr ter = NULL;
+
+  AjPStr restid = NULL;
+  AjPStr seqid  = NULL;
+
+  AjPStr base = NULL;
+  AjPStr url  = NULL;
+
+  AjPStr      tmpname = NULL;
+  AjPSeqout   tmpout  = NULL;
+  AjPFilebuff tmpbuff = NULL;
+
+  AjPStr tmp  = NULL;
+  AjPStr line = NULL;
+
+  AjPRegexp regex;
 
   AjPFile outf = NULL;
 
@@ -73,86 +75,84 @@ int main(int argc, char *argv[])
   lowpass = ajAcdGetInt("lowpass");
   purine = ajAcdGetBoolean("purine");
   keto   = ajAcdGetBoolean("keto");
-  accid  = ajAcdGetBoolean("accid");
   outf   = ajAcdGetOutfile("outfile");
 
-  params.window = window;
-  params.filter = lowpass;
-  params.purine = 0;
-  params.keto = 0;
+  base = ajStrNewC("rest.g-language.org");
 
-  if(purine)
-    params.purine = 1;
-  if(keto)
-    params.keto = 1;
+  gAssignUniqueName(&tmpname);
+  ajStrAppendC(&tmpname, ".fasta");
 
   while(ajSeqallNext(seqall, &seq))
     {
-      soap_init(&soap);
+      tmpout = ajSeqoutNew();
 
-      inseq = NULL;
+      if(!ajSeqoutOpenFilename(tmpout, tmpname))
+        {
+          embExitBad();
+        }
+
+      ajSeqoutSetFormatS(tmpout,ajStrNewC("fasta"));
+      ajSeqoutWriteSeq(tmpout, seq);
+      ajSeqoutClose(tmpout);
+      ajSeqoutDel(&tmpout);
+
+      ajFmtPrintS(&url, "http://%S/upload/upl.pl", base);
+      gFilePostSS(url, tmpname, &restid);
+      ajStrDel(&url);
+      ajSysFileUnlinkS(tmpname);
 
       ajStrAssignS(&seqid, ajSeqGetAccS(seq));
 
-      ajStrAppendC(&inseq, ">");
-      ajStrAppendS(&inseq, ajSeqGetNameS(seq));
-      ajStrAppendC(&inseq, "\n");
-      ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
+      if(ajStrGetLen(seqid) == 0)
+        {
+          ajStrAssignS(&seqid, ajSeqGetNameS(seq));
+        }
 
-      ajStrAssignS(&seqid, ajSeqGetAccS(seq));
+      if(ajStrGetLen(seqid) == 0)
+        {
+          ajWarn("No valid header information\n");
+        }
 
-      in0 = ajCharNewS(inseq);
+      url = ajStrNew();
 
-      if(soap_call_ns1__find_USCOREori_USCOREter(
-						&soap,
-						 NULL,
-						 NULL,
-						 in0,
-						&params,
-						&result
-						) == SOAP_OK)
-	{
-	  tmp   = ajStrNew();
-	  parse = ajStrNew();
-	  ori   = ajStrNew();
-	  ter   = ajStrNew();
+      ajFmtPrintS(&url, "http://%S/%S/find_ori_ter/window=%d/lowpass=%d/"
+                  "purine=%d/keto=%d/", base, restid, window, lowpass,
+                  purine, keto);
 
-	  ajStrAssignC(&tmp, result);
+      if(!gFilebuffURLS(url, &tmpbuff))
+        {
+          ajDie("Failed to download result from:\n%S\n", url);
+        }
 
-	  ajStrExchangeCC(&tmp, "<", "\n");
-	  ajStrExchangeCC(&tmp, ">", "\n");
+      regex = ajRegCompC("([0-9]+)$");
 
-	  handle = ajStrTokenNewC(tmp, "\n");
+      while(ajBuffreadLine(tmpbuff, &line))
+        {
+          if(ajRegExec(regex, line))
+            {
+              if(ajRegSubI(regex, 0, &tmp))
+                {
+                  if(ajStrGetLen(ori) == 0)
+                    {
+                      ajStrAssignS(&ori, tmp);
+                    }
+                  else if(ajStrGetLen(ter) == 0)
+                    {
+                      ajStrAssignS(&ter, tmp);
+                    }
+                }
+            }
+        }
 
-	  while(ajStrTokenNextParse(handle, &parse))
-	    {
-	      if(ajStrIsInt(parse))
-		if(!ajStrGetLen(ori))
-		  ori = ajStrNewS(parse);
-		else if(!ajStrGetLen(ter))
-		  ter = ajStrNewS(parse);
-	    }
+      ajFmtPrintF(outf, "Sequence: %S Origin: %S Terminus: %S\n",
+                  seqid, ori, ter);
 
-          ajFmtPrintF(outf, "Sequence: %S Origin: %S Terminus: %S\n",
-                      seqid, ori, ter);
+      ajStrDel(&tmp);
+      ajStrDel(&ori);
+      ajStrDel(&ter);
 
-	  ajStrDel(&tmp);
-	  ajStrDel(&parse);
-	  ajStrDel(&ori);
-	  ajStrDel(&ter);
-	}
-      else
-	{
-	  soap_print_fault(&soap, stderr);
-	}
-
-      soap_destroy(&soap);
-      soap_end(&soap);
-      soap_done(&soap);
-
-      AJFREE(in0);
-
-      ajStrDel(&inseq);
+      ajStrDel(&url);
+      ajStrDel(&restid);
     }
 
   ajFileClose(&outf);

@@ -4,9 +4,11 @@
 ** Prints out basic nucleotide sequence statistics
 **
 ** @author Copyright (C) 2012 Hidetoshi Itaya
-** @version 1.0.1   Revision 1
+** @version 1.0.3
 ** @modified 2012/1/20  Hidetoshi Itaya  Created!
 ** @modified 2013/6/16  Revision 1
+** @modified 2015/2/7   RESTify
+** @modified 2015/2/7   Refactor
 ** @@
 **
 ** This program is free software; you can redistribute it and/or
@@ -25,11 +27,6 @@
 ******************************************************************************/
 
 #include "emboss.h"
-#include "soapH.h"
-#include "GLANGSoapBinding.nsmap"
-#include "soapClient.c"
-#include "soapC.c"
-#include "../gsoap/stdsoap2.c"
 #include "glibs.h"
 
 
@@ -43,101 +40,86 @@
 
 int main(int argc, char *argv[])
 {
-  embInitPV("gseqinfo", argc, argv, "GEMBASSY", "1.0.1");
-
-  struct soap soap;
+  embInitPV("gseqinfo", argc, argv, "GEMBASSY", "1.0.3");
 
   AjPSeqall seqall;
   AjPSeq    seq;
   AjPStr    inseq  = NULL;
-  AjPStr    seqid  = NULL;
-  AjPStr    tmp    = NULL;
-  AjPStr    parse  = NULL;
-  AjPStr    numA   = NULL;
-  AjPStr    numT   = NULL;
-  AjPStr    numG   = NULL;
-  AjPStr    numC   = NULL;
-  AjPStrTok handle = NULL;
 
-  ajint n;
+  AjPStr ori = NULL;
+  AjPStr ter = NULL;
 
-  char *in0;
-  char *result;
+  AjPStr restid = NULL;
+  AjPStr seqid  = NULL;
 
-  AjBool  show = 0;
+  AjPStr base = NULL;
+  AjPStr url  = NULL;
+
+  AjPStr      tmpname = NULL;
+  AjPSeqout   tmpout  = NULL;
+
   AjPFile outf = NULL;
 
   seqall = ajAcdGetSeqall("sequence");
-
   outf = ajAcdGetOutfile("outfile");
+
+  base = ajStrNewC("rest.g-language.org");
+
+  gAssignUniqueName(&tmpname);
+  ajStrAppendC(&tmpname, ".fasta");
 
   while(ajSeqallNext(seqall, &seq))
     {
+      tmpout = ajSeqoutNew();
 
-      soap_init(&soap);
+      if(!ajSeqoutOpenFilename(tmpout, tmpname))
+        {
+          embExitBad();
+        }
 
-      inseq = NULL;
+      ajSeqoutSetFormatS(tmpout,ajStrNewC("fasta"));
+      ajSeqoutWriteSeq(tmpout, seq);
+      ajSeqoutClose(tmpout);
+      ajSeqoutDel(&tmpout);
 
-      ajStrAppendC(&inseq, ">");
-      ajStrAppendS(&inseq, ajSeqGetNameS(seq));
-      ajStrAppendC(&inseq, "\n");
-      ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
+      ajFmtPrintS(&url, "http://%S/upload/upl.pl", base);
+      gFilePostSS(url, tmpname, &restid);
+      ajStrDel(&url);
+      ajSysFileUnlinkS(tmpname);
 
       ajStrAssignS(&seqid, ajSeqGetAccS(seq));
 
-      in0 = ajCharNewS(inseq);
-
-      if(soap_call_ns1__seqinfo(
-			       &soap,
-                                NULL,
-                                NULL,
-			        in0,
-                               &result
-			       ) == SOAP_OK)
+      if(ajStrGetLen(seqid) == 0)
         {
-          tmp = ajStrNewC(result);
-
-          ajStrExchangeCC(&tmp, "<", "\n");
-          ajStrExchangeCC(&tmp, ">", "\n");
-
-          handle = ajStrTokenNewC(tmp, "\n");
-
-          while(ajStrTokenNextParse(handle, &parse))
-            {
-              if(ajStrIsInt(parse))
-                if(!numA)
-                  numA = ajStrNewS(parse);
-                else if(!numT)
-                  numT = ajStrNewS(parse);
-                else if(!numG)
-                  numG = ajStrNewS(parse);
-                else if(!numC)
-                  numC = ajStrNewS(parse);
-            }
-          if(show)
-            ajFmtPrint("Sequence: %S A: %S T: %S G: %S C: %S\n",
-                       seqid, numA, numT, numG, numC);
-          else
-            ajFmtPrintF(outf, "Sequence: %S A: %S T: %S G: %S C: %S\n",
-                        seqid, numA, numT, numG, numC);
-        }
-      else
-        {
-          soap_print_fault(&soap, stderr);
+          ajStrAssignS(&seqid, ajSeqGetNameS(seq));
         }
 
-      soap_destroy(&soap);
-      soap_end(&soap);
-      soap_done(&soap);
+      if(ajStrGetLen(seqid) == 0)
+        {
+          ajWarn("No valid header information\n");
+        }
 
-      AJFREE(in0);
+      url = ajStrNew();
 
+      ajFmtPrintS(&url, "http://%S/%S/seqinfo/", base, restid);
+
+      ajFmtPrintF(outf, "Sequence: %S\n", seqid);
+      if(!gFileOutURLS(url, &outf))
+        {
+          ajDie("Failed to download result from:\n%S\n", url);
+        }
+
+      ajStrDel(&url);
+      ajStrDel(&restid);
+      ajStrDel(&seqid);
       ajStrDel(&inseq);
-  }
+    }
+
+  ajFileClose(&outf);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
-  ajStrDel(&seqid);
+  ajStrDel(&base);
 
   embExit();
 

@@ -4,9 +4,10 @@
 ** Calculate codon adaptation index for each gene
 **
 ** @author Copyright (C) 2012 Hidetoshi Itaya
-** @version 1.0.1   Revision 1
+** @version 1.0.3
 ** @modified 2012/1/20  Hidetoshi Itaya  Created!
 ** @modified 2013/6/16  Revision 1
+** @modified 2015/2/7   Refactor
 ** @@
 **
 ** This program is free software; you can redistribute it and/or
@@ -38,7 +39,7 @@
 
 int main(int argc, char *argv[])
 {
-  embInitPV("gcai", argc, argv, "GEMBASSY", "1.0.1");
+  embInitPV("gcai", argc, argv, "GEMBASSY", "1.0.3");
 
   AjPSeqall seqall;
   AjPSeq    seq;
@@ -46,6 +47,7 @@ int main(int argc, char *argv[])
 
   AjBool translate = ajFalse;
   AjPStr wabsent   = NULL;
+  AjBool tai       = ajFalse;
 
   AjBool accid  = ajFalse;
   AjPStr restid = NULL;
@@ -62,6 +64,7 @@ int main(int argc, char *argv[])
   seqall    = ajAcdGetSeqall("sequence");
   translate = ajAcdGetBoolean("translate");
   wabsent   = ajAcdGetString("wabsent");
+  tai       = ajAcdGetBoolean("tai");
   accid     = ajAcdGetBoolean("accid");
   outf      = ajAcdGetOutfile("outfile");
 
@@ -96,39 +99,53 @@ int main(int argc, char *argv[])
             }
           else
             {
-              ajDie("Sequence does not have features\n"
-                    "Proceeding with sequence accession ID\n");
+              ajWarn("Sequence does not have features\n"
+                     "Proceeding with sequence accession ID\n");
               accid = ajTrue;
-            }
-        }
-
-      if(accid)
-        {
-          ajStrAssignS(&restid, ajSeqGetAccS(seq));
-          if(!ajStrGetLen(restid))
-            {
-              ajStrAssignS(&restid, ajSeqGetNameS(seq));
-            }
-          if(!ajStrGetLen(restid))
-            {
-              ajDie("No valid header information\n");
             }
         }
 
       ajStrAssignS(&seqid, ajSeqGetAccS(seq));
 
+      if(ajStrGetLen(seqid) == 0)
+        {
+          ajStrAssignS(&seqid, ajSeqGetNameS(seq));
+        }
+
+      if(ajStrGetLen(seqid) == 0)
+        {
+          ajWarn("No valid header information\n");
+        }
+
+      if(accid)
+        {
+          ajStrAssignS(&restid, seqid);
+          if(ajStrGetLen(seqid) == 0)
+            {
+              ajDie("Cannot proceed without header with -accid\n");
+            }
+
+          if(!gValID(seqid))
+            {
+              ajDie("Invalid accession ID:%S, exiting\n", seqid);
+            }
+        }
+
       url = ajStrNew();
 
       ajFmtPrintS(&url, "http://%S/%S/cai/translate=%d/wabsent=%S/"
-                  "output=f/tag=gene", base, restid, translate, wabsent);
+                  "tai=%d/output=f/tag=gene", base, restid, translate,
+                  wabsent, tai);
 
       ajFmtPrintF(outf, "Sequence: %S\n", seqid);
-      if(!gFileOutURLS(url, &outf))
+      if(!gtaiFileOutURLS(url, &outf, tai))
         {
           ajDie("Failed to download result from:\n%S\n", url);
         }
 
       ajStrDel(&url);
+      ajStrDel(&restid);
+      ajStrDel(&seqid);
       ajStrDel(&inseq);
     }
 
@@ -136,7 +153,7 @@ int main(int argc, char *argv[])
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
-  ajStrDel(&seqid);
+  ajStrDel(&base);
 
   embExit();
 

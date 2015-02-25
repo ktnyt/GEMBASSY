@@ -4,9 +4,10 @@
 ** Calculate the gene strand bias of the given genome
 **
 ** @author Copyright (C) 2012 Hidetoshi Itaya
-** @version 1.0.1   Revision 1
+** @version 1.0.3
 ** @modified 2012/1/20  Hidetoshi Itaya  Created!
 ** @modified 2013/6/16  Revision 1
+** @modified 2015/2/7   Refactor
 ** @@
 **
 ** This program is free software; you can redistribute it and/or
@@ -38,7 +39,7 @@
 
 int main(int argc, char *argv[])
 {
-  embInitPV("ggeneskew", argc, argv, "GEMBASSY", "1.0.1");
+  embInitPV("ggeneskew", argc, argv, "GEMBASSY", "1.0.3");
 
   AjPSeqall seqall;
   AjPSeq    seq;
@@ -80,7 +81,8 @@ int main(int argc, char *argv[])
   outf = ajAcdGetOutfile("outfile");
   mult = ajAcdGetGraphxy("graph");
 
-  if(ajStrMatchC(base, "none")) basetype = ajStrNewC("");
+  if(ajStrMatchC(base, "none"))
+    basetype = ajStrNewC("");
 
   base = ajStrNewC("rest.g-language.org");
 
@@ -119,25 +121,31 @@ int main(int argc, char *argv[])
             }
         }
 
-      if(accid)
+      ajStrAssignS(&seqid, ajSeqGetAccS(seq));
+
+      if(ajStrGetLen(seqid) == 0)
         {
-          ajStrAssignS(&seqid, ajSeqGetAccS(seq));
-
-          if(!ajStrGetLen(seqid))
-            {
-              ajStrAssignS(&seqid, ajSeqGetNameS(seq));
-            }
-
-          if(!ajStrGetLen(seqid))
-            {
-              ajFmtError("No valid header information\n");
-              embExitBad();
-            }
-
-          ajStrAssignS(&restid, seqid);
+          ajStrAssignS(&seqid, ajSeqGetNameS(seq));
         }
 
-      ajStrAssignS(&seqid, ajSeqGetAccS(seq));
+      if(ajStrGetLen(seqid) == 0)
+        {
+          ajWarn("No valid header information\n");
+        }
+
+      if(accid)
+        {
+          ajStrAssignS(&restid, seqid);
+          if(ajStrGetLen(seqid) == 0)
+            {
+              ajDie("Cannot proceed without header with -accid\n");
+            }
+
+          if(!gValID(seqid))
+            {
+              ajDie("Invalid accession ID:%S, exiting\n", seqid);
+            }
+        }
 
       url = ajStrNew();
 
@@ -181,13 +189,18 @@ int main(int argc, char *argv[])
               ajDie("File downloading error from:\n%S\n", url);
             }
         }
+
+      ajStrDel(&url);
+      ajStrDel(&restid);
+      ajStrDel(&seqid);
+      ajStrDel(&inseq);
     }
 
   ajFileClose(&outf);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
-  ajStrDel(&seqid);
+  ajStrDel(&base);
 
   embExit();
 

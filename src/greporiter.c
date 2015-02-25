@@ -4,9 +4,11 @@
 ** Get the positions of replication origin and terminus
 **
 ** @author Copyright (C) 2012 Hidetoshi Itaya
-** @version 1.0.1   Revision 1
+** @version 1.0.3
 ** @modified 2012/1/20  Hidetoshi Itaya  Created!
 ** @modified 2013/6/16  Revision 1
+** @modified 2015/2/7   RESTify
+** @modified 2015/2/7   Refactor
 ** @@
 **
 ** This program is free software; you can redistribute it and/or
@@ -25,11 +27,6 @@
 ******************************************************************************/
 
 #include "emboss.h"
-#include "soapH.h"
-#include "GLANGSoapBinding.nsmap"
-#include "soapClient.c"
-#include "soapC.c"
-#include "../gsoap/stdsoap2.c"
 #include "glibs.h"
 
 
@@ -43,30 +40,37 @@
 
 int main(int argc, char *argv[])
 {
-  embInitPV("greporiter", argc, argv, "GEMBASSY", "1.0.1");
-
-  struct soap	  soap;
-  struct ns1__rep_USCOREori_USCOREterInputParams params;
+  embInitPV("greporiter", argc, argv, "GEMBASSY", "1.0.3");
 
   AjPSeqall seqall;
   AjPSeq    seq;
   AjPStr    inseq  = NULL;
-  AjPStr    seqid  = NULL;
-  AjBool    oriloc = 0;
-  AjBool    gcskew = 0;
-  AjBool    dbonly = 0;
-  ajint	    difthreshold = 0;
-  AjBool    accid  = ajFalse;
-  AjPStr    tmp    = NULL;
-  AjPStr    parse  = NULL;
-  AjPStrTok handle = NULL;
-  AjPStr    ori    = NULL;
-  AjPStr    ter    = NULL;
 
-  char *in0;
-  char *result;
+  AjBool accid  = ajFalse;
+  AjPStr restid = NULL;
+  AjPStr seqid  = NULL;
+
+  AjPStr base = NULL;
+  AjPStr url  = NULL;
+
+  AjBool oriloc = 0;
+  AjBool gcskew = 0;
+  AjBool dbonly = 0;
+  ajint	 difthreshold = 0;
 
   AjPFile outf = NULL;
+
+  AjPFile     tmpfile = NULL;
+  AjPStr      tmpname = NULL;
+  AjPStr      fstname = NULL;
+  AjPFilebuff tmp     = NULL;
+  AjPStr      line    = NULL;
+  AjPSeqout   tmpout  = NULL;
+
+  AjPRegexp regex;
+
+  AjPStr    ori    = NULL;
+  AjPStr    ter    = NULL;
 
   seqall = ajAcdGetSeqall("sequence");
   difthreshold = ajAcdGetInt("difthreshold");
@@ -76,99 +80,102 @@ int main(int argc, char *argv[])
   accid  = ajAcdGetBoolean("accid");
   outf   = ajAcdGetOutfile("outfile");
 
-  params.dif_threshold = difthreshold;
-  params.oriloc = 0;
-  params.gcskew = 0;
-  params.dbonly = 0;
+  base = ajStrNewC("rest.g-language.org");
 
-  if(oriloc)
-    params.oriloc = 1;
-  if(gcskew)
-    params.gcskew = 1;
-  if(dbonly)
-    params.dbonly = 1;
+  gAssignUniqueName(&tmpname);
+  gAssignUniqueName(&fstname);
+  ajStrAppendC(&fstname, ".fasta");
 
   while(ajSeqallNext(seqall, &seq))
     {
-      soap_init(&soap);
+      inseq = ajStrNew();
 
-      inseq = NULL;
+      tmpout = ajSeqoutNew();
+
+      if(!accid)
+        {
+          if(gFormatGenbank(seq, &inseq))
+            {
+              tmpfile = ajFileNewOutNameS(tmpname);
+              if(!tmpfile)
+                {
+                  ajDie("Output file (%S) open error\n", tmpname);
+                }
+              ajFmtPrintF(tmpfile, "%S", inseq);
+              ajFileClose(&tmpfile);
+              ajFmtPrintS(&url, "http://%S/upload/upl.pl", base);
+              gFilePostSS(url, tmpname, &restid);
+              ajStrDel(&url);
+              ajSysFileUnlinkS(tmpname);
+            }
+          else
+            {
+              if(!ajSeqoutOpenFilename(tmpout, fstname))
+                {
+                  embExitBad();
+                }
+
+              ajSeqoutSetFormatS(tmpout,ajStrNewC("fasta"));
+              ajSeqoutWriteSeq(tmpout, seq);
+              ajSeqoutClose(tmpout);
+              ajSeqoutDel(&tmpout);
+              ajFmtPrintS(&url, "http://%S/upload/upl.pl", base);
+              gFilePostSS(url, fstname, &restid);
+              ajStrDel(&url);
+              ajSysFileUnlinkS(fstname);
+            }
+        }
 
       ajStrAssignS(&seqid, ajSeqGetAccS(seq));
 
-      if(!ajStrGetLen(seqid))
-        ajStrAssignS(&seqid, ajSeqGetNameS(seq));
+      if(ajStrGetLen(seqid) == 0)
+        {
+          ajStrAssignS(&seqid, ajSeqGetNameS(seq));
+        }
 
-      if(!ajStrGetLen(seqid))
+      if(ajStrGetLen(seqid) == 0)
         {
           ajWarn("No valid header information\n");
         }
 
-      if(accid || !gFormatGenbank(seq, &inseq))
+      if(accid)
         {
-          if(!accid)
-            ajWarn("Sequence does not have features\n"
-                   "Proceeding with sequence accession ID:%S\n", seqid);
+          ajStrAssignS(&restid, seqid);
+          if(ajStrGetLen(seqid) == 0)
+            {
+              ajDie("Cannot proceed without header with -accid\n");
+            }
 
           if(!gValID(seqid))
             {
               ajDie("Invalid accession ID:%S, exiting\n", seqid);
             }
-
-          ajStrAssignS(&inseq, seqid);
         }
 
-      in0 = ajCharNewS(inseq);
+      url = ajStrNew();
 
-      if(soap_call_ns1__rep_USCOREori_USCOREter(
-					       &soap,
-                                                NULL,
-                                                NULL,
-					        in0,
-                                               &params,
-                                               &result
-					       ) == SOAP_OK)
+      ajFmtPrintS(&url, "http://%S/%S/rep_ori_ter/oriloc=%d/gcskew=%d/"
+                  "difthreshold=%d/dbonly=%d/",  base, restid, oriloc, gcskew,
+                  difthreshold, dbonly);
+
+      if(!gFilebuffURLS(url, &tmp))
         {
-          tmp    = ajStrNew();
-          parse  = ajStrNew();
-          ori    = ajStrNew();
-          ter    = ajStrNew();
-
-          ajStrAssignC(&tmp, result);
-
-          ajStrExchangeCC(&tmp, "<", "\n");
-          ajStrExchangeCC(&tmp, ">", "\n");
-
-          handle = ajStrTokenNewC(tmp, "\n");
-
-          while(ajStrTokenNextParse(handle, &parse))
-            {
-              if(ajStrIsInt(parse))
-                if(!ajStrGetLen(ori))
-                  ori = ajStrNewS(parse);
-                else if(!ajStrGetLen(ter))
-                  ter = ajStrNewS(parse);
-            }
-
-          ajFmtPrintF(outf, "Sequence: %S Origin: %S Terminus: %S\n",
-                      seqid, ori, ter);
-
-          ajStrDel(&tmp);
-          ajStrDel(&parse);
-          ajStrDel(&ori);
-          ajStrDel(&ter);
-        }
-      else
-        {
-          soap_print_fault(&soap, stderr);
+          ajDie("Failed to download result from:\n%S\n", url);
         }
 
-      soap_destroy(&soap);
-      soap_end(&soap);
-      soap_done(&soap);
+      ajBuffreadLine(tmp, &line);
 
-      AJFREE(in0);
+      regex = ajRegCompC("([0-9]+),([0-9]+)");
 
+      if(ajRegExec(regex, line)) {
+        if(ajRegSubI(regex, 1, &ori), ajRegSubI(regex, 2, &ter)) {
+          ajFmtPrint("%S Origin: %S Terminus %S\n", seqid, ori, ter);
+        }
+      }
+
+      ajStrDel(&url);
+      ajStrDel(&restid);
+      ajStrDel(&seqid);
       ajStrDel(&inseq);
     }
 
@@ -176,7 +183,7 @@ int main(int argc, char *argv[])
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
-  ajStrDel(&seqid);
+  ajStrDel(&base);
 
   embExit();
 

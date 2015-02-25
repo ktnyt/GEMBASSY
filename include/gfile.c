@@ -42,10 +42,16 @@ ajint gValID(AjPStr id){
   AjPRegexp   pval = NULL;
 
   url = ajStrNewC("http://web.sfc.keio.ac.jp/~t11080hi/valID/valID.cgi?id=");
+  url = ajStrNew();
+  ajFmtPrintS(&url, "http://rest.g-language.org/%S", id);
 
-  ajStrAppendS(&url, id);
+  //ajStrAppendS(&url, id);
 
-  gFilebuffURLS(url, &buff);
+  if(!gFilebuffURLS(url, &buff)) {
+    return ajFalse;
+  }
+
+  return ajTrue;
 
   ajBuffreadLine(buff, &line);
 
@@ -197,6 +203,7 @@ AjBool gFilebuffURLS(AjPStr url, AjPFilebuff* buff){
 
 
 
+
 /* @func gFilebuffURLC ********************************************************
 **
 ** Downloads file from a specified URL and inputs in file buffer
@@ -278,12 +285,14 @@ AjBool gFormatGenbank(AjPSeq seq, AjPStr *inseq){
   AjPFile       seqfile  = NULL;
   AjPFile       featfile = NULL;
   AjPStr        filename = NULL;
+  AjBool        hasfeats = ajTrue;
 
   gAssignUniqueName(&filename);
   feat = ajSeqGetFeatCopy(seq);
 
-  if(!feat)
-    return ajFalse;
+  if(!feat) {
+    hasfeats = ajFalse;
+  }
 
   seqout = ajSeqoutNew();
 
@@ -298,24 +307,26 @@ AjBool gFormatGenbank(AjPSeq seq, AjPStr *inseq){
   seqfile = ajFileNewInNameS(filename);
   ajSysFileUnlinkS(filename);
 
-  featout = ajFeattabOutNew();
+  if(hasfeats) {
+    featout = ajFeattabOutNew();
 
-  if(!ajFeattabOutOpen(featout,filename))
-    return ajFalse;
+    if(!ajFeattabOutOpen(featout,filename))
+      return ajFalse;
 
-  ajFeattableWriteGenbank(featout,feat);
+    ajFeattableWriteGenbank(featout,feat);
 
-  ajFeattableDel(&feat);
-  //ajFeattabOutDel(&featout);
-  ajFileClose(&(featout->Handle));
+    ajFeattableDel(&feat);
+    //ajFeattabOutDel(&featout);
+    ajFileClose(&(featout->Handle));
 
-  featfile = ajFileNewInNameS(filename);
-  ajSysFileUnlinkS(filename);
+    featfile = ajFileNewInNameS(filename);
+    ajSysFileUnlinkS(filename);
+  }
 
   while(ajReadline(seqfile,&seqline)){
-    if(ajStrMatchC(seqline,"ORIGIN\n")){
+    if(hasfeats && ajStrMatchC(seqline,"ORIGIN\n")){
       while(ajReadline(featfile,&featline)){
-	ajStrAppendS(inseq, featline);
+        ajStrAppendS(inseq, featline);
       }
     }
     ajStrAppendS(inseq, seqline);
@@ -327,7 +338,7 @@ AjBool gFormatGenbank(AjPSeq seq, AjPStr *inseq){
   ajFileClose(&seqfile);
   ajFileClose(&featfile);
 
-  return ajTrue;
+  return hasfeats;
 }
 
 
@@ -359,4 +370,61 @@ AjBool gGetFileContent(AjPStr* content, AjPStr filename){
   ajSysFileUnlinkS(filename);
 
   return ajTrue;
+}
+
+
+
+
+/* @func gtaiFileOutURLS ******************************************************
+**
+** Downloads file from a specified URL and inputs in file buffer
+**
+** @param [r] url [AjPStr] URL to download file from
+** @param [r] buff [AjPFilebuff] File buffer to set
+** @return [AjBool]
+** @@
+******************************************************************************/
+
+AjBool gtaiFileOutURLS(AjPStr url, AjPFile* outf, AjBool tai){
+  if(tai)
+    {
+      CURL *curl;
+      CURLcode curl_res;
+
+      Memory *mem = malloc(sizeof(Memory*));
+
+      mem->size = 0;
+      mem->memory = NULL;
+
+      curl_global_init(CURL_GLOBAL_ALL);
+
+      curl = curl_easy_init();
+
+      if(curl)
+        {
+          curl_easy_setopt(curl, CURLOPT_URL, ajCharNewS(url));
+          curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
+          curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, curl_write);
+          curl_easy_setopt(curl, CURLOPT_WRITEDATA, mem);
+        }
+
+      curl_res = curl_easy_perform(curl);
+
+      if(CURLE_OK == curl_res)
+        {
+          char* redir;
+          curl_res = curl_easy_getinfo(curl, CURLINFO_EFFECTIVE_URL, &redir);
+
+          if((CURLE_OK == curl_res) && redir) {
+            ajStrAssignC(&url, redir);
+            ajStrExchangeCC(&url, "cai.csv", "tai.csv");
+          }
+        }
+
+      free(mem);
+      curl_easy_cleanup(curl);
+      curl_global_cleanup();
+    }
+
+  return gFileOutURLS(url, outf);
 }

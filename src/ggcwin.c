@@ -4,9 +4,11 @@
 ** Calculates the GC content along the given genome
 **
 ** @author Copyright (C) 2012 Hidetoshi Itaya
-** @version 1.0.1   Revision 1
+** @version 1.0.3
 ** @modified 2012/1/20  Hidetoshi Itaya  Created!
 ** @modified 2013/6/16  Revision 1
+** @modified 2015/2/7   RESTify
+** @modified 2015/2/7   Refactor
 ** @@
 **
 ** This program is free software; you can redistribute it and/or
@@ -25,11 +27,6 @@
 ******************************************************************************/
 
 #include "emboss.h"
-#include "soapH.h"
-#include "GLANGSoapBinding.nsmap"
-#include "soapClient.c"
-#include "soapC.c"
-#include "../gsoap/stdsoap2.c"
 #include "glibs.h"
 
 
@@ -43,22 +40,26 @@
 
 int main(int argc, char *argv[])
 {
-  embInitPV("ggcwin", argc, argv, "GEMBASSY", "1.0.1");
-
-  struct soap soap;
-  struct ns1__gcwinInputParams params;
+  embInitPV("ggcwin", argc, argv, "GEMBASSY", "1.0.3");
 
   AjPSeqall seqall;
   AjPSeq    seq;
-  AjPStr    inseq  = NULL;
-  AjPStr    seqid  = NULL;
-  ajint	    window = 0;
-  AjBool    at     = 0;
-  AjBool    purine = 0;
-  AjBool    keto   = 0;
+  AjPStr    inseq      = NULL;
 
-  char *in0;
-  char *result;
+  AjBool accid  = ajFalse;
+  AjPStr restid = NULL;
+  AjPStr seqid  = NULL;
+
+  AjPStr base = NULL;
+  AjPStr url  = NULL;
+
+  AjPStr    tmpname = NULL;
+  AjPSeqout tmpout  = NULL;
+
+  ajint  window = 0;
+  AjBool at     = 0;
+  AjBool purine = 0;
+  AjBool keto   = 0;
 
   AjBool      plot = 0;
   AjPFile     outf = NULL;
@@ -78,102 +79,93 @@ int main(int argc, char *argv[])
   outf = ajAcdGetOutfile("outfile");
   mult = ajAcdGetGraphxy("graph");
 
-  params.window = window;
-  params.at     = 0;
-  params.purine = 0;
-  params.keto   = 0;
-  params.output = "f";
-  params.application = "";
+  base = ajStrNewC("rest.g-language.org");
 
-  if(at)
-    params.at = 1;
-  if(purine)
-    params.purine = 1;
-  if(keto)
-    params.keto = 1;
+  gAssignUniqueName(&tmpname);
+  ajStrAppendC(&tmpname, ".fasta");
 
   while(ajSeqallNext(seqall, &seq))
     {
+      tmpout = ajSeqoutNew();
 
-      soap_init(&soap);
+      if(!ajSeqoutOpenFilename(tmpout, tmpname))
+        {
+          embExitBad();
+        }
 
-      inseq = NULL;
+      ajSeqoutSetFormatS(tmpout,ajStrNewC("fasta"));
+      ajSeqoutWriteSeq(tmpout, seq);
+      ajSeqoutClose(tmpout);
+      ajSeqoutDel(&tmpout);
 
-      ajStrAppendC(&inseq, ">");
-      ajStrAppendS(&inseq, ajSeqGetNameS(seq));
-      ajStrAppendC(&inseq, "\n");
-      ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
+      ajFmtPrintS(&url, "http://%S/upload/upl.pl", base);
+      gFilePostSS(url, tmpname, &restid);
+      ajStrDel(&url);
+      ajSysFileUnlinkS(tmpname);
 
       ajStrAssignS(&seqid, ajSeqGetAccS(seq));
 
-      in0 = ajCharNewS(inseq);
-
-      if(soap_call_ns1__gcwin(
-			     &soap,
-			      NULL,
-			      NULL,
-			      in0,
-			     &params,
-			     &result
-			     ) == SOAP_OK)
-	{
-	  if(plot)
-	    {
-	      title = ajStrNew();
-
-	      ajStrAppendC(&title, argv[0]);
-	      ajStrAppendC(&title, " of ");
-	      ajStrAppendS(&title, seqid);
-
-	      gpp.title = ajStrNewS(title);
-	      gpp.xlab = ajStrNewC("location");
-	      gpp.ylab = ajStrNewC("GC skew");
-
-	      if(!gFilebuffURLC(result, &buff))
-		{
-                  ajDie("File downloading error from:\n%s\n", result);
-		}
-
-	      if(!gPlotFilebuff(buff, mult, &gpp))
-		{
-		  ajDie("Error in plotting\n");
-		}
-
-	      AJFREE(gpp.title);
-	      AJFREE(gpp.xlab);
-	      AJFREE(gpp.ylab);
-	      ajStrDel(&title);
-              ajFilebuffDel(&buff);
-	    }
-	  else
-	    {
-	      ajFmtPrintF(outf, "Sequence: %S\n", seqid);
-	      if(!gFileOutURLC(result, &outf))
-		{
-                  ajDie("File downloading error from:\n%s\n", result);
-		  embExitBad();
-		}
-	    }
-	}
-      else
-	{
-          soap_print_fault(&soap, stderr);
+      if(ajStrGetLen(seqid) == 0)
+        {
+          ajStrAssignS(&seqid, ajSeqGetNameS(seq));
         }
 
-    soap_destroy(&soap);
-    soap_end(&soap);
-    soap_done(&soap);
+      if(ajStrGetLen(seqid) == 0)
+        {
+          ajWarn("No valid header information\n");
+        }
 
-    AJFREE(in0);
+      url = ajStrNew();
 
-    ajStrDel(&inseq);
-  }
+      ajFmtPrintS(&url, "http://%S/%S/gcwin/window=%d/at=%d/purine=%d/"
+                  "keto=%d/output=f/", base, restid, window, at, purine, keto);
+
+      if(plot)
+        {
+          title = ajStrNew();
+
+          ajStrAppendC(&title, argv[0]);
+          ajStrAppendC(&title, " of ");
+          ajStrAppendS(&title, seqid);
+
+          gpp.title = ajStrNewS(title);
+          gpp.xlab = ajStrNewC("location");
+          gpp.ylab = ajStrNewC("GC content");
+
+          if(!gFilebuffURLS(url, &buff))
+            {
+              ajDie("File downloading error from:\n%S\n", url);
+            }
+
+          if(!gPlotFilebuff(buff, mult, &gpp))
+            {
+              ajDie("Error in plotting\n");
+            }
+
+          AJFREE(gpp.title);
+          AJFREE(gpp.xlab);
+          AJFREE(gpp.ylab);
+          ajStrDel(&title);
+          ajFilebuffDel(&buff);
+        }
+      else
+        {
+          ajFmtPrintF(outf, "Sequence: %S\n", seqid);
+          if(!gFileOutURLS(url, &outf))
+            {
+              ajDie("File downloading error from:\n%S\n", url);
+            }
+        }
+      ajStrDel(&url);
+      ajStrDel(&restid);
+      ajStrDel(&seqid);
+    }
 
   ajFileClose(&outf);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
-  ajStrDel(&seqid);
+  ajStrDel(&base);
 
   embExit();
 

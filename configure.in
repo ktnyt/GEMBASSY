@@ -4,7 +4,7 @@
 
 AC_PREREQ([2.64])
 AC_INIT([GEMBASSY],
-[1.0.2],
+[1.0.3],
 [celery@g-language.org],
 [GEMBASSY],
 [http://www.g-language.org/gembassy/])

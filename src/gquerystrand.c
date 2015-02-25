@@ -4,9 +4,11 @@
 ** Get the strand name (leading or lagging) from the given position
 **
 ** @author Copyright (C) 2012 Hidetoshi Itaya
-** @version 1.0.1   Revision 1
+** @version 1.0.3
 ** @modified 2012/1/20  Hidetoshi Itaya  Created!
 ** @modified 2013/6/16  Revision 1
+** @modified 2015/2/7   RESTify
+** @modified 2015/2/7   Refactor
 ** @@
 **
 ** This program is free software; you can redistribute it and/or
@@ -25,17 +27,12 @@
 ******************************************************************************/
 
 #include "emboss.h"
-#include "soapH.h"
-#include "GLANGSoapBinding.nsmap"
-#include "soapClient.c"
-#include "soapC.c"
-#include "../gsoap/stdsoap2.c"
 #include "glibs.h"
 
 
 
 
-/* @prog gquerystrand ********************************************************
+/* @prog gquerystrand *********************************************************
 **
 ** Get the strand name (leading or lagging) from the given position
 **
@@ -43,23 +40,29 @@
 
 int main(int argc, char *argv[])
 {
-  embInitPV("gquerystrand", argc, argv, "GEMBASSY", "1.0.1");
-
-  struct soap soap;
-  struct ns1__query_USCOREstrandInputParams params;
+  embInitPV("gquerystrand", argc, argv, "GEMBASSY", "1.0.3");
 
   AjPSeqall seqall;
   AjPSeq    seq;
-  AjPStr    inseq     = NULL;
-  AjPStr    seqid     = NULL;
-  ajint	    position  = 0;
-  AjPStr    direction = NULL;
-  AjBool    accid     = ajFalse;
+  AjPStr    inseq    = NULL;
 
-  char *in0;
-  char *result;
+  AjBool accid  = ajFalse;
+  AjPStr restid = NULL;
+  AjPStr seqid  = NULL;
+
+  AjPStr base = NULL;
+  AjPStr url  = NULL;
+
+  ajint	 position  = 0;
+  AjPStr direction = 0;
 
   AjPFile outf = NULL;
+
+  AjPFile tmpfile = NULL;
+  AjPStr  tmpname = NULL;
+
+  AjPFilebuff tmp = NULL;
+  AjPStr     line = NULL;
 
   seqall    = ajAcdGetSeqall("sequence");
   position  = ajAcdGetInt("position");
@@ -67,72 +70,91 @@ int main(int argc, char *argv[])
   accid     = ajAcdGetBoolean("accid");
   outf      = ajAcdGetOutfile("outfile");
 
-  params.direction = ajCharNewS(direction);
+  base = ajStrNewC("rest.g-language.org");
+
+  gAssignUniqueName(&tmpname);
 
   while(ajSeqallNext(seqall, &seq))
     {
-
-      soap_init(&soap);
-
       inseq = NULL;
+
+      if(!accid)
+        {
+          if(gFormatGenbank(seq, &inseq))
+            {
+              tmpfile = ajFileNewOutNameS(tmpname);
+              if(!tmpfile)
+                {
+                  ajDie("Output file (%S) open error\n", tmpname);
+                }
+              ajFmtPrintF(tmpfile, "%S", inseq);
+              ajFileClose(&tmpfile);
+              ajFmtPrintS(&url, "http://%S/upload/upl.pl", base);
+              gFilePostSS(url, tmpname, &restid);
+              ajStrDel(&url);
+              ajSysFileUnlinkS(tmpname);
+            }
+          else
+            {
+              ajWarn("Sequence does not have features\n"
+                     "Proceeding with sequence accession ID\n");
+              accid = ajTrue;
+            }
+        }
 
       ajStrAssignS(&seqid, ajSeqGetAccS(seq));
 
-      if(!ajStrGetLen(seqid))
-        ajStrAssignS(&seqid, ajSeqGetNameS(seq));
+      if(ajStrGetLen(seqid) == 0)
+        {
+          ajStrAssignS(&seqid, ajSeqGetNameS(seq));
+        }
 
-      if(!ajStrGetLen(seqid))
+      if(ajStrGetLen(seqid) == 0)
         {
           ajWarn("No valid header information\n");
         }
 
-      if(accid || !gFormatGenbank(seq, &inseq))
+      if(accid)
         {
-          if(!accid)
-            ajWarn("Sequence does not have features\n"
-                   "Proceeding with sequence accession ID:%S\n", seqid);
+          ajStrAssignS(&restid, seqid);
+          if(ajStrGetLen(seqid) == 0)
+            {
+              ajDie("Cannot proceed without header with -accid\n");
+            }
 
           if(!gValID(seqid))
             {
               ajDie("Invalid accession ID:%S, exiting\n", seqid);
             }
-
-          ajStrAssignS(&inseq, seqid);
         }
 
-      in0 = ajCharNewS(inseq);
+      url = ajStrNew();
 
-      if(soap_call_ns1__query_USCOREstrand(
-				       &soap,
-                                        NULL,
-                                        NULL,
-                                        in0,
-                                        position,
-                                       &params,
-                                       &result
-				       ) == SOAP_OK)
+      ajFmtPrintS(&url, "http://%S/%S/query_strand/%d/direction=%S/", base,
+                  restid, position, direction);
+
+      if(!gFilebuffURLS(url, &tmp))
         {
-          ajFmtPrintF(outf, "Sequence: %S Strand: %s\n", seqid, result);
-        }
-      else
-        {
-          soap_print_fault(&soap, stderr);
+          ajDie("Failed to download result from:\n%S\n", url);
         }
 
-      soap_destroy(&soap);
-      soap_end(&soap);
-      soap_done(&soap);
+      ajBuffreadLine(tmp, &line);
 
-      AJFREE(in0);
+      ajStrRemoveSetC(&line, "\n");
 
+      ajFmtPrintF(outf, "Sequence: %S Strand: %S\n", seqid, line);
+
+      ajStrDel(&url);
+      ajStrDel(&restid);
+      ajStrDel(&seqid);
       ajStrDel(&inseq);
-  }
+    }
 
   ajFileClose(&outf);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
-  ajStrDel(&seqid);
+  ajStrDel(&base);
 
   embExit();
 

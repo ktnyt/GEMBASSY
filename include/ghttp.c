@@ -1,5 +1,5 @@
 /******************************************************************************
-** @source GEMBASSY file routines
+** @source GEMBASSY http routines
 **
 ** @version 1.0
 ** @modified December 27 2012 Hidetoshi Itaya Created this file

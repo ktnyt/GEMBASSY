@@ -4,9 +4,10 @@
 ** Counts the number of given oligomers in a sequence
 **
 ** @author Copyright (C) 2012 Hidetoshi Itaya
-** @version 1.0.1   Revision 1
+** @version 1.0.3   Revision 1
 ** @modified 2012/1/20  Hidetoshi Itaya  Created!
 ** @modified 2013/6/16  Revision 1
+** @modified 2015/2/7   Refactor
 ** @@
 **
 ** This program is free software; you can redistribute it and/or
@@ -38,14 +39,13 @@
 
 int main(int argc, char *argv[])
 {
-  embInitPV("goligomercounter", argc, argv, "GEMBASSY", "1.0.1");
+  embInitPV("goligomercounter", argc, argv, "GEMBASSY", "1.0.3");
 
   AjPSeqall seqall;
   AjPSeq    seq;
   AjPStr    inseq    = NULL;
   AjPStr    oligomer = NULL;
 
-  AjBool accid  = ajFalse;
   AjPStr restid = NULL;
   AjPStr seqid  = NULL;
 
@@ -56,8 +56,8 @@ int main(int argc, char *argv[])
 
   AjPFile outf = NULL;
 
-  AjPFile tmpfile = NULL;
-  AjPStr  tmpname = NULL;
+  AjPStr    tmpname = NULL;
+  AjPSeqout tmpout  = NULL;
 
   AjPFilebuff tmp = NULL;
   AjPStr     line = NULL;
@@ -65,39 +65,45 @@ int main(int argc, char *argv[])
   seqall   = ajAcdGetSeqall("sequence");
   oligomer = ajAcdGetString("oligomer");
   window   = ajAcdGetInt("window");
-  accid    = ajAcdGetBoolean("accid");
   outf     = ajAcdGetOutfile("outfile");
 
   base = ajStrNewC("rest.g-language.org");
+
+  gAssignUniqueName(&tmpname);
+  ajStrAppendC(&tmpname, ".fasta");
 
   while(ajSeqallNext(seqall, &seq))
     {
       inseq = NULL;
 
-      if(!accid)
+      tmpout = ajSeqoutNew();
+
+      if(!ajSeqoutOpenFilename(tmpout, tmpname))
         {
-          gAssignUniqueName(&tmpname);
-
-          tmpfile = ajFileNewOutNameS(tmpname);
-
-          ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
-          ajStrAssignS(&restid, ajSeqGetAccS(seq));
-
-          ajFmtPrintF(tmpfile, ">%S\n%S\n", restid, inseq);
-
-          ajFileClose(&tmpfile);
-
-          gFilePostCS("http://rest.g-language.org/upload/upl.pl",
-                      tmpname, &restid);
-
-          ajSysFileUnlinkS(tmpname);
+          embExitBad();
         }
-      else
-        {
-          ajStrAssignS(&restid, ajSeqGetAccS(seq));
-        }
+
+      ajSeqoutSetFormatS(tmpout,ajStrNewC("fasta"));
+      ajSeqoutWriteSeq(tmpout, seq);
+      ajSeqoutClose(tmpout);
+      ajSeqoutDel(&tmpout);
+
+      ajFmtPrintS(&url, "http://%S/upload/upl.pl", base);
+      gFilePostSS(url, tmpname, &restid);
+      ajStrDel(&url);
+      ajSysFileUnlinkS(tmpname);
 
       ajStrAssignS(&seqid, ajSeqGetAccS(seq));
+
+      if(ajStrGetLen(seqid) == 0)
+        {
+          ajStrAssignS(&seqid, ajSeqGetNameS(seq));
+        }
+
+      if(ajStrGetLen(seqid) == 0)
+        {
+          ajWarn("No valid header information\n");
+        }
 
       url = ajStrNew();
 
@@ -117,6 +123,8 @@ int main(int argc, char *argv[])
                   seqid, oligomer, line);
 
       ajStrDel(&url);
+      ajStrDel(&restid);
+      ajStrDel(&seqid);
       ajStrDel(&inseq);
     }
 
@@ -124,7 +132,8 @@ int main(int argc, char *argv[])
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
-  ajStrDel(&restid);
+  ajStrDel(&base);
+
   ajStrDel(&oligomer);
 
   embExit();

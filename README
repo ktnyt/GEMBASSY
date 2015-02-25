@@ -1,5 +1,5 @@
 
-/* GEMBASSY ver 1.0.2 *********************************************************
+/* GEMBASSY ver 1.0.3 *********************************************************
 
   All rights reserved. Copyright (C) 2012-2013 by ITAYA Hidetoshi.
 
@@ -68,11 +68,11 @@ INSTALLATION
       % cd embassy
 
     3. Download and compile the GEMBASSY source code
-      % wget http://soap.g-language.org/gembassy/source/GEMBASSSY-1.0.2.tar.gz
-      (or "curl -O http://soap.g-language.org/gembassy/source/GEMBASSY-1.0.2.tar.gz")
-      % tar zxvf GEMBASSY-1.0.2.tar.gz
-      % cd GEMBASSY-1.0.2
-      ( EMBOSS-6.6.0/embassy/GEMBASSY-1.0.2 )
+      % wget http://soap.g-language.org/gembassy/source/GEMBASSSY-1.0.3.tar.gz
+      (or "curl -O http://soap.g-language.org/gembassy/source/GEMBASSY-1.0.3.tar.gz")
+      % tar zxvf GEMBASSY-1.0.3.tar.gz
+      % cd GEMBASSY-1.0.3
+      ( EMBOSS-6.6.0/embassy/GEMBASSY-1.0.3 )
       % ./configure
       % make
       % sudo make install
@@ -90,10 +90,10 @@ INSTALLATION
 
     The following commands assume you have EMBOSS installed in the
     /PATH/TO/EMBOSS/ directory.
-      % wget http://soap.g-language.org/gembassy/source/GEMBASSY-1.0.2.tar.gz
-      (or "curl -O http://soap.g-language.org/gembassy/source/GEMBASSY-1.0.2.tar.gz")
-      % tar zxf GEMBASSY-1.0.2.tar.gz
-      % cd GEMBASSY-1.0.2
+      % wget http://soap.g-language.org/gembassy/source/GEMBASSY-1.0.3.tar.gz
+      (or "curl -O http://soap.g-language.org/gembassy/source/GEMBASSY-1.0.3.tar.gz")
+      % tar zxf GEMBASSY-1.0.3.tar.gz
+      % cd GEMBASSY-1.0.3
       % ./configure --prefix=/PATH/TO/EMBOSS/ (ex. --prefix=/usr/local)
       % make
       % make install

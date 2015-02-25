@@ -4,9 +4,11 @@
 ** GC Skew Index: an index for strand-specific mutational bias
 **
 ** @author Copyright (C) 2012 Hidetoshi Itaya
-** @version 1.0.1   Revision 1
+** @version 1.0.3
 ** @modified 2012/1/20  Hidetoshi Itaya  Created!
 ** @modified 2013/6/16  Revision 1
+** @modified 2015/2/7   RESTify
+** @modified 2015/2/7   Refactor
 ** @@
 **
 ** This program is free software; you can redistribute it and/or
@@ -25,11 +27,6 @@
 ******************************************************************************/
 
 #include "emboss.h"
-#include "soapH.h"
-#include "GLANGSoapBinding.nsmap"
-#include "soapClient.c"
-#include "soapC.c"
-#include "../gsoap/stdsoap2.c"
 #include "glibs.h"
 
 
@@ -43,33 +40,38 @@
 
 int main(int argc, char *argv[])
 {
-  embInitPV("ggcsi", argc, argv, "GEMBASSY", "1.0.1");
-
-  struct soap soap;
-  struct ns1__gcsiInputParams params;
+  embInitPV("ggcsi", argc, argv, "GEMBASSY", "1.0.3");
 
   AjPSeqall seqall;
   AjPSeq    seq;
   AjPStr    inseq   = NULL;
-  AjPStr    seqid   = NULL;
-  ajint	    window  = 0;
-  AjBool    at      = 0;
-  AjBool    purine  = 0;
-  AjBool    keto    = 0;
-  AjBool    pval    = 0;
-  AjPStr    version = NULL;
-  AjBool    accid   = ajFalse;
-  AjPStr    tmp     = NULL;
-  AjPStr    parse   = NULL;
-  AjPStr    gcsi    = NULL;
-  AjPStr    sa      = NULL;
-  AjPStr    dist    = NULL;
-  AjPStr    z       = NULL;
-  AjPStr    p       = NULL;
-  AjPStrTok handle  = NULL;
 
-  char *in0;
-  char *result;
+  AjPStr restid = NULL;
+  AjPStr seqid  = NULL;
+
+  AjPStr base = NULL;
+  AjPStr url  = NULL;
+
+  ajint	 window  = 0;
+  AjBool at      = 0;
+  AjBool purine  = 0;
+  AjBool keto    = 0;
+  AjBool pval    = 0;
+  AjPStr version = NULL;
+
+  AjPStr      tmpname = NULL;
+  AjPSeqout   tmpout  = NULL;
+  AjPFilebuff tmpbuff = NULL;
+
+  AjPStr tmp   = NULL;
+  AjPStr parse = NULL;
+  AjPStr gcsi  = NULL;
+  AjPStr sa    = NULL;
+  AjPStr dist  = NULL;
+  AjPStr z     = NULL;
+  AjPStr p     = NULL;
+
+  AjPStrTok handle  = NULL;
 
   AjPFile outf = NULL;
 
@@ -80,107 +82,100 @@ int main(int argc, char *argv[])
   keto    = ajAcdGetBoolean("keto");
   pval    = ajAcdGetBoolean("pval");
   version = ajAcdGetSelectSingle("gcsi");
-  accid   = ajAcdGetBoolean("accid");
   outf    = ajAcdGetOutfile("outfile");
 
-  params.window = window;
-  params.at     = 0;
-  params.purine = 0;
-  params.keto   = 0;
-  params.p      = 0;
-  ajStrToInt(version, &(params.version));
+  base = ajStrNewC("rest.g-language.org");
 
-  if(at)
-    params.at = 1;
-  if(purine)
-    params.purine = 1;
-  if(keto)
-    params.keto = 1;
-  if(pval)
-    params.p = 1;
+  gAssignUniqueName(&tmpname);
+  ajStrAppendC(&tmpname, ".fasta");
 
   while(ajSeqallNext(seqall, &seq))
     {
-      soap_init(&soap);
+      tmpout = ajSeqoutNew();
 
-      inseq = NULL;
+      if(!ajSeqoutOpenFilename(tmpout, tmpname))
+        {
+          embExitBad();
+        }
 
-      ajStrAppendC(&inseq, ">");
-      ajStrAppendS(&inseq, ajSeqGetNameS(seq));
-      ajStrAppendC(&inseq, "\n");
-      ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
+      ajSeqoutSetFormatS(tmpout,ajStrNewC("fasta"));
+      ajSeqoutWriteSeq(tmpout, seq);
+      ajSeqoutClose(tmpout);
+      ajSeqoutDel(&tmpout);
+
+      ajFmtPrintS(&url, "http://%S/upload/upl.pl", base);
+      gFilePostSS(url, tmpname, &restid);
+      ajStrDel(&url);
+      ajSysFileUnlinkS(tmpname);
 
       ajStrAssignS(&seqid, ajSeqGetAccS(seq));
 
-      in0 = ajCharNewS(inseq);
+      if(ajStrGetLen(seqid) == 0)
+        {
+          ajStrAssignS(&seqid, ajSeqGetNameS(seq));
+        }
 
-      if (soap_call_ns1__gcsi(
-	                      &soap,
-                              NULL,
-                              NULL,
-                              in0,
-                             &params,
-                             &result
-                            ) == SOAP_OK)
-	{
-	  tmp   = ajStrNew();
-	  parse = ajStrNew();
-	  gcsi  = ajStrNew();
-	  sa    = ajStrNew();
-	  dist  = ajStrNew();
-	  z     = ajStrNew();
-	  p     = ajStrNew();
+      if(ajStrGetLen(seqid) == 0)
+        {
+          ajWarn("No valid header information\n");
+        }
 
-	  ajStrAssignC(&tmp, result);
+      url = ajStrNew();
 
-	  ajStrExchangeCC(&tmp, "<", "\n");
-	  ajStrExchangeCC(&tmp, ">", "\n");
+      ajFmtPrintS(&url, "http://%S/%S/gcsi/window=%d/at=%d/purine=%d/"
+                  "keto=%d/p=%d/version=%d/", base, restid, window, at, purine,
+                  keto, pval, version);
 
-	  handle = ajStrTokenNewC(tmp, "\n");
+      if(!gFilebuffURLS(url, &tmpbuff))
+        {
+          ajDie("Failed to download result from:\n%S\n", url);
+        }
 
-	  while (ajStrTokenNextParse(handle, &parse))
-	    {
-	      if (ajStrIsFloat(parse))
-		{
-		  if(!ajStrGetLen(gcsi))
-		    ajStrAssignS(&gcsi, parse);
-		  else if(!ajStrGetLen(sa))
-		    ajStrAssignS(&sa, parse);
-		  else if(!ajStrGetLen(dist))
-		    ajStrAssignS(&dist, parse);
-		  else if(!ajStrGetLen(z))
-		    ajStrAssignS(&z, parse);
-		  else if(!ajStrGetLen(p))
-		    ajStrAssignS(&p, parse);
-		}
-	    }
+      ajBuffreadLine(tmpbuff, &tmp);
 
-	  tmp = ajFmtStr("Sequence: %S GCSI: %S SA: %S DIST: %S",
-			 seqid, gcsi, sa, dist);
+      parse = ajStrNew();
+      gcsi  = ajStrNew();
+      sa    = ajStrNew();
+      dist  = ajStrNew();
+      z     = ajStrNew();
+      p     = ajStrNew();
 
-	  if(pval)
-	    tmp = ajFmtStr("%S Z: %S P: %S", tmp, z, p);
+      ajStrRemoveLastNewline(&tmp);
 
-          ajFmtPrintF(outf, "%S\n", tmp);
+      handle = ajStrTokenNewC(tmp, ",");
 
-	  ajStrDel(&tmp);
-	  ajStrDel(&parse);
-	  ajStrDel(&gcsi);
-	  ajStrDel(&sa);
-	  ajStrDel(&dist);
-	  ajStrDel(&z);
-	  ajStrDel(&p);
-	}
-      else
-	{
-	  soap_print_fault(&soap, stderr);
-	}
+      while (ajStrTokenNextParse(handle, &parse))
+        {
+          if (ajStrIsFloat(parse))
+            {
+              if(!ajStrGetLen(gcsi))
+                ajStrAssignS(&gcsi, parse);
+              else if(!ajStrGetLen(sa))
+                ajStrAssignS(&sa, parse);
+              else if(!ajStrGetLen(dist))
+                ajStrAssignS(&dist, parse);
+              else if(!ajStrGetLen(z))
+                ajStrAssignS(&z, parse);
+              else if(!ajStrGetLen(p))
+                ajStrAssignS(&p, parse);
+            }
+        }
 
-      soap_destroy(&soap);
-      soap_end(&soap);
-      soap_done(&soap);
+      tmp = ajFmtStr("Sequence: %S GCSI: %S SA: %S DIST: %S",
+                     seqid, gcsi, sa, dist);
 
-      AJFREE(in0);
+      if(pval)
+        tmp = ajFmtStr("%S Z: %S P: %S", tmp, z, p);
+
+      ajFmtPrintF(outf, "%S\n", tmp);
+
+      ajStrDel(&tmp);
+      ajStrDel(&parse);
+      ajStrDel(&gcsi);
+      ajStrDel(&sa);
+      ajStrDel(&dist);
+      ajStrDel(&z);
+      ajStrDel(&p);
 
       ajStrDel(&inseq);
     }

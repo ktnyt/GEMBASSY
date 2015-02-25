@@ -4,9 +4,10 @@
 ** Prints out basic amino acid sequence statistics
 **
 ** @author Copyright (C) 2012 Hidetoshi Itaya
-** @version 1.0.1   Revision 1
+** @version 1.0.3
 ** @modified 2012/1/20  Hidetoshi Itaya  Created!
 ** @modified 2013/6/16  Revision 1
+** @modified 2015/2/7   Refactor
 ** @@
 **
 ** This program is free software; you can redistribute it and/or
@@ -25,11 +26,6 @@
 ******************************************************************************/
 
 #include "emboss.h"
-#include "soapH.h"
-#include "GLANGSoapBinding.nsmap"
-#include "soapClient.c"
-#include "soapC.c"
-#include "../gsoap/stdsoap2.c"
 #include "glibs.h"
 
 
@@ -43,69 +39,81 @@
 
 int main(int argc, char *argv[])
 {
-  embInitPV("gaminoinfo", argc, argv, "GEMBASSY", "1.0.1");
-
-  struct soap soap;
+  embInitPV("gaminoinfo", argc, argv, "GEMBASSY", "1.0.3");
 
   AjPSeqall seqall;
   AjPSeq    seq;
-  AjPStr    inseq = NULL;
-  AjPStr    seqid = NULL;
 
-  char *in0;
-  char *result;
+  AjPStr restid = NULL;
+  AjPStr seqid  = NULL;
+
+  AjPStr base = NULL;
+  AjPStr url  = NULL;
+
+  AjPStr    tmpname = NULL;
+  AjPSeqout tmpout  = NULL;
 
   AjPFile outf = NULL;
 
   seqall = ajAcdGetSeqall("sequence");
   outf   = ajAcdGetOutfile("outfile");
 
+  base = ajStrNewC("rest.g-language.org");
+
+  gAssignUniqueName(&tmpname);
+  ajStrAppendC(&tmpname, ".fasta");
+
   while(ajSeqallNext(seqall, &seq))
     {
-      soap_init(&soap);
+      tmpout = ajSeqoutNew();
 
-      inseq = NULL;
+      if(!ajSeqoutOpenFilename(tmpout, tmpname))
+        {
+          embExitBad();
+        }
+
+      ajSeqoutSetFormatS(tmpout,ajStrNewC("fasta"));
+      ajSeqoutWriteSeq(tmpout, seq);
+      ajSeqoutClose(tmpout);
+      ajSeqoutDel(&tmpout);
+
+      ajFmtPrintS(&url, "http://%S/upload/upl.pl", base);
+      gFilePostSS(url, tmpname, &restid);
+      ajStrDel(&url);
+      ajSysFileUnlinkS(tmpname);
 
       ajStrAssignS(&seqid, ajSeqGetAccS(seq));
 
-      if(!ajStrGetLen(seqid))
-         ajStrAssignS(&seqid, ajSeqGetNameS(seq));
+      if(ajStrGetLen(seqid) == 0)
+        {
+          ajStrAssignS(&seqid, ajSeqGetNameS(seq));
+        }
 
-      ajStrAppendC(&inseq, ">");
-      ajStrAppendS(&inseq, ajSeqGetNameS(seq));
-      ajStrAppendC(&inseq, "\n");
-      ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
+      if(ajStrGetLen(seqid) == 0)
+        {
+          ajWarn("No valid header information\n");
+        }
 
-      in0 = ajCharNewS(inseq);
+      url = ajStrNew();
 
-      if(soap_call_ns1__amino_USCOREinfo(
-	                                &soap,
-					 NULL,
-					 NULL,
-					 in0,
-					&result
-                                        ) == SOAP_OK)
-	{
-          ajFmtPrintF(outf, "Sequence: %S\n%s\n", seqid, result);
-	}
-      else
-	{
-	  soap_print_fault(&soap, stderr);
-	}
+      ajFmtPrintS(&url, "http://%S/%S/amino_info", base, restid);
 
-      soap_destroy(&soap);
-      soap_end(&soap);
-      soap_done(&soap);
+      ajFmtPrintF(outf, "Sequence: %S\n", seqid);
+      if(!gFileOutURLS(url, &outf))
+        {
+          ajDie("Failed to download result from:\n%S\n", url);
+        }
 
-      AJFREE(in0);
-
-      ajStrDel(&inseq);
+      ajStrDel(&url);
+      ajStrDel(&restid);
+      ajStrDel(&seqid);
     }
 
   ajFileClose(&outf);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
+  ajStrDel(&base);
 
   embExit();
 

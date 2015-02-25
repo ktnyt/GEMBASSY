@@ -4,9 +4,12 @@
 ** Calculates distance betwwen two loci in cirular chromosomes
 **
 ** @author Copyright (C) 2012 Hidetoshi Itaya
-** @version 1.0.1   Revision 1
+** @version 1.0.3
 ** @modified 2012/1/20  Hidetoshi Itaya  Created!
 ** @modified 2013/6/16  Revision 1
+** @modified 2015/2/7   Support sequences without features
+** @modified 2015/2/7   Remove negative distance bug
+** @modified 2015/2/7   Refactor
 ** @@
 **
 ** This program is free software; you can redistribute it and/or
@@ -39,30 +42,29 @@
 
 int main(int argc, char *argv[])
 {
-  embInitPV("gdistincc", argc, argv, "GEMBASSY", "1.0.1");
+  embInitPV("gdistincc", argc, argv, "GEMBASSY", "1.0.3");
 
   AjPSeqall seqall;
   AjPSeq    seq;
-  AjPStr    inseq = NULL;
+  AjPStr    inseq;
 
   AjBool accid = ajFalse;
   AjPStr seqid  = NULL;
   AjPStr restid = NULL;
 
+  AjPStr base = NULL;
+  AjPStr url  = NULL;
+
   ajint first;
   ajint second;
 
-  char *in0;
-  char *result;
-
-  AjPFile outfile = NULL;
-  AjPFile tmpfile = NULL;
-  AjPStr  tmpname = NULL;
-  AjPFilebuff tmp = NULL;
-  AjPStr     line = NULL;
-
-  AjPStr base = NULL;
-  AjPStr url  = NULL;
+  AjPFile     outfile = NULL;
+  AjPFile     tmpfile = NULL;
+  AjPStr      tmpname = NULL;
+  AjPStr      fstname = NULL;
+  AjPFilebuff tmp     = NULL;
+  AjPStr      line    = NULL;
+  AjPSeqout   tmpout  = NULL;
 
   seqall  = ajAcdGetSeqall("sequence");
   first   = ajAcdGetInt("first");
@@ -72,34 +74,75 @@ int main(int argc, char *argv[])
 
   base = ajStrNewC("rest.g-language.org");
 
+  gAssignUniqueName(&tmpname);
+  gAssignUniqueName(&fstname);
+  ajStrAppendC(&fstname, ".fasta");
+
   while(ajSeqallNext(seqall, &seq))
     {
-      inseq = NULL;
+      inseq = ajStrNew();
+
+      tmpout = ajSeqoutNew();
 
       if(!accid)
         {
-          gAssignUniqueName(&tmpname);
+          if(gFormatGenbank(seq, &inseq))
+            {
+              tmpfile = ajFileNewOutNameS(tmpname);
+              if(!tmpfile)
+                {
+                  ajDie("Output file (%S) open error\n", tmpname);
+                }
+              ajFmtPrintF(tmpfile, "%S", inseq);
+              ajFileClose(&tmpfile);
+              ajFmtPrintS(&url, "http://%S/upload/upl.pl", base);
+              gFilePostSS(url, tmpname, &restid);
+              ajStrDel(&url);
+              ajSysFileUnlinkS(tmpname);
+            }
+          else
+            {
+              if(!ajSeqoutOpenFilename(tmpout, fstname))
+                {
+                  embExitBad();
+                }
 
-          tmpfile = ajFileNewOutNameS(tmpname);
-
-          ajStrAppendS(&inseq, ajSeqGetSeqS(seq));
-          ajStrAssignS(&restid, ajSeqGetAccS(seq));
-
-          ajFmtPrintF(tmpfile, ">%S\n%S\n", restid, inseq);
-
-          ajFileClose(&tmpfile);
-
-          gFilePostCS("http://rest.g-language.org/upload/upl.pl",
-                      tmpname, &restid);
-
-          ajSysFileUnlinkS(tmpname);
-        }
-      else
-        {
-          ajStrAssignS(&restid, ajSeqGetAccS(seq));
-        }
+              ajSeqoutSetFormatS(tmpout,ajStrNewC("fasta"));
+              ajSeqoutWriteSeq(tmpout, seq);
+              ajSeqoutClose(tmpout);
+              ajSeqoutDel(&tmpout);
+              ajFmtPrintS(&url, "http://%S/upload/upl.pl", base);
+              gFilePostSS(url, fstname, &restid);
+              ajStrDel(&url);
+              ajSysFileUnlinkS(fstname);
+            }
+        }      
 
       ajStrAssignS(&seqid, ajSeqGetAccS(seq));
+
+      if(ajStrGetLen(seqid) == 0)
+        {
+          ajStrAssignS(&seqid, ajSeqGetNameS(seq));
+        }
+
+      if(ajStrGetLen(seqid) == 0)
+        {
+          ajWarn("No valid header information\n");
+        }
+
+      if(accid)
+        {
+          ajStrAssignS(&restid, seqid);
+          if(ajStrGetLen(seqid) == 0)
+            {
+              ajDie("Cannot proceed without header with -accid\n");
+            }
+
+          if(!gValID(seqid))
+            {
+              ajDie("Invalid accession ID:%S, exiting\n", seqid);
+            }
+        }
 
       url = ajStrNew();
 
@@ -126,23 +169,24 @@ int main(int argc, char *argv[])
       if(second >= 0)
         {
           ajFmtPrintF(outfile, "Sequence: %S Position1: %d Position2: %d "
-                      "Distance %d\n", seqid, first, line);
+                      "Distance %S\n", seqid, first, line);
         }
       else
         {
-          ajFmtPrintF(outfile, "Sequence: %S Position1: %d Distance %d\n",
+          ajFmtPrintF(outfile, "Sequence: %S Position1: %d Distance %S\n",
                       seqid, first, line);
         }
 
       ajStrDel(&url);
-      ajStrDel(&inseq);
+      ajStrDel(&restid);
+      ajStrDel(&seqid);
     }
 
   ajFileClose(&outfile);
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
-  ajStrDel(&seqid);
+  ajStrDel(&base);
 
   embExit();
 

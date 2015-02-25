@@ -4,9 +4,10 @@
 ** Calculate strand bias of bacterial genome using B1 index
 **
 ** @author Copyright (C) 2012 Hidetoshi Itaya
-** @version 1.0.1   Revision 1
+** @version 1.0.3
 ** @modified 2012/1/20  Hidetoshi Itaya  Created!
 ** @modified 2013/6/16  Revision 1
+** @modified 2015/2/7   Refactor
 ** @@
 **
 ** This program is free software; you can redistribute it and/or
@@ -38,7 +39,7 @@
 
 int main(int argc, char *argv[])
 {
-  embInitPV("gb1", argc, argv, "GEMBASSY", "1.0.1");
+  embInitPV("gb1", argc, argv, "GEMBASSY", "1.0.3");
 
   AjPSeqall seqall;
   AjPSeq    seq;
@@ -92,26 +93,37 @@ int main(int argc, char *argv[])
             }
           else
             {
-              ajDie("Sequence does not have features\n"
-                    "Proceeding with sequence accession ID\n");
+              ajWarn("Sequence does not have features\n"
+                     "Proceeding with sequence accession ID\n");
               accid = ajTrue;
             }
         }
 
-      if(accid)
+      ajStrAssignS(&seqid, ajSeqGetAccS(seq));
+
+      if(ajStrGetLen(seqid) == 0)
         {
-          ajStrAssignS(&restid, ajSeqGetAccS(seq));
-          if(!ajStrGetLen(restid))
-            {
-              ajStrAssignS(&restid, ajSeqGetNameS(seq));
-            }
-          if(!ajStrGetLen(restid))
-            {
-              ajDie("No valid header information\n");
-            }
+          ajStrAssignS(&seqid, ajSeqGetNameS(seq));
         }
 
-      ajStrAssignS(&seqid, ajSeqGetAccS(seq));
+      if(ajStrGetLen(seqid) == 0)
+        {
+          ajWarn("No valid header information\n");
+        }
+
+      if(accid)
+        {
+          ajStrAssignS(&restid, seqid);
+          if(ajStrGetLen(seqid) == 0)
+            {
+              ajDie("Cannot proceed without header with -accid\n");
+            }
+
+          if(!gValID(seqid))
+            {
+              ajDie("Invalid accession ID:%S, exiting\n", seqid);
+            }
+        }
 
       url = ajStrNew();
 
@@ -129,6 +141,8 @@ int main(int argc, char *argv[])
       ajFmtPrintF(outf, "Sequence: %S B1: %S\n", seqid, line);
 
       ajStrDel(&url);
+      ajStrDel(&restid);
+      ajStrDel(&seqid);
       ajStrDel(&inseq);
     }
 
@@ -136,7 +150,7 @@ int main(int argc, char *argv[])
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
-  ajStrDel(&seqid);
+  ajStrDel(&base);
 
   ajStrDel(&method);
 

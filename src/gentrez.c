@@ -4,9 +4,10 @@
 ** Search NCBI Entrez in G-language Shell
 **
 ** @author Copyright (C) 2012 Hidetoshi Itaya
-** @version 1.0.1   Revision 1
+** @version 1.0.3
 ** @modified 2012/1/20  Hidetoshi Itaya  Created!
 ** @modified 2013/6/16  Revision 1
+** @modified 2015/2/7   Refactor
 ** @@
 **
 ** This program is free software; you can redistribute it and/or
@@ -44,7 +45,7 @@
 
 int main(int argc, char *argv[])
 {
-  embInitPV("gentrez", argc, argv, "GEMBASSY", "1.0.1");
+  embInitPV("gentrez", argc, argv, "GEMBASSY", "1.0.3");
 
   struct soap soap;
 

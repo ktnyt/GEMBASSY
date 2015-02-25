@@ -23,6 +23,11 @@ section: input [
     information: "Position to find the distance"
   ]
 
+  boolean: accid [
+    information: "Include to use sequence accession ID as query"
+    default: "Y"
+  ]
+
 endsection: input
 
 section: advanced [
@@ -33,11 +38,6 @@ section: advanced [
   integer: second [
     information: "If the second position is negative, position of replication origin is used"
     default: "-1"
-  ]
-
-  boolean: accid [
-    information: "Include to use sequence accession ID as query"
-    default: "Y"
   ]
 
 endsection: advanced

@@ -4,9 +4,10 @@
 ** Draws circular map of the genome
 **
 ** @author Copyright (C) 2012 Hidetoshi Itaya
-** @version 1.0.1   Revision 1
+** @version 1.0.3
 ** @modified 2012/1/20  Hidetoshi Itaya  Created!
 ** @modified 2013/6/16  Revision 1
+** @modified 2015/2/7   Refactor
 ** @@
 **
 ** This program is free software; you can redistribute it and/or
@@ -43,7 +44,7 @@
 
 int main(int argc, char *argv[])
 {
-  embInitPV("gcircularmap", argc, argv, "GEMBASSY", "1.0.1");
+  embInitPV("gcircularmap", argc, argv, "GEMBASSY", "1.0.3");
 
   struct soap soap;
   struct ns1__circular_USCOREmapInputParams params;
@@ -83,10 +84,12 @@ int main(int argc, char *argv[])
 
       ajStrAssignS(&seqid, ajSeqGetAccS(seq));
 
-      if(!ajStrGetLen(seqid))
-        ajStrAssignS(&seqid, ajSeqGetNameS(seq));
+      if(ajStrGetLen(seqid) == 0)
+        {
+          ajStrAssignS(&seqid, ajSeqGetNameS(seq));
+        }
 
-      if(!ajStrGetLen(seqid))
+      if(ajStrGetLen(seqid) == 0)
         {
           ajWarn("No valid header information\n");
         }
@@ -94,8 +97,10 @@ int main(int argc, char *argv[])
       if(accid || !gFormatGenbank(seq, &inseq))
         {
           if(!accid)
-            ajWarn("Sequence does not have features\n"
-                   "Proceeding with sequence accession ID:%S\n", seqid);
+            {
+              ajWarn("Sequence does not have features\n"
+                     "Proceeding with sequence accession ID:%S\n", seqid);
+            }
 
           if(!gValID(seqid))
             {
@@ -166,12 +171,12 @@ int main(int argc, char *argv[])
 
       AJFREE(in0);
 
+      ajStrDel(&seqid);
       ajStrDel(&inseq);
     }
 
   ajSeqallDel(&seqall);
   ajSeqDel(&seq);
-  ajStrDel(&seqid);
 
   ajStrDel(&filename);
 

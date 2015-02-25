@@ -42,11 +42,6 @@ section: advanced [
     default: "position"
   ]
 
-  boolean: accid [
-    information: "Include to use sequence accession ID as query"
-    default: "Y"
-  ]
-
 endsection: advanced
 
 section: output [
